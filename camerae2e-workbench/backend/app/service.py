@@ -387,20 +387,24 @@ class WorkbenchService:
             pixel_pitch_m=pixel_pitch_m,
         )
         scene = _scene_payload(str(settings.get("sceneType", "macbeth")))
+        sensor_payload: dict[str, Any] = {
+            "noise_flag": 2,
+            "integration_time": float(settings["exposureMs"]) / 1000.0,
+            "analog_gain": float(settings.get("analogGain", 1.0)),
+            "pixel_size": pixel_pitch_m,
+            "cfa_preset": str(settings["cfaPreset"]),
+            "ocl_group_shape": str(settings["oclGroupShape"]),
+            "ocl_group_equalization": float(settings["oclEqualization"]),
+            "binning_factor": int(settings.get("binningFactor", 1)),
+        }
+        ocl_mode = str(settings["oclMode"]).strip().lower()
+        if ocl_mode not in {"off", "none", "disabled", "false", "0"}:
+            sensor_payload["ocl_vignetting"] = str(settings["oclMode"])
+
         scenario: dict[str, Any] = {
             "name": f"workbench_{settings.get('goal', 'adas_raw_factory')}",
             "scene": scene,
-            "sensor": {
-                "noise_flag": 2,
-                "integration_time": float(settings["exposureMs"]) / 1000.0,
-                "analog_gain": float(settings.get("analogGain", 1.0)),
-                "pixel_size": pixel_pitch_m,
-                "cfa_preset": str(settings["cfaPreset"]),
-                "ocl_vignetting": str(settings["oclMode"]),
-                "ocl_group_shape": str(settings["oclGroupShape"]),
-                "ocl_group_equalization": float(settings["oclEqualization"]),
-                "binning_factor": int(settings.get("binningFactor", 1)),
-            },
+            "sensor": sensor_payload,
             "parameters": {
                 "optics.fnumber": float(settings["fNumber"]),
                 "optics.focal_length": focal_length_m,
