@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CameraE2E Asset Registry</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 32px; color: #17202a; }
+.lead { font-size: 18px; }
+table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+th, td { border: 1px solid #d5d8dc; padding: 8px 10px; vertical-align: top; font-size: 13px; }
+th { background: #f4f6f7; text-align: left; }
+code { font-size: 12px; word-break: break-all; }
+.tier { display: inline-block; padding: 2px 7px; border-radius: 4px;
+  background: #edf2f7; font-weight: 600; }
+.tier-validated, .tier-calibrated { background: #d5f5e3; color: #145a32; }
+.tier-proxy, .tier-calibration_required { background: #fdebd0; color: #7d3c00; }
+.tier-missing { background: #fadbd8; color: #78281f; }
+.warn { color: #7d3c00; font-weight: 600; }
+</style>
+</head>
+<body>
+<h1>CameraE2E Asset Registry</h1>
+<p class='warn'>Validation warnings: 1; stale dependencies: 1</p>
+        <table>
+          <thead><tr><th>Name</th><th>Family</th><th>Role</th>
+          <th>Status</th><th>Tier</th><th>Path</th>
+          <th>Stale reason</th></tr></thead>
+          <tbody><tr><td>isetcam_upstream_snapshot</td><td>assets</td><td>upstream-matlab-asset-snapshot</td><td>active</td><td><span class='tier tier-validated'>validated</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/.cache/upstream/isetcam/412b9f9bdb3262f2552b96f0e769b5ad6cdff821</code></td><td></td></tr><tr><td>hwisp_parameter_profiles</td><td>isp</td><td>timing-and-3a-parameter-profiles</td><td>active</td><td><span class='tier tier-proxy'>proxy</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/hwisp</code></td><td></td></tr><tr><td>rayoptics_lens_db_v9</td><td>lens</td><td>external-optics-prescription-and-psf</td><td>available</td><td><span class='tier tier-proxy'>proxy</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/camerae2e_db/lens_db/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite</code></td><td></td></tr><tr><td>lens_patents_bundled_v6</td><td>lens</td><td>fallback-optics-prescription-and-psf</td><td>fallback</td><td><span class='tier tier-proxy'>proxy</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents/lens_patent_simulation_v6.sqlite</code></td><td></td></tr><tr><td>lens_patents_active</td><td>lens</td><td>optics-prescription-and-psf</td><td>active</td><td><span class='tier tier-proxy'>proxy</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/camerae2e_db/lens_db/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite</code></td><td></td></tr><tr><td>matlab_parity_baselines</td><td>parity</td><td>matlab-baseline-evidence</td><td>available</td><td><span class='tier tier-validated'>validated</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/tests/parity/baselines</code></td><td></td></tr><tr><td>task_perception_model_profiles</td><td>perception</td><td>model-profile-catalog</td><td>active</td><td><span class='tier tier-available'>available</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/task_perception/model_profiles.json</code></td><td></td></tr><tr><td>tcad_sensor_db_active</td><td>sensor</td><td>electrical-collection-lut</td><td>active</td><td><span class='tier tier-calibration_required'>calibration_required</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/camerae2e_db/fdtd_tcad</code></td><td>TCAD/FDTD active artifact mismatch: active FDTD LUT is under /Users/seongcheoljeong/Documents/CameraE2E/camerae2e_db/fdtd_tcad/runs/convergence_cra3_rgb_r84_gridsnap_quant, but TCAD generation map is under /Users/seongcheoljeong/Documents/CameraE2E/camerae2e_db/fdtd_tcad/runs/fdtd_to_tcad_generation_2d_cra_smoke</td></tr><tr><td>fdtd_sensor_lut_active</td><td>sensor</td><td>optical-response-lut</td><td>active</td><td><span class='tier tier-proxy'>proxy</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/camerae2e_db/fdtd_tcad/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json</code></td><td></td></tr><tr><td>fdtd_sensor_stack_catalog</td><td>sensor</td><td>sensor-stack-parameter-catalog</td><td>available</td><td><span class='tier tier-proxy'>proxy</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/camerae2e_db/fdtd_tcad/sensor_db/sensor_catalog.json</code></td><td></td></tr></tbody>
+        </table>
+
+</body>
+</html>

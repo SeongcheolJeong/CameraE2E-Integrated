@@ -1,0 +1,70 @@
+{
+  "schema": "image_sensor_stack_v1",
+  "name": "replace_with_sensor_name",
+  "description": "Template for product-specific image-sensor stack parameters. Fill this with measured or process-deck values.",
+  "calibration_status": {
+    "is_measured": false,
+    "geometry_measured": false,
+    "mode": "template",
+    "note": "Set is_measured=true and geometry_measured=true only after geometry and every material n,k file are target-sensor measured."
+  },
+  "geometry_um": {
+    "pitch": 1.40,
+    "pml": 0.60,
+    "air_top": 0.55,
+    "lens_height": 0.35,
+    "lens_edge_gap": 0.04,
+    "cfa_thickness": 0.45,
+    "passivation_thickness": 0.15,
+    "si_thickness": 2.00,
+    "bottom_air": 0.25,
+    "metal_edge_width": 0.12
+  },
+  "shield": {
+    "mode": "off",
+    "mask_edge_width_um": 0.12,
+    "pdaf_axis": "x",
+    "notes": "Keep off for normal imaging pixels. Enable pdaf_left, pdaf_right, pdaf_pair, or edge only for measured PDAF/aperture-mask variants."
+  },
+  "materials": {
+    "silicon": {
+      "nk_table": "../materials/Si-Green-2008.yml",
+      "measured": false,
+      "source": "Replace with target wafer temperature/doping model if needed."
+    },
+    "cfa_red": {
+      "nk_table": "../materials/nk/cfa_red_measured.csv",
+      "measured": false,
+      "source": "Measured red CFA stack n,k."
+    },
+    "cfa_green": {
+      "nk_table": "../materials/nk/cfa_green_measured.csv",
+      "measured": false,
+      "source": "Measured green CFA stack n,k."
+    },
+    "cfa_blue": {
+      "nk_table": "../materials/nk/cfa_blue_measured.csv",
+      "measured": false,
+      "source": "Measured blue CFA stack n,k."
+    },
+    "passivation": {
+      "nk_table": "../materials/nk/passivation_measured.csv",
+      "measured": false,
+      "source": "Measured effective dielectric / AR stack n,k."
+    },
+    "lens": {
+      "nk_table": "../materials/nk/ocl_polymer_measured.csv",
+      "measured": false,
+      "source": "Measured OCL resin n,k."
+    },
+    "metal": {
+      "model": "pec",
+      "source": "Replace with validated metal model only after numerical-stability checks.",
+      "usage": "optional PDAF/aperture mask only; not present when shield.mode is off"
+    }
+  },
+  "accuracy_notes": [
+    "Do not use this template until every measured file path exists.",
+    "For quantitative camera simulation, verify geometry, material data, convergence, and optical-to-electrical collection separately."
+  ]
+}

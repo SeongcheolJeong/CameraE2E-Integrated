@@ -1,0 +1,160 @@
+{
+  "profiles": [
+    {
+      "name": "custom_callable",
+      "backend": "callable",
+      "task": "detection_segmentation",
+      "model_id": null,
+      "device": "cpu",
+      "score_threshold": 0.25,
+      "labels": {},
+      "options": {
+        "description": "User-supplied Python detector and/or segmenter callables."
+      }
+    },
+    {
+      "name": "ultralytics_yolo11n_detection",
+      "backend": "ultralytics_yolo",
+      "task": "detection",
+      "model_id": "yolo11n.pt",
+      "device": "cpu",
+      "score_threshold": 0.25,
+      "labels": {},
+      "options": {
+        "install": "pip install ultralytics lap",
+        "notes": "YOLO11n object detection profile."
+      }
+    },
+    {
+      "name": "ultralytics_yolo11n_segmentation",
+      "backend": "ultralytics_yolo",
+      "task": "detection_segmentation",
+      "model_id": "yolo11n-seg.pt",
+      "device": "cpu",
+      "score_threshold": 0.25,
+      "labels": {},
+      "options": {
+        "install": "pip install ultralytics lap",
+        "notes": "YOLO11n instance segmentation profile."
+      }
+    },
+    {
+      "name": "ultralytics_yolo11n_classification",
+      "backend": "ultralytics_yolo",
+      "task": "classification",
+      "model_id": "yolo11n-cls.pt",
+      "device": "cpu",
+      "score_threshold": 0.01,
+      "labels": {},
+      "options": {
+        "install": "pip install ultralytics lap",
+        "notes": "YOLO11n classification profile."
+      }
+    },
+    {
+      "name": "ultralytics_yolo11n_pose",
+      "backend": "ultralytics_yolo",
+      "task": "pose",
+      "model_id": "yolo11n-pose.pt",
+      "device": "cpu",
+      "score_threshold": 0.25,
+      "labels": {},
+      "options": {
+        "install": "pip install ultralytics lap",
+        "notes": "YOLO11n pose-estimation profile."
+      }
+    },
+    {
+      "name": "ultralytics_yolo11n_obb",
+      "backend": "ultralytics_yolo",
+      "task": "oriented_detection",
+      "model_id": "yolo11n-obb.pt",
+      "device": "cpu",
+      "score_threshold": 0.25,
+      "labels": {},
+      "options": {
+        "install": "pip install ultralytics lap",
+        "notes": "YOLO11n oriented bounding-box detection profile."
+      }
+    },
+    {
+      "name": "ultralytics_yolo11n_bytetrack",
+      "backend": "ultralytics_yolo",
+      "task": "tracking",
+      "model_id": "yolo11n.pt",
+      "device": "cpu",
+      "score_threshold": 0.25,
+      "labels": {},
+      "options": {
+        "install": "pip install ultralytics lap",
+        "tracker": "bytetrack.yaml",
+        "notes": "YOLO11n detection profile wired to Ultralytics ByteTrack tracking."
+      }
+    },
+    {
+      "name": "torchvision_fasterrcnn_resnet50_fpn_v2_coco",
+      "backend": "torchvision_detection",
+      "task": "detection",
+      "model_id": "fasterrcnn_resnet50_fpn_v2",
+      "device": "cpu",
+      "score_threshold": 0.25,
+      "labels": {},
+      "options": {
+        "weights": "DEFAULT",
+        "install": "pip install torch torchvision"
+      }
+    },
+    {
+      "name": "torchvision_maskrcnn_resnet50_fpn_v2_coco",
+      "backend": "torchvision_detection",
+      "task": "detection_segmentation",
+      "model_id": "maskrcnn_resnet50_fpn_v2",
+      "device": "cpu",
+      "score_threshold": 0.25,
+      "labels": {},
+      "options": {
+        "weights": "DEFAULT",
+        "install": "pip install torch torchvision"
+      }
+    },
+    {
+      "name": "transformers_detr_resnet50_coco",
+      "backend": "transformers_object_detection",
+      "task": "detection",
+      "model_id": "facebook/detr-resnet-50",
+      "device": "cpu",
+      "score_threshold": 0.25,
+      "labels": {},
+      "options": {
+        "install": "pip install transformers torch pillow"
+      }
+    },
+    {
+      "name": "transformers_mask2former_ade20k",
+      "backend": "transformers_segmentation",
+      "task": "segmentation",
+      "model_id": "facebook/mask2former-swin-small-ade-semantic",
+      "device": "cpu",
+      "score_threshold": 0.25,
+      "labels": {},
+      "options": {
+        "install": "pip install transformers torch pillow"
+      }
+    },
+    {
+      "name": "sam_vit_b_automatic",
+      "backend": "sam_automatic",
+      "task": "segmentation",
+      "model_id": "sam_vit_b",
+      "checkpoint_path": "",
+      "device": "cpu",
+      "score_threshold": 0.0,
+      "labels": {},
+      "options": {
+        "model_type": "vit_b",
+        "install": "pip install segment-anything torch",
+        "notes": "Set checkpoint_path to the local SAM checkpoint before use."
+      }
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Perception Metric Implementation Report</title>
+  <style>
+    :root {
+      --ink: #18222d;
+      --muted: #617080;
+      --line: #d4dde6;
+      --card: #ffffff;
+      --accent: #235c6f;
+      --bg: #f4f1e9;
+    }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgb(35 92 111 / 14%), transparent 36rem),
+        linear-gradient(135deg, #fbf7ec 0%, #eef7f4 100%);
+      color: var(--ink);
+      font: 15px/1.58 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 38px 24px 56px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 38px;
+      letter-spacing: -0.04em;
+    }
+    h2 {
+      margin: 34px 0 14px;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+    }
+    .lead {
+      max-width: 880px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    .cards, .figures {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 14px;
+      margin: 22px 0;
+    }
+    .card, .panel, table {
+      background: rgb(255 255 255 / 94%);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 10px 28px rgb(24 34 45 / 7%);
+    }
+    .card, .panel {
+      padding: 17px 18px;
+    }
+    .label {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .value {
+      margin-top: 4px;
+      font-size: 24px;
+      font-weight: 760;
+    }
+    img {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: white;
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      margin: 12px 0 20px;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      width: 42%;
+      background: #f6f8fa;
+    }
+    code {
+      background: #eef3f5;
+      border-radius: 6px;
+      padding: 2px 5px;
+    }
+    .note {
+      border-left: 4px solid var(--accent);
+      padding: 12px 14px;
+      background: rgb(35 92 111 / 8%);
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+<h1>Perception Metric Implementation Report</h1>
+<p class="lead">This report demonstrates the new high-level perception API. It is not a new ISP algorithm; it wraps existing numeric, color, SCIELAB, and sharpness helpers into viewing-condition aware evidence.</p>
+<div class="cards">
+  <div class="card"><div class="label">Git commit</div><div class="value">ecc712f</div></div>
+  <div class="card"><div class="label">Generated</div><div class="value">2026-05-25T00:07:51</div></div>
+  <div class="card"><div class="label">Mean JND</div><div class="value">6.140</div></div>
+  <div class="card"><div class="label">Visible fraction</div><div class="value">0.879</div></div>
+</div>
+
+<h2>Architecture</h2>
+<div class="panel">
+  <p><code>perception.py</code> sits above <code>metrics.py</code>, <code>scielab.py</code>, and camera quality helpers. The API requires explicit viewing assumptions so that color difference, JND maps, sharpness, and artifact proxies are not reported as context-free scalars.</p>
+  <p class="note">Important: a single global "perception score" is intentionally not reported. Color, visible difference, sharpness, and artifacts are separate failure modes and should remain inspectable.</p>
+</div>
+
+<h2>Viewing Configuration</h2>
+<table><thead><tr><th>Metric</th><th>Value</th><th>Units</th></tr></thead><tbody><tr><th>Viewing distance</th><td>0.5</td><td>m</td></tr>
+<tr><th>Pixel pitch</th><td>250</td><td>um</td></tr>
+<tr><th>Pixels per degree</th><td>34.9066</td><td>px/deg</td></tr>
+<tr><th>Display peak luminance</th><td>100</td><td>cd/m^2</td></tr>
+<tr><th>JND Delta E threshold</th><td>1</td><td>Delta E</td></tr>
+<tr><th>Visible Delta E threshold</th><td>2.3</td><td>Delta E</td></tr></tbody></table>
+
+<h2>Evidence Images</h2>
+<div class="figures">
+  <figure><img src="perception_reference.png" alt="Reference image"><figcaption>Reference image with edges, color patches, gradients, and texture.</figcaption></figure>
+  <figure><img src="perception_test.png" alt="Test image"><figcaption>Test image with blur, small color cast, and banding proxy.</figcaption></figure>
+  <figure><img src="perception_visible_difference_map.png" alt="Visible difference map"><figcaption>S-CIELAB Delta E map. Brighter areas indicate more visible differences.</figcaption></figure>
+  <figure><img src="perception_sharpness_mtf.png" alt="MTF plot"><figcaption>Reference/test MTF curves used for perception-weighted sharpness metrics.</figcaption></figure>
+</div>
+
+<h2>Visible Difference</h2>
+<table><thead><tr><th>Metric</th><th>Value</th><th>Units</th></tr></thead><tbody><tr><th>Mean Delta E</th><td>6.13956</td><td>Delta E</td></tr>
+<tr><th>95th percentile Delta E</th><td>13.1448</td><td>Delta E</td></tr>
+<tr><th>Max Delta E</th><td>21.7906</td><td>Delta E</td></tr>
+<tr><th>Mean JND</th><td>6.13956</td><td>JND</td></tr>
+<tr><th>Visible pixel fraction</th><td>0.879499</td><td>fraction</td></tr></tbody></table>
+
+<h2>Quality Summary</h2>
+<table><thead><tr><th>Metric</th><th>Value</th><th>Units</th></tr></thead><tbody><tr><th>MAE</th><td>0.0867393</td><td>normalized</td></tr>
+<tr><th>RMSE</th><td>0.14275</td><td>normalized</td></tr>
+<tr><th>PSNR</th><td>16.9085</td><td>dB</td></tr>
+<tr><th>Mean luminance error</th><td>-5.78118</td><td>cd/m^2</td></tr>
+<tr><th>RMS luminance error</th><td>18.1132</td><td>cd/m^2</td></tr>
+<tr><th>Mean color Delta E</th><td>7.35762</td><td>Delta E</td></tr>
+<tr><th>Reference ISO acutance</th><td>0.916111</td><td>unitless</td></tr>
+<tr><th>Test ISO acutance</th><td>0.855695</td><td>unitless</td></tr>
+<tr><th>Reference SQRI</th><td>98.5038</td><td>unitless</td></tr>
+<tr><th>Test SQRI</th><td>96.1375</td><td>unitless</td></tr>
+<tr><th>High-frequency error fraction</th><td>0.446552</td><td>fraction</td></tr></tbody></table>
+
+<h2>Implemented Public API</h2>
+<div class="panel">
+  <p>Primary functions: <code>perception_config</code>, <code>pixels_per_degree</code>, <code>image_to_luminance</code>, <code>perception_image_metrics</code>, <code>perception_color_metrics</code>, <code>perception_visible_difference_map</code>, <code>perception_sharpness_metrics</code>, <code>perception_artifact_metrics</code>, <code>perception_compare</code>, and <code>perception_report</code>.</p>
+  <p>MATLAB-style aliases are also exposed at the package root, for example <code>perceptionConfig</code>, <code>pixelsPerDegree</code>, and <code>perceptionVisibleDifferenceMap</code>.</p>
+</div>
+</main>
+</body>
+</html>

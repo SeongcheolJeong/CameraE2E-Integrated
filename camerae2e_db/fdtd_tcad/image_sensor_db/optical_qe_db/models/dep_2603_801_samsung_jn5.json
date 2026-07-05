@@ -1,0 +1,173 @@
+{
+  "schema": "image_sensor_optical_qe_model_v1",
+  "code": "DEP-2603-801",
+  "source": {
+    "code": "DEP-2603-801",
+    "manufacturer": "Samsung",
+    "device_name": "JN5",
+    "title": "Technical Report: OmniVision OV50X Device Essentials Plus",
+    "report_type": "DEP",
+    "release_date": "2029-03-04T00:00:00.000+00:00",
+    "html_files": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download_dep_a6pf30000009PYHAA2/html/reports/047_DEP-2603-801.html"
+    ],
+    "pdf_files": []
+  },
+  "optical": {
+    "geometry": {
+      "pixel_pitch_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.pixel_pitch_um missing",
+        "unit": "um"
+      },
+      "optical_format": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.optical_format missing"
+      },
+      "optical_stack_height_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.optical_stack_height_um missing",
+        "unit": "um"
+      },
+      "active_si_thickness_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.active_si_thickness_um missing",
+        "unit": "um"
+      }
+    },
+    "cfa": {
+      "pattern": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_pattern missing"
+      },
+      "representative_thickness_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_um missing",
+        "unit": "um"
+      },
+      "thickness_min_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_min_um missing",
+        "unit": "um"
+      },
+      "thickness_max_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_max_um missing",
+        "unit": "um"
+      },
+      "color_filter_pitch_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.color_filter_pitch_um missing",
+        "unit": "um"
+      },
+      "evidence": []
+    },
+    "microlens": {
+      "type": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.microlens_type missing"
+      },
+      "ocl_pitch_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.ocl_pitch_um missing",
+        "unit": "um"
+      },
+      "evidence": []
+    },
+    "grid": {
+      "material": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.grid_material missing"
+      },
+      "pitch_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.grid_pitch_um missing",
+        "unit": "um"
+      },
+      "evidence": []
+    },
+    "sensor_context": {
+      "illumination": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.illumination missing"
+      },
+      "sensor_modality": {
+        "value": "cmos_image_sensor",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.sensor_modality",
+        "evidence": "combined_text: cmos_image_sensor"
+      },
+      "is_nir": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.is_nir missing"
+      }
+    }
+  },
+  "cfa_proxy_nk": {
+    "enabled": false,
+    "library_id": "common_rgb_color_resist_proxy_2026_06",
+    "source_kind": "inferred_proxy_nk",
+    "applicability": "unknown_cfa_pattern",
+    "reference_thickness_um": 0.65,
+    "thickness_um": {
+      "value": 0.65,
+      "source_kind": "inferred_proxy_default",
+      "confidence": 0.3,
+      "method": "proxy library reference_thickness_um used because sensor-specific CFA thickness is unavailable",
+      "unit": "um"
+    },
+    "channels": {},
+    "model_limitations": [
+      "Absorption-only CFA layer proxy; does not include full optical-stack interference, microlens focusing, grid diffraction, or silicon absorption.",
+      "Common R/G/B n,k proxy, not product-specific measured optical constants."
+    ]
+  },
+  "qe": {
+    "measurement_data_status": "not_found",
+    "quantitative_points": [],
+    "qualitative_mentions": [],
+    "spectral_ranges": [],
+    "filter_sets": []
+  },
+  "readiness": {
+    "level": "insufficient_optical_evidence",
+    "score": 0,
+    "reasons": []
+  },
+  "notes": [
+    "QE quantitative_points are reported text points, not reconstructed curves.",
+    "inferred_rule values are setup defaults and must not be treated as measurements.",
+    "cfa_proxy_nk is a common color-resist n,k proxy for setup/sensitivity work, not measured product-specific optical constants."
+  ]
+}

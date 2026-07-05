@@ -1,0 +1,98 @@
+{
+  "available_presets": {
+    "debug": {
+      "field_count": 3,
+      "psf_size": 64,
+      "pupil_samples": 13,
+      "wavelengths": "550"
+    },
+    "golden": {
+      "field_count": 7,
+      "psf_size": 768,
+      "pupil_samples": 97,
+      "wavelengths": "450,500,550,600,650"
+    },
+    "production": {
+      "field_count": 5,
+      "psf_size": 512,
+      "pupil_samples": 65,
+      "wavelengths": "450,550,650"
+    },
+    "standard": {
+      "field_count": 5,
+      "psf_size": 384,
+      "pupil_samples": 49,
+      "wavelengths": "450,550,650"
+    }
+  },
+  "built_at": "2026-06-21T08:34:31.188199+00:00",
+  "camerae2e_db": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents/lens_patent_simulation_v6.sqlite",
+  "export_root": "/Users/seongcheoljeong/Lens_Patent_DB/exports/prescriptions_expanded_v6",
+  "rows": [
+    {
+      "built_at": "2026-06-21T08:34:14.529997+00:00",
+      "company": "Canon",
+      "configuration": "intermediate",
+      "example_label": "",
+      "field_height_mm": [
+        0.0,
+        3.415,
+        6.83,
+        10.245000000000001,
+        13.66
+      ],
+      "file": "p0014_intermediate.npz",
+      "lens_id": "p0014",
+      "notes": [
+        "RayOptics geometric ray histogram PSF; diffraction is not included.",
+        "EvenPolynomial asphere coefficients were applied where parsed."
+      ],
+      "preset": "production",
+      "psf_shape": [
+        512,
+        512,
+        5,
+        3
+      ],
+      "publication_number": "US10310255B2",
+      "sample_spacing_mm": [
+        0.012040328833971508,
+        0.012040328833971508
+      ],
+      "simulation_id": "p0014:intermediate",
+      "status": "generated",
+      "success_max": 3209,
+      "success_min": 3209,
+      "wavelength_nm": [
+        450.0,
+        550.0,
+        650.0
+      ]
+    }
+  ],
+  "schema": "camerae2e_lens_patent_raytrace_psf_manifest_v1",
+  "settings": {
+    "field_count": 5,
+    "min_success_fraction": 0.25,
+    "model": "rayoptics_geometric_histogram",
+    "preset": "production",
+    "psf_size": 512,
+    "pupil_samples": 65,
+    "sample_spacing_um": null,
+    "wavelengths": [
+      450.0,
+      550.0,
+      650.0
+    ]
+  },
+  "summary": {
+    "by_company": {
+      "Canon": {
+        "generated": 1,
+        "total": 1
+      }
+    },
+    "generated": 1,
+    "total": 1
+  }
+}

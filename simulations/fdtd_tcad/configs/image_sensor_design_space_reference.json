@@ -1,0 +1,395 @@
+{
+  "schema": "image_sensor_design_space_v1",
+  "name": "reference_1p4um_bsi_split_pd_design_space",
+  "description": "Lumerical-style design-object and parameter registry for the open-source image-sensor pixel studio. This records which parameters are wired to the current solvers and which ones are still metadata or candidate-only.",
+  "source_basis": [
+    {
+      "topic": "FDTD UI structure",
+      "url": "https://optics.ansys.com/hc/en-us/articles/36952912384403-Ansys-Lumerical-FDTD-Modern-User-Interface",
+      "reflected_goal": "Tabbed tool areas, object tree, result view, viewport, resources, sources, monitors, mesh, materials, and sweeps."
+    },
+    {
+      "topic": "CIS angular response workflow",
+      "url": "https://optics.ansys.com/hc/en-us/articles/360042358574-CMOS-image-sensor-Angular-response-3D",
+      "reflected_goal": "Initial simulation, angle sweep, microlens-shift sweep, electrical weighting function, and G*W-style QE/crosstalk integration."
+    },
+    {
+      "topic": "CIS camera sensor characterization",
+      "url": "https://optics.ansys.com/hc/en-us/articles/360062131614-CMOS-Sensor-Camera-Sensor-Characterization",
+      "reflected_goal": "CRA/MRA, wavelength/angle/pixel-type EQE, weighting function reuse, and camera-system export orientation."
+    },
+    {
+      "topic": "Parameter sweep utility",
+      "url": "https://optics.ansys.com/hc/en-us/articles/360034922873-Parameter-sweep-utility",
+      "reflected_goal": "Explicit parameter/result tables and repeatable sweep tasks rather than ad hoc script edits."
+    },
+    {
+      "topic": "Results Manager and Visualizer",
+      "url": "https://optics.ansys.com/hc/en-us/articles/360034394974-Browsing-data-with-the-Results-Manager",
+      "reflected_goal": "Completed objects should expose their available result datasets and allow users to inspect generated monitors, tables, and reports from the project shell."
+    },
+    {
+      "topic": "Data visualizer plot modes",
+      "url": "https://optics.ansys.com/hc/en-us/articles/360037222234-Using-the-data-visualizer-and-figure-windows",
+      "reflected_goal": "Result datasets need first-class 1D, 2D image/slice, and 3D/vector viewer affordances with exportable figures."
+    },
+    {
+      "topic": "Lumerical datasets",
+      "url": "https://optics.ansys.com/hc/en-us/articles/360034409554-Introduction-to-Lumerical-datasets",
+      "reflected_goal": "Monitor data should be treated as structured datasets with parameters and attributes rather than loose image files."
+    },
+    {
+      "topic": "CMOS optical simulation methodology",
+      "url": "https://optics.ansys.com/hc/en-us/articles/360042851793-CMOS-Optical-simulation-methodology",
+      "reflected_goal": "Wavelength-scale pixel optics should be handled as wave optics, with FDTD generation maps rather than ray-only attribution."
+    },
+    {
+      "topic": "CMOS electrical simulation methodology",
+      "url": "https://optics.ansys.com/hc/en-us/articles/360042358674-CMOS-Electrical-simulation-methodology",
+      "reflected_goal": "Pinned photodiode, transfer gate, floating diffusion, implants, and transport calibration must be represented as solver equations or clearly marked proxy-only."
+    },
+    {
+      "topic": "CMOS optical simulation tips",
+      "url": "https://optics.ansys.com/hc/en-us/articles/360042851673-CMOS-Optical-simulation-tips",
+      "reflected_goal": "A fast coarse setup is useful for debugging, but convergence must pass before any result is treated as accuracy evidence."
+    }
+  ],
+  "parameter_groups": [
+    {
+      "id": "optical_stack",
+      "label": "Optical Stack",
+      "owner": "Meep FDTD",
+      "parameters": [
+        {
+          "id": "pixel_pitch_um",
+          "label": "Pixel pitch",
+          "path": "stack.geometry_um.pitch",
+          "unit": "um",
+          "range": [1.0, 2.2],
+          "wired_to_solver": true,
+          "requires_rerun": ["meep_fdtd", "gmsh_mesh", "devsim_weighting", "devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Changes optical periodicity and electrical pixel width; all downstream results become stale."
+        },
+        {
+          "id": "lens_height_um",
+          "label": "Microlens height",
+          "path": "stack.geometry_um.lens_height",
+          "unit": "um",
+          "range": [0.35, 0.9],
+          "wired_to_solver": true,
+          "requires_rerun": ["meep_fdtd", "gw_lut", "studio"],
+          "design_intent": "Primary CRA response and edge roll-off tuning knob."
+        },
+        {
+          "id": "cfa_thickness_um",
+          "label": "CFA thickness",
+          "path": "stack.geometry_um.cfa_thickness",
+          "unit": "um",
+          "range": [0.45, 1.1],
+          "wired_to_solver": true,
+          "requires_rerun": ["meep_fdtd", "gw_lut", "studio"],
+          "design_intent": "Controls color filter absorption and optical phase before silicon."
+        },
+        {
+          "id": "passivation_thickness_um",
+          "label": "Passivation thickness",
+          "path": "stack.geometry_um.passivation_thickness",
+          "unit": "um",
+          "range": [0.01, 0.15],
+          "wired_to_solver": true,
+          "requires_rerun": ["meep_fdtd", "gw_lut", "studio"],
+          "design_intent": "Proxy AR/passivation spacing parameter."
+        },
+        {
+          "id": "si_thickness_um",
+          "label": "Silicon optical thickness",
+          "path": "stack.geometry_um.si_thickness",
+          "unit": "um",
+          "range": [1.5, 4.5],
+          "wired_to_solver": true,
+          "requires_rerun": ["meep_fdtd", "devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Changes absorption depth and electrical collection domain."
+        }
+      ]
+    },
+    {
+      "id": "electrical_geometry",
+      "label": "Electrical Geometry",
+      "owner": "Gmsh + DEVSIM",
+      "parameters": [
+        {
+          "id": "split_gap_um",
+          "label": "Split PD gap",
+          "path": "profile.geometry.split_gap_um",
+          "unit": "um",
+          "range": [0.02, 0.12],
+          "wired_to_solver": true,
+          "requires_rerun": ["gmsh_mesh", "devsim_weighting", "devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Tunes left/right isolation and phase response."
+        },
+        {
+          "id": "dti_width_um",
+          "label": "DTI width",
+          "path": "profile.geometry.dti_width_um",
+          "unit": "um",
+          "range": [0.03, 0.12],
+          "wired_to_solver": true,
+          "requires_rerun": ["gmsh_mesh", "devsim_weighting", "devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Side isolation proxy; wider DTI may reduce crosstalk but can reduce fill factor."
+        },
+        {
+          "id": "left_bdti_depth_um",
+          "label": "Left BDTI depth",
+          "path": "profile.electrical_features.3.depth_max_um",
+          "unit": "um",
+          "range": [0.4, 2.8],
+          "wired_to_solver": true,
+          "requires_rerun": ["devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Left backside trench liner proxy depth; measured trench profile is required for accuracy."
+        },
+        {
+          "id": "right_bdti_depth_um",
+          "label": "Right BDTI depth",
+          "path": "profile.electrical_features.4.depth_max_um",
+          "unit": "um",
+          "range": [0.4, 2.8],
+          "wired_to_solver": true,
+          "requires_rerun": ["devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Right backside trench liner proxy depth; measured trench profile is required for accuracy."
+        },
+        {
+          "id": "tg_oxide_thickness_um",
+          "label": "TG oxide thickness",
+          "path": "profile.geometry.transfer_gate.oxide_thickness_um",
+          "unit": "um",
+          "range": [0.003, 0.012],
+          "wired_to_solver": false,
+          "requires_rerun": ["devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Currently metadata/proxy only; true gate electrostatics still need DEVSIM equation support."
+        },
+        {
+          "id": "fd_depth_um",
+          "label": "FD depth max",
+          "path": "profile.geometry.floating_diffusion.depth_max_um",
+          "unit": "um",
+          "range": [0.06, 0.2],
+          "wired_to_solver": false,
+          "requires_rerun": ["devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Current solver keeps FD mostly as proxy doping/metadata."
+        }
+      ]
+    },
+    {
+      "id": "electrical_physics",
+      "label": "Electrical Physics",
+      "owner": "DEVSIM",
+      "parameters": [
+        {
+          "id": "pinning_acceptor_cm3",
+          "label": "Pinning acceptor",
+          "path": "profile.implants.0.acceptor_cm3",
+          "unit": "cm^-3",
+          "range": [1.0e16, 2.0e17],
+          "wired_to_solver": true,
+          "requires_rerun": ["devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Front pinning layer proxy; affects surface field and collection in current profile-PPD model."
+        },
+        {
+          "id": "storage_donor_cm3",
+          "label": "Storage n-well donor",
+          "path": "profile.implants.1.donor_cm3",
+          "unit": "cm^-3",
+          "range": [1.0e15, 2.0e16],
+          "wired_to_solver": true,
+          "requires_rerun": ["devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Primary photodiode storage doping proxy."
+        },
+        {
+          "id": "front_fixed_charge_cm2",
+          "label": "Front fixed charge",
+          "path": "profile.electrical_features.2.fixed_charge_cm2",
+          "unit": "cm^-2",
+          "range": [-1.0e11, 6.0e12],
+          "wired_to_solver": true,
+          "requires_rerun": ["devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Sheet-to-volume fixed-charge proxy; does not include occupancy-dependent interface traps."
+        },
+        {
+          "id": "left_bdti_acceptor_cm3",
+          "label": "Left BDTI acceptor",
+          "path": "profile.electrical_features.3.acceptor_cm3",
+          "unit": "cm^-3",
+          "range": [1.0e15, 2.0e17],
+          "wired_to_solver": true,
+          "requires_rerun": ["devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Left BDTI p-liner proxy dose; measured BDTI liner implant is required for accuracy."
+        },
+        {
+          "id": "right_bdti_acceptor_cm3",
+          "label": "Right BDTI acceptor",
+          "path": "profile.electrical_features.4.acceptor_cm3",
+          "unit": "cm^-3",
+          "range": [1.0e15, 2.0e17],
+          "wired_to_solver": true,
+          "requires_rerun": ["devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Right BDTI p-liner proxy dose; measured BDTI liner implant is required for accuracy."
+        },
+        {
+          "id": "interface_dit_cm2_ev",
+          "label": "Front interface Dit",
+          "path": "profile.interfaces.0.dit_cm2_ev",
+          "unit": "cm^-2 eV^-1",
+          "range": [1.0e9, 1.0e12],
+          "wired_to_solver": true,
+          "requires_rerun": ["devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Converted into potential-dependent trap charge and SRH sheet recombination proxy in DEVSIM."
+        },
+        {
+          "id": "electron_mobility_max_cm2_v_s",
+          "label": "Electron mobility max",
+          "path": "profile.mobility_recombination.mu_n_max_cm2_v_s",
+          "unit": "cm^2/V/s",
+          "range": [300, 1400],
+          "wired_to_solver": true,
+          "requires_rerun": ["devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Upper bound of the doping-dependent electron mobility model wired into DEVSIM edge current."
+        },
+        {
+          "id": "electron_mobility_ref_doping_cm3",
+          "label": "Electron mobility ref doping",
+          "path": "profile.mobility_recombination.mu_n_ref_doping_cm3",
+          "unit": "cm^-3",
+          "range": [1.0e15, 5.0e17],
+          "wired_to_solver": true,
+          "requires_rerun": ["devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Doping scale for the Caughey-Thomas-style electron mobility roll-off."
+        },
+        {
+          "id": "srh_lifetime_max_s",
+          "label": "SRH lifetime max",
+          "path": "profile.mobility_recombination.tau_n_max_s",
+          "unit": "s",
+          "range": [1.0e-8, 2.5e-3],
+          "wired_to_solver": true,
+          "requires_rerun": ["devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Upper bound of the doping-dependent SRH lifetime model wired into DEVSIM generation/recombination."
+        },
+        {
+          "id": "electron_saturation_velocity_cm_s",
+          "label": "Electron saturation velocity",
+          "path": "profile.mobility_recombination.electron_saturation_velocity_cm_s",
+          "unit": "cm/s",
+          "range": [5.0e6, 2.0e7],
+          "wired_to_solver": true,
+          "requires_rerun": ["devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Velocity-saturation scale for field-dependent electron edge mobility."
+        },
+        {
+          "id": "field_mobility_beta_n",
+          "label": "Electron field mobility beta",
+          "path": "profile.mobility_recombination.field_mobility_beta_n",
+          "unit": "",
+          "range": [1.0, 3.0],
+          "wired_to_solver": true,
+          "requires_rerun": ["devsim_electrical", "gw_lut", "studio"],
+          "design_intent": "Canali-style high-field roll-off exponent for electron edge mobility."
+        }
+      ]
+    },
+    {
+      "id": "sweep_and_export",
+      "label": "Sweep and Export",
+      "owner": "Runbook",
+      "parameters": [
+        {
+          "id": "cra_x_deg",
+          "label": "Chief ray angle X",
+          "path": "project.workflow.optical.current_scope",
+          "unit": "deg",
+          "range": [-35, 35],
+          "wired_to_solver": true,
+          "requires_rerun": ["meep_fdtd", "gw_lut", "studio"],
+          "design_intent": "Camera-system field response axis; current reference has center and edge20x only."
+        },
+        {
+          "id": "meep_resolution",
+          "label": "Meep resolution",
+          "path": "project.runbook.0.command",
+          "unit": "px/um",
+          "range": [6, 32],
+          "wired_to_solver": true,
+          "requires_rerun": ["meep_fdtd", "convergence_gate", "gw_lut", "studio"],
+          "design_intent": "Convergence knob; low smoke settings are not accuracy evidence."
+        }
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "baseline_reference",
+      "label": "Baseline reference",
+      "status": "simulated_reference",
+      "goal": "Current center/edge20x reference used by the Studio.",
+      "parameter_overrides": {},
+      "expected_effect": "Baseline for trend comparisons.",
+      "risks": ["Not measured", "Not product-accurate"],
+      "requires_rerun": []
+    },
+    {
+      "id": "lens_height_plus_8pct",
+      "label": "Lens height +8%",
+      "status": "candidate_not_simulated",
+      "goal": "Explore whether a stronger microlens improves edge CRA response.",
+      "parameter_overrides": {
+        "stack.geometry_um.lens_height": 0.70956
+      },
+      "expected_effect": "Could improve edge collection but may worsen center/color balance.",
+      "risks": ["Needs Meep convergence rerun", "Can introduce stronger wavelength dependence"],
+      "requires_rerun": ["meep_fdtd", "gw_lut", "studio"]
+    },
+    {
+      "id": "split_gap_plus_50pct",
+      "label": "Split gap +50%",
+      "status": "candidate_not_simulated",
+      "goal": "Increase left/right split isolation for PDAF phase response.",
+      "parameter_overrides": {
+        "profile.geometry.split_gap_um": 0.06
+      },
+      "expected_effect": "May increase split contrast but reduce total collection.",
+      "risks": ["Requires new Gmsh mesh", "Could reduce fill factor"],
+      "requires_rerun": ["gmsh_mesh", "devsim_weighting", "devsim_electrical", "gw_lut", "studio"]
+    },
+    {
+      "id": "front_fixed_charge_stress",
+      "label": "Front fixed-charge stress",
+      "status": "candidate_not_simulated",
+      "goal": "Probe sensitivity to front-interface fixed charge before real interface-trap equations exist.",
+      "parameter_overrides": {
+        "profile.electrical_features.2.fixed_charge_cm2": 1.0e12
+      },
+      "expected_effect": "Can reveal sign and magnitude sensitivity of surface electrostatics.",
+      "risks": ["Fixed sheet proxy is not a trap model", "Needs calibration target"],
+      "requires_rerun": ["devsim_electrical", "gw_lut", "studio"]
+    }
+  ],
+  "workflow_gates": [
+    {
+      "id": "smoke",
+      "label": "Smoke",
+      "pass_condition": "Scripts run, terminal balance finite, all referenced output files exist.",
+      "product_lut_ready": false
+    },
+    {
+      "id": "trend",
+      "label": "Trend exploration",
+      "pass_condition": "Convergence report passes and native/W_proxy/W_mesh disagreement is recorded for each field point.",
+      "product_lut_ready": false
+    },
+    {
+      "id": "accuracy",
+      "label": "Accuracy LUT",
+      "pass_condition": "Measured stack geometry, measured n,k, calibrated transport/collection, true weighting/collection model, and measured target validation pass.",
+      "product_lut_ready": true
+    }
+  ]
+}

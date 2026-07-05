@@ -1,0 +1,273 @@
+{
+  "available_presets": {
+    "debug": {
+      "field_count": 3,
+      "psf_size": 64,
+      "pupil_samples": 13,
+      "wavelengths": "550"
+    },
+    "golden": {
+      "field_count": 7,
+      "psf_size": 768,
+      "pupil_samples": 97,
+      "wavelengths": "450,500,550,600,650"
+    },
+    "production": {
+      "field_count": 5,
+      "psf_size": 512,
+      "pupil_samples": 65,
+      "wavelengths": "450,550,650"
+    },
+    "standard": {
+      "field_count": 5,
+      "psf_size": 384,
+      "pupil_samples": 49,
+      "wavelengths": "450,550,650"
+    }
+  },
+  "built_at": "2026-06-27T01:49:00.686692+00:00",
+  "camerae2e_db": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite",
+  "export_root": "/Users/seongcheoljeong/Lens_Patent_DB/exports/prescriptions_expanded_v9",
+  "rows": [
+    {
+      "built_at": "2026-06-27T01:48:00.430025+00:00",
+      "company": "Canon",
+      "configuration": "intermediate",
+      "example_label": "",
+      "field_height_mm": [
+        0.0,
+        3.415,
+        6.83,
+        10.245000000000001,
+        13.66
+      ],
+      "file": "p0014_intermediate.npz",
+      "lens_id": "p0014",
+      "notes": [
+        "RayOptics geometric ray histogram PSF; diffraction is not included.",
+        "EvenPolynomial asphere coefficients were applied where parsed."
+      ],
+      "preset": "production",
+      "psf_shape": [
+        512,
+        512,
+        5,
+        3
+      ],
+      "publication_number": "US10310255B2",
+      "sample_spacing_mm": [
+        0.012040328833971508,
+        0.012040328833971508
+      ],
+      "simulation_id": "p0014:intermediate",
+      "status": "generated",
+      "success_max": 3209,
+      "success_min": 3209,
+      "wavelength_nm": [
+        450.0,
+        550.0,
+        650.0
+      ]
+    },
+    {
+      "built_at": "2026-06-27T01:48:28.985319+00:00",
+      "company": "Largan",
+      "configuration": "base",
+      "example_label": "Embodiment f",
+      "field_height_mm": [
+        0.0,
+        1.384711317874372,
+        2.769422635748744,
+        4.154133953623116,
+        5.538845271497488
+      ],
+      "file": "p0410_base.npz",
+      "lens_id": "p0410",
+      "notes": [
+        "RayOptics geometric ray histogram PSF; diffraction is not included.",
+        "EvenPolynomial asphere coefficients were applied where parsed."
+      ],
+      "preset": "production",
+      "psf_shape": [
+        512,
+        512,
+        5,
+        3
+      ],
+      "publication_number": "US9759892B2",
+      "sample_spacing_mm": [
+        0.005130216468786519,
+        0.005130216468786519
+      ],
+      "simulation_id": "p0410:base",
+      "status": "generated",
+      "success_max": 3209,
+      "success_min": 3157,
+      "wavelength_nm": [
+        450.0,
+        550.0,
+        650.0
+      ]
+    },
+    {
+      "built_at": "2026-06-27T01:48:17.269067+00:00",
+      "company": "Panasonic",
+      "configuration": "telephoto",
+      "example_label": "",
+      "field_height_mm": [
+        0.0,
+        0.975,
+        1.95,
+        2.925,
+        3.9
+      ],
+      "file": "p0320_telephoto.npz",
+      "lens_id": "p0320",
+      "notes": [
+        "RayOptics geometric ray histogram PSF; diffraction is not included.",
+        "EvenPolynomial asphere coefficients were applied where parsed."
+      ],
+      "preset": "production",
+      "psf_shape": [
+        512,
+        512,
+        5,
+        3
+      ],
+      "publication_number": "US8576492B2",
+      "sample_spacing_mm": [
+        0.003540981854918635,
+        0.003540981854918635
+      ],
+      "simulation_id": "p0320:telephoto",
+      "status": "generated",
+      "success_max": 3209,
+      "success_min": 3209,
+      "wavelength_nm": [
+        450.0,
+        550.0,
+        650.0
+      ]
+    },
+    {
+      "built_at": "2026-06-27T01:48:40.536726+00:00",
+      "company": "Ricoh/Pentax",
+      "configuration": "middle",
+      "example_label": "",
+      "field_height_mm": [
+        0.0,
+        0.28500000000000003,
+        0.5700000000000001,
+        0.8550000000000001,
+        1.1400000000000001
+      ],
+      "file": "p0137_middle.npz",
+      "lens_id": "p0137",
+      "notes": [
+        "RayOptics geometric ray histogram PSF; diffraction is not included.",
+        "EvenPolynomial asphere coefficients were applied where parsed."
+      ],
+      "preset": "production",
+      "psf_shape": [
+        512,
+        512,
+        5,
+        3
+      ],
+      "publication_number": "US20120063004A1",
+      "sample_spacing_mm": [
+        0.00033496712322706536,
+        0.00033496712322706536
+      ],
+      "simulation_id": "p0137:middle",
+      "status": "generated",
+      "success_max": 3209,
+      "success_min": 3209,
+      "wavelength_nm": [
+        450.0,
+        550.0,
+        650.0
+      ]
+    },
+    {
+      "built_at": "2026-06-27T01:48:53.621096+00:00",
+      "company": "Samsung",
+      "configuration": "base",
+      "example_label": "",
+      "field_height_mm": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "file": "p0102_base.npz",
+      "lens_id": "p0102",
+      "notes": [
+        "RayOptics geometric ray histogram PSF; diffraction is not included."
+      ],
+      "preset": "production",
+      "psf_shape": [
+        512,
+        512,
+        5,
+        3
+      ],
+      "publication_number": "US12216334B2",
+      "sample_spacing_mm": [
+        0.014439492195571174,
+        0.014439492195571174
+      ],
+      "simulation_id": "p0102:base",
+      "status": "generated",
+      "success_max": 2767,
+      "success_min": 2661,
+      "wavelength_nm": [
+        450.0,
+        550.0,
+        650.0
+      ]
+    }
+  ],
+  "schema": "camerae2e_lens_patent_raytrace_psf_manifest_v1",
+  "settings": {
+    "field_count": 5,
+    "min_success_fraction": 0.25,
+    "model": "rayoptics_geometric_histogram",
+    "preset": "production",
+    "psf_size": 512,
+    "pupil_samples": 65,
+    "sample_spacing_um": null,
+    "wavelengths": [
+      450.0,
+      550.0,
+      650.0
+    ]
+  },
+  "summary": {
+    "by_company": {
+      "Canon": {
+        "generated": 1,
+        "total": 1
+      },
+      "Largan": {
+        "generated": 1,
+        "total": 1
+      },
+      "Panasonic": {
+        "generated": 1,
+        "total": 1
+      },
+      "Ricoh/Pentax": {
+        "generated": 1,
+        "total": 1
+      },
+      "Samsung": {
+        "generated": 1,
+        "total": 1
+      }
+    },
+    "generated": 5,
+    "total": 5
+  }
+}

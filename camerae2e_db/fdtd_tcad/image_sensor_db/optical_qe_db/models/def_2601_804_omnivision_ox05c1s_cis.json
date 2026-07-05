@@ -1,0 +1,212 @@
+{
+  "schema": "image_sensor_optical_qe_model_v1",
+  "code": "DEF-2601-804",
+  "source": {
+    "code": "DEF-2601-804",
+    "manufacturer": "OmniVision",
+    "device_name": "OX05C1S_CIS",
+    "title": "OmniVision OX05C1S Device Essentials Folder",
+    "report_type": "DEF",
+    "release_date": "2026-03-23T00:00:00.000+00:00",
+    "html_files": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/009_DEF-2601-804.html"
+    ],
+    "pdf_files": []
+  },
+  "optical": {
+    "geometry": {
+      "pixel_pitch_um": {
+        "value": 2.2,
+        "source_kind": "extracted",
+        "confidence": 0.9,
+        "method": "sensor_catalog.derived_specs.pixel_pitch_um",
+        "unit": "um",
+        "evidence": "search_description: The OmniVision OX05C is a voltage-domain global shutter (VDGS) CMOS image sensor (CIS), specifically designed for in-cabin driver and occupant monitoring systems (DMS/OMS), and it is the first OmniVision 3-layer image s.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/data/search_results.json"
+      },
+      "optical_format": {
+        "value": "1/2.525\"",
+        "source_kind": "extracted",
+        "confidence": 0.74,
+        "method": "sensor_catalog.derived_specs.optical_format",
+        "evidence": "search_description: The OmniVision OX05C is a voltage-domain global shutter (VDGS) CMOS image sensor (CIS), specifically designed for in-cabin driver and occupant monitoring systems (DMS/OMS), and it is the first OmniVision 3-layer image s.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/data/search_results.json"
+      },
+      "optical_stack_height_um": {
+        "value": 2.6,
+        "source_kind": "extracted",
+        "confidence": 0.86,
+        "method": "sensor_catalog.derived_specs.optical_stack_height_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Grid embedded in planarized OCL buffer layer 5.9 µm active Si Optical stack height 2.6 µm Dielectric-filled full-depth back-deep trench isolation (B-DTI) for pixel isolation 150 nm thick conventional STI used in both pe.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/009_DEF-2601-804.html"
+      },
+      "active_si_thickness_um": {
+        "value": 5.9,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.active_si_thickness_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Grid embedded in planarized OCL buffer layer 5.9 µm active Si Optical stack height 2.6 µm Dielectric-filled full-depth back-deep trench isolation (B-DTI) for pixel isolation 150 nm thick conventional STI used in both pe.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/009_DEF-2601-804.html"
+      }
+    },
+    "cfa": {
+      "pattern": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_pattern missing"
+      },
+      "representative_thickness_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_um missing",
+        "unit": "um"
+      },
+      "thickness_min_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_min_um missing",
+        "unit": "um"
+      },
+      "thickness_max_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_max_um missing",
+        "unit": "um"
+      },
+      "color_filter_pitch_um": {
+        "value": 2.2,
+        "source_kind": "inferred_rule",
+        "confidence": 0.38,
+        "method": "color_filter_pitch_um inferred from pixel_pitch_um; 1x pitch fallback",
+        "unit": "um"
+      },
+      "evidence": []
+    },
+    "microlens": {
+      "type": {
+        "value": "ocl",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.microlens_type",
+        "evidence": "combined_text: ocl"
+      },
+      "ocl_pitch_um": {
+        "value": 2.2,
+        "source_kind": "inferred_rule",
+        "confidence": 0.4,
+        "method": "ocl_pitch_um inferred from pixel_pitch_um; OCL pitch usually follows pixel pitch when not reported",
+        "unit": "um"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "ocl",
+          "field": "microlens_type"
+        },
+        {
+          "source": "html_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/009_DEF-2601-804.html",
+          "text": "Grid embedded in planarized OCL buffer layer 5.9 µm active Si Optical stack height 2.6 µm Dielectric-filled full-depth back-deep trench isolation (B-DTI) for pixel isolation 150 nm thick conventional STI used in both pe...",
+          "field": "optical_stack_height_um"
+        }
+      ]
+    },
+    "grid": {
+      "material": {
+        "value": "w",
+        "source_kind": "extracted",
+        "confidence": 0.76,
+        "method": "sensor_catalog.derived_specs.grid_material",
+        "evidence": "combined_text: w"
+      },
+      "pitch_um": {
+        "value": 2.2,
+        "source_kind": "inferred_rule",
+        "confidence": 0.35,
+        "method": "grid_pitch_um inferred from pixel_pitch_um; grid pitch approximated as pixel pitch",
+        "unit": "um"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "w",
+          "field": "grid_material"
+        }
+      ]
+    },
+    "sensor_context": {
+      "illumination": {
+        "value": "back_illuminated",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.illumination",
+        "evidence": "combined_text: back_illuminated"
+      },
+      "sensor_modality": {
+        "value": "global_shutter_cis",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.sensor_modality",
+        "evidence": "combined_text: global_shutter_cis"
+      },
+      "is_nir": {
+        "value": true,
+        "source_kind": "extracted",
+        "confidence": 0.72,
+        "method": "sensor_catalog.derived_specs.is_nir",
+        "evidence": "combined_text: is_nir"
+      }
+    }
+  },
+  "cfa_proxy_nk": {
+    "enabled": false,
+    "library_id": "common_rgb_color_resist_proxy_2026_06",
+    "source_kind": "inferred_proxy_nk",
+    "applicability": "unknown_cfa_pattern",
+    "reference_thickness_um": 0.65,
+    "thickness_um": {
+      "value": 0.65,
+      "source_kind": "inferred_proxy_default",
+      "confidence": 0.3,
+      "method": "proxy library reference_thickness_um used because sensor-specific CFA thickness is unavailable",
+      "unit": "um"
+    },
+    "channels": {},
+    "model_limitations": [
+      "Absorption-only CFA layer proxy; does not include full optical-stack interference, microlens focusing, grid diffraction, or silicon absorption.",
+      "Common R/G/B n,k proxy, not product-specific measured optical constants."
+    ]
+  },
+  "qe": {
+    "measurement_data_status": "not_found",
+    "quantitative_points": [],
+    "qualitative_mentions": [],
+    "spectral_ranges": [],
+    "filter_sets": []
+  },
+  "readiness": {
+    "level": "optical_ready_medium",
+    "score": 60,
+    "reasons": [
+      "microlens_type",
+      "optical_stack_height",
+      "color_filter_pitch",
+      "ocl_pitch",
+      "grid_pitch",
+      "grid_material"
+    ]
+  },
+  "notes": [
+    "QE quantitative_points are reported text points, not reconstructed curves.",
+    "inferred_rule values are setup defaults and must not be treated as measurements.",
+    "cfa_proxy_nk is a common color-resist n,k proxy for setup/sensitivity work, not measured product-specific optical constants."
+  ]
+}

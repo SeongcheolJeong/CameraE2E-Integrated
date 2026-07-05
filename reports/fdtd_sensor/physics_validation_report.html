@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FDTD Sensor Physics Validation Report</title>
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f7f5ef; color: #1f2933; }
+    main { max-width: 1160px; margin: 0 auto; padding: 34px 24px 56px; }
+    h1 { font-size: 40px; margin: 0 0 10px; }
+    h2 { margin-top: 32px; border-bottom: 2px solid #ded6c8; padding-bottom: 8px; }
+    .card { background: #fff; border: 1px solid #e3dccf; border-radius: 18px; padding: 20px; margin: 18px 0; box-shadow: 0 8px 24px rgba(35, 44, 50, 0.08); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 14px; }
+    .metric { border-radius: 14px; padding: 14px; background: #eef6f8; }
+    .metric b { display: block; font-size: 13px; color: #52616b; text-transform: uppercase; letter-spacing: 0.04em; }
+    .metric span { font-size: 24px; font-weight: 700; }
+    .ok { border-left: 5px solid #2f8f62; }
+    .warn { border-left: 5px solid #b8792f; background: #fff8ec; }
+    .bad { border-left: 5px solid #b34f4f; background: #fff1f1; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid #ece6db; vertical-align: top; }
+    th { background: #f0ebe1; }
+    img { max-width: 100%; border-radius: 12px; border: 1px solid #e2ded5; background: #fff; }
+    code { background: #eee7da; padding: 2px 5px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+<main>
+
+<h1>FDTD Sensor Physics Validation Report</h1>
+<p>This report checks whether the FDTD-informed sensor outputs are physically plausible, not just whether software integration runs.</p>
+<div class="card warn">
+  <h2>Executive Verdict</h2>
+  <div class="grid">
+    <div class="metric"><b>Primary LUT physics</b><span>WARN</span></div>
+    <div class="metric"><b>3x3 OCL shift</b><span>WARN</span></div>
+    <div class="metric"><b>CRA LUT OCL shift</b><span>PASS</span></div>
+    <div class="metric"><b>Wavelength trend</b><span>PASS</span></div>
+  </div>
+  <p><b>Interpretation:</b> the current 3x3 smoke LUT is good enough to verify the data path, but not good enough to claim product-grade physical crosstalk or OCL improvement. The separate CRA LUT shows the expected compensation improvement, while the 3x3 smoke LUT does not.</p>
+</div>
+<div class="card">
+  <h2>Source Data</h2>
+  <table><tbody>
+    <tr><th>Primary LUT</th><td><code>/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json</code></td></tr>
+    <tr><th>CRA LUT</th><td><code>/Users/seongcheoljeong/FDTD/runs/cra_response_lut/cra_response_lut.csv</code></td></tr>
+    <tr><th>Absorption sweep</th><td><code>/Users/seongcheoljeong/FDTD/runs/meep_pixel_absorption_sweep.csv</code></td></tr>
+  </tbody></table>
+</div>
+<div class="card">
+  <h2>Validation Table</h2>
+  <table><thead><tr><th>Check</th><th>Status</th><th>Detail</th></tr></thead><tbody><tr><th>primary energy</th><td class='ok'>PASS</td><td>none</td></tr><tr><th>primary relative_illumination</th><td class='warn'>WARN</td><td>edge20x response exceeds bare cos^4 by &gt;20%; this can be valid with microlens/OCL concentration but needs calibration evidence; cra10x response exceeds bare cos^4 by &gt;20%; this can be valid with microlens/OCL concentration but needs calibration evidence; edge20x response exceeds bare cos^4 by &gt;20%; this can be valid with microlens/OCL concentration but needs calibration evidence; cra10x response exceeds bare cos^4 by &gt;20%; this can be valid with microlens/OCL concentration but needs calibration evidence; edge20x response exceeds bare cos^4 by &gt;20%; this can be valid with microlens/OCL concentration but needs calibration evidence</td></tr><tr><th>primary ocl_shift</th><td class='warn'>WARN</td><td>no uncompensated/compensated OCL pair available</td></tr><tr><th>primary wavelength</th><td class='ok'>PASS</td><td>none</td></tr><tr><th>primary symmetry</th><td class='warn'>WARN</td><td>no +/- CRA mirror pairs available for symmetry validation</td></tr><tr><th>primary crosstalk</th><td class='warn'>WARN</td><td>no regional crosstalk kernel available</td></tr><tr><th>primary convergence</th><td class='warn'>WARN</td><td>FDTD report is grid-qualified but not full resolution/time/PML convergence</td></tr><tr><th>CRA LUT OCL shift</th><td class='ok'>PASS</td><td>none</td></tr></tbody></table>
+</div>
+<div class="card">
+  <h2>Relative Illumination vs cos^4</h2>
+  <p>The cos^4 curve is a first-order reference. FDTD may be lower because of stack, aperture, and absorption losses, but large excess over cos^4 or unexplained severe loss should be investigated.</p>
+  <img src="physics_ri_cos4.png" alt="Relative illumination cos4 comparison">
+</div>
+<div class="card">
+  <h2>OCL Shift Direction</h2>
+  <p>A correct OCL compensation should usually improve edge response versus uncompensated geometry. The current 3x3 smoke LUT fails this direction check, while the CRA response LUT passes.</p>
+  <img src="physics_ocl_shift.png" alt="OCL shift comparison">
+</div>
+<div class="card">
+  <h2>Wavelength Trend</h2>
+  <p>For the simple pixel stack sweep, Si absorption decreases from blue to red in the available 450/550/650 nm data. This is directionally plausible.</p>
+  <img src="physics_wavelength_absorption.png" alt="Wavelength absorption trend">
+</div>
+<div class="card">
+  <h2>Energy Budget</h2>
+  <p>Responses should be non-negative and bounded by incident/absorbed power conventions. This plot exposes gross conservation failures.</p>
+  <img src="physics_energy_budget.png" alt="Energy budget">
+</div>
+<div class="card">
+  <h2>Crosstalk Locality</h2>
+  <p>The current 3x3 smoke regional-response kernel is nearly uniform. That is a warning: it should not be treated as a localized crosstalk PSF without a better source/collection experiment.</p>
+  <img src="physics_kernel_locality.png" alt="Crosstalk locality">
+</div>
+<div class="card warn">
+  <h2>Required Improvement Before Product Use</h2>
+  <p>Generate a product-grade LUT with convergence sweeps, signed CRA pairs, field/corner sweep, wavelength sweep, and a localized optical crosstalk source experiment. If photodiode collection physics is required, add TCAD or a calibrated compact collection model.</p>
+</div>
+
+</main>
+</body>
+</html>

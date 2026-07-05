@@ -1,0 +1,3 @@
+case,wavelength_nm,target_total_photo_current_a_per_cm,target_split_phase_x_proxy,weight_current,weight_phase,target_source,notes
+center,550,2.1285021269343284e-06,-0.0024150664844203363,1.0,1.0,synthetic_from_reference_profile_smoke,Generated from the current reference profile-ppd smoke run; not measured.
+edge20x,550,4.569474119090616e-06,0.0008979735033152538,1.0,1.0,synthetic_from_reference_profile_smoke,Generated from the current reference profile-ppd smoke run; not measured.

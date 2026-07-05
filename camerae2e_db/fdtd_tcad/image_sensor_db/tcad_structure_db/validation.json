@@ -1,0 +1,8 @@
+{
+  "schema": "image_sensor_tcad_structure_db_validation_v1",
+  "pass": true,
+  "model_count": 224,
+  "csv_row_count": 224,
+  "issue_count": 0,
+  "issues": []
+}

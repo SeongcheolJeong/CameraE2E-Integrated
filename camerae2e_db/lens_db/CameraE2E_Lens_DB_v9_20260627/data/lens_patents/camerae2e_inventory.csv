@@ -1,0 +1,823 @@
+simulation_id,company,publication_number,configuration,use_tier,recommended_for_camerae2e,optical_spec_source,focal_length_mm,f_number,half_field_deg,psf_debug_status,psf_highres_status
+p0014:intermediate,Canon,US10310255B2,intermediate,highres_psf,1,variable_distance,35.14,3.61,21.24,generated,generated
+p0014:telephoto,Canon,US10310255B2,telephoto,raytrace_psf,1,variable_distance,76.8,4.82,10.09,generated,not_attempted
+p0014:wide-angle,Canon,US10310255B2,wide-angle,raytrace_psf,1,variable_distance,16.27,2.47,34.88,generated,not_attempted
+p0015:intermediate,Canon,US10310255B2,intermediate,raytrace_psf,1,variable_distance,33.3,3.91,22.3,generated,not_attempted
+p0015:telephoto,Canon,US10310255B2,telephoto,raytrace_psf,1,variable_distance,73.6,5.76,10.51,generated,not_attempted
+p0015:wide-angle,Canon,US10310255B2,wide-angle,raytrace_psf,1,variable_distance,15.6,2.06,36.01,generated,not_attempted
+p0016:intermediate,Canon,US10310255B2,intermediate,raytrace_psf,1,variable_distance,34.76,4.0,21.45,generated,not_attempted
+p0016:telephoto,Canon,US10310255B2,telephoto,raytrace_psf,1,variable_distance,72.8,5.04,10.63,generated,not_attempted
+p0016:wide-angle,Canon,US10310255B2,wide-angle,raytrace_psf,1,variable_distance,15.45,2.06,35.79,generated,not_attempted
+p0017:intermediate,Canon,US10310255B2,intermediate,raytrace_psf,1,variable_distance,32.76,4.0,22.63,generated,not_attempted
+p0017:telephoto,Canon,US10310255B2,telephoto,raytrace_psf,1,variable_distance,72.8,5.04,10.63,generated,not_attempted
+p0017:wide-angle,Canon,US10310255B2,wide-angle,raytrace_psf,1,variable_distance,15.45,2.06,35.79,generated,not_attempted
+p0018:intermediate,Canon,US10310255B2,intermediate,raytrace_psf,1,variable_distance,31.78,4.0,23.26,generated,not_attempted
+p0018:telephoto,Canon,US10310255B2,telephoto,raytrace_psf,1,variable_distance,72.8,5.04,10.63,generated,not_attempted
+p0018:wide-angle,Canon,US10310255B2,wide-angle,raytrace_psf,1,variable_distance,15.45,2.06,35.79,generated,not_attempted
+p0019:intermediate,Canon,US10310255B2,intermediate,raytrace_psf,1,variable_distance,31.06,4.12,23.85,generated,not_attempted
+p0019:telephoto,Canon,US10310255B2,telephoto,raytrace_psf,1,variable_distance,63.2,5.76,12.49,generated,not_attempted
+p0019:wide-angle,Canon,US10310255B2,wide-angle,raytrace_psf,1,variable_distance,15.96,2.47,35.63,generated,not_attempted
+p0053:50f,Canon,US11016274B2,50f,proxy_only,0,variable_distance,20.45,1.45,46.54,failed,not_attempted
+p0053:closest,Canon,US11016274B2,closest,proxy_only,0,variable_distance,20.26,1.45,46.54,failed,not_attempted
+p0053:infinity,Canon,US11016274B2,infinity,proxy_only,0,variable_distance,20.5,1.45,46.54,failed,not_attempted
+p0054:50f,Canon,US11016274B2,50f,proxy_only,0,variable_distance,16.36,1.45,52.84,failed,not_attempted
+p0054:closest,Canon,US11016274B2,closest,proxy_only,0,variable_distance,16.21,1.45,52.84,failed,not_attempted
+p0054:infinity,Canon,US11016274B2,infinity,proxy_only,0,variable_distance,16.4,1.45,52.84,failed,not_attempted
+p0055:50f,Canon,US11016274B2,50f,proxy_only,0,variable_distance,14.38,1.83,56.35,failed,not_attempted
+p0055:closest,Canon,US11016274B2,closest,proxy_only,0,variable_distance,14.29,1.83,56.35,failed,not_attempted
+p0055:infinity,Canon,US11016274B2,infinity,proxy_only,0,variable_distance,14.4,1.83,56.35,failed,not_attempted
+p0056:50f,Canon,US11016274B2,50f,proxy_only,0,variable_distance,17.14,1.83,51.58,failed,not_attempted
+p0056:closest,Canon,US11016274B2,closest,proxy_only,0,variable_distance,17.06,1.83,51.58,failed,not_attempted
+p0056:infinity,Canon,US11016274B2,infinity,proxy_only,0,variable_distance,17.16,1.83,51.58,failed,not_attempted
+p0057:50f,Canon,US11016274B2,50f,proxy_only,0,variable_distance,16.0,1.83,53.45,failed,not_attempted
+p0057:closest,Canon,US11016274B2,closest,proxy_only,0,variable_distance,15.86,1.83,53.45,failed,not_attempted
+p0057:infinity,Canon,US11016274B2,infinity,proxy_only,0,variable_distance,16.04,1.83,53.45,failed,not_attempted
+p0058:50f,Canon,US11016274B2,50f,proxy_only,0,variable_distance,17.82,1.7,50.5,failed,not_attempted
+p0058:closest,Canon,US11016274B2,closest,proxy_only,0,variable_distance,17.76,1.7,50.5,failed,not_attempted
+p0058:infinity,Canon,US11016274B2,infinity,proxy_only,0,variable_distance,17.83,1.7,50.5,failed,not_attempted
+p0059:50f,Canon,US11016274B2,50f,proxy_only,0,variable_distance,18.75,1.83,48.99,failed,not_attempted
+p0059:closest,Canon,US11016274B2,closest,proxy_only,0,variable_distance,18.52,1.83,48.99,failed,not_attempted
+p0059:infinity,Canon,US11016274B2,infinity,proxy_only,0,variable_distance,18.81,1.83,48.99,failed,not_attempted
+p0191:intermediate,Canon,US20150316755A1,intermediate,raytrace_psf,1,variable_distance,200.0,4.5,4.45,generated,not_attempted
+p0191:telephoto,Canon,US20150316755A1,telephoto,raytrace_psf,1,variable_distance,1000.0,7.4,0.89,generated,not_attempted
+p0191:wide-angle,Canon,US20150316755A1,wide-angle,raytrace_psf,1,variable_distance,50.0,4.5,17.28,generated,not_attempted
+p0192:intermediate,Canon,US20150316755A1,intermediate,raytrace_psf,1,variable_distance,240.0,4.5,3.71,generated,not_attempted
+p0192:telephoto,Canon,US20150316755A1,telephoto,raytrace_psf,1,variable_distance,900.0,7.0,0.99,generated,not_attempted
+p0192:wide-angle,Canon,US20150316755A1,wide-angle,raytrace_psf,1,variable_distance,60.0,4.5,14.53,generated,not_attempted
+p0193:intermediate,Canon,US20150316755A1,intermediate,raytrace_psf,1,variable_distance,200.0,4.0,4.45,generated,not_attempted
+p0193:telephoto,Canon,US20150316755A1,telephoto,raytrace_psf,1,variable_distance,500.0,5.0,1.78,generated,not_attempted
+p0193:wide-angle,Canon,US20150316755A1,wide-angle,raytrace_psf,1,variable_distance,50.0,4.0,17.28,generated,not_attempted
+p0195:intermediate,Canon,US20150316755A1,intermediate,raytrace_psf,1,variable_distance,500.0,5.0,1.6,generated,not_attempted
+p0195:telephoto,Canon,US20150316755A1,telephoto,raytrace_psf,1,variable_distance,1500.0,10.0,0.53,generated,not_attempted
+p0195:wide-angle,Canon,US20150316755A1,wide-angle,raytrace_psf,1,variable_distance,50.0,4.5,15.64,generated,not_attempted
+p0196:intermediate,Canon,US20150316755A1,intermediate,raytrace_psf,1,variable_distance,400.0,4.5,2.23,generated,not_attempted
+p0196:telephoto,Canon,US20150316755A1,telephoto,raytrace_psf,1,variable_distance,800.0,5.6,1.11,generated,not_attempted
+p0196:wide-angle,Canon,US20150316755A1,wide-angle,raytrace_psf,1,variable_distance,40.0,4.5,21.24,generated,not_attempted
+p0204:intermediate,Canon,US20160195703A1,intermediate,raytrace_psf,1,variable_distance,35.14,3.61,21.24,generated,not_attempted
+p0204:telephoto,Canon,US20160195703A1,telephoto,raytrace_psf,1,variable_distance,76.8,4.82,10.09,generated,not_attempted
+p0204:wide-angle,Canon,US20160195703A1,wide-angle,raytrace_psf,1,variable_distance,16.27,2.47,34.88,generated,not_attempted
+p0205:intermediate,Canon,US20160195703A1,intermediate,raytrace_psf,1,variable_distance,33.3,3.91,22.3,generated,not_attempted
+p0205:telephoto,Canon,US20160195703A1,telephoto,raytrace_psf,1,variable_distance,73.6,5.76,10.51,generated,not_attempted
+p0205:wide-angle,Canon,US20160195703A1,wide-angle,raytrace_psf,1,variable_distance,15.6,2.06,36.01,generated,not_attempted
+p0206:intermediate,Canon,US20160195703A1,intermediate,raytrace_psf,1,variable_distance,34.76,4.0,21.45,generated,not_attempted
+p0206:telephoto,Canon,US20160195703A1,telephoto,raytrace_psf,1,variable_distance,72.8,5.04,10.63,generated,not_attempted
+p0206:wide-angle,Canon,US20160195703A1,wide-angle,raytrace_psf,1,variable_distance,15.45,2.06,35.79,generated,not_attempted
+p0207:intermediate,Canon,US20160195703A1,intermediate,raytrace_psf,1,variable_distance,32.76,4.0,22.63,generated,not_attempted
+p0207:telephoto,Canon,US20160195703A1,telephoto,raytrace_psf,1,variable_distance,72.8,5.04,10.63,generated,not_attempted
+p0207:wide-angle,Canon,US20160195703A1,wide-angle,raytrace_psf,1,variable_distance,15.45,2.06,35.79,generated,not_attempted
+p0208:intermediate,Canon,US20160195703A1,intermediate,raytrace_psf,1,variable_distance,31.78,4.0,23.26,generated,not_attempted
+p0208:telephoto,Canon,US20160195703A1,telephoto,raytrace_psf,1,variable_distance,72.8,5.04,10.63,generated,not_attempted
+p0208:wide-angle,Canon,US20160195703A1,wide-angle,raytrace_psf,1,variable_distance,15.45,2.06,35.79,generated,not_attempted
+p0209:intermediate,Canon,US20160195703A1,intermediate,raytrace_psf,1,variable_distance,31.06,4.12,23.85,generated,not_attempted
+p0209:telephoto,Canon,US20160195703A1,telephoto,raytrace_psf,1,variable_distance,63.2,5.76,12.49,generated,not_attempted
+p0209:wide-angle,Canon,US20160195703A1,wide-angle,raytrace_psf,1,variable_distance,15.96,2.47,35.63,generated,not_attempted
+p0227:intermediate,Canon,US20180348481A1,intermediate,proxy_only,0,variable_distance,39.34,4.12,28.81,failed,not_attempted
+p0227:telephoto,Canon,US20180348481A1,telephoto,proxy_only,0,variable_distance,67.99,4.12,17.65,failed,not_attempted
+p0227:wide-angle,Canon,US20180348481A1,wide-angle,proxy_only,0,variable_distance,24.71,4.12,41.2,failed,not_attempted
+p0228:intermediate,Canon,US20180348481A1,intermediate,proxy_only,0,variable_distance,44.55,4.12,25.9,failed,not_attempted
+p0228:telephoto,Canon,US20180348481A1,telephoto,proxy_only,0,variable_distance,82.99,4.12,14.61,failed,not_attempted
+p0228:wide-angle,Canon,US20180348481A1,wide-angle,proxy_only,0,variable_distance,24.72,4.12,41.19,failed,not_attempted
+p0229:intermediate,Canon,US20180348481A1,intermediate,proxy_only,0,variable_distance,39.2,4.12,28.89,failed,not_attempted
+p0229:telephoto,Canon,US20180348481A1,telephoto,proxy_only,0,variable_distance,67.99,4.12,17.65,failed,not_attempted
+p0229:wide-angle,Canon,US20180348481A1,wide-angle,proxy_only,0,variable_distance,24.71,4.12,41.21,failed,not_attempted
+p0230:intermediate,Canon,US20180348481A1,intermediate,proxy_only,0,variable_distance,39.93,4.12,28.45,failed,not_attempted
+p0230:telephoto,Canon,US20180348481A1,telephoto,proxy_only,0,variable_distance,67.99,4.12,17.65,failed,not_attempted
+p0230:wide-angle,Canon,US20180348481A1,wide-angle,proxy_only,0,variable_distance,24.71,4.12,41.2,failed,not_attempted
+p0248:intermediate,Canon,US20200174235A1,intermediate,raytrace_psf,1,variable_distance,88.33,5.4,13.76,generated,not_attempted
+p0248:telephoto,Canon,US20200174235A1,telephoto,raytrace_psf,1,variable_distance,270.0,6.49,4.58,generated,not_attempted
+p0248:wide-angle,Canon,US20200174235A1,wide-angle,raytrace_psf,1,variable_distance,24.72,4.12,38.69,generated,not_attempted
+p0249:intermediate,Canon,US20200174235A1,intermediate,raytrace_psf,1,variable_distance,85.0,5.66,14.28,generated,not_attempted
+p0249:telephoto,Canon,US20200174235A1,telephoto,raytrace_psf,1,variable_distance,232.8,6.41,5.31,generated,not_attempted
+p0249:wide-angle,Canon,US20200174235A1,wide-angle,raytrace_psf,1,variable_distance,24.72,4.12,37.55,generated,not_attempted
+p0250:intermediate,Canon,US20200174235A1,intermediate,raytrace_psf,1,variable_distance,85.0,5.66,14.28,generated,not_attempted
+p0250:telephoto,Canon,US20200174235A1,telephoto,raytrace_psf,1,variable_distance,270.0,6.4,4.58,generated,not_attempted
+p0250:wide-angle,Canon,US20200174235A1,wide-angle,raytrace_psf,1,variable_distance,24.72,4.12,37.25,generated,not_attempted
+p0251:intermediate,Canon,US20200174235A1,intermediate,raytrace_psf,1,variable_distance,90.0,5.4,13.52,generated,not_attempted
+p0251:telephoto,Canon,US20200174235A1,telephoto,raytrace_psf,1,variable_distance,270.0,6.49,4.58,generated,not_attempted
+p0251:wide-angle,Canon,US20200174235A1,wide-angle,raytrace_psf,1,variable_distance,27.99,4.12,35.27,generated,not_attempted
+p0252:intermediate,Canon,US20200174235A1,intermediate,raytrace_psf,1,variable_distance,70.0,5.4,17.18,generated,not_attempted
+p0252:telephoto,Canon,US20200174235A1,telephoto,raytrace_psf,1,variable_distance,220.0,6.49,5.62,generated,not_attempted
+p0252:wide-angle,Canon,US20200174235A1,wide-angle,raytrace_psf,1,variable_distance,28.0,4.12,34.16,generated,not_attempted
+p0253:intermediate,Canon,US20200174235A1,intermediate,raytrace_psf,1,variable_distance,75.66,5.6,15.96,generated,not_attempted
+p0253:telephoto,Canon,US20200174235A1,telephoto,raytrace_psf,1,variable_distance,180.0,7.1,6.85,generated,not_attempted
+p0253:wide-angle,Canon,US20200174235A1,wide-angle,raytrace_psf,1,variable_distance,29.24,4.0,33.02,generated,not_attempted
+p0254:intermediate,Canon,US20200174236A1,intermediate,proxy_only,0,variable_distance,85.03,5.4,14.28,failed,not_attempted
+p0254:telephoto,Canon,US20200174236A1,telephoto,raytrace_psf,1,variable_distance,294.97,6.49,4.19,generated,not_attempted
+p0254:wide-angle,Canon,US20200174236A1,wide-angle,proxy_only,0,variable_distance,24.3,4.12,37.76,failed,not_attempted
+p0255:intermediate,Canon,US20200174236A1,intermediate,proxy_only,0,variable_distance,87.89,5.4,13.83,failed,not_attempted
+p0255:telephoto,Canon,US20200174236A1,telephoto,raytrace_psf,1,variable_distance,280.0,6.49,4.42,generated,not_attempted
+p0255:wide-angle,Canon,US20200174236A1,wide-angle,proxy_only,0,variable_distance,24.72,4.12,37.55,failed,not_attempted
+p0256:intermediate,Canon,US20200174236A1,intermediate,proxy_only,0,variable_distance,85.0,5.66,14.28,failed,not_attempted
+p0256:telephoto,Canon,US20200174236A1,telephoto,raytrace_psf,1,variable_distance,232.8,6.41,5.31,generated,not_attempted
+p0256:wide-angle,Canon,US20200174236A1,wide-angle,proxy_only,0,variable_distance,24.72,4.12,37.55,failed,not_attempted
+p0257:intermediate,Canon,US20200174236A1,intermediate,proxy_only,0,variable_distance,79.99,5.6,15.14,failed,not_attempted
+p0257:telephoto,Canon,US20200174236A1,telephoto,raytrace_psf,1,variable_distance,269.98,7.1,4.58,generated,not_attempted
+p0257:wide-angle,Canon,US20200174236A1,wide-angle,proxy_only,0,variable_distance,24.74,4.5,38.67,failed,not_attempted
+p0258:intermediate,Canon,US20200174236A1,intermediate,proxy_only,0,variable_distance,83.22,5.8,14.57,failed,not_attempted
+p0258:telephoto,Canon,US20200174236A1,telephoto,raytrace_psf,1,variable_distance,200.0,7.1,6.17,generated,not_attempted
+p0258:wide-angle,Canon,US20200174236A1,wide-angle,proxy_only,0,variable_distance,25.95,4.5,36.21,failed,not_attempted
+p0259:intermediate,Canon,US20200174236A1,intermediate,proxy_only,0,variable_distance,70.0,5.4,17.18,failed,not_attempted
+p0259:telephoto,Canon,US20200174236A1,telephoto,raytrace_psf,1,variable_distance,220.0,6.49,5.62,generated,not_attempted
+p0259:wide-angle,Canon,US20200174236A1,wide-angle,proxy_only,0,variable_distance,28.0,4.12,34.16,failed,not_attempted
+p0260:intermediate,Canon,US20200174236A1,intermediate,proxy_only,0,variable_distance,63.05,5.6,18.94,failed,not_attempted
+p0260:telephoto,Canon,US20200174236A1,telephoto,proxy_only,0,variable_distance,180.0,6.3,6.85,failed,not_attempted
+p0260:wide-angle,Canon,US20200174236A1,wide-angle,proxy_only,0,variable_distance,30.42,4.0,31.99,failed,not_attempted
+p0347:intermediate,Canon,US8964303B2,intermediate,raytrace_psf,1,variable_distance,25.27,3.97,1.82,generated,not_attempted
+p0347:telephoto,Canon,US8964303B2,telephoto,raytrace_psf,1,variable_distance,91.57,4.5,0.505,generated,not_attempted
+p0347:wide-angle,Canon,US8964303B2,wide-angle,raytrace_psf,1,variable_distance,2.89,1.85,15.685,generated,not_attempted
+p0348:intermediate,Canon,US8964303B2,intermediate,raytrace_psf,1,variable_distance,27.9,4.02,1.615,generated,not_attempted
+p0348:telephoto,Canon,US8964303B2,telephoto,raytrace_psf,1,variable_distance,91.52,4.5,0.495,generated,not_attempted
+p0348:wide-angle,Canon,US8964303B2,wide-angle,raytrace_psf,1,variable_distance,2.78,1.85,16.805,generated,not_attempted
+p0349:intermediate,Canon,US8964303B2,intermediate,raytrace_psf,1,variable_distance,8.43,2.91,7.47,generated,not_attempted
+p0349:telephoto,Canon,US8964303B2,telephoto,raytrace_psf,1,variable_distance,113.4,4.5,0.57,generated,not_attempted
+p0349:wide-angle,Canon,US8964303B2,wide-angle,raytrace_psf,1,variable_distance,3.09,1.85,18.02,generated,not_attempted
+p0350:intermediate,Canon,US8964303B2,intermediate,raytrace_psf,1,variable_distance,35.46,5.67,1.27,generated,not_attempted
+p0350:telephoto,Canon,US8964303B2,telephoto,raytrace_psf,1,variable_distance,135.42,6.4,0.335,generated,not_attempted
+p0350:wide-angle,Canon,US8964303B2,wide-angle,raytrace_psf,1,variable_distance,2.71,1.85,17.16,generated,not_attempted
+p0351:base,Canon,US8988785B2,base,partial,0,paraxial_or_proxy,79.6784732980329,,,not_attempted,not_attempted
+p0352:intermediate,Canon,US8988785B2,intermediate,raytrace_psf,1,variable_distance,1.0,4.67,9.895,generated,not_attempted
+p0352:telephoto,Canon,US8988785B2,telephoto,raytrace_psf,1,variable_distance,78.64,5.85,4.72,generated,not_attempted
+p0352:wide-angle,Canon,US8988785B2,wide-angle,raytrace_psf,1,variable_distance,1.0,3.53,20.695,generated,not_attempted
+p0353:base,Canon,US8988785B2,base,partial,0,paraxial_or_proxy,82.86458660789218,,,not_attempted,not_attempted
+p0404:intermediate,Canon,US9645369B2,intermediate,raytrace_psf,1,variable_distance,200.0,4.5,4.45,generated,not_attempted
+p0404:telephoto,Canon,US9645369B2,telephoto,raytrace_psf,1,variable_distance,1000.0,7.4,0.89,generated,not_attempted
+p0404:wide-angle,Canon,US9645369B2,wide-angle,raytrace_psf,1,variable_distance,50.0,4.5,17.28,generated,not_attempted
+p0405:intermediate,Canon,US9645369B2,intermediate,raytrace_psf,1,variable_distance,240.0,4.5,3.71,generated,not_attempted
+p0405:telephoto,Canon,US9645369B2,telephoto,raytrace_psf,1,variable_distance,900.0,7.0,0.99,generated,not_attempted
+p0405:wide-angle,Canon,US9645369B2,wide-angle,raytrace_psf,1,variable_distance,60.0,4.5,14.53,generated,not_attempted
+p0406:intermediate,Canon,US9645369B2,intermediate,raytrace_psf,1,variable_distance,200.0,4.0,4.45,generated,not_attempted
+p0406:telephoto,Canon,US9645369B2,telephoto,raytrace_psf,1,variable_distance,500.0,5.0,1.78,generated,not_attempted
+p0406:wide-angle,Canon,US9645369B2,wide-angle,raytrace_psf,1,variable_distance,50.0,4.0,17.28,generated,not_attempted
+p0408:intermediate,Canon,US9645369B2,intermediate,raytrace_psf,1,variable_distance,500.0,5.0,1.6,generated,not_attempted
+p0408:telephoto,Canon,US9645369B2,telephoto,raytrace_psf,1,variable_distance,1500.0,10.0,0.53,generated,not_attempted
+p0408:wide-angle,Canon,US9645369B2,wide-angle,raytrace_psf,1,variable_distance,50.0,4.5,15.64,generated,not_attempted
+p0409:intermediate,Canon,US9645369B2,intermediate,raytrace_psf,1,variable_distance,400.0,4.5,2.23,generated,not_attempted
+p0409:telephoto,Canon,US9645369B2,telephoto,raytrace_psf,1,variable_distance,800.0,5.6,1.11,generated,not_attempted
+p0409:wide-angle,Canon,US9645369B2,wide-angle,raytrace_psf,1,variable_distance,40.0,4.5,21.24,generated,not_attempted
+p0001:base,Fujifilm,US10133027B2,base,partial,0,paraxial_or_proxy,80.07078760197206,,,not_attempted,not_attempted
+p0002:base,Fujifilm,US10133027B2,base,partial,0,paraxial_or_proxy,273.24831698173926,,,not_attempted,not_attempted
+p0003:base,Fujifilm,US10133027B2,base,partial,0,paraxial_or_proxy,300.5026974743259,,,not_attempted,not_attempted
+p0004:base,Fujifilm,US10133027B2,base,partial,0,paraxial_or_proxy,532.2716844746114,,,not_attempted,not_attempted
+p0005:base,Fujifilm,US10133027B2,base,partial,0,paraxial_or_proxy,287.1873988686653,,,not_attempted,not_attempted
+p0006:base,Fujifilm,US10133027B2,base,partial,0,paraxial_or_proxy,279.8396340672257,,,not_attempted,not_attempted
+p0007:base,Fujifilm,US10133027B2,base,partial,0,paraxial_or_proxy,218.42060281934687,,,not_attempted,not_attempted
+p0008:base,Fujifilm,US10133027B2,base,partial,0,paraxial_or_proxy,454.50918102537014,,,not_attempted,not_attempted
+p0210:base,Fujifilm,US20170090169A1,base,partial,0,paraxial_or_proxy,80.07078760197206,,,not_attempted,not_attempted
+p0211:base,Fujifilm,US20170090169A1,base,partial,0,paraxial_or_proxy,273.24831698173926,,,not_attempted,not_attempted
+p0212:base,Fujifilm,US20170090169A1,base,partial,0,paraxial_or_proxy,300.5026974743259,,,not_attempted,not_attempted
+p0213:base,Fujifilm,US20170090169A1,base,partial,0,paraxial_or_proxy,532.2716844746114,,,not_attempted,not_attempted
+p0214:base,Fujifilm,US20170090169A1,base,partial,0,paraxial_or_proxy,287.1873988686653,,,not_attempted,not_attempted
+p0215:base,Fujifilm,US20170090169A1,base,partial,0,paraxial_or_proxy,279.8396340672257,,,not_attempted,not_attempted
+p0216:base,Fujifilm,US20170090169A1,base,partial,0,paraxial_or_proxy,218.42060281934687,,,not_attempted,not_attempted
+p0217:base,Fujifilm,US20170090169A1,base,partial,0,paraxial_or_proxy,454.50918102537014,,,not_attempted,not_attempted
+p0231:base,Fujifilm,US20190049695A1,base,partial,0,paraxial_or_proxy,80.07078760197206,,,not_attempted,not_attempted
+p0232:base,Fujifilm,US20190049695A1,base,partial,0,paraxial_or_proxy,273.24831698173926,,,not_attempted,not_attempted
+p0233:base,Fujifilm,US20190049695A1,base,partial,0,paraxial_or_proxy,300.5026974743259,,,not_attempted,not_attempted
+p0234:base,Fujifilm,US20190049695A1,base,partial,0,paraxial_or_proxy,532.2716844746114,,,not_attempted,not_attempted
+p0235:base,Fujifilm,US20190049695A1,base,partial,0,paraxial_or_proxy,287.1873988686653,,,not_attempted,not_attempted
+p0236:base,Fujifilm,US20190049695A1,base,partial,0,paraxial_or_proxy,279.8396340672257,,,not_attempted,not_attempted
+p0237:base,Fujifilm,US20190049695A1,base,partial,0,paraxial_or_proxy,218.42060281934687,,,not_attempted,not_attempted
+p0238:base,Fujifilm,US20190049695A1,base,partial,0,paraxial_or_proxy,454.50918102537014,,,not_attempted,not_attempted
+p0009:base,Konica Minolta,US10302898B2,base,raytrace_psf,1,paraxial_or_proxy,34.92995381613795,1.3971981526455182,,generated,not_attempted
+p0010:base,Konica Minolta,US10302898B2,base,raytrace_psf,1,paraxial_or_proxy,67.41041943204137,2.4966822011867174,,generated,not_attempted
+p0011:base,Konica Minolta,US10302898B2,base,raytrace_psf,1,paraxial_or_proxy,34.93273121372215,1.3435665851431595,,generated,not_attempted
+p0012:base,Konica Minolta,US10302898B2,base,raytrace_psf,1,paraxial_or_proxy,35.124577343721995,1.3509452824508459,,generated,not_attempted
+p0013:base,Konica Minolta,US10302898B2,base,raytrace_psf,1,paraxial_or_proxy,67.5439167471048,2.597842951811723,,generated,not_attempted
+p0170:intermediate,Konica Minolta,US20130027585A1,intermediate,raytrace_psf,1,variable_distance,24.2,4.4,23.577,generated,not_attempted
+p0170:telephoto,Konica Minolta,US20130027585A1,telephoto,raytrace_psf,1,variable_distance,41.999,5.7,14.094,generated,not_attempted
+p0170:wide-angle,Konica Minolta,US20130027585A1,wide-angle,raytrace_psf,1,variable_distance,14.0,3.6,39.932,generated,not_attempted
+p0171:intermediate,Konica Minolta,US20130027585A1,intermediate,raytrace_psf,1,variable_distance,22.4,4.4,25.175,generated,not_attempted
+p0171:telephoto,Konica Minolta,US20130027585A1,telephoto,raytrace_psf,1,variable_distance,42.0,5.7,14.166,generated,not_attempted
+p0171:wide-angle,Konica Minolta,US20130027585A1,wide-angle,raytrace_psf,1,variable_distance,12.0,3.6,44.361,generated,not_attempted
+p0172:intermediate,Konica Minolta,US20130027585A1,intermediate,raytrace_psf,1,variable_distance,24.2,4.4,23.477,generated,not_attempted
+p0172:telephoto,Konica Minolta,US20130027585A1,telephoto,raytrace_psf,1,variable_distance,42.0,5.7,14.345,generated,not_attempted
+p0172:wide-angle,Konica Minolta,US20130027585A1,wide-angle,raytrace_psf,1,variable_distance,14.0,3.6,39.939,generated,not_attempted
+p0321:1m,Konica Minolta,US8587877B2,1m,raytrace_psf,1,variable_distance,7.733,3.611,44.95,generated,not_attempted
+p0321:infinity,Konica Minolta,US8587877B2,infinity,raytrace_psf,1,variable_distance,7.735,3.607,44.95,generated,not_attempted
+p0322:1m,Konica Minolta,US8587877B2,1m,raytrace_psf,1,variable_distance,7.835,3.604,44.95,generated,not_attempted
+p0322:infinity,Konica Minolta,US8587877B2,infinity,raytrace_psf,1,variable_distance,7.839,3.601,44.95,generated,not_attempted
+p0323:1m,Konica Minolta,US8587877B2,1m,raytrace_psf,1,variable_distance,7.98,3.607,45.0,generated,not_attempted
+p0323:infinity,Konica Minolta,US8587877B2,infinity,raytrace_psf,1,variable_distance,8.007,3.607,45.0,generated,not_attempted
+p0324:1m,Konica Minolta,US8587877B2,1m,raytrace_psf,1,variable_distance,7.847,2.955,44.95,generated,not_attempted
+p0324:infinity,Konica Minolta,US8587877B2,infinity,raytrace_psf,1,variable_distance,7.85,2.951,44.95,generated,not_attempted
+p0325:1m,Konica Minolta,US8587877B2,1m,proxy_only,0,variable_distance,7.582,3.605,44.95,failed,not_attempted
+p0325:infinity,Konica Minolta,US8587877B2,infinity,proxy_only,0,variable_distance,7.592,3.606,44.95,failed,not_attempted
+p0371:base,Konica Minolta,US9411139B2,base,raytrace_psf,1,paraxial_or_proxy,31.478107629001514,1.9673817268125946,,generated,not_attempted
+p0372:base,Konica Minolta,US9411139B2,base,raytrace_psf,1,paraxial_or_proxy,31.82515073548761,1.9890719209679757,,generated,not_attempted
+p0374:base,Konica Minolta,US9411139B2,base,raytrace_psf,1,paraxial_or_proxy,31.190952523222325,1.781118805574596,,generated,not_attempted
+p0375:base,Konica Minolta,US9411139B2,base,raytrace_psf,1,paraxial_or_proxy,32.230097609642364,1.9731907438252947,,generated,not_attempted
+p0180:base,LG Innotek,US20140098239A1,base,partial,0,paraxial_or_proxy,6.521765005213775,,,not_attempted,not_attempted
+p0181:base,LG Innotek,US20140098239A1,base,partial,0,paraxial_or_proxy,4.1974344814712135,,,not_attempted,not_attempted
+p0020:base,Largan,US10466444B2,base,proxy_only,0,caption,6.36,2.25,17.5,failed,not_attempted
+p0021:base,Largan,US10466444B2,base,proxy_only,0,caption,6.93,2.05,16.4,failed,not_attempted
+p0022:base,Largan,US10466444B2,base,proxy_only,0,caption,7.48,2.25,15.0,failed,not_attempted
+p0023:base,Largan,US10466444B2,base,proxy_only,0,caption,7.48,2.25,16.8,failed,not_attempted
+p0024:base,Largan,US10466444B2,base,proxy_only,0,caption,7.5,2.27,15.0,failed,not_attempted
+p0025:base,Largan,US10466444B2,base,proxy_only,0,caption,7.5,2.27,15.0,failed,not_attempted
+p0026:base,Largan,US10466444B2,base,proxy_only,0,caption,7.51,2.27,15.0,failed,not_attempted
+p0027:base,Largan,US10466444B2,base,proxy_only,0,caption,6.75,2.12,16.6,failed,not_attempted
+p0028:base,Largan,US10466444B2,base,raytrace_psf,1,caption,6.17,1.98,18.1,generated,not_attempted
+p0043:base,Largan,US10948695B2,base,proxy_only,0,caption,4.67,1.7,39.5,failed,not_attempted
+p0044:base,Largan,US10948695B2,base,proxy_only,0,caption,4.3,1.45,37.8,failed,not_attempted
+p0045:base,Largan,US10948695B2,base,proxy_only,0,caption,4.15,1.47,38.6,failed,not_attempted
+p0046:base,Largan,US10948695B2,base,proxy_only,0,caption,4.4,1.47,37.1,failed,not_attempted
+p0047:base,Largan,US10948695B2,base,proxy_only,0,caption,4.01,1.97,36.8,failed,not_attempted
+p0048:base,Largan,US10948695B2,base,proxy_only,0,caption,4.05,1.97,36.5,failed,not_attempted
+p0049:base,Largan,US10948695B2,base,proxy_only,0,caption,3.98,1.97,37.1,failed,not_attempted
+p0050:base,Largan,US10948695B2,base,proxy_only,0,caption,4.76,1.62,39.0,failed,not_attempted
+p0051:base,Largan,US10948695B2,base,proxy_only,0,caption,4.7,1.53,39.2,failed,not_attempted
+p0052:base,Largan,US10948695B2,base,proxy_only,0,caption,4.76,1.62,38.9,failed,not_attempted
+p0161:base,Largan,US20130003193A1,base,proxy_only,0,caption,3.15,2.6,34.7,failed,not_attempted
+p0162:base,Largan,US20130003193A1,base,proxy_only,0,caption,2.91,2.6,37.0,failed,not_attempted
+p0163:base,Largan,US20130003193A1,base,proxy_only,0,caption,3.09,2.6,35.5,failed,not_attempted
+p0164:base,Largan,US20130003193A1,base,proxy_only,0,caption,3.09,2.6,35.4,failed,not_attempted
+p0165:base,Largan,US20130003193A1,base,proxy_only,0,caption,3.02,2.6,36.1,failed,not_attempted
+p0166:base,Largan,US20130003193A1,base,proxy_only,0,caption,3.32,2.8,33.2,failed,not_attempted
+p0167:base,Largan,US20130003193A1,base,proxy_only,0,caption,3.22,2.8,34.0,failed,not_attempted
+p0168:base,Largan,US20130003193A1,base,proxy_only,0,caption,3.22,2.8,34.0,failed,not_attempted
+p0169:base,Largan,US20130003193A1,base,proxy_only,0,caption,3.11,2.6,35.0,failed,not_attempted
+p0173:base,Largan,US20130176631A1,base,proxy_only,0,caption,4.61,2.8,31.1,failed,not_attempted
+p0174:base,Largan,US20130176631A1,base,proxy_only,0,caption,4.34,2.6,32.9,failed,not_attempted
+p0175:base,Largan,US20130176631A1,base,proxy_only,0,caption,4.58,2.8,29.9,failed,not_attempted
+p0176:base,Largan,US20130176631A1,base,proxy_only,0,caption,4.78,2.75,30.5,failed,not_attempted
+p0177:base,Largan,US20130176631A1,base,proxy_only,0,caption,4.65,2.95,30.0,failed,not_attempted
+p0178:base,Largan,US20130176631A1,base,proxy_only,0,caption,4.63,3.0,29.9,failed,not_attempted
+p0179:base,Largan,US20130176631A1,base,proxy_only,0,caption,4.77,2.7,30.4,failed,not_attempted
+p0298:base,Largan,US8339718B1,base,proxy_only,0,caption,4.03,2.8,35.1,failed,not_attempted
+p0299:base,Largan,US8339718B1,base,proxy_only,0,caption,3.91,2.52,35.6,failed,not_attempted
+p0300:base,Largan,US8339718B1,base,proxy_only,0,caption,4.17,2.76,34.6,failed,not_attempted
+p0301:base,Largan,US8339718B1,base,proxy_only,0,caption,4.12,2.72,34.6,failed,not_attempted
+p0302:base,Largan,US8339718B1,base,proxy_only,0,caption,4.15,2.7,34.6,failed,not_attempted
+p0303:base,Largan,US8339718B1,base,proxy_only,0,caption,4.11,2.81,34.6,failed,not_attempted
+p0304:base,Largan,US8339718B1,base,proxy_only,0,caption,3.34,2.8,33.4,failed,not_attempted
+p0305:base,Largan,US8451545B2,base,proxy_only,0,caption,4.33,2.85,33.5,failed,not_attempted
+p0306:base,Largan,US8451545B2,base,proxy_only,0,caption,4.35,2.85,33.1,failed,not_attempted
+p0307:base,Largan,US8451545B2,base,proxy_only,0,caption,4.63,3.0,32.3,failed,not_attempted
+p0308:base,Largan,US8451545B2,base,proxy_only,0,caption,4.23,3.3,33.4,failed,not_attempted
+p0309:base,Largan,US8451545B2,base,proxy_only,0,caption,4.42,3.0,32.6,failed,not_attempted
+p0310:base,Largan,US8451545B2,base,proxy_only,0,caption,4.44,3.0,32.5,failed,not_attempted
+p0311:base,Largan,US8451545B2,base,proxy_only,0,caption,4.2,2.85,34.5,failed,not_attempted
+p0312:base,Largan,US8451545B2,base,proxy_only,0,caption,4.49,2.85,32.4,failed,not_attempted
+p0326:base,Largan,US8649112B2,base,proxy_only,0,caption,4.61,2.8,31.1,failed,not_attempted
+p0327:base,Largan,US8649112B2,base,proxy_only,0,caption,4.34,2.6,32.9,failed,not_attempted
+p0328:base,Largan,US8649112B2,base,proxy_only,0,caption,4.58,2.8,29.9,failed,not_attempted
+p0329:base,Largan,US8649112B2,base,proxy_only,0,caption,4.78,2.75,30.5,failed,not_attempted
+p0330:base,Largan,US8649112B2,base,proxy_only,0,caption,4.65,2.95,30.0,failed,not_attempted
+p0331:base,Largan,US8649112B2,base,proxy_only,0,caption,4.63,3.0,29.9,failed,not_attempted
+p0332:base,Largan,US8649112B2,base,proxy_only,0,caption,4.77,2.7,30.4,failed,not_attempted
+p0337:base,Largan,US8743479B2,base,proxy_only,0,caption,2.92,2.07,37.7,failed,not_attempted
+p0338:base,Largan,US8743479B2,base,proxy_only,0,caption,3.19,2.35,34.9,failed,not_attempted
+p0339:base,Largan,US8743479B2,base,proxy_only,0,caption,2.86,2.15,37.8,failed,not_attempted
+p0340:base,Largan,US8743479B2,base,proxy_only,0,caption,3.18,2.2,34.5,failed,not_attempted
+p0341:base,Largan,US8743479B2,base,proxy_only,0,caption,2.91,2.32,37.3,failed,not_attempted
+p0342:base,Largan,US8743479B2,base,proxy_only,0,caption,3.0,2.4,36.1,failed,not_attempted
+p0343:base,Largan,US8743479B2,base,proxy_only,0,caption,2.76,2.52,37.8,failed,not_attempted
+p0344:base,Largan,US8743479B2,base,proxy_only,0,caption,2.83,2.52,37.8,failed,not_attempted
+p0345:base,Largan,US8743479B2,base,proxy_only,0,caption,2.7,2.1,39.6,failed,not_attempted
+p0346:base,Largan,US8743479B2,base,proxy_only,0,caption,2.72,2.07,39.7,failed,not_attempted
+p0410:base,Largan,US9759892B2,base,highres_psf,1,caption,3.68,2.23,56.4,generated,generated
+p0411:base,Largan,US9759892B2,base,raytrace_psf,1,caption,3.58,2.23,56.0,generated,not_attempted
+p0412:base,Largan,US9759892B2,base,raytrace_psf,1,caption,3.64,2.23,57.2,generated,not_attempted
+p0413:base,Largan,US9759892B2,base,proxy_only,0,caption,3.35,2.3,58.0,failed,not_attempted
+p0414:base,Largan,US9759892B2,base,raytrace_psf,1,caption,3.62,2.05,53.0,generated,not_attempted
+p0415:base,Largan,US9759892B2,base,proxy_only,0,caption,2.98,2.15,70.5,failed,not_attempted
+p0416:base,Largan,US9759892B2,base,proxy_only,0,caption,2.94,2.4,75.7,failed,not_attempted
+p0417:base,Largan,US9759892B2,base,proxy_only,0,caption,2.77,2.4,79.7,failed,not_attempted
+p0029:middle,Nikon,US10690896B2,middle,raytrace_psf,1,variable_distance,35.0,4.62,22.92,generated,not_attempted
+p0029:tele,Nikon,US10690896B2,tele,raytrace_psf,1,variable_distance,53.4,5.88,15.35,generated,not_attempted
+p0029:wide,Nikon,US10690896B2,wide,raytrace_psf,1,variable_distance,18.5,3.64,40.3,generated,not_attempted
+p0030:middle,Nikon,US10690896B2,middle,raytrace_psf,1,variable_distance,35.0,4.7,22.915,generated,not_attempted
+p0030:tele,Nikon,US10690896B2,tele,raytrace_psf,1,variable_distance,53.4,5.84,15.36,generated,not_attempted
+p0030:wide,Nikon,US10690896B2,wide,raytrace_psf,1,variable_distance,18.5,3.64,40.305,generated,not_attempted
+p0031:middle,Nikon,US10690896B2,middle,raytrace_psf,1,variable_distance,35.0,4.6,22.9,generated,not_attempted
+p0031:tele,Nikon,US10690896B2,tele,raytrace_psf,1,variable_distance,53.4,5.88,15.345,generated,not_attempted
+p0031:wide,Nikon,US10690896B2,wide,raytrace_psf,1,variable_distance,18.5,3.64,40.295,generated,not_attempted
+p0032:middle,Nikon,US10690896B2,middle,raytrace_psf,1,variable_distance,35.0,4.6,22.915,generated,not_attempted
+p0032:tele,Nikon,US10690896B2,tele,raytrace_psf,1,variable_distance,53.4,5.88,15.36,generated,not_attempted
+p0032:wide,Nikon,US10690896B2,wide,raytrace_psf,1,variable_distance,18.5,3.63,40.295,generated,not_attempted
+p0033:middle,Nikon,US10690896B2,middle,raytrace_psf,1,variable_distance,35.0,4.6,22.945,generated,not_attempted
+p0033:tele,Nikon,US10690896B2,tele,raytrace_psf,1,variable_distance,53.4,5.88,15.38,generated,not_attempted
+p0033:wide,Nikon,US10690896B2,wide,proxy_only,0,variable_distance,18.5,3.62,40.295,failed,not_attempted
+p0034:base,Nikon,US10754130B2,base,partial,0,paraxial_or_proxy,0.02946445171565279,,,not_attempted,not_attempted
+p0035:base,Nikon,US10754130B2,base,partial,0,paraxial_or_proxy,0.027211096887224735,,,not_attempted,not_attempted
+p0036:base,Nikon,US10754130B2,base,proxy_only,0,paraxial_or_proxy,0.034155845821535795,0.034155845821535795,,failed,not_attempted
+p0037:base,Nikon,US10754130B2,base,partial,0,paraxial_or_proxy,0.03477617475727487,,,not_attempted,not_attempted
+p0038:base,Nikon,US10754130B2,base,partial,0,paraxial_or_proxy,0.04510073996268107,,,not_attempted,not_attempted
+p0060:close-middle,Nikon,US11347035B2,close-middle,raytrace_psf,1,variable_distance,50.0,2.92,22.84,generated,not_attempted
+p0060:close-tele,Nikon,US11347035B2,close-tele,raytrace_psf,1,variable_distance,67.9,2.92,16.82,generated,not_attempted
+p0060:close-wide,Nikon,US11347035B2,close-wide,raytrace_psf,1,variable_distance,22.7,2.92,45.55,generated,not_attempted
+p0060:infinity-middle,Nikon,US11347035B2,infinity-middle,raytrace_psf,1,variable_distance,50.0,2.92,22.84,generated,not_attempted
+p0060:infinity-tele,Nikon,US11347035B2,infinity-tele,raytrace_psf,1,variable_distance,67.9,2.92,16.82,generated,not_attempted
+p0060:infinity-wide,Nikon,US11347035B2,infinity-wide,raytrace_psf,1,variable_distance,22.7,2.92,45.55,generated,not_attempted
+p0061:close-middle,Nikon,US11347035B2,close-middle,raytrace_psf,1,variable_distance,50.0,2.92,23.99,generated,not_attempted
+p0061:close-tele,Nikon,US11347035B2,close-tele,raytrace_psf,1,variable_distance,67.9,2.92,17.81,generated,not_attempted
+p0061:close-wide,Nikon,US11347035B2,close-wide,raytrace_psf,1,variable_distance,22.7,2.92,45.06,generated,not_attempted
+p0061:infinity-middle,Nikon,US11347035B2,infinity-middle,raytrace_psf,1,variable_distance,50.0,2.92,23.99,generated,not_attempted
+p0061:infinity-tele,Nikon,US11347035B2,infinity-tele,raytrace_psf,1,variable_distance,67.9,2.92,17.81,generated,not_attempted
+p0061:infinity-wide,Nikon,US11347035B2,infinity-wide,raytrace_psf,1,variable_distance,22.7,2.92,45.06,generated,not_attempted
+p0062:close-middle,Nikon,US11347035B2,close-middle,raytrace_psf,1,variable_distance,50.0,2.92,23.69,generated,not_attempted
+p0062:close-tele,Nikon,US11347035B2,close-tele,raytrace_psf,1,variable_distance,67.9,2.92,17.64,generated,not_attempted
+p0062:close-wide,Nikon,US11347035B2,close-wide,raytrace_psf,1,variable_distance,22.7,2.92,45.13,generated,not_attempted
+p0062:infinity-middle,Nikon,US11347035B2,infinity-middle,raytrace_psf,1,variable_distance,50.0,2.92,23.69,generated,not_attempted
+p0062:infinity-tele,Nikon,US11347035B2,infinity-tele,raytrace_psf,1,variable_distance,67.9,2.92,17.64,generated,not_attempted
+p0062:infinity-wide,Nikon,US11347035B2,infinity-wide,raytrace_psf,1,variable_distance,22.7,2.92,45.13,generated,not_attempted
+p0063:close-middle,Nikon,US11347035B2,close-middle,raytrace_psf,1,variable_distance,50.0,2.92,24.01,generated,not_attempted
+p0063:close-tele,Nikon,US11347035B2,close-tele,raytrace_psf,1,variable_distance,67.9,2.92,17.64,generated,not_attempted
+p0063:close-wide,Nikon,US11347035B2,close-wide,raytrace_psf,1,variable_distance,22.7,2.92,45.4,generated,not_attempted
+p0063:infinity-middle,Nikon,US11347035B2,infinity-middle,raytrace_psf,1,variable_distance,50.0,2.92,24.01,generated,not_attempted
+p0063:infinity-tele,Nikon,US11347035B2,infinity-tele,raytrace_psf,1,variable_distance,67.9,2.92,17.64,generated,not_attempted
+p0063:infinity-wide,Nikon,US11347035B2,infinity-wide,raytrace_psf,1,variable_distance,22.7,2.92,45.4,generated,not_attempted
+p0064:close-middle,Nikon,US11347035B2,close-middle,raytrace_psf,1,variable_distance,50.0,2.92,22.96,generated,not_attempted
+p0064:close-tele,Nikon,US11347035B2,close-tele,raytrace_psf,1,variable_distance,67.9,2.92,16.89,generated,not_attempted
+p0064:close-wide,Nikon,US11347035B2,close-wide,raytrace_psf,1,variable_distance,22.7,2.92,45.62,generated,not_attempted
+p0064:infinity-middle,Nikon,US11347035B2,infinity-middle,raytrace_psf,1,variable_distance,50.0,2.92,22.96,generated,not_attempted
+p0064:infinity-tele,Nikon,US11347035B2,infinity-tele,raytrace_psf,1,variable_distance,67.9,2.92,16.89,generated,not_attempted
+p0064:infinity-wide,Nikon,US11347035B2,infinity-wide,raytrace_psf,1,variable_distance,22.7,2.92,45.62,generated,not_attempted
+p0065:close-middle,Nikon,US11347035B2,close-middle,raytrace_psf,1,variable_distance,50.0,2.92,22.94,generated,not_attempted
+p0065:close-tele,Nikon,US11347035B2,close-tele,raytrace_psf,1,variable_distance,67.9,2.92,16.82,generated,not_attempted
+p0065:close-wide,Nikon,US11347035B2,close-wide,raytrace_psf,1,variable_distance,22.7,2.92,45.65,generated,not_attempted
+p0065:infinity-middle,Nikon,US11347035B2,infinity-middle,raytrace_psf,1,variable_distance,50.0,2.92,22.94,generated,not_attempted
+p0065:infinity-tele,Nikon,US11347035B2,infinity-tele,raytrace_psf,1,variable_distance,67.9,2.92,16.82,generated,not_attempted
+p0065:infinity-wide,Nikon,US11347035B2,infinity-wide,raytrace_psf,1,variable_distance,22.7,2.92,45.65,generated,not_attempted
+p0066:close-middle,Nikon,US11347035B2,close-middle,raytrace_psf,1,variable_distance,50.0,2.92,23.92,generated,not_attempted
+p0066:close-tele,Nikon,US11347035B2,close-tele,raytrace_psf,1,variable_distance,67.9,2.92,17.64,generated,not_attempted
+p0066:close-wide,Nikon,US11347035B2,close-wide,raytrace_psf,1,variable_distance,22.7,2.92,45.41,generated,not_attempted
+p0066:infinity-middle,Nikon,US11347035B2,infinity-middle,raytrace_psf,1,variable_distance,50.0,2.92,23.92,generated,not_attempted
+p0066:infinity-tele,Nikon,US11347035B2,infinity-tele,raytrace_psf,1,variable_distance,67.9,2.92,17.64,generated,not_attempted
+p0066:infinity-wide,Nikon,US11347035B2,infinity-wide,raytrace_psf,1,variable_distance,22.7,2.92,45.41,generated,not_attempted
+p0067:close-middle,Nikon,US11347035B2,close-middle,raytrace_psf,1,variable_distance,50.0,3.0,22.98,generated,not_attempted
+p0067:close-tele,Nikon,US11347035B2,close-tele,raytrace_psf,1,variable_distance,67.9,3.03,16.81,generated,not_attempted
+p0067:close-wide,Nikon,US11347035B2,close-wide,raytrace_psf,1,variable_distance,22.7,3.03,45.52,generated,not_attempted
+p0067:infinity-middle,Nikon,US11347035B2,infinity-middle,raytrace_psf,1,variable_distance,50.0,3.0,22.98,generated,not_attempted
+p0067:infinity-tele,Nikon,US11347035B2,infinity-tele,raytrace_psf,1,variable_distance,67.9,3.03,16.81,generated,not_attempted
+p0067:infinity-wide,Nikon,US11347035B2,infinity-wide,raytrace_psf,1,variable_distance,22.7,3.03,45.52,generated,not_attempted
+p0085:intermediate,Nikon,US11994746B2,intermediate,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0085:telephoto,Nikon,US11994746B2,telephoto,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0085:wide-angle,Nikon,US11994746B2,wide-angle,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0086:intermediate,Nikon,US11994746B2,intermediate,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0086:telephoto,Nikon,US11994746B2,telephoto,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0086:wide-angle,Nikon,US11994746B2,wide-angle,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0087:intermediate,Nikon,US11994746B2,intermediate,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0087:telephoto,Nikon,US11994746B2,telephoto,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0087:wide-angle,Nikon,US11994746B2,wide-angle,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0088:intermediate,Nikon,US11994746B2,intermediate,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0088:telephoto,Nikon,US11994746B2,telephoto,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0088:wide-angle,Nikon,US11994746B2,wide-angle,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0089:intermediate,Nikon,US11994746B2,intermediate,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0089:telephoto,Nikon,US11994746B2,telephoto,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0089:wide-angle,Nikon,US11994746B2,wide-angle,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0090:intermediate,Nikon,US11994746B2,intermediate,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0090:telephoto,Nikon,US11994746B2,telephoto,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0090:wide-angle,Nikon,US11994746B2,wide-angle,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0091:intermediate,Nikon,US11994746B2,intermediate,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0091:telephoto,Nikon,US11994746B2,telephoto,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0091:wide-angle,Nikon,US11994746B2,wide-angle,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0097:infinity-middle,Nikon,US12140739B2,infinity-middle,partial,0,paraxial_or_proxy,49.10510309114355,,,not_attempted,not_attempted
+p0097:infinity-tele,Nikon,US12140739B2,infinity-tele,partial,0,paraxial_or_proxy,66.65501752340336,,,not_attempted,not_attempted
+p0097:infinity-wide,Nikon,US12140739B2,infinity-wide,partial,0,paraxial_or_proxy,24.293296830801438,,,not_attempted,not_attempted
+p0097:short-middle,Nikon,US12140739B2,short-middle,partial,0,paraxial_or_proxy,50.0070601207473,,,not_attempted,not_attempted
+p0097:short-tele,Nikon,US12140739B2,short-tele,partial,0,paraxial_or_proxy,67.89941891298588,,,not_attempted,not_attempted
+p0097:short-wide,Nikon,US12140739B2,short-wide,partial,0,paraxial_or_proxy,24.750197908358633,,,not_attempted,not_attempted
+p0098:infinity-middle,Nikon,US12140739B2,infinity-middle,partial,0,paraxial_or_proxy,49.03037158003241,,,not_attempted,not_attempted
+p0098:infinity-tele,Nikon,US12140739B2,infinity-tele,partial,0,paraxial_or_proxy,66.42737273182058,,,not_attempted,not_attempted
+p0098:infinity-wide,Nikon,US12140739B2,infinity-wide,partial,0,paraxial_or_proxy,24.256270896529717,,,not_attempted,not_attempted
+p0098:short-middle,Nikon,US12140739B2,short-middle,partial,0,paraxial_or_proxy,50.016538847455095,,,not_attempted,not_attempted
+p0098:short-tele,Nikon,US12140739B2,short-tele,partial,0,paraxial_or_proxy,67.89622481720731,,,not_attempted,not_attempted
+p0098:short-wide,Nikon,US12140739B2,short-wide,partial,0,paraxial_or_proxy,24.749592355055015,,,not_attempted,not_attempted
+p0099:infinity-middle,Nikon,US12140739B2,infinity-middle,partial,0,paraxial_or_proxy,48.69244935449507,,,not_attempted,not_attempted
+p0099:infinity-tele,Nikon,US12140739B2,infinity-tele,partial,0,paraxial_or_proxy,66.1156502899402,,,not_attempted,not_attempted
+p0099:infinity-wide,Nikon,US12140739B2,infinity-wide,partial,0,paraxial_or_proxy,24.152930199000906,,,not_attempted,not_attempted
+p0099:short-middle,Nikon,US12140739B2,short-middle,partial,0,paraxial_or_proxy,49.99940043762872,,,not_attempted,not_attempted
+p0099:short-tele,Nikon,US12140739B2,short-tele,partial,0,paraxial_or_proxy,67.89959564169853,,,not_attempted,not_attempted
+p0099:short-wide,Nikon,US12140739B2,short-wide,partial,0,paraxial_or_proxy,24.750504522480057,,,not_attempted,not_attempted
+p0100:infinity-middle,Nikon,US12140739B2,infinity-middle,partial,0,paraxial_or_proxy,48.66165235188536,,,not_attempted,not_attempted
+p0100:infinity-tele,Nikon,US12140739B2,infinity-tele,partial,0,paraxial_or_proxy,66.03998979718402,,,not_attempted,not_attempted
+p0100:infinity-wide,Nikon,US12140739B2,infinity-wide,partial,0,paraxial_or_proxy,24.126288980657197,,,not_attempted,not_attempted
+p0100:short-middle,Nikon,US12140739B2,short-middle,partial,0,paraxial_or_proxy,50.001619486199026,,,not_attempted,not_attempted
+p0100:short-tele,Nikon,US12140739B2,short-tele,partial,0,paraxial_or_proxy,67.8981427064944,,,not_attempted,not_attempted
+p0100:short-wide,Nikon,US12140739B2,short-wide,partial,0,paraxial_or_proxy,24.75000809131763,,,not_attempted,not_attempted
+p0101:infinity-middle,Nikon,US12140739B2,infinity-middle,partial,0,paraxial_or_proxy,49.14756417035899,,,not_attempted,not_attempted
+p0101:infinity-tele,Nikon,US12140739B2,infinity-tele,partial,0,paraxial_or_proxy,66.65166288055863,,,not_attempted,not_attempted
+p0101:infinity-wide,Nikon,US12140739B2,infinity-wide,partial,0,paraxial_or_proxy,24.315013872878747,,,not_attempted,not_attempted
+p0101:short-middle,Nikon,US12140739B2,short-middle,partial,0,paraxial_or_proxy,50.02006383041408,,,not_attempted,not_attempted
+p0101:short-tele,Nikon,US12140739B2,short-tele,partial,0,paraxial_or_proxy,67.90076987323143,,,not_attempted,not_attempted
+p0101:short-wide,Nikon,US12140739B2,short-wide,partial,0,paraxial_or_proxy,24.74963713232222,,,not_attempted,not_attempted
+p0131:base,Nikon,US20100214658A1,base,partial,0,paraxial_or_proxy,5.970084286249857e-09,,,not_attempted,not_attempted
+p0132:base,Nikon,US20100214658A1,base,partial,0,paraxial_or_proxy,4.840847062036483e-08,,,not_attempted,not_attempted
+p0133:base,Nikon,US20100214658A1,base,partial,0,paraxial_or_proxy,3.7728783130643977e-07,,,not_attempted,not_attempted
+p0134:base,Nikon,US20100214658A1,base,partial,0,paraxial_or_proxy,8.966763583254163e-09,,,not_attempted,not_attempted
+p0135:base,Nikon,US20100214658A1,base,partial,0,paraxial_or_proxy,6.751746408473553e-08,,,not_attempted,not_attempted
+p0136:base,Nikon,US20100214658A1,base,partial,0,paraxial_or_proxy,5.549677689510804e-09,,,not_attempted,not_attempted
+p0222:middle,Nikon,US20180307012A1,middle,raytrace_psf,1,variable_distance,35.0,4.62,22.92,generated,not_attempted
+p0222:tele,Nikon,US20180307012A1,tele,raytrace_psf,1,variable_distance,53.4,5.88,15.35,generated,not_attempted
+p0222:wide,Nikon,US20180307012A1,wide,raytrace_psf,1,variable_distance,18.5,3.64,40.3,generated,not_attempted
+p0223:middle,Nikon,US20180307012A1,middle,raytrace_psf,1,variable_distance,35.0,4.7,22.915,generated,not_attempted
+p0223:tele,Nikon,US20180307012A1,tele,raytrace_psf,1,variable_distance,53.4,5.84,15.36,generated,not_attempted
+p0223:wide,Nikon,US20180307012A1,wide,raytrace_psf,1,variable_distance,18.5,3.64,40.305,generated,not_attempted
+p0224:middle,Nikon,US20180307012A1,middle,raytrace_psf,1,variable_distance,35.0,4.6,22.9,generated,not_attempted
+p0224:tele,Nikon,US20180307012A1,tele,raytrace_psf,1,variable_distance,53.4,5.88,15.345,generated,not_attempted
+p0224:wide,Nikon,US20180307012A1,wide,raytrace_psf,1,variable_distance,18.5,3.64,40.295,generated,not_attempted
+p0225:middle,Nikon,US20180307012A1,middle,raytrace_psf,1,variable_distance,35.0,4.6,22.915,generated,not_attempted
+p0225:tele,Nikon,US20180307012A1,tele,raytrace_psf,1,variable_distance,53.4,5.88,15.36,generated,not_attempted
+p0225:wide,Nikon,US20180307012A1,wide,raytrace_psf,1,variable_distance,18.5,3.63,40.295,generated,not_attempted
+p0226:middle,Nikon,US20180307012A1,middle,raytrace_psf,1,variable_distance,35.0,4.6,22.945,generated,not_attempted
+p0226:tele,Nikon,US20180307012A1,tele,raytrace_psf,1,variable_distance,53.4,5.88,15.38,generated,not_attempted
+p0226:wide,Nikon,US20180307012A1,wide,proxy_only,0,variable_distance,18.5,3.62,40.295,failed,not_attempted
+p0272:intermediate,Nikon,US20220075141A1,intermediate,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0272:telephoto,Nikon,US20220075141A1,telephoto,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0272:wide-angle,Nikon,US20220075141A1,wide-angle,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0273:intermediate,Nikon,US20220075141A1,intermediate,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0273:telephoto,Nikon,US20220075141A1,telephoto,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0273:wide-angle,Nikon,US20220075141A1,wide-angle,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0274:intermediate,Nikon,US20220075141A1,intermediate,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0274:telephoto,Nikon,US20220075141A1,telephoto,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0274:wide-angle,Nikon,US20220075141A1,wide-angle,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0275:intermediate,Nikon,US20220075141A1,intermediate,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0275:telephoto,Nikon,US20220075141A1,telephoto,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0275:wide-angle,Nikon,US20220075141A1,wide-angle,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0276:intermediate,Nikon,US20220075141A1,intermediate,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0276:telephoto,Nikon,US20220075141A1,telephoto,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0276:wide-angle,Nikon,US20220075141A1,wide-angle,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0277:intermediate,Nikon,US20220075141A1,intermediate,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0277:telephoto,Nikon,US20220075141A1,telephoto,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0277:wide-angle,Nikon,US20220075141A1,wide-angle,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0278:intermediate,Nikon,US20220075141A1,intermediate,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0278:telephoto,Nikon,US20220075141A1,telephoto,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0278:wide-angle,Nikon,US20220075141A1,wide-angle,partial,0,metadata,35.0,,,not_attempted,not_attempted
+p0354:base,Nikon,US9256059B2,base,partial,0,paraxial_or_proxy,18.499386224867465,,,not_attempted,not_attempted
+p0355:base,Nikon,US9256059B2,base,partial,0,paraxial_or_proxy,18.500859000466193,,,not_attempted,not_attempted
+p0356:base,Nikon,US9256059B2,base,partial,0,paraxial_or_proxy,18.49863958446438,,,not_attempted,not_attempted
+p0357:base,Nikon,US9256059B2,base,partial,0,paraxial_or_proxy,18.499428548048513,,,not_attempted,not_attempted
+p0358:base,Nikon,US9256059B2,base,partial,0,paraxial_or_proxy,18.35992041236557,,,not_attempted,not_attempted
+p0359:base,Nikon,US9256059B2,base,partial,0,paraxial_or_proxy,18.492735868797958,,,not_attempted,not_attempted
+p0128:base,Olympus/OM System,US20090174949A1,base,partial,0,paraxial_or_proxy,41.02886819009082,,,not_attempted,not_attempted
+p0129:base,Olympus/OM System,US20090174949A1,base,partial,0,paraxial_or_proxy,42.15911794331248,,,not_attempted,not_attempted
+p0130:base,Olympus/OM System,US20090174949A1,base,partial,0,paraxial_or_proxy,16.62240896475964,,,not_attempted,not_attempted
+p0147:base,Olympus/OM System,US20120307372A1,base,partial,0,paraxial_or_proxy,4.962570627336159,,,not_attempted,not_attempted
+p0148:base,Olympus/OM System,US20120307372A1,base,partial,0,paraxial_or_proxy,4.204409298322539,,,not_attempted,not_attempted
+p0149:base,Olympus/OM System,US20120307372A1,base,partial,0,paraxial_or_proxy,8.945140472084516,,,not_attempted,not_attempted
+p0150:base,Olympus/OM System,US20120307372A1,base,partial,0,paraxial_or_proxy,10.07223095336173,,,not_attempted,not_attempted
+p0151:base,Olympus/OM System,US20120307372A1,base,partial,0,paraxial_or_proxy,56.072172909096224,,,not_attempted,not_attempted
+p0152:base,Olympus/OM System,US20120307372A1,base,partial,0,paraxial_or_proxy,5.321476962626404,,,not_attempted,not_attempted
+p0153:base,Olympus/OM System,US20120307372A1,base,partial,0,paraxial_or_proxy,6.511017166891144,,,not_attempted,not_attempted
+p0154:base,Olympus/OM System,US20120307372A1,base,partial,0,paraxial_or_proxy,7.832076187620648,,,not_attempted,not_attempted
+p0155:base,Olympus/OM System,US20120307372A1,base,partial,0,paraxial_or_proxy,4.491986440287395,,,not_attempted,not_attempted
+p0156:base,Olympus/OM System,US20120307372A1,base,partial,0,paraxial_or_proxy,6.9966844916537685,,,not_attempted,not_attempted
+p0157:base,Olympus/OM System,US20120307372A1,base,partial,0,paraxial_or_proxy,6.023686103488072,,,not_attempted,not_attempted
+p0158:base,Olympus/OM System,US20120307372A1,base,partial,0,paraxial_or_proxy,4.843628284616385,,,not_attempted,not_attempted
+p0159:base,Olympus/OM System,US20120307372A1,base,partial,0,paraxial_or_proxy,9.50610965895812,,,not_attempted,not_attempted
+p0160:base,Olympus/OM System,US20120307372A1,base,partial,0,paraxial_or_proxy,62.01354733371421,,,not_attempted,not_attempted
+p0284:base,Olympus/OM System,US7643224B2,base,partial,0,paraxial_or_proxy,41.02886819009082,,,not_attempted,not_attempted
+p0285:base,Olympus/OM System,US7643224B2,base,partial,0,paraxial_or_proxy,42.15911794331248,,,not_attempted,not_attempted
+p0286:base,Olympus/OM System,US7643224B2,base,partial,0,paraxial_or_proxy,16.62240896475964,,,not_attempted,not_attempted
+p0376:base,Olympus/OM System,US9500841B2,base,partial,0,paraxial_or_proxy,4.962570627336159,,,not_attempted,not_attempted
+p0377:base,Olympus/OM System,US9500841B2,base,partial,0,paraxial_or_proxy,4.204409298322539,,,not_attempted,not_attempted
+p0378:base,Olympus/OM System,US9500841B2,base,partial,0,paraxial_or_proxy,8.945140472084516,,,not_attempted,not_attempted
+p0379:base,Olympus/OM System,US9500841B2,base,partial,0,paraxial_or_proxy,10.07223095336173,,,not_attempted,not_attempted
+p0380:base,Olympus/OM System,US9500841B2,base,partial,0,paraxial_or_proxy,56.072172909096224,,,not_attempted,not_attempted
+p0381:base,Olympus/OM System,US9500841B2,base,partial,0,paraxial_or_proxy,5.321476962626404,,,not_attempted,not_attempted
+p0382:base,Olympus/OM System,US9500841B2,base,partial,0,paraxial_or_proxy,6.511017166891144,,,not_attempted,not_attempted
+p0383:base,Olympus/OM System,US9500841B2,base,partial,0,paraxial_or_proxy,7.832076187620648,,,not_attempted,not_attempted
+p0384:base,Olympus/OM System,US9500841B2,base,partial,0,paraxial_or_proxy,4.491986440287395,,,not_attempted,not_attempted
+p0385:base,Olympus/OM System,US9500841B2,base,partial,0,paraxial_or_proxy,6.9966844916537685,,,not_attempted,not_attempted
+p0386:base,Olympus/OM System,US9500841B2,base,partial,0,paraxial_or_proxy,6.023686103488072,,,not_attempted,not_attempted
+p0387:base,Olympus/OM System,US9500841B2,base,partial,0,paraxial_or_proxy,4.843628284616385,,,not_attempted,not_attempted
+p0388:base,Olympus/OM System,US9500841B2,base,partial,0,paraxial_or_proxy,9.50610965895812,,,not_attempted,not_attempted
+p0389:base,Olympus/OM System,US9500841B2,base,partial,0,paraxial_or_proxy,62.01354733371421,,,not_attempted,not_attempted
+p0390:middle,Olympus/OM System,US9602733B2,middle,raytrace_psf,1,variable_distance,30.53,5.59,19.75,generated,not_attempted
+p0390:tele,Olympus/OM System,US9602733B2,tele,raytrace_psf,1,variable_distance,41.84,6.84,14.635,generated,not_attempted
+p0390:wide,Olympus/OM System,US9602733B2,wide,raytrace_psf,1,variable_distance,14.54,3.96,41.365,generated,not_attempted
+p0391:middle,Olympus/OM System,US9602733B2,middle,raytrace_psf,1,variable_distance,21.42,4.77,27.485,generated,not_attempted
+p0391:tele,Olympus/OM System,US9602733B2,tele,raytrace_psf,1,variable_distance,36.34,6.62,16.745,generated,not_attempted
+p0391:wide,Olympus/OM System,US9602733B2,wide,raytrace_psf,1,variable_distance,12.62,3.69,45.38,generated,not_attempted
+p0392:middle,Olympus/OM System,US9602733B2,middle,raytrace_psf,1,variable_distance,21.41,4.89,27.73,generated,not_attempted
+p0392:tele,Olympus/OM System,US9602733B2,tele,raytrace_psf,1,variable_distance,36.34,6.79,16.74,generated,not_attempted
+p0392:wide,Olympus/OM System,US9602733B2,wide,raytrace_psf,1,variable_distance,12.62,3.79,45.195,generated,not_attempted
+p0393:middle,Olympus/OM System,US9602733B2,middle,raytrace_psf,1,variable_distance,24.24,4.54,24.47,generated,not_attempted
+p0393:tele,Olympus/OM System,US9602733B2,tele,raytrace_psf,1,variable_distance,40.95,5.95,14.96,generated,not_attempted
+p0393:wide,Olympus/OM System,US9602733B2,wide,raytrace_psf,1,variable_distance,14.35,3.71,41.655,generated,not_attempted
+p0394:middle,Olympus/OM System,US9602733B2,middle,raytrace_psf,1,variable_distance,24.24,4.29,24.055,generated,not_attempted
+p0394:tele,Olympus/OM System,US9602733B2,tele,raytrace_psf,1,variable_distance,40.95,5.64,14.895,generated,not_attempted
+p0394:wide,Olympus/OM System,US9602733B2,wide,raytrace_psf,1,variable_distance,14.35,3.54,41.655,generated,not_attempted
+p0395:middle,Olympus/OM System,US9602733B2,middle,raytrace_psf,1,variable_distance,24.23,4.45,24.155,generated,not_attempted
+p0395:tele,Olympus/OM System,US9602733B2,tele,raytrace_psf,1,variable_distance,40.93,5.83,14.935,generated,not_attempted
+p0395:wide,Olympus/OM System,US9602733B2,wide,raytrace_psf,1,variable_distance,14.35,3.64,41.67,generated,not_attempted
+p0396:middle,Olympus/OM System,US9602733B2,middle,raytrace_psf,1,variable_distance,24.24,4.45,24.03,generated,not_attempted
+p0396:tele,Olympus/OM System,US9602733B2,tele,raytrace_psf,1,variable_distance,40.94,5.83,14.91,generated,not_attempted
+p0396:wide,Olympus/OM System,US9602733B2,wide,raytrace_psf,1,variable_distance,14.35,3.64,41.69,generated,not_attempted
+p0397:middle,Olympus/OM System,US9602733B2,middle,raytrace_psf,1,variable_distance,24.24,4.45,24.355,generated,not_attempted
+p0397:tele,Olympus/OM System,US9602733B2,tele,raytrace_psf,1,variable_distance,40.95,5.82,14.835,generated,not_attempted
+p0397:wide,Olympus/OM System,US9602733B2,wide,raytrace_psf,1,variable_distance,14.35,3.64,41.735,generated,not_attempted
+p0398:middle,Olympus/OM System,US9602733B2,middle,raytrace_psf,1,variable_distance,24.24,4.45,24.33,generated,not_attempted
+p0398:tele,Olympus/OM System,US9602733B2,tele,raytrace_psf,1,variable_distance,40.95,5.82,14.825,generated,not_attempted
+p0398:wide,Olympus/OM System,US9602733B2,wide,raytrace_psf,1,variable_distance,14.35,3.64,41.77,generated,not_attempted
+p0399:middle,Olympus/OM System,US9602733B2,middle,raytrace_psf,1,variable_distance,24.24,4.45,24.135,generated,not_attempted
+p0399:tele,Olympus/OM System,US9602733B2,tele,raytrace_psf,1,variable_distance,40.95,5.82,14.865,generated,not_attempted
+p0399:wide,Olympus/OM System,US9602733B2,wide,raytrace_psf,1,variable_distance,14.35,3.64,41.63,generated,not_attempted
+p0400:middle,Olympus/OM System,US9602733B2,middle,raytrace_psf,1,variable_distance,24.24,4.45,24.005,generated,not_attempted
+p0400:tele,Olympus/OM System,US9602733B2,tele,raytrace_psf,1,variable_distance,40.95,5.82,14.8,generated,not_attempted
+p0400:wide,Olympus/OM System,US9602733B2,wide,raytrace_psf,1,variable_distance,14.35,3.64,41.78,generated,not_attempted
+p0401:middle,Olympus/OM System,US9602733B2,middle,raytrace_psf,1,variable_distance,24.24,4.45,24.13,generated,not_attempted
+p0401:tele,Olympus/OM System,US9602733B2,tele,raytrace_psf,1,variable_distance,40.95,5.83,14.945,generated,not_attempted
+p0401:wide,Olympus/OM System,US9602733B2,wide,raytrace_psf,1,variable_distance,14.35,3.64,41.64,generated,not_attempted
+p0402:middle,Olympus/OM System,US9602733B2,middle,raytrace_psf,1,variable_distance,24.24,4.45,24.13,generated,not_attempted
+p0402:tele,Olympus/OM System,US9602733B2,tele,raytrace_psf,1,variable_distance,40.95,5.83,14.945,generated,not_attempted
+p0402:wide,Olympus/OM System,US9602733B2,wide,raytrace_psf,1,variable_distance,14.35,3.64,41.635,generated,not_attempted
+p0403:middle,Olympus/OM System,US9602733B2,middle,raytrace_psf,1,variable_distance,21.72,3.78,27.255,generated,not_attempted
+p0403:tele,Olympus/OM System,US9602733B2,tele,raytrace_psf,1,variable_distance,36.34,5.17,16.745,generated,not_attempted
+p0403:wide,Olympus/OM System,US9602733B2,wide,raytrace_psf,1,variable_distance,12.62,2.86,46.05,generated,not_attempted
+p0425:middle,Olympus/OM System,US9964744B2,middle,raytrace_psf,1,variable_distance,24.25,4.422,24.6,generated,not_attempted
+p0425:tele,Olympus/OM System,US9964744B2,tele,raytrace_psf,1,variable_distance,41.18,5.731,14.7,generated,not_attempted
+p0425:wide,Olympus/OM System,US9964744B2,wide,proxy_only,0,variable_distance,14.24,3.598,41.2,failed,not_attempted
+p0426:middle,Olympus/OM System,US9964744B2,middle,raytrace_psf,1,variable_distance,24.219,4.691,24.75,generated,not_attempted
+p0426:tele,Olympus/OM System,US9964744B2,tele,raytrace_psf,1,variable_distance,41.554,5.794,14.6,generated,not_attempted
+p0426:wide,Olympus/OM System,US9964744B2,wide,raytrace_psf,1,variable_distance,14.295,3.638,41.9,generated,not_attempted
+p0427:middle,Olympus/OM System,US9964744B2,middle,raytrace_psf,1,variable_distance,24.441,4.67,24.2,generated,not_attempted
+p0427:tele,Olympus/OM System,US9964744B2,tele,raytrace_psf,1,variable_distance,48.804,6.411,12.5,generated,not_attempted
+p0427:wide,Olympus/OM System,US9964744B2,wide,proxy_only,0,variable_distance,12.24,3.57,45.7,failed,not_attempted
+p0428:middle,Olympus/OM System,US9964744B2,middle,raytrace_psf,1,variable_distance,24.458,4.633,24.15,generated,not_attempted
+p0428:tele,Olympus/OM System,US9964744B2,tele,raytrace_psf,1,variable_distance,48.995,6.392,12.45,generated,not_attempted
+p0428:wide,Olympus/OM System,US9964744B2,wide,proxy_only,0,variable_distance,12.189,3.518,45.65,failed,not_attempted
+p0429:middle,Olympus/OM System,US9964744B2,middle,raytrace_psf,1,variable_distance,34.908,5.256,17.3,generated,not_attempted
+p0429:tele,Olympus/OM System,US9964744B2,tele,raytrace_psf,1,variable_distance,85.975,6.248,7.25,generated,not_attempted
+p0429:wide,Olympus/OM System,US9964744B2,wide,proxy_only,0,variable_distance,13.008,3.427,43.55,failed,not_attempted
+p0430:base,Olympus/OM System,US9964744B2,base,partial,0,paraxial_or_proxy,219.48664403306043,,,not_attempted,not_attempted
+p0141:middle,Panasonic,US20120162482A1,middle,raytrace_psf,1,variable_distance,24.1581,4.6473,12.1883,generated,not_attempted
+p0141:tele,Panasonic,US20120162482A1,tele,raytrace_psf,1,variable_distance,40.5238,5.71166,7.3874,generated,not_attempted
+p0141:wide,Panasonic,US20120162482A1,wide,raytrace_psf,1,variable_distance,14.4006,3.62154,19.90705,generated,not_attempted
+p0142:middle,Panasonic,US20120162482A1,middle,raytrace_psf,1,variable_distance,24.1535,4.6735,12.1073,generated,not_attempted
+p0142:tele,Panasonic,US20120162482A1,tele,raytrace_psf,1,variable_distance,40.518,5.75507,7.32565,generated,not_attempted
+p0142:wide,Panasonic,US20120162482A1,wide,raytrace_psf,1,variable_distance,14.3988,3.61905,19.9024,generated,not_attempted
+p0143:middle,Panasonic,US20120162482A1,middle,raytrace_psf,1,variable_distance,25.0041,4.8351,11.80475,generated,not_attempted
+p0143:tele,Panasonic,US20120162482A1,tele,raytrace_psf,1,variable_distance,43.4162,5.56588,6.87235,generated,not_attempted
+p0143:wide,Panasonic,US20120162482A1,wide,raytrace_psf,1,variable_distance,14.4002,3.62449,19.92015,generated,not_attempted
+p0144:middle,Panasonic,US20120162482A1,middle,raytrace_psf,1,variable_distance,25.0028,4.82536,11.92,generated,not_attempted
+p0144:tele,Panasonic,US20120162482A1,tele,raytrace_psf,1,variable_distance,43.4142,5.52388,6.9472,generated,not_attempted
+p0144:wide,Panasonic,US20120162482A1,wide,raytrace_psf,1,variable_distance,14.3994,3.61279,19.9131,generated,not_attempted
+p0145:middle,Panasonic,US20120162482A1,middle,raytrace_psf,1,variable_distance,25.0911,4.49954,11.8593,generated,not_attempted
+p0145:tele,Panasonic,US20120162482A1,tele,raytrace_psf,1,variable_distance,43.654,5.88048,6.843,generated,not_attempted
+p0145:wide,Panasonic,US20120162482A1,wide,raytrace_psf,1,variable_distance,14.4217,3.62324,19.88735,generated,not_attempted
+p0146:middle,Panasonic,US20120162482A1,middle,raytrace_psf,1,variable_distance,25.0031,4.79091,11.70855,generated,not_attempted
+p0146:tele,Panasonic,US20120162482A1,tele,raytrace_psf,1,variable_distance,43.4155,5.70944,6.87245,generated,not_attempted
+p0146:wide,Panasonic,US20120162482A1,wide,raytrace_psf,1,variable_distance,14.3998,3.62556,19.89255,generated,not_attempted
+p0218:middle,Panasonic,US20180081156A1,middle,raytrace_psf,1,variable_distance,39.1047,4.3229,5.75405,generated,not_attempted
+p0218:telephoto,Panasonic,US20180081156A1,telephoto,raytrace_psf,1,variable_distance,168.6806,4.63206,1.35155,generated,not_attempted
+p0218:wide-angle,Panasonic,US20180081156A1,wide-angle,raytrace_psf,1,variable_distance,9.1401,2.91353,20.5818,generated,not_attempted
+p0219:middle,Panasonic,US20180081156A1,middle,raytrace_psf,1,variable_distance,39.2679,4.19501,5.7462,generated,not_attempted
+p0219:telephoto,Panasonic,US20180081156A1,telephoto,raytrace_psf,1,variable_distance,168.6786,4.68004,1.34295,generated,not_attempted
+p0219:wide-angle,Panasonic,US20180081156A1,wide-angle,raytrace_psf,1,variable_distance,9.14,2.92024,20.58265,generated,not_attempted
+p0220:middle,Panasonic,US20180081156A1,middle,raytrace_psf,1,variable_distance,33.1323,4.25046,6.763,generated,not_attempted
+p0220:telephoto,Panasonic,US20180081156A1,telephoto,raytrace_psf,1,variable_distance,120.0004,4.74996,1.8943,generated,not_attempted
+p0220:wide-angle,Panasonic,US20180081156A1,wide-angle,raytrace_psf,1,variable_distance,9.15,2.9204,20.58675,generated,not_attempted
+p0221:middle,Panasonic,US20180081156A1,middle,raytrace_psf,1,variable_distance,32.6464,4.25039,7.12035,generated,not_attempted
+p0221:telephoto,Panasonic,US20180081156A1,telephoto,raytrace_psf,1,variable_distance,120.0008,4.68057,1.90465,generated,not_attempted
+p0221:wide-angle,Panasonic,US20180081156A1,wide-angle,raytrace_psf,1,variable_distance,8.885,2.92047,21.0283,generated,not_attempted
+p0279:middle,Panasonic,US20230305278A1,middle,raytrace_psf,1,variable_distance,40.8776,2.92703,13.98085,generated,not_attempted
+p0279:short-middle,Panasonic,US20230305278A1,short-middle,partial,0,paraxial_or_proxy,0.42552364503821366,,,not_attempted,not_attempted
+p0279:short-tele,Panasonic,US20230305278A1,short-tele,partial,0,paraxial_or_proxy,0.5920507793074429,,,not_attempted,not_attempted
+p0279:short-wide,Panasonic,US20230305278A1,short-wide,partial,0,paraxial_or_proxy,0.3005070557955702,,,not_attempted,not_attempted
+p0279:tele,Panasonic,US20230305278A1,tele,raytrace_psf,1,variable_distance,67.5503,2.92709,8.7108,generated,not_attempted
+p0279:wide,Panasonic,US20230305278A1,wide,raytrace_psf,1,variable_distance,24.84,2.92728,20.5244,generated,not_attempted
+p0280:middle,Panasonic,US20230305278A1,middle,raytrace_psf,1,variable_distance,40.5351,2.918,14.21505,generated,not_attempted
+p0280:short-middle,Panasonic,US20230305278A1,short-middle,partial,0,paraxial_or_proxy,28.15604747419615,,,not_attempted,not_attempted
+p0280:short-tele,Panasonic,US20230305278A1,short-tele,partial,0,paraxial_or_proxy,41.047979009319945,,,not_attempted,not_attempted
+p0280:short-wide,Panasonic,US20230305278A1,short-wide,partial,0,paraxial_or_proxy,18.91997608587295,,,not_attempted,not_attempted
+p0280:tele,Panasonic,US20230305278A1,tele,raytrace_psf,1,variable_distance,67.7598,2.91815,8.72835,generated,not_attempted
+p0280:wide,Panasonic,US20230305278A1,wide,raytrace_psf,1,variable_distance,24.7679,2.91811,20.5655,generated,not_attempted
+p0281:middle,Panasonic,US20230305278A1,middle,proxy_only,0,variable_distance,40.8509,2.90016,14.2721,failed,not_attempted
+p0281:short-middle,Panasonic,US20230305278A1,short-middle,raytrace_psf,1,paraxial_or_proxy,28.610744921861848,14.298223349256297,,generated,not_attempted
+p0281:short-tele,Panasonic,US20230305278A1,short-tele,raytrace_psf,1,paraxial_or_proxy,47.120813904413865,23.54863263588899,,generated,not_attempted
+p0281:short-wide,Panasonic,US20230305278A1,short-wide,raytrace_psf,1,paraxial_or_proxy,17.401643690858393,8.696473608624885,,generated,not_attempted
+p0281:tele,Panasonic,US20230305278A1,tele,proxy_only,0,variable_distance,67.5499,2.9002,8.81625,failed,not_attempted
+p0281:wide,Panasonic,US20230305278A1,wide,raytrace_psf,1,variable_distance,24.84,2.90026,20.73195,generated,not_attempted
+p0287:middle,Panasonic,US8339501B2,middle,raytrace_psf,1,variable_distance,22.0088,3.62516,5.0072,generated,not_attempted
+p0287:telephoto,Panasonic,US8339501B2,telephoto,raytrace_psf,1,variable_distance,106.2908,5.40231,1.04445,generated,not_attempted
+p0287:wide-angle,Panasonic,US8339501B2,wide-angle,raytrace_psf,1,variable_distance,4.638,2.9033,20.8323,generated,not_attempted
+p0288:middle,Panasonic,US8339501B2,middle,raytrace_psf,1,variable_distance,21.9723,3.62194,5.01615,generated,not_attempted
+p0288:telephoto,Panasonic,US8339501B2,telephoto,raytrace_psf,1,variable_distance,106.167,5.39936,1.04555,generated,not_attempted
+p0288:wide-angle,Panasonic,US8339501B2,wide-angle,raytrace_psf,1,variable_distance,4.6354,2.90109,21.1237,generated,not_attempted
+p0289:middle,Panasonic,US8339501B2,middle,raytrace_psf,1,variable_distance,24.719,3.83626,4.46335,generated,not_attempted
+p0289:telephoto,Panasonic,US8339501B2,telephoto,raytrace_psf,1,variable_distance,131.9861,5.7437,0.8407,generated,not_attempted
+p0289:wide-angle,Panasonic,US8339501B2,wide-angle,raytrace_psf,1,variable_distance,4.6352,2.91051,21.1135,generated,not_attempted
+p0290:middle,Panasonic,US8339501B2,middle,raytrace_psf,1,variable_distance,24.7213,3.72365,4.48395,generated,not_attempted
+p0290:telephoto,Panasonic,US8339501B2,telephoto,raytrace_psf,1,variable_distance,169.9977,6.30451,0.651,generated,not_attempted
+p0290:wide-angle,Panasonic,US8339501B2,wide-angle,raytrace_psf,1,variable_distance,4.6001,2.9366,21.7677,generated,not_attempted
+p0291:middle,Panasonic,US8339501B2,middle,raytrace_psf,1,variable_distance,22.0631,3.88567,5.01695,generated,not_attempted
+p0291:telephoto,Panasonic,US8339501B2,telephoto,raytrace_psf,1,variable_distance,106.0758,5.40696,1.0519,generated,not_attempted
+p0291:wide-angle,Panasonic,US8339501B2,wide-angle,raytrace_psf,1,variable_distance,4.6361,2.91195,20.95135,generated,not_attempted
+p0292:middle,Panasonic,US8339501B2,middle,raytrace_psf,1,variable_distance,21.9607,3.62191,5.0191,generated,not_attempted
+p0292:telephoto,Panasonic,US8339501B2,telephoto,raytrace_psf,1,variable_distance,106.0913,5.39869,1.04615,generated,not_attempted
+p0292:wide-angle,Panasonic,US8339501B2,wide-angle,raytrace_psf,1,variable_distance,4.6333,2.90109,21.1421,generated,not_attempted
+p0293:middle,Panasonic,US8339501B2,middle,raytrace_psf,1,variable_distance,22.0851,3.56092,4.9982,generated,not_attempted
+p0293:telephoto,Panasonic,US8339501B2,telephoto,raytrace_psf,1,variable_distance,106.1415,5.3991,1.04485,generated,not_attempted
+p0293:wide-angle,Panasonic,US8339501B2,wide-angle,raytrace_psf,1,variable_distance,4.6352,2.90149,21.1469,generated,not_attempted
+p0294:middle,Panasonic,US8339501B2,middle,raytrace_psf,1,variable_distance,22.0471,3.84034,5.0164,generated,not_attempted
+p0294:telephoto,Panasonic,US8339501B2,telephoto,raytrace_psf,1,variable_distance,106.0956,5.48947,1.0471,generated,not_attempted
+p0294:wide-angle,Panasonic,US8339501B2,wide-angle,raytrace_psf,1,variable_distance,4.6338,2.89777,21.0194,generated,not_attempted
+p0295:middle,Panasonic,US8339501B2,middle,raytrace_psf,1,variable_distance,23.9175,4.03218,4.6208,generated,not_attempted
+p0295:telephoto,Panasonic,US8339501B2,telephoto,raytrace_psf,1,variable_distance,124.3159,6.10179,0.8916,generated,not_attempted
+p0295:wide-angle,Panasonic,US8339501B2,wide-angle,raytrace_psf,1,variable_distance,4.6013,2.90078,21.10895,generated,not_attempted
+p0296:middle,Panasonic,US8339501B2,middle,raytrace_psf,1,variable_distance,23.92,3.92751,4.6273,generated,not_attempted
+p0296:telephoto,Panasonic,US8339501B2,telephoto,raytrace_psf,1,variable_distance,124.3283,6.08852,0.89165,generated,not_attempted
+p0296:wide-angle,Panasonic,US8339501B2,wide-angle,raytrace_psf,1,variable_distance,4.5997,2.89948,21.68925,generated,not_attempted
+p0297:middle,Panasonic,US8339501B2,middle,raytrace_psf,1,variable_distance,22.1319,3.53224,4.973,generated,not_attempted
+p0297:telephoto,Panasonic,US8339501B2,telephoto,raytrace_psf,1,variable_distance,107.5734,5.41392,1.0295,generated,not_attempted
+p0297:wide-angle,Panasonic,US8339501B2,wide-angle,raytrace_psf,1,variable_distance,4.6372,2.90309,21.10745,generated,not_attempted
+p0313:base,Panasonic,US8576492B2,base,metadata_only,0,metadata,,,,not_attempted,not_attempted
+p0314:middle,Panasonic,US8576492B2,middle,proxy_only,0,variable_distance,17.0693,4.49104,6.31655,failed,not_attempted
+p0314:telephoto,Panasonic,US8576492B2,telephoto,raytrace_psf,1,variable_distance,65.4446,6.16167,1.70215,generated,not_attempted
+p0314:wide-angle,Panasonic,US8576492B2,wide-angle,proxy_only,0,variable_distance,4.4482,3.44055,22.5359,failed,not_attempted
+p0315:middle,Panasonic,US8576492B2,middle,proxy_only,0,variable_distance,14.85,4.73422,7.28425,failed,not_attempted
+p0315:telephoto,Panasonic,US8576492B2,telephoto,raytrace_psf,1,variable_distance,49.0837,6.16062,2.27855,generated,not_attempted
+p0315:wide-angle,Panasonic,US8576492B2,wide-angle,proxy_only,0,variable_distance,4.4498,3.44101,21.44945,failed,not_attempted
+p0316:middle,Panasonic,US8576492B2,middle,proxy_only,0,variable_distance,18.0934,4.20219,5.9726,failed,not_attempted
+p0316:telephoto,Panasonic,US8576492B2,telephoto,raytrace_psf,1,variable_distance,73.3027,6.16157,1.5165,generated,not_attempted
+p0316:wide-angle,Panasonic,US8576492B2,wide-angle,proxy_only,0,variable_distance,4.4501,3.44164,20.75165,failed,not_attempted
+p0317:middle,Panasonic,US8576492B2,middle,raytrace_psf,1,variable_distance,17.0715,4.93618,6.31775,generated,not_attempted
+p0317:telephoto,Panasonic,US8576492B2,telephoto,raytrace_psf,1,variable_distance,65.4465,6.13742,1.6765,generated,not_attempted
+p0317:wide-angle,Panasonic,US8576492B2,wide-angle,raytrace_psf,1,variable_distance,4.4497,3.44057,22.42325,generated,not_attempted
+p0318:middle,Panasonic,US8576492B2,middle,raytrace_psf,1,variable_distance,15.0214,4.8331,7.1891,generated,not_attempted
+p0318:telephoto,Panasonic,US8576492B2,telephoto,raytrace_psf,1,variable_distance,49.0864,6.13613,2.2347,generated,not_attempted
+p0318:wide-angle,Panasonic,US8576492B2,wide-angle,raytrace_psf,1,variable_distance,4.45,3.44052,21.9588,generated,not_attempted
+p0319:middle,Panasonic,US8576492B2,middle,raytrace_psf,1,variable_distance,18.0951,4.99381,5.99385,generated,not_attempted
+p0319:telephoto,Panasonic,US8576492B2,telephoto,raytrace_psf,1,variable_distance,73.3017,6.13817,1.49585,generated,not_attempted
+p0319:wide-angle,Panasonic,US8576492B2,wide-angle,raytrace_psf,1,variable_distance,4.45,3.44047,22.44835,generated,not_attempted
+p0320:middle,Panasonic,US8576492B2,middle,raytrace_psf,1,variable_distance,10.1335,4.56685,10.53265,generated,not_attempted
+p0320:telephoto,Panasonic,US8576492B2,telephoto,highres_psf,1,variable_distance,22.0509,6.36731,4.9281,generated,generated
+p0320:wide-angle,Panasonic,US8576492B2,wide-angle,proxy_only,0,variable_distance,4.657,2.90051,20.9579,failed,not_attempted
+p0333:middle,Panasonic,US8743471B2,middle,raytrace_psf,1,variable_distance,24.2337,5.30432,12.14015,generated,not_attempted
+p0333:telephoto,Panasonic,US8743471B2,telephoto,raytrace_psf,1,variable_distance,40.5305,5.82465,7.402,generated,not_attempted
+p0333:wide-angle,Panasonic,US8743471B2,wide-angle,raytrace_psf,1,variable_distance,14.4902,3.64008,20.36915,generated,not_attempted
+p0334:middle,Panasonic,US8743471B2,middle,raytrace_psf,1,variable_distance,24.2342,5.30465,12.23185,generated,not_attempted
+p0334:telephoto,Panasonic,US8743471B2,telephoto,raytrace_psf,1,variable_distance,40.53,5.82411,7.39455,generated,not_attempted
+p0334:wide-angle,Panasonic,US8743471B2,wide-angle,raytrace_psf,1,variable_distance,14.4902,3.64036,20.30865,generated,not_attempted
+p0335:middle,Panasonic,US8743471B2,middle,raytrace_psf,1,variable_distance,24.2339,5.61714,12.1278,generated,not_attempted
+p0335:telephoto,Panasonic,US8743471B2,telephoto,raytrace_psf,1,variable_distance,40.5303,5.82436,7.34755,generated,not_attempted
+p0335:wide-angle,Panasonic,US8743471B2,wide-angle,raytrace_psf,1,variable_distance,14.49,3.64035,20.01715,generated,not_attempted
+p0336:middle,Panasonic,US8743471B2,middle,raytrace_psf,1,variable_distance,24.234,5.61666,12.22905,generated,not_attempted
+p0336:telephoto,Panasonic,US8743471B2,telephoto,raytrace_psf,1,variable_distance,40.5305,5.8241,7.4371,generated,not_attempted
+p0336:wide-angle,Panasonic,US8743471B2,wide-angle,raytrace_psf,1,variable_distance,14.49,3.64026,20.1755,generated,not_attempted
+p0360:middle,Panasonic,US9274326B2,middle,raytrace_psf,1,variable_distance,5.9056,4.49182,18.0,generated,not_attempted
+p0360:telephoto,Panasonic,US9274326B2,telephoto,raytrace_psf,1,variable_distance,13.1588,7.17697,8.15,generated,not_attempted
+p0360:wide-angle,Panasonic,US9274326B2,wide-angle,proxy_only,0,variable_distance,2.85,3.03406,45.0,failed,not_attempted
+p0361:middle,Panasonic,US9274326B2,middle,raytrace_psf,1,variable_distance,7.2113,4.37173,15.38535,generated,not_attempted
+p0361:telephoto,Panasonic,US9274326B2,telephoto,raytrace_psf,1,variable_distance,15.6116,7.19304,7.34425,generated,not_attempted
+p0361:wide-angle,Panasonic,US9274326B2,wide-angle,raytrace_psf,1,variable_distance,3.342,3.05834,33.9207,generated,not_attempted
+p0362:middle,Panasonic,US9274326B2,middle,raytrace_psf,1,variable_distance,7.8785,3.77635,13.8128,generated,not_attempted
+p0362:telephoto,Panasonic,US9274326B2,telephoto,raytrace_psf,1,variable_distance,18.5539,7.02377,5.99325,generated,not_attempted
+p0362:wide-angle,Panasonic,US9274326B2,wide-angle,raytrace_psf,1,variable_distance,3.3499,2.47058,32.84565,generated,not_attempted
+p0363:middle,Panasonic,US9274326B2,middle,raytrace_psf,1,variable_distance,7.9307,3.84164,13.1826,generated,not_attempted
+p0363:telephoto,Panasonic,US9274326B2,telephoto,raytrace_psf,1,variable_distance,18.8178,7.16168,5.87745,generated,not_attempted
+p0363:wide-angle,Panasonic,US9274326B2,wide-angle,raytrace_psf,1,variable_distance,3.4,2.48054,25.53495,generated,not_attempted
+p0364:middle,Panasonic,US9274326B2,middle,raytrace_psf,1,variable_distance,7.2019,4.26483,15.24555,generated,not_attempted
+p0364:telephoto,Panasonic,US9274326B2,telephoto,raytrace_psf,1,variable_distance,15.5612,7.17231,7.157,generated,not_attempted
+p0364:wide-angle,Panasonic,US9274326B2,wide-angle,proxy_only,0,variable_distance,3.3398,3.01623,35.09915,failed,not_attempted
+p0365:middle,Panasonic,US9274326B2,middle,raytrace_psf,1,variable_distance,7.2098,4.42121,14.9545,generated,not_attempted
+p0365:telephoto,Panasonic,US9274326B2,telephoto,raytrace_psf,1,variable_distance,15.5763,7.17692,7.0915,generated,not_attempted
+p0365:wide-angle,Panasonic,US9274326B2,wide-angle,raytrace_psf,1,variable_distance,3.3418,3.1557,32.5436,generated,not_attempted
+p0366:middle,Panasonic,US9274326B2,middle,raytrace_psf,1,variable_distance,4.9875,3.95272,22.0,generated,not_attempted
+p0366:telephoto,Panasonic,US9274326B2,telephoto,raytrace_psf,1,variable_distance,13.2939,6.92235,8.0,generated,not_attempted
+p0366:wide-angle,Panasonic,US9274326B2,wide-angle,proxy_only,0,variable_distance,2.8298,3.24216,45.0,failed,not_attempted
+p0367:middle,Panasonic,US9274326B2,middle,raytrace_psf,1,variable_distance,7.2572,4.49045,14.8643,generated,not_attempted
+p0367:telephoto,Panasonic,US9274326B2,telephoto,raytrace_psf,1,variable_distance,15.677,7.18257,7.28995,generated,not_attempted
+p0367:wide-angle,Panasonic,US9274326B2,wide-angle,raytrace_psf,1,variable_distance,3.3625,3.22437,32.10765,generated,not_attempted
+p0368:middle,Panasonic,US9274326B2,middle,raytrace_psf,1,variable_distance,7.2086,4.29141,15.16375,generated,not_attempted
+p0368:telephoto,Panasonic,US9274326B2,telephoto,raytrace_psf,1,variable_distance,15.5586,7.17124,7.4263,generated,not_attempted
+p0368:wide-angle,Panasonic,US9274326B2,wide-angle,proxy_only,0,variable_distance,3.3396,3.05669,35.20015,failed,not_attempted
+p0369:middle,Panasonic,US9274326B2,middle,raytrace_psf,1,variable_distance,7.9973,3.94536,13.4656,generated,not_attempted
+p0369:telephoto,Panasonic,US9274326B2,telephoto,raytrace_psf,1,variable_distance,18.8304,7.22984,5.8327,generated,not_attempted
+p0369:wide-angle,Panasonic,US9274326B2,wide-angle,raytrace_psf,1,variable_distance,3.3998,2.57456,32.2111,generated,not_attempted
+p0370:middle,Panasonic,US9274326B2,middle,raytrace_psf,1,variable_distance,7.7081,4.11051,13.35115,generated,not_attempted
+p0370:telephoto,Panasonic,US9274326B2,telephoto,raytrace_psf,1,variable_distance,16.6816,7.19689,6.68015,generated,not_attempted
+p0370:wide-angle,Panasonic,US9274326B2,wide-angle,raytrace_psf,1,variable_distance,3.5955,2.83057,25.28675,generated,not_attempted
+p0137:middle,Ricoh/Pentax,US20120063004A1,middle,highres_psf,1,variable_distance,11.4,5.6,,generated,generated
+p0137:tele,Ricoh/Pentax,US20120063004A1,tele,raytrace_psf,1,variable_distance,24.23,6.5,,generated,not_attempted
+p0137:wide,Ricoh/Pentax,US20120063004A1,wide,raytrace_psf,1,variable_distance,4.18,3.4,,generated,not_attempted
+p0138:middle,Ricoh/Pentax,US20120063004A1,middle,raytrace_psf,1,variable_distance,11.4,4.3,,generated,not_attempted
+p0138:tele,Ricoh/Pentax,US20120063004A1,tele,raytrace_psf,1,variable_distance,25.52,6.5,,generated,not_attempted
+p0138:wide,Ricoh/Pentax,US20120063004A1,wide,raytrace_psf,1,variable_distance,4.4,3.4,,generated,not_attempted
+p0139:middle,Ricoh/Pentax,US20120063004A1,middle,raytrace_psf,1,variable_distance,11.4,5.4,,generated,not_attempted
+p0139:tele,Ricoh/Pentax,US20120063004A1,tele,raytrace_psf,1,variable_distance,25.96,6.5,,generated,not_attempted
+p0139:wide,Ricoh/Pentax,US20120063004A1,wide,raytrace_psf,1,variable_distance,4.4,3.4,,generated,not_attempted
+p0140:middle,Ricoh/Pentax,US20120063004A1,middle,raytrace_psf,1,variable_distance,11.4,4.4,,generated,not_attempted
+p0140:tele,Ricoh/Pentax,US20120063004A1,tele,raytrace_psf,1,variable_distance,24.01,6.5,,generated,not_attempted
+p0140:wide,Ricoh/Pentax,US20120063004A1,wide,raytrace_psf,1,variable_distance,4.0,3.4,,generated,not_attempted
+p0247:base,Ricoh/Pentax,US20190273848A1,base,raytrace_psf,1,caption,2.6,2.15,,generated,not_attempted
+p0102:base,Samsung,US12216334B2,base,highres_psf,1,paraxial_or_proxy,4.319833751540419,1.281849777905169,,generated,generated
+p0103:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.790076436345527,1.2989671440711983,,generated,not_attempted
+p0104:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.2566340384569274,1.2788579836221583,,generated,not_attempted
+p0105:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,3.952621838600054,1.3304490732584628,,generated,not_attempted
+p0106:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.357447074952158,1.2874375810333716,,generated,not_attempted
+p0107:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.27918388104062,1.3469066444974098,,generated,not_attempted
+p0108:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.405860994202257,1.2770611577397846,,generated,not_attempted
+p0109:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.542616190387703,1.334885745044873,,generated,not_attempted
+p0110:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.550710229510831,1.3711088368517117,,generated,not_attempted
+p0111:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.910582029030302,1.315451923126253,,generated,not_attempted
+p0112:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.445966506184187,1.3994080229015067,,generated,not_attempted
+p0113:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.7102662998764675,1.2958818728867294,,generated,not_attempted
+p0114:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.411787939676035,1.3939298387602006,,generated,not_attempted
+p0115:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.015242444240664,1.3348432625938897,,generated,not_attempted
+p0116:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,3.696590228396514,1.2880105325423394,,generated,not_attempted
+p0117:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.032569549404362,1.3582248398128534,,generated,not_attempted
+p0118:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.330131497591857,1.268390814666446,,generated,not_attempted
+p0119:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.588379353619872,1.2072385579322333,,generated,not_attempted
+p0120:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.595974873570292,1.3859996603046718,,generated,not_attempted
+p0121:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.45706816393961,1.3369062917672923,,generated,not_attempted
+p0122:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.83201240594432,1.2762843121881458,,generated,not_attempted
+p0123:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.5714567807675355,1.3545057128200104,,generated,not_attempted
+p0124:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.591701988919943,1.3770442406767363,,generated,not_attempted
+p0125:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.300840434358396,1.303284980108605,,generated,not_attempted
+p0126:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.965456468968708,1.2968024207283122,,generated,not_attempted
+p0127:base,Samsung,US12216334B2,base,raytrace_psf,1,paraxial_or_proxy,4.6667827934161625,1.220073932919258,,generated,not_attempted
+p0039:base,Seiko Epson,US10845695B2,base,proxy_only,0,paraxial_or_proxy,8.950666725416241e-09,2.2950427501067285e-10,,failed,not_attempted
+p0040:base,Seiko Epson,US10845695B2,base,proxy_only,0,paraxial_or_proxy,8.800482213801908e-09,2.1464590765370507e-10,,failed,not_attempted
+p0041:middle,Seiko Epson,US10845695B2,middle,raytrace_psf,1,paraxial_or_proxy,22.54660285522579,2.5,36.52690710852264,generated,not_attempted
+p0041:tele,Seiko Epson,US10845695B2,tele,raytrace_psf,1,paraxial_or_proxy,25.333940770225926,2.565,33.39266001833225,generated,not_attempted
+p0041:wide,Seiko Epson,US10845695B2,wide,raytrace_psf,1,paraxial_or_proxy,20.13668919826644,2.444,39.670002646167745,generated,not_attempted
+p0042:base,Seiko Epson,US10845695B2,base,proxy_only,0,paraxial_or_proxy,1.933120430036622e-08,4.714927878138103e-10,,failed,not_attempted
+p0068:base,Seiko Epson,US11378880B2,base,proxy_only,0,paraxial_or_proxy,8.950666725416241e-09,2.2950427501067285e-10,,failed,not_attempted
+p0069:base,Seiko Epson,US11378880B2,base,proxy_only,0,paraxial_or_proxy,8.800482213801908e-09,2.1464590765370507e-10,,failed,not_attempted
+p0070:middle,Seiko Epson,US11378880B2,middle,raytrace_psf,1,paraxial_or_proxy,22.54660285522579,2.5,36.52690710852264,generated,not_attempted
+p0070:tele,Seiko Epson,US11378880B2,tele,raytrace_psf,1,paraxial_or_proxy,25.333940770225926,2.565,33.39266001833225,generated,not_attempted
+p0070:wide,Seiko Epson,US11378880B2,wide,raytrace_psf,1,paraxial_or_proxy,20.13668919826644,2.444,39.670002646167745,generated,not_attempted
+p0071:base,Seiko Epson,US11378880B2,base,proxy_only,0,paraxial_or_proxy,1.933120430036622e-08,4.714927878138103e-10,,failed,not_attempted
+p0268:base,Seiko Epson,US20210232035A1,base,metadata_only,0,metadata,,,,not_attempted,not_attempted
+p0282:base,Seiko Epson,US5946142A,base,metadata_only,0,metadata,,,,not_attempted,not_attempted
+p0283:base,Seiko Epson,US5946142A,base,partial,0,paraxial_or_proxy,1.7035791149583461,,,not_attempted,not_attempted
+p0197:base,Sony,US20160054543A1,base,partial,0,paraxial_or_proxy,0.030561080613374304,,,not_attempted,not_attempted
+p0198:base,Sony,US20160054543A1,base,partial,0,paraxial_or_proxy,0.002928277165441142,,,not_attempted,not_attempted
+p0199:base,Sony,US20160054543A1,base,partial,0,paraxial_or_proxy,0.06423319731622065,,,not_attempted,not_attempted
+p0200:base,Sony,US20160054543A1,base,partial,0,paraxial_or_proxy,0.10724061701360589,,,not_attempted,not_attempted
+p0201:base,Sony,US20160054543A1,base,partial,0,paraxial_or_proxy,0.024106539564098292,,,not_attempted,not_attempted
+p0202:base,Sony,US20160054543A1,base,partial,0,paraxial_or_proxy,0.006529093434894957,,,not_attempted,not_attempted
+p0203:base,Sony,US20160054543A1,base,partial,0,paraxial_or_proxy,0.007662304343415024,,,not_attempted,not_attempted
+p0418:base,Sony,US9804358B2,base,partial,0,paraxial_or_proxy,0.041005287020219335,,,not_attempted,not_attempted
+p0419:base,Sony,US9804358B2,base,partial,0,paraxial_or_proxy,0.0035670419587810203,,,not_attempted,not_attempted
+p0420:base,Sony,US9804358B2,base,partial,0,paraxial_or_proxy,0.07029490323292897,,,not_attempted,not_attempted
+p0421:base,Sony,US9804358B2,base,partial,0,paraxial_or_proxy,0.11317478612498186,,,not_attempted,not_attempted
+p0422:base,Sony,US9804358B2,base,partial,0,paraxial_or_proxy,0.024392350488437596,,,not_attempted,not_attempted
+p0423:base,Sony,US9804358B2,base,partial,0,paraxial_or_proxy,0.00888273878442427,,,not_attempted,not_attempted
+p0424:base,Sony,US9804358B2,base,partial,0,paraxial_or_proxy,0.0075333035334394696,,,not_attempted,not_attempted
+p0072:base,Sunny Optical,US11402611B2,base,partial,0,paraxial_or_proxy,3.4434407276675114,,,not_attempted,not_attempted
+p0073:base,Sunny Optical,US11402611B2,base,partial,0,paraxial_or_proxy,3.470692226461759,,,not_attempted,not_attempted
+p0074:base,Sunny Optical,US11402611B2,base,partial,0,paraxial_or_proxy,6.432853800963353,,,not_attempted,not_attempted
+p0075:base,Sunny Optical,US11402611B2,base,partial,0,paraxial_or_proxy,3.7164062649649012,,,not_attempted,not_attempted
+p0076:base,Sunny Optical,US11402611B2,base,partial,0,paraxial_or_proxy,3.7198123534195893,,,not_attempted,not_attempted
+p0077:base,Sunny Optical,US11402611B2,base,partial,0,paraxial_or_proxy,3.7837935983080313,,,not_attempted,not_attempted
+p0078:base,Sunny Optical,US11402611B2,base,partial,0,paraxial_or_proxy,3.7359907932946945,,,not_attempted,not_attempted
+p0079:base,Sunny Optical,US11402611B2,base,partial,0,paraxial_or_proxy,3.731530108785112,,,not_attempted,not_attempted
+p0080:base,Sunny Optical,US11402611B2,base,partial,0,paraxial_or_proxy,3.4826892090777144,,,not_attempted,not_attempted
+p0081:base,Sunny Optical,US11402611B2,base,partial,0,paraxial_or_proxy,3.518014788594507,,,not_attempted,not_attempted
+p0082:base,Sunny Optical,US11402611B2,base,partial,0,paraxial_or_proxy,3.707449471704938,,,not_attempted,not_attempted
+p0083:base,Sunny Optical,US11402611B2,base,partial,0,paraxial_or_proxy,6.227229963805202,,,not_attempted,not_attempted
+p0084:base,Sunny Optical,US11402611B2,base,partial,0,paraxial_or_proxy,3.7215400867083854,,,not_attempted,not_attempted
+p0092:base,Sunny Optical,US12055680B2,base,partial,0,paraxial_or_proxy,4.749402877243421,,,not_attempted,not_attempted
+p0093:base,Sunny Optical,US12055680B2,base,partial,0,paraxial_or_proxy,4.648980952474523,,,not_attempted,not_attempted
+p0094:base,Sunny Optical,US12055680B2,base,partial,0,paraxial_or_proxy,4.65856103124972,,,not_attempted,not_attempted
+p0095:base,Sunny Optical,US12055680B2,base,partial,0,paraxial_or_proxy,4.644560337733249,,,not_attempted,not_attempted
+p0096:base,Sunny Optical,US12055680B2,base,partial,0,paraxial_or_proxy,4.650339913072892,,,not_attempted,not_attempted
+p0239:base,Sunny Optical,US20190170984A1,base,partial,0,paraxial_or_proxy,2.0567778925303473,,,not_attempted,not_attempted
+p0240:base,Sunny Optical,US20190170984A1,base,partial,0,paraxial_or_proxy,0.959788612236475,,,not_attempted,not_attempted
+p0241:base,Sunny Optical,US20190170984A1,base,partial,0,paraxial_or_proxy,1.8323432925430945,,,not_attempted,not_attempted
+p0242:base,Sunny Optical,US20190170984A1,base,partial,0,paraxial_or_proxy,1.6875701906077591,,,not_attempted,not_attempted
+p0243:base,Sunny Optical,US20190170984A1,base,partial,0,paraxial_or_proxy,1.506821064193078,,,not_attempted,not_attempted
+p0244:base,Sunny Optical,US20190170984A1,base,partial,0,paraxial_or_proxy,1.2770223351122552,,,not_attempted,not_attempted
+p0245:base,Sunny Optical,US20190170984A1,base,partial,0,paraxial_or_proxy,0.9316149181173973,,,not_attempted,not_attempted
+p0246:base,Sunny Optical,US20190170984A1,base,partial,0,paraxial_or_proxy,0.7885208354096461,,,not_attempted,not_attempted
+p0261:base,Sunny Optical,US20210181484A1,base,partial,0,paraxial_or_proxy,1.9391338146124677,,,not_attempted,not_attempted
+p0262:base,Sunny Optical,US20210181484A1,base,partial,0,paraxial_or_proxy,1.934274507851913,,,not_attempted,not_attempted
+p0263:base,Sunny Optical,US20210181484A1,base,partial,0,paraxial_or_proxy,1.9262708782273017,,,not_attempted,not_attempted
+p0264:base,Sunny Optical,US20210181484A1,base,partial,0,paraxial_or_proxy,1.944980155249007,,,not_attempted,not_attempted
+p0265:base,Sunny Optical,US20210181484A1,base,partial,0,paraxial_or_proxy,1.9499489618450678,,,not_attempted,not_attempted
+p0266:base,Sunny Optical,US20210181484A1,base,partial,0,paraxial_or_proxy,1.9262708782273017,,,not_attempted,not_attempted
+p0267:base,Sunny Optical,US20210181484A1,base,partial,0,paraxial_or_proxy,1.9499489618450678,,,not_attempted,not_attempted
+p0182:middle,Tamron,US20140347525A1,middle,partial,0,metadata,43.53,,,not_attempted,not_attempted
+p0182:tele,Tamron,US20140347525A1,tele,partial,0,metadata,102.92,,,not_attempted,not_attempted
+p0182:wide,Tamron,US20140347525A1,wide,partial,0,metadata,18.38,,,not_attempted,not_attempted
+p0183:middle,Tamron,US20140347525A1,middle,partial,0,metadata,43.54,,,not_attempted,not_attempted
+p0183:tele,Tamron,US20140347525A1,tele,partial,0,metadata,102.85,,,not_attempted,not_attempted
+p0183:wide,Tamron,US20140347525A1,wide,partial,0,metadata,18.37,,,not_attempted,not_attempted
+p0184:middle,Tamron,US20140347525A1,middle,partial,0,metadata,43.5,,,not_attempted,not_attempted
+p0184:tele,Tamron,US20140347525A1,tele,partial,0,metadata,102.77,,,not_attempted,not_attempted
+p0184:wide,Tamron,US20140347525A1,wide,partial,0,metadata,18.36,,,not_attempted,not_attempted
+p0185:middle,Tamron,US20140347525A1,middle,partial,0,metadata,54.97,,,not_attempted,not_attempted
+p0185:tele,Tamron,US20140347525A1,tele,partial,0,metadata,116.31,,,not_attempted,not_attempted
+p0185:wide,Tamron,US20140347525A1,wide,partial,0,metadata,24.75,,,not_attempted,not_attempted
+p0186:middle,Tamron,US20140347525A1,middle,partial,0,metadata,90.03,,,not_attempted,not_attempted
+p0186:tele,Tamron,US20140347525A1,tele,partial,0,metadata,290.84,,,not_attempted,not_attempted
+p0186:wide,Tamron,US20140347525A1,wide,partial,0,metadata,28.88,,,not_attempted,not_attempted
+p0187:middle,Tamron,US20140347525A1,middle,partial,0,metadata,119.95,,,not_attempted,not_attempted
+p0187:tele,Tamron,US20140347525A1,tele,partial,0,metadata,203.44,,,not_attempted,not_attempted
+p0187:wide,Tamron,US20140347525A1,wide,partial,0,metadata,72.09,,,not_attempted,not_attempted
+p0188:middle,Tamron,US20140347525A1,middle,partial,0,metadata,120.11,,,not_attempted,not_attempted
+p0188:tele,Tamron,US20140347525A1,tele,partial,0,metadata,203.68,,,not_attempted,not_attempted
+p0188:wide,Tamron,US20140347525A1,wide,partial,0,metadata,72.14,,,not_attempted,not_attempted
+p0189:middle,Tamron,US20140347525A1,middle,partial,0,metadata,119.96,,,not_attempted,not_attempted
+p0189:tele,Tamron,US20140347525A1,tele,partial,0,metadata,203.54,,,not_attempted,not_attempted
+p0189:wide,Tamron,US20140347525A1,wide,partial,0,metadata,72.1,,,not_attempted,not_attempted
+p0190:middle,Tamron,US20140347525A1,middle,partial,0,metadata,120.03,,,not_attempted,not_attempted
+p0190:tele,Tamron,US20140347525A1,tele,partial,0,metadata,203.58,,,not_attempted,not_attempted
+p0190:wide,Tamron,US20140347525A1,wide,partial,0,metadata,72.1,,,not_attempted,not_attempted
+p0269:base,Tamron,US20210294082A1,base,partial,0,paraxial_or_proxy,7.906703487589202,,,not_attempted,not_attempted
+p0270:base,Tamron,US20210294082A1,base,partial,0,paraxial_or_proxy,6.423545668834749,,,not_attempted,not_attempted
+p0271:base,Tamron,US20210294082A1,base,partial,0,paraxial_or_proxy,7.237364804326719,,,not_attempted,not_attempted

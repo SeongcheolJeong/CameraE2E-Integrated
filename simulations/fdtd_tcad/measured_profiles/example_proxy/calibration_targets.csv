@@ -1,0 +1,3 @@
+case,wavelength_nm,target_total_photo_current_a_per_cm,target_split_phase_x_proxy,weight_current,weight_phase
+center,550,3.057769041538466e-06,-0.011813844706131667,1.0,1.0
+edge20x,550,7.112340053266482e-06,0.02760134398005003,1.0,1.0

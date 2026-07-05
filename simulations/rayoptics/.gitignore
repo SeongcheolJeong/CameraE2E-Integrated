@@ -1,0 +1,33 @@
+.DS_Store
+
+# Local runtime and dependency installs
+node_modules/
+rayoptics-env/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Build and tool caches
+dist/
+.vite/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Local workbench state
+.rayoptics-workbench/runtime/
+.rayoptics-workbench/drafts/
+
+# Generated logs
+*.log
+
+# Local UX reference attachments
+ChatGPT Image Jun 21, 2026 at 09_56_27 AM*.png
+Lens_UX.rtf
+
+# Packaged archives kept outside git; use Releases or artifacts if needed.
+*.zip
+
+# Older portable export package, superseded by CameraE2E_Lens_DB_v9_20260627.
+Lens_DB_portable_v9_20260623/

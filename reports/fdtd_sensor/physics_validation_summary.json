@@ -1,0 +1,361 @@
+{
+  "cra_lut": "/Users/seongcheoljeong/FDTD/runs/cra_response_lut/cra_response_lut.csv",
+  "cra_validation": {
+    "checks": {
+      "convergence": {
+        "convergence_report": null,
+        "failures": [],
+        "geometry": {},
+        "resolution_px_per_um": null,
+        "source_path": "/Users/seongcheoljeong/FDTD/runs/cra_response_lut/cra_response_lut.csv",
+        "status": "warn",
+        "warnings": [
+          "LUT does not expose convergence metadata for FDTD resolution"
+        ]
+      },
+      "crosstalk": {
+        "center_weight": 1.0,
+        "failures": [],
+        "kernel_shape": [
+          1,
+          1
+        ],
+        "status": "warn",
+        "uniformity_cv": 0.0,
+        "warnings": [
+          "no regional crosstalk kernel available"
+        ]
+      },
+      "energy": {
+        "failures": [],
+        "max_response": 0.029286546974682106,
+        "n_absorption_over_incident": 0,
+        "n_negative": 0,
+        "n_over_unity": 0,
+        "n_response_over_absorption": 0,
+        "n_response_values": 3,
+        "n_rows": 3,
+        "status": "pass",
+        "warnings": []
+      },
+      "ocl_shift": {
+        "failures": [],
+        "pairs": [
+          {
+            "compensated_case": "edge20_comp",
+            "compensated_response": 0.907972885030288,
+            "improvement": 0.24175702098649388,
+            "status": "pass",
+            "uncompensated_case": "edge20_uncomp",
+            "uncompensated_response": 0.6662158640437941
+          }
+        ],
+        "status": "pass",
+        "warnings": []
+      },
+      "relative_illumination": {
+        "comparisons": [
+          {
+            "case": "edge20_uncomp",
+            "cos4_response": 0.7797282437678554,
+            "cra_deg": 20.0,
+            "cra_x_deg": 20.0,
+            "cra_z_deg": 0.0,
+            "fdtd_response_norm": 0.6662158640437941,
+            "ratio_to_cos4": 0.8544205873888329,
+            "status": "pass",
+            "wavelength_nm": null
+          },
+          {
+            "case": "edge20_comp",
+            "cos4_response": 0.7797282437678554,
+            "cra_deg": 20.0,
+            "cra_x_deg": 20.0,
+            "cra_z_deg": 0.0,
+            "fdtd_response_norm": 0.907972885030288,
+            "ratio_to_cos4": 1.1644735102100703,
+            "status": "pass",
+            "wavelength_nm": null
+          }
+        ],
+        "failures": [],
+        "status": "pass",
+        "warnings": []
+      },
+      "symmetry": {
+        "comparisons": [],
+        "failures": [],
+        "status": "warn",
+        "warnings": [
+          "no +/- CRA mirror pairs available for symmetry validation"
+        ]
+      },
+      "wavelength": {
+        "failures": [],
+        "has_rgb_representative_wavelengths": false,
+        "status": "warn",
+        "warnings": [
+          "LUT does not cover representative blue/green/red wavelengths"
+        ],
+        "wavelengths_nm": []
+      }
+    },
+    "failures": [],
+    "ok": true,
+    "status": "warn",
+    "warnings": [
+      "LUT does not cover representative blue/green/red wavelengths",
+      "no +/- CRA mirror pairs available for symmetry validation",
+      "no regional crosstalk kernel available",
+      "LUT does not expose convergence metadata for FDTD resolution"
+    ]
+  },
+  "energy_budget": {
+    "absorption_over_incident": 0,
+    "available": true,
+    "max_absorption": 0.6047639970943144,
+    "max_incident": 0.9701402269271597,
+    "max_response": 0.3901956436723099
+  },
+  "figures": {
+    "energy_budget": "/Users/seongcheoljeong/Documents/CameraE2E/reports/fdtd_sensor/physics_energy_budget.png",
+    "kernel_locality": "/Users/seongcheoljeong/Documents/CameraE2E/reports/fdtd_sensor/physics_kernel_locality.png",
+    "ocl_shift": "/Users/seongcheoljeong/Documents/CameraE2E/reports/fdtd_sensor/physics_ocl_shift.png",
+    "ri_cos4": "/Users/seongcheoljeong/Documents/CameraE2E/reports/fdtd_sensor/physics_ri_cos4.png",
+    "wavelength_absorption": "/Users/seongcheoljeong/Documents/CameraE2E/reports/fdtd_sensor/physics_wavelength_absorption.png"
+  },
+  "kernel_locality": {
+    "center_weight": 1.0,
+    "kernel_shape": [
+      1,
+      1
+    ],
+    "uniformity_cv": 0.0
+  },
+  "primary_lut": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+  "primary_validation": {
+    "checks": {
+      "convergence": {
+        "convergence_report": {
+          "all_critical_feature_gate_pass": true,
+          "all_grid_resolution_gate_pass": true,
+          "all_si_wavelength_gate_pass": true,
+          "case_count": 9,
+          "cases": [
+            "center",
+            "cra10x",
+            "edge20x"
+          ],
+          "fail_on_negative_signed_flux": true,
+          "failed_axes": [],
+          "full_numerical_convergence_pass": false,
+          "min_critical_feature_pixels": 3.36,
+          "min_si_internal_wavelength_pixels": 8.057983372415263,
+          "negative_signed_flux_count": 0,
+          "note": "RGB r84 anchor has per-case grid/Si-wavelength/feature gates, but no resolution/time/PML sweep. Treat as grid-qualified, not full numerical convergence.",
+          "passed": true,
+          "pml_convergence_pass": null,
+          "report_type": "single_run_grid_qualification",
+          "schema": "camera_lut_convergence_report_v1",
+          "single_run_grid_qualification_pass": true,
+          "source_summary_csv": "runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut_summary.csv",
+          "spatial_convergence_pass": null,
+          "time_convergence_pass": null,
+          "unique_after_source_time_count": 1,
+          "unique_pml_count": 1,
+          "unique_resolution_count": 1,
+          "unproven_axes": [
+            "resolution",
+            "after_source_time",
+            "pml"
+          ],
+          "varied_axes": [],
+          "wavelength_nm": [
+            450.0,
+            550.0,
+            650.0
+          ]
+        },
+        "failures": [],
+        "geometry": {
+          "air_top": 0.55,
+          "bottom_air": 0.24871428571428567,
+          "cfa_thickness": 0.8,
+          "lens_edge_gap": 0.04,
+          "lens_height": 0.657,
+          "metal_edge_width": 0.12,
+          "passivation_thickness": 0.08,
+          "pitch": 1.4,
+          "pml": 0.45,
+          "si_thickness": 2.8
+        },
+        "resolution_px_per_um": 84,
+        "source_path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+        "status": "warn",
+        "warnings": [
+          "FDTD report is grid-qualified but not full resolution/time/PML convergence"
+        ]
+      },
+      "crosstalk": {
+        "center_weight": 1.0,
+        "failures": [],
+        "kernel_shape": [
+          1,
+          1
+        ],
+        "status": "warn",
+        "uniformity_cv": 0.0,
+        "warnings": [
+          "no regional crosstalk kernel available"
+        ]
+      },
+      "energy": {
+        "failures": [],
+        "max_response": 0.4785433343548626,
+        "n_absorption_over_incident": 0,
+        "n_negative": 0,
+        "n_over_unity": 0,
+        "n_response_over_absorption": 0,
+        "n_response_values": 27,
+        "n_rows": 27,
+        "status": "pass",
+        "warnings": []
+      },
+      "ocl_shift": {
+        "failures": [],
+        "pairs": [],
+        "status": "warn",
+        "warnings": [
+          "no uncompensated/compensated OCL pair available"
+        ]
+      },
+      "relative_illumination": {
+        "comparisons": [
+          {
+            "case": "cra10x",
+            "cos4_response": 0.9406018657828263,
+            "cra_deg": 10.0,
+            "cra_x_deg": 10.0,
+            "cra_z_deg": 0.0,
+            "fdtd_response_norm": 1.0663266769886022,
+            "ratio_to_cos4": 1.133664216263424,
+            "status": "pass",
+            "wavelength_nm": 450.0
+          },
+          {
+            "case": "edge20x",
+            "cos4_response": 0.7797282437678554,
+            "cra_deg": 20.0,
+            "cra_x_deg": 20.0,
+            "cra_z_deg": 0.0,
+            "fdtd_response_norm": 1.0401389771322007,
+            "ratio_to_cos4": 1.3339762737155332,
+            "status": "warn",
+            "wavelength_nm": 450.0
+          },
+          {
+            "case": "cra10x",
+            "cos4_response": 0.9406018657828263,
+            "cra_deg": 10.0,
+            "cra_x_deg": 10.0,
+            "cra_z_deg": 0.0,
+            "fdtd_response_norm": 5.149924475082459,
+            "ratio_to_cos4": 5.475137422565473,
+            "status": "warn",
+            "wavelength_nm": 550.0
+          },
+          {
+            "case": "edge20x",
+            "cos4_response": 0.7797282437678554,
+            "cra_deg": 20.0,
+            "cra_x_deg": 20.0,
+            "cra_z_deg": 0.0,
+            "fdtd_response_norm": 5.43211287827112,
+            "ratio_to_cos4": 6.966674507032986,
+            "status": "warn",
+            "wavelength_nm": 550.0
+          },
+          {
+            "case": "cra10x",
+            "cos4_response": 0.9406018657828263,
+            "cra_deg": 10.0,
+            "cra_x_deg": 10.0,
+            "cra_z_deg": 0.0,
+            "fdtd_response_norm": 1.5580154186000235,
+            "ratio_to_cos4": 1.6564026452396496,
+            "status": "warn",
+            "wavelength_nm": 650.0
+          },
+          {
+            "case": "edge20x",
+            "cos4_response": 0.7797282437678554,
+            "cra_deg": 20.0,
+            "cra_x_deg": 20.0,
+            "cra_z_deg": 0.0,
+            "fdtd_response_norm": 1.3341677613318683,
+            "ratio_to_cos4": 1.711067634134699,
+            "status": "warn",
+            "wavelength_nm": 650.0
+          }
+        ],
+        "failures": [],
+        "status": "warn",
+        "warnings": [
+          "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+          "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+          "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+          "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+          "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence"
+        ]
+      },
+      "symmetry": {
+        "comparisons": [],
+        "failures": [],
+        "status": "warn",
+        "warnings": [
+          "no +/- CRA mirror pairs available for symmetry validation"
+        ]
+      },
+      "wavelength": {
+        "failures": [],
+        "has_rgb_representative_wavelengths": true,
+        "status": "pass",
+        "warnings": [],
+        "wavelengths_nm": [
+          450.0,
+          550.0,
+          650.0
+        ]
+      }
+    },
+    "failures": [],
+    "ok": true,
+    "status": "warn",
+    "warnings": [
+      "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+      "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+      "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+      "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+      "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+      "no uncompensated/compensated OCL pair available",
+      "no +/- CRA mirror pairs available for symmetry validation",
+      "no regional crosstalk kernel available",
+      "FDTD report is grid-qualified but not full resolution/time/PML convergence"
+    ]
+  },
+  "report": "/Users/seongcheoljeong/Documents/CameraE2E/reports/fdtd_sensor/physics_validation_report.html",
+  "wavelength_absorption": {
+    "absorption": [
+      0.6330291696318411,
+      0.508535792485494,
+      0.3735113279665618
+    ],
+    "available": true,
+    "monotonic_decreasing": true,
+    "wavelengths_nm": [
+      450.0,
+      550.0,
+      650.0
+    ]
+  }
+}

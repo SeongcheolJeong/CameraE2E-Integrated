@@ -1,0 +1,97 @@
+[build-system]
+requires = ["setuptools>=80", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyisetcam"
+version = "0.1.0"
+description = "Core Python port of the ISETCam imaging pipeline."
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [
+  {name = "OpenAI Codex"}
+]
+dependencies = [
+  "numpy",
+  "scipy",
+  "scikit-image",
+  "matplotlib",
+  "imageio",
+  "imagecodecs",
+  "tifffile",
+  "h5py",
+  "pooch",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "pytest-cov",
+  "ruff",
+  "mypy",
+]
+yolo = [
+  "lap",
+  "ultralytics",
+]
+torch-vision = [
+  "torch",
+  "torchvision",
+]
+transformers = [
+  "pillow",
+  "torch",
+  "transformers",
+]
+sam = [
+  "segment-anything",
+  "torch",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pyisetcam = [
+  "data/camerae2e_registry_seed.json",
+  "data/hwisp/*.json",
+  "data/hwisp/README.md",
+  "data/lens_patents/*.json",
+  "data/lens_patents/*.sqlite",
+  "data/lens_patents/README.md",
+  "data/lens_patents/companies/*.json",
+  "data/lens_patents/companies/*.md",
+  "data/lens_patents/companies/*/*.json",
+  "data/lens_patents/companies/*/*.sqlite",
+  "data/lens_patents/raytrace_psf/*.json",
+  "data/lens_patents/raytrace_psf/*.md",
+  "data/lens_patents/raytrace_psf/*.npz",
+  "data/lens_patents/raytrace_psf_highres/*.json",
+  "data/lens_patents/raytrace_psf_highres/*.md",
+  "data/lens_patents/raytrace_psf_highres/*.npz",
+  "data/task_perception/*.json",
+  "data/task_perception/README.md",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_unused_ignores = true
+warn_redundant_casts = true
+disallow_untyped_defs = true
+ignore_missing_imports = false

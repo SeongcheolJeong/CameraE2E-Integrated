@@ -1,0 +1,230 @@
+{
+  "schema": "image_sensor_optical_qe_model_v1",
+  "code": "DEP-2511-802",
+  "source": {
+    "code": "DEP-2511-802",
+    "manufacturer": "STMicroelectronics",
+    "device_name": "56G812A1A_CIS",
+    "title": "STMicroelectronics 56G812A1A (iPhone 17 Pro Max) Device Essentials Plus",
+    "report_type": "DEP",
+    "release_date": "2026-04-09T00:00:00.000+00:00",
+    "html_files": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download_dep_a6pf30000009PYHAA2/html/reports/002_DEP-2511-802.html"
+    ],
+    "pdf_files": []
+  },
+  "optical": {
+    "geometry": {
+      "pixel_pitch_um": {
+        "value": 2.9,
+        "source_kind": "extracted",
+        "confidence": 0.9,
+        "method": "sensor_catalog.derived_specs.pixel_pitch_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: It features a 1.46 MP, 2.9 µm pixel pitch, stacked back-illuminated (BI) voltage-domain global shutter (VDGS) CIS.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download_dep_a6pf30000009PYHAA2/html/reports/002_DEP-2511-802.html"
+      },
+      "optical_format": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.optical_format missing"
+      },
+      "optical_stack_height_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.optical_stack_height_um missing",
+        "unit": "um"
+      },
+      "active_si_thickness_um": {
+        "value": 9.7,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.active_si_thickness_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Manufacturer STMicroelectronics Foundry STMicroelectronics Part number 56G812A1A Type Stacked BI-CMOS Active Si thickness 9.7 µm Die size (measured from the die edge) 4.90 mm × 4.30 mm ( 21.1 mm 2 ) Die size (measured f.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download_dep_a6pf30000009PYHAA2/html/reports/002_DEP-2511-802.html"
+      }
+    },
+    "cfa": {
+      "pattern": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_pattern missing"
+      },
+      "representative_thickness_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_um missing",
+        "unit": "um"
+      },
+      "thickness_min_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_min_um missing",
+        "unit": "um"
+      },
+      "thickness_max_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_max_um missing",
+        "unit": "um"
+      },
+      "color_filter_pitch_um": {
+        "value": 2.9,
+        "source_kind": "inferred_rule",
+        "confidence": 0.38,
+        "method": "color_filter_pitch_um inferred from pixel_pitch_um; 1x pitch fallback",
+        "unit": "um"
+      },
+      "evidence": []
+    },
+    "microlens": {
+      "type": {
+        "value": "high_precision",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.microlens_type",
+        "evidence": "combined_text: high_precision"
+      },
+      "ocl_pitch_um": {
+        "value": 2.9,
+        "source_kind": "inferred_rule",
+        "confidence": 0.4,
+        "method": "ocl_pitch_um inferred from pixel_pitch_um; OCL pitch usually follows pixel pitch when not reported",
+        "unit": "um"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "high_precision",
+          "field": "microlens_type"
+        }
+      ]
+    },
+    "grid": {
+      "material": {
+        "value": "w",
+        "source_kind": "extracted",
+        "confidence": 0.76,
+        "method": "sensor_catalog.derived_specs.grid_material",
+        "evidence": "combined_text: w"
+      },
+      "pitch_um": {
+        "value": 2.9,
+        "source_kind": "inferred_rule",
+        "confidence": 0.35,
+        "method": "grid_pitch_um inferred from pixel_pitch_um; grid pitch approximated as pixel pitch",
+        "unit": "um"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "w",
+          "field": "grid_material"
+        }
+      ]
+    },
+    "sensor_context": {
+      "illumination": {
+        "value": "back_illuminated",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.illumination",
+        "evidence": "combined_text: back_illuminated"
+      },
+      "sensor_modality": {
+        "value": "global_shutter_cis",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.sensor_modality",
+        "evidence": "combined_text: global_shutter_cis"
+      },
+      "is_nir": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.is_nir missing"
+      }
+    }
+  },
+  "cfa_proxy_nk": {
+    "enabled": false,
+    "library_id": "common_rgb_color_resist_proxy_2026_06",
+    "source_kind": "inferred_proxy_nk",
+    "applicability": "unknown_cfa_pattern",
+    "reference_thickness_um": 0.65,
+    "thickness_um": {
+      "value": 0.65,
+      "source_kind": "inferred_proxy_default",
+      "confidence": 0.3,
+      "method": "proxy library reference_thickness_um used because sensor-specific CFA thickness is unavailable",
+      "unit": "um"
+    },
+    "channels": {},
+    "model_limitations": [
+      "Absorption-only CFA layer proxy; does not include full optical-stack interference, microlens focusing, grid diffraction, or silicon absorption.",
+      "Common R/G/B n,k proxy, not product-specific measured optical constants."
+    ]
+  },
+  "qe": {
+    "measurement_data_status": "qualitative_only",
+    "quantitative_points": [],
+    "qualitative_mentions": [
+      {
+        "term": "quantum efficiency",
+        "source_kind": "text_mention",
+        "confidence": 0.62,
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download_dep_a6pf30000009PYHAA2/html/reports/002_DEP-2511-802.html",
+        "context": "e layers: a 12 nm thick aluminum oxide (AlO) 1 layer and a 11 nm thick aluminum oxide (AlO) 2 layer deposited using two different process steps, and an 82 nm thick tantalum oxide (TaO). There are no grids and color filters in this sensor. The sensor employs a deep active Si with optical scattering structures (OSS) to enhance IR light absorption and increase quantum efficiency (QE). The OSS forms a 3 × 3 array per pixel, is 380 nm deep, and has a pitch of 550 nm. The full-depth B-DTI is used for pixel isolation and is lined with an HKD/AR AlO layer, filled with BPMD oxide, with an Al core in the center of the B-DT"
+      },
+      {
+        "term": "QE",
+        "source_kind": "text_mention",
+        "confidence": 0.62,
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download_dep_a6pf30000009PYHAA2/html/reports/002_DEP-2511-802.html",
+        "context": "ick aluminum oxide (AlO) 1 layer and a 11 nm thick aluminum oxide (AlO) 2 layer deposited using two different process steps, and an 82 nm thick tantalum oxide (TaO). There are no grids and color filters in this sensor. The sensor employs a deep active Si with optical scattering structures (OSS) to enhance IR light absorption and increase quantum efficiency (QE). The OSS forms a 3 × 3 array per pixel, is 380 nm deep, and has a pitch of 550 nm. The full-depth B-DTI is used for pixel isolation and is lined with an HKD/AR AlO layer, filled with BPMD oxide, with an Al core in the center of the B-DTI. The B-DTI is 9.4 "
+      },
+      {
+        "term": "quantum efficiency",
+        "source_kind": "text_mention",
+        "confidence": 0.62,
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download_dep_a6pf30000009PYHAA2/html/reports/002_DEP-2511-802.html",
+        "context": "Details - Bottom DTI - Top 94000 x Ceta_469204.png · /Report Images It should be noted that this is the first image sensor analyzed by TechInsights to use an Al core for its DTI. W-filled and polySi-filled DTIs have been used previously. Note that Al has a much higher reflectivity and much lower absorbance than W in the IR spectrum, which might improve the quantum efficiency and noise performance. 10. Poly-Si and Pixel Transistors Below are TEM cross-section images of a pixel transistor and the respective SWS. The pixel transistors' gate and S/D regions are non-silicided. The gate is formed of a single polysilico"
+      },
+      {
+        "term": "quantum efficiency",
+        "source_kind": "text_mention",
+        "confidence": 0.62,
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download_dep_a6pf30000009PYHAA2/data/content/002_DEP-2511-802_69650b43-7b15-4ce1-af87-86f70f424936.json",
+        "context": "ebddbef0-2405-46c9-ab26-cf5962a531ef False cmnhtwkv63iru07u4u4wtjxmf It should be noted that this is the first image sensor analyzed by TechInsights to use an Al core for its DTI. W-filled and polySi-filled DTIs have been used previously. Note that Al has a much higher reflectivity and much lower absorbance than W in the IR spectrum, which might improve the quantum efficiency and noise performance. True 9. CIS Isolation Structures True False False cmlr1lu1z1bom07u1cmodarjj Below are TEM cross-section images of a pixel transistor and the respective SWS. The pixel transistors' gate and S/D regions are non-silicided"
+      }
+    ],
+    "spectral_ranges": [],
+    "filter_sets": []
+  },
+  "readiness": {
+    "level": "optical_ready_medium",
+    "score": 48,
+    "reasons": [
+      "microlens_type",
+      "color_filter_pitch",
+      "ocl_pitch",
+      "grid_pitch",
+      "grid_material",
+      "qe_qualitative"
+    ]
+  },
+  "notes": [
+    "QE quantitative_points are reported text points, not reconstructed curves.",
+    "inferred_rule values are setup defaults and must not be treated as measurements.",
+    "cfa_proxy_nk is a common color-resist n,k proxy for setup/sensitivity work, not measured product-specific optical constants."
+  ]
+}

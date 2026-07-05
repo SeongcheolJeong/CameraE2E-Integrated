@@ -1,0 +1,62 @@
+{
+  "case_name": "pipeline_rt_bar_small",
+  "git_commit": "5c283cd",
+  "scene_size": "128x128",
+  "scene_fov_deg": 12.0,
+  "oi_size": "188x188",
+  "sensor_size": "72x88",
+  "ip_size": "72x88x3",
+  "stages": {
+    "lens": {
+      "reference_edge_rc": [
+        93,
+        94
+      ],
+      "actual_edge_rc": [
+        95,
+        96
+      ],
+      "edge_rc_mean_rel": 0.021390986044383435,
+      "crop_normalized_mae": 0.018744300195161337,
+      "crop_max_abs": 0.03642167400269908,
+      "profile_normalized_mae": 0.10758431003463859,
+      "profile_max_abs": 0.13761730495975755,
+      "crop_figure": "/Users/seongcheoljeong/Documents/CameraE2E/reports/parity/pipeline_rt_bar_small/lens_edge_crop_triptych.png",
+      "profile_figure": "/Users/seongcheoljeong/Documents/CameraE2E/reports/parity/pipeline_rt_bar_small/lens_edge_profile.png"
+    },
+    "sensor": {
+      "reference_edge_rc": [
+        37,
+        45
+      ],
+      "actual_edge_rc": [
+        37,
+        45
+      ],
+      "edge_rc_mean_rel": 0.0,
+      "crop_normalized_mae": 0.011520636410915821,
+      "crop_max_abs": 0.014063501882613488,
+      "profile_normalized_mae": 0.13066791909460507,
+      "profile_max_abs": 0.1355947334293509,
+      "crop_figure": "/Users/seongcheoljeong/Documents/CameraE2E/reports/parity/pipeline_rt_bar_small/sensor_edge_crop_triptych.png",
+      "profile_figure": "/Users/seongcheoljeong/Documents/CameraE2E/reports/parity/pipeline_rt_bar_small/sensor_edge_profile.png"
+    },
+    "isp": {
+      "reference_edge_rc": [
+        37,
+        45
+      ],
+      "actual_edge_rc": [
+        37,
+        45
+      ],
+      "edge_rc_mean_rel": 0.0,
+      "crop_normalized_mae": 0.010044646907815886,
+      "crop_max_abs": 0.01594450400162606,
+      "profile_normalized_mae": 0.07576052565775598,
+      "profile_max_abs": 0.11204734119383197,
+      "crop_figure": "/Users/seongcheoljeong/Documents/CameraE2E/reports/parity/pipeline_rt_bar_small/isp_edge_crop_triptych.png",
+      "profile_figure": "/Users/seongcheoljeong/Documents/CameraE2E/reports/parity/pipeline_rt_bar_small/isp_edge_profile.png"
+    }
+  }
+}

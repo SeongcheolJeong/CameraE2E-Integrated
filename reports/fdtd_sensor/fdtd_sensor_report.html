@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FDTD-Informed Sensor Block Report</title>
+  <style>
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f7f5ef; color: #1f2933; }
+    main { max-width: 1180px; margin: 0 auto; padding: 34px 24px 56px; }
+    h1 { font-size: 42px; margin: 0 0 10px; }
+    h2 { margin-top: 34px; border-bottom: 2px solid #ded6c8; padding-bottom: 8px; }
+    .card { background: #fff; border: 1px solid #e3dccf; border-radius: 18px; padding: 20px; margin: 18px 0; box-shadow: 0 8px 24px rgba(35, 44, 50, 0.08); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .metric { background: #eef6f8; border-radius: 14px; padding: 14px; }
+    .metric b { display: block; font-size: 13px; color: #52616b; text-transform: uppercase; letter-spacing: 0.04em; }
+    .metric span { font-size: 24px; font-weight: 700; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid #ece6db; vertical-align: top; }
+    th { background: #f0ebe1; }
+    img { max-width: 100%; border-radius: 12px; border: 1px solid #e2ded5; background: #fff; }
+    code { background: #eee7da; padding: 2px 5px; border-radius: 5px; }
+    .warn { border-left: 5px solid #b36b4f; background: #fff4ec; }
+    .ok { border-left: 5px solid #2f8f62; }
+    .bad { border-left: 5px solid #b34f4f; background: #fff1f1; }
+  </style>
+</head>
+<body>
+<main>
+
+<h1>FDTD-Informed Sensor Block Report</h1>
+<p>This report verifies the Phase 1-5 implementation path: LUT ingestion, QE/CRA/field modeling, 3x3 crosstalk, sensor runtime integration, and image evidence through ISP output.</p>
+<div class="card ok">
+  <h2>Executive Summary</h2>
+  <div class="grid">
+    <div class="metric"><b>LUT validation</b><span>PASS</span></div>
+    <div class="metric"><b>Physics sanity</b><span>WARN</span></div>
+    <div class="metric"><b>Sensor normalized MAE</b><span>0.0814</span></div>
+    <div class="metric"><b>Field response range</b><span>4.842-5.432</span></div>
+    <div class="metric"><b>Kernel center weight</b><span>1.000</span></div>
+  </div>
+  <p><b>Source:</b> Using external FDTD repo LUT.</p>
+  <p><b>Physics report:</b> run <code>python tools/render_fdtd_sensor_physics_report.py</code> and open <code>reports/fdtd_sensor/physics_validation_report.html</code>.</p>
+</div>
+<div class="card warn">
+  <h2>Physics Sanity Gate</h2>
+  <p>This integration report proves the data path. The physics gate separately checks cos^4 RI, energy bounds, OCL shift direction, wavelength coverage, symmetry coverage, convergence metadata, and crosstalk locality.</p>
+  <p><b>Current status:</b> WARN. edge20x response exceeds bare cos^4 by &gt;20%; this can be valid with microlens/OCL concentration but needs calibration evidence; cra10x response exceeds bare cos^4 by &gt;20%; this can be valid with microlens/OCL concentration but needs calibration evidence; edge20x response exceeds bare cos^4 by &gt;20%; this can be valid with microlens/OCL concentration but needs calibration evidence; cra10x response exceeds bare cos^4 by &gt;20%; this can be valid with microlens/OCL concentration but needs calibration evidence; edge20x response exceeds bare cos^4 by &gt;20%; this can be valid with microlens/OCL concentration but needs calibration evidence; no uncompensated/compensated OCL pair available; no +/- CRA mirror pairs available for symmetry validation; no regional crosstalk kernel available; FDTD report is grid-qualified but not full resolution/time/PML convergence</p>
+</div>
+<div class="card warn">
+  <h2>Important Boundary</h2>
+  <p>The current FDTD DB is an <b>optical absorption / regional response proxy</b>. It improves the optical sensor block model for microlens/CFA/Si-stack response, CRA rolloff, field shading, and crosstalk. It is not a TCAD carrier-transport model and should not be presented as full photodiode charge-collection physics.</p>
+  <p><b>Engineering caution:</b> the current 3x3 smoke LUT regional responses are nearly uniform under the available illumination setup. That is useful for verifying data flow, but it is not yet a product-grade localized optical crosstalk PSF. The simulator exposes <code>crosstalk_strength</code>; this report uses 0.25 to avoid overstating that smoke LUT as a final crosstalk model.</p>
+</div>
+<div class="card">
+  <h2>Architecture</h2>
+  
+<svg viewBox="0 0 1120 220" role="img" aria-label="FDTD sensor architecture">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d8ecf2"/>
+      <stop offset="100%" stop-color="#f3e2d5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1120" height="220" rx="24" fill="url(#g)"/>
+  <g font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#1f2933">
+    <g fill="#ffffff" stroke="#2f6f88" stroke-width="2">
+      <rect x="35" y="70" width="145" height="70" rx="14"/>
+      <rect x="225" y="70" width="150" height="70" rx="14"/>
+      <rect x="420" y="70" width="170" height="70" rx="14"/>
+      <rect x="635" y="70" width="165" height="70" rx="14"/>
+      <rect x="845" y="70" width="140" height="70" rx="14"/>
+    </g>
+    <text x="107" y="99" text-anchor="middle">FDTD DB</text>
+    <text x="107" y="123" text-anchor="middle" font-size="14">CSV / JSON LUT</text>
+    <text x="300" y="99" text-anchor="middle">LUT loader</text>
+    <text x="300" y="123" text-anchor="middle" font-size="14">validate + interpolate</text>
+    <text x="505" y="99" text-anchor="middle">Sensor optical layer</text>
+    <text x="505" y="123" text-anchor="middle" font-size="14">QE, CRA, field, crosstalk</text>
+    <text x="718" y="99" text-anchor="middle">sensor_compute</text>
+    <text x="718" y="123" text-anchor="middle" font-size="14">volts/electrons/noise</text>
+    <text x="915" y="99" text-anchor="middle">IP / metrics</text>
+    <text x="915" y="123" text-anchor="middle" font-size="14">verification output</text>
+    <g stroke="#1f2933" stroke-width="3" fill="none" marker-end="url(#arrow)">
+      <path d="M180 105 H225"/>
+      <path d="M375 105 H420"/>
+      <path d="M590 105 H635"/>
+      <path d="M800 105 H845"/>
+    </g>
+    <defs>
+      <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+        <path d="M0,0 L0,6 L9,3 z" fill="#1f2933" />
+      </marker>
+    </defs>
+  </g>
+</svg>
+
+</div>
+<div class="card">
+  <h2>FDTD DB And LUT Validation</h2>
+  <table><tbody><tr><th>LUT path</th><td><code>/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json</code></td></tr><tr><th>Schema</th><td>camera_supercell_optical_lut_v2</td></tr><tr><th>Mode</th><td>split-pd-1x1</td></tr><tr><th>Wavelengths</th><td>450.0, 550.0, 650.0</td></tr><tr><th>Cases</th><td>center, cra10x, edge20x</td></tr><tr><th>Rows</th><td>summary=9, long=18</td></tr><tr><th>Validation issues</th><td>none</td></tr></tbody></table>
+  <img src="fdtd_response_rolloff.png" alt="FDTD response rolloff">
+</div>
+<div class="card">
+  <h2>3x3 Crosstalk Evidence</h2>
+  <p>The regional-response rows are converted to a normalized 3x3 optical crosstalk proxy kernel. The kernel is applied after spatial integration and before voltage/noise/ADC logic when enabled.</p>
+  <img src="fdtd_crosstalk_kernel.png" alt="FDTD crosstalk kernel">
+</div>
+<div class="card">
+  <h2>Sensor Volts Evidence</h2>
+  <p>The same edge-rich optical image was computed with the baseline sensor and with the FDTD optical layer enabled. Existing voltage/noise behavior remains downstream of the optional optical layer.</p>
+  <img src="sensor_volts_triptych.png" alt="Sensor volts triptych">
+  <table><tbody><tr><th>Sensor MAE</th><td>2.23172e-05</td></tr><tr><th>Sensor max abs</th><td>0.000151916</td></tr><tr><th>Sensor normalized MAE</th><td>0.0813582</td></tr><tr><th>Center mean ratio</th><td>1.41825</td></tr><tr><th>Edge mean ratio</th><td>1.31936</td></tr></tbody></table>
+  <img src="center_edge_crops.png" alt="Center and edge crops">
+</div>
+<div class="card">
+  <h2>ISP Output Evidence</h2>
+  <p>The FDTD layer propagates through the normal IP path, so ISP-visible differences can be inspected without changing IP algorithms.</p>
+  <img src="isp_output_triptych.png" alt="ISP output triptych">
+  <img src="ip_channel_means.png" alt="IP channel means">
+  <table><tbody><tr><th>IP MAE</th><td>3.01141e-05</td></tr><tr><th>IP max abs</th><td>0.000158644</td></tr><tr><th>IP normalized MAE</th><td>0.109782</td></tr></tbody></table>
+</div>
+<div class="card">
+  <h2>Verification Result</h2>
+  <p>Phase 1-5 is implemented as an optional FDTD-informed sensor layer. The default sensor path is unchanged when no FDTD config is attached. The report demonstrates LUT ingestion, field/CRA response, crosstalk, raw sensor impact, center/edge evidence, and ISP-output impact.</p>
+</div>
+
+</main>
+</body>
+</html>

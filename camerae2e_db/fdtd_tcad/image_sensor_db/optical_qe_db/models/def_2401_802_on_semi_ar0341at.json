@@ -1,0 +1,520 @@
+{
+  "schema": "image_sensor_optical_qe_model_v1",
+  "code": "DEF-2401-802",
+  "source": {
+    "code": "DEF-2401-802",
+    "manufacturer": "ON Semi",
+    "device_name": "AR0341AT",
+    "title": "onsemi AR0341AT 3MP 2.1µm Pixel HDR and LFM CMOS Image Sensor Device Essentials Folder",
+    "report_type": "DEF",
+    "release_date": "2024-04-19T00:00:00.000+00:00",
+    "html_files": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/044_DEF-2401-802.html"
+    ],
+    "pdf_files": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-2401-802/onsemi_AR0341AT_DEF-2401-802.pdf"
+    ]
+  },
+  "optical": {
+    "geometry": {
+      "pixel_pitch_um": {
+        "value": 2.1,
+        "source_kind": "extracted",
+        "confidence": 0.9,
+        "method": "sensor_catalog.derived_specs.pixel_pitch_um",
+        "unit": "um",
+        "evidence": "metadata_title: onsemi AR0341AT 3MP 2.1µm Pixel HDR and LFM CMOS Image Sensor Device Essentials Folder"
+      },
+      "optical_format": {
+        "value": "1/3.6\"",
+        "source_kind": "extracted",
+        "confidence": 0.74,
+        "method": "sensor_catalog.derived_specs.optical_format",
+        "evidence": "pdf_design_snippet: AR0341, 1/3.6”, 3 MP , 2.1 µm Pixel Pitch Stacked",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-2401-802/onsemi_AR0341AT_DEF-2401-802.pdf"
+      },
+      "optical_stack_height_um": {
+        "value": 1.8,
+        "source_kind": "extracted",
+        "confidence": 0.86,
+        "method": "sensor_catalog.derived_specs.optical_stack_height_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: Optical stack height (microlens/coating to Si) 1.8 µm",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-2401-802/onsemi_AR0341AT_DEF-2401-802.pdf"
+      },
+      "active_si_thickness_um": {
+        "value": 3.0,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.active_si_thickness_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: Back-illuminated active Si thickness 3.0 µm",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-2401-802/onsemi_AR0341AT_DEF-2401-802.pdf"
+      }
+    },
+    "cfa": {
+      "pattern": {
+        "value": "bayer",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_pattern",
+        "evidence": "combined_text: bayer"
+      },
+      "representative_thickness_um": {
+        "value": 0.6,
+        "source_kind": "derived_from_extracted_range",
+        "confidence": 0.76,
+        "method": "midpoint(cfa_thickness_min_um,cfa_thickness_max_um)",
+        "unit": "um",
+        "evidence": "pdf_design_snippet:  Measured CFA thickness ranges from 530 nm to 670 nm (dependent on color and measured location)",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-2401-802/onsemi_AR0341AT_DEF-2401-802.pdf"
+      },
+      "thickness_min_um": {
+        "value": 0.53,
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_min_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet:  Measured CFA thickness ranges from 530 nm to 670 nm (dependent on color and measured location)",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-2401-802/onsemi_AR0341AT_DEF-2401-802.pdf"
+      },
+      "thickness_max_um": {
+        "value": 0.67,
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_max_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet:  Measured CFA thickness ranges from 530 nm to 670 nm (dependent on color and measured location)",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-2401-802/onsemi_AR0341AT_DEF-2401-802.pdf"
+      },
+      "color_filter_pitch_um": {
+        "value": 2.1,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.color_filter_pitch_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: – OCL pitch of 2.1 μm, color filter pitch of 2.1 μm, and CMG pitch of 2.1 μm",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-2401-802/onsemi_AR0341AT_DEF-2401-802.pdf"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "bayer",
+          "field": "cfa_pattern"
+        },
+        {
+          "source": "pdf_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-2401-802/onsemi_AR0341AT_DEF-2401-802.pdf",
+          "text": " Measured CFA thickness ranges from 530 nm to 670 nm (dependent on color and measured location)",
+          "field": "cfa_thickness_min_um"
+        },
+        {
+          "source": "pdf_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-2401-802/onsemi_AR0341AT_DEF-2401-802.pdf",
+          "text": "– OCL pitch of 2.1 μm, color filter pitch of 2.1 μm, and CMG pitch of 2.1 μm",
+          "field": "color_filter_pitch_um"
+        }
+      ]
+    },
+    "microlens": {
+      "type": {
+        "value": "gapless_ocl",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.microlens_type",
+        "evidence": "combined_text: gapless_ocl"
+      },
+      "ocl_pitch_um": {
+        "value": 2.1,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.ocl_pitch_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: – OCL pitch of 2.1 μm, color filter pitch of 2.1 μm, and CMG pitch of 2.1 μm",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-2401-802/onsemi_AR0341AT_DEF-2401-802.pdf"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "gapless_ocl",
+          "field": "microlens_type"
+        },
+        {
+          "source": "pdf_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-2401-802/onsemi_AR0341AT_DEF-2401-802.pdf",
+          "text": "– OCL pitch of 2.1 μm, color filter pitch of 2.1 μm, and CMG pitch of 2.1 μm",
+          "field": "ocl_pitch_um"
+        },
+        {
+          "source": "pdf_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-2401-802/onsemi_AR0341AT_DEF-2401-802.pdf",
+          "text": "Optical stack height (microlens/coating to Si) 1.8 µm",
+          "field": "optical_stack_height_um"
+        }
+      ]
+    },
+    "grid": {
+      "material": {
+        "value": "w",
+        "source_kind": "extracted",
+        "confidence": 0.76,
+        "method": "sensor_catalog.derived_specs.grid_material",
+        "evidence": "combined_text: w"
+      },
+      "pitch_um": {
+        "value": 2.1,
+        "source_kind": "inferred_rule",
+        "confidence": 0.35,
+        "method": "grid_pitch_um inferred from pixel_pitch_um; grid pitch approximated as pixel pitch",
+        "unit": "um"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "w",
+          "field": "grid_material"
+        }
+      ]
+    },
+    "sensor_context": {
+      "illumination": {
+        "value": "back_illuminated",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.illumination",
+        "evidence": "combined_text: back_illuminated"
+      },
+      "sensor_modality": {
+        "value": "cmos_image_sensor",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.sensor_modality",
+        "evidence": "combined_text: cmos_image_sensor"
+      },
+      "is_nir": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.is_nir missing"
+      }
+    }
+  },
+  "cfa_proxy_nk": {
+    "enabled": true,
+    "library_id": "common_rgb_color_resist_proxy_2026_06",
+    "source_kind": "inferred_proxy_nk",
+    "applicability": "rgb_color_filter_proxy",
+    "reference_thickness_um": 0.65,
+    "thickness_um": {
+      "value": 0.6,
+      "source_kind": "derived_from_extracted_range",
+      "confidence": 0.76,
+      "method": "sensor-specific CFA thickness for proxy n,k transmission scaling",
+      "unit": "um",
+      "evidence": "pdf_design_snippet:  Measured CFA thickness ranges from 530 nm to 670 nm (dependent on color and measured location)",
+      "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-2401-802/onsemi_AR0341AT_DEF-2401-802.pdf"
+    },
+    "channels": {
+      "red": {
+        "description": "Common red color-resist proxy",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.48,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.7,
+            "k": 0.19157,
+            "transmission_absorption_only": 0.027025
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.7,
+            "k": 0.20355,
+            "transmission_absorption_only": 0.027021
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.7,
+            "k": 0.21552,
+            "transmission_absorption_only": 0.027023
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.7,
+            "k": 0.21452,
+            "transmission_absorption_only": 0.033202
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.7,
+            "k": 0.21465,
+            "transmission_absorption_only": 0.039288
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.7,
+            "k": 0.19932,
+            "transmission_absorption_only": 0.057123
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.7,
+            "k": 0.17007,
+            "transmission_absorption_only": 0.097155
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.7,
+            "k": 0.12071,
+            "transmission_absorption_only": 0.205391
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.7,
+            "k": 0.05866,
+            "transmission_absorption_only": 0.478479
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.7,
+            "k": 0.02201,
+            "transmission_absorption_only": 0.766805
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.7,
+            "k": 0.01017,
+            "transmission_absorption_only": 0.888723
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.7,
+            "k": 0.00871,
+            "transmission_absorption_only": 0.907291
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.7,
+            "k": 0.01096,
+            "transmission_absorption_only": 0.88865
+          }
+        ]
+      },
+      "green": {
+        "description": "Common green color-resist proxy",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.48,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.7,
+            "k": 0.18065,
+            "transmission_absorption_only": 0.033201
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.7,
+            "k": 0.17443,
+            "transmission_absorption_only": 0.045297
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.7,
+            "k": 0.155,
+            "transmission_absorption_only": 0.074493
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.7,
+            "k": 0.09972,
+            "transmission_absorption_only": 0.205381
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.7,
+            "k": 0.0366,
+            "transmission_absorption_only": 0.575846
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.7,
+            "k": 0.01276,
+            "transmission_absorption_only": 0.832557
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.7,
+            "k": 0.01094,
+            "transmission_absorption_only": 0.86073
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.7,
+            "k": 0.02313,
+            "transmission_absorption_only": 0.738379
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.7,
+            "k": 0.07712,
+            "transmission_absorption_only": 0.379417
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.7,
+            "k": 0.16224,
+            "transmission_absorption_only": 0.141251
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.7,
+            "k": 0.22388,
+            "transmission_absorption_only": 0.074501
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.7,
+            "k": 0.266,
+            "transmission_absorption_only": 0.051239
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.7,
+            "k": 0.30051,
+            "transmission_absorption_only": 0.039288
+          }
+        ]
+      },
+      "blue": {
+        "description": "Common blue color-resist proxy",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.48,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.7,
+            "k": 0.02928,
+            "transmission_absorption_only": 0.575846
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.7,
+            "k": 0.01709,
+            "transmission_absorption_only": 0.738459
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.7,
+            "k": 0.01093,
+            "transmission_absorption_only": 0.832657
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.7,
+            "k": 0.01445,
+            "transmission_absorption_only": 0.795035
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.7,
+            "k": 0.0531,
+            "transmission_absorption_only": 0.449001
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.7,
+            "k": 0.13628,
+            "transmission_absorption_only": 0.141254
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.7,
+            "k": 0.20881,
+            "transmission_absorption_only": 0.057124
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.7,
+            "k": 0.25968,
+            "transmission_absorption_only": 0.033203
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.7,
+            "k": 0.28736,
+            "transmission_absorption_only": 0.027023
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.7,
+            "k": 0.3074,
+            "transmission_absorption_only": 0.024517
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.7,
+            "k": 0.31969,
+            "transmission_absorption_only": 0.024519
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.7,
+            "k": 0.33199,
+            "transmission_absorption_only": 0.024518
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.7,
+            "k": 0.34429,
+            "transmission_absorption_only": 0.024517
+          }
+        ]
+      }
+    },
+    "model_limitations": [
+      "Absorption-only CFA layer proxy; does not include full optical-stack interference, microlens focusing, grid diffraction, or silicon absorption.",
+      "Common R/G/B n,k proxy, not product-specific measured optical constants."
+    ]
+  },
+  "qe": {
+    "measurement_data_status": "not_found",
+    "quantitative_points": [],
+    "qualitative_mentions": [],
+    "spectral_ranges": [
+      {
+        "low_nm": 530.0,
+        "high_nm": 670.0,
+        "source_kind": "reported_spectral_range",
+        "confidence": 0.72,
+        "source_file": "sensor_catalog_record",
+        "context": "ng/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-2401-802/onsemi_AR0341AT_DEF-2401-802.pdf\", \"source\": \"pdf_design_snippet\", \"text\": \" Measured CFA thickness ranges from 530 nm to 670 nm (dependent on color and measured location)\"}], \"cfa_thickness_max_um\": [{\"source_file\": \"/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/044_DEF-"
+      }
+    ],
+    "filter_sets": []
+  },
+  "readiness": {
+    "level": "optical_ready_high",
+    "score": 88,
+    "reasons": [
+      "cfa_pattern",
+      "microlens_type",
+      "optical_stack_height",
+      "cfa_thickness",
+      "color_filter_pitch",
+      "ocl_pitch",
+      "grid_pitch",
+      "grid_material"
+    ]
+  },
+  "notes": [
+    "QE quantitative_points are reported text points, not reconstructed curves.",
+    "inferred_rule values are setup defaults and must not be treated as measurements.",
+    "cfa_proxy_nk is a common color-resist n,k proxy for setup/sensitivity work, not measured product-specific optical constants."
+  ]
+}

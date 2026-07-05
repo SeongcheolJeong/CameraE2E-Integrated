@@ -1,0 +1,30 @@
+{
+  "schema": "tcad_calibration_config_v1",
+  "name": "example_proxy_generation_scale_fit",
+  "simulator": {
+    "script": "devsim_split_pd_2d.py",
+    "python": ".tcad-env/bin/python",
+    "generation_map_npz": "runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz",
+    "electrical_model": "proxy-pinned-split-pd",
+    "output_root": "runs/tcad_calibration_example/evals"
+  },
+  "targets_csv": "measured_profiles/example_proxy/calibration_targets.csv",
+  "parameters": [
+    {
+      "name": "generation_map_scale",
+      "cli": "--generation-map-scale",
+      "initial": 0.8,
+      "lower": 0.2,
+      "upper": 2.0,
+      "scale": "linear"
+    }
+  ],
+  "fixed_cli_args": {
+    "--generation-profile-wavelength-nm": "550",
+    "--electrical-model": "proxy-pinned-split-pd"
+  },
+  "residuals": {
+    "current_relative_floor_a_per_cm": 1e-12,
+    "phase_absolute_scale": 0.05
+  }
+}

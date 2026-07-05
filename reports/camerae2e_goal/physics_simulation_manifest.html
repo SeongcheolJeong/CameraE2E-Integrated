@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CameraE2E Physics Simulation Manifest</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 32px; color: #17202a; }
+.lead { font-size: 18px; }
+table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+th, td { border: 1px solid #d5d8dc; padding: 8px 10px; vertical-align: top; font-size: 13px; }
+th { background: #f4f6f7; text-align: left; }
+code { font-size: 12px; word-break: break-all; }
+.tier { display: inline-block; padding: 2px 7px; border-radius: 4px;
+  background: #edf2f7; font-weight: 600; }
+.tier-validated, .tier-calibrated { background: #d5f5e3; color: #145a32; }
+.tier-proxy, .tier-calibration_required { background: #fdebd0; color: #7d3c00; }
+.tier-missing { background: #fadbd8; color: #78281f; }
+.warn { color: #7d3c00; font-weight: 600; }
+</style>
+</head>
+<body>
+<h1>CameraE2E Physics Simulation Manifest</h1>
+
+        <p class="lead">FDTD/TCAD/RayOptics source, fixtures, active artifacts,
+        CameraE2E import modules, and refresh commands.</p>
+        <p>Summary: <code>{&quot;issue_count&quot;: 0, &quot;readiness_tiers&quot;: {&quot;calibration_required&quot;: 2, &quot;proxy&quot;: 3, &quot;validated&quot;: 1}, &quot;stage_count&quot;: 6, &quot;status_counts&quot;: {&quot;available&quot;: 5, &quot;stale_dependency&quot;: 1}, &quot;strict_ok&quot;: false, &quot;warning_count&quot;: 1}</code></p>
+        <table>
+          <thead><tr><th>Stage</th><th>Family</th><th>Status</th>
+          <th>Tier</th><th>Workspace</th><th>Commands</th>
+          <th>Truth Boundary</th></tr></thead>
+          <tbody><tr><td>fdtd_stack_catalog</td><td>sensor</td><td>available</td><td><span class='tier tier-proxy'>proxy</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/simulations/fdtd_tcad</code></td><td>2</td><td>metadata_derived_stack_configs_unless_product_cad_listed</td></tr><tr><td>fdtd_optical_lut</td><td>sensor</td><td>available</td><td><span class='tier tier-proxy'>proxy</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/simulations/fdtd_tcad</code></td><td>2</td><td>optical_absorption_and_regional_response_proxy</td></tr><tr><td>tcad_generation_map</td><td>sensor</td><td>stale_dependency</td><td><span class='tier tier-calibration_required'>calibration_required</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/simulations/fdtd_tcad</code></td><td>2</td><td>fdtd_generation_map_for_carrier_collection_proxy</td></tr><tr><td>tcad_devsim_collection</td><td>sensor</td><td>available</td><td><span class='tier tier-calibration_required'>calibration_required</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/simulations/fdtd_tcad</code></td><td>2</td><td>carrier_collection_framework_not_product_calibrated_tcad</td></tr><tr><td>rayoptics_lens_psf</td><td>lens</td><td>available</td><td><span class='tier tier-proxy'>proxy</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/simulations/rayoptics</code></td><td>2</td><td>geometric_psf_not_diffraction_wave_optics</td></tr><tr><td>camerae2e_import_validation</td><td>camerae2e</td><td>available</td><td><span class='tier tier-validated'>validated</span></td><td><code>/Users/seongcheoljeong/Documents/CameraE2E</code></td><td>3</td><td>evidence_snapshot_not_product_certification</td></tr></tbody>
+        </table>
+
+</body>
+</html>

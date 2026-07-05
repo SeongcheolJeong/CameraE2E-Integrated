@@ -1,0 +1,140 @@
+{
+  "schema": "measured_tcad_profile_v1",
+  "profile_name": "DEF-2211-801_beyonsense_1_estimated_structure_starter",
+  "units": {
+    "length": "um",
+    "doping": "cm^-3",
+    "sheet_charge": "cm^-2"
+  },
+  "reference_mode": true,
+  "reference_notes": [
+    "Generated from TCAD structure DB because no SIMS seed or existing proxy profile was available.",
+    "All implants are inferred starter terms. This is the lowest-confidence profile class.",
+    "Use only for mesh/solver smoke and sensitivity exploration."
+  ],
+  "geometry": {
+    "width_um": 3.0,
+    "depth_um": 4.1,
+    "z_width_um": 3.0,
+    "split_gap_um": 0.12,
+    "pinning_depth_um": 0.1,
+    "dti_width_um": 0.22,
+    "transfer_gate": {
+      "x_min_um": -0.25,
+      "x_max_um": 0.25,
+      "oxide_thickness_um": 0.0045
+    },
+    "floating_diffusion": {
+      "x_min_um": 0.84,
+      "x_max_um": 1.09,
+      "depth_min_um": 0.0,
+      "depth_max_um": 0.2255
+    }
+  },
+  "background": {
+    "acceptor_cm3": 100000000000000.0,
+    "donor_cm3": 0.0
+  },
+  "implants": [
+    {
+      "name": "estimated_p_pinning",
+      "type": "analytic_smooth_box",
+      "role": "p_pinning",
+      "x_min_um": -1.28,
+      "x_max_um": 1.28,
+      "depth_min_um": 0.0,
+      "depth_max_um": 0.1,
+      "x_rolloff_um": 0.05,
+      "depth_rolloff_um": 0.0615,
+      "donor_cm3": 0.0,
+      "acceptor_cm3": 8e+18,
+      "measured": false,
+      "mapping_inferred": true
+    },
+    {
+      "name": "estimated_photocathode",
+      "type": "analytic_smooth_box",
+      "role": "photocathode",
+      "x_min_um": -1.28,
+      "x_max_um": 1.28,
+      "depth_min_um": 0.1,
+      "depth_max_um": 3.608,
+      "x_rolloff_um": 0.05,
+      "depth_rolloff_um": 0.0615,
+      "donor_cm3": 1.5e+16,
+      "acceptor_cm3": 0.0,
+      "measured": false,
+      "mapping_inferred": true
+    },
+    {
+      "name": "estimated_p_well",
+      "type": "analytic_smooth_box",
+      "role": "p_well",
+      "x_min_um": -1.28,
+      "x_max_um": 1.28,
+      "depth_min_um": 0.0,
+      "depth_max_um": 0.656,
+      "x_rolloff_um": 0.05,
+      "depth_rolloff_um": 0.0615,
+      "donor_cm3": 0.0,
+      "acceptor_cm3": 5e+17,
+      "measured": false,
+      "mapping_inferred": true
+    },
+    {
+      "name": "estimated_fd_sd",
+      "type": "analytic_smooth_box",
+      "role": "fd_sd",
+      "x_min_um": 0.84,
+      "x_max_um": 1.09,
+      "depth_min_um": 0.0,
+      "depth_max_um": 0.2255,
+      "x_rolloff_um": 0.05,
+      "depth_rolloff_um": 0.0615,
+      "donor_cm3": 1e+20,
+      "acceptor_cm3": 0.0,
+      "measured": false,
+      "mapping_inferred": true
+    }
+  ],
+  "electrical_features": [],
+  "interfaces": [],
+  "mobility_recombination": {
+    "transport_model": "reference_defaults_for_estimated_structure_starter",
+    "transport_model_measured": false,
+    "transport_model_calibrated": false,
+    "mu_n_cm2_v_s": 400.0,
+    "mu_p_cm2_v_s": 200.0,
+    "tau_n_s": 1e-06,
+    "tau_p_s": 1e-06
+  },
+  "calibration_status": {
+    "is_measured": false,
+    "geometry_measured": false,
+    "doping_table_measured": false,
+    "deck_calibrated": false,
+    "mode": "estimated_structure_starter_profile",
+    "source_report_code": "DEF-2211-801",
+    "note": "Lowest-confidence generated profile from structure DB estimates."
+  },
+  "tcad_structure_source": {
+    "code": "DEF-2211-801",
+    "readiness": {
+      "level": "proxy_structure_low",
+      "score": 28.6,
+      "candidate_level": "insufficient_for_tcad",
+      "tcad_candidate_score": 1,
+      "missing_for_structure_model": [
+        "dti.depth_um",
+        "transfer_gate.type"
+      ],
+      "missing_for_calibrated_deck": [
+        "continuous implant profile or process simulation recipe",
+        "interface trap/fixed-charge calibration",
+        "measured dark current/full-well/lag/charge-transfer targets",
+        "exact lateral implant masks and 3D sharing geometry"
+      ],
+      "recommended_use": "Use for mesh/profile seeding and sensitivity sweeps. Do not use for product accuracy claims without calibration."
+    }
+  }
+}

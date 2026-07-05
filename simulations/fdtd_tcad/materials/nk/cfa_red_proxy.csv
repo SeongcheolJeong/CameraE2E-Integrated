@@ -1,0 +1,9 @@
+# wavelength_um,n,k
+# Proxy only. Replace with measured red CFA stack n,k before quantitative use.
+0.400,1.610,0.1400
+0.450,1.605,0.1100
+0.500,1.600,0.0800
+0.550,1.595,0.0450
+0.600,1.591,0.0150
+0.650,1.589,0.0060
+0.700,1.586,0.0040

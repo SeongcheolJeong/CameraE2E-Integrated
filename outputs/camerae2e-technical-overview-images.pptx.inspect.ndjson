@@ -1,0 +1,58 @@
+{"kind":"deck","id":"pr/red0h5","name":"Deck"}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/2x4nap4r","slide":1,"title":"CameraE2E 기술 구조와 활용 가능성","textShapes":6}
+{"kind":"shape","id":"sh/nap4r65w","slide":1,"bbox":[56,54,1168,8]}
+{"kind":"textbox","id":"sh/cvixczed","slide":1,"text":"CameraE2E 기술 구조와 활용 가능성","textPreview":"CameraE2E 기술 구조와 활용 가능성","textChars":23,"textLines":1,"bbox":[56,146,930,126]}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":1,"text":"Scene, optics, image sensor, ISP, hardware timing, metrics, perception을 하나의 E2E 설명자료로 병합했습니다.","textPreview":"Scene, optics, image sensor, ISP, hardware timing, metrics, perception을 하나의 E2E 설명자료로 병합했습니다.","textChars":93,"textLines":1,"bbox":[60,298,940,76]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":1,"text":"구성: 표지 + imagegen 다이어그램 6장","textPreview":"구성: 표지 + imagegen 다이어그램 6장","textChars":26,"textLines":1,"bbox":[60,472,620,34]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":1,"text":"Physics 근사는 설계 탐색과 민감도 분석에 유용하지만, 제품 sign-off에는 measured calibration이 필요합니다.","textPreview":"Physics 근사는 설계 탐색과 민감도 분석에 유용하지만, 제품 sign-off에는 measured calibration이 필요합니다.","textChars":76,"textLines":1,"bbox":[60,512,870,52]}
+{"kind":"shape","id":"sh/cj6tovah","slide":1,"bbox":[56,660,1168,1.2]}
+{"kind":"textbox","id":"sh/54zidony","slide":1,"text":"CameraE2E / pyisetcam technical overview","textPreview":"CameraE2E / pyisetcam technical overview","textChars":40,"textLines":1,"bbox":[56,675,580,24]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1174,675,50,24]}
+{"kind":"notes","id":"nt/2x4nap4r","slide":1,"text":""}
+{"kind":"slide","id":"sl/pg3ex0nu","slide":2,"title":"Slide 2","textShapes":0}
+{"kind":"image","id":"im/bi9s36hc","slide":2,"name":"","bbox":[14.55,8,1250.89,704]}
+{"kind":"notes","id":"nt/pg3ex0nu","slide":2,"text":""}
+{"kind":"slide","id":"sl/s72x4nap","slide":3,"title":"Slide 3","textShapes":0}
+{"kind":"image","id":"im/epkzupwb","slide":3,"name":"","bbox":[14.55,8,1250.89,704]}
+{"kind":"notes","id":"nt/s72x4nap","slide":3,"text":""}
+{"kind":"slide","id":"sl/val87ed8","slide":4,"title":"Slide 4","textShapes":0}
+{"kind":"image","id":"im/87ed8bat","slide":4,"name":"","bbox":[14.55,8,1250.89,704]}
+{"kind":"notes","id":"nt/val87ed8","slide":4,"text":""}
+{"kind":"slide","id":"sl/mlkjm1cf","slide":5,"title":"Slide 5","textShapes":0}
+{"kind":"image","id":"im/al87ed8b","slide":5,"name":"","bbox":[14.55,8,1250.89,704]}
+{"kind":"notes","id":"nt/mlkjm1cf","slide":5,"text":""}
+{"kind":"slide","id":"sl/58z25kb6","slide":6,"title":"Slide 6","textShapes":0}
+{"kind":"image","id":"im/czed8v6p","slide":6,"name":"","bbox":[14.55,8,1250.89,704]}
+{"kind":"notes","id":"nt/58z25kb6","slide":6,"text":""}
+{"kind":"slide","id":"sl/0z61032l","slide":7,"title":"Slide 7","textShapes":0}
+{"kind":"image","id":"im/32lszqtc","slide":7,"name":"","bbox":[112,8,1056,704]}
+{"kind":"notes","id":"nt/0z61032l","slide":7,"text":""}
+{"kind":"slide","id":"sl/fu18jqh0","slide":8,"title":"구현 업데이트: Registry, FACA, RAW data factory가 연결됐습니다","textShapes":8}
+{"kind":"shape","id":"sh/1032lszq","slide":8,"name":"rule-54","bbox":[56,54,1168,2]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":8,"name":"slide8-title","text":"구현 업데이트: Registry, FACA, RAW data factory가 연결됐습니다","textPreview":"구현 업데이트: Registry, FACA, RAW data factory가 연결됐습니다","textChars":49,"textLines":1,"bbox":[56,96,1060,90]}
+{"kind":"textbox","id":"sh/judg7ads","slide":8,"name":"slide8-subtitle","text":"PPT의 목표 범위를 코드에서 추적할 수 있도록 capability, asset, data export를 같은 manifest 체계로 묶었습니다.","textPreview":"PPT의 목표 범위를 코드에서 추적할 수 있도록 capability, asset, data export를 같은 manifest 체계로 묶었습니다.","textChars":81,"textLines":1,"bbox":[60,196,1080,58]}
+{"kind":"textbox","id":"sh/c7u54zid","slide":8,"name":"tier-validated","text":"validated","textPreview":"validated","textChars":9,"textLines":1,"bbox":[60,288,152,42]}
+{"kind":"textbox","id":"sh/1orytsvu","slide":8,"name":"tier-proxy","text":"proxy","textPreview":"proxy","textChars":5,"textLines":1,"bbox":[230,288,152,42]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":8,"name":"tier-calibration_required","text":"calibration_required","textPreview":"calibration_required","textChars":20,"textLines":1,"bbox":[400,288,152,42]}
+{"kind":"textbox","id":"sh/jm1cfa9w","slide":8,"name":"slide8-body","text":"• DB/LUT registry: camerae2e_db_manifest, camerae2e_db_validate, camerae2e_db_lineage\n• System FACA: camerae2e_run_scenario, camerae2e_run_sweep, camerae2e_faca_report\n• RAW data factory: manifest.json, metadata.jsonl, RAW NPZ, RGB preview, labels JSON\n• Report outputs: reports/camerae2e_goal/readiness.html and asset_registry.html","textPreview":"• DB/LUT registry: camerae2e_db_manifest, camerae2e_db_validate, camerae2e_db_lineage | • System FACA: camerae2e_run_scenario, camerae2e_...","textChars":332,"textLines":4,"bbox":[60,374,1060,190]}
+{"kind":"textbox","id":"sh/cvixczed","slide":8,"name":"slide8-footer","text":"Research-grade optimization and data generation are enabled; product sign-off still requires measured calibration.","textPreview":"Research-grade optimization and data generation are enabled; product sign-off still requires measured calibration.","textChars":114,"textLines":1,"bbox":[56,655,1030,34]}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":8,"name":"slide8-page","text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1174,675,50,24]}
+{"kind":"notes","id":"nt/fu18jqh0","slide":8,"text":""}
+{"kind":"slide","id":"sl/qh0fepkz","slide":9,"title":"Physics 근사는 유용하지만 readiness gate가 claim을 제한합니다","textShapes":10}
+{"kind":"shape","id":"sh/vahoza1g","slide":9,"name":"rule-54","bbox":[56,54,1168,2]}
+{"kind":"textbox","id":"sh/ovahoza1","slide":9,"name":"slide9-title","text":"Physics 근사는 유용하지만 readiness gate가 claim을 제한합니다","textPreview":"Physics 근사는 유용하지만 readiness gate가 claim을 제한합니다","textChars":46,"textLines":1,"bbox":[56,90,1090,86]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":9,"name":"slide9-subtitle","text":"FDTD, TCAD, RayOptics, HW ISP는 모두 연결됐지만 measured evidence가 없으면 calibrated tier로 승격하지 않습니다.","textPreview":"FDTD, TCAD, RayOptics, HW ISP는 모두 연결됐지만 measured evidence가 없으면 calibrated tier로 승격하지 않습니다.","textChars":90,"textLines":1,"bbox":[60,184,1080,58]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":9,"name":"FDTD + TCAD-accent","bbox":[60,292,6,240]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":9,"name":"FDTD + TCAD-title","text":"FDTD + TCAD","textPreview":"FDTD + TCAD","textChars":11,"textLines":1,"bbox":[78,292,332,38]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":9,"name":"FDTD + TCAD-body","text":"Active FDTD LUT와 TCAD generation map lineage를 비교합니다. 현재 mismatch는 stale_dependency로 보고되며 strict validation에서는 blocking evidence가 됩니다.","textPreview":"Active FDTD LUT와 TCAD generation map lineage를 비교합니다. 현재 mismatch는 stale_dependency로 보고되며 strict validation에서는 blocking evidence가 됩니다.","textChars":133,"textLines":1,"bbox":[78,346,332,186]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":9,"name":"RayOptics-accent","bbox":[460,292,6,240]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":9,"name":"RayOptics-title","text":"RayOptics","textPreview":"RayOptics","textChars":9,"textLines":1,"bbox":[478,292,312,38]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":9,"name":"RayOptics-body","text":"Lens DB와 PSF asset은 CameraE2E에서 실행되지만 geometric ray histogram입니다. Diffraction/WVF와 혼동하지 않습니다.","textPreview":"Lens DB와 PSF asset은 CameraE2E에서 실행되지만 geometric ray histogram입니다. Diffraction/WVF와 혼동하지 않습니다.","textChars":93,"textLines":1,"bbox":[478,346,312,186]}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":9,"name":"HW ISP-accent","bbox":[840,292,6,240]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":9,"name":"HW ISP-title","text":"HW ISP","textPreview":"HW ISP","textChars":6,"textLines":1,"bbox":[858,292,322,38]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":9,"name":"HW ISP-body","text":"Seed profile은 timing/control 연구용입니다. Board trace, BSP timing, hardware counter 없이는 latency sign-off로 쓰지 않습니다.","textPreview":"Seed profile은 timing/control 연구용입니다. Board trace, BSP timing, hardware counter 없이는 latency sign-off로 쓰지 않습니다.","textChars":109,"textLines":1,"bbox":[858,346,322,186]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":9,"name":"slide9-footer","text":"Next gate: sensor-specific FDTD LUT, calibrated TCAD profile, measured HW timing, dataset distribution checks.","textPreview":"Next gate: sensor-specific FDTD LUT, calibrated TCAD profile, measured HW timing, dataset distribution checks.","textChars":110,"textLines":1,"bbox":[56,655,1050,34]}
+{"kind":"textbox","id":"sh/n29gr2p8","slide":9,"name":"slide9-page","text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1174,675,50,24]}
+{"kind":"notes","id":"nt/qh0fepkz","slide":9,"text":""}

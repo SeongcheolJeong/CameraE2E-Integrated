@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "name": "rpi_vc4_imx219_public_seed",
+  "description": "Public Raspberry Pi VC4 + IMX219 seed profile normalized for pyisetcam HW ISP simulation.",
+  "confidence": "public_seed_approximate_timing",
+  "source": {
+    "type": "public_reference",
+    "name": "Raspberry Pi/libcamera IMX219 tuning and camera software documentation",
+    "url": "https://git.libcamera.org/libcamera/libcamera.git/tree/src/ipa/rpi/vc4/data/imx219.json",
+    "documentation_url": "https://www.raspberrypi.com/documentation/computers/camera_software.html#tweak-camera-behaviour-with-tuning-files",
+    "license": "libcamera project license; verify upstream license before redistributing raw tuning files",
+    "notes": [
+      "The libcamera tuning file contains ISP/3A tuning values but not full block-level latency timing.",
+      "Timing fields below are pyisetcam seed values and should be replaced by board measurements or BSP data for sign-off."
+    ]
+  },
+  "config": {
+    "sensor_timing": {
+      "fps": 30.0,
+      "line_time_us": 15.2,
+      "active_lines": 1080,
+      "hidden_lines_top": 16,
+      "hidden_lines_bottom": 20,
+      "exposure_time_us": 8000.0,
+      "rolling_shutter": true
+    },
+    "stages": [
+      {
+        "name": "unicam_capture",
+        "domain": "raw_bayer",
+        "buffering": "stream",
+        "window_lines": 1,
+        "stage_latency_cycles": 32,
+        "clock_mhz": 400.0,
+        "pixels_per_cycle": 2.0,
+        "latency_factor": 1.0,
+        "enabled": true,
+        "history_frames": 0
+      },
+      {
+        "name": "black_level_dpc",
+        "domain": "bayer",
+        "buffering": "line",
+        "window_lines": 3,
+        "stage_latency_cycles": 96,
+        "clock_mhz": 400.0,
+        "pixels_per_cycle": 2.0,
+        "latency_factor": 1.0,
+        "enabled": true,
+        "history_frames": 0
+      },
+      {
+        "name": "lens_shading_geq",
+        "domain": "bayer",
+        "buffering": "line",
+        "window_lines": 3,
+        "stage_latency_cycles": 120,
+        "clock_mhz": 400.0,
+        "pixels_per_cycle": 2.0,
+        "latency_factor": 1.0,
+        "enabled": true,
+        "history_frames": 0
+      },
+      {
+        "name": "demosaic_ccm_gamma",
+        "domain": "bayer_to_rgb",
+        "buffering": "line",
+        "window_lines": 5,
+        "stage_latency_cycles": 260,
+        "clock_mhz": 400.0,
+        "pixels_per_cycle": 2.0,
+        "latency_factor": 1.0,
+        "enabled": true,
+        "history_frames": 0
+      },
+      {
+        "name": "denoise_sharpen",
+        "domain": "yuv",
+        "buffering": "frame",
+        "window_lines": 1,
+        "stage_latency_cycles": 0,
+        "clock_mhz": 400.0,
+        "pixels_per_cycle": 2.0,
+        "latency_factor": 1.0,
+        "enabled": false,
+        "history_frames": 1
+      }
+    ],
+    "control_path": {
+      "ae_enabled": true,
+      "awb_enabled": true,
+      "stats_ready_at": "frame_end",
+      "ae_apply_delay_frames": 2,
+      "awb_apply_delay_frames": 2,
+      "apply_to_image": false,
+      "target_luma": 0.165,
+      "min_exposure_time_us": 100.0,
+      "max_exposure_fraction": 0.90,
+      "min_analog_gain": 1.0,
+      "max_analog_gain": 16.0,
+      "max_ae_step_ev": 1.0,
+      "awb_method": "gray_world",
+      "min_wb_gain": 0.25,
+      "max_wb_gain": 4.0,
+      "max_awb_step_ev": 0.5,
+      "stats_grid": [8, 8],
+      "ae_metering": "center_weighted",
+      "ae_highlight_clip": 0.98,
+      "ae_highlight_weight": 0.5,
+      "awb_stats_roi": "valid_luma",
+      "awb_min_luma": 0.02,
+      "awb_max_luma": 0.95
+    },
+    "transport": {
+      "request_queue_depth": 4,
+      "max_buffers": 6,
+      "dma_submit_us": 120.0,
+      "dma_complete_us": 320.0,
+      "app_processing_us": 500.0,
+      "jitter_us_std": 0.0,
+      "drop_policy": "stall"
+    },
+    "global_latency_factor": 1.0,
+    "seed": 42
+  },
+  "calibration": {
+    "black_level": {
+      "value": 4096,
+      "units": "DN",
+      "source": "rpi.black_level.black_level"
+    },
+    "lux_reference": {
+      "reference_shutter_speed_us": 27685,
+      "reference_gain": 1.0,
+      "reference_lux": 998,
+      "reference_Y": 12744,
+      "source": "rpi.lux"
+    },
+    "noise": {
+      "reference_constant": 0,
+      "reference_slope": 3.67,
+      "source": "rpi.noise"
+    },
+    "geq": {
+      "offset": 204,
+      "slope": 0.01633,
+      "source": "rpi.geq"
+    },
+    "agc": {
+      "y_target_seed": 0.165,
+      "source": "rpi.agc.y_target public tuning curve"
+    }
+  },
+  "notes": [
+    "This profile intentionally stores a small normalized subset of public tuning data, not the raw libcamera tuning JSON.",
+    "Use tools/collect_hwisp_parameter_db.py against a local libcamera installation to generate additional normalized profiles.",
+    "For accurate HW latency, replace seed timing values with BSP, kernel trace, or measured values."
+  ]
+}

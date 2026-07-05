@@ -1,0 +1,15 @@
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+build/
+dist/
+*.egg-info/
+.DS_Store
+.cache/upstream/
+reports/parity/*.json
+outputs/adas-kitti-yolo-raw-demo/
+outputs/adas-kitti-camera-variants-demo/
+outputs/camerae2e-goal-gate-smoke/
+reports/camerae2e_goal/goal_gate_artifacts/

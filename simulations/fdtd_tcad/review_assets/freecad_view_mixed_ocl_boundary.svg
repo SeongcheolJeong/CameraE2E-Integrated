@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="720" viewBox="0 0 1100 720" role="img" aria-label="FreeCAD-style viewport for mixed OCL boundary template">
+  <defs>
+    <linearGradient id="viewportBg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#273a49"/><stop offset="1" stop-color="#111921"/></linearGradient>
+    <linearGradient id="lensSmall" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#d8f6ff"/><stop offset=".55" stop-color="#82d1ff"/><stop offset="1" stop-color="#2b719e"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="16" stdDeviation="12" flood-color="#000" flood-opacity=".32"/></filter>
+    <style>
+      text{font-family:Inter,Arial,sans-serif}.ui{fill:#e7ebef}.bar{fill:#f5f7f9}.small{font-size:12px;fill:#53606b}.tree{font-size:12px;fill:#33414f}.code{font-size:11px;fill:#6c7b88}.tool{fill:#d8dde2;stroke:#b9c1c9}.grid{stroke:#506371;stroke-width:.8;opacity:.24}.cell{stroke:#edf8ff;stroke-width:.8;opacity:.86}
+    </style>
+  </defs>
+  <rect width="1100" height="720" rx="18" fill="#cfd6dd"/>
+  <rect x="12" y="12" width="1076" height="36" rx="8" class="bar"/>
+  <circle cx="34" cy="30" r="7" fill="#ff5f57"/><circle cx="56" cy="30" r="7" fill="#ffbd2e"/><circle cx="78" cy="30" r="7" fill="#28c840"/>
+  <text x="112" y="34" fill="#27323c" font-size="14" font-weight="800">FreeCAD - mixed_1x1_2x2_3x3_boundary/model.step</text>
+  <rect x="14" y="56" width="1072" height="42" rx="7" fill="#eef1f4"/>
+  <g transform="translate(28 68)"><rect width="26" height="22" rx="4" class="tool"/><rect x="36" width="26" height="22" rx="4" class="tool"/><rect x="72" width="26" height="22" rx="4" class="tool"/><rect x="112" width="116" height="22" rx="4" class="tool"/><text x="124" y="15" class="small">OpenCASCADE</text><rect x="242" width="122" height="22" rx="4" class="tool"/><text x="255" y="15" class="small">toggle section</text></g>
+  <rect x="18" y="110" width="246" height="592" rx="8" class="ui" stroke="#b8c0c8"/>
+  <text x="34" y="138" fill="#25313b" font-size="14" font-weight="800">Model tree</text>
+  <text x="38" y="170" class="tree">mixed_ocl_boundary</text>
+  <text x="56" y="197" class="tree">region_A_1x1_OCL</text>
+  <text x="56" y="222" class="tree">region_B_2x2_OCL</text>
+  <text x="56" y="247" class="tree">region_C_3x3_OCL</text>
+  <text x="56" y="280" class="tree">transition_edges</text>
+  <text x="74" y="305" class="tree">1x1_to_2x2</text>
+  <text x="74" y="330" class="tree">2x2_to_3x3</text>
+  <text x="56" y="363" class="tree">review checks</text>
+  <text x="74" y="388" class="code">OCL overlap</text>
+  <text x="74" y="411" class="code">CFA grouping</text>
+  <text x="74" y="434" class="code">boundary leakage risk</text>
+  <rect x="284" y="110" width="798" height="592" rx="8" fill="url(#viewportBg)" stroke="#9fb0bd"/>
+  <g transform="translate(284 110)">
+    <path d="M0 492H798M0 444H798M0 396H798M0 348H798M0 300H798M0 252H798M0 204H798M0 156H798M0 108H798" class="grid"/>
+    <path d="M82 0V592M154 0V592M226 0V592M298 0V592M370 0V592M442 0V592M514 0V592M586 0V592M658 0V592M730 0V592" class="grid"/>
+    <text x="28" y="34" fill="#eaf6fb" font-size="18" font-weight="800">Mixed 1x1 / 2x2 / 3x3 OCL boundary CAD source</text>
+    <text x="28" y="58" fill="#aabcc7" font-size="12">Purpose: review transition topology before building boundary crosstalk and CRA cases.</text>
+    <g transform="translate(398 338)" filter="url(#shadow)">
+      <polygon points="0,-132 300,24 0,180 -300,24" fill="#21394a" stroke="#89aabb"/>
+      <polygon points="-300,24 0,180 0,234 -300,78" fill="#172b38" stroke="#5f7a8b"/>
+      <polygon points="300,24 0,180 0,234 300,78" fill="#122532" stroke="#5f7a8b"/>
+      <g opacity=".9">
+        <polygon points="-238,-6 -190,19 -238,44 -286,19" fill="#e64d56" class="cell"/><polygon points="-190,19 -142,44 -190,69 -238,44" fill="#35bb70" class="cell"/>
+        <polygon points="-142,44 -94,69 -142,94 -190,69" fill="#347cf0" class="cell"/><polygon points="-94,69 -46,94 -94,119 -142,94" fill="#35bb70" class="cell"/>
+        <polygon points="-46,-94 2,-69 -46,-44 -94,-69" fill="#35bb70" class="cell"/><polygon points="2,-69 50,-44 2,-19 -46,-44" fill="#347cf0" class="cell"/>
+        <polygon points="50,-44 98,-19 50,6 2,-19" fill="#35bb70" class="cell"/><polygon points="98,-19 146,6 98,31 50,6" fill="#e64d56" class="cell"/>
+        <polygon points="146,6 194,31 146,56 98,31" fill="#35bb70" class="cell"/><polygon points="194,31 242,56 194,81 146,56" fill="#347cf0" class="cell"/>
+      </g>
+      <ellipse cx="-214" cy="19" rx="32" ry="14" fill="url(#lensSmall)" stroke="#d8f7ff"/>
+      <ellipse cx="-166" cy="44" rx="32" ry="14" fill="url(#lensSmall)" stroke="#d8f7ff"/>
+      <path d="M-66-50C-28-82 28-82 66-50L88-39 0 8 -88-39Z" fill="url(#lensSmall)" stroke="#d8f7ff" opacity=".94"/>
+      <path d="M68-6C130-56 210-52 266 4L170 54 92 14Z" fill="url(#lensSmall)" stroke="#d8f7ff" opacity=".88"/>
+      <path d="M-96-72L-4-24M-20-32L92 26" stroke="#ffd95a" stroke-width="3" stroke-dasharray="10 7"/>
+      <text x="-220" y="-36" fill="#fff3a7" font-size="14" font-weight="800">1x1</text>
+      <text x="-28" y="-100" fill="#fff3a7" font-size="14" font-weight="800">2x2</text>
+      <text x="126" y="-48" fill="#fff3a7" font-size="14" font-weight="800">3x3</text>
+    </g>
+    <g transform="translate(672 460)"><line x1="0" y1="0" x2="62" y2="-32" stroke="#ff5f57" stroke-width="4"/><line x1="0" y1="0" x2="-48" y2="-24" stroke="#2f8cff" stroke-width="4"/><line x1="0" y1="0" x2="0" y2="-72" stroke="#28c840" stroke-width="4"/><text x="67" y="-33" fill="#ffb1ad" font-size="13">X</text><text x="-61" y="-26" fill="#9ec9ff" font-size="13">Y</text><text x="7" y="-76" fill="#9fe5ad" font-size="13">Z</text></g>
+    <rect x="28" y="514" width="346" height="44" rx="6" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.16)"/>
+    <text x="42" y="536" fill="#f5faff" font-size="13" font-weight="800">Boundary review · 1x1 / 2x2 / 3x3 OCL transition</text>
+    <text x="42" y="553" fill="#b7cad4" font-size="11">Dashed edges identify transition zones for leakage and alignment checks.</text>
+  </g>
+</svg>

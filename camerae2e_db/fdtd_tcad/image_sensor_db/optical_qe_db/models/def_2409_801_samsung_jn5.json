@@ -1,0 +1,530 @@
+{
+  "schema": "image_sensor_optical_qe_model_v1",
+  "code": "DEF-2409-801",
+  "source": {
+    "code": "DEF-2409-801",
+    "manufacturer": "Samsung",
+    "device_name": "JN5",
+    "title": "Samsung ISOCELL JN5 Device Essentials Folder",
+    "report_type": "DEF",
+    "release_date": "2024-10-29T00:00:00.000+00:00",
+    "html_files": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/032_DEF-2409-801.html"
+    ],
+    "pdf_files": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf",
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download_img_sensor_fc_pkg_2024_2026_a6pf30000000GqhAAE/html/pdfs/035_FCS-2410-836/Summary - Samsung_JN5_DEF-2409-801.pdf"
+    ]
+  },
+  "optical": {
+    "geometry": {
+      "pixel_pitch_um": {
+        "value": 0.64,
+        "source_kind": "extracted",
+        "confidence": 0.9,
+        "method": "sensor_catalog.derived_specs.pixel_pitch_um",
+        "unit": "um",
+        "evidence": "search_description: The Samsung JN5 is a 1/2.76”, 50 MP, 0.64 µm pixel pitch, stacked back-illuminated ISOCELL CMOS image sensor with Tetrapixel, Super QPD, and dual vertical transfer gates from the Oppo Reno 12 Front/Rear Ultra-Wide Camera",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/data/search_results.json"
+      },
+      "optical_format": {
+        "value": "1/2.76\"",
+        "source_kind": "extracted",
+        "confidence": 0.74,
+        "method": "sensor_catalog.derived_specs.optical_format",
+        "evidence": "search_description: The Samsung JN5 is a 1/2.76”, 50 MP, 0.64 µm pixel pitch, stacked back-illuminated ISOCELL CMOS image sensor with Tetrapixel, Super QPD, and dual vertical transfer gates from the Oppo Reno 12 Front/Rear Ultra-Wide Camera",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/data/search_results.json"
+      },
+      "optical_stack_height_um": {
+        "value": 1.6,
+        "source_kind": "extracted",
+        "confidence": 0.86,
+        "method": "sensor_catalog.derived_specs.optical_stack_height_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: Optical stack height (microlens/coating to Si) 1.6 µm",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf"
+      },
+      "active_si_thickness_um": {
+        "value": 3.9,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.active_si_thickness_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: Back-illuminated active Si thickness 3.9 um (array edge)/4.1 um (array center)",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf"
+      }
+    },
+    "cfa": {
+      "pattern": {
+        "value": "bayer",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_pattern",
+        "evidence": "combined_text: bayer"
+      },
+      "representative_thickness_um": {
+        "value": 0.54,
+        "source_kind": "derived_from_extracted_range",
+        "confidence": 0.76,
+        "method": "midpoint(cfa_thickness_min_um,cfa_thickness_max_um)",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: – Measured color filter thickness ranges from 490 nm to 590 nm (dependent on color and measured location)",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf"
+      },
+      "thickness_min_um": {
+        "value": 0.49,
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_min_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: – Measured color filter thickness ranges from 490 nm to 590 nm (dependent on color and measured location)",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf"
+      },
+      "thickness_max_um": {
+        "value": 0.59,
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_max_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: – Measured color filter thickness ranges from 490 nm to 590 nm (dependent on color and measured location)",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf"
+      },
+      "color_filter_pitch_um": {
+        "value": 1.28,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.color_filter_pitch_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: – OCL pitch of 1.28 μm, color filter pitch of 1.28 μm, and grid pitch of 1.28 μm",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "bayer",
+          "field": "cfa_pattern"
+        },
+        {
+          "source": "pdf_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf",
+          "text": "– Measured color filter thickness ranges from 490 nm to 590 nm (dependent on color and measured location)",
+          "field": "cfa_thickness_min_um"
+        },
+        {
+          "source": "pdf_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf",
+          "text": "– OCL pitch of 1.28 μm, color filter pitch of 1.28 μm, and grid pitch of 1.28 μm",
+          "field": "color_filter_pitch_um"
+        }
+      ]
+    },
+    "microlens": {
+      "type": {
+        "value": "gapless_ocl",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.microlens_type",
+        "evidence": "combined_text: gapless_ocl"
+      },
+      "ocl_pitch_um": {
+        "value": 1.28,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.ocl_pitch_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: – OCL pitch of 1.28 μm, color filter pitch of 1.28 μm, and grid pitch of 1.28 μm",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "gapless_ocl",
+          "field": "microlens_type"
+        },
+        {
+          "source": "pdf_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf",
+          "text": "– OCL pitch of 1.28 μm, color filter pitch of 1.28 μm, and grid pitch of 1.28 μm",
+          "field": "ocl_pitch_um"
+        },
+        {
+          "source": "pdf_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf",
+          "text": "Optical stack height (microlens/coating to Si) 1.6 µm",
+          "field": "optical_stack_height_um"
+        }
+      ]
+    },
+    "grid": {
+      "material": {
+        "value": "tin",
+        "source_kind": "extracted",
+        "confidence": 0.76,
+        "method": "sensor_catalog.derived_specs.grid_material",
+        "evidence": "combined_text: tin"
+      },
+      "pitch_um": {
+        "value": 1.28,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.grid_pitch_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: – OCL pitch of 1.28 μm, color filter pitch of 1.28 μm, and grid pitch of 1.28 μm",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "tin",
+          "field": "grid_material"
+        },
+        {
+          "source": "pdf_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf",
+          "text": "– OCL pitch of 1.28 μm, color filter pitch of 1.28 μm, and grid pitch of 1.28 μm",
+          "field": "grid_pitch_um"
+        }
+      ]
+    },
+    "sensor_context": {
+      "illumination": {
+        "value": "back_illuminated",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.illumination",
+        "evidence": "combined_text: back_illuminated"
+      },
+      "sensor_modality": {
+        "value": "cmos_image_sensor",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.sensor_modality",
+        "evidence": "combined_text: cmos_image_sensor"
+      },
+      "is_nir": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.is_nir missing"
+      }
+    }
+  },
+  "cfa_proxy_nk": {
+    "enabled": true,
+    "library_id": "common_rgb_color_resist_proxy_2026_06",
+    "source_kind": "inferred_proxy_nk",
+    "applicability": "rgb_color_filter_proxy",
+    "reference_thickness_um": 0.65,
+    "thickness_um": {
+      "value": 0.54,
+      "source_kind": "derived_from_extracted_range",
+      "confidence": 0.76,
+      "method": "sensor-specific CFA thickness for proxy n,k transmission scaling",
+      "unit": "um",
+      "evidence": "pdf_design_snippet: – Measured color filter thickness ranges from 490 nm to 590 nm (dependent on color and measured location)",
+      "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf"
+    },
+    "channels": {
+      "red": {
+        "description": "Common red color-resist proxy",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.48,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.7,
+            "k": 0.19157,
+            "transmission_absorption_only": 0.038778
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.7,
+            "k": 0.20355,
+            "transmission_absorption_only": 0.038773
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.7,
+            "k": 0.21552,
+            "transmission_absorption_only": 0.038776
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.7,
+            "k": 0.21452,
+            "transmission_absorption_only": 0.046671
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.7,
+            "k": 0.21465,
+            "transmission_absorption_only": 0.054304
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.7,
+            "k": 0.19932,
+            "transmission_absorption_only": 0.076055
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.7,
+            "k": 0.17007,
+            "transmission_absorption_only": 0.122664
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.7,
+            "k": 0.12071,
+            "transmission_absorption_only": 0.240616
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.7,
+            "k": 0.05866,
+            "transmission_absorption_only": 0.515082
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.7,
+            "k": 0.02201,
+            "transmission_absorption_only": 0.787438
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.7,
+            "k": 0.01017,
+            "transmission_absorption_only": 0.89927
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.7,
+            "k": 0.00871,
+            "transmission_absorption_only": 0.916162
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.7,
+            "k": 0.01096,
+            "transmission_absorption_only": 0.899203
+          }
+        ]
+      },
+      "green": {
+        "description": "Common green color-resist proxy",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.48,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.7,
+            "k": 0.18065,
+            "transmission_absorption_only": 0.04667
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.7,
+            "k": 0.17443,
+            "transmission_absorption_only": 0.061725
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.7,
+            "k": 0.155,
+            "transmission_absorption_only": 0.096584
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.7,
+            "k": 0.09972,
+            "transmission_absorption_only": 0.240605
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.7,
+            "k": 0.0366,
+            "transmission_absorption_only": 0.608521
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.7,
+            "k": 0.01276,
+            "transmission_absorption_only": 0.847955
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.7,
+            "k": 0.01094,
+            "transmission_absorption_only": 0.873736
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.7,
+            "k": 0.02313,
+            "transmission_absorption_only": 0.761117
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.7,
+            "k": 0.07712,
+            "transmission_absorption_only": 0.418028
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.7,
+            "k": 0.16224,
+            "transmission_absorption_only": 0.171788
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.7,
+            "k": 0.22388,
+            "transmission_absorption_only": 0.096593
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.7,
+            "k": 0.266,
+            "transmission_absorption_only": 0.068967
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.7,
+            "k": 0.30051,
+            "transmission_absorption_only": 0.054304
+          }
+        ]
+      },
+      "blue": {
+        "description": "Common blue color-resist proxy",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.48,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.7,
+            "k": 0.02928,
+            "transmission_absorption_only": 0.608521
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.7,
+            "k": 0.01709,
+            "transmission_absorption_only": 0.761191
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.7,
+            "k": 0.01093,
+            "transmission_absorption_only": 0.848046
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.7,
+            "k": 0.01445,
+            "transmission_absorption_only": 0.813481
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.7,
+            "k": 0.0531,
+            "transmission_absorption_only": 0.486433
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.7,
+            "k": 0.13628,
+            "transmission_absorption_only": 0.171791
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.7,
+            "k": 0.20881,
+            "transmission_absorption_only": 0.076057
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.7,
+            "k": 0.25968,
+            "transmission_absorption_only": 0.046672
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.7,
+            "k": 0.28736,
+            "transmission_absorption_only": 0.038776
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.7,
+            "k": 0.3074,
+            "transmission_absorption_only": 0.035524
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.7,
+            "k": 0.31969,
+            "transmission_absorption_only": 0.035526
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.7,
+            "k": 0.33199,
+            "transmission_absorption_only": 0.035525
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.7,
+            "k": 0.34429,
+            "transmission_absorption_only": 0.035523
+          }
+        ]
+      }
+    },
+    "model_limitations": [
+      "Absorption-only CFA layer proxy; does not include full optical-stack interference, microlens focusing, grid diffraction, or silicon absorption.",
+      "Common R/G/B n,k proxy, not product-specific measured optical constants."
+    ]
+  },
+  "qe": {
+    "measurement_data_status": "not_found",
+    "quantitative_points": [],
+    "qualitative_mentions": [],
+    "spectral_ranges": [
+      {
+        "low_nm": 490.0,
+        "high_nm": 590.0,
+        "source_kind": "reported_spectral_range",
+        "confidence": 0.72,
+        "source_file": "sensor_catalog_record",
+        "context": "nsor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-2409-801/Samsung_JN5_DEF-2409-801.pdf\", \"source\": \"pdf_design_snippet\", \"text\": \"– Measured color filter thickness ranges from 490 nm to 590 nm (dependent on color and measured location)\"}], \"cfa_thickness_max_um\": [{\"source_file\": \"/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/032_DEF-"
+      }
+    ],
+    "filter_sets": []
+  },
+  "readiness": {
+    "level": "optical_ready_high",
+    "score": 88,
+    "reasons": [
+      "cfa_pattern",
+      "microlens_type",
+      "optical_stack_height",
+      "cfa_thickness",
+      "color_filter_pitch",
+      "ocl_pitch",
+      "grid_pitch",
+      "grid_material"
+    ]
+  },
+  "notes": [
+    "QE quantitative_points are reported text points, not reconstructed curves.",
+    "inferred_rule values are setup defaults and must not be treated as measurements.",
+    "cfa_proxy_nk is a common color-resist n,k proxy for setup/sensitivity work, not measured product-specific optical constants."
+  ]
+}

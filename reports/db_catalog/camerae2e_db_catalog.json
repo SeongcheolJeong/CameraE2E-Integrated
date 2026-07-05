@@ -1,0 +1,921 @@
+{
+  "entries": [
+    {
+      "description": "Pinned upstream ISETCam asset snapshot used by AssetStore for MATLAB-origin data files.",
+      "env_vars": [
+        "PYISETCAM_CACHE_ROOT",
+        "PYISETCAM_UPSTREAM_ROOT"
+      ],
+      "family": "assets",
+      "metadata": {
+        "sha": "412b9f9bdb3262f2552b96f0e769b5ad6cdff821"
+      },
+      "name": "isetcam_upstream_snapshot",
+      "parameter_hint": "Use AssetStore.default(), or pass PYISETCAM_UPSTREAM_ROOT for an explicit snapshot.",
+      "parameters": {
+        "cache_root": "/Users/seongcheoljeong/Documents/CameraE2E/.cache",
+        "sha": "412b9f9bdb3262f2552b96f0e769b5ad6cdff821",
+        "snapshot_root": "/Users/seongcheoljeong/Documents/CameraE2E/.cache/upstream/isetcam/412b9f9bdb3262f2552b96f0e769b5ad6cdff821"
+      },
+      "path": "/Users/seongcheoljeong/Documents/CameraE2E/.cache/upstream/isetcam/412b9f9bdb3262f2552b96f0e769b5ad6cdff821",
+      "role": "upstream-matlab-asset-snapshot",
+      "status": "active",
+      "tags": [
+        "assets",
+        "upstream",
+        "isetcam",
+        "matlab",
+        "snapshot"
+      ]
+    },
+    {
+      "description": "HW ISP timing, transport, and 3A profile DB for system-level latency simulation.",
+      "env_vars": [
+        "PYISETCAM_HWISP_DB"
+      ],
+      "family": "isp",
+      "metadata": {
+        "profile_count": 2
+      },
+      "name": "hwisp_parameter_profiles",
+      "parameter_hint": "Use profile_name with hw_isp_config_from_profile(profile_name).",
+      "parameters": {
+        "db_path": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/hwisp",
+        "default_profile": "generic_1080p_30fps",
+        "profile_names": [
+          "generic_1080p_30fps",
+          "rpi_vc4_imx219_public_seed"
+        ]
+      },
+      "path": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/hwisp",
+      "role": "timing-and-3a-parameter-profiles",
+      "status": "active",
+      "tags": [
+        "isp",
+        "hwisp",
+        "latency",
+        "3a",
+        "profile"
+      ]
+    },
+    {
+      "description": "External RayOptics v9 Lens DB package prepared for CameraE2E.",
+      "env_vars": [
+        "PYISETCAM_LENS_DB_ROOT"
+      ],
+      "family": "lens",
+      "metadata": {
+        "highres_psf_summary": {
+          "by_company": {
+            "Canon": {
+              "generated": 1,
+              "total": 1
+            },
+            "Largan": {
+              "generated": 1,
+              "total": 1
+            },
+            "Panasonic": {
+              "generated": 1,
+              "total": 1
+            },
+            "Ricoh/Pentax": {
+              "generated": 1,
+              "total": 1
+            },
+            "Samsung": {
+              "generated": 1,
+              "total": 1
+            }
+          },
+          "generated": 5,
+          "total": 5
+        },
+        "raytrace_psf_summary": {
+          "by_company": {
+            "Canon": {
+              "failed": 48,
+              "generated": 105,
+              "total": 153
+            },
+            "Konica Minolta": {
+              "failed": 2,
+              "generated": 26,
+              "total": 28
+            },
+            "Largan": {
+              "failed": 70,
+              "generated": 5,
+              "total": 75
+            },
+            "Nikon": {
+              "failed": 3,
+              "generated": 76,
+              "total": 79
+            },
+            "Olympus/OM System": {
+              "failed": 4,
+              "generated": 53,
+              "total": 57
+            },
+            "Panasonic": {
+              "failed": 13,
+              "generated": 128,
+              "total": 141
+            },
+            "Ricoh/Pentax": {
+              "generated": 13,
+              "total": 13
+            },
+            "Samsung": {
+              "generated": 26,
+              "total": 26
+            },
+            "Seiko Epson": {
+              "failed": 6,
+              "generated": 6,
+              "total": 12
+            }
+          },
+          "failed": 146,
+          "generated": 438,
+          "total": 584
+        },
+        "selected_as_active": true,
+        "summary": {
+          "camerae2e_ready_by_company": {
+            "Canon": 153,
+            "Konica Minolta": 28,
+            "Largan": 75,
+            "Nikon": 79,
+            "Olympus/OM System": 57,
+            "Panasonic": 141,
+            "Ricoh/Pentax": 13,
+            "Samsung": 26,
+            "Seiko Epson": 12
+          },
+          "companies": 14,
+          "lenses": 427,
+          "readiness_counts": {
+            "needs_variable_distances": 51,
+            "ready_configured": 176,
+            "ready_staging": 200
+          },
+          "simulation_results": 822,
+          "status_counts": {
+            "camerae2e_ready": 584,
+            "metadata_only": 3,
+            "partial": 235
+          },
+          "surfaces": 21493
+        }
+      },
+      "name": "rayoptics_lens_db_v9",
+      "parameter_hint": "Set PYISETCAM_LENS_DB_ROOT to this package root, or pass db_path/psf_dir explicitly.",
+      "parameters": {
+        "data_dir": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents",
+        "db_path": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite",
+        "highres_psf_dir": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/raytrace_psf_highres",
+        "psf_dir": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/raytrace_psf"
+      },
+      "path": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite",
+      "role": "external-optics-prescription-and-psf",
+      "status": "available",
+      "tags": [
+        "lens",
+        "rayoptics",
+        "external",
+        "v9",
+        "sqlite",
+        "psf"
+      ]
+    },
+    {
+      "description": "Bundled v6 Lens DB fallback shipped with pyisetcam package data.",
+      "env_vars": [],
+      "family": "lens",
+      "metadata": {
+        "highres_psf_summary": {
+          "by_company": {
+            "Canon": {
+              "generated": 1,
+              "total": 1
+            }
+          },
+          "generated": 1,
+          "total": 1
+        },
+        "raytrace_psf_summary": {
+          "by_company": {
+            "Canon": {
+              "failed": 45,
+              "generated": 99,
+              "total": 144
+            },
+            "Konica Minolta": {
+              "failed": 2,
+              "generated": 22,
+              "total": 24
+            },
+            "Largan": {
+              "failed": 67,
+              "total": 67
+            },
+            "Nikon": {
+              "failed": 3,
+              "generated": 76,
+              "total": 79
+            },
+            "Olympus/OM System": {
+              "failed": 4,
+              "generated": 53,
+              "total": 57
+            },
+            "Panasonic": {
+              "failed": 12,
+              "generated": 126,
+              "total": 138
+            },
+            "Samsung": {
+              "generated": 26,
+              "total": 26
+            },
+            "Seiko Epson": {
+              "failed": 6,
+              "generated": 6,
+              "total": 12
+            }
+          },
+          "failed": 139,
+          "generated": 408,
+          "total": 547
+        },
+        "summary": {
+          "camerae2e_ready_by_company": {
+            "Canon": 144,
+            "Konica Minolta": 24,
+            "Largan": 67,
+            "Nikon": 79,
+            "Olympus/OM System": 57,
+            "Panasonic": 138,
+            "Samsung": 26,
+            "Seiko Epson": 12
+          },
+          "companies": 14,
+          "lenses": 414,
+          "readiness_counts": {
+            "needs_variable_distances": 47,
+            "ready_configured": 168,
+            "ready_staging": 199
+          },
+          "simulation_results": 793,
+          "status_counts": {
+            "camerae2e_ready": 547,
+            "metadata_only": 4,
+            "partial": 242
+          },
+          "surfaces": 20693
+        }
+      },
+      "name": "lens_patents_bundled_v6",
+      "parameter_hint": "Use when external RayOptics v9 package is unavailable or when a reproducible bundled fallback is needed.",
+      "parameters": {
+        "data_dir": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents",
+        "db_path": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents/lens_patent_simulation_v6.sqlite",
+        "highres_psf_dir": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents/raytrace_psf_highres",
+        "psf_dir": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents/raytrace_psf"
+      },
+      "path": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents/lens_patent_simulation_v6.sqlite",
+      "role": "fallback-optics-prescription-and-psf",
+      "status": "fallback",
+      "tags": [
+        "lens",
+        "rayoptics",
+        "fallback",
+        "sqlite"
+      ]
+    },
+    {
+      "description": "Active lens patent SQLite DB and RayOptics PSF package used by lens_patent_* APIs.",
+      "env_vars": [
+        "PYISETCAM_LENS_PATENT_DB",
+        "PYISETCAM_LENS_DB_ROOT",
+        "PYISETCAM_LENS_PATENT_PSF_DIR"
+      ],
+      "family": "lens",
+      "metadata": {
+        "camerae2e_manifest": {
+          "asset_rows": 589,
+          "built_at": "2026-06-27T01:51:09.755734+00:00",
+          "by_company": {
+            "Canon": {
+              "highres_psf": 1,
+              "partial": 2,
+              "proxy_only": 48,
+              "raytrace_psf": 104,
+              "total": 155
+            },
+            "Fujifilm": {
+              "partial": 24,
+              "total": 24
+            },
+            "Konica Minolta": {
+              "proxy_only": 2,
+              "raytrace_psf": 26,
+              "total": 28
+            },
+            "LG Innotek": {
+              "partial": 2,
+              "total": 2
+            },
+            "Largan": {
+              "highres_psf": 1,
+              "proxy_only": 70,
+              "raytrace_psf": 4,
+              "total": 75
+            },
+            "Nikon": {
+              "partial": 88,
+              "proxy_only": 3,
+              "raytrace_psf": 76,
+              "total": 167
+            },
+            "Olympus/OM System": {
+              "partial": 35,
+              "proxy_only": 4,
+              "raytrace_psf": 53,
+              "total": 92
+            },
+            "Panasonic": {
+              "highres_psf": 1,
+              "metadata_only": 1,
+              "partial": 6,
+              "proxy_only": 13,
+              "raytrace_psf": 127,
+              "total": 148
+            },
+            "Ricoh/Pentax": {
+              "highres_psf": 1,
+              "raytrace_psf": 12,
+              "total": 13
+            },
+            "Samsung": {
+              "highres_psf": 1,
+              "raytrace_psf": 25,
+              "total": 26
+            },
+            "Seiko Epson": {
+              "metadata_only": 2,
+              "partial": 1,
+              "proxy_only": 6,
+              "raytrace_psf": 6,
+              "total": 15
+            },
+            "Sony": {
+              "partial": 14,
+              "total": 14
+            },
+            "Sunny Optical": {
+              "partial": 33,
+              "total": 33
+            },
+            "Tamron": {
+              "partial": 30,
+              "total": 30
+            }
+          },
+          "caveats": [
+            "Raytrace PSF files are RayOptics geometric ray-histogram PSFs; diffraction is not included.",
+            "Rows with use_tier=proxy_only can feed thin-lens/proxy CameraE2E optics but do not have generated RayOptics PSF assets.",
+            "Caption-derived rows preserve patent f/Fno/HFOV values and are marked with optical_spec_source=caption."
+          ],
+          "files": {
+            "company_sets_dir": "companies",
+            "inventory_csv": "camerae2e_inventory.csv",
+            "master_db": "lens_patent_simulation_v9.sqlite",
+            "psf_debug_dir": "raytrace_psf",
+            "psf_highres_dir": "raytrace_psf_highres"
+          },
+          "psf_debug_summary": {
+            "by_company": {
+              "Canon": {
+                "failed": 48,
+                "generated": 105,
+                "total": 153
+              },
+              "Konica Minolta": {
+                "failed": 2,
+                "generated": 26,
+                "total": 28
+              },
+              "Largan": {
+                "failed": 70,
+                "generated": 5,
+                "total": 75
+              },
+              "Nikon": {
+                "failed": 3,
+                "generated": 76,
+                "total": 79
+              },
+              "Olympus/OM System": {
+                "failed": 4,
+                "generated": 53,
+                "total": 57
+              },
+              "Panasonic": {
+                "failed": 13,
+                "generated": 128,
+                "total": 141
+              },
+              "Ricoh/Pentax": {
+                "generated": 13,
+                "total": 13
+              },
+              "Samsung": {
+                "generated": 26,
+                "total": 26
+              },
+              "Seiko Epson": {
+                "failed": 6,
+                "generated": 6,
+                "total": 12
+              }
+            },
+            "failed": 146,
+            "generated": 438,
+            "total": 584
+          },
+          "psf_highres_summary": {
+            "by_company": {
+              "Canon": {
+                "generated": 1,
+                "total": 1
+              },
+              "Largan": {
+                "generated": 1,
+                "total": 1
+              },
+              "Panasonic": {
+                "generated": 1,
+                "total": 1
+              },
+              "Ricoh/Pentax": {
+                "generated": 1,
+                "total": 1
+              },
+              "Samsung": {
+                "generated": 1,
+                "total": 1
+              }
+            },
+            "generated": 5,
+            "total": 5
+          },
+          "recommended_for_camerae2e": 438,
+          "sample_highres_ids": [
+            "p0014:intermediate",
+            "p0410:base",
+            "p0320:telephoto",
+            "p0137:middle",
+            "p0102:base"
+          ],
+          "schema": "camerae2e_lens_patent_package_v1",
+          "total_simulation_results": 822,
+          "use_tier_counts": {
+            "highres_psf": 5,
+            "metadata_only": 3,
+            "partial": 235,
+            "proxy_only": 146,
+            "raytrace_psf": 433
+          }
+        },
+        "highres_psf_summary": {
+          "by_company": {
+            "Canon": {
+              "generated": 1,
+              "total": 1
+            },
+            "Largan": {
+              "generated": 1,
+              "total": 1
+            },
+            "Panasonic": {
+              "generated": 1,
+              "total": 1
+            },
+            "Ricoh/Pentax": {
+              "generated": 1,
+              "total": 1
+            },
+            "Samsung": {
+              "generated": 1,
+              "total": 1
+            }
+          },
+          "generated": 5,
+          "total": 5
+        },
+        "raytrace_psf_summary": {
+          "by_company": {
+            "Canon": {
+              "failed": 48,
+              "generated": 105,
+              "total": 153
+            },
+            "Konica Minolta": {
+              "failed": 2,
+              "generated": 26,
+              "total": 28
+            },
+            "Largan": {
+              "failed": 70,
+              "generated": 5,
+              "total": 75
+            },
+            "Nikon": {
+              "failed": 3,
+              "generated": 76,
+              "total": 79
+            },
+            "Olympus/OM System": {
+              "failed": 4,
+              "generated": 53,
+              "total": 57
+            },
+            "Panasonic": {
+              "failed": 13,
+              "generated": 128,
+              "total": 141
+            },
+            "Ricoh/Pentax": {
+              "generated": 13,
+              "total": 13
+            },
+            "Samsung": {
+              "generated": 26,
+              "total": 26
+            },
+            "Seiko Epson": {
+              "failed": 6,
+              "generated": 6,
+              "total": 12
+            }
+          },
+          "failed": 146,
+          "generated": 438,
+          "total": 584
+        },
+        "summary": {
+          "camerae2e_ready_by_company": {
+            "Canon": 153,
+            "Konica Minolta": 28,
+            "Largan": 75,
+            "Nikon": 79,
+            "Olympus/OM System": 57,
+            "Panasonic": 141,
+            "Ricoh/Pentax": 13,
+            "Samsung": 26,
+            "Seiko Epson": 12
+          },
+          "companies": 14,
+          "lenses": 427,
+          "readiness_counts": {
+            "needs_variable_distances": 51,
+            "ready_configured": 176,
+            "ready_staging": 200
+          },
+          "simulation_results": 822,
+          "status_counts": {
+            "camerae2e_ready": 584,
+            "metadata_only": 3,
+            "partial": 235
+          },
+          "surfaces": 21493
+        }
+      },
+      "name": "lens_patents_active",
+      "parameter_hint": "Use db_path for lens_patent_search/get/optics and psf_dir/highres_psf_dir for lens_patent_raytrace_optics.",
+      "parameters": {
+        "data_dir": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents",
+        "db_path": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite",
+        "highres_psf_dir": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/raytrace_psf_highres",
+        "psf_dir": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/raytrace_psf"
+      },
+      "path": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite",
+      "role": "optics-prescription-and-psf",
+      "status": "active",
+      "tags": [
+        "lens",
+        "rayoptics",
+        "psf",
+        "sqlite",
+        "active"
+      ]
+    },
+    {
+      "description": "Curated MATLAB baseline .mat DB and parity case registry for regression/evidence reports.",
+      "env_vars": [
+        "PYISETCAM_RUN_PARITY"
+      ],
+      "family": "parity",
+      "metadata": {
+        "baseline_count": 261,
+        "latest_report_exists": true
+      },
+      "name": "matlab_parity_baselines",
+      "parameter_hint": "Use cases_yaml and baselines_dir with tests/parity or tools/parity_report.py.",
+      "parameters": {
+        "baselines_dir": "/Users/seongcheoljeong/Documents/CameraE2E/tests/parity/baselines",
+        "cases_yaml": "/Users/seongcheoljeong/Documents/CameraE2E/tests/parity/cases.yaml",
+        "latest_report": "/Users/seongcheoljeong/Documents/CameraE2E/reports/parity/latest.json"
+      },
+      "path": "/Users/seongcheoljeong/Documents/CameraE2E/tests/parity/baselines",
+      "role": "matlab-baseline-evidence",
+      "status": "available",
+      "tags": [
+        "parity",
+        "matlab",
+        "baseline",
+        "evidence"
+      ]
+    },
+    {
+      "description": "Task perception model profile DB covering YOLO, tracking, detection, segmentation, pose, OBB, and optional adapters.",
+      "env_vars": [
+        "PYISETCAM_TASK_MODEL_CACHE"
+      ],
+      "family": "perception",
+      "metadata": {
+        "cached_model_count": 5,
+        "profile_count": 12
+      },
+      "name": "task_perception_model_profiles",
+      "parameter_hint": "Use profile_name with task_model_config_from_profile(profile_name), then task_model_from_config.",
+      "parameters": {
+        "cache_dir": "/Users/seongcheoljeong/.cache/pyisetcam/task_perception/yolo",
+        "profile_names": [
+          "custom_callable",
+          "sam_vit_b_automatic",
+          "torchvision_fasterrcnn_resnet50_fpn_v2_coco",
+          "torchvision_maskrcnn_resnet50_fpn_v2_coco",
+          "transformers_detr_resnet50_coco",
+          "transformers_mask2former_ade20k",
+          "ultralytics_yolo11n_bytetrack",
+          "ultralytics_yolo11n_classification",
+          "ultralytics_yolo11n_detection",
+          "ultralytics_yolo11n_obb",
+          "ultralytics_yolo11n_pose",
+          "ultralytics_yolo11n_segmentation"
+        ],
+        "profiles_path": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/task_perception/model_profiles.json"
+      },
+      "path": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/task_perception/model_profiles.json",
+      "role": "model-profile-catalog",
+      "status": "active",
+      "tags": [
+        "perception",
+        "yolo",
+        "detection",
+        "segmentation",
+        "tracking",
+        "model-profile"
+      ]
+    },
+    {
+      "description": "Active DEVSIM/TCAD sensor collection DB joining FDTD generation maps with split-PD electrical summaries.",
+      "env_vars": [
+        "PYISETCAM_FDTD_ROOT"
+      ],
+      "family": "sensor",
+      "metadata": {
+        "validation": {
+          "accuracy_ready": false,
+          "checks": {
+            "accuracy_gate": {
+              "accuracy_blocking_failure_count": 8,
+              "accuracy_ready": false,
+              "framework_blocking_failure_count": 0,
+              "framework_ready": true,
+              "issues": [],
+              "ok": true,
+              "profile_name": "reference_cmos_ppd_1p4um_not_measured",
+              "source_path": "/Users/seongcheoljeong/FDTD/runs/tcad_accuracy_gate_reference_profile/tcad_accuracy_gate.json",
+              "warnings": [
+                "TCAD accuracy gate is not ready; treat outputs as proxy simulation"
+              ]
+            },
+            "collection_summaries": {
+              "cases": [
+                "center",
+                "edge20x"
+              ],
+              "issues": [],
+              "n_summaries": 2,
+              "ok": true,
+              "warnings": [
+                "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json uses proxy electrical model proxy-pinned-split-pd",
+                "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json uses proxy electrical model proxy-pinned-split-pd"
+              ]
+            },
+            "generation_map": {
+              "cases": [
+                "center",
+                "edge20x"
+              ],
+              "generation_max": 6.507544160470456e+22,
+              "generation_min": 2.5512580123495656,
+              "issues": [],
+              "ok": true,
+              "schema": "tcad_generation_map_2d_x_depth_v1",
+              "shape": [
+                2,
+                10,
+                19
+              ],
+              "source_path": "/Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz",
+              "warnings": []
+            }
+          },
+          "framework_ready": true,
+          "issues": [],
+          "ok": true,
+          "status": "proxy-framework",
+          "warnings": [
+            "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json uses proxy electrical model proxy-pinned-split-pd",
+            "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json uses proxy electrical model proxy-pinned-split-pd",
+            "TCAD accuracy gate is not ready; treat outputs as proxy simulation"
+          ]
+        }
+      },
+      "name": "tcad_sensor_db_active",
+      "parameter_hint": "Use these paths with tcad_sensor_db_load(...) or sensor_attach_tcad_lut.",
+      "parameters": {
+        "accuracy_gate_path": "/Users/seongcheoljeong/FDTD/runs/tcad_accuracy_gate_reference_profile/tcad_accuracy_gate.json",
+        "collection_summary_paths": [
+          "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json",
+          "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json"
+        ],
+        "generation_map_path": "/Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz",
+        "root": "/Users/seongcheoljeong/FDTD"
+      },
+      "path": "/Users/seongcheoljeong/FDTD",
+      "role": "electrical-collection-lut",
+      "status": "active",
+      "tags": [
+        "sensor",
+        "tcad",
+        "devsim",
+        "collection",
+        "split-pd"
+      ]
+    },
+    {
+      "description": "Active FDTD-informed sensor optical-response LUT used for QE/RI/crosstalk proxy configuration.",
+      "env_vars": [
+        "PYISETCAM_FDTD_LUT_PATH",
+        "PYISETCAM_FDTD_ROOT"
+      ],
+      "family": "sensor",
+      "metadata": {
+        "summary": {
+          "cases": [
+            "center",
+            "cra10x",
+            "edge20x"
+          ],
+          "convergence_report": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/convergence_report.json",
+          "kernel_shape": [
+            0,
+            0
+          ],
+          "mode": "split-pd-1x1",
+          "n_cases": 3,
+          "n_long_rows": 18,
+          "n_regions": 2,
+          "n_summary_rows": 9,
+          "n_wavelengths": 3,
+          "notes": [
+            "Primary response uses Si-volume absorption distribution integrated over each collection region.",
+            "The absolute scale is calibrated to the full Si top/bottom flux absorption estimate.",
+            "TCAD 1D generation export collapses the Si volume absorption over x/z and scales it with incident_photon_flux_cm2_s.",
+            "TCAD 2D generation export preserves x/depth variation and collapses only the out-of-plane z direction.",
+            "TCAD 3D generation export preserves x/depth/z variation for future 3D electrical import.",
+            "Split-PD phase proxies are optical-only PDAF signals, not charge-collection TCAD results.",
+            "OCL shifts are explicit lens/aperture offsets in microns; replace defaults with product geometry.",
+            "Default imaging-pixel runs use shield.mode=off; metal optical masks are only present for edge or PDAF shield modes.",
+            "Finite-pupil integration samples a uniform disk in direction-cosine space using the supplied f-number.",
+            "Use resolution and time convergence before quantitative camera-system use."
+          ],
+          "response_model": "si_volume_absorption_flux_calibrated_v1",
+          "schema": "camera_supercell_optical_lut_v2",
+          "source_path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+          "wavelengths_nm": [
+            450.0,
+            550.0,
+            650.0
+          ]
+        }
+      },
+      "name": "fdtd_sensor_lut_active",
+      "parameter_hint": "Use lut_path with fdtd_sensor_config(lut_path) and sensor_attach_fdtd_lut.",
+      "parameters": {
+        "config": {
+          "enabled": true,
+          "lut": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json"
+        },
+        "lut_path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json"
+      },
+      "path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+      "role": "optical-response-lut",
+      "status": "active",
+      "tags": [
+        "sensor",
+        "fdtd",
+        "qe",
+        "relative-illumination",
+        "crosstalk",
+        "lut"
+      ]
+    },
+    {
+      "description": "External FDTD sensor stack catalog and generated layer-stack configs.",
+      "env_vars": [
+        "PYISETCAM_FDTD_ROOT"
+      ],
+      "family": "sensor",
+      "metadata": {
+        "csv_path": "/Users/seongcheoljeong/FDTD/sensor_db/sensor_catalog.csv",
+        "stack_config_count": 216,
+        "validation_path": "/Users/seongcheoljeong/FDTD/sensor_db/validation.json"
+      },
+      "name": "fdtd_sensor_stack_catalog",
+      "parameter_hint": "Use catalog_path to choose a sensor stack, then feed selected FDTD/TCAD artifacts into sensor config.",
+      "parameters": {
+        "catalog_path": "/Users/seongcheoljeong/FDTD/sensor_db/sensor_catalog.json",
+        "stack_config_dir": "/Users/seongcheoljeong/FDTD/sensor_db/generated_stack_configs"
+      },
+      "path": "/Users/seongcheoljeong/FDTD/sensor_db/sensor_catalog.json",
+      "role": "sensor-stack-parameter-catalog",
+      "status": "available",
+      "tags": [
+        "sensor",
+        "fdtd",
+        "stack",
+        "catalog",
+        "external"
+      ]
+    }
+  ],
+  "summary": {
+    "active": [
+      "isetcam_upstream_snapshot",
+      "hwisp_parameter_profiles",
+      "lens_patents_active",
+      "task_perception_model_profiles",
+      "tcad_sensor_db_active",
+      "fdtd_sensor_lut_active"
+    ],
+    "available": [
+      "isetcam_upstream_snapshot",
+      "hwisp_parameter_profiles",
+      "rayoptics_lens_db_v9",
+      "lens_patents_bundled_v6",
+      "lens_patents_active",
+      "matlab_parity_baselines",
+      "task_perception_model_profiles",
+      "tcad_sensor_db_active",
+      "fdtd_sensor_lut_active",
+      "fdtd_sensor_stack_catalog"
+    ],
+    "families": {
+      "assets": {
+        "active": 1
+      },
+      "isp": {
+        "active": 1
+      },
+      "lens": {
+        "active": 1,
+        "available": 1,
+        "fallback": 1
+      },
+      "parity": {
+        "available": 1
+      },
+      "perception": {
+        "active": 1
+      },
+      "sensor": {
+        "active": 2,
+        "available": 1
+      }
+    },
+    "statuses": {
+      "active": 6,
+      "available": 3,
+      "fallback": 1
+    },
+    "total": 10
+  }
+}

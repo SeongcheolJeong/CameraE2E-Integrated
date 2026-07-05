@@ -1,0 +1,35 @@
+{
+  "schema_version": "camerae2e_registry_seed_v1",
+  "readiness_tiers": [
+    {
+      "name": "missing",
+      "meaning": "The asset is known but not present in the active workspace."
+    },
+    {
+      "name": "available",
+      "meaning": "The asset can be loaded, but no stronger validation claim is made."
+    },
+    {
+      "name": "proxy",
+      "meaning": "The asset is usable for research exploration, but it is a proxy for one or more physical effects."
+    },
+    {
+      "name": "validated",
+      "meaning": "The asset has passed the repository validation gates for its intended research use."
+    },
+    {
+      "name": "calibration_required",
+      "meaning": "The framework is connected, but measured calibration is required before quantitative accuracy claims."
+    },
+    {
+      "name": "calibrated",
+      "meaning": "Measured calibration evidence is attached and the asset can support calibrated quantitative analysis."
+    }
+  ],
+  "truth_boundaries": [
+    "Do not treat RayOptics geometric PSF assets as diffraction or wave-optics sign-off.",
+    "Do not treat current TCAD/DEVSIM artifacts as product-calibrated carrier transport unless the accuracy gate passes with measured inputs.",
+    "Do not treat HW ISP seed profiles as vendor latency sign-off without board traces or hardware counters.",
+    "Do not treat active reference FDTD LUT panels as sensor-specific LUTs unless the selected sensor has a matching generated LUT."
+  ]
+}

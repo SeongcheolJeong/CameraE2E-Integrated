@@ -1,0 +1,246 @@
+{
+  "schema": "image_sensor_optical_qe_model_v1",
+  "code": "DEF-2511-803",
+  "source": {
+    "code": "DEF-2511-803",
+    "manufacturer": "STMicroelectronics",
+    "device_name": "56G812A1A_CIS",
+    "title": "STMicroelectronics 56G812A1A (iPhone 17 Pro Max) Device Essentials Folder",
+    "report_type": "DEF",
+    "release_date": "2026-01-15T00:00:00.000+00:00",
+    "html_files": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/013_DEF-2511-803.html"
+    ],
+    "pdf_files": []
+  },
+  "optical": {
+    "geometry": {
+      "pixel_pitch_um": {
+        "value": 2.9,
+        "source_kind": "extracted",
+        "confidence": 0.9,
+        "method": "sensor_catalog.derived_specs.pixel_pitch_um",
+        "unit": "um",
+        "evidence": "search_description: The STMicroelectronics 56G812A1A is a 1.46 MP, 2.9 µm pixel pitch stacked back-illuminated (BI) CMOS image sensor (CIS) for mobile applications. The 56G812A1A was removed from the Apple iPhone 17 Pro front-facing infrar.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/data/search_results.json"
+      },
+      "optical_format": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.optical_format missing"
+      },
+      "optical_stack_height_um": {
+        "value": 2.8,
+        "source_kind": "extracted",
+        "confidence": 0.86,
+        "method": "sensor_catalog.derived_specs.optical_stack_height_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Structure OCL coating in use Outer pixels OCL, color filters, and W grid gradually shift toward the pixel array center 9.7 µm thick active Si Optical stack height 2.8 µm High-k dielectric lined, Al/dielectric-filled ful.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/013_DEF-2511-803.html"
+      },
+      "active_si_thickness_um": {
+        "value": 9.7,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.active_si_thickness_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Salient Features The following are the key takeaways of this report: Based on critical dimensions and structural features, the CIS die was fabricated using STMicroelectronics's 65nm process technology, and the ISP die w.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/013_DEF-2511-803.html"
+      }
+    },
+    "cfa": {
+      "pattern": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_pattern missing"
+      },
+      "representative_thickness_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_um missing",
+        "unit": "um"
+      },
+      "thickness_min_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_min_um missing",
+        "unit": "um"
+      },
+      "thickness_max_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_max_um missing",
+        "unit": "um"
+      },
+      "color_filter_pitch_um": {
+        "value": 2.9,
+        "source_kind": "inferred_rule",
+        "confidence": 0.38,
+        "method": "color_filter_pitch_um inferred from pixel_pitch_um; 1x pitch fallback",
+        "unit": "um"
+      },
+      "evidence": []
+    },
+    "microlens": {
+      "type": {
+        "value": "high_precision",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.microlens_type",
+        "evidence": "combined_text: high_precision"
+      },
+      "ocl_pitch_um": {
+        "value": 2.9,
+        "source_kind": "inferred_rule",
+        "confidence": 0.4,
+        "method": "ocl_pitch_um inferred from pixel_pitch_um; OCL pitch usually follows pixel pitch when not reported",
+        "unit": "um"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "high_precision",
+          "field": "microlens_type"
+        },
+        {
+          "source": "html_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/013_DEF-2511-803.html",
+          "text": "Structure OCL coating in use Outer pixels OCL, color filters, and W grid gradually shift toward the pixel array center 9.7 µm thick active Si Optical stack height 2.8 µm High-k dielectric lined, Al/dielectric-filled ful...",
+          "field": "optical_stack_height_um"
+        }
+      ]
+    },
+    "grid": {
+      "material": {
+        "value": "w",
+        "source_kind": "extracted",
+        "confidence": 0.76,
+        "method": "sensor_catalog.derived_specs.grid_material",
+        "evidence": "combined_text: w"
+      },
+      "pitch_um": {
+        "value": 2.9,
+        "source_kind": "inferred_rule",
+        "confidence": 0.35,
+        "method": "grid_pitch_um inferred from pixel_pitch_um; grid pitch approximated as pixel pitch",
+        "unit": "um"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "w",
+          "field": "grid_material"
+        }
+      ]
+    },
+    "sensor_context": {
+      "illumination": {
+        "value": "front_illuminated",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.illumination",
+        "evidence": "combined_text: front_illuminated"
+      },
+      "sensor_modality": {
+        "value": "global_shutter_cis",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.sensor_modality",
+        "evidence": "combined_text: global_shutter_cis"
+      },
+      "is_nir": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.is_nir missing"
+      }
+    }
+  },
+  "cfa_proxy_nk": {
+    "enabled": false,
+    "library_id": "common_rgb_color_resist_proxy_2026_06",
+    "source_kind": "inferred_proxy_nk",
+    "applicability": "unknown_cfa_pattern",
+    "reference_thickness_um": 0.65,
+    "thickness_um": {
+      "value": 0.65,
+      "source_kind": "inferred_proxy_default",
+      "confidence": 0.3,
+      "method": "proxy library reference_thickness_um used because sensor-specific CFA thickness is unavailable",
+      "unit": "um"
+    },
+    "channels": {},
+    "model_limitations": [
+      "Absorption-only CFA layer proxy; does not include full optical-stack interference, microlens focusing, grid diffraction, or silicon absorption.",
+      "Common R/G/B n,k proxy, not product-specific measured optical constants."
+    ]
+  },
+  "qe": {
+    "measurement_data_status": "qualitative_only",
+    "quantitative_points": [],
+    "qualitative_mentions": [
+      {
+        "term": "quantum efficiency",
+        "source_kind": "text_mention",
+        "confidence": 0.62,
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/013_DEF-2511-803.html",
+        "context": "abricated using STMicroelectronics's 65nm process technology, and the ISP die was fabricated using STMicroelectronics's 40nm process technology High-performance MIM caps used for storage node 9.7 µm thick active Si Full depth B-DTI with high-k dielectric liner and oxide and polySi fill OSS used at the back surface to enhance IR light absorption and increase quantum efficiency (QE) Overview STMicroelectronics stacked BI voltage domain global shutter CMOS image sensor (CIS), with MIM capacitor storage node ISP die fabricated on STMicroelectronics 40nm process metrics CIS die fabricated on STMicroelectronics 65nm pr"
+      },
+      {
+        "term": "QE",
+        "source_kind": "text_mention",
+        "confidence": 0.62,
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/013_DEF-2511-803.html",
+        "context": "croelectronics's 65nm process technology, and the ISP die was fabricated using STMicroelectronics's 40nm process technology High-performance MIM caps used for storage node 9.7 µm thick active Si Full depth B-DTI with high-k dielectric liner and oxide and polySi fill OSS used at the back surface to enhance IR light absorption and increase quantum efficiency (QE) Overview STMicroelectronics stacked BI voltage domain global shutter CMOS image sensor (CIS), with MIM capacitor storage node ISP die fabricated on STMicroelectronics 40nm process metrics CIS die fabricated on STMicroelectronics 65nm process metrics 2.9 μm"
+      },
+      {
+        "term": "quantum efficiency",
+        "source_kind": "text_mention",
+        "confidence": 0.62,
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/013_DEF-2511-803.html",
+        "context": "ctronics 65nm process metrics 2.9 μm pixel generation High-performance MIM capacitor and interdigital capacitor Full depth B-DTI lined with high-k dielectric and filled with oxide and Al No aperture grid; fill factor of 82.6% determine by the B-DTI No organic filter 3 × 3 array of OSS at the back surface, designed to enhance IR light absorption and increase quantum efficiency (QE) Gapless on-chip lens (OCL) with 2.9 µm pitch CIS/ISP die stack wire bonded to printed wiring board (PWB) Hybrid bond (DBI) used to electrically connect CIS and ISP dies Design/Layout Non-shared pixel configuration, 9 transistors effecti"
+      },
+      {
+        "term": "QE",
+        "source_kind": "text_mention",
+        "confidence": 0.62,
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/013_DEF-2511-803.html",
+        "context": "s metrics 2.9 μm pixel generation High-performance MIM capacitor and interdigital capacitor Full depth B-DTI lined with high-k dielectric and filled with oxide and Al No aperture grid; fill factor of 82.6% determine by the B-DTI No organic filter 3 × 3 array of OSS at the back surface, designed to enhance IR light absorption and increase quantum efficiency (QE) Gapless on-chip lens (OCL) with 2.9 µm pitch CIS/ISP die stack wire bonded to printed wiring board (PWB) Hybrid bond (DBI) used to electrically connect CIS and ISP dies Design/Layout Non-shared pixel configuration, 9 transistors effective per pixel Overflo"
+      },
+      {
+        "term": "quantum efficiency",
+        "source_kind": "text_mention",
+        "confidence": 0.62,
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/013_DEF-2511-803.html",
+        "context": "include the transition to a back-illuminated design, integration of full-depth back deep trench isolation (B-DTI) with advanced materials, and the addition of high-performance MIM capacitors. These enhancements, combined with optical scattering structures on the back surface, deliver superior infrared light absorption, reduced pixel crosstalk, and improved quantum efficiency. Collectively, these innovations enable higher resolution, better sensitivity, and more accurate facial recognition, reinforcing Apple’s commitment to advancing biometric security and imaging performance 7. Statement of Uncertainty TechInsigh"
+      }
+    ],
+    "spectral_ranges": [],
+    "filter_sets": []
+  },
+  "readiness": {
+    "level": "optical_ready_medium",
+    "score": 64,
+    "reasons": [
+      "microlens_type",
+      "optical_stack_height",
+      "color_filter_pitch",
+      "ocl_pitch",
+      "grid_pitch",
+      "grid_material",
+      "qe_qualitative"
+    ]
+  },
+  "notes": [
+    "QE quantitative_points are reported text points, not reconstructed curves.",
+    "inferred_rule values are setup defaults and must not be treated as measurements.",
+    "cfa_proxy_nk is a common color-resist n,k proxy for setup/sensitivity work, not measured product-specific optical constants."
+  ]
+}

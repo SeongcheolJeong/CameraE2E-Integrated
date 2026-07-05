@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Task Perception Detection And Segmentation Report</title>
+  <style>
+    :root {
+      --ink: #15212d;
+      --muted: #627184;
+      --line: #d2dce6;
+      --card: #ffffff;
+      --accent: #8b4d22;
+      --green: #2f7d54;
+    }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top right, rgb(139 77 34 / 13%), transparent 34rem),
+        linear-gradient(135deg, #f7f0df 0%, #eff7f6 100%);
+      color: var(--ink);
+      font: 15px/1.58 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 38px 24px 58px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 38px;
+      letter-spacing: -0.04em;
+    }
+    h2 {
+      margin: 34px 0 14px;
+      font-size: 24px;
+      letter-spacing: -0.02em;
+    }
+    .lead {
+      max-width: 900px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    .cards, .figures {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 14px;
+      margin: 22px 0;
+    }
+    .card, .panel, table {
+      background: rgb(255 255 255 / 95%);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 10px 28px rgb(21 33 45 / 7%);
+    }
+    .card, .panel {
+      padding: 17px 18px;
+    }
+    .label {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .value {
+      margin-top: 4px;
+      font-size: 24px;
+      font-weight: 760;
+    }
+    img {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: white;
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      margin: 12px 0 20px;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f6f8fa;
+    }
+    code {
+      background: #edf3f5;
+      border-radius: 6px;
+      padding: 2px 5px;
+    }
+    .note {
+      border-left: 4px solid var(--accent);
+      padding: 12px 14px;
+      background: rgb(139 77 34 / 8%);
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+<h1>Task Perception Detection And Segmentation Report</h1>
+<p class="lead">This report is the downstream perception layer requested for object detection and segmentation. It is separate from the human-visible image-quality perception report and focuses on task decisions after camera/ISP degradation.</p>
+<div class="cards">
+  <div class="card"><div class="label">Git commit</div><div class="value">ecc712f</div></div>
+  <div class="card"><div class="label">Generated</div><div class="value">2026-05-25T08:13:19</div></div>
+  <div class="card"><div class="label">Baseline mAP</div><div class="value">1.000</div></div>
+  <div class="card"><div class="label">Baseline mIoU</div><div class="value">1.000</div></div>
+</div>
+
+<h2>Architecture</h2>
+<div class="panel">
+  <p><code>task_perception.py</code> is model-agnostic. A detector or segmenter is any callable that accepts an RGB image and returns boxes or masks. The package then normalizes outputs, computes metrics, renders overlays, and runs robustness sweeps.</p>
+  <p class="note">Heavy models such as YOLO, Detectron, or SAM are intentionally not core dependencies. They should be optional adapters on top of this metric/report layer.</p>
+</div>
+
+<h2>Configurable Model Profiles</h2>
+<p>These profiles can instantiate optional model adapters when the corresponding third-party package and weights are available. The core report below still uses a deterministic color-threshold detector so unit tests stay fast and dependency-free.</p>
+<table><thead><tr><th>Profile</th><th>Backend</th><th>Task</th><th>Model ID</th><th>Install</th></tr></thead><tbody><tr><td>custom_callable</td><td>callable</td><td>detection_segmentation</td><td>None</td><td>custom callable</td></tr>
+<tr><td>sam_vit_b_automatic</td><td>sam_automatic</td><td>segmentation</td><td>sam_vit_b</td><td>pip install segment-anything torch</td></tr>
+<tr><td>torchvision_fasterrcnn_resnet50_fpn_v2_coco</td><td>torchvision_detection</td><td>detection</td><td>fasterrcnn_resnet50_fpn_v2</td><td>pip install torch torchvision</td></tr>
+<tr><td>torchvision_maskrcnn_resnet50_fpn_v2_coco</td><td>torchvision_detection</td><td>detection_segmentation</td><td>maskrcnn_resnet50_fpn_v2</td><td>pip install torch torchvision</td></tr>
+<tr><td>transformers_detr_resnet50_coco</td><td>transformers_object_detection</td><td>detection</td><td>facebook/detr-resnet-50</td><td>pip install transformers torch pillow</td></tr>
+<tr><td>transformers_mask2former_ade20k</td><td>transformers_segmentation</td><td>segmentation</td><td>facebook/mask2former-swin-small-ade-semantic</td><td>pip install transformers torch pillow</td></tr>
+<tr><td>ultralytics_yolo11n_bytetrack</td><td>ultralytics_yolo</td><td>tracking</td><td>yolo11n.pt</td><td>pip install ultralytics lap</td></tr>
+<tr><td>ultralytics_yolo11n_classification</td><td>ultralytics_yolo</td><td>classification</td><td>yolo11n-cls.pt</td><td>pip install ultralytics lap</td></tr>
+<tr><td>ultralytics_yolo11n_detection</td><td>ultralytics_yolo</td><td>detection</td><td>yolo11n.pt</td><td>pip install ultralytics lap</td></tr>
+<tr><td>ultralytics_yolo11n_obb</td><td>ultralytics_yolo</td><td>oriented_detection</td><td>yolo11n-obb.pt</td><td>pip install ultralytics lap</td></tr>
+<tr><td>ultralytics_yolo11n_pose</td><td>ultralytics_yolo</td><td>pose</td><td>yolo11n-pose.pt</td><td>pip install ultralytics lap</td></tr>
+<tr><td>ultralytics_yolo11n_segmentation</td><td>ultralytics_yolo</td><td>detection_segmentation</td><td>yolo11n-seg.pt</td><td>pip install ultralytics lap</td></tr></tbody></table>
+<h2>Downloaded YOLO11 Weights</h2><table><thead><tr><th>Model</th><th>Profile</th><th>Size MB</th><th>Path</th></tr></thead><tbody><tr><td>yolo11n.pt</td><td>ultralytics_yolo11n_detection</td><td>5.354</td><td>/Users/seongcheoljeong/.cache/pyisetcam/task_perception/yolo/yolo11n.pt</td></tr>
+<tr><td>yolo11n-seg.pt</td><td>ultralytics_yolo11n_segmentation</td><td>5.896</td><td>/Users/seongcheoljeong/.cache/pyisetcam/task_perception/yolo/yolo11n-seg.pt</td></tr>
+<tr><td>yolo11n-cls.pt</td><td>ultralytics_yolo11n_classification</td><td>5.522</td><td>/Users/seongcheoljeong/.cache/pyisetcam/task_perception/yolo/yolo11n-cls.pt</td></tr>
+<tr><td>yolo11n-pose.pt</td><td>ultralytics_yolo11n_pose</td><td>5.966</td><td>/Users/seongcheoljeong/.cache/pyisetcam/task_perception/yolo/yolo11n-pose.pt</td></tr>
+<tr><td>yolo11n-obb.pt</td><td>ultralytics_yolo11n_obb</td><td>5.527</td><td>/Users/seongcheoljeong/.cache/pyisetcam/task_perception/yolo/yolo11n-obb.pt</td></tr></tbody></table>
+
+<h2>Phase 1: Detection And Segmentation Metrics</h2>
+<table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>Detection precision</td><td>1</td></tr>
+<tr><td>Detection recall</td><td>1</td></tr>
+<tr><td>Detection F1</td><td>1</td></tr>
+<tr><td>Detection AP@0.50</td><td>1</td></tr>
+<tr><td>Detection AP@0.75</td><td>1</td></tr>
+<tr><td>Detection mAP</td><td>1</td></tr>
+<tr><td>Segmentation precision</td><td>1</td></tr>
+<tr><td>Segmentation recall</td><td>1</td></tr>
+<tr><td>Segmentation mean IoU</td><td>1</td></tr>
+<tr><td>Segmentation boundary F1</td><td>1</td></tr></tbody></table>
+
+<div class="figures">
+  <figure><img src="task_reference.png" alt="Synthetic task scene"><figcaption>Synthetic task scene with object-level ground truth.</figcaption></figure>
+  <figure><img src="task_detection_overlay.png" alt="Detection overlay"><figcaption>Green boxes are ground truth; yellow boxes are model predictions.</figcaption></figure>
+  <figure><img src="task_segmentation_overlay.png" alt="Segmentation overlay"><figcaption>Segmentation masks rendered over the scene.</figcaption></figure>
+</div>
+
+<h2>Phase 2: Robustness Sweep</h2>
+<p>The sweep perturbs the same input image with low light, blur, noise, and blur+noise. This is the camera/ISP-facing evidence: task scores should be tracked across image-quality changes, not only on a clean input.</p>
+<table><thead><tr><th>Case</th><th>Detections</th><th>Mean score</th><th>Recall</th><th>mAP</th><th>Segmentation mIoU</th></tr></thead><tbody><tr><td>baseline</td><td>3</td><td>0.9953</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>low_light_45pct</td><td>3</td><td>0.5355</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>blur_sigma_2p0</td><td>3</td><td>0.8539</td><td>1</td><td>1</td><td>0.8015</td></tr>
+<tr><td>noise_sigma_0p07</td><td>3</td><td>0.748</td><td>0</td><td>0</td><td>0.6227</td></tr>
+<tr><td>blur_noise</td><td>3</td><td>0.7439</td><td>0</td><td>0</td><td>0.6501</td></tr></tbody></table>
+<div class="figures">
+  <figure><img src="task_robustness_sweep.png" alt="Robustness sweep plot"><figcaption>Detection recall, mAP, segmentation mIoU, and confidence across perturbations.</figcaption></figure>
+  <figure><img src="task_degraded_overlay.png" alt="Degraded detection overlay"><figcaption>Detection overlay under blur+noise, showing task degradation evidence.</figcaption></figure>
+</div>
+
+<h2>Implemented Public API</h2>
+<div class="panel">
+  <p>Core functions: <code>bbox_iou</code>, <code>mask_iou</code>, <code>detection_metrics</code>, <code>mean_average_precision</code>, <code>segmentation_metrics</code>, <code>boundary_f1_score</code>, <code>run_task_detector</code>, <code>run_task_segmenter</code>, <code>task_score_by_stage</code>, and <code>task_perception_sweep</code>.</p>
+  <p>Overlay and annotation helpers: <code>render_detection_overlay</code>, <code>render_segmentation_overlay</code>, <code>annotations_to_bboxes</code>, and <code>annotations_to_masks</code>.</p>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,4846 @@
+{
+  "type": "sequence",
+  "aggregate": {
+    "frame_count": 12.0,
+    "e2e_latency_mean_us": 18099.252573206806,
+    "e2e_latency_max_us": 33768.46999999994,
+    "e2e_latency_min_us": 11753.165439240925,
+    "queue_stall_total_us": 0.0,
+    "queue_stall_max_us": 0.0,
+    "ae_settle_frame": 8.0,
+    "ae_settle_frames_after_step": 4.0,
+    "ae_final_error_ev": -0.15285087300087155,
+    "awb_settle_frame": 10.0,
+    "awb_final_rgb_imbalance": 0.15553446849312635,
+    "max_clip_fraction": 0.16380981532496683,
+    "max_clip_fraction_before_response": 0.16380981532496683,
+    "max_clip_fraction_after_response": 0.06348841954902561,
+    "warmup_frame_count": 2.0,
+    "validation_verdicts": {
+      "ae_settle": true,
+      "awb_settle": true,
+      "clamp_compliance": true,
+      "warmup_delay_mapping": true,
+      "clip_reduction": true
+    },
+    "validation_thresholds": {
+      "ae_settle_ev": 0.25,
+      "awb_settle_imbalance": 0.2,
+      "settle_consecutive_frames": 2.0
+    }
+  },
+  "frames": [
+    {
+      "timeline": {
+        "frame_id": 0,
+        "timestamps_us": {
+          "request": 0.0,
+          "requested": 0.0,
+          "exposure_start": 0.0,
+          "exposure_mid": 4000.0,
+          "readout_start": 8000.0,
+          "readout_end": 11009.6,
+          "stats_ready": 11009.6,
+          "isp_start": 8243.28,
+          "isp_done": 10828.469999999998,
+          "dma_done": 11268.469999999998,
+          "app_visible": 11768.469999999998,
+          "frame_interval_us": 33333.333333333336,
+          "line_time_us": 15.2,
+          "hidden_lines_top": 16.0,
+          "hidden_lines_bottom": 20.0
+        },
+        "stages": [
+          {
+            "name": "unicam_capture",
+            "domain": "raw_bayer",
+            "buffering": "stream",
+            "start_us": 8243.28,
+            "end_us": 10705.68,
+            "latency_us": 2462.3999999999996,
+            "line_buffer_delay_us": 0.0,
+            "cycle_latency_us": 0.08,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "black_level_dpc",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 8273.92,
+            "end_us": 10736.32,
+            "latency_us": 2462.3999999999996,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.24,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "lens_shading_geq",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 8304.619999999999,
+            "end_us": 10767.019999999999,
+            "latency_us": 2462.3999999999996,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.3,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "demosaic_ccm_gamma",
+            "domain": "bayer_to_rgb",
+            "buffering": "line",
+            "start_us": 8366.069999999998,
+            "end_us": 10828.469999999998,
+            "latency_us": 2462.3999999999996,
+            "line_buffer_delay_us": 60.8,
+            "cycle_latency_us": 0.65,
+            "stalled_us": 0.0
+          }
+        ],
+        "queue_stall_us": 0.0,
+        "dropped": false
+      },
+      "controls_applied": {
+        "ae_enabled": true,
+        "awb_enabled": true,
+        "apply_to_image": true,
+        "ae_stats_frame": null,
+        "awb_stats_frame": null,
+        "ae_apply_delay_frames": 2,
+        "awb_apply_delay_frames": 2,
+        "stats_ready_us": 11009.6,
+        "warmup": true,
+        "exposure_time_us": 8000.0,
+        "analog_gain": 1.0,
+        "wb_gains_rgb": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "applied_controls": {
+          "exposure_time_us": 8000.0,
+          "analog_gain": 1.0,
+          "wb_gains_rgb": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "ae_stats_frame": null,
+          "awb_stats_frame": null
+        },
+        "produced_stats": {
+          "mean_sensor_luma_norm": 0.02732593648587905,
+          "weighted_sensor_luma_norm": 0.02661261862146244,
+          "metering_sensor_luma_norm": 0.02661261862146244,
+          "target_luma": 0.18,
+          "clipped_fraction": 0.0,
+          "sensor_rgb_means": [
+            0.07058493985994549,
+            0.02873103574486437,
+            0.019988061252799016
+          ],
+          "sensor_raw_rgb_means": [
+            0.04962783625474311,
+            0.021704966354476288,
+            0.016473529686362922
+          ],
+          "awb_corrected_rgb_means": [
+            0.07058493985994549,
+            0.02873103574486437,
+            0.019988061252799016
+          ],
+          "sensor_rgb_imbalance": 1.2723009197300152,
+          "sensor_raw_rgb_imbalance": 1.1327533801357137,
+          "awb_corrected_rgb_imbalance": 1.2723009197300152,
+          "output_rgb_means": [
+            0.050534722668855975,
+            0.03456702111057577,
+            0.033106645903064204
+          ],
+          "output_rgb_imbalance": 0.4423055794754427,
+          "ae": {
+            "stats_grid": [
+              8,
+              8
+            ],
+            "ae_metering": "center_weighted",
+            "tile_mean_luma": [
+              [
+                0.01243960921949917,
+                0.033262576690193495,
+                0.03283954466975807,
+                0.01928548742328223,
+                0.011817593563909604,
+                0.02320938268137474,
+                0.030506994689765535,
+                0.034684652989190004
+              ],
+              [
+                0.013357017298387232,
+                0.03255311744462918,
+                0.03239227533358256,
+                0.020097220854357653,
+                0.011903735762532713,
+                0.023652286815932184,
+                0.031173588490896204,
+                0.03546182294483746
+              ],
+              [
+                0.03243107799383874,
+                0.022644447004618595,
+                0.02173261558306946,
+                0.026865313321091988,
+                0.011761068200984815,
+                0.024997593286842628,
+                0.03352217488643777,
+                0.037240947465545085
+              ],
+              [
+                0.03187147117381169,
+                0.02223773099545049,
+                0.021552310321852376,
+                0.02675440674136992,
+                0.013696963689920946,
+                0.025530470701042182,
+                0.033120783403407766,
+                0.036537381431059925
+              ],
+              [
+                0.009558957289908365,
+                0.015284643196706837,
+                0.020013353781675527,
+                0.02455647477485978,
+                0.05167526463671691,
+                0.035635924482129454,
+                0.024849041946324667,
+                0.018325416684922248
+              ],
+              [
+                0.01201342025146545,
+                0.017049295383088324,
+                0.02129211993401094,
+                0.025142960963719357,
+                0.051070528786417255,
+                0.03480140838536638,
+                0.023941106283341392,
+                0.017286706818039364
+              ],
+              [
+                0.08026564509330054,
+                0.06397007162763102,
+                0.047116205067596686,
+                0.03291827047326156,
+                0.01838280955050676,
+                0.011375825622831487,
+                0.007028306009441714,
+                0.004256454684341733
+              ],
+              [
+                0.07903087973218144,
+                0.06258969281911748,
+                0.04612194559168091,
+                0.0319530240988787,
+                0.01726365450934274,
+                0.010786718064989003,
+                0.006564124863362113,
+                0.004119587855886592
+              ]
+            ],
+            "tile_clip_fraction": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "mean_luma": 0.02732593648587905,
+            "weighted_luma": 0.02661261862146244,
+            "metering_luma": 0.02661261862146244,
+            "target_luma": 0.18,
+            "target_error": -0.15338738137853755,
+            "ev_error": -2.757814526169564,
+            "clipped_fraction": 0.0,
+            "highlight_clip": 0.98
+          },
+          "awb": {
+            "stats_roi": "valid_luma",
+            "valid_luma_range": [
+              0.02,
+              0.95
+            ],
+            "valid_pixel_fraction": 0.5993776145291296,
+            "raw_rgb_means": [
+              0.04962783625474311,
+              0.021704966354476288,
+              0.016473529686362922
+            ],
+            "rgb_means": [
+              0.07058493985994549,
+              0.02873103574486437,
+              0.019988061252799016
+            ],
+            "corrected_rgb_means": [
+              0.07058493985994549,
+              0.02873103574486437,
+              0.019988061252799016
+            ],
+            "raw_corrected_rgb_means": [
+              0.04962783625474311,
+              0.021704966354476288,
+              0.016473529686362922
+            ],
+            "raw_rgb_imbalance": 1.1327533801357137,
+            "rgb_imbalance": 1.2723009197300152,
+            "corrected_rgb_imbalance": 1.2723009197300152,
+            "raw_corrected_rgb_imbalance": 1.1327533801357137
+          }
+        },
+        "requested_controls": {
+          "ae": {
+            "source_frame": 0,
+            "apply_frame": 2,
+            "measured_luma": 0.02661261862146244,
+            "mean_luma": 0.02732593648587905,
+            "weighted_luma": 0.02661261862146244,
+            "clipped_fraction": 0.0,
+            "ev_error": -2.757814526169564,
+            "highlight_limited": false,
+            "target_luma": 0.18,
+            "ratio": 2.0,
+            "exposure_time_us": 16000.0,
+            "analog_gain": 1.0
+          },
+          "awb": {
+            "source_frame": 0,
+            "apply_frame": 2,
+            "rgb_means": [
+              0.07058493985994549,
+              0.02873103574486437,
+              0.019988061252799016
+            ],
+            "valid_pixel_fraction": 0.5993776145291296,
+            "wb_gains_rgb": [
+              0.7071067811865476,
+              1.0,
+              1.4142135623730951
+            ]
+          }
+        }
+      },
+      "latency_summary": {
+        "frame_count": 1.0,
+        "e2e_latency_mean_us": 11768.469999999998,
+        "e2e_latency_max_us": 11768.469999999998,
+        "e2e_latency_min_us": 11768.469999999998,
+        "queue_stall_total_us": 0.0,
+        "queue_stall_max_us": 0.0,
+        "ae_settle_frame": -1.0,
+        "ae_settle_frames_after_step": -1.0,
+        "ae_final_error_ev": -2.757814526169564,
+        "awb_settle_frame": -1.0,
+        "awb_final_rgb_imbalance": 1.2723009197300152,
+        "max_clip_fraction": 0.0,
+        "max_clip_fraction_before_response": 0.0,
+        "max_clip_fraction_after_response": 0.0,
+        "warmup_frame_count": 1.0,
+        "validation_verdicts": {
+          "ae_settle": false,
+          "awb_settle": false,
+          "clamp_compliance": true,
+          "warmup_delay_mapping": true,
+          "clip_reduction": true
+        },
+        "validation_thresholds": {
+          "ae_settle_ev": 0.25,
+          "awb_settle_imbalance": 0.2,
+          "settle_consecutive_frames": 2.0
+        }
+      }
+    },
+    {
+      "timeline": {
+        "frame_id": 1,
+        "timestamps_us": {
+          "request": 33333.333333333336,
+          "requested": 33333.333333333336,
+          "exposure_start": 33333.333333333336,
+          "exposure_mid": 37333.333333333336,
+          "readout_start": 41333.333333333336,
+          "readout_end": 44342.933333333334,
+          "stats_ready": 44342.933333333334,
+          "isp_start": 41576.613333333335,
+          "isp_done": 44161.803333333344,
+          "dma_done": 44601.803333333344,
+          "app_visible": 45101.803333333344,
+          "frame_interval_us": 33333.333333333336,
+          "line_time_us": 15.2,
+          "hidden_lines_top": 16.0,
+          "hidden_lines_bottom": 20.0
+        },
+        "stages": [
+          {
+            "name": "unicam_capture",
+            "domain": "raw_bayer",
+            "buffering": "stream",
+            "start_us": 41576.613333333335,
+            "end_us": 44039.013333333336,
+            "latency_us": 2462.4000000000015,
+            "line_buffer_delay_us": 0.0,
+            "cycle_latency_us": 0.08,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "black_level_dpc",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 41607.253333333334,
+            "end_us": 44069.653333333335,
+            "latency_us": 2462.4000000000015,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.24,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "lens_shading_geq",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 41637.95333333334,
+            "end_us": 44100.35333333334,
+            "latency_us": 2462.4000000000015,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.3,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "demosaic_ccm_gamma",
+            "domain": "bayer_to_rgb",
+            "buffering": "line",
+            "start_us": 41699.40333333334,
+            "end_us": 44161.803333333344,
+            "latency_us": 2462.4000000000015,
+            "line_buffer_delay_us": 60.8,
+            "cycle_latency_us": 0.65,
+            "stalled_us": 0.0
+          }
+        ],
+        "queue_stall_us": 0.0,
+        "dropped": false
+      },
+      "controls_applied": {
+        "ae_enabled": true,
+        "awb_enabled": true,
+        "apply_to_image": true,
+        "ae_stats_frame": null,
+        "awb_stats_frame": null,
+        "ae_apply_delay_frames": 2,
+        "awb_apply_delay_frames": 2,
+        "stats_ready_us": 44342.933333333334,
+        "warmup": true,
+        "exposure_time_us": 8000.0,
+        "analog_gain": 1.0,
+        "wb_gains_rgb": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "applied_controls": {
+          "exposure_time_us": 8000.0,
+          "analog_gain": 1.0,
+          "wb_gains_rgb": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "ae_stats_frame": null,
+          "awb_stats_frame": null
+        },
+        "produced_stats": {
+          "mean_sensor_luma_norm": 0.02732593648587905,
+          "weighted_sensor_luma_norm": 0.02661261862146244,
+          "metering_sensor_luma_norm": 0.02661261862146244,
+          "target_luma": 0.18,
+          "clipped_fraction": 0.0,
+          "sensor_rgb_means": [
+            0.07058493985994549,
+            0.02873103574486437,
+            0.019988061252799016
+          ],
+          "sensor_raw_rgb_means": [
+            0.04962783625474311,
+            0.021704966354476288,
+            0.016473529686362922
+          ],
+          "awb_corrected_rgb_means": [
+            0.07058493985994549,
+            0.02873103574486437,
+            0.019988061252799016
+          ],
+          "sensor_rgb_imbalance": 1.2723009197300152,
+          "sensor_raw_rgb_imbalance": 1.1327533801357137,
+          "awb_corrected_rgb_imbalance": 1.2723009197300152,
+          "output_rgb_means": [
+            0.050534722668855975,
+            0.03456702111057577,
+            0.033106645903064204
+          ],
+          "output_rgb_imbalance": 0.4423055794754427,
+          "ae": {
+            "stats_grid": [
+              8,
+              8
+            ],
+            "ae_metering": "center_weighted",
+            "tile_mean_luma": [
+              [
+                0.01243960921949917,
+                0.033262576690193495,
+                0.03283954466975807,
+                0.01928548742328223,
+                0.011817593563909604,
+                0.02320938268137474,
+                0.030506994689765535,
+                0.034684652989190004
+              ],
+              [
+                0.013357017298387232,
+                0.03255311744462918,
+                0.03239227533358256,
+                0.020097220854357653,
+                0.011903735762532713,
+                0.023652286815932184,
+                0.031173588490896204,
+                0.03546182294483746
+              ],
+              [
+                0.03243107799383874,
+                0.022644447004618595,
+                0.02173261558306946,
+                0.026865313321091988,
+                0.011761068200984815,
+                0.024997593286842628,
+                0.03352217488643777,
+                0.037240947465545085
+              ],
+              [
+                0.03187147117381169,
+                0.02223773099545049,
+                0.021552310321852376,
+                0.02675440674136992,
+                0.013696963689920946,
+                0.025530470701042182,
+                0.033120783403407766,
+                0.036537381431059925
+              ],
+              [
+                0.009558957289908365,
+                0.015284643196706837,
+                0.020013353781675527,
+                0.02455647477485978,
+                0.05167526463671691,
+                0.035635924482129454,
+                0.024849041946324667,
+                0.018325416684922248
+              ],
+              [
+                0.01201342025146545,
+                0.017049295383088324,
+                0.02129211993401094,
+                0.025142960963719357,
+                0.051070528786417255,
+                0.03480140838536638,
+                0.023941106283341392,
+                0.017286706818039364
+              ],
+              [
+                0.08026564509330054,
+                0.06397007162763102,
+                0.047116205067596686,
+                0.03291827047326156,
+                0.01838280955050676,
+                0.011375825622831487,
+                0.007028306009441714,
+                0.004256454684341733
+              ],
+              [
+                0.07903087973218144,
+                0.06258969281911748,
+                0.04612194559168091,
+                0.0319530240988787,
+                0.01726365450934274,
+                0.010786718064989003,
+                0.006564124863362113,
+                0.004119587855886592
+              ]
+            ],
+            "tile_clip_fraction": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "mean_luma": 0.02732593648587905,
+            "weighted_luma": 0.02661261862146244,
+            "metering_luma": 0.02661261862146244,
+            "target_luma": 0.18,
+            "target_error": -0.15338738137853755,
+            "ev_error": -2.757814526169564,
+            "clipped_fraction": 0.0,
+            "highlight_clip": 0.98
+          },
+          "awb": {
+            "stats_roi": "valid_luma",
+            "valid_luma_range": [
+              0.02,
+              0.95
+            ],
+            "valid_pixel_fraction": 0.5993776145291296,
+            "raw_rgb_means": [
+              0.04962783625474311,
+              0.021704966354476288,
+              0.016473529686362922
+            ],
+            "rgb_means": [
+              0.07058493985994549,
+              0.02873103574486437,
+              0.019988061252799016
+            ],
+            "corrected_rgb_means": [
+              0.07058493985994549,
+              0.02873103574486437,
+              0.019988061252799016
+            ],
+            "raw_corrected_rgb_means": [
+              0.04962783625474311,
+              0.021704966354476288,
+              0.016473529686362922
+            ],
+            "raw_rgb_imbalance": 1.1327533801357137,
+            "rgb_imbalance": 1.2723009197300152,
+            "corrected_rgb_imbalance": 1.2723009197300152,
+            "raw_corrected_rgb_imbalance": 1.1327533801357137
+          }
+        },
+        "requested_controls": {
+          "ae": {
+            "source_frame": 1,
+            "apply_frame": 3,
+            "measured_luma": 0.02661261862146244,
+            "mean_luma": 0.02732593648587905,
+            "weighted_luma": 0.02661261862146244,
+            "clipped_fraction": 0.0,
+            "ev_error": -2.757814526169564,
+            "highlight_limited": false,
+            "target_luma": 0.18,
+            "ratio": 2.0,
+            "exposure_time_us": 16000.0,
+            "analog_gain": 1.0
+          },
+          "awb": {
+            "source_frame": 1,
+            "apply_frame": 3,
+            "rgb_means": [
+              0.07058493985994549,
+              0.02873103574486437,
+              0.019988061252799016
+            ],
+            "valid_pixel_fraction": 0.5993776145291296,
+            "wb_gains_rgb": [
+              0.7071067811865476,
+              1.0,
+              1.4142135623730951
+            ]
+          }
+        }
+      },
+      "latency_summary": {
+        "frame_count": 1.0,
+        "e2e_latency_mean_us": 11768.470000000008,
+        "e2e_latency_max_us": 11768.470000000008,
+        "e2e_latency_min_us": 11768.470000000008,
+        "queue_stall_total_us": 0.0,
+        "queue_stall_max_us": 0.0,
+        "ae_settle_frame": -1.0,
+        "ae_settle_frames_after_step": -1.0,
+        "ae_final_error_ev": -2.757814526169564,
+        "awb_settle_frame": -1.0,
+        "awb_final_rgb_imbalance": 1.2723009197300152,
+        "max_clip_fraction": 0.0,
+        "max_clip_fraction_before_response": 0.0,
+        "max_clip_fraction_after_response": 0.0,
+        "warmup_frame_count": 1.0,
+        "validation_verdicts": {
+          "ae_settle": false,
+          "awb_settle": false,
+          "clamp_compliance": true,
+          "warmup_delay_mapping": true,
+          "clip_reduction": true
+        },
+        "validation_thresholds": {
+          "ae_settle_ev": 0.25,
+          "awb_settle_imbalance": 0.2,
+          "settle_consecutive_frames": 2.0
+        }
+      }
+    },
+    {
+      "timeline": {
+        "frame_id": 2,
+        "timestamps_us": {
+          "request": 66666.66666666667,
+          "requested": 66666.66666666667,
+          "exposure_start": 66666.66666666667,
+          "exposure_mid": 74666.66666666667,
+          "readout_start": 82666.66666666667,
+          "readout_end": 85676.26666666668,
+          "stats_ready": 85676.26666666668,
+          "isp_start": 82909.94666666667,
+          "isp_done": 85495.13666666667,
+          "dma_done": 85935.13666666667,
+          "app_visible": 86435.13666666667,
+          "frame_interval_us": 33333.333333333336,
+          "line_time_us": 15.2,
+          "hidden_lines_top": 16.0,
+          "hidden_lines_bottom": 20.0
+        },
+        "stages": [
+          {
+            "name": "unicam_capture",
+            "domain": "raw_bayer",
+            "buffering": "stream",
+            "start_us": 82909.94666666667,
+            "end_us": 85372.34666666668,
+            "latency_us": 2462.4000000000087,
+            "line_buffer_delay_us": 0.0,
+            "cycle_latency_us": 0.08,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "black_level_dpc",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 82940.58666666667,
+            "end_us": 85402.98666666668,
+            "latency_us": 2462.4000000000087,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.24,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "lens_shading_geq",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 82971.28666666667,
+            "end_us": 85433.68666666668,
+            "latency_us": 2462.4000000000087,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.3,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "demosaic_ccm_gamma",
+            "domain": "bayer_to_rgb",
+            "buffering": "line",
+            "start_us": 83032.73666666666,
+            "end_us": 85495.13666666667,
+            "latency_us": 2462.4000000000087,
+            "line_buffer_delay_us": 60.8,
+            "cycle_latency_us": 0.65,
+            "stalled_us": 0.0
+          }
+        ],
+        "queue_stall_us": 0.0,
+        "dropped": false
+      },
+      "controls_applied": {
+        "ae_enabled": true,
+        "awb_enabled": true,
+        "apply_to_image": true,
+        "ae_stats_frame": 0,
+        "awb_stats_frame": 0,
+        "ae_apply_delay_frames": 2,
+        "awb_apply_delay_frames": 2,
+        "stats_ready_us": 85676.26666666668,
+        "warmup": false,
+        "exposure_time_us": 16000.0,
+        "analog_gain": 1.0,
+        "wb_gains_rgb": [
+          0.7071067811865476,
+          1.0,
+          1.4142135623730951
+        ],
+        "applied_controls": {
+          "exposure_time_us": 16000.0,
+          "analog_gain": 1.0,
+          "wb_gains_rgb": [
+            0.7071067811865476,
+            1.0,
+            1.4142135623730951
+          ],
+          "ae_stats_frame": 0,
+          "awb_stats_frame": 0
+        },
+        "produced_stats": {
+          "mean_sensor_luma_norm": 0.05465177119539146,
+          "weighted_sensor_luma_norm": 0.05322750486733012,
+          "metering_sensor_luma_norm": 0.05322750486733012,
+          "target_luma": 0.18,
+          "clipped_fraction": 0.0,
+          "sensor_rgb_means": [
+            0.10681891675680734,
+            0.04648728541106486,
+            0.03515791123322742
+          ],
+          "sensor_raw_rgb_means": [
+            0.09926907573012855,
+            0.043394018633676555,
+            0.032967766391708904
+          ],
+          "awb_corrected_rgb_means": [
+            0.07553238039773981,
+            0.04648728541106486,
+            0.049720794890739606
+          ],
+          "sensor_rgb_imbalance": 1.1407106249092696,
+          "sensor_raw_rgb_imbalance": 1.132511263451257,
+          "awb_corrected_rgb_imbalance": 0.5073660837120142,
+          "output_rgb_means": [
+            0.01814638513150538,
+            0.06979556113323583,
+            0.07349644129730803
+          ],
+          "output_rgb_imbalance": 1.028566817378464,
+          "ae": {
+            "stats_grid": [
+              8,
+              8
+            ],
+            "ae_metering": "center_weighted",
+            "tile_mean_luma": [
+              [
+                0.024857864014967656,
+                0.06657272854384574,
+                0.06572890581494767,
+                0.03866248566628404,
+                0.023755500135482544,
+                0.04632344609973834,
+                0.06095059355844862,
+                0.06938156104658053
+              ],
+              [
+                0.02680633866634685,
+                0.06515056318267887,
+                0.0646788874746303,
+                0.04013133643213397,
+                0.02378214082601402,
+                0.047332453766639256,
+                0.062453370447192465,
+                0.07082489184182492
+              ],
+              [
+                0.06483939612045468,
+                0.045279922505278764,
+                0.043483418157861324,
+                0.0536910271479542,
+                0.023462949374321012,
+                0.050051994214084725,
+                0.0671249600854554,
+                0.07442975567747816
+              ],
+              [
+                0.06364223062350254,
+                0.0444233861745772,
+                0.04315108978565834,
+                0.053624557861828064,
+                0.027391585235336482,
+                0.0510312189110274,
+                0.06628668319690154,
+                0.07295922463379988
+              ],
+              [
+                0.019165612448231433,
+                0.030692255140775643,
+                0.0400579107687647,
+                0.04907898425530135,
+                0.10342954099535069,
+                0.071130679242734,
+                0.049554202431836496,
+                0.03656654744239889
+              ],
+              [
+                0.02391368038814657,
+                0.034070831172722124,
+                0.04238966187079421,
+                0.05030627294365815,
+                0.10217536987257315,
+                0.06984197312268035,
+                0.04786012350109403,
+                0.0346887168216818
+              ],
+              [
+                0.16056062033288418,
+                0.12813552721096041,
+                0.09413991551792693,
+                0.0659163667249204,
+                0.036672458488054206,
+                0.022763508394592534,
+                0.013936932114971391,
+                0.008503320173387037
+              ],
+              [
+                0.15802465974815755,
+                0.12530079788617512,
+                0.09225308863949372,
+                0.06395998349909758,
+                0.034612953911852845,
+                0.021405961640355346,
+                0.013188034377258436,
+                0.008160591932880313
+              ]
+            ],
+            "tile_clip_fraction": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "mean_luma": 0.05465177119539146,
+            "weighted_luma": 0.05322750486733012,
+            "metering_luma": 0.05322750486733012,
+            "target_luma": 0.18,
+            "target_error": -0.12677249513266986,
+            "ev_error": -1.7577530624548736,
+            "clipped_fraction": 0.0,
+            "highlight_clip": 0.98
+          },
+          "awb": {
+            "stats_roi": "valid_luma",
+            "valid_luma_range": [
+              0.02,
+              0.95
+            ],
+            "valid_pixel_fraction": 0.9138098153249669,
+            "raw_rgb_means": [
+              0.09926907573012855,
+              0.043394018633676555,
+              0.032967766391708904
+            ],
+            "rgb_means": [
+              0.10681891675680734,
+              0.04648728541106486,
+              0.03515791123322742
+            ],
+            "corrected_rgb_means": [
+              0.07553238039773981,
+              0.04648728541106486,
+              0.049720794890739606
+            ],
+            "raw_corrected_rgb_means": [
+              0.07019383661089483,
+              0.043394018633676555,
+              0.04662346235230265
+            ],
+            "raw_rgb_imbalance": 1.132511263451257,
+            "rgb_imbalance": 1.1407106249092696,
+            "corrected_rgb_imbalance": 0.5073660837120142,
+            "raw_corrected_rgb_imbalance": 0.501833797621945
+          }
+        },
+        "requested_controls": {
+          "ae": {
+            "source_frame": 2,
+            "apply_frame": 4,
+            "measured_luma": 0.05322750486733012,
+            "mean_luma": 0.05465177119539146,
+            "weighted_luma": 0.05322750486733012,
+            "clipped_fraction": 0.0,
+            "ev_error": -1.7577530624548736,
+            "highlight_limited": false,
+            "target_luma": 0.18,
+            "ratio": 2.0,
+            "exposure_time_us": 30000.000000000004,
+            "analog_gain": 1.0666666666666664
+          },
+          "awb": {
+            "source_frame": 2,
+            "apply_frame": 4,
+            "rgb_means": [
+              0.10681891675680734,
+              0.04648728541106486,
+              0.03515791123322742
+            ],
+            "valid_pixel_fraction": 0.9138098153249669,
+            "wb_gains_rgb": [
+              0.5000000000000001,
+              1.0,
+              1.3222425275119913
+            ]
+          }
+        }
+      },
+      "latency_summary": {
+        "frame_count": 1.0,
+        "e2e_latency_mean_us": 19768.47,
+        "e2e_latency_max_us": 19768.47,
+        "e2e_latency_min_us": 19768.47,
+        "queue_stall_total_us": 0.0,
+        "queue_stall_max_us": 0.0,
+        "ae_settle_frame": -1.0,
+        "ae_settle_frames_after_step": -1.0,
+        "ae_final_error_ev": -1.7577530624548736,
+        "awb_settle_frame": -1.0,
+        "awb_final_rgb_imbalance": 0.5073660837120142,
+        "max_clip_fraction": 0.0,
+        "max_clip_fraction_before_response": 0.0,
+        "max_clip_fraction_after_response": 0.0,
+        "warmup_frame_count": 0.0,
+        "validation_verdicts": {
+          "ae_settle": false,
+          "awb_settle": false,
+          "clamp_compliance": true,
+          "warmup_delay_mapping": true,
+          "clip_reduction": true
+        },
+        "validation_thresholds": {
+          "ae_settle_ev": 0.25,
+          "awb_settle_imbalance": 0.2,
+          "settle_consecutive_frames": 2.0
+        }
+      }
+    },
+    {
+      "timeline": {
+        "frame_id": 3,
+        "timestamps_us": {
+          "request": 100000.0,
+          "requested": 100000.0,
+          "exposure_start": 100000.0,
+          "exposure_mid": 108000.0,
+          "readout_start": 116000.0,
+          "readout_end": 119009.6,
+          "stats_ready": 119009.6,
+          "isp_start": 116243.28,
+          "isp_done": 118828.47,
+          "dma_done": 119268.47,
+          "app_visible": 119768.47,
+          "frame_interval_us": 33333.333333333336,
+          "line_time_us": 15.2,
+          "hidden_lines_top": 16.0,
+          "hidden_lines_bottom": 20.0
+        },
+        "stages": [
+          {
+            "name": "unicam_capture",
+            "domain": "raw_bayer",
+            "buffering": "stream",
+            "start_us": 116243.28,
+            "end_us": 118705.68000000001,
+            "latency_us": 2462.4000000000087,
+            "line_buffer_delay_us": 0.0,
+            "cycle_latency_us": 0.08,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "black_level_dpc",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 116273.92,
+            "end_us": 118736.32,
+            "latency_us": 2462.4000000000087,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.24,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "lens_shading_geq",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 116304.62,
+            "end_us": 118767.02,
+            "latency_us": 2462.4000000000087,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.3,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "demosaic_ccm_gamma",
+            "domain": "bayer_to_rgb",
+            "buffering": "line",
+            "start_us": 116366.06999999999,
+            "end_us": 118828.47,
+            "latency_us": 2462.4000000000087,
+            "line_buffer_delay_us": 60.8,
+            "cycle_latency_us": 0.65,
+            "stalled_us": 0.0
+          }
+        ],
+        "queue_stall_us": 0.0,
+        "dropped": false
+      },
+      "controls_applied": {
+        "ae_enabled": true,
+        "awb_enabled": true,
+        "apply_to_image": true,
+        "ae_stats_frame": 1,
+        "awb_stats_frame": 1,
+        "ae_apply_delay_frames": 2,
+        "awb_apply_delay_frames": 2,
+        "stats_ready_us": 119009.6,
+        "warmup": false,
+        "exposure_time_us": 16000.0,
+        "analog_gain": 1.0,
+        "wb_gains_rgb": [
+          0.7071067811865476,
+          1.0,
+          1.4142135623730951
+        ],
+        "applied_controls": {
+          "exposure_time_us": 16000.0,
+          "analog_gain": 1.0,
+          "wb_gains_rgb": [
+            0.7071067811865476,
+            1.0,
+            1.4142135623730951
+          ],
+          "ae_stats_frame": 1,
+          "awb_stats_frame": 1
+        },
+        "produced_stats": {
+          "mean_sensor_luma_norm": 0.05465177119539146,
+          "weighted_sensor_luma_norm": 0.05322750486733012,
+          "metering_sensor_luma_norm": 0.05322750486733012,
+          "target_luma": 0.18,
+          "clipped_fraction": 0.0,
+          "sensor_rgb_means": [
+            0.10681891675680734,
+            0.04648728541106486,
+            0.03515791123322742
+          ],
+          "sensor_raw_rgb_means": [
+            0.09926907573012855,
+            0.043394018633676555,
+            0.032967766391708904
+          ],
+          "awb_corrected_rgb_means": [
+            0.07553238039773981,
+            0.04648728541106486,
+            0.049720794890739606
+          ],
+          "sensor_rgb_imbalance": 1.1407106249092696,
+          "sensor_raw_rgb_imbalance": 1.132511263451257,
+          "awb_corrected_rgb_imbalance": 0.5073660837120142,
+          "output_rgb_means": [
+            0.01814638513150538,
+            0.06979556113323583,
+            0.07349644129730803
+          ],
+          "output_rgb_imbalance": 1.028566817378464,
+          "ae": {
+            "stats_grid": [
+              8,
+              8
+            ],
+            "ae_metering": "center_weighted",
+            "tile_mean_luma": [
+              [
+                0.024857864014967656,
+                0.06657272854384574,
+                0.06572890581494767,
+                0.03866248566628404,
+                0.023755500135482544,
+                0.04632344609973834,
+                0.06095059355844862,
+                0.06938156104658053
+              ],
+              [
+                0.02680633866634685,
+                0.06515056318267887,
+                0.0646788874746303,
+                0.04013133643213397,
+                0.02378214082601402,
+                0.047332453766639256,
+                0.062453370447192465,
+                0.07082489184182492
+              ],
+              [
+                0.06483939612045468,
+                0.045279922505278764,
+                0.043483418157861324,
+                0.0536910271479542,
+                0.023462949374321012,
+                0.050051994214084725,
+                0.0671249600854554,
+                0.07442975567747816
+              ],
+              [
+                0.06364223062350254,
+                0.0444233861745772,
+                0.04315108978565834,
+                0.053624557861828064,
+                0.027391585235336482,
+                0.0510312189110274,
+                0.06628668319690154,
+                0.07295922463379988
+              ],
+              [
+                0.019165612448231433,
+                0.030692255140775643,
+                0.0400579107687647,
+                0.04907898425530135,
+                0.10342954099535069,
+                0.071130679242734,
+                0.049554202431836496,
+                0.03656654744239889
+              ],
+              [
+                0.02391368038814657,
+                0.034070831172722124,
+                0.04238966187079421,
+                0.05030627294365815,
+                0.10217536987257315,
+                0.06984197312268035,
+                0.04786012350109403,
+                0.0346887168216818
+              ],
+              [
+                0.16056062033288418,
+                0.12813552721096041,
+                0.09413991551792693,
+                0.0659163667249204,
+                0.036672458488054206,
+                0.022763508394592534,
+                0.013936932114971391,
+                0.008503320173387037
+              ],
+              [
+                0.15802465974815755,
+                0.12530079788617512,
+                0.09225308863949372,
+                0.06395998349909758,
+                0.034612953911852845,
+                0.021405961640355346,
+                0.013188034377258436,
+                0.008160591932880313
+              ]
+            ],
+            "tile_clip_fraction": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "mean_luma": 0.05465177119539146,
+            "weighted_luma": 0.05322750486733012,
+            "metering_luma": 0.05322750486733012,
+            "target_luma": 0.18,
+            "target_error": -0.12677249513266986,
+            "ev_error": -1.7577530624548736,
+            "clipped_fraction": 0.0,
+            "highlight_clip": 0.98
+          },
+          "awb": {
+            "stats_roi": "valid_luma",
+            "valid_luma_range": [
+              0.02,
+              0.95
+            ],
+            "valid_pixel_fraction": 0.9138098153249669,
+            "raw_rgb_means": [
+              0.09926907573012855,
+              0.043394018633676555,
+              0.032967766391708904
+            ],
+            "rgb_means": [
+              0.10681891675680734,
+              0.04648728541106486,
+              0.03515791123322742
+            ],
+            "corrected_rgb_means": [
+              0.07553238039773981,
+              0.04648728541106486,
+              0.049720794890739606
+            ],
+            "raw_corrected_rgb_means": [
+              0.07019383661089483,
+              0.043394018633676555,
+              0.04662346235230265
+            ],
+            "raw_rgb_imbalance": 1.132511263451257,
+            "rgb_imbalance": 1.1407106249092696,
+            "corrected_rgb_imbalance": 0.5073660837120142,
+            "raw_corrected_rgb_imbalance": 0.501833797621945
+          }
+        },
+        "requested_controls": {
+          "ae": {
+            "source_frame": 3,
+            "apply_frame": 5,
+            "measured_luma": 0.05322750486733012,
+            "mean_luma": 0.05465177119539146,
+            "weighted_luma": 0.05322750486733012,
+            "clipped_fraction": 0.0,
+            "ev_error": -1.7577530624548736,
+            "highlight_limited": false,
+            "target_luma": 0.18,
+            "ratio": 2.0,
+            "exposure_time_us": 30000.000000000004,
+            "analog_gain": 1.0666666666666664
+          },
+          "awb": {
+            "source_frame": 3,
+            "apply_frame": 5,
+            "rgb_means": [
+              0.10681891675680734,
+              0.04648728541106486,
+              0.03515791123322742
+            ],
+            "valid_pixel_fraction": 0.9138098153249669,
+            "wb_gains_rgb": [
+              0.5000000000000001,
+              1.0,
+              1.3222425275119913
+            ]
+          }
+        }
+      },
+      "latency_summary": {
+        "frame_count": 1.0,
+        "e2e_latency_mean_us": 19768.47,
+        "e2e_latency_max_us": 19768.47,
+        "e2e_latency_min_us": 19768.47,
+        "queue_stall_total_us": 0.0,
+        "queue_stall_max_us": 0.0,
+        "ae_settle_frame": -1.0,
+        "ae_settle_frames_after_step": -1.0,
+        "ae_final_error_ev": -1.7577530624548736,
+        "awb_settle_frame": -1.0,
+        "awb_final_rgb_imbalance": 0.5073660837120142,
+        "max_clip_fraction": 0.0,
+        "max_clip_fraction_before_response": 0.0,
+        "max_clip_fraction_after_response": 0.0,
+        "warmup_frame_count": 0.0,
+        "validation_verdicts": {
+          "ae_settle": false,
+          "awb_settle": false,
+          "clamp_compliance": true,
+          "warmup_delay_mapping": true,
+          "clip_reduction": true
+        },
+        "validation_thresholds": {
+          "ae_settle_ev": 0.25,
+          "awb_settle_imbalance": 0.2,
+          "settle_consecutive_frames": 2.0
+        }
+      }
+    },
+    {
+      "timeline": {
+        "frame_id": 4,
+        "timestamps_us": {
+          "request": 133333.33333333334,
+          "requested": 133333.33333333334,
+          "exposure_start": 133333.33333333334,
+          "exposure_mid": 148333.33333333334,
+          "readout_start": 163333.33333333334,
+          "readout_end": 166342.93333333335,
+          "stats_ready": 166342.93333333335,
+          "isp_start": 163576.61333333334,
+          "isp_done": 166161.8033333333,
+          "dma_done": 166601.8033333333,
+          "app_visible": 167101.8033333333,
+          "frame_interval_us": 33333.333333333336,
+          "line_time_us": 15.2,
+          "hidden_lines_top": 16.0,
+          "hidden_lines_bottom": 20.0
+        },
+        "stages": [
+          {
+            "name": "unicam_capture",
+            "domain": "raw_bayer",
+            "buffering": "stream",
+            "start_us": 163576.61333333334,
+            "end_us": 166039.01333333334,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 0.0,
+            "cycle_latency_us": 0.08,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "black_level_dpc",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 163607.25333333333,
+            "end_us": 166069.65333333332,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.24,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "lens_shading_geq",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 163637.9533333333,
+            "end_us": 166100.3533333333,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.3,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "demosaic_ccm_gamma",
+            "domain": "bayer_to_rgb",
+            "buffering": "line",
+            "start_us": 163699.4033333333,
+            "end_us": 166161.8033333333,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 60.8,
+            "cycle_latency_us": 0.65,
+            "stalled_us": 0.0
+          }
+        ],
+        "queue_stall_us": 0.0,
+        "dropped": false
+      },
+      "controls_applied": {
+        "ae_enabled": true,
+        "awb_enabled": true,
+        "apply_to_image": true,
+        "ae_stats_frame": 2,
+        "awb_stats_frame": 2,
+        "ae_apply_delay_frames": 2,
+        "awb_apply_delay_frames": 2,
+        "stats_ready_us": 166342.93333333335,
+        "warmup": false,
+        "exposure_time_us": 30000.000000000004,
+        "analog_gain": 1.0666666666666664,
+        "wb_gains_rgb": [
+          0.5000000000000001,
+          1.0,
+          1.3222425275119913
+        ],
+        "applied_controls": {
+          "exposure_time_us": 30000.000000000004,
+          "analog_gain": 1.0666666666666664,
+          "wb_gains_rgb": [
+            0.5000000000000001,
+            1.0,
+            1.3222425275119913
+          ],
+          "ae_stats_frame": 2,
+          "awb_stats_frame": 2
+        },
+        "produced_stats": {
+          "mean_sensor_luma_norm": 0.40914555859523233,
+          "weighted_sensor_luma_norm": 0.3653147771047893,
+          "metering_sensor_luma_norm": 0.3653147771047893,
+          "target_luma": 0.18,
+          "clipped_fraction": 0.16380981532496683,
+          "sensor_rgb_means": [
+            0.6065942029387067,
+            0.3157983012113791,
+            0.24088223377282977
+          ],
+          "sensor_raw_rgb_means": [
+            0.6315006713681034,
+            0.35908465528944716,
+            0.28893597589968645
+          ],
+          "awb_corrected_rgb_means": [
+            0.3032971014693534,
+            0.3157983012113791,
+            0.3185047336165208
+          ],
+          "sensor_rgb_imbalance": 0.9431442734298701,
+          "sensor_raw_rgb_imbalance": 0.8031863825567522,
+          "awb_corrected_rgb_imbalance": 0.04865922547929124,
+          "output_rgb_means": [
+            0.005603774632639425,
+            0.2955793294621312,
+            0.26841517134322457
+          ],
+          "output_rgb_imbalance": 1.5272635153600862,
+          "ae": {
+            "stats_grid": [
+              8,
+              8
+            ],
+            "ae_metering": "center_weighted",
+            "tile_mean_luma": [
+              [
+                1.0,
+                1.0,
+                0.45614478474073733,
+                0.27422078269309375,
+                0.1673686980436816,
+                0.32621736762326664,
+                0.429741776699141,
+                0.4885028027668837
+              ],
+              [
+                0.9781815615530969,
+                0.9940157013043281,
+                0.45048355272651286,
+                0.2845850326670304,
+                0.1681976915481977,
+                0.33207372897765297,
+                0.4390702728894812,
+                0.4985062230064729
+              ],
+              [
+                0.41742083017366527,
+                0.3518070223337817,
+                0.3070207622878396,
+                0.35789718375641416,
+                0.165772140038426,
+                0.35269577582570455,
+                0.45680299884965353,
+                0.48052554286448546
+              ],
+              [
+                0.40342286878112404,
+                0.30496569328836387,
+                0.2977299642841963,
+                0.35514379221895137,
+                0.192791329908128,
+                0.3592169239790883,
+                0.4530826678017657,
+                0.4761879946397723
+              ],
+              [
+                0.13621599755731378,
+                0.21671945290415467,
+                0.2763135045210501,
+                0.3176129796623739,
+                0.6099126446243733,
+                0.45614463073776346,
+                0.34056448303893083,
+                0.25747785697724895
+              ],
+              [
+                0.16994120238001648,
+                0.24071796672442705,
+                0.29242804869721806,
+                0.3277995743728724,
+                0.6027192193042483,
+                0.4489367276744407,
+                0.3310224978462914,
+                0.24526176577032677
+              ],
+              [
+                0.931426060128863,
+                0.7932851490119291,
+                0.6299773165153395,
+                0.46406503130461296,
+                0.25852621108255086,
+                0.16072235161993054,
+                0.09832056135778569,
+                0.06094092516255036
+              ],
+              [
+                0.9123284016984903,
+                0.7766801284355791,
+                0.6169493344452597,
+                0.45115092203040413,
+                0.2451343317923621,
+                0.15163324528783317,
+                0.09288346972867981,
+                0.058075242437075306
+              ]
+            ],
+            "tile_clip_fraction": [
+              [
+                1.0,
+                1.0,
+                0.14444444444444443,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.9523809523809523,
+                0.9846390168970814,
+                0.13015873015873017,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.24193548387096775,
+                0.0967741935483871,
+                0.08333333333333333,
+                0.23333333333333334,
+                0.0,
+                0.0,
+                0.08333333333333333,
+                0.23333333333333334
+              ],
+              [
+                0.21774193548387097,
+                0.07258064516129033,
+                0.08333333333333333,
+                0.23333333333333334,
+                0.0,
+                0.0,
+                0.075,
+                0.21
+              ],
+              [
+                0.0,
+                0.0,
+                0.08333333333333333,
+                0.25,
+                0.25,
+                0.25,
+                0.15,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.08333333333333333,
+                0.25,
+                0.25,
+                0.23333333333333334,
+                0.135,
+                0.0
+              ],
+              [
+                0.6274193548387097,
+                0.3758064516129032,
+                0.15,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.5919354838709677,
+                0.3629032258064516,
+                0.15,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "mean_luma": 0.40914555859523233,
+            "weighted_luma": 0.3653147771047893,
+            "metering_luma": 0.3653147771047893,
+            "target_luma": 0.18,
+            "target_error": 0.18531477710478933,
+            "ev_error": 1.0211432058217265,
+            "clipped_fraction": 0.16380981532496683,
+            "highlight_clip": 0.98
+          },
+          "awb": {
+            "stats_roi": "valid_luma",
+            "valid_luma_range": [
+              0.02,
+              0.95
+            ],
+            "valid_pixel_fraction": 0.9366901336598307,
+            "raw_rgb_means": [
+              0.6315006713681034,
+              0.35908465528944716,
+              0.28893597589968645
+            ],
+            "rgb_means": [
+              0.6065942029387067,
+              0.3157983012113791,
+              0.24088223377282977
+            ],
+            "corrected_rgb_means": [
+              0.3032971014693534,
+              0.3157983012113791,
+              0.3185047336165208
+            ],
+            "raw_corrected_rgb_means": [
+              0.31575033568405175,
+              0.35908465528944716,
+              0.38204343506274524
+            ],
+            "raw_rgb_imbalance": 0.8031863825567522,
+            "rgb_imbalance": 0.9431442734298701,
+            "corrected_rgb_imbalance": 0.04865922547929124,
+            "raw_corrected_rgb_imbalance": 0.18817613571881178
+          }
+        },
+        "requested_controls": {
+          "ae": {
+            "source_frame": 4,
+            "apply_frame": 6,
+            "measured_luma": 0.3653147771047893,
+            "mean_luma": 0.40914555859523233,
+            "weighted_luma": 0.3653147771047893,
+            "clipped_fraction": 0.16380981532496683,
+            "ev_error": 1.0211432058217265,
+            "highlight_limited": false,
+            "target_luma": 0.18,
+            "ratio": 0.5,
+            "exposure_time_us": 15999.999999999998,
+            "analog_gain": 1.0
+          },
+          "awb": {
+            "source_frame": 4,
+            "apply_frame": 6,
+            "rgb_means": [
+              0.6065942029387067,
+              0.3157983012113791,
+              0.24088223377282977
+            ],
+            "valid_pixel_fraction": 0.9366901336598307,
+            "wb_gains_rgb": [
+              0.5206088348379566,
+              1.0,
+              1.3110070272314098
+            ]
+          }
+        }
+      },
+      "latency_summary": {
+        "frame_count": 1.0,
+        "e2e_latency_mean_us": 33768.46999999994,
+        "e2e_latency_max_us": 33768.46999999994,
+        "e2e_latency_min_us": 33768.46999999994,
+        "queue_stall_total_us": 0.0,
+        "queue_stall_max_us": 0.0,
+        "ae_settle_frame": -1.0,
+        "ae_settle_frames_after_step": -1.0,
+        "ae_final_error_ev": 1.0211432058217265,
+        "awb_settle_frame": -1.0,
+        "awb_final_rgb_imbalance": 0.04865922547929124,
+        "max_clip_fraction": 0.16380981532496683,
+        "max_clip_fraction_before_response": 0.16380981532496683,
+        "max_clip_fraction_after_response": 0.0,
+        "warmup_frame_count": 0.0,
+        "validation_verdicts": {
+          "ae_settle": false,
+          "awb_settle": false,
+          "clamp_compliance": true,
+          "warmup_delay_mapping": true,
+          "clip_reduction": true
+        },
+        "validation_thresholds": {
+          "ae_settle_ev": 0.25,
+          "awb_settle_imbalance": 0.2,
+          "settle_consecutive_frames": 2.0
+        }
+      }
+    },
+    {
+      "timeline": {
+        "frame_id": 5,
+        "timestamps_us": {
+          "request": 166666.6666666667,
+          "requested": 166666.6666666667,
+          "exposure_start": 166666.6666666667,
+          "exposure_mid": 181666.6666666667,
+          "readout_start": 196666.6666666667,
+          "readout_end": 199676.2666666667,
+          "stats_ready": 199676.2666666667,
+          "isp_start": 196909.94666666668,
+          "isp_done": 199495.13666666663,
+          "dma_done": 199935.13666666663,
+          "app_visible": 200435.13666666663,
+          "frame_interval_us": 33333.333333333336,
+          "line_time_us": 15.2,
+          "hidden_lines_top": 16.0,
+          "hidden_lines_bottom": 20.0
+        },
+        "stages": [
+          {
+            "name": "unicam_capture",
+            "domain": "raw_bayer",
+            "buffering": "stream",
+            "start_us": 196909.94666666668,
+            "end_us": 199372.34666666668,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 0.0,
+            "cycle_latency_us": 0.08,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "black_level_dpc",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 196940.58666666667,
+            "end_us": 199402.98666666666,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.24,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "lens_shading_geq",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 196971.28666666665,
+            "end_us": 199433.68666666665,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.3,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "demosaic_ccm_gamma",
+            "domain": "bayer_to_rgb",
+            "buffering": "line",
+            "start_us": 197032.73666666663,
+            "end_us": 199495.13666666663,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 60.8,
+            "cycle_latency_us": 0.65,
+            "stalled_us": 0.0
+          }
+        ],
+        "queue_stall_us": 0.0,
+        "dropped": false
+      },
+      "controls_applied": {
+        "ae_enabled": true,
+        "awb_enabled": true,
+        "apply_to_image": true,
+        "ae_stats_frame": 3,
+        "awb_stats_frame": 3,
+        "ae_apply_delay_frames": 2,
+        "awb_apply_delay_frames": 2,
+        "stats_ready_us": 199676.2666666667,
+        "warmup": false,
+        "exposure_time_us": 30000.000000000004,
+        "analog_gain": 1.0666666666666664,
+        "wb_gains_rgb": [
+          0.5000000000000001,
+          1.0,
+          1.3222425275119913
+        ],
+        "applied_controls": {
+          "exposure_time_us": 30000.000000000004,
+          "analog_gain": 1.0666666666666664,
+          "wb_gains_rgb": [
+            0.5000000000000001,
+            1.0,
+            1.3222425275119913
+          ],
+          "ae_stats_frame": 3,
+          "awb_stats_frame": 3
+        },
+        "produced_stats": {
+          "mean_sensor_luma_norm": 0.40914555859523233,
+          "weighted_sensor_luma_norm": 0.3653147771047893,
+          "metering_sensor_luma_norm": 0.3653147771047893,
+          "target_luma": 0.18,
+          "clipped_fraction": 0.16380981532496683,
+          "sensor_rgb_means": [
+            0.6065942029387067,
+            0.3157983012113791,
+            0.24088223377282977
+          ],
+          "sensor_raw_rgb_means": [
+            0.6315006713681034,
+            0.35908465528944716,
+            0.28893597589968645
+          ],
+          "awb_corrected_rgb_means": [
+            0.3032971014693534,
+            0.3157983012113791,
+            0.3185047336165208
+          ],
+          "sensor_rgb_imbalance": 0.9431442734298701,
+          "sensor_raw_rgb_imbalance": 0.8031863825567522,
+          "awb_corrected_rgb_imbalance": 0.04865922547929124,
+          "output_rgb_means": [
+            0.005603774632639425,
+            0.2955793294621312,
+            0.26841517134322457
+          ],
+          "output_rgb_imbalance": 1.5272635153600862,
+          "ae": {
+            "stats_grid": [
+              8,
+              8
+            ],
+            "ae_metering": "center_weighted",
+            "tile_mean_luma": [
+              [
+                1.0,
+                1.0,
+                0.45614478474073733,
+                0.27422078269309375,
+                0.1673686980436816,
+                0.32621736762326664,
+                0.429741776699141,
+                0.4885028027668837
+              ],
+              [
+                0.9781815615530969,
+                0.9940157013043281,
+                0.45048355272651286,
+                0.2845850326670304,
+                0.1681976915481977,
+                0.33207372897765297,
+                0.4390702728894812,
+                0.4985062230064729
+              ],
+              [
+                0.41742083017366527,
+                0.3518070223337817,
+                0.3070207622878396,
+                0.35789718375641416,
+                0.165772140038426,
+                0.35269577582570455,
+                0.45680299884965353,
+                0.48052554286448546
+              ],
+              [
+                0.40342286878112404,
+                0.30496569328836387,
+                0.2977299642841963,
+                0.35514379221895137,
+                0.192791329908128,
+                0.3592169239790883,
+                0.4530826678017657,
+                0.4761879946397723
+              ],
+              [
+                0.13621599755731378,
+                0.21671945290415467,
+                0.2763135045210501,
+                0.3176129796623739,
+                0.6099126446243733,
+                0.45614463073776346,
+                0.34056448303893083,
+                0.25747785697724895
+              ],
+              [
+                0.16994120238001648,
+                0.24071796672442705,
+                0.29242804869721806,
+                0.3277995743728724,
+                0.6027192193042483,
+                0.4489367276744407,
+                0.3310224978462914,
+                0.24526176577032677
+              ],
+              [
+                0.931426060128863,
+                0.7932851490119291,
+                0.6299773165153395,
+                0.46406503130461296,
+                0.25852621108255086,
+                0.16072235161993054,
+                0.09832056135778569,
+                0.06094092516255036
+              ],
+              [
+                0.9123284016984903,
+                0.7766801284355791,
+                0.6169493344452597,
+                0.45115092203040413,
+                0.2451343317923621,
+                0.15163324528783317,
+                0.09288346972867981,
+                0.058075242437075306
+              ]
+            ],
+            "tile_clip_fraction": [
+              [
+                1.0,
+                1.0,
+                0.14444444444444443,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.9523809523809523,
+                0.9846390168970814,
+                0.13015873015873017,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.24193548387096775,
+                0.0967741935483871,
+                0.08333333333333333,
+                0.23333333333333334,
+                0.0,
+                0.0,
+                0.08333333333333333,
+                0.23333333333333334
+              ],
+              [
+                0.21774193548387097,
+                0.07258064516129033,
+                0.08333333333333333,
+                0.23333333333333334,
+                0.0,
+                0.0,
+                0.075,
+                0.21
+              ],
+              [
+                0.0,
+                0.0,
+                0.08333333333333333,
+                0.25,
+                0.25,
+                0.25,
+                0.15,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.08333333333333333,
+                0.25,
+                0.25,
+                0.23333333333333334,
+                0.135,
+                0.0
+              ],
+              [
+                0.6274193548387097,
+                0.3758064516129032,
+                0.15,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.5919354838709677,
+                0.3629032258064516,
+                0.15,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "mean_luma": 0.40914555859523233,
+            "weighted_luma": 0.3653147771047893,
+            "metering_luma": 0.3653147771047893,
+            "target_luma": 0.18,
+            "target_error": 0.18531477710478933,
+            "ev_error": 1.0211432058217265,
+            "clipped_fraction": 0.16380981532496683,
+            "highlight_clip": 0.98
+          },
+          "awb": {
+            "stats_roi": "valid_luma",
+            "valid_luma_range": [
+              0.02,
+              0.95
+            ],
+            "valid_pixel_fraction": 0.9366901336598307,
+            "raw_rgb_means": [
+              0.6315006713681034,
+              0.35908465528944716,
+              0.28893597589968645
+            ],
+            "rgb_means": [
+              0.6065942029387067,
+              0.3157983012113791,
+              0.24088223377282977
+            ],
+            "corrected_rgb_means": [
+              0.3032971014693534,
+              0.3157983012113791,
+              0.3185047336165208
+            ],
+            "raw_corrected_rgb_means": [
+              0.31575033568405175,
+              0.35908465528944716,
+              0.38204343506274524
+            ],
+            "raw_rgb_imbalance": 0.8031863825567522,
+            "rgb_imbalance": 0.9431442734298701,
+            "corrected_rgb_imbalance": 0.04865922547929124,
+            "raw_corrected_rgb_imbalance": 0.18817613571881178
+          }
+        },
+        "requested_controls": {
+          "ae": {
+            "source_frame": 5,
+            "apply_frame": 7,
+            "measured_luma": 0.3653147771047893,
+            "mean_luma": 0.40914555859523233,
+            "weighted_luma": 0.3653147771047893,
+            "clipped_fraction": 0.16380981532496683,
+            "ev_error": 1.0211432058217265,
+            "highlight_limited": false,
+            "target_luma": 0.18,
+            "ratio": 0.5,
+            "exposure_time_us": 15999.999999999998,
+            "analog_gain": 1.0
+          },
+          "awb": {
+            "source_frame": 5,
+            "apply_frame": 7,
+            "rgb_means": [
+              0.6065942029387067,
+              0.3157983012113791,
+              0.24088223377282977
+            ],
+            "valid_pixel_fraction": 0.9366901336598307,
+            "wb_gains_rgb": [
+              0.5206088348379566,
+              1.0,
+              1.3110070272314098
+            ]
+          }
+        }
+      },
+      "latency_summary": {
+        "frame_count": 1.0,
+        "e2e_latency_mean_us": 33768.46999999994,
+        "e2e_latency_max_us": 33768.46999999994,
+        "e2e_latency_min_us": 33768.46999999994,
+        "queue_stall_total_us": 0.0,
+        "queue_stall_max_us": 0.0,
+        "ae_settle_frame": -1.0,
+        "ae_settle_frames_after_step": -1.0,
+        "ae_final_error_ev": 1.0211432058217265,
+        "awb_settle_frame": -1.0,
+        "awb_final_rgb_imbalance": 0.04865922547929124,
+        "max_clip_fraction": 0.16380981532496683,
+        "max_clip_fraction_before_response": 0.16380981532496683,
+        "max_clip_fraction_after_response": 0.0,
+        "warmup_frame_count": 0.0,
+        "validation_verdicts": {
+          "ae_settle": false,
+          "awb_settle": false,
+          "clamp_compliance": true,
+          "warmup_delay_mapping": true,
+          "clip_reduction": true
+        },
+        "validation_thresholds": {
+          "ae_settle_ev": 0.25,
+          "awb_settle_imbalance": 0.2,
+          "settle_consecutive_frames": 2.0
+        }
+      }
+    },
+    {
+      "timeline": {
+        "frame_id": 6,
+        "timestamps_us": {
+          "request": 200000.0,
+          "requested": 200000.0,
+          "exposure_start": 200000.0,
+          "exposure_mid": 208000.0,
+          "readout_start": 216000.0,
+          "readout_end": 219009.6,
+          "stats_ready": 219009.6,
+          "isp_start": 216243.28,
+          "isp_done": 218828.46999999994,
+          "dma_done": 219268.46999999994,
+          "app_visible": 219768.46999999994,
+          "frame_interval_us": 33333.333333333336,
+          "line_time_us": 15.2,
+          "hidden_lines_top": 16.0,
+          "hidden_lines_bottom": 20.0
+        },
+        "stages": [
+          {
+            "name": "unicam_capture",
+            "domain": "raw_bayer",
+            "buffering": "stream",
+            "start_us": 216243.28,
+            "end_us": 218705.68,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 0.0,
+            "cycle_latency_us": 0.08,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "black_level_dpc",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 216273.91999999998,
+            "end_us": 218736.31999999998,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.24,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "lens_shading_geq",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 216304.61999999997,
+            "end_us": 218767.01999999996,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.3,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "demosaic_ccm_gamma",
+            "domain": "bayer_to_rgb",
+            "buffering": "line",
+            "start_us": 216366.06999999995,
+            "end_us": 218828.46999999994,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 60.8,
+            "cycle_latency_us": 0.65,
+            "stalled_us": 0.0
+          }
+        ],
+        "queue_stall_us": 0.0,
+        "dropped": false
+      },
+      "controls_applied": {
+        "ae_enabled": true,
+        "awb_enabled": true,
+        "apply_to_image": true,
+        "ae_stats_frame": 4,
+        "awb_stats_frame": 4,
+        "ae_apply_delay_frames": 2,
+        "awb_apply_delay_frames": 2,
+        "stats_ready_us": 219009.6,
+        "warmup": false,
+        "exposure_time_us": 15999.999999999998,
+        "analog_gain": 1.0,
+        "wb_gains_rgb": [
+          0.5206088348379566,
+          1.0,
+          1.3110070272314098
+        ],
+        "applied_controls": {
+          "exposure_time_us": 15999.999999999998,
+          "analog_gain": 1.0,
+          "wb_gains_rgb": [
+            0.5206088348379566,
+            1.0,
+            1.3110070272314098
+          ],
+          "ae_stats_frame": 4,
+          "awb_stats_frame": 4
+        },
+        "produced_stats": {
+          "mean_sensor_luma_norm": 0.2723985855300939,
+          "weighted_sensor_luma_norm": 0.2281256713122719,
+          "metering_sensor_luma_norm": 0.2281256713122719,
+          "target_luma": 0.18,
+          "clipped_fraction": 0.06348841954902561,
+          "sensor_rgb_means": [
+            0.4065945925159014,
+            0.18620545247408196,
+            0.142116675711559
+          ],
+          "sensor_raw_rgb_means": [
+            0.44016701353925847,
+            0.2322332926774435,
+            0.18677212487201644
+          ],
+          "awb_corrected_rgb_means": [
+            0.2116767370611172,
+            0.18620545247408196,
+            0.18631596054462127
+          ],
+          "sensor_rgb_imbalance": 1.0796240282240759,
+          "sensor_raw_rgb_imbalance": 0.8847870793973709,
+          "awb_corrected_rgb_imbalance": 0.1308012593854758,
+          "output_rgb_means": [
+            0.006421660044904087,
+            0.1951645196361567,
+            0.17775937249522492
+          ],
+          "output_rgb_imbalance": 1.492645888492257,
+          "ae": {
+            "stats_grid": [
+              8,
+              8
+            ],
+            "ae_metering": "center_weighted",
+            "tile_mean_luma": [
+              [
+                0.961862867259651,
+                0.9925094097904743,
+                0.28791472053401457,
+                0.156000739634538,
+                0.09527883346881588,
+                0.18558916038545265,
+                0.24441233959019465,
+                0.27792124358626313
+              ],
+              [
+                0.9297633990969013,
+                0.979765956176352,
+                0.28214162197989284,
+                0.1618865745273721,
+                0.09568388685776007,
+                0.18904800932219482,
+                0.24983765616147818,
+                0.2836094950164281
+              ],
+              [
+                0.27699697676561597,
+                0.2173652450859239,
+                0.17913108482452803,
+                0.21566669381462086,
+                0.09431178270765435,
+                0.20062332754741807,
+                0.26872679341878875,
+                0.2977202556774781
+              ],
+              [
+                0.25605190804285743,
+                0.18071757972296432,
+                0.17394358978565833,
+                0.2149777245284947,
+                0.10972125190200316,
+                0.20436538557769407,
+                0.2656250165302349,
+                0.29246839130046653
+              ],
+              [
+                0.07750383825468304,
+                0.1233817712698079,
+                0.16120457743543137,
+                0.1967733175886347,
+                0.41469737432868403,
+                0.28502351257606734,
+                0.19796486909850317,
+                0.1464953807757322
+              ],
+              [
+                0.0966060997429853,
+                0.13695034730175437,
+                0.17009316187079423,
+                0.20127877294365817,
+                0.4087355365392399,
+                0.2795163064560137,
+                0.19170129016776072,
+                0.13944521682168182
+              ],
+              [
+                0.6336742150736698,
+                0.5095357386584972,
+                0.3775079155179269,
+                0.2640168667249204,
+                0.1470874584880542,
+                0.0914096750612592,
+                0.05594226544830472,
+                0.03460415350672037
+              ],
+              [
+                0.6233210758477716,
+                0.4996272197649015,
+                0.3698152553061604,
+                0.2565933168324309,
+                0.13933645391185284,
+                0.08618212830702202,
+                0.052876034377258435,
+                0.03302792526621365
+              ]
+            ],
+            "tile_clip_fraction": [
+              [
+                0.7296466973886329,
+                0.9324116743471582,
+                0.014285714285714285,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.6820276497695853,
+                0.8970814132104454,
+                0.012698412698412698,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0032258064516129032,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.2161290322580645,
+                0.06935483870967742,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.22903225806451613,
+                0.06612903225806452,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "mean_luma": 0.2723985855300939,
+            "weighted_luma": 0.2281256713122719,
+            "metering_luma": 0.2281256713122719,
+            "target_luma": 0.18,
+            "target_error": 0.04812567131227191,
+            "ev_error": 0.3418318977933874,
+            "clipped_fraction": 0.06348841954902561,
+            "highlight_clip": 0.98
+          },
+          "awb": {
+            "stats_roi": "valid_luma",
+            "valid_luma_range": [
+              0.02,
+              0.95
+            ],
+            "valid_pixel_fraction": 0.9434241403938374,
+            "raw_rgb_means": [
+              0.44016701353925847,
+              0.2322332926774435,
+              0.18677212487201644
+            ],
+            "rgb_means": [
+              0.4065945925159014,
+              0.18620545247408196,
+              0.142116675711559
+            ],
+            "corrected_rgb_means": [
+              0.2116767370611172,
+              0.18620545247408196,
+              0.18631596054462127
+            ],
+            "raw_corrected_rgb_means": [
+              0.22915483605277642,
+              0.2322332926774435,
+              0.24485956819815594
+            ],
+            "raw_rgb_imbalance": 0.8847870793973709,
+            "rgb_imbalance": 1.0796240282240759,
+            "corrected_rgb_imbalance": 0.1308012593854758,
+            "raw_corrected_rgb_imbalance": 0.06671058417754618
+          }
+        },
+        "requested_controls": {
+          "ae": {
+            "source_frame": 6,
+            "apply_frame": 8,
+            "measured_luma": 0.2281256713122719,
+            "mean_luma": 0.2723985855300939,
+            "weighted_luma": 0.2281256713122719,
+            "clipped_fraction": 0.06348841954902561,
+            "ev_error": 0.3418318977933874,
+            "highlight_limited": true,
+            "target_luma": 0.18,
+            "ratio": 0.5,
+            "exposure_time_us": 7999.999999999999,
+            "analog_gain": 1.0
+          },
+          "awb": {
+            "source_frame": 6,
+            "apply_frame": 8,
+            "rgb_means": [
+              0.4065945925159014,
+              0.18620545247408196,
+              0.142116675711559
+            ],
+            "valid_pixel_fraction": 0.9434241403938374,
+            "wb_gains_rgb": [
+              0.45796342573542637,
+              1.0,
+              1.3102294402945778
+            ]
+          }
+        }
+      },
+      "latency_summary": {
+        "frame_count": 1.0,
+        "e2e_latency_mean_us": 19768.469999999943,
+        "e2e_latency_max_us": 19768.469999999943,
+        "e2e_latency_min_us": 19768.469999999943,
+        "queue_stall_total_us": 0.0,
+        "queue_stall_max_us": 0.0,
+        "ae_settle_frame": -1.0,
+        "ae_settle_frames_after_step": -1.0,
+        "ae_final_error_ev": 0.3418318977933874,
+        "awb_settle_frame": -1.0,
+        "awb_final_rgb_imbalance": 0.1308012593854758,
+        "max_clip_fraction": 0.06348841954902561,
+        "max_clip_fraction_before_response": 0.0,
+        "max_clip_fraction_after_response": 0.06348841954902561,
+        "warmup_frame_count": 0.0,
+        "validation_verdicts": {
+          "ae_settle": false,
+          "awb_settle": false,
+          "clamp_compliance": true,
+          "warmup_delay_mapping": true,
+          "clip_reduction": true
+        },
+        "validation_thresholds": {
+          "ae_settle_ev": 0.25,
+          "awb_settle_imbalance": 0.2,
+          "settle_consecutive_frames": 2.0
+        }
+      }
+    },
+    {
+      "timeline": {
+        "frame_id": 7,
+        "timestamps_us": {
+          "request": 233333.33333333334,
+          "requested": 233333.33333333334,
+          "exposure_start": 233333.33333333334,
+          "exposure_mid": 241333.33333333334,
+          "readout_start": 249333.33333333334,
+          "readout_end": 252342.93333333335,
+          "stats_ready": 252342.93333333335,
+          "isp_start": 249576.61333333334,
+          "isp_done": 252161.8033333333,
+          "dma_done": 252601.8033333333,
+          "app_visible": 253101.8033333333,
+          "frame_interval_us": 33333.333333333336,
+          "line_time_us": 15.2,
+          "hidden_lines_top": 16.0,
+          "hidden_lines_bottom": 20.0
+        },
+        "stages": [
+          {
+            "name": "unicam_capture",
+            "domain": "raw_bayer",
+            "buffering": "stream",
+            "start_us": 249576.61333333334,
+            "end_us": 252039.01333333334,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 0.0,
+            "cycle_latency_us": 0.08,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "black_level_dpc",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 249607.25333333333,
+            "end_us": 252069.65333333332,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.24,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "lens_shading_geq",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 249637.9533333333,
+            "end_us": 252100.3533333333,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.3,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "demosaic_ccm_gamma",
+            "domain": "bayer_to_rgb",
+            "buffering": "line",
+            "start_us": 249699.4033333333,
+            "end_us": 252161.8033333333,
+            "latency_us": 2462.399999999994,
+            "line_buffer_delay_us": 60.8,
+            "cycle_latency_us": 0.65,
+            "stalled_us": 0.0
+          }
+        ],
+        "queue_stall_us": 0.0,
+        "dropped": false
+      },
+      "controls_applied": {
+        "ae_enabled": true,
+        "awb_enabled": true,
+        "apply_to_image": true,
+        "ae_stats_frame": 5,
+        "awb_stats_frame": 5,
+        "ae_apply_delay_frames": 2,
+        "awb_apply_delay_frames": 2,
+        "stats_ready_us": 252342.93333333335,
+        "warmup": false,
+        "exposure_time_us": 15999.999999999998,
+        "analog_gain": 1.0,
+        "wb_gains_rgb": [
+          0.5206088348379566,
+          1.0,
+          1.3110070272314098
+        ],
+        "applied_controls": {
+          "exposure_time_us": 15999.999999999998,
+          "analog_gain": 1.0,
+          "wb_gains_rgb": [
+            0.5206088348379566,
+            1.0,
+            1.3110070272314098
+          ],
+          "ae_stats_frame": 5,
+          "awb_stats_frame": 5
+        },
+        "produced_stats": {
+          "mean_sensor_luma_norm": 0.2723985855300939,
+          "weighted_sensor_luma_norm": 0.2281256713122719,
+          "metering_sensor_luma_norm": 0.2281256713122719,
+          "target_luma": 0.18,
+          "clipped_fraction": 0.06348841954902561,
+          "sensor_rgb_means": [
+            0.4065945925159014,
+            0.18620545247408196,
+            0.142116675711559
+          ],
+          "sensor_raw_rgb_means": [
+            0.44016701353925847,
+            0.2322332926774435,
+            0.18677212487201644
+          ],
+          "awb_corrected_rgb_means": [
+            0.2116767370611172,
+            0.18620545247408196,
+            0.18631596054462127
+          ],
+          "sensor_rgb_imbalance": 1.0796240282240759,
+          "sensor_raw_rgb_imbalance": 0.8847870793973709,
+          "awb_corrected_rgb_imbalance": 0.1308012593854758,
+          "output_rgb_means": [
+            0.006421660044904087,
+            0.1951645196361567,
+            0.17775937249522492
+          ],
+          "output_rgb_imbalance": 1.492645888492257,
+          "ae": {
+            "stats_grid": [
+              8,
+              8
+            ],
+            "ae_metering": "center_weighted",
+            "tile_mean_luma": [
+              [
+                0.961862867259651,
+                0.9925094097904743,
+                0.28791472053401457,
+                0.156000739634538,
+                0.09527883346881588,
+                0.18558916038545265,
+                0.24441233959019465,
+                0.27792124358626313
+              ],
+              [
+                0.9297633990969013,
+                0.979765956176352,
+                0.28214162197989284,
+                0.1618865745273721,
+                0.09568388685776007,
+                0.18904800932219482,
+                0.24983765616147818,
+                0.2836094950164281
+              ],
+              [
+                0.27699697676561597,
+                0.2173652450859239,
+                0.17913108482452803,
+                0.21566669381462086,
+                0.09431178270765435,
+                0.20062332754741807,
+                0.26872679341878875,
+                0.2977202556774781
+              ],
+              [
+                0.25605190804285743,
+                0.18071757972296432,
+                0.17394358978565833,
+                0.2149777245284947,
+                0.10972125190200316,
+                0.20436538557769407,
+                0.2656250165302349,
+                0.29246839130046653
+              ],
+              [
+                0.07750383825468304,
+                0.1233817712698079,
+                0.16120457743543137,
+                0.1967733175886347,
+                0.41469737432868403,
+                0.28502351257606734,
+                0.19796486909850317,
+                0.1464953807757322
+              ],
+              [
+                0.0966060997429853,
+                0.13695034730175437,
+                0.17009316187079423,
+                0.20127877294365817,
+                0.4087355365392399,
+                0.2795163064560137,
+                0.19170129016776072,
+                0.13944521682168182
+              ],
+              [
+                0.6336742150736698,
+                0.5095357386584972,
+                0.3775079155179269,
+                0.2640168667249204,
+                0.1470874584880542,
+                0.0914096750612592,
+                0.05594226544830472,
+                0.03460415350672037
+              ],
+              [
+                0.6233210758477716,
+                0.4996272197649015,
+                0.3698152553061604,
+                0.2565933168324309,
+                0.13933645391185284,
+                0.08618212830702202,
+                0.052876034377258435,
+                0.03302792526621365
+              ]
+            ],
+            "tile_clip_fraction": [
+              [
+                0.7296466973886329,
+                0.9324116743471582,
+                0.014285714285714285,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.6820276497695853,
+                0.8970814132104454,
+                0.012698412698412698,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0032258064516129032,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.2161290322580645,
+                0.06935483870967742,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.22903225806451613,
+                0.06612903225806452,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "mean_luma": 0.2723985855300939,
+            "weighted_luma": 0.2281256713122719,
+            "metering_luma": 0.2281256713122719,
+            "target_luma": 0.18,
+            "target_error": 0.04812567131227191,
+            "ev_error": 0.3418318977933874,
+            "clipped_fraction": 0.06348841954902561,
+            "highlight_clip": 0.98
+          },
+          "awb": {
+            "stats_roi": "valid_luma",
+            "valid_luma_range": [
+              0.02,
+              0.95
+            ],
+            "valid_pixel_fraction": 0.9434241403938374,
+            "raw_rgb_means": [
+              0.44016701353925847,
+              0.2322332926774435,
+              0.18677212487201644
+            ],
+            "rgb_means": [
+              0.4065945925159014,
+              0.18620545247408196,
+              0.142116675711559
+            ],
+            "corrected_rgb_means": [
+              0.2116767370611172,
+              0.18620545247408196,
+              0.18631596054462127
+            ],
+            "raw_corrected_rgb_means": [
+              0.22915483605277642,
+              0.2322332926774435,
+              0.24485956819815594
+            ],
+            "raw_rgb_imbalance": 0.8847870793973709,
+            "rgb_imbalance": 1.0796240282240759,
+            "corrected_rgb_imbalance": 0.1308012593854758,
+            "raw_corrected_rgb_imbalance": 0.06671058417754618
+          }
+        },
+        "requested_controls": {
+          "ae": {
+            "source_frame": 7,
+            "apply_frame": 9,
+            "measured_luma": 0.2281256713122719,
+            "mean_luma": 0.2723985855300939,
+            "weighted_luma": 0.2281256713122719,
+            "clipped_fraction": 0.06348841954902561,
+            "ev_error": 0.3418318977933874,
+            "highlight_limited": true,
+            "target_luma": 0.18,
+            "ratio": 0.5,
+            "exposure_time_us": 7999.999999999999,
+            "analog_gain": 1.0
+          },
+          "awb": {
+            "source_frame": 7,
+            "apply_frame": 9,
+            "rgb_means": [
+              0.4065945925159014,
+              0.18620545247408196,
+              0.142116675711559
+            ],
+            "valid_pixel_fraction": 0.9434241403938374,
+            "wb_gains_rgb": [
+              0.45796342573542637,
+              1.0,
+              1.3102294402945778
+            ]
+          }
+        }
+      },
+      "latency_summary": {
+        "frame_count": 1.0,
+        "e2e_latency_mean_us": 19768.469999999943,
+        "e2e_latency_max_us": 19768.469999999943,
+        "e2e_latency_min_us": 19768.469999999943,
+        "queue_stall_total_us": 0.0,
+        "queue_stall_max_us": 0.0,
+        "ae_settle_frame": -1.0,
+        "ae_settle_frames_after_step": -1.0,
+        "ae_final_error_ev": 0.3418318977933874,
+        "awb_settle_frame": -1.0,
+        "awb_final_rgb_imbalance": 0.1308012593854758,
+        "max_clip_fraction": 0.06348841954902561,
+        "max_clip_fraction_before_response": 0.0,
+        "max_clip_fraction_after_response": 0.06348841954902561,
+        "warmup_frame_count": 0.0,
+        "validation_verdicts": {
+          "ae_settle": false,
+          "awb_settle": false,
+          "clamp_compliance": true,
+          "warmup_delay_mapping": true,
+          "clip_reduction": true
+        },
+        "validation_thresholds": {
+          "ae_settle_ev": 0.25,
+          "awb_settle_imbalance": 0.2,
+          "settle_consecutive_frames": 2.0
+        }
+      }
+    },
+    {
+      "timeline": {
+        "frame_id": 8,
+        "timestamps_us": {
+          "request": 266666.6666666667,
+          "requested": 266666.6666666667,
+          "exposure_start": 266666.6666666667,
+          "exposure_mid": 270666.6666666667,
+          "readout_start": 274666.6666666667,
+          "readout_end": 277676.26666666666,
+          "stats_ready": 277676.26666666666,
+          "isp_start": 274909.9466666667,
+          "isp_done": 277495.1366666667,
+          "dma_done": 277935.1366666667,
+          "app_visible": 278435.1366666667,
+          "frame_interval_us": 33333.333333333336,
+          "line_time_us": 15.2,
+          "hidden_lines_top": 16.0,
+          "hidden_lines_bottom": 20.0
+        },
+        "stages": [
+          {
+            "name": "unicam_capture",
+            "domain": "raw_bayer",
+            "buffering": "stream",
+            "start_us": 274909.9466666667,
+            "end_us": 277372.3466666667,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 0.0,
+            "cycle_latency_us": 0.08,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "black_level_dpc",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 274940.5866666667,
+            "end_us": 277402.9866666667,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.24,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "lens_shading_geq",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 274971.28666666674,
+            "end_us": 277433.6866666667,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.3,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "demosaic_ccm_gamma",
+            "domain": "bayer_to_rgb",
+            "buffering": "line",
+            "start_us": 275032.73666666675,
+            "end_us": 277495.1366666667,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 60.8,
+            "cycle_latency_us": 0.65,
+            "stalled_us": 0.0
+          }
+        ],
+        "queue_stall_us": 0.0,
+        "dropped": false
+      },
+      "controls_applied": {
+        "ae_enabled": true,
+        "awb_enabled": true,
+        "apply_to_image": true,
+        "ae_stats_frame": 6,
+        "awb_stats_frame": 6,
+        "ae_apply_delay_frames": 2,
+        "awb_apply_delay_frames": 2,
+        "stats_ready_us": 277676.26666666666,
+        "warmup": false,
+        "exposure_time_us": 7999.999999999999,
+        "analog_gain": 1.0,
+        "wb_gains_rgb": [
+          0.45796342573542637,
+          1.0,
+          1.3102294402945778
+        ],
+        "applied_controls": {
+          "exposure_time_us": 7999.999999999999,
+          "analog_gain": 1.0,
+          "wb_gains_rgb": [
+            0.45796342573542637,
+            1.0,
+            1.3102294402945778
+          ],
+          "ae_stats_frame": 6,
+          "awb_stats_frame": 6
+        },
+        "produced_stats": {
+          "mean_sensor_luma_norm": 0.16081456325742596,
+          "weighted_sensor_luma_norm": 0.16221561539649143,
+          "metering_sensor_luma_norm": 0.16221561539649143,
+          "target_luma": 0.18,
+          "clipped_fraction": 7.652280379553107e-05,
+          "sensor_rgb_means": [
+            0.368641443923799,
+            0.1106612590555542,
+            0.05513174361693841
+          ],
+          "sensor_raw_rgb_means": [
+            0.36837863980522084,
+            0.11058400626248918,
+            0.05509454235844673
+          ],
+          "awb_corrected_rgb_means": [
+            0.16882429852739705,
+            0.1106612590555542,
+            0.07223523358168538
+          ],
+          "sensor_rgb_imbalance": 1.7598586822212297,
+          "sensor_raw_rgb_imbalance": 1.7598345508840094,
+          "awb_corrected_rgb_imbalance": 0.8238557461378455,
+          "output_rgb_means": [
+            0.021358521556639264,
+            0.29650428927789896,
+            0.13577581349820667
+          ],
+          "output_rgb_imbalance": 1.8195922015633288,
+          "ae": {
+            "stats_grid": [
+              8,
+              8
+            ],
+            "ae_metering": "center_weighted",
+            "tile_mean_luma": [
+              [
+                0.08083313283217196,
+                0.20784907262986727,
+                0.19454303279907467,
+                0.09777454915834753,
+                0.06952169061167301,
+                0.1320928111791034,
+                0.16659853006638514,
+                0.17937060866562815
+              ],
+              [
+                0.08651985633147741,
+                0.20043151556363126,
+                0.18868618906193194,
+                0.10246054278134033,
+                0.06913912495299815,
+                0.13288166011584562,
+                0.1691657513995734,
+                0.18358219342912652
+              ],
+              [
+                0.21682987999142242,
+                0.1312473418601175,
+                0.12691708482452801,
+                0.18016186048128754,
+                0.07216594937432101,
+                0.14766382754741808,
+                0.20416629341878875,
+                0.23884175567747812
+              ],
+              [
+                0.21124061772027675,
+                0.12852322488425463,
+                0.12649608978565835,
+                0.18070839119516138,
+                0.08410641856866981,
+                0.15107805224436072,
+                0.20167968319690155,
+                0.23308105796713322
+              ],
+              [
+                0.04405077373855402,
+                0.07948644868916276,
+                0.12423041076876473,
+                0.17657948425530137,
+                0.32472637432868406,
+                0.22775084590940067,
+                0.1488780357651698,
+                0.08517071410906556
+              ],
+              [
+                0.05654609974298528,
+                0.08851873439852859,
+                0.12974282853746086,
+                0.17839527294365815,
+                0.3201038698725732,
+                0.2235278064560137,
+                0.14447629016776073,
+                0.08087905015501515
+              ],
+              [
+                0.45238449130062613,
+                0.3633763336625734,
+                0.2650449155179269,
+                0.1854243667249204,
+                0.10313412515472088,
+                0.06401350839459254,
+                0.03920159878163805,
+                0.024177986840053706
+              ],
+              [
+                0.44678675652235117,
+                0.35735531401520737,
+                0.26034508863949374,
+                0.18023131683243093,
+                0.09741612057851952,
+                0.06005529497368869,
+                0.03692886771059178,
+                0.02322875859954698
+              ]
+            ],
+            "tile_clip_fraction": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0016129032258064516,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0032258064516129032,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "mean_luma": 0.16081456325742596,
+            "weighted_luma": 0.16221561539649143,
+            "metering_luma": 0.16221561539649143,
+            "target_luma": 0.18,
+            "target_error": -0.017784384603508563,
+            "ev_error": -0.1500842018535014,
+            "clipped_fraction": 7.652280379553107e-05,
+            "highlight_clip": 0.98
+          },
+          "awb": {
+            "stats_roi": "valid_luma",
+            "valid_luma_range": [
+              0.02,
+              0.95
+            ],
+            "valid_pixel_fraction": 0.9992092643607795,
+            "raw_rgb_means": [
+              0.36837863980522084,
+              0.11058400626248918,
+              0.05509454235844673
+            ],
+            "rgb_means": [
+              0.368641443923799,
+              0.1106612590555542,
+              0.05513174361693841
+            ],
+            "corrected_rgb_means": [
+              0.16882429852739705,
+              0.1106612590555542,
+              0.07223523358168538
+            ],
+            "raw_corrected_rgb_means": [
+              0.16870394385295565,
+              0.11058400626248918,
+              0.07218649139759356
+            ],
+            "raw_rgb_imbalance": 1.7598345508840094,
+            "rgb_imbalance": 1.7598586822212297,
+            "corrected_rgb_imbalance": 0.8238557461378455,
+            "raw_corrected_rgb_imbalance": 0.823821943125116
+          }
+        },
+        "requested_controls": {
+          "ae": {
+            "source_frame": 8,
+            "apply_frame": 10,
+            "measured_luma": 0.16221561539649143,
+            "mean_luma": 0.16081456325742596,
+            "weighted_luma": 0.16221561539649143,
+            "clipped_fraction": 7.652280379553107e-05,
+            "ev_error": -0.1500842018535014,
+            "highlight_limited": true,
+            "target_luma": 0.18,
+            "ratio": 0.9980869299051117,
+            "exposure_time_us": 7984.6954392408925,
+            "analog_gain": 1.0
+          },
+          "awb": {
+            "source_frame": 8,
+            "apply_frame": 10,
+            "rgb_means": [
+              0.368641443923799,
+              0.1106612590555542,
+              0.05513174361693841
+            ],
+            "valid_pixel_fraction": 0.9992092643607795,
+            "wb_gains_rgb": [
+              0.32382904387294187,
+              1.0,
+              1.8529442442851014
+            ]
+          }
+        }
+      },
+      "latency_summary": {
+        "frame_count": 1.0,
+        "e2e_latency_mean_us": 11768.47000000003,
+        "e2e_latency_max_us": 11768.47000000003,
+        "e2e_latency_min_us": 11768.47000000003,
+        "queue_stall_total_us": 0.0,
+        "queue_stall_max_us": 0.0,
+        "ae_settle_frame": -1.0,
+        "ae_settle_frames_after_step": -1.0,
+        "ae_final_error_ev": -0.1500842018535014,
+        "awb_settle_frame": -1.0,
+        "awb_final_rgb_imbalance": 0.8238557461378455,
+        "max_clip_fraction": 7.652280379553107e-05,
+        "max_clip_fraction_before_response": 0.0,
+        "max_clip_fraction_after_response": 7.652280379553107e-05,
+        "warmup_frame_count": 0.0,
+        "validation_verdicts": {
+          "ae_settle": false,
+          "awb_settle": false,
+          "clamp_compliance": true,
+          "warmup_delay_mapping": true,
+          "clip_reduction": true
+        },
+        "validation_thresholds": {
+          "ae_settle_ev": 0.25,
+          "awb_settle_imbalance": 0.2,
+          "settle_consecutive_frames": 2.0
+        }
+      }
+    },
+    {
+      "timeline": {
+        "frame_id": 9,
+        "timestamps_us": {
+          "request": 300000.0,
+          "requested": 300000.0,
+          "exposure_start": 300000.0,
+          "exposure_mid": 304000.0,
+          "readout_start": 308000.0,
+          "readout_end": 311009.6,
+          "stats_ready": 311009.6,
+          "isp_start": 308243.28,
+          "isp_done": 310828.47000000003,
+          "dma_done": 311268.47000000003,
+          "app_visible": 311768.47000000003,
+          "frame_interval_us": 33333.333333333336,
+          "line_time_us": 15.2,
+          "hidden_lines_top": 16.0,
+          "hidden_lines_bottom": 20.0
+        },
+        "stages": [
+          {
+            "name": "unicam_capture",
+            "domain": "raw_bayer",
+            "buffering": "stream",
+            "start_us": 308243.28,
+            "end_us": 310705.68,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 0.0,
+            "cycle_latency_us": 0.08,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "black_level_dpc",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 308273.92000000004,
+            "end_us": 310736.32,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.24,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "lens_shading_geq",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 308304.62000000005,
+            "end_us": 310767.02,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.3,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "demosaic_ccm_gamma",
+            "domain": "bayer_to_rgb",
+            "buffering": "line",
+            "start_us": 308366.07000000007,
+            "end_us": 310828.47000000003,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 60.8,
+            "cycle_latency_us": 0.65,
+            "stalled_us": 0.0
+          }
+        ],
+        "queue_stall_us": 0.0,
+        "dropped": false
+      },
+      "controls_applied": {
+        "ae_enabled": true,
+        "awb_enabled": true,
+        "apply_to_image": true,
+        "ae_stats_frame": 7,
+        "awb_stats_frame": 7,
+        "ae_apply_delay_frames": 2,
+        "awb_apply_delay_frames": 2,
+        "stats_ready_us": 311009.6,
+        "warmup": false,
+        "exposure_time_us": 7999.999999999999,
+        "analog_gain": 1.0,
+        "wb_gains_rgb": [
+          0.45796342573542637,
+          1.0,
+          1.3102294402945778
+        ],
+        "applied_controls": {
+          "exposure_time_us": 7999.999999999999,
+          "analog_gain": 1.0,
+          "wb_gains_rgb": [
+            0.45796342573542637,
+            1.0,
+            1.3102294402945778
+          ],
+          "ae_stats_frame": 7,
+          "awb_stats_frame": 7
+        },
+        "produced_stats": {
+          "mean_sensor_luma_norm": 0.16081456325742596,
+          "weighted_sensor_luma_norm": 0.16221561539649143,
+          "metering_sensor_luma_norm": 0.16221561539649143,
+          "target_luma": 0.18,
+          "clipped_fraction": 7.652280379553107e-05,
+          "sensor_rgb_means": [
+            0.368641443923799,
+            0.1106612590555542,
+            0.05513174361693841
+          ],
+          "sensor_raw_rgb_means": [
+            0.36837863980522084,
+            0.11058400626248918,
+            0.05509454235844673
+          ],
+          "awb_corrected_rgb_means": [
+            0.16882429852739705,
+            0.1106612590555542,
+            0.07223523358168538
+          ],
+          "sensor_rgb_imbalance": 1.7598586822212297,
+          "sensor_raw_rgb_imbalance": 1.7598345508840094,
+          "awb_corrected_rgb_imbalance": 0.8238557461378455,
+          "output_rgb_means": [
+            0.021358521556639264,
+            0.29650428927789896,
+            0.13577581349820667
+          ],
+          "output_rgb_imbalance": 1.8195922015633288,
+          "ae": {
+            "stats_grid": [
+              8,
+              8
+            ],
+            "ae_metering": "center_weighted",
+            "tile_mean_luma": [
+              [
+                0.08083313283217196,
+                0.20784907262986727,
+                0.19454303279907467,
+                0.09777454915834753,
+                0.06952169061167301,
+                0.1320928111791034,
+                0.16659853006638514,
+                0.17937060866562815
+              ],
+              [
+                0.08651985633147741,
+                0.20043151556363126,
+                0.18868618906193194,
+                0.10246054278134033,
+                0.06913912495299815,
+                0.13288166011584562,
+                0.1691657513995734,
+                0.18358219342912652
+              ],
+              [
+                0.21682987999142242,
+                0.1312473418601175,
+                0.12691708482452801,
+                0.18016186048128754,
+                0.07216594937432101,
+                0.14766382754741808,
+                0.20416629341878875,
+                0.23884175567747812
+              ],
+              [
+                0.21124061772027675,
+                0.12852322488425463,
+                0.12649608978565835,
+                0.18070839119516138,
+                0.08410641856866981,
+                0.15107805224436072,
+                0.20167968319690155,
+                0.23308105796713322
+              ],
+              [
+                0.04405077373855402,
+                0.07948644868916276,
+                0.12423041076876473,
+                0.17657948425530137,
+                0.32472637432868406,
+                0.22775084590940067,
+                0.1488780357651698,
+                0.08517071410906556
+              ],
+              [
+                0.05654609974298528,
+                0.08851873439852859,
+                0.12974282853746086,
+                0.17839527294365815,
+                0.3201038698725732,
+                0.2235278064560137,
+                0.14447629016776073,
+                0.08087905015501515
+              ],
+              [
+                0.45238449130062613,
+                0.3633763336625734,
+                0.2650449155179269,
+                0.1854243667249204,
+                0.10313412515472088,
+                0.06401350839459254,
+                0.03920159878163805,
+                0.024177986840053706
+              ],
+              [
+                0.44678675652235117,
+                0.35735531401520737,
+                0.26034508863949374,
+                0.18023131683243093,
+                0.09741612057851952,
+                0.06005529497368869,
+                0.03692886771059178,
+                0.02322875859954698
+              ]
+            ],
+            "tile_clip_fraction": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0016129032258064516,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0032258064516129032,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "mean_luma": 0.16081456325742596,
+            "weighted_luma": 0.16221561539649143,
+            "metering_luma": 0.16221561539649143,
+            "target_luma": 0.18,
+            "target_error": -0.017784384603508563,
+            "ev_error": -0.1500842018535014,
+            "clipped_fraction": 7.652280379553107e-05,
+            "highlight_clip": 0.98
+          },
+          "awb": {
+            "stats_roi": "valid_luma",
+            "valid_luma_range": [
+              0.02,
+              0.95
+            ],
+            "valid_pixel_fraction": 0.9992092643607795,
+            "raw_rgb_means": [
+              0.36837863980522084,
+              0.11058400626248918,
+              0.05509454235844673
+            ],
+            "rgb_means": [
+              0.368641443923799,
+              0.1106612590555542,
+              0.05513174361693841
+            ],
+            "corrected_rgb_means": [
+              0.16882429852739705,
+              0.1106612590555542,
+              0.07223523358168538
+            ],
+            "raw_corrected_rgb_means": [
+              0.16870394385295565,
+              0.11058400626248918,
+              0.07218649139759356
+            ],
+            "raw_rgb_imbalance": 1.7598345508840094,
+            "rgb_imbalance": 1.7598586822212297,
+            "corrected_rgb_imbalance": 0.8238557461378455,
+            "raw_corrected_rgb_imbalance": 0.823821943125116
+          }
+        },
+        "requested_controls": {
+          "ae": {
+            "source_frame": 9,
+            "apply_frame": 11,
+            "measured_luma": 0.16221561539649143,
+            "mean_luma": 0.16081456325742596,
+            "weighted_luma": 0.16221561539649143,
+            "clipped_fraction": 7.652280379553107e-05,
+            "ev_error": -0.1500842018535014,
+            "highlight_limited": true,
+            "target_luma": 0.18,
+            "ratio": 0.9980869299051117,
+            "exposure_time_us": 7984.6954392408925,
+            "analog_gain": 1.0
+          },
+          "awb": {
+            "source_frame": 9,
+            "apply_frame": 11,
+            "rgb_means": [
+              0.368641443923799,
+              0.1106612590555542,
+              0.05513174361693841
+            ],
+            "valid_pixel_fraction": 0.9992092643607795,
+            "wb_gains_rgb": [
+              0.32382904387294187,
+              1.0,
+              1.8529442442851014
+            ]
+          }
+        }
+      },
+      "latency_summary": {
+        "frame_count": 1.0,
+        "e2e_latency_mean_us": 11768.47000000003,
+        "e2e_latency_max_us": 11768.47000000003,
+        "e2e_latency_min_us": 11768.47000000003,
+        "queue_stall_total_us": 0.0,
+        "queue_stall_max_us": 0.0,
+        "ae_settle_frame": -1.0,
+        "ae_settle_frames_after_step": -1.0,
+        "ae_final_error_ev": -0.1500842018535014,
+        "awb_settle_frame": -1.0,
+        "awb_final_rgb_imbalance": 0.8238557461378455,
+        "max_clip_fraction": 7.652280379553107e-05,
+        "max_clip_fraction_before_response": 0.0,
+        "max_clip_fraction_after_response": 7.652280379553107e-05,
+        "warmup_frame_count": 0.0,
+        "validation_verdicts": {
+          "ae_settle": false,
+          "awb_settle": false,
+          "clamp_compliance": true,
+          "warmup_delay_mapping": true,
+          "clip_reduction": true
+        },
+        "validation_thresholds": {
+          "ae_settle_ev": 0.25,
+          "awb_settle_imbalance": 0.2,
+          "settle_consecutive_frames": 2.0
+        }
+      }
+    },
+    {
+      "timeline": {
+        "frame_id": 10,
+        "timestamps_us": {
+          "request": 333333.3333333334,
+          "requested": 333333.3333333334,
+          "exposure_start": 333333.3333333334,
+          "exposure_mid": 337325.6810529538,
+          "readout_start": 341318.02877257427,
+          "readout_end": 344327.62877257424,
+          "stats_ready": 344327.62877257424,
+          "isp_start": 341561.3087725743,
+          "isp_done": 344146.4987725743,
+          "dma_done": 344586.4987725743,
+          "app_visible": 345086.4987725743,
+          "frame_interval_us": 33333.333333333336,
+          "line_time_us": 15.2,
+          "hidden_lines_top": 16.0,
+          "hidden_lines_bottom": 20.0
+        },
+        "stages": [
+          {
+            "name": "unicam_capture",
+            "domain": "raw_bayer",
+            "buffering": "stream",
+            "start_us": 341561.3087725743,
+            "end_us": 344023.70877257426,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 0.0,
+            "cycle_latency_us": 0.08,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "black_level_dpc",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 341591.9487725743,
+            "end_us": 344054.3487725743,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.24,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "lens_shading_geq",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 341622.6487725743,
+            "end_us": 344085.0487725743,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.3,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "demosaic_ccm_gamma",
+            "domain": "bayer_to_rgb",
+            "buffering": "line",
+            "start_us": 341684.09877257433,
+            "end_us": 344146.4987725743,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 60.8,
+            "cycle_latency_us": 0.65,
+            "stalled_us": 0.0
+          }
+        ],
+        "queue_stall_us": 0.0,
+        "dropped": false
+      },
+      "controls_applied": {
+        "ae_enabled": true,
+        "awb_enabled": true,
+        "apply_to_image": true,
+        "ae_stats_frame": 8,
+        "awb_stats_frame": 8,
+        "ae_apply_delay_frames": 2,
+        "awb_apply_delay_frames": 2,
+        "stats_ready_us": 344327.62877257424,
+        "warmup": false,
+        "exposure_time_us": 7984.6954392408925,
+        "analog_gain": 1.0,
+        "wb_gains_rgb": [
+          0.32382904387294187,
+          1.0,
+          1.8529442442851014
+        ],
+        "applied_controls": {
+          "exposure_time_us": 7984.6954392408925,
+          "analog_gain": 1.0,
+          "wb_gains_rgb": [
+            0.32382904387294187,
+            1.0,
+            1.8529442442851014
+          ],
+          "ae_stats_frame": 8,
+          "awb_stats_frame": 8
+        },
+        "produced_stats": {
+          "mean_sensor_luma_norm": 0.16050641612958186,
+          "weighted_sensor_luma_norm": 0.16190483093168997,
+          "metering_sensor_luma_norm": 0.16190483093168997,
+          "target_luma": 0.18,
+          "clipped_fraction": 5.1015202530354045e-05,
+          "sensor_rgb_means": [
+            0.3679438617435445,
+            0.11045185811702961,
+            0.05502650299555425
+          ],
+          "sensor_raw_rgb_means": [
+            0.36767306830741725,
+            0.11037233398415082,
+            0.054988224763303416
+          ],
+          "awb_corrected_rgb_means": [
+            0.11915090894732992,
+            0.11045185811702961,
+            0.10196104200874913
+          ],
+          "sensor_rgb_imbalance": 1.7598668297274251,
+          "sensor_raw_rgb_imbalance": 1.7598411864093828,
+          "awb_corrected_rgb_imbalance": 0.15553446849312635,
+          "output_rgb_means": [
+            0.0008807729135946623,
+            0.299347283438675,
+            0.18275378063410125
+          ],
+          "output_rgb_imbalance": 1.853898973017712,
+          "ae": {
+            "stats_grid": [
+              8,
+              8
+            ],
+            "ae_metering": "center_weighted",
+            "tile_mean_luma": [
+              [
+                0.08067537553570499,
+                0.20745199121665678,
+                0.1941717629578048,
+                0.09759042217422056,
+                0.06938772235770477,
+                0.1318399540362463,
+                0.1662794824473375,
+                0.17902727533229482
+              ],
+              [
+                0.08635318966481076,
+                0.2000471837663962,
+                0.18832523668097953,
+                0.10226657452737206,
+                0.06900579161966482,
+                0.13262785059203605,
+                0.1688414656852877,
+                0.18322822517515827
+              ],
+              [
+                0.21641391224948697,
+                0.13099492250527878,
+                0.12667325149119468,
+                0.1798180271479542,
+                0.07202928270765434,
+                0.14737949421408472,
+                0.2037724600854554,
+                0.2383832556774782
+              ],
+              [
+                0.21083819836543802,
+                0.12827693456167397,
+                0.12625508978565836,
+                0.18036172452849472,
+                0.08394158523533649,
+                0.15078821891102742,
+                0.2012915165302349,
+                0.23263655796713323
+              ],
+              [
+                0.043968676964360465,
+                0.07933386804400146,
+                0.12399457743543138,
+                0.17624231758863468,
+                0.3241047076620174,
+                0.22731351257606738,
+                0.14859203576516986,
+                0.08500721410906555
+              ],
+              [
+                0.056435615872017536,
+                0.08835066988239955,
+                0.12949399520412755,
+                0.17805343961032483,
+                0.31949186987257316,
+                0.223100139789347,
+                0.14420162350109403,
+                0.0807252168216818
+              ],
+              [
+                0.4515188461393358,
+                0.3626800433399927,
+                0.2645384155179269,
+                0.1850708667249204,
+                0.10293462515472089,
+                0.06388734172792587,
+                0.03912509878163806,
+                0.024132653506720367
+              ],
+              [
+                0.4459320791029962,
+                0.3566683785313364,
+                0.25984608863949377,
+                0.1798854834990976,
+                0.09722512057851952,
+                0.05993912830702201,
+                0.03685686771059177,
+                0.02318659193288031
+              ]
+            ],
+            "tile_clip_fraction": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0016129032258064516,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0016129032258064516,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "mean_luma": 0.16050641612958186,
+            "weighted_luma": 0.16190483093168997,
+            "metering_luma": 0.16190483093168997,
+            "target_luma": 0.18,
+            "target_error": -0.01809516906831002,
+            "ev_error": -0.15285087300087155,
+            "clipped_fraction": 5.1015202530354045e-05,
+            "highlight_clip": 0.98
+          },
+          "awb": {
+            "stats_roi": "valid_luma",
+            "valid_luma_range": [
+              0.02,
+              0.95
+            ],
+            "valid_pixel_fraction": 0.9991837567595143,
+            "raw_rgb_means": [
+              0.36767306830741725,
+              0.11037233398415082,
+              0.054988224763303416
+            ],
+            "rgb_means": [
+              0.3679438617435445,
+              0.11045185811702961,
+              0.05502650299555425
+            ],
+            "corrected_rgb_means": [
+              0.11915090894732992,
+              0.11045185811702961,
+              0.10196104200874913
+            ],
+            "raw_corrected_rgb_means": [
+              0.11906321816782177,
+              0.11037233398415082,
+              0.10189011457861855
+            ],
+            "raw_rgb_imbalance": 1.7598411864093828,
+            "rgb_imbalance": 1.7598668297274251,
+            "corrected_rgb_imbalance": 0.15553446849312635,
+            "raw_corrected_rgb_imbalance": 0.15549447549893938
+          }
+        },
+        "requested_controls": {
+          "ae": {
+            "source_frame": 10,
+            "apply_frame": 12,
+            "measured_luma": 0.16190483093168997,
+            "mean_luma": 0.16050641612958186,
+            "weighted_luma": 0.16190483093168997,
+            "clipped_fraction": 5.1015202530354045e-05,
+            "ev_error": -0.15285087300087155,
+            "highlight_limited": true,
+            "target_luma": 0.18,
+            "ratio": 0.9987246199367411,
+            "exposure_time_us": 7974.511917866491,
+            "analog_gain": 1.0
+          },
+          "awb": {
+            "source_frame": 10,
+            "apply_frame": 12,
+            "rgb_means": [
+              0.3679438617435445,
+              0.11045185811702961,
+              0.05502650299555425
+            ],
+            "valid_pixel_fraction": 0.9991837567595143,
+            "wb_gains_rgb": [
+              0.30018671216212367,
+              1.0,
+              2.0072483640465637
+            ]
+          }
+        }
+      },
+      "latency_summary": {
+        "frame_count": 1.0,
+        "e2e_latency_mean_us": 11753.165439240925,
+        "e2e_latency_max_us": 11753.165439240925,
+        "e2e_latency_min_us": 11753.165439240925,
+        "queue_stall_total_us": 0.0,
+        "queue_stall_max_us": 0.0,
+        "ae_settle_frame": -1.0,
+        "ae_settle_frames_after_step": -1.0,
+        "ae_final_error_ev": -0.15285087300087155,
+        "awb_settle_frame": -1.0,
+        "awb_final_rgb_imbalance": 0.15553446849312635,
+        "max_clip_fraction": 5.1015202530354045e-05,
+        "max_clip_fraction_before_response": 0.0,
+        "max_clip_fraction_after_response": 5.1015202530354045e-05,
+        "warmup_frame_count": 0.0,
+        "validation_verdicts": {
+          "ae_settle": false,
+          "awb_settle": false,
+          "clamp_compliance": true,
+          "warmup_delay_mapping": true,
+          "clip_reduction": true
+        },
+        "validation_thresholds": {
+          "ae_settle_ev": 0.25,
+          "awb_settle_imbalance": 0.2,
+          "settle_consecutive_frames": 2.0
+        }
+      }
+    },
+    {
+      "timeline": {
+        "frame_id": 11,
+        "timestamps_us": {
+          "request": 366666.6666666667,
+          "requested": 366666.6666666667,
+          "exposure_start": 366666.6666666667,
+          "exposure_mid": 370659.01438628713,
+          "readout_start": 374651.3621059076,
+          "readout_end": 377660.96210590756,
+          "stats_ready": 377660.96210590756,
+          "isp_start": 374894.6421059076,
+          "isp_done": 377479.8321059076,
+          "dma_done": 377919.8321059076,
+          "app_visible": 378419.8321059076,
+          "frame_interval_us": 33333.333333333336,
+          "line_time_us": 15.2,
+          "hidden_lines_top": 16.0,
+          "hidden_lines_bottom": 20.0
+        },
+        "stages": [
+          {
+            "name": "unicam_capture",
+            "domain": "raw_bayer",
+            "buffering": "stream",
+            "start_us": 374894.6421059076,
+            "end_us": 377357.0421059076,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 0.0,
+            "cycle_latency_us": 0.08,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "black_level_dpc",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 374925.2821059076,
+            "end_us": 377387.6821059076,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.24,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "lens_shading_geq",
+            "domain": "bayer",
+            "buffering": "line",
+            "start_us": 374955.98210590763,
+            "end_us": 377418.3821059076,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 30.4,
+            "cycle_latency_us": 0.3,
+            "stalled_us": 0.0
+          },
+          {
+            "name": "demosaic_ccm_gamma",
+            "domain": "bayer_to_rgb",
+            "buffering": "line",
+            "start_us": 375017.43210590765,
+            "end_us": 377479.8321059076,
+            "latency_us": 2462.399999999965,
+            "line_buffer_delay_us": 60.8,
+            "cycle_latency_us": 0.65,
+            "stalled_us": 0.0
+          }
+        ],
+        "queue_stall_us": 0.0,
+        "dropped": false
+      },
+      "controls_applied": {
+        "ae_enabled": true,
+        "awb_enabled": true,
+        "apply_to_image": true,
+        "ae_stats_frame": 9,
+        "awb_stats_frame": 9,
+        "ae_apply_delay_frames": 2,
+        "awb_apply_delay_frames": 2,
+        "stats_ready_us": 377660.96210590756,
+        "warmup": false,
+        "exposure_time_us": 7984.6954392408925,
+        "analog_gain": 1.0,
+        "wb_gains_rgb": [
+          0.32382904387294187,
+          1.0,
+          1.8529442442851014
+        ],
+        "applied_controls": {
+          "exposure_time_us": 7984.6954392408925,
+          "analog_gain": 1.0,
+          "wb_gains_rgb": [
+            0.32382904387294187,
+            1.0,
+            1.8529442442851014
+          ],
+          "ae_stats_frame": 9,
+          "awb_stats_frame": 9
+        },
+        "produced_stats": {
+          "mean_sensor_luma_norm": 0.16050641612958186,
+          "weighted_sensor_luma_norm": 0.16190483093168997,
+          "metering_sensor_luma_norm": 0.16190483093168997,
+          "target_luma": 0.18,
+          "clipped_fraction": 5.1015202530354045e-05,
+          "sensor_rgb_means": [
+            0.3679438617435445,
+            0.11045185811702961,
+            0.05502650299555425
+          ],
+          "sensor_raw_rgb_means": [
+            0.36767306830741725,
+            0.11037233398415082,
+            0.054988224763303416
+          ],
+          "awb_corrected_rgb_means": [
+            0.11915090894732992,
+            0.11045185811702961,
+            0.10196104200874913
+          ],
+          "sensor_rgb_imbalance": 1.7598668297274251,
+          "sensor_raw_rgb_imbalance": 1.7598411864093828,
+          "awb_corrected_rgb_imbalance": 0.15553446849312635,
+          "output_rgb_means": [
+            0.0008807729135946623,
+            0.299347283438675,
+            0.18275378063410125
+          ],
+          "output_rgb_imbalance": 1.853898973017712,
+          "ae": {
+            "stats_grid": [
+              8,
+              8
+            ],
+            "ae_metering": "center_weighted",
+            "tile_mean_luma": [
+              [
+                0.08067537553570499,
+                0.20745199121665678,
+                0.1941717629578048,
+                0.09759042217422056,
+                0.06938772235770477,
+                0.1318399540362463,
+                0.1662794824473375,
+                0.17902727533229482
+              ],
+              [
+                0.08635318966481076,
+                0.2000471837663962,
+                0.18832523668097953,
+                0.10226657452737206,
+                0.06900579161966482,
+                0.13262785059203605,
+                0.1688414656852877,
+                0.18322822517515827
+              ],
+              [
+                0.21641391224948697,
+                0.13099492250527878,
+                0.12667325149119468,
+                0.1798180271479542,
+                0.07202928270765434,
+                0.14737949421408472,
+                0.2037724600854554,
+                0.2383832556774782
+              ],
+              [
+                0.21083819836543802,
+                0.12827693456167397,
+                0.12625508978565836,
+                0.18036172452849472,
+                0.08394158523533649,
+                0.15078821891102742,
+                0.2012915165302349,
+                0.23263655796713323
+              ],
+              [
+                0.043968676964360465,
+                0.07933386804400146,
+                0.12399457743543138,
+                0.17624231758863468,
+                0.3241047076620174,
+                0.22731351257606738,
+                0.14859203576516986,
+                0.08500721410906555
+              ],
+              [
+                0.056435615872017536,
+                0.08835066988239955,
+                0.12949399520412755,
+                0.17805343961032483,
+                0.31949186987257316,
+                0.223100139789347,
+                0.14420162350109403,
+                0.0807252168216818
+              ],
+              [
+                0.4515188461393358,
+                0.3626800433399927,
+                0.2645384155179269,
+                0.1850708667249204,
+                0.10293462515472089,
+                0.06388734172792587,
+                0.03912509878163806,
+                0.024132653506720367
+              ],
+              [
+                0.4459320791029962,
+                0.3566683785313364,
+                0.25984608863949377,
+                0.1798854834990976,
+                0.09722512057851952,
+                0.05993912830702201,
+                0.03685686771059177,
+                0.02318659193288031
+              ]
+            ],
+            "tile_clip_fraction": [
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0016129032258064516,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0016129032258064516,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "mean_luma": 0.16050641612958186,
+            "weighted_luma": 0.16190483093168997,
+            "metering_luma": 0.16190483093168997,
+            "target_luma": 0.18,
+            "target_error": -0.01809516906831002,
+            "ev_error": -0.15285087300087155,
+            "clipped_fraction": 5.1015202530354045e-05,
+            "highlight_clip": 0.98
+          },
+          "awb": {
+            "stats_roi": "valid_luma",
+            "valid_luma_range": [
+              0.02,
+              0.95
+            ],
+            "valid_pixel_fraction": 0.9991837567595143,
+            "raw_rgb_means": [
+              0.36767306830741725,
+              0.11037233398415082,
+              0.054988224763303416
+            ],
+            "rgb_means": [
+              0.3679438617435445,
+              0.11045185811702961,
+              0.05502650299555425
+            ],
+            "corrected_rgb_means": [
+              0.11915090894732992,
+              0.11045185811702961,
+              0.10196104200874913
+            ],
+            "raw_corrected_rgb_means": [
+              0.11906321816782177,
+              0.11037233398415082,
+              0.10189011457861855
+            ],
+            "raw_rgb_imbalance": 1.7598411864093828,
+            "rgb_imbalance": 1.7598668297274251,
+            "corrected_rgb_imbalance": 0.15553446849312635,
+            "raw_corrected_rgb_imbalance": 0.15549447549893938
+          }
+        },
+        "requested_controls": {
+          "ae": {
+            "source_frame": 11,
+            "apply_frame": 13,
+            "measured_luma": 0.16190483093168997,
+            "mean_luma": 0.16050641612958186,
+            "weighted_luma": 0.16190483093168997,
+            "clipped_fraction": 5.1015202530354045e-05,
+            "ev_error": -0.15285087300087155,
+            "highlight_limited": true,
+            "target_luma": 0.18,
+            "ratio": 0.9987246199367411,
+            "exposure_time_us": 7974.511917866491,
+            "analog_gain": 1.0
+          },
+          "awb": {
+            "source_frame": 11,
+            "apply_frame": 13,
+            "rgb_means": [
+              0.3679438617435445,
+              0.11045185811702961,
+              0.05502650299555425
+            ],
+            "valid_pixel_fraction": 0.9991837567595143,
+            "wb_gains_rgb": [
+              0.30018671216212367,
+              1.0,
+              2.0072483640465637
+            ]
+          }
+        }
+      },
+      "latency_summary": {
+        "frame_count": 1.0,
+        "e2e_latency_mean_us": 11753.165439240925,
+        "e2e_latency_max_us": 11753.165439240925,
+        "e2e_latency_min_us": 11753.165439240925,
+        "queue_stall_total_us": 0.0,
+        "queue_stall_max_us": 0.0,
+        "ae_settle_frame": -1.0,
+        "ae_settle_frames_after_step": -1.0,
+        "ae_final_error_ev": -0.15285087300087155,
+        "awb_settle_frame": -1.0,
+        "awb_final_rgb_imbalance": 0.15553446849312635,
+        "max_clip_fraction": 5.1015202530354045e-05,
+        "max_clip_fraction_before_response": 0.0,
+        "max_clip_fraction_after_response": 5.1015202530354045e-05,
+        "warmup_frame_count": 0.0,
+        "validation_verdicts": {
+          "ae_settle": false,
+          "awb_settle": false,
+          "clamp_compliance": true,
+          "warmup_delay_mapping": true,
+          "clip_reduction": true
+        },
+        "validation_thresholds": {
+          "ae_settle_ev": 0.25,
+          "awb_settle_imbalance": 0.2,
+          "settle_consecutive_frames": 2.0
+        }
+      }
+    }
+  ]
+}

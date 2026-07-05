@@ -1,0 +1,66 @@
+{
+  "schema": "pixel_geometry_import_v1",
+  "units": "um",
+  "source": "Reference solver-import geometry. Replace with CAD/GDS-extracted polygons and measured OCL surface maps for calibrated work.",
+  "notes": [
+    "Local polygon coordinates are relative to each OCL or CFA tile center.",
+    "This file is for solver geometry injection, not mask signoff hierarchy preservation."
+  ],
+  "ocl_polygons": {
+    "imported_qpd": [
+      [-1.32, -1.30],
+      [1.25, -1.14],
+      [1.30, 1.25],
+      [-1.18, 1.34]
+    ],
+    "imported_center": [
+      [-0.64, -0.60],
+      [0.62, -0.48],
+      [0.55, 0.62],
+      [-0.61, 0.52]
+    ]
+  },
+  "ocl_surface_map": {
+    "imported_qpd": {
+      "source": "reference_freeform_surface_map",
+      "x_um": [-1.32, 0.0, 1.32],
+      "z_um": [-1.32, 0.0, 1.32],
+      "height_um": [
+        [0.00, 0.20, 0.00],
+        [0.18, 0.657, 0.22],
+        [0.00, 0.21, 0.00]
+      ]
+    },
+    "imported_center": {
+      "source": "reference_1x1_surface_map",
+      "x_um": [-0.66, 0.0, 0.66],
+      "z_um": [-0.66, 0.0, 0.66],
+      "height_um": [
+        [0.00, 0.18, 0.00],
+        [0.20, 0.657, 0.22],
+        [0.00, 0.19, 0.00]
+      ]
+    }
+  },
+  "cfa_polygons": {
+    "background": "passivation",
+    "red": [
+      [-0.58, -0.58],
+      [0.555, -0.58],
+      [0.58, 0.555],
+      [-0.555, 0.58]
+    ],
+    "green": [
+      [-0.58, -0.58],
+      [0.58, -0.58],
+      [0.58, 0.58],
+      [-0.58, 0.58]
+    ],
+    "blue": [
+      [-0.555, -0.58],
+      [0.58, -0.555],
+      [0.555, 0.58],
+      [-0.58, 0.555]
+    ]
+  }
+}

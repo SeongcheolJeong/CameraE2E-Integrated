@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CameraE2E Goal Readiness</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 32px; color: #17202a; }
+.lead { font-size: 18px; }
+table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+th, td { border: 1px solid #d5d8dc; padding: 8px 10px; vertical-align: top; font-size: 13px; }
+th { background: #f4f6f7; text-align: left; }
+code { font-size: 12px; word-break: break-all; }
+.tier { display: inline-block; padding: 2px 7px; border-radius: 4px;
+  background: #edf2f7; font-weight: 600; }
+.tier-validated, .tier-calibrated { background: #d5f5e3; color: #145a32; }
+.tier-proxy, .tier-calibration_required { background: #fdebd0; color: #7d3c00; }
+.tier-missing { background: #fadbd8; color: #78281f; }
+.warn { color: #7d3c00; font-weight: 600; }
+</style>
+</head>
+<body>
+<h1>CameraE2E Goal Readiness</h1>
+
+        <p class="lead">Research-grade E2E optimization platform plus RAW data factory for perception training.</p>
+        <p>Source: <code>/Users/seongcheoljeong/Documents/CameraE2E/outputs/camerae2e-technical-overview-images.pptx</code>
+        and <code>docs/camerae2e-technical-overview.md</code></p>
+        <table>
+          <thead><tr><th>Area</th><th>Tier</th><th>Implemented</th><th>Remaining</th><th>Warning</th></tr></thead>
+          <tbody><tr><td>Scene</td><td><span class='tier tier-validated'>validated</span></td><td>Spectral scene constructors, chart scenes, RGB/multispectral import, illuminant control.</td><td>Measured scene/illumination capture remains external to v1.</td><td></td></tr><tr><td>Optics / RayOptics</td><td><span class='tier tier-proxy'>proxy</span></td><td>Lens DB ingestion and RayOptics geometric PSF execution.</td><td>Diffraction/wave-optics sign-off, flare/ghost/coating, manufacturing tolerance.</td><td></td></tr><tr><td>Image Sensor</td><td><span class='tier tier-proxy'>proxy</span></td><td>CFA/pixel/exposure/noise/RAW path, CFA preset/Quad Bayer selector, analytic shared-OCL group equalization proxy, and image-sensor selector DB.</td><td>Per-sensor calibrated process decks, measured n,k, CAD/GDS, sensor-specific FDTD LUTs.</td><td></td></tr><tr><td>FDTD Optical LUT</td><td><span class='tier tier-proxy'>proxy</span></td><td>QE/field/crosstalk proxy LUT ingestion and physics sanity checks.</td><td>Full convergence, localized crosstalk source experiments, measured optical stack calibration.</td><td></td></tr><tr><td>TCAD / DEVSIM</td><td><span class='tier tier-calibration_required'>calibration_required</span></td><td>Generation-map ingestion, split-PD collection-current proxy, accuracy gate.</td><td>Carrier transport calibration, dark/noise/lag/full-well hooks, active FDTD/TCAD lineage closure.</td><td>TCAD/FDTD active artifact mismatch: active FDTD LUT is under /Users/seongcheoljeong/Documents/CameraE2E/camerae2e_db/fdtd_tcad/runs/convergence_cra3_rgb_r84_gridsnap_quant, but TCAD generation map is under /Users/seongcheoljeong/Documents/CameraE2E/camerae2e_db/fdtd_tcad/runs/fdtd_to_tcad_generation_2d_cra_smoke</td></tr><tr><td>HW ISP</td><td><span class='tier tier-proxy'>proxy</span></td><td>Rolling shutter, stage latency, queue, DMA, delayed AE/AWB simulation.</td><td>Board/vendor trace calibration, AF/HDR/TNR/multi-camera contention detail.</td><td></td></tr><tr><td>Metrics</td><td><span class='tier tier-validated'>validated</span></td><td>MTF, ISO12233, Delta E, SCIELAB, VSNR, SQRI, comparison metrics.</td><td>Product-specific metric weighting and pass/fail thresholds.</td><td></td></tr><tr><td>Optimization</td><td><span class='tier tier-validated'>validated</span></td><td>Preset parameter-space catalog plus deterministic grid, random, Latin-hypercube candidate planning, and score-ranked evolutionary plus discrete surrogate-guided search over dot-path camera parameters using FACA metric objectives, constraints, Pareto front, selected scenarios, parameter-lineage evidence, pixel geometry/CFA preset/Quad Bayer/readout/binning/analytic OCL/FDTD-OCL/noise/optics-PSF configure targets, candidate budget controls, and preflight parameter-space validation.</td><td>True multi-factor readout/remosaic binning, OCL process-stack calibration, and closed-loop hardware calibration.</td><td></td></tr><tr><td>Perception</td><td><span class='tier tier-available'>available</span></td><td>Detection/segmentation/classification/pose/tracking adapters and robustness sweeps.</td><td>Model-specific training loops and dataset-specific accuracy calibration.</td><td></td></tr><tr><td>RAW Data Factory</td><td><span class='tier tier-validated'>validated</span></td><td>Dataset manifest, metadata JSONL, deterministic RAW NPZ, optimization-case export, parameter-lineage evidence, split, checksum, RGB preview, caller-provided labels, RAW-aware perception training manifest, YOLO-style RGB preview/label view, ADAS/KITTI YOLO demo export, and focal-ratio pinhole crop/resize camera-spec variant re-capture.</td><td>DNG writer and automatic label synthesis are intentionally outside v1.</td><td></td></tr><tr><td>DB/LUT Registry</td><td><span class='tier tier-calibration_required'>calibration_required</span></td><td>Manifest, readiness tier, provenance, dependency lineage, stale dependency detection, calibration evidence manifest, and readiness promotion plan.</td><td>Attach real measured evidence before promoting proxy/calibration_required assets.</td><td></td></tr><tr><td>External Pipeline</td><td><span class='tier tier-calibration_required'>calibration_required</span></td><td>FDTD/TCAD and RayOptics source/config/small fixtures are merged under simulations/, active assets are discoverable from one registry, and the goal-level evidence gate covers registry, physics lineage, simulation manifest, FACA, optimization, RAW export, ADAS/KITTI demo, camera-spec variants, and sign-off guard.</td><td>External generated-run lineage closure and product-calibrated data generation.</td><td></td></tr></tbody>
+        </table>
+
+</body>
+</html>

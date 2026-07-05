@@ -1,0 +1,1260 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Template-Based Pixel Design Analysis System Review - Standalone</title>
+  <!-- Standalone export: all CAD/FreeCAD SVG images are embedded as data URIs. -->
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #071013;
+      --surface: #0d1a20;
+      --surface-2: #10242d;
+      --surface-3: #142e38;
+      --line: #28505d;
+      --line-soft: rgba(125, 183, 200, 0.24);
+      --text: #e9f5f7;
+      --muted: #a9c3ca;
+      --soft: #7ea0aa;
+      --cyan: #43d8ee;
+      --green: #58d37a;
+      --yellow: #f5ce5c;
+      --red: #ff7b70;
+      --blue: #68a7ff;
+      --ink: #061014;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.26);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(67, 216, 238, 0.12), transparent 36rem),
+        linear-gradient(180deg, #061014 0%, #08161b 45%, #071013 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 52px;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: rgba(13, 26, 32, 0.82);
+      box-shadow: var(--shadow);
+      padding: 10px 14px;
+      position: sticky;
+      top: 12px;
+      z-index: 5;
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background:
+        linear-gradient(90deg, transparent 46%, rgba(255,255,255,0.28) 47%, rgba(255,255,255,0.28) 53%, transparent 54%),
+        linear-gradient(0deg, transparent 46%, rgba(255,255,255,0.28) 47%, rgba(255,255,255,0.28) 53%, transparent 54%),
+        linear-gradient(135deg, #43d8ee, #58d37a);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.16) inset;
+      flex: 0 0 auto;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 13px;
+      padding: 7px 9px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+      border-color: var(--line-soft);
+      background: rgba(255,255,255,0.04);
+      text-decoration: none;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 22px;
+      align-items: stretch;
+      margin-top: 24px;
+      min-height: 430px;
+    }
+
+    .hero-copy {
+      padding: 38px;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background:
+        linear-gradient(145deg, rgba(16, 36, 45, 0.94), rgba(8, 20, 25, 0.92)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 54px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(32px, 4vw, 58px);
+      max-width: 11ch;
+    }
+
+    h2 {
+      font-size: clamp(24px, 2.3vw, 34px);
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .hero-copy .lead {
+      margin-top: 18px;
+      font-size: 18px;
+      max-width: 68ch;
+      color: #cde1e6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 13px;
+      font-family: inherit;
+    }
+
+    .button.primary {
+      color: #062128;
+      background: linear-gradient(135deg, var(--cyan), #72e7ba);
+      border-color: transparent;
+    }
+
+    .button.warn {
+      border-color: rgba(245, 206, 92, 0.5);
+      color: #ffe9a1;
+      background: rgba(245, 206, 92, 0.08);
+    }
+
+    .system-map {
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: rgba(7, 16, 19, 0.78);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: #cce4eb;
+      background: rgba(255,255,255,0.035);
+      font-size: 12px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .chip.pass {
+      border-color: rgba(88, 211, 122, 0.45);
+      color: #baf7c9;
+      background: rgba(88, 211, 122, 0.09);
+    }
+
+    .chip.check {
+      border-color: rgba(245, 206, 92, 0.5);
+      color: #ffe58d;
+      background: rgba(245, 206, 92, 0.08);
+    }
+
+    .chip.fail {
+      border-color: rgba(255, 123, 112, 0.5);
+      color: #ffc3be;
+      background: rgba(255, 123, 112, 0.08);
+    }
+
+    .stack-visual {
+      display: grid;
+      gap: 9px;
+      align-content: center;
+    }
+
+    .stack-layer {
+      position: relative;
+      min-height: 42px;
+      border: 1px solid var(--line-soft);
+      border-radius: 6px;
+      background: var(--surface-2);
+      overflow: hidden;
+    }
+
+    .stack-layer .label {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text);
+      z-index: 1;
+    }
+
+    .layer-lens {
+      height: 84px;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(67,216,238,0.78) 0 47%, transparent 48%),
+        radial-gradient(ellipse at 14% 100%, rgba(104,167,255,0.42) 0 45%, transparent 46%),
+        radial-gradient(ellipse at 86% 100%, rgba(104,167,255,0.42) 0 45%, transparent 46%),
+        #102b36;
+    }
+
+    .layer-cfa {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+      background: transparent;
+      border: 0;
+    }
+
+    .layer-cfa span {
+      min-height: 34px;
+      border-radius: 5px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .red { background: #e84d55; }
+    .green { background: #35b96c; }
+    .blue { background: #387ee6; }
+
+    .layer-si {
+      height: 120px;
+      background:
+        linear-gradient(90deg, transparent 0 22%, rgba(150,183,210,0.32) 22% 25%, transparent 25% 75%, rgba(150,183,210,0.32) 75% 78%, transparent 78%),
+        radial-gradient(ellipse at 50% 62%, rgba(245,206,92,0.75) 0 23%, transparent 24%),
+        linear-gradient(180deg, rgba(26,57,75,0.95), rgba(11,25,33,0.95));
+    }
+
+    section {
+      margin-top: 22px;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: rgba(13, 26, 32, 0.72);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-head p {
+      max-width: 78ch;
+    }
+
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .grid.cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid.cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid.cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .card {
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: rgba(8, 20, 25, 0.82);
+      padding: 16px;
+      min-width: 0;
+    }
+
+    .card strong {
+      color: var(--text);
+    }
+
+    .metric {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(125, 183, 200, 0.14);
+    }
+
+    .metric:last-child {
+      border-bottom: 0;
+    }
+
+    .metric span:first-child {
+      color: var(--muted);
+    }
+
+    .metric span:last-child {
+      font-weight: 850;
+      color: var(--text);
+      text-align: right;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(120px, 1fr));
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .stage {
+      min-width: 128px;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(20,46,56,0.92), rgba(8,20,25,0.92));
+      padding: 12px;
+      position: relative;
+    }
+
+    .stage::after {
+      content: "";
+      position: absolute;
+      right: -11px;
+      top: 50%;
+      width: 10px;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .stage:last-child::after {
+      display: none;
+    }
+
+    .stage-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(67,216,238,0.12);
+      color: var(--cyan);
+      border: 1px solid rgba(67,216,238,0.38);
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 9px;
+    }
+
+    .stage h3 {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .stage p {
+      font-size: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      overflow: hidden;
+      display: table;
+      background: rgba(8,20,25,0.8);
+    }
+
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      padding: 11px 12px;
+      border-bottom: 1px solid rgba(125, 183, 200, 0.16);
+      font-size: 13px;
+    }
+
+    th {
+      color: var(--text);
+      background: rgba(20,46,56,0.82);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    td {
+      color: #cbe0e5;
+    }
+
+    code {
+      color: #d9f8ff;
+      background: rgba(67,216,238,0.08);
+      border: 1px solid rgba(67,216,238,0.18);
+      border-radius: 5px;
+      padding: 1px 5px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.92em;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .risk-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .cad-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .cad-figure {
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(8, 20, 25, 0.82);
+      min-width: 0;
+    }
+
+    .cad-figure img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 940 / 560;
+      object-fit: cover;
+      background: #071318;
+      border-bottom: 1px solid rgba(125, 183, 200, 0.16);
+    }
+
+    .cad-caption {
+      padding: 12px;
+    }
+
+    .cad-caption h3 {
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    .cad-caption p {
+      font-size: 12px;
+    }
+
+    .freecad-note {
+      margin-top: 14px;
+      border: 1px solid rgba(67,216,238,0.18);
+      border-radius: 8px;
+      background: rgba(67,216,238,0.055);
+      padding: 12px 14px;
+    }
+
+    .freecad-note strong {
+      color: #f4fbfd;
+    }
+
+    .freecad-gallery {
+      margin-top: 14px;
+    }
+
+    .risk {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      border: 1px solid rgba(255,123,112,0.24);
+      border-radius: 8px;
+      padding: 12px;
+      background: rgba(255,123,112,0.055);
+    }
+
+    .risk .tag {
+      color: #ffd1cd;
+      font-weight: 900;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .feedback-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    label {
+      display: block;
+      color: var(--text);
+      font-weight: 800;
+      margin-bottom: 7px;
+      font-size: 13px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #071318;
+      color: var(--text);
+      font: inherit;
+      padding: 10px 11px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 112px;
+      resize: vertical;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(67,216,238,0.12);
+    }
+
+    .feedback-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .notice {
+      border: 1px solid rgba(245, 206, 92, 0.42);
+      background: rgba(245, 206, 92, 0.08);
+      color: #ffe9a1;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 13px;
+    }
+
+    .footer {
+      margin-top: 24px;
+      color: var(--soft);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 960px) {
+      .hero,
+      .grid.cols-2,
+      .grid.cols-3,
+      .grid.cols-4,
+      .cad-gallery,
+      .feedback-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        position: static;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .hero-copy {
+        padding: 24px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+        color: #101820;
+      }
+
+      .topbar, .hero-actions, .feedback-actions {
+        display: none;
+      }
+
+      .page {
+        width: 100%;
+        padding: 0;
+      }
+
+      section, .hero-copy, .system-map, .card {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <span>Image Sensor Pixel Workbench Review</span>
+      </div>
+      <nav class="nav" aria-label="Page sections">
+        <a href="#pipeline">Pipeline</a>
+        <a href="#opensource">Open Source</a>
+        <a href="#cadviews">CAD Views</a>
+        <a href="#analysis">Analysis Scope</a>
+        <a href="#limits">Limits</a>
+        <a href="#questions">Review Questions</a>
+        <a href="#feedback">Feedback Form</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">Designer Review Brief</div>
+          <h1>Template 기반 Pixel 설계 분석 시스템</h1>
+          <p class="lead">
+            이 문서는 현재 개발 중인 image sensor pixel workbench를 설계자 관점에서 검토하기 위한
+            standalone HTML입니다. 목적은 “어떤 설계 의사결정에 도움이 되는가”, “어떤 결과를 아직 믿으면
+            안 되는가”, “다음 개발 우선순위가 맞는가”에 대한 실무 피드백을 받는 것입니다.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="http://127.0.0.1:8766/runs/image_sensor_pixel_studio_reference/index.html">Open Local Workbench</a>
+            <a class="button" href="#feedback">Write Review Notes</a>
+            <button class="button warn" type="button" onclick="window.print()">Print / PDF</button>
+          </div>
+        </div>
+
+        <aside class="system-map" aria-label="Pixel stack visual summary">
+          <div class="chip-row">
+            <span class="chip pass">Framework ready</span>
+            <span class="chip check">Research / trend use</span>
+            <span class="chip fail">Not product LUT ready</span>
+          </div>
+          <div class="stack-visual">
+            <div class="stack-layer layer-lens"><span class="label">Microlens / OCL</span></div>
+            <div class="layer-cfa" aria-label="CFA pattern">
+              <span class="red"></span><span class="green"></span><span class="green"></span><span class="blue"></span><span class="red"></span>
+              <span class="green"></span><span class="blue"></span><span class="red"></span><span class="green"></span><span class="blue"></span>
+            </div>
+            <div class="stack-layer"><span class="label">Passivation / CFA / imports</span></div>
+            <div class="stack-layer layer-si"><span class="label">Si + DTI + PD response</span></div>
+          </div>
+        </aside>
+      </div>
+
+      <section id="summary">
+        <div class="section-head">
+          <div>
+            <h2>현재 상태 요약</h2>
+            <p>이 시스템은 “정확도 보장 TCAD/FDTD 제품 도구”가 아니라, CAD template 기반으로 설계 후보를 빠르게 만들고 광학/전기 진단/카메라 export 흐름을 검증하는 open-source research workbench입니다.</p>
+          </div>
+        </div>
+        <div class="grid cols-4">
+          <div class="card">
+            <h3>Geometry Authority</h3>
+            <p>Template이 geometry source입니다. topology 변경은 base template, height/thickness/pitch 같은 scalar 변경은 variant로 관리합니다.</p>
+          </div>
+          <div class="card">
+            <h3>Solver Path</h3>
+            <p>Meep FDTD가 optical response, CRA, crosstalk, OCL/CFA 효과를 계산합니다. DEVSIM은 현재 electrical sanity/proxy 진단입니다.</p>
+          </div>
+          <div class="card">
+            <h3>Output</h3>
+            <p>KPI, charts, case command, solver input, camera-system research export를 JSON/CSV/PNG로 남깁니다.</p>
+          </div>
+          <div class="card">
+            <h3>Accuracy Gate</h3>
+            <p>Measured geometry, measured n,k, calibrated implant/device, convergence PASS 전까지 product LUT로 쓰면 안 됩니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="opensource">
+        <div class="section-head">
+          <div>
+            <h2>사용하는 Open-Source 구성요소</h2>
+            <p>목표는 상용 image-sensor workflow와 유사한 설계/분석 흐름을 open-source solver와 CAD/mesh 도구로 재현하는 것입니다.</p>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Tool</th>
+              <th>역할</th>
+              <th>현재 사용 방식</th>
+              <th>검토 포인트</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Meep</strong></td>
+              <td>FDTD optical simulation</td>
+              <td>Microlens/OCL, CFA, CRA, crosstalk kernel, field response, generation map 계열 계산.</td>
+              <td>Convergence, mesh resolution, material n,k, runtime scaling.</td>
+            </tr>
+            <tr>
+              <td><strong>DEVSIM</strong></td>
+              <td>Device/electrical diagnostics</td>
+              <td>Weighting potential, split-PD/QPD proxy, DD smoke, mesh/contact sanity check.</td>
+              <td>Pinned PD, TG, FD, implants, traps, calibrated mobility/recombination 구현 필요.</td>
+            </tr>
+            <tr>
+              <td><strong>FreeCAD</strong></td>
+              <td>CAD review / edit loop</td>
+              <td>Generated STEP/BREP/FCStd template를 열어 3D geometry를 검토하고 working copy를 만드는 경로.</td>
+              <td>설계자가 실제로 CAD에서 수정할 parameter와 topology 경계 정의.</td>
+            </tr>
+            <tr>
+              <td><strong>Gmsh / OpenCASCADE</strong></td>
+              <td>Parametric CAD and mesh</td>
+              <td>Template geometry 생성, coarse CAD review mesh, TCAD bridge mesh 준비.</td>
+              <td>Solver-native mesh와 visualization mesh를 명확히 구분해야 함.</td>
+            </tr>
+            <tr>
+              <td><strong>Python stack</strong></td>
+              <td>Pipeline / analysis</td>
+              <td>NumPy, SciPy, CSV/JSON, Matplotlib, replay/validation scripts로 solver artifact를 처리.</td>
+              <td>Reproducibility, artifact schema, batch/HPC orchestration.</td>
+            </tr>
+            <tr>
+              <td><strong>React / Vite / Playwright</strong></td>
+              <td>Workbench UX and test</td>
+              <td>Design, condition, simulate, analyze UI와 browser functional test를 구성.</td>
+              <td>설계자가 이해하기 쉬운 UX 단순화와 result viewer 품질.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="cadviews">
+        <div class="section-head">
+          <div>
+            <h2>3D CAD / FreeCAD Review Views</h2>
+            <p>아래 이미지는 현재 CAD template의 STEP/BREP/FCStd source와 동일한 template parameter에서 생성한 3D isometric preview입니다. FreeCAD가 설치된 환경에서는 같은 template 폴더의 <code>model.step</code>, <code>model.brep</code>, <code>model.FCStd</code>를 열어 실제 CAD body를 검토합니다.</p>
+          </div>
+          <span class="chip check">CAD-derived preview</span>
+        </div>
+        <div class="cad-gallery">
+          <figure class="cad-figure">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NDAiIGhlaWdodD0iNTYwIiB2aWV3Qm94PSIwIDAgOTQwIDU2MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJRUEQgMngyIHNwbGl0LVBEIENBRCB2aWV3Ij4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB4Mj0iMSIgeTE9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMxMDJiMzYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwNzEzMTgiLz48L2xpbmVhckdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9ImxlbnNHcmFkIiB4MT0iMCIgeDI9IjAiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYzdlZmZmIi8+PHN0b3Agb2Zmc2V0PSIwLjU1IiBzdG9wLWNvbG9yPSIjNmRjN2ZhIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMmY2ZjlhIi8+PC9saW5lYXJHcmFkaWVudD4KPGZpbHRlciBpZD0ic2hhZG93IiB4PSItMzAlIiB5PSItMzAlIiB3aWR0aD0iMTYwJSIgaGVpZ2h0PSIxNjAlIj48ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMTQiIHN0ZERldmlhdGlvbj0iMTIiIGZsb29kLWNvbG9yPSIjMDAwIiBmbG9vZC1vcGFjaXR5PSIwLjM1Ii8+PC9maWx0ZXI+CjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcng9IjIyIiBmaWxsPSJ1cmwoI2JnKSIvPgo8dGV4dCB4PSIzMCIgeT0iNDQiIGZpbGw9IiNlOWY1ZjciIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC13ZWlnaHQ9IjgwMCIgZm9udC1zaXplPSIyMiI+UVBEIDJ4MiBzcGxpdC1QRCBDQUQgdmlldzwvdGV4dD4KPHRleHQgeD0iMzAiIHk9IjcwIiBmaWxsPSIjOWZjMmNiIiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTMiPlRlbXBsYXRlOiBxcGRfc3BsaXRfcGRfMngyIMK3IDIgeCAyIHN1YnBpeGVscyDCtyBwaXRjaCAxLjQwMCB1bSDCtyBTVEVQL0JSRVAvRkNTdGQtcmVhZHkgc291cmNlPC90ZXh0Pgo8ZyBmaWx0ZXI9InVybCgjc2hhZG93KSI+Cjxwb2x5Z29uIHBvaW50cz0iNTQ2LjAsNDEyLjAgNDcwLjAsNDUxLjUgNDcwLjAsNDA0LjAgNTQ2LjAsMzY0LjUiIGZpbGw9IiMxMjI5MzQiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjEyKSIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIxIi8+Cjxwb2x5Z29uIHBvaW50cz0iMzk0LjAsNDEyLjAgNDcwLjAsNDUxLjUgNDcwLjAsNDA0LjAgMzk0LjAsMzY0LjUiIGZpbGw9IiMxODM5NDciIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjEyKSIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIxIi8+Cjxwb2x5Z29uIHBvaW50cz0iNDcwLjAsMzI1LjAgNTQ2LjAsMzY0LjUgNDcwLjAsNDA0LjAgMzk0LjAsMzY0LjUiIGZpbGw9IiMyMDQ4NWIiIHN0cm9rZT0iIzRmODc5YSIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjk2Ii8+CjxsaW5lIHgxPSI1MDguMCIgeTE9IjM0NC4wIiB4Mj0iNDMyLjAiIHkyPSIzODMuNSIgc3Ryb2tlPSIjNmY4ZWExIiBzdHJva2Utd2lkdGg9IjAuNyIgb3BhY2l0eT0iMC4zNSIvPgo8bGluZSB4MT0iNDMyLjAiIHkxPSIzNDQuMCIgeDI9IjUwOC4wIiB5Mj0iMzgzLjUiIHN0cm9rZT0iIzZmOGVhMSIgc3Ryb2tlLXdpZHRoPSIwLjciIG9wYWNpdHk9IjAuMzUiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCwzMzAuMiA0OTQuMywzNDIuOSA0NzAuMCwzNTUuNSA0NDUuNywzNDIuOSIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI1MDguMCwzNTAuMCA1MzIuMywzNjIuNiA1MDguMCwzNzUuMyA0ODMuNywzNjIuNiIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI0MzIuMCwzNTAuMCA0NTYuMywzNjIuNiA0MzIuMCwzNzUuMyA0MDcuNywzNjIuNiIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCwzNjkuNyA0OTQuMywzODIuNCA0NzAuMCwzOTUuMCA0NDUuNywzODIuNCIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCwzMDUuNyA1MDUuMCwzMjMuOSA0NzAuMCwzNDIuMCA0MzUuMCwzMjMuOSIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI1MDguMCwzMjUuNCA1NDMuMCwzNDMuNiA1MDguMCwzNjEuOCA0NzMuMCwzNDMuNiIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI0MzIuMCwzMjUuNCA0NjcuMCwzNDMuNiA0MzIuMCwzNjEuOCAzOTcuMCwzNDMuNiIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCwzNDUuMiA1MDUuMCwzNjMuNCA0NzAuMCwzODEuNiA0MzUuMCwzNjMuNCIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCwyODguMyA1MzkuOSwzMjQuNiA0NzAuMCwzNjEuMCA0MDAuMSwzMjQuNiIgZmlsbD0icmdiYSg5NSwxODcsMjU1LDAuMjApIiBzdHJva2U9IiM2ZmQyZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC44NSIvPgo8ZWxsaXBzZSBjeD0iNDcwLjAiIGN5PSIzMTQuNiIgcng9IjQ0LjEiIHJ5PSIyMi44IiBmaWxsPSJ1cmwoI2xlbnNHcmFkKSIgc3Ryb2tlPSIjYTdlN2ZmIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC45MiIvPgo8L2c+CjxyZWN0IHg9IjMwIiB5PSI0NzAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjMiIGZpbGw9IiM2OWM5ZmYiIG9wYWNpdHk9IjAuOSIvPgo8dGV4dCB4PSI1MiIgeT0iNDgzIiBmaWxsPSIjY2RlMWU2IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTIiPk9DTCBsZW5zPC90ZXh0Pgo8cmVjdCB4PSIxNTAiIHk9IjQ3MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iMyIgZmlsbD0iI2U4NTA1YiIgb3BhY2l0eT0iMC45Ii8+Cjx0ZXh0IHg9IjE3MiIgeT0iNDgzIiBmaWxsPSIjY2RlMWU2IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTIiPkNGQSByZWQ8L3RleHQ+CjxyZWN0IHg9IjI3MCIgeT0iNDcwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHJ4PSIzIiBmaWxsPSIjMzRiZDcxIiBvcGFjaXR5PSIwLjkiLz4KPHRleHQgeD0iMjkyIiB5PSI0ODMiIGZpbGw9IiNjZGUxZTYiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxMiI+Q0ZBIGdyZWVuPC90ZXh0Pgo8cmVjdCB4PSIzOTAiIHk9IjQ3MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iMyIgZmlsbD0iIzNmODJmMiIgb3BhY2l0eT0iMC45Ii8+Cjx0ZXh0IHg9IjQxMiIgeT0iNDgzIiBmaWxsPSIjY2RlMWU2IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTIiPkNGQSBibHVlPC90ZXh0Pgo8cmVjdCB4PSI1MTAiIHk9IjQ3MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iMyIgZmlsbD0iI2Q0YjMzOCIgb3BhY2l0eT0iMC45Ii8+Cjx0ZXh0IHg9IjUzMiIgeT0iNDgzIiBmaWxsPSIjY2RlMWU2IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTIiPlBob3RvZGlvZGU8L3RleHQ+CjxyZWN0IHg9IjYzMCIgeT0iNDcwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHJ4PSIzIiBmaWxsPSIjMjA0ODViIiBvcGFjaXR5PSIwLjkiLz4KPHRleHQgeD0iNjUyIiB5PSI0ODMiIGZpbGw9IiNjZGUxZTYiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxMiI+U2kgLyBEVEk8L3RleHQ+Cjx0ZXh0IHg9IjMwIiB5PSI1MjIiIGZpbGw9IiM3ZmEzYWQiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxMiI+R2VuZXJhdGVkIGZyb20gdGVtcGxhdGVfcGFyYW1ldGVycy5qc29uOyBhc3NvY2lhdGVkIENBRCBhcnRpZmFjdHM6IG1vZGVsLnN0ZXAsIG1vZGVsLmJyZXAsIGFuZCBGQ1N0ZCB3aGVyZSBhdmFpbGFibGUuPC90ZXh0Pgo8L3N2Zz4=" alt="QPD 2x2 split photodiode CAD-derived isometric preview" />
+            <figcaption class="cad-caption">
+              <h3>QPD 2x2 Split-PD</h3>
+              <p>FreeCAD-openable <code>qpd_split_pd_2x2/model.step</code> source. QPD split, green CFA, shield proxy 검토용.</p>
+            </figcaption>
+          </figure>
+          <figure class="cad-figure">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NDAiIGhlaWdodD0iNTYwIiB2aWV3Qm94PSIwIDAgOTQwIDU2MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJRdWFkIDJ4MiBPQ0wgNXg1IGNyb3NzdGFsayBDQUQgdmlldyI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeDI9IjEiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTAyYjM2Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDcxMzE4Ii8+PC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJsZW5zR3JhZCIgeDE9IjAiIHgyPSIwIiB5MT0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2M3ZWZmZiIvPjxzdG9wIG9mZnNldD0iMC41NSIgc3RvcC1jb2xvcj0iIzZkYzdmYSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzJmNmY5YSIvPjwvbGluZWFyR3JhZGllbnQ+CjxmaWx0ZXIgaWQ9InNoYWRvdyIgeD0iLTMwJSIgeT0iLTMwJSIgd2lkdGg9IjE2MCUiIGhlaWdodD0iMTYwJSI+PGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjE0IiBzdGREZXZpYXRpb249IjEyIiBmbG9vZC1jb2xvcj0iIzAwMCIgZmxvb2Qtb3BhY2l0eT0iMC4zNSIvPjwvZmlsdGVyPgo8L2RlZnM+CjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHJ4PSIyMiIgZmlsbD0idXJsKCNiZykiLz4KPHRleHQgeD0iMzAiIHk9IjQ0IiBmaWxsPSIjZTlmNWY3IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtd2VpZ2h0PSI4MDAiIGZvbnQtc2l6ZT0iMjIiPlF1YWQgMngyIE9DTCA1eDUgY3Jvc3N0YWxrIENBRCB2aWV3PC90ZXh0Pgo8dGV4dCB4PSIzMCIgeT0iNzAiIGZpbGw9IiM5ZmMyY2IiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxMyI+VGVtcGxhdGU6IHF1YWRfMngyX29jbF81eDVfY3Jvc3N0YWxrIMK3IDEwIHggMTAgc3VicGl4ZWxzIMK3IHBpdGNoIDEuNDAwIHVtIMK3IFNURVAvQlJFUC9GQ1N0ZC1yZWFkeSBzb3VyY2U8L3RleHQ+CjxnIGZpbHRlcj0idXJsKCNzaGFkb3cpIj4KPHBvbHlnb24gcG9pbnRzPSI3NzAuMCw0ODMuNSA0NzAuMCw2MzkuNSA0NzAuMCw2MDIuMCA3NzAuMCw0NDYuMCIgZmlsbD0iIzEyMjkzNCIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjEiLz4KPHBvbHlnb24gcG9pbnRzPSIxNzAuMCw0ODMuNSA0NzAuMCw2MzkuNSA0NzAuMCw2MDIuMCAxNzAuMCw0NDYuMCIgZmlsbD0iIzE4Mzk0NyIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMTIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjEiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCwyOTAuMCA3NzAuMCw0NDYuMCA0NzAuMCw2MDIuMCAxNzAuMCw0NDYuMCIgZmlsbD0iIzIwNDg1YiIgc3Ryb2tlPSIjNGY4NzlhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuOTYiLz4KPGxpbmUgeDE9IjUwMC4wIiB5MT0iMzA1LjAiIHgyPSIyMDAuMCIgeTI9IjQ2MS4wIiBzdHJva2U9IiM2ZjhlYTEiIHN0cm9rZS13aWR0aD0iMC43IiBvcGFjaXR5PSIwLjM1Ii8+CjxsaW5lIHgxPSI1MzAuMCIgeTE9IjMyMC42IiB4Mj0iMjMwLjAiIHkyPSI0NzYuNiIgc3Ryb2tlPSIjNmY4ZWExIiBzdHJva2Utd2lkdGg9IjAuNyIgb3BhY2l0eT0iMC4zNSIvPgo8bGluZSB4MT0iNTYwLjAiIHkxPSIzMzYuMiIgeDI9IjI2MC4wIiB5Mj0iNDkyLjIiIHN0cm9rZT0iIzZmOGVhMSIgc3Ryb2tlLXdpZHRoPSIwLjciIG9wYWNpdHk9IjAuMzUiLz4KPGxpbmUgeDE9IjU5MC4wIiB5MT0iMzUxLjgiIHgyPSIyOTAuMCIgeTI9IjUwNy44IiBzdHJva2U9IiM2ZjhlYTEiIHN0cm9rZS13aWR0aD0iMC43IiBvcGFjaXR5PSIwLjM1Ii8+CjxsaW5lIHgxPSI2MjAuMCIgeTE9IjM2Ny40IiB4Mj0iMzIwLjAiIHkyPSI1MjMuNCIgc3Ryb2tlPSIjNmY4ZWExIiBzdHJva2Utd2lkdGg9IjAuNyIgb3BhY2l0eT0iMC4zNSIvPgo8bGluZSB4MT0iNjUwLjAiIHkxPSIzODMuMCIgeDI9IjM1MC4wIiB5Mj0iNTM5LjAiIHN0cm9rZT0iIzZmOGVhMSIgc3Ryb2tlLXdpZHRoPSIwLjciIG9wYWNpdHk9IjAuMzUiLz4KPGxpbmUgeDE9IjY4MC4wIiB5MT0iMzk4LjYiIHgyPSIzODAuMCIgeTI9IjU1NC42IiBzdHJva2U9IiM2ZjhlYTEiIHN0cm9rZS13aWR0aD0iMC43IiBvcGFjaXR5PSIwLjM1Ii8+CjxsaW5lIHgxPSI3MTAuMCIgeTE9IjQxNC4yIiB4Mj0iNDEwLjAiIHkyPSI1NzAuMiIgc3Ryb2tlPSIjNmY4ZWExIiBzdHJva2Utd2lkdGg9IjAuNyIgb3BhY2l0eT0iMC4zNSIvPgo8bGluZSB4MT0iNzQwLjAiIHkxPSI0MjkuOCIgeDI9IjQ0MC4wIiB5Mj0iNTg1LjgiIHN0cm9rZT0iIzZmOGVhMSIgc3Ryb2tlLXdpZHRoPSIwLjciIG9wYWNpdHk9IjAuMzUiLz4KPGxpbmUgeDE9IjQ0MC4wIiB5MT0iMzA1LjAiIHgyPSI3NDAuMCIgeTI9IjQ2MS4wIiBzdHJva2U9IiM2ZjhlYTEiIHN0cm9rZS13aWR0aD0iMC43IiBvcGFjaXR5PSIwLjM1Ii8+CjxsaW5lIHgxPSI0MTAuMCIgeTE9IjMyMC42IiB4Mj0iNzEwLjAiIHkyPSI0NzYuNiIgc3Ryb2tlPSIjNmY4ZWExIiBzdHJva2Utd2lkdGg9IjAuNyIgb3BhY2l0eT0iMC4zNSIvPgo8bGluZSB4MT0iMzgwLjAiIHkxPSIzMzYuMiIgeDI9IjY4MC4wIiB5Mj0iNDkyLjIiIHN0cm9rZT0iIzZmOGVhMSIgc3Ryb2tlLXdpZHRoPSIwLjciIG9wYWNpdHk9IjAuMzUiLz4KPGxpbmUgeDE9IjM1MC4wIiB5MT0iMzUxLjgiIHgyPSI2NTAuMCIgeTI9IjUwNy44IiBzdHJva2U9IiM2ZjhlYTEiIHN0cm9rZS13aWR0aD0iMC43IiBvcGFjaXR5PSIwLjM1Ii8+CjxsaW5lIHgxPSIzMjAuMCIgeTE9IjM2Ny40IiB4Mj0iNjIwLjAiIHkyPSI1MjMuNCIgc3Ryb2tlPSIjNmY4ZWExIiBzdHJva2Utd2lkdGg9IjAuNyIgb3BhY2l0eT0iMC4zNSIvPgo8bGluZSB4MT0iMjkwLjAiIHkxPSIzODMuMCIgeDI9IjU5MC4wIiB5Mj0iNTM5LjAiIHN0cm9rZT0iIzZmOGVhMSIgc3Ryb2tlLXdpZHRoPSIwLjciIG9wYWNpdHk9IjAuMzUiLz4KPGxpbmUgeDE9IjI2MC4wIiB5MT0iMzk4LjYiIHgyPSI1NjAuMCIgeTI9IjU1NC42IiBzdHJva2U9IiM2ZjhlYTEiIHN0cm9rZS13aWR0aD0iMC43IiBvcGFjaXR5PSIwLjM1Ii8+CjxsaW5lIHgxPSIyMzAuMCIgeTE9IjQxNC4yIiB4Mj0iNTMwLjAiIHkyPSI1NzAuMiIgc3Ryb2tlPSIjNmY4ZWExIiBzdHJva2Utd2lkdGg9IjAuNyIgb3BhY2l0eT0iMC4zNSIvPgo8bGluZSB4MT0iMjAwLjAiIHkxPSI0MjkuOCIgeDI9IjUwMC4wIiB5Mj0iNTg1LjgiIHN0cm9rZT0iIzZmOGVhMSIgc3Ryb2tlLXdpZHRoPSIwLjciIG9wYWNpdHk9IjAuMzUiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCwzODcuNyA0ODkuMiwzOTcuNyA0NzAuMCw0MDcuNyA0NTAuOCwzOTcuNyIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI1MDAuMCw0MDMuMyA1MTkuMiw0MTMuMyA1MDAuMCw0MjMuMyA0ODAuOCw0MTMuMyIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI1MzAuMCw0MTguOSA1NDkuMiw0MjguOSA1MzAuMCw0MzguOSA1MTAuOCw0MjguOSIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI1NjAuMCw0MzQuNSA1NzkuMiw0NDQuNSA1NjAuMCw0NTQuNSA1NDAuOCw0NDQuNSIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI0NDAuMCw0MDMuMyA0NTkuMiw0MTMuMyA0NDAuMCw0MjMuMyA0MjAuOCw0MTMuMyIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCw0MTguOSA0ODkuMiw0MjguOSA0NzAuMCw0MzguOSA0NTAuOCw0MjguOSIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI1MDAuMCw0MzQuNSA1MTkuMiw0NDQuNSA1MDAuMCw0NTQuNSA0ODAuOCw0NDQuNSIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI1MzAuMCw0NTAuMSA1NDkuMiw0NjAuMSA1MzAuMCw0NzAuMSA1MTAuOCw0NjAuMSIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI0MTAuMCw0MTguOSA0MjkuMiw0MjguOSA0MTAuMCw0MzguOSAzOTAuOCw0MjguOSIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI0NDAuMCw0MzQuNSA0NTkuMiw0NDQuNSA0NDAuMCw0NTQuNSA0MjAuOCw0NDQuNSIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCw0NTAuMSA0ODkuMiw0NjAuMSA0NzAuMCw0NzAuMSA0NTAuOCw0NjAuMSIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI1MDAuMCw0NjUuNyA1MTkuMiw0NzUuNyA1MDAuMCw0ODUuNyA0ODAuOCw0NzUuNyIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSIzODAuMCw0MzQuNSAzOTkuMiw0NDQuNSAzODAuMCw0NTQuNSAzNjAuOCw0NDQuNSIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI0MTAuMCw0NTAuMSA0MjkuMiw0NjAuMSA0MTAuMCw0NzAuMSAzOTAuOCw0NjAuMSIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI0NDAuMCw0NjUuNyA0NTkuMiw0NzUuNyA0NDAuMCw0ODUuNyA0MjAuOCw0NzUuNyIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCw0ODEuMyA0ODkuMiw0OTEuMyA0NzAuMCw1MDEuMyA0NTAuOCw0OTEuMyIgZmlsbD0iI2Q0YjMzOCIgc3Ryb2tlPSIjZmZlNzhhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNDgiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCwyNzQuNyA0OTcuNiwyODkuMSA0NzAuMCwzMDMuNSA0NDIuNCwyODkuMSIgZmlsbD0iI2U4NTA1YiIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI1MzAuMCwzMDUuOSA1NTcuNiwzMjAuMyA1MzAuMCwzMzQuNyA1MDIuNCwzMjAuMyIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI1OTAuMCwzMzcuMSA2MTcuNiwzNTEuNSA1OTAuMCwzNjUuOSA1NjIuNCwzNTEuNSIgZmlsbD0iI2U4NTA1YiIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI2NTAuMCwzNjguMyA2NzcuNiwzODIuNyA2NTAuMCwzOTcuMSA2MjIuNCwzODIuNyIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI3MTAuMCwzOTkuNSA3MzcuNiw0MTMuOSA3MTAuMCw0MjguMyA2ODIuNCw0MTMuOSIgZmlsbD0iI2U4NTA1YiIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI0MTAuMCwzMDUuOSA0MzcuNiwzMjAuMyA0MTAuMCwzMzQuNyAzODIuNCwzMjAuMyIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCwzMzcuMSA0OTcuNiwzNTEuNSA0NzAuMCwzNjUuOSA0NDIuNCwzNTEuNSIgZmlsbD0iIzNmODJmMiIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI1MzAuMCwzNjguMyA1NTcuNiwzODIuNyA1MzAuMCwzOTcuMSA1MDIuNCwzODIuNyIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI1OTAuMCwzOTkuNSA2MTcuNiw0MTMuOSA1OTAuMCw0MjguMyA1NjIuNCw0MTMuOSIgZmlsbD0iIzNmODJmMiIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI2NTAuMCw0MzAuNyA2NzcuNiw0NDUuMSA2NTAuMCw0NTkuNSA2MjIuNCw0NDUuMSIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSIzNTAuMCwzMzcuMSAzNzcuNiwzNTEuNSAzNTAuMCwzNjUuOSAzMjIuNCwzNTEuNSIgZmlsbD0iI2U4NTA1YiIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI0MTAuMCwzNjguMyA0MzcuNiwzODIuNyA0MTAuMCwzOTcuMSAzODIuNCwzODIuNyIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCwzOTkuNSA0OTcuNiw0MTMuOSA0NzAuMCw0MjguMyA0NDIuNCw0MTMuOSIgZmlsbD0iI2U4NTA1YiIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI1MzAuMCw0MzAuNyA1NTcuNiw0NDUuMSA1MzAuMCw0NTkuNSA1MDIuNCw0NDUuMSIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI1OTAuMCw0NjEuOSA2MTcuNiw0NzYuMyA1OTAuMCw0OTAuNyA1NjIuNCw0NzYuMyIgZmlsbD0iI2U4NTA1YiIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSIyOTAuMCwzNjguMyAzMTcuNiwzODIuNyAyOTAuMCwzOTcuMSAyNjIuNCwzODIuNyIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSIzNTAuMCwzOTkuNSAzNzcuNiw0MTMuOSAzNTAuMCw0MjguMyAzMjIuNCw0MTMuOSIgZmlsbD0iIzNmODJmMiIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI0MTAuMCw0MzAuNyA0MzcuNiw0NDUuMSA0MTAuMCw0NTkuNSAzODIuNCw0NDUuMSIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCw0NjEuOSA0OTcuNiw0NzYuMyA0NzAuMCw0OTAuNyA0NDIuNCw0NzYuMyIgZmlsbD0iIzNmODJmMiIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI1MzAuMCw0OTMuMSA1NTcuNiw1MDcuNSA1MzAuMCw1MjEuOSA1MDIuNCw1MDcuNSIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSIyMzAuMCwzOTkuNSAyNTcuNiw0MTMuOSAyMzAuMCw0MjguMyAyMDIuNCw0MTMuOSIgZmlsbD0iI2U4NTA1YiIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSIyOTAuMCw0MzAuNyAzMTcuNiw0NDUuMSAyOTAuMCw0NTkuNSAyNjIuNCw0NDUuMSIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSIzNTAuMCw0NjEuOSAzNzcuNiw0NzYuMyAzNTAuMCw0OTAuNyAzMjIuNCw0NzYuMyIgZmlsbD0iI2U4NTA1YiIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI0MTAuMCw0OTMuMSA0MzcuNiw1MDcuNSA0MTAuMCw1MjEuOSAzODIuNCw1MDcuNSIgZmlsbD0iIzM0YmQ3MSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCw1MjQuMyA0OTcuNiw1MzguNyA0NzAuMCw1NTMuMSA0NDIuNCw1MzguNyIgZmlsbD0iI2U4NTA1YiIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMjIpIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNzQiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCwyNjEuMCA1MjUuMiwyODkuNyA0NzAuMCwzMTguNCA0MTQuOCwyODkuNyIgZmlsbD0icmdiYSg5NSwxODcsMjU1LDAuMjApIiBzdHJva2U9IiM2ZmQyZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC44NSIvPgo8ZWxsaXBzZSBjeD0iNDcwLjAiIGN5PSIyODEuOCIgcng9IjM0LjgiIHJ5PSIxOC4wIiBmaWxsPSJ1cmwoI2xlbnNHcmFkKSIgc3Ryb2tlPSIjYTdlN2ZmIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC45MiIvPgo8cG9seWdvbiBwb2ludHM9IjUzMC4wLDI5Mi4yIDU4NS4yLDMyMC45IDUzMC4wLDM0OS42IDQ3NC44LDMyMC45IiBmaWxsPSJyZ2JhKDk1LDE4NywyNTUsMC4yMCkiIHN0cm9rZT0iIzZmZDJmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjg1Ii8+CjxlbGxpcHNlIGN4PSI1MzAuMCIgY3k9IjMxMy4wIiByeD0iMzQuOCIgcnk9IjE4LjAiIGZpbGw9InVybCgjbGVuc0dyYWQpIiBzdHJva2U9IiNhN2U3ZmYiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjkyIi8+Cjxwb2x5Z29uIHBvaW50cz0iNTkwLjAsMzIzLjQgNjQ1LjIsMzUyLjEgNTkwLjAsMzgwLjggNTM0LjgsMzUyLjEiIGZpbGw9InJnYmEoOTUsMTg3LDI1NSwwLjIwKSIgc3Ryb2tlPSIjNmZkMmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuODUiLz4KPGVsbGlwc2UgY3g9IjU5MC4wIiBjeT0iMzQ0LjIiIHJ4PSIzNC44IiByeT0iMTguMCIgZmlsbD0idXJsKCNsZW5zR3JhZCkiIHN0cm9rZT0iI2E3ZTdmZiIgc3Ryb2tlLXdpZHRoPSIxLjIiIG9wYWNpdHk9IjAuOTIiLz4KPHBvbHlnb24gcG9pbnRzPSI2NTAuMCwzNTQuNiA3MDUuMiwzODMuMyA2NTAuMCw0MTIuMCA1OTQuOCwzODMuMyIgZmlsbD0icmdiYSg5NSwxODcsMjU1LDAuMjApIiBzdHJva2U9IiM2ZmQyZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC44NSIvPgo8ZWxsaXBzZSBjeD0iNjUwLjAiIGN5PSIzNzUuNCIgcng9IjM0LjgiIHJ5PSIxOC4wIiBmaWxsPSJ1cmwoI2xlbnNHcmFkKSIgc3Ryb2tlPSIjYTdlN2ZmIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC45MiIvPgo8cG9seWdvbiBwb2ludHM9IjcxMC4wLDM4NS44IDc2NS4yLDQxNC41IDcxMC4wLDQ0My4yIDY1NC44LDQxNC41IiBmaWxsPSJyZ2JhKDk1LDE4NywyNTUsMC4yMCkiIHN0cm9rZT0iIzZmZDJmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjg1Ii8+CjxlbGxpcHNlIGN4PSI3MTAuMCIgY3k9IjQwNi42IiByeD0iMzQuOCIgcnk9IjE4LjAiIGZpbGw9InVybCgjbGVuc0dyYWQpIiBzdHJva2U9IiNhN2U3ZmYiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjkyIi8+Cjxwb2x5Z29uIHBvaW50cz0iNDEwLjAsMjkyLjIgNDY1LjIsMzIwLjkgNDEwLjAsMzQ5LjYgMzU0LjgsMzIwLjkiIGZpbGw9InJnYmEoOTUsMTg3LDI1NSwwLjIwKSIgc3Ryb2tlPSIjNmZkMmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuODUiLz4KPGVsbGlwc2UgY3g9IjQxMC4wIiBjeT0iMzEzLjAiIHJ4PSIzNC44IiByeT0iMTguMCIgZmlsbD0idXJsKCNsZW5zR3JhZCkiIHN0cm9rZT0iI2E3ZTdmZiIgc3Ryb2tlLXdpZHRoPSIxLjIiIG9wYWNpdHk9IjAuOTIiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCwzMjMuNCA1MjUuMiwzNTIuMSA0NzAuMCwzODAuOCA0MTQuOCwzNTIuMSIgZmlsbD0icmdiYSg5NSwxODcsMjU1LDAuMjApIiBzdHJva2U9IiM2ZmQyZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC44NSIvPgo8ZWxsaXBzZSBjeD0iNDcwLjAiIGN5PSIzNDQuMiIgcng9IjM0LjgiIHJ5PSIxOC4wIiBmaWxsPSJ1cmwoI2xlbnNHcmFkKSIgc3Ryb2tlPSIjYTdlN2ZmIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC45MiIvPgo8cG9seWdvbiBwb2ludHM9IjUzMC4wLDM1NC42IDU4NS4yLDM4My4zIDUzMC4wLDQxMi4wIDQ3NC44LDM4My4zIiBmaWxsPSJyZ2JhKDk1LDE4NywyNTUsMC4yMCkiIHN0cm9rZT0iIzZmZDJmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjg1Ii8+CjxlbGxpcHNlIGN4PSI1MzAuMCIgY3k9IjM3NS40IiByeD0iMzQuOCIgcnk9IjE4LjAiIGZpbGw9InVybCgjbGVuc0dyYWQpIiBzdHJva2U9IiNhN2U3ZmYiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjkyIi8+Cjxwb2x5Z29uIHBvaW50cz0iNTkwLjAsMzg1LjggNjQ1LjIsNDE0LjUgNTkwLjAsNDQzLjIgNTM0LjgsNDE0LjUiIGZpbGw9InJnYmEoOTUsMTg3LDI1NSwwLjIwKSIgc3Ryb2tlPSIjNmZkMmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuODUiLz4KPGVsbGlwc2UgY3g9IjU5MC4wIiBjeT0iNDA2LjYiIHJ4PSIzNC44IiByeT0iMTguMCIgZmlsbD0idXJsKCNsZW5zR3JhZCkiIHN0cm9rZT0iI2E3ZTdmZiIgc3Ryb2tlLXdpZHRoPSIxLjIiIG9wYWNpdHk9IjAuOTIiLz4KPHBvbHlnb24gcG9pbnRzPSI2NTAuMCw0MTcuMCA3MDUuMiw0NDUuNyA2NTAuMCw0NzQuNCA1OTQuOCw0NDUuNyIgZmlsbD0icmdiYSg5NSwxODcsMjU1LDAuMjApIiBzdHJva2U9IiM2ZmQyZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC44NSIvPgo8ZWxsaXBzZSBjeD0iNjUwLjAiIGN5PSI0MzcuOCIgcng9IjM0LjgiIHJ5PSIxOC4wIiBmaWxsPSJ1cmwoI2xlbnNHcmFkKSIgc3Ryb2tlPSIjYTdlN2ZmIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC45MiIvPgo8cG9seWdvbiBwb2ludHM9IjM1MC4wLDMyMy40IDQwNS4yLDM1Mi4xIDM1MC4wLDM4MC44IDI5NC44LDM1Mi4xIiBmaWxsPSJyZ2JhKDk1LDE4NywyNTUsMC4yMCkiIHN0cm9rZT0iIzZmZDJmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjg1Ii8+CjxlbGxpcHNlIGN4PSIzNTAuMCIgY3k9IjM0NC4yIiByeD0iMzQuOCIgcnk9IjE4LjAiIGZpbGw9InVybCgjbGVuc0dyYWQpIiBzdHJva2U9IiNhN2U3ZmYiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjkyIi8+Cjxwb2x5Z29uIHBvaW50cz0iNDEwLjAsMzU0LjYgNDY1LjIsMzgzLjMgNDEwLjAsNDEyLjAgMzU0LjgsMzgzLjMiIGZpbGw9InJnYmEoOTUsMTg3LDI1NSwwLjIwKSIgc3Ryb2tlPSIjNmZkMmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuODUiLz4KPGVsbGlwc2UgY3g9IjQxMC4wIiBjeT0iMzc1LjQiIHJ4PSIzNC44IiByeT0iMTguMCIgZmlsbD0idXJsKCNsZW5zR3JhZCkiIHN0cm9rZT0iI2E3ZTdmZiIgc3Ryb2tlLXdpZHRoPSIxLjIiIG9wYWNpdHk9IjAuOTIiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCwzODUuOCA1MjUuMiw0MTQuNSA0NzAuMCw0NDMuMiA0MTQuOCw0MTQuNSIgZmlsbD0icmdiYSg5NSwxODcsMjU1LDAuMjApIiBzdHJva2U9IiM2ZmQyZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC44NSIvPgo8ZWxsaXBzZSBjeD0iNDcwLjAiIGN5PSI0MDYuNiIgcng9IjM0LjgiIHJ5PSIxOC4wIiBmaWxsPSJ1cmwoI2xlbnNHcmFkKSIgc3Ryb2tlPSIjYTdlN2ZmIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC45MiIvPgo8cG9seWdvbiBwb2ludHM9IjUzMC4wLDQxNy4wIDU4NS4yLDQ0NS43IDUzMC4wLDQ3NC40IDQ3NC44LDQ0NS43IiBmaWxsPSJyZ2JhKDk1LDE4NywyNTUsMC4yMCkiIHN0cm9rZT0iIzZmZDJmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjg1Ii8+CjxlbGxpcHNlIGN4PSI1MzAuMCIgY3k9IjQzNy44IiByeD0iMzQuOCIgcnk9IjE4LjAiIGZpbGw9InVybCgjbGVuc0dyYWQpIiBzdHJva2U9IiNhN2U3ZmYiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjkyIi8+Cjxwb2x5Z29uIHBvaW50cz0iNTkwLjAsNDQ4LjIgNjQ1LjIsNDc2LjkgNTkwLjAsNTA1LjYgNTM0LjgsNDc2LjkiIGZpbGw9InJnYmEoOTUsMTg3LDI1NSwwLjIwKSIgc3Ryb2tlPSIjNmZkMmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuODUiLz4KPGVsbGlwc2UgY3g9IjU5MC4wIiBjeT0iNDY5LjAiIHJ4PSIzNC44IiByeT0iMTguMCIgZmlsbD0idXJsKCNsZW5zR3JhZCkiIHN0cm9rZT0iI2E3ZTdmZiIgc3Ryb2tlLXdpZHRoPSIxLjIiIG9wYWNpdHk9IjAuOTIiLz4KPHBvbHlnb24gcG9pbnRzPSIyOTAuMCwzNTQuNiAzNDUuMiwzODMuMyAyOTAuMCw0MTIuMCAyMzQuOCwzODMuMyIgZmlsbD0icmdiYSg5NSwxODcsMjU1LDAuMjApIiBzdHJva2U9IiM2ZmQyZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC44NSIvPgo8ZWxsaXBzZSBjeD0iMjkwLjAiIGN5PSIzNzUuNCIgcng9IjM0LjgiIHJ5PSIxOC4wIiBmaWxsPSJ1cmwoI2xlbnNHcmFkKSIgc3Ryb2tlPSIjYTdlN2ZmIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC45MiIvPgo8cG9seWdvbiBwb2ludHM9IjM1MC4wLDM4NS44IDQwNS4yLDQxNC41IDM1MC4wLDQ0My4yIDI5NC44LDQxNC41IiBmaWxsPSJyZ2JhKDk1LDE4NywyNTUsMC4yMCkiIHN0cm9rZT0iIzZmZDJmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjg1Ii8+CjxlbGxpcHNlIGN4PSIzNTAuMCIgY3k9IjQwNi42IiByeD0iMzQuOCIgcnk9IjE4LjAiIGZpbGw9InVybCgjbGVuc0dyYWQpIiBzdHJva2U9IiNhN2U3ZmYiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjkyIi8+Cjxwb2x5Z29uIHBvaW50cz0iNDEwLjAsNDE3LjAgNDY1LjIsNDQ1LjcgNDEwLjAsNDc0LjQgMzU0LjgsNDQ1LjciIGZpbGw9InJnYmEoOTUsMTg3LDI1NSwwLjIwKSIgc3Ryb2tlPSIjNmZkMmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuODUiLz4KPGVsbGlwc2UgY3g9IjQxMC4wIiBjeT0iNDM3LjgiIHJ4PSIzNC44IiByeT0iMTguMCIgZmlsbD0idXJsKCNsZW5zR3JhZCkiIHN0cm9rZT0iI2E3ZTdmZiIgc3Ryb2tlLXdpZHRoPSIxLjIiIG9wYWNpdHk9IjAuOTIiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCw0NDguMiA1MjUuMiw0NzYuOSA0NzAuMCw1MDUuNiA0MTQuOCw0NzYuOSIgZmlsbD0icmdiYSg5NSwxODcsMjU1LDAuMjApIiBzdHJva2U9IiM2ZmQyZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC44NSIvPgo8ZWxsaXBzZSBjeD0iNDcwLjAiIGN5PSI0NjkuMCIgcng9IjM0LjgiIHJ5PSIxOC4wIiBmaWxsPSJ1cmwoI2xlbnNHcmFkKSIgc3Ryb2tlPSIjYTdlN2ZmIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC45MiIvPgo8cG9seWdvbiBwb2ludHM9IjUzMC4wLDQ3OS40IDU4NS4yLDUwOC4xIDUzMC4wLDUzNi44IDQ3NC44LDUwOC4xIiBmaWxsPSJyZ2JhKDk1LDE4NywyNTUsMC4yMCkiIHN0cm9rZT0iIzZmZDJmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjg1Ii8+CjxlbGxpcHNlIGN4PSI1MzAuMCIgY3k9IjUwMC4yIiByeD0iMzQuOCIgcnk9IjE4LjAiIGZpbGw9InVybCgjbGVuc0dyYWQpIiBzdHJva2U9IiNhN2U3ZmYiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjkyIi8+Cjxwb2x5Z29uIHBvaW50cz0iMjMwLjAsMzg1LjggMjg1LjIsNDE0LjUgMjMwLjAsNDQzLjIgMTc0LjgsNDE0LjUiIGZpbGw9InJnYmEoOTUsMTg3LDI1NSwwLjIwKSIgc3Ryb2tlPSIjNmZkMmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuODUiLz4KPGVsbGlwc2UgY3g9IjIzMC4wIiBjeT0iNDA2LjYiIHJ4PSIzNC44IiByeT0iMTguMCIgZmlsbD0idXJsKCNsZW5zR3JhZCkiIHN0cm9rZT0iI2E3ZTdmZiIgc3Ryb2tlLXdpZHRoPSIxLjIiIG9wYWNpdHk9IjAuOTIiLz4KPHBvbHlnb24gcG9pbnRzPSIyOTAuMCw0MTcuMCAzNDUuMiw0NDUuNyAyOTAuMCw0NzQuNCAyMzQuOCw0NDUuNyIgZmlsbD0icmdiYSg5NSwxODcsMjU1LDAuMjApIiBzdHJva2U9IiM2ZmQyZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC44NSIvPgo8ZWxsaXBzZSBjeD0iMjkwLjAiIGN5PSI0MzcuOCIgcng9IjM0LjgiIHJ5PSIxOC4wIiBmaWxsPSJ1cmwoI2xlbnNHcmFkKSIgc3Ryb2tlPSIjYTdlN2ZmIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC45MiIvPgo8cG9seWdvbiBwb2ludHM9IjM1MC4wLDQ0OC4yIDQwNS4yLDQ3Ni45IDM1MC4wLDUwNS42IDI5NC44LDQ3Ni45IiBmaWxsPSJyZ2JhKDk1LDE4NywyNTUsMC4yMCkiIHN0cm9rZT0iIzZmZDJmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjg1Ii8+CjxlbGxpcHNlIGN4PSIzNTAuMCIgY3k9IjQ2OS4wIiByeD0iMzQuOCIgcnk9IjE4LjAiIGZpbGw9InVybCgjbGVuc0dyYWQpIiBzdHJva2U9IiNhN2U3ZmYiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjkyIi8+Cjxwb2x5Z29uIHBvaW50cz0iNDEwLjAsNDc5LjQgNDY1LjIsNTA4LjEgNDEwLjAsNTM2LjggMzU0LjgsNTA4LjEiIGZpbGw9InJnYmEoOTUsMTg3LDI1NSwwLjIwKSIgc3Ryb2tlPSIjNmZkMmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuODUiLz4KPGVsbGlwc2UgY3g9IjQxMC4wIiBjeT0iNTAwLjIiIHJ4PSIzNC44IiByeT0iMTguMCIgZmlsbD0idXJsKCNsZW5zR3JhZCkiIHN0cm9rZT0iI2E3ZTdmZiIgc3Ryb2tlLXdpZHRoPSIxLjIiIG9wYWNpdHk9IjAuOTIiLz4KPHBvbHlnb24gcG9pbnRzPSI0NzAuMCw1MTAuNiA1MjUuMiw1MzkuMyA0NzAuMCw1NjguMCA0MTQuOCw1MzkuMyIgZmlsbD0icmdiYSg5NSwxODcsMjU1LDAuMjApIiBzdHJva2U9IiM2ZmQyZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC44NSIvPgo8ZWxsaXBzZSBjeD0iNDcwLjAiIGN5PSI1MzEuNCIgcng9IjM0LjgiIHJ5PSIxOC4wIiBmaWxsPSJ1cmwoI2xlbnNHcmFkKSIgc3Ryb2tlPSIjYTdlN2ZmIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC45MiIvPgo8L2c+CjxyZWN0IHg9IjMwIiB5PSI0NzAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjMiIGZpbGw9IiM2OWM5ZmYiIG9wYWNpdHk9IjAuOSIvPgo8dGV4dCB4PSI1MiIgeT0iNDgzIiBmaWxsPSIjY2RlMWU2IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTIiPk9DTCBsZW5zPC90ZXh0Pgo8cmVjdCB4PSIxNTAiIHk9IjQ3MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iMyIgZmlsbD0iI2U4NTA1YiIgb3BhY2l0eT0iMC45Ii8+Cjx0ZXh0IHg9IjE3MiIgeT0iNDgzIiBmaWxsPSIjY2RlMWU2IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTIiPkNGQSByZWQ8L3RleHQ+CjxyZWN0IHg9IjI3MCIgeT0iNDcwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHJ4PSIzIiBmaWxsPSIjMzRiZDcxIiBvcGFjaXR5PSIwLjkiLz4KPHRleHQgeD0iMjkyIiB5PSI0ODMiIGZpbGw9IiNjZGUxZTYiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxMiI+Q0ZBIGdyZWVuPC90ZXh0Pgo8cmVjdCB4PSIzOTAiIHk9IjQ3MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iMyIgZmlsbD0iIzNmODJmMiIgb3BhY2l0eT0iMC45Ii8+Cjx0ZXh0IHg9IjQxMiIgeT0iNDgzIiBmaWxsPSIjY2RlMWU2IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTIiPkNGQSBibHVlPC90ZXh0Pgo8cmVjdCB4PSI1MTAiIHk9IjQ3MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iMyIgZmlsbD0iI2Q0YjMzOCIgb3BhY2l0eT0iMC45Ii8+Cjx0ZXh0IHg9IjUzMiIgeT0iNDgzIiBmaWxsPSIjY2RlMWU2IiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTIiPlBob3RvZGlvZGU8L3RleHQ+CjxyZWN0IHg9IjYzMCIgeT0iNDcwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHJ4PSIzIiBmaWxsPSIjMjA0ODViIiBvcGFjaXR5PSIwLjkiLz4KPHRleHQgeD0iNjUyIiB5PSI0ODMiIGZpbGw9IiNjZGUxZTYiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxMiI+U2kgLyBEVEk8L3RleHQ+Cjx0ZXh0IHg9IjMwIiB5PSI1MjIiIGZpbGw9IiM3ZmEzYWQiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxMiI+R2VuZXJhdGVkIGZyb20gdGVtcGxhdGVfcGFyYW1ldGVycy5qc29uOyBhc3NvY2lhdGVkIENBRCBhcnRpZmFjdHM6IG1vZGVsLnN0ZXAsIG1vZGVsLmJyZXAsIGFuZCBGQ1N0ZCB3aGVyZSBhdmFpbGFibGUuPC90ZXh0Pgo8L3N2Zz4=" alt="Quad 2x2 OCL 5x5 crosstalk CAD-derived isometric preview" />
+            <figcaption class="cad-caption">
+              <h3>Quad 2x2 OCL 5x5 Domain</h3>
+              <p><code>quad_2x2_ocl_5x5_crosstalk/model.step</code> 기반. 중앙 2x2 OCL group과 주변 ring을 포함한 crosstalk domain.</p>
+            </figcaption>
+          </figure>
+          <figure class="cad-figure">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5NDAiIGhlaWdodD0iNTYwIiB2aWV3Qm94PSIwIDAgOTQwIDU2MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJNaXhlZCAxeDEgLyAyeDIgLyAzeDMgT0NMIGJvdW5kYXJ5IENBRCB2aWV3Ij4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB4Mj0iMSIgeTE9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMxMDJiMzYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwNzEzMTgiLz48L2xpbmVhckdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9ImxlbnNHcmFkIiB4MT0iMCIgeDI9IjAiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYzdlZmZmIi8+PHN0b3Agb2Zmc2V0PSIwLjU1IiBzdG9wLWNvbG9yPSIjNmRjN2ZhIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMmY2ZjlhIi8+PC9saW5lYXJHcmFkaWVudD4KPGZpbHRlciBpZD0ic2hhZG93IiB4PSItMzAlIiB5PSItMzAlIiB3aWR0aD0iMTYwJSIgaGVpZ2h0PSIxNjAlIj48ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iMTQiIHN0ZERldmlhdGlvbj0iMTIiIGZsb29kLWNvbG9yPSIjMDAwIiBmbG9vZC1vcGFjaXR5PSIwLjM1Ii8+PC9maWx0ZXI+CjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcng9IjIyIiBmaWxsPSJ1cmwoI2JnKSIvPgo8dGV4dCB4PSIzMCIgeT0iNDQiIGZpbGw9IiNlOWY1ZjciIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC13ZWlnaHQ9IjgwMCIgZm9udC1zaXplPSIyMiI+TWl4ZWQgMXgxIC8gMngyIC8gM3gzIE9DTCBib3VuZGFyeSBDQUQgdmlldzwvdGV4dD4KPHRleHQgeD0iMzAiIHk9IjcwIiBmaWxsPSIjOWZjMmNiIiBmb250LWZhbWlseT0iSW50ZXIsQXJpYWwiIGZvbnQtc2l6ZT0iMTMiPlRlbXBsYXRlOiBtaXhlZF8xeDFfMngyXzN4M19ib3VuZGFyeSDCtyA1IHggMyBzdWJwaXhlbHMgwrcgcGl0Y2ggMS40MDAgdW0gwrcgU1RFUC9CUkVQL0ZDU3RkLXJlYWR5IHNvdXJjZTwvdGV4dD4KPGcgZmlsdGVyPSJ1cmwoI3NoYWRvdykiPgo8cG9seWdvbiBwb2ludHM9IjY2MC4wLDQzNi4zIDU0Ni4wLDQ5NS42IDU0Ni4wLDQ0OC4xIDY2MC4wLDM4OC44IiBmaWxsPSIjMTIyOTM0IiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPgo8cG9seWdvbiBwb2ludHM9IjM1Ni4wLDM5Ni44IDU0Ni4wLDQ5NS42IDU0Ni4wLDQ0OC4xIDM1Ni4wLDM0OS4zIiBmaWxsPSIjMTgzOTQ3IiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4xMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMSIvPgo8cG9seWdvbiBwb2ludHM9IjQ3MC4wLDI5MC4wIDY2MC4wLDM4OC44IDU0Ni4wLDQ0OC4xIDM1Ni4wLDM0OS4zIiBmaWxsPSIjMjA0ODViIiBzdHJva2U9IiM0Zjg3OWEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC45NiIvPgo8bGluZSB4MT0iNTA4LjAiIHkxPSIzMDkuMCIgeDI9IjM5NC4wIiB5Mj0iMzY4LjMiIHN0cm9rZT0iIzZmOGVhMSIgc3Ryb2tlLXdpZHRoPSIwLjciIG9wYWNpdHk9IjAuMzUiLz4KPGxpbmUgeDE9IjU0Ni4wIiB5MT0iMzI4LjgiIHgyPSI0MzIuMCIgeTI9IjM4OC4wIiBzdHJva2U9IiM2ZjhlYTEiIHN0cm9rZS13aWR0aD0iMC43IiBvcGFjaXR5PSIwLjM1Ii8+CjxsaW5lIHgxPSI1ODQuMCIgeTE9IjM0OC41IiB4Mj0iNDcwLjAiIHkyPSI0MDcuOCIgc3Ryb2tlPSIjNmY4ZWExIiBzdHJva2Utd2lkdGg9IjAuNyIgb3BhY2l0eT0iMC4zNSIvPgo8bGluZSB4MT0iNjIyLjAiIHkxPSIzNjguMyIgeDI9IjUwOC4wIiB5Mj0iNDI3LjYiIHN0cm9rZT0iIzZmOGVhMSIgc3Ryb2tlLXdpZHRoPSIwLjciIG9wYWNpdHk9IjAuMzUiLz4KPGxpbmUgeDE9IjQzMi4wIiB5MT0iMzA5LjAiIHgyPSI2MjIuMCIgeTI9IjQwNy44IiBzdHJva2U9IiM2ZjhlYTEiIHN0cm9rZS13aWR0aD0iMC43IiBvcGFjaXR5PSIwLjM1Ii8+CjxsaW5lIHgxPSIzOTQuMCIgeTE9IjMyOC44IiB4Mj0iNTg0LjAiIHkyPSI0MjcuNiIgc3Ryb2tlPSIjNmY4ZWExIiBzdHJva2Utd2lkdGg9IjAuNyIgb3BhY2l0eT0iMC4zNSIvPgo8cG9seWdvbiBwb2ludHM9IjQ3MC4wLDI5NS4yIDQ5NC4zLDMwNy45IDQ3MC4wLDMyMC41IDQ0NS43LDMwNy45IiBmaWxsPSIjZDRiMzM4IiBzdHJva2U9IiNmZmU3OGEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgo8cG9seWdvbiBwb2ludHM9IjUwOC4wLDMxNS4wIDUzMi4zLDMyNy42IDUwOC4wLDM0MC4zIDQ4My43LDMyNy42IiBmaWxsPSIjZDRiMzM4IiBzdHJva2U9IiNmZmU3OGEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgo8cG9seWdvbiBwb2ludHM9IjU0Ni4wLDMzNC43IDU3MC4zLDM0Ny40IDU0Ni4wLDM2MC4wIDUyMS43LDM0Ny40IiBmaWxsPSIjZDRiMzM4IiBzdHJva2U9IiNmZmU3OGEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgo8cG9seWdvbiBwb2ludHM9IjU4NC4wLDM1NC41IDYwOC4zLDM2Ny4xIDU4NC4wLDM3OS44IDU1OS43LDM2Ny4xIiBmaWxsPSIjZDRiMzM4IiBzdHJva2U9IiNmZmU3OGEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgo8cG9seWdvbiBwb2ludHM9IjYyMi4wLDM3NC4zIDY0Ni4zLDM4Ni45IDYyMi4wLDM5OS41IDU5Ny43LDM4Ni45IiBmaWxsPSIjZDRiMzM4IiBzdHJva2U9IiNmZmU3OGEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgo8cG9seWdvbiBwb2ludHM9IjQzMi4wLDMxNS4wIDQ1Ni4zLDMyNy42IDQzMi4wLDM0MC4zIDQwNy43LDMyNy42IiBmaWxsPSIjZDRiMzM4IiBzdHJva2U9IiNmZmU3OGEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgo8cG9seWdvbiBwb2ludHM9IjQ3MC4wLDMzNC43IDQ5NC4zLDM0Ny40IDQ3MC4wLDM2MC4wIDQ0NS43LDM0Ny40IiBmaWxsPSIjZDRiMzM4IiBzdHJva2U9IiNmZmU3OGEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgo8cG9seWdvbiBwb2ludHM9IjUwOC4wLDM1NC41IDUzMi4zLDM2Ny4xIDUwOC4wLDM3OS44IDQ4My43LDM2Ny4xIiBmaWxsPSIjZDRiMzM4IiBzdHJva2U9IiNmZmU3OGEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgo8cG9seWdvbiBwb2ludHM9IjU0Ni4wLDM3NC4zIDU3MC4zLDM4Ni45IDU0Ni4wLDM5OS41IDUyMS43LDM4Ni45IiBmaWxsPSIjZDRiMzM4IiBzdHJva2U9IiNmZmU3OGEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgo8cG9seWdvbiBwb2ludHM9IjU4NC4wLDM5NC4wIDYwOC4zLDQwNi43IDU4NC4wLDQxOS4zIDU1OS43LDQwNi43IiBmaWxsPSIjZDRiMzM4IiBzdHJva2U9IiNmZmU3OGEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgo8cG9seWdvbiBwb2ludHM9IjM5NC4wLDMzNC43IDQxOC4zLDM0Ny40IDM5NC4wLDM2MC4wIDM2OS43LDM0Ny40IiBmaWxsPSIjZDRiMzM4IiBzdHJva2U9IiNmZmU3OGEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgo8cG9seWdvbiBwb2ludHM9IjQzMi4wLDM1NC41IDQ1Ni4zLDM2Ny4xIDQzMi4wLDM3OS44IDQwNy43LDM2Ny4xIiBmaWxsPSIjZDRiMzM4IiBzdHJva2U9IiNmZmU3OGEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgo8cG9seWdvbiBwb2ludHM9IjQ3MC4wLDM3NC4zIDQ5NC4zLDM4Ni45IDQ3MC4wLDM5OS41IDQ0NS43LDM4Ni45IiBmaWxsPSIjZDRiMzM4IiBzdHJva2U9IiNmZmU3OGEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgo8cG9seWdvbiBwb2ludHM9IjUwOC4wLDM5NC4wIDUzMi4zLDQwNi43IDUwOC4wLDQxOS4zIDQ4My43LDQwNi43IiBmaWxsPSIjZDRiMzM4IiBzdHJva2U9IiNmZmU3OGEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgo8cG9seWdvbiBwb2ludHM9IjU0Ni4wLDQxMy44IDU3MC4zLDQyNi40IDU0Ni4wLDQzOS4xIDUyMS43LDQyNi40IiBmaWxsPSIjZDRiMzM4IiBzdHJva2U9IiNmZmU3OGEiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC40OCIvPgo8cG9seWdvbiBwb2ludHM9IjQ3MC4wLDI3MC43IDUwNS4wLDI4OC45IDQ3MC4wLDMwNy4wIDQzNS4wLDI4OC45IiBmaWxsPSIjZTg1MDViIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC43NCIvPgo8cG9seWdvbiBwb2ludHM9IjUwOC4wLDI5MC40IDU0My4wLDMwOC42IDUwOC4wLDMyNi44IDQ3My4wLDMwOC42IiBmaWxsPSIjZTg1MDViIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC43NCIvPgo8cG9seWdvbiBwb2ludHM9IjU0Ni4wLDMxMC4yIDU4MS4wLDMyOC40IDU0Ni4wLDM0Ni42IDUxMS4wLDMyOC40IiBmaWxsPSIjZTg1MDViIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC43NCIvPgo8cG9seWdvbiBwb2ludHM9IjU4NC4wLDMzMC4wIDYxOS4wLDM0OC4xIDU4NC4wLDM2Ni4zIDU0OS4wLDM0OC4xIiBmaWxsPSIjMzRiZDcxIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC43NCIvPgo8cG9seWdvbiBwb2ludHM9IjYyMi4wLDM0OS43IDY1Ny4wLDM2Ny45IDYyMi4wLDM4Ni4xIDU4Ny4wLDM2Ny45IiBmaWxsPSIjMzRiZDcxIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC43NCIvPgo8cG9seWdvbiBwb2ludHM9IjQzMi4wLDI5MC40IDQ2Ny4wLDMwOC42IDQzMi4wLDMyNi44IDM5Ny4wLDMwOC42IiBmaWxsPSIjZTg1MDViIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC43NCIvPgo8cG9seWdvbiBwb2ludHM9IjQ3MC4wLDMxMC4yIDUwNS4wLDMyOC40IDQ3MC4wLDM0Ni42IDQzNS4wLDMyOC40IiBmaWxsPSIjZTg1MDViIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC43NCIvPgo8cG9seWdvbiBwb2ludHM9IjUwOC4wLDMzMC4wIDU0My4wLDM0OC4xIDUwOC4wLDM2Ni4zIDQ3My4wLDM0OC4xIiBmaWxsPSIjZTg1MDViIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC43NCIvPgo8cG9seWdvbiBwb2ludHM9IjU0Ni4wLDM0OS43IDU4MS4wLDM2Ny45IDU0Ni4wLDM4Ni4xIDUxMS4wLDM2Ny45IiBmaWxsPSIjMzRiZDcxIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC43NCIvPgo8cG9seWdvbiBwb2ludHM9IjU4NC4wLDM2OS41IDYxOS4wLDM4Ny43IDU4NC4wLDQwNS44IDU0OS4wLDM4Ny43IiBmaWxsPSIjMzRiZDcxIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC43NCIvPgo8cG9seWdvbiBwb2ludHM9IjM5NC4wLDMxMC4yIDQyOS4wLDMyOC40IDM5NC4wLDM0Ni42IDM1OS4wLDMyOC40IiBmaWxsPSIjZTg1MDViIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC43NCIvPgo8cG9seWdvbiBwb2ludHM9IjQzMi4wLDMzMC4wIDQ2Ny4wLDM0OC4xIDQzMi4wLDM2Ni4zIDM5Ny4wLDM0OC4xIiBmaWxsPSIjZTg1MDViIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC43NCIvPgo8cG9seWdvbiBwb2ludHM9IjQ3MC4wLDM0OS43IDUwNS4wLDM2Ny45IDQ3MC4wLDM4Ni4xIDQzNS4wLDM2Ny45IiBmaWxsPSIjZTg1MDViIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC43NCIvPgo8cG9seWdvbiBwb2ludHM9IjUwOC4wLDM2OS41IDU0My4wLDM4Ny43IDUwOC4wLDQwNS44IDQ3My4wLDM4Ny43IiBmaWxsPSIjMzRiZDcxIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC43NCIvPgo8cG9seWdvbiBwb2ludHM9IjU0Ni4wLDM4OS4yIDU4MS4wLDQwNy40IDU0Ni4wLDQyNS42IDUxMS4wLDQwNy40IiBmaWxsPSIjMzRiZDcxIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yMikiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC43NCIvPgo8cG9seWdvbiBwb2ludHM9IjQ3MC4wLDI1My4zIDU3Ny45LDMwOS40IDQ3MC4wLDM2NS41IDM2Mi4xLDMwOS40IiBmaWxsPSJyZ2JhKDk1LDE4NywyNTUsMC4yMCkiIHN0cm9rZT0iIzZmZDJmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjg1Ii8+CjxlbGxpcHNlIGN4PSI0NzAuMCIgY3k9IjI5OS40IiByeD0iNjYuMSIgcnk9IjM0LjIiIGZpbGw9InVybCgjbGVuc0dyYWQpIiBzdHJva2U9IiNhN2U3ZmYiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjkyIi8+Cjxwb2x5Z29uIHBvaW50cz0iNTg0LjAsMzEyLjUgNjUzLjksMzQ4LjkgNTg0LjAsMzg1LjMgNTE0LjEsMzQ4LjkiIGZpbGw9InJnYmEoOTUsMTg3LDI1NSwwLjIwKSIgc3Ryb2tlPSIjNmZkMmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuODUiLz4KPGVsbGlwc2UgY3g9IjU4NC4wIiBjeT0iMzM4LjkiIHJ4PSI0NC4xIiByeT0iMjIuOCIgZmlsbD0idXJsKCNsZW5zR3JhZCkiIHN0cm9rZT0iI2E3ZTdmZiIgc3Ryb2tlLXdpZHRoPSIxLjIiIG9wYWNpdHk9IjAuOTIiLz4KPHBvbHlnb24gcG9pbnRzPSI1MDguMCwzNTIuMSA1MzkuOSwzNjguNyA1MDguMCwzODUuMyA0NzYuMSwzNjguNyIgZmlsbD0icmdiYSg5NSwxODcsMjU1LDAuMjApIiBzdHJva2U9IiM2ZmQyZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC44NSIvPgo8ZWxsaXBzZSBjeD0iNTA4LjAiIGN5PSIzNTguNyIgcng9IjIyLjAiIHJ5PSIxMS40IiBmaWxsPSJ1cmwoI2xlbnNHcmFkKSIgc3Ryb2tlPSIjYTdlN2ZmIiBzdHJva2Utd2lkdGg9IjEuMiIgb3BhY2l0eT0iMC45MiIvPgo8cG9seWdvbiBwb2ludHM9IjU0Ni4wLDM3MS44IDU3Ny45LDM4OC40IDU0Ni4wLDQwNS4wIDUxNC4xLDM4OC40IiBmaWxsPSJyZ2JhKDk1LDE4NywyNTUsMC4yMCkiIHN0cm9rZT0iIzZmZDJmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjg1Ii8+CjxlbGxpcHNlIGN4PSI1NDYuMCIgY3k9IjM3OC40IiByeD0iMjIuMCIgcnk9IjExLjQiIGZpbGw9InVybCgjbGVuc0dyYWQpIiBzdHJva2U9IiNhN2U3ZmYiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjkyIi8+CjwvZz4KPHJlY3QgeD0iMzAiIHk9IjQ3MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiByeD0iMyIgZmlsbD0iIzY5YzlmZiIgb3BhY2l0eT0iMC45Ii8+Cjx0ZXh0IHg9IjUyIiB5PSI0ODMiIGZpbGw9IiNjZGUxZTYiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxMiI+T0NMIGxlbnM8L3RleHQ+CjxyZWN0IHg9IjE1MCIgeT0iNDcwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHJ4PSIzIiBmaWxsPSIjZTg1MDViIiBvcGFjaXR5PSIwLjkiLz4KPHRleHQgeD0iMTcyIiB5PSI0ODMiIGZpbGw9IiNjZGUxZTYiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxMiI+Q0ZBIHJlZDwvdGV4dD4KPHJlY3QgeD0iMjcwIiB5PSI0NzAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjMiIGZpbGw9IiMzNGJkNzEiIG9wYWNpdHk9IjAuOSIvPgo8dGV4dCB4PSIyOTIiIHk9IjQ4MyIgZmlsbD0iI2NkZTFlNiIgZm9udC1mYW1pbHk9IkludGVyLEFyaWFsIiBmb250LXNpemU9IjEyIj5DRkEgZ3JlZW48L3RleHQ+CjxyZWN0IHg9IjM5MCIgeT0iNDcwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHJ4PSIzIiBmaWxsPSIjM2Y4MmYyIiBvcGFjaXR5PSIwLjkiLz4KPHRleHQgeD0iNDEyIiB5PSI0ODMiIGZpbGw9IiNjZGUxZTYiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxMiI+Q0ZBIGJsdWU8L3RleHQ+CjxyZWN0IHg9IjUxMCIgeT0iNDcwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHJ4PSIzIiBmaWxsPSIjZDRiMzM4IiBvcGFjaXR5PSIwLjkiLz4KPHRleHQgeD0iNTMyIiB5PSI0ODMiIGZpbGw9IiNjZGUxZTYiIGZvbnQtZmFtaWx5PSJJbnRlcixBcmlhbCIgZm9udC1zaXplPSIxMiI+UGhvdG9kaW9kZTwvdGV4dD4KPHJlY3QgeD0iNjMwIiB5PSI0NzAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjMiIGZpbGw9IiMyMDQ4NWIiIG9wYWNpdHk9IjAuOSIvPgo8dGV4dCB4PSI2NTIiIHk9IjQ4MyIgZmlsbD0iI2NkZTFlNiIgZm9udC1mYW1pbHk9IkludGVyLEFyaWFsIiBmb250LXNpemU9IjEyIj5TaSAvIERUSTwvdGV4dD4KPHRleHQgeD0iMzAiIHk9IjUyMiIgZmlsbD0iIzdmYTNhZCIgZm9udC1mYW1pbHk9IkludGVyLEFyaWFsIiBmb250LXNpemU9IjEyIj5HZW5lcmF0ZWQgZnJvbSB0ZW1wbGF0ZV9wYXJhbWV0ZXJzLmpzb247IGFzc29jaWF0ZWQgQ0FEIGFydGlmYWN0czogbW9kZWwuc3RlcCwgbW9kZWwuYnJlcCwgYW5kIEZDU3RkIHdoZXJlIGF2YWlsYWJsZS48L3RleHQ+Cjwvc3ZnPg==" alt="Mixed OCL boundary CAD-derived isometric preview" />
+            <figcaption class="cad-caption">
+              <h3>Mixed OCL Boundary</h3>
+              <p><code>mixed_1x1_2x2_3x3_boundary/model.step</code> 기반. 1x1, 2x2, 3x3 OCL transition leakage 검토용.</p>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="freecad-note">
+          <p><strong>FreeCAD review image 목적:</strong> 설계자 리뷰에서는 CAD source가 실제로 어떤 body/tree/viewport로 보이는지가 중요합니다. 아래 snapshot은 FreeCAD viewport 형태로 만든 CAD-source review frame이며, 각 template의 <code>model.step</code>/<code>model.FCStd</code>와 같은 parameter를 기준으로 합니다. 실제 FreeCAD가 설치된 workstation에서는 이 frame을 실제 앱 캡처로 교체할 수 있습니다.</p>
+        </div>
+        <div class="cad-gallery freecad-gallery">
+          <figure class="cad-figure">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9IjcyMCIgdmlld0JveD0iMCAwIDExMDAgNzIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkZyZWVDQUQtc3R5bGUgdmlld3BvcnQgZm9yIFFQRCAyeDIgc3BsaXQgcGhvdG9kaW9kZSB0ZW1wbGF0ZSI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InZpZXdwb3J0QmciIHgxPSIwIiB4Mj0iMSIgeTE9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMyNjM3NDYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMxMDE5MjIiLz48L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsZW5zIiB4MT0iMCIgeDI9IjAiIHkxPSIwIiB5Mj0iMSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZDdmNWZmIi8+PHN0b3Agb2Zmc2V0PSIwLjUyIiBzdG9wLWNvbG9yPSIjN2JjZmZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMmQ3MmEyIi8+PC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9InNoYWRvdyIgeD0iLTIwJSIgeT0iLTIwJSIgd2lkdGg9IjE0MCUiIGhlaWdodD0iMTUwJSI+PGZlRHJvcFNoYWRvdyBkeD0iMCIgZHk9IjE2IiBzdGREZXZpYXRpb249IjEyIiBmbG9vZC1jb2xvcj0iIzAwMCIgZmxvb2Qtb3BhY2l0eT0iLjMyIi8+PC9maWx0ZXI+CiAgICA8c3R5bGU+CiAgICAgIHRleHR7Zm9udC1mYW1pbHk6SW50ZXIsQXJpYWwsc2Fucy1zZXJpZn0udWl7ZmlsbDojZTdlYmVmfS5iYXJ7ZmlsbDojZjVmN2Y5fS5saW5le3N0cm9rZTojYzZjZGQ0O3N0cm9rZS13aWR0aDoxfS5zbWFsbHtmb250LXNpemU6MTJweDtmaWxsOiM1MzYwNmJ9LmxhYmVse2ZvbnQtc2l6ZToxM3B4O2ZpbGw6I2Y1ZmFmZjtmb250LXdlaWdodDo3MDB9LnRyZWV7Zm9udC1zaXplOjEycHg7ZmlsbDojMzM0MTRmfS5jb2Rle2ZvbnQtc2l6ZToxMXB4O2ZpbGw6IzZjN2I4OH0udG9vbHtmaWxsOiNkOGRkZTI7c3Ryb2tlOiNiOWMxYzl9LmdyaWR7c3Ryb2tlOiM1MTY1NzQ7c3Ryb2tlLXdpZHRoOi44O29wYWNpdHk6LjI0fS5lZGdle3N0cm9rZTojZWZmOGZmO3N0cm9rZS13aWR0aDoxLjI7b3BhY2l0eTouNTV9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMTEwMCIgaGVpZ2h0PSI3MjAiIHJ4PSIxOCIgZmlsbD0iI2NmZDZkZCIvPgogIDxyZWN0IHg9IjEyIiB5PSIxMiIgd2lkdGg9IjEwNzYiIGhlaWdodD0iMzYiIHJ4PSI4IiBjbGFzcz0iYmFyIi8+CiAgPGNpcmNsZSBjeD0iMzQiIGN5PSIzMCIgcj0iNyIgZmlsbD0iI2ZmNWY1NyIvPjxjaXJjbGUgY3g9IjU2IiBjeT0iMzAiIHI9IjciIGZpbGw9IiNmZmJkMmUiLz48Y2lyY2xlIGN4PSI3OCIgY3k9IjMwIiByPSI3IiBmaWxsPSIjMjhjODQwIi8+CiAgPHRleHQgeD0iMTEyIiB5PSIzNCIgZmlsbD0iIzI3MzIzYyIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9IjgwMCI+RnJlZUNBRCAtIHFwZF9zcGxpdF9wZF8yeDIvbW9kZWwuRkNTdGQ8L3RleHQ+CiAgPHJlY3QgeD0iMTQiIHk9IjU2IiB3aWR0aD0iMTA3MiIgaGVpZ2h0PSI0MiIgcng9IjciIGZpbGw9IiNlZWYxZjQiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyOCA2OCkiPjxyZWN0IHdpZHRoPSIyNiIgaGVpZ2h0PSIyMiIgcng9IjQiIGNsYXNzPSJ0b29sIi8+PHJlY3QgeD0iMzYiIHdpZHRoPSIyNiIgaGVpZ2h0PSIyMiIgcng9IjQiIGNsYXNzPSJ0b29sIi8+PHJlY3QgeD0iNzIiIHdpZHRoPSIyNiIgaGVpZ2h0PSIyMiIgcng9IjQiIGNsYXNzPSJ0b29sIi8+PHJlY3QgeD0iMTEyIiB3aWR0aD0iODgiIGhlaWdodD0iMjIiIHJ4PSI0IiBjbGFzcz0idG9vbCIvPjx0ZXh0IHg9IjEyMyIgeT0iMTUiIGNsYXNzPSJzbWFsbCI+UGFydCBEZXNpZ248L3RleHQ+PHJlY3QgeD0iMjE0IiB3aWR0aD0iNzIiIGhlaWdodD0iMjIiIHJ4PSI0IiBjbGFzcz0idG9vbCIvPjx0ZXh0IHg9IjIyNiIgeT0iMTUiIGNsYXNzPSJzbWFsbCI+Rml0IHZpZXc8L3RleHQ+PC9nPgogIDxyZWN0IHg9IjE4IiB5PSIxMTAiIHdpZHRoPSIyNDYiIGhlaWdodD0iNTkyIiByeD0iOCIgY2xhc3M9InVpIiBzdHJva2U9IiNiOGMwYzgiLz4KICA8dGV4dCB4PSIzNCIgeT0iMTM4IiBmaWxsPSIjMjUzMTNiIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIj5Nb2RlbCB0cmVlPC90ZXh0PgogIDx0ZXh0IHg9IjM4IiB5PSIxNzAiIGNsYXNzPSJ0cmVlIj5xcGRfc3BsaXRfcGRfMngyPC90ZXh0PgogIDx0ZXh0IHg9IjU2IiB5PSIxOTciIGNsYXNzPSJ0cmVlIj5zb2xpZF9zdGFjazwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iMjIyIiBjbGFzcz0idHJlZSI+U2lfc3Vic3RyYXRlPC90ZXh0PgogIDx0ZXh0IHg9Ijc0IiB5PSIyNDciIGNsYXNzPSJ0cmVlIj5EVElfZ3JpZDwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iMjcyIiBjbGFzcz0idHJlZSI+UERfUTEgLyBQRF9RMjwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iMjk3IiBjbGFzcz0idHJlZSI+UERfUTMgLyBQRF9RNDwvdGV4dD4KICA8dGV4dCB4PSI1NiIgeT0iMzMwIiBjbGFzcz0idHJlZSI+b3B0aWNhbF9zdGFjazwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iMzU1IiBjbGFzcz0idHJlZSI+Q0ZBX2dyZWVuXzJ4MjwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iMzgwIiBjbGFzcz0idHJlZSI+T0NMXzJ4Ml9sZW5zPC90ZXh0PgogIDx0ZXh0IHg9IjU2IiB5PSI0MTMiIGNsYXNzPSJ0cmVlIj5yZXZpZXdfc291cmNlczwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iNDM4IiBjbGFzcz0iY29kZSI+bW9kZWwuc3RlcDwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iNDYxIiBjbGFzcz0iY29kZSI+bW9kZWwuYnJlcDwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iNDg0IiBjbGFzcz0iY29kZSI+Z2VvbWV0cnlfaW1wb3J0Lmpzb248L3RleHQ+CiAgPHJlY3QgeD0iMjg0IiB5PSIxMTAiIHdpZHRoPSI3OTgiIGhlaWdodD0iNTkyIiByeD0iOCIgZmlsbD0idXJsKCN2aWV3cG9ydEJnKSIgc3Ryb2tlPSIjOWZiMGJkIi8+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjg0IDExMCkiPgogICAgPHBhdGggZD0iTTAgNDkySDc5OE0wIDQ0NEg3OThNMCAzOTZINzk4TTAgMzQ4SDc5OE0wIDMwMEg3OThNMCAyNTJINzk4TTAgMjA0SDc5OE0wIDE1Nkg3OThNMCAxMDhINzk4IiBjbGFzcz0iZ3JpZCIvPgogICAgPHBhdGggZD0iTTgyIDBWNTkyTTE1NCAwVjU5Mk0yMjYgMFY1OTJNMjk4IDBWNTkyTTM3MCAwVjU5Mk00NDIgMFY1OTJNNTE0IDBWNTkyTTU4NiAwVjU5Mk02NTggMFY1OTJNNzMwIDBWNTkyIiBjbGFzcz0iZ3JpZCIvPgogICAgPHRleHQgeD0iMjgiIHk9IjM0IiBmaWxsPSIjZWFmNmZiIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iODAwIj5RUEQgMngyIHNwbGl0IHBob3RvZGlvZGUgQ0FEIHNvdXJjZTwvdGV4dD4KICAgIDx0ZXh0IHg9IjI4IiB5PSI1OCIgZmlsbD0iI2FhYmNjNyIgZm9udC1zaXplPSIxMiI+Q0FELXNvdXJjZSByZXZpZXcgZnJhbWU6IHNhbWUgdGVtcGxhdGUgcGFyYW1ldGVycyBhcyBTVEVQL0JSRVAvRkNTdGQ7IG5vdCBhIHNvbHZlciBtZXNoLjwvdGV4dD4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwMCAzNDQpIiBmaWx0ZXI9InVybCgjc2hhZG93KSI+CiAgICAgIDxwb2x5Z29uIHBvaW50cz0iMCwtMzIgMjA1LDc0IDAsMTgwIC0yMDUsNzQiIGZpbGw9IiMyMDM5NGEiIHN0cm9rZT0iIzg2YTdiNyIvPgogICAgICA8cG9seWdvbiBwb2ludHM9Ii0yMDUsNzQgMCwxODAgMCwyMzYgLTIwNSwxMzAiIGZpbGw9IiMxNzJiMzgiIHN0cm9rZT0iIzU2NzE4NCIvPgogICAgICA8cG9seWdvbiBwb2ludHM9IjIwNSw3NCAwLDE4MCAwLDIzNiAyMDUsMTMwIiBmaWxsPSIjMTIyNTMyIiBzdHJva2U9IiM1NjcxODQiLz4KICAgICAgPHBvbHlnb24gcG9pbnRzPSItMTEyLDggLTE2LDU4IC05NiwxMDAgLTE5Miw1MCIgZmlsbD0iIzMxYjU2ZiIgY2xhc3M9ImVkZ2UiLz4KICAgICAgPHBvbHlnb24gcG9pbnRzPSIxNiw1OCAxMTIsOCAxOTIsNTAgOTYsMTAwIiBmaWxsPSIjMzFiNTZmIiBjbGFzcz0iZWRnZSIvPgogICAgICA8cG9seWdvbiBwb2ludHM9Ii05NiwxMTYgLTE2LDc0IDgwLDEyNCAwLDE2NiIgZmlsbD0iIzMxYjU2ZiIgY2xhc3M9ImVkZ2UiLz4KICAgICAgPHBvbHlnb24gcG9pbnRzPSIxNiw3NCA5NiwxMTYgMTkyLDc0IDExMiwzMiIgZmlsbD0iIzMxYjU2ZiIgb3BhY2l0eT0iLjg1IiBzdHJva2U9IiNlZmY4ZmYiLz4KICAgICAgPHBvbHlnb24gcG9pbnRzPSItMTE2LDQyIC0xOCw5MyAtODgsMTMwIC0xODYsNzkiIGZpbGw9IiNkMmFhMzEiIG9wYWNpdHk9Ii41OCIgc3Ryb2tlPSIjZmZlMjhhIi8+CiAgICAgIDxwb2x5Z29uIHBvaW50cz0iMTgsOTMgMTE2LDQyIDE4Niw3OSA4OCwxMzAiIGZpbGw9IiNkMmFhMzEiIG9wYWNpdHk9Ii41OCIgc3Ryb2tlPSIjZmZlMjhhIi8+CiAgICAgIDxwb2x5Z29uIHBvaW50cz0iLTg4LDE0NCAtMTgsMTA3IDgwLDE1OCAxMCwxOTUiIGZpbGw9IiNkMmFhMzEiIG9wYWNpdHk9Ii41OCIgc3Ryb2tlPSIjZmZlMjhhIi8+CiAgICAgIDxwb2x5Z29uIHBvaW50cz0iMTgsMTA3IDg4LDE0NCAxODYsOTMgMTE2LDU2IiBmaWxsPSIjZDJhYTMxIiBvcGFjaXR5PSIuNTgiIHN0cm9rZT0iI2ZmZTI4YSIvPgogICAgICA8cGF0aCBkPSJNLTE3OCAzMEMtMTE0LTMwLTQ4LTM4IDAgOEM0OC0zOCAxMTQtMzAgMTc4IDMwTDk2IDczQzY2IDQwIDI4IDQwIDAgNjJDLTI4IDQwLTY2IDQwLTk2IDczWiIgZmlsbD0idXJsKCNsZW5zKSIgc3Ryb2tlPSIjYzdmMmZmIiBzdHJva2Utd2lkdGg9IjIiIG9wYWNpdHk9Ii45NSIvPgogICAgICA8cGF0aCBkPSJNLTEgMTBWMTgwTS0xMTYgNDJMMTE2IDE1OE0xMTYgNDJMLTExNiAxNTgiIHN0cm9rZT0iI2ViZjhmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIuMzUiLz4KICAgIDwvZz4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDY5MCA0NjApIj48bGluZSB4MT0iMCIgeTE9IjAiIHgyPSI2MiIgeTI9Ii0zMiIgc3Ryb2tlPSIjZmY1ZjU3IiBzdHJva2Utd2lkdGg9IjQiLz48bGluZSB4MT0iMCIgeTE9IjAiIHgyPSItNDgiIHkyPSItMjQiIHN0cm9rZT0iIzJmOGNmZiIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9Ii03MiIgc3Ryb2tlPSIjMjhjODQwIiBzdHJva2Utd2lkdGg9IjQiLz48dGV4dCB4PSI2NyIgeT0iLTMzIiBmaWxsPSIjZmZiMWFkIiBmb250LXNpemU9IjEzIj5YPC90ZXh0Pjx0ZXh0IHg9Ii02MSIgeT0iLTI2IiBmaWxsPSIjOWVjOWZmIiBmb250LXNpemU9IjEzIj5ZPC90ZXh0Pjx0ZXh0IHg9IjciIHk9Ii03NiIgZmlsbD0iIzlmZTVhZCIgZm9udC1zaXplPSIxMyI+WjwvdGV4dD48L2c+CiAgICA8cmVjdCB4PSIyOCIgeT0iNTE0IiB3aWR0aD0iMjkwIiBoZWlnaHQ9IjQ0IiByeD0iNiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwuMDgpIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsLjE2KSIvPgogICAgPHRleHQgeD0iNDIiIHk9IjUzNiIgY2xhc3M9ImxhYmVsIj5QaXhlbCBwaXRjaCAxLjQwMCB1bSDCtyAyeDIgT0NMIMK3IFFQRDwvdGV4dD4KICAgIDx0ZXh0IHg9IjQyIiB5PSI1NTMiIGZpbGw9IiNiN2NhZDQiIGZvbnQtc2l6ZT0iMTEiPk9wZW4gU1RFUCBpbiBGcmVlQ0FEIGZvciBmYWNlL2JvZHkgaW5zcGVjdGlvbiBiZWZvcmUgc29sdmVyIGV4cG9ydC48L3RleHQ+CiAgPC9nPgo8L3N2Zz4K" alt="FreeCAD-style viewport for QPD 2x2 split photodiode CAD source" />
+            <figcaption class="cad-caption">
+              <h3>FreeCAD View: QPD Split-PD</h3>
+              <p>Source folder: <code>runs/pixel_cad_template_library_reference/qpd_split_pd_2x2</code>. Q1-Q4 split, PD, CFA/OCL body 구성을 설계자가 확인하는 장면.</p>
+            </figcaption>
+          </figure>
+          <figure class="cad-figure">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9IjcyMCIgdmlld0JveD0iMCAwIDExMDAgNzIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkZyZWVDQUQtc3R5bGUgdmlld3BvcnQgZm9yIFF1YWQgMngyIE9DTCA1eDUgY3Jvc3N0YWxrIHRlbXBsYXRlIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0idmlld3BvcnRCZyIgeDE9IjAiIHgyPSIxIiB5MT0iMCIgeTI9IjEiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzI4M2I0OSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzExMWEyMSIvPjwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImxlbnMiIHgxPSIwIiB4Mj0iMCIgeTE9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNkOGY2ZmYiLz48c3RvcCBvZmZzZXQ9Ii41NSIgc3RvcC1jb2xvcj0iIzc4Y2JmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzJkNmY5ZCIvPjwvbGluZWFyR3JhZGllbnQ+CiAgICA8ZmlsdGVyIGlkPSJzaGFkb3ciIHg9Ii0yMCUiIHk9Ii0yMCUiIHdpZHRoPSIxNDAlIiBoZWlnaHQ9IjE1MCUiPjxmZURyb3BTaGFkb3cgZHg9IjAiIGR5PSIxNiIgc3RkRGV2aWF0aW9uPSIxMiIgZmxvb2QtY29sb3I9IiMwMDAiIGZsb29kLW9wYWNpdHk9Ii4zMiIvPjwvZmlsdGVyPgogICAgPHN0eWxlPgogICAgICB0ZXh0e2ZvbnQtZmFtaWx5OkludGVyLEFyaWFsLHNhbnMtc2VyaWZ9LnVpe2ZpbGw6I2U3ZWJlZn0uYmFye2ZpbGw6I2Y1ZjdmOX0uc21hbGx7Zm9udC1zaXplOjEycHg7ZmlsbDojNTM2MDZifS50cmVle2ZvbnQtc2l6ZToxMnB4O2ZpbGw6IzMzNDE0Zn0uY29kZXtmb250LXNpemU6MTFweDtmaWxsOiM2YzdiODh9LnRvb2x7ZmlsbDojZDhkZGUyO3N0cm9rZTojYjljMWM5fS5ncmlke3N0cm9rZTojNTA2MzcxO3N0cm9rZS13aWR0aDouODtvcGFjaXR5Oi4yNH0uY2VsbHtzdHJva2U6I2VjZjhmZjtzdHJva2Utd2lkdGg6Ljc1O29wYWNpdHk6Ljh9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMTEwMCIgaGVpZ2h0PSI3MjAiIHJ4PSIxOCIgZmlsbD0iI2NmZDZkZCIvPgogIDxyZWN0IHg9IjEyIiB5PSIxMiIgd2lkdGg9IjEwNzYiIGhlaWdodD0iMzYiIHJ4PSI4IiBjbGFzcz0iYmFyIi8+CiAgPGNpcmNsZSBjeD0iMzQiIGN5PSIzMCIgcj0iNyIgZmlsbD0iI2ZmNWY1NyIvPjxjaXJjbGUgY3g9IjU2IiBjeT0iMzAiIHI9IjciIGZpbGw9IiNmZmJkMmUiLz48Y2lyY2xlIGN4PSI3OCIgY3k9IjMwIiByPSI3IiBmaWxsPSIjMjhjODQwIi8+CiAgPHRleHQgeD0iMTEyIiB5PSIzNCIgZmlsbD0iIzI3MzIzYyIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9IjgwMCI+RnJlZUNBRCAtIHF1YWRfMngyX29jbF81eDVfY3Jvc3N0YWxrL21vZGVsLnN0ZXA8L3RleHQ+CiAgPHJlY3QgeD0iMTQiIHk9IjU2IiB3aWR0aD0iMTA3MiIgaGVpZ2h0PSI0MiIgcng9IjciIGZpbGw9IiNlZWYxZjQiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyOCA2OCkiPjxyZWN0IHdpZHRoPSIyNiIgaGVpZ2h0PSIyMiIgcng9IjQiIGNsYXNzPSJ0b29sIi8+PHJlY3QgeD0iMzYiIHdpZHRoPSIyNiIgaGVpZ2h0PSIyMiIgcng9IjQiIGNsYXNzPSJ0b29sIi8+PHJlY3QgeD0iNzIiIHdpZHRoPSIyNiIgaGVpZ2h0PSIyMiIgcng9IjQiIGNsYXNzPSJ0b29sIi8+PHJlY3QgeD0iMTEyIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIyIiByeD0iNCIgY2xhc3M9InRvb2wiLz48dGV4dCB4PSIxMjQiIHk9IjE1IiBjbGFzcz0ic21hbGwiPkRyYWZ0IC8gUGFydDwvdGV4dD48cmVjdCB4PSIyMjYiIHdpZHRoPSIxMDYiIGhlaWdodD0iMjIiIHJ4PSI0IiBjbGFzcz0idG9vbCIvPjx0ZXh0IHg9IjIzOCIgeT0iMTUiIGNsYXNzPSJzbWFsbCI+YXhvbm9tZXRyaWM8L3RleHQ+PC9nPgogIDxyZWN0IHg9IjE4IiB5PSIxMTAiIHdpZHRoPSIyNDYiIGhlaWdodD0iNTkyIiByeD0iOCIgY2xhc3M9InVpIiBzdHJva2U9IiNiOGMwYzgiLz4KICA8dGV4dCB4PSIzNCIgeT0iMTM4IiBmaWxsPSIjMjUzMTNiIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIj5Nb2RlbCB0cmVlPC90ZXh0PgogIDx0ZXh0IHg9IjM4IiB5PSIxNzAiIGNsYXNzPSJ0cmVlIj5xdWFkXzJ4Ml9vY2xfNXg1X2Nyb3NzdGFsazwvdGV4dD4KICA8dGV4dCB4PSI1NiIgeT0iMTk3IiBjbGFzcz0idHJlZSI+NXg1X29jbF9ncm91cHM8L3RleHQ+CiAgPHRleHQgeD0iNzQiIHk9IjIyMiIgY2xhc3M9InRyZWUiPmNlbnRlcl90YXJnZXRfZ3JvdXA8L3RleHQ+CiAgPHRleHQgeD0iNzQiIHk9IjI0NyIgY2xhc3M9InRyZWUiPm5laWdoYm9yX3JpbmdfMTwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iMjcyIiBjbGFzcz0idHJlZSI+bmVpZ2hib3JfcmluZ18yPC90ZXh0PgogIDx0ZXh0IHg9IjU2IiB5PSIzMDUiIGNsYXNzPSJ0cmVlIj5vcHRpY2FsX3N0YWNrPC90ZXh0PgogIDx0ZXh0IHg9Ijc0IiB5PSIzMzAiIGNsYXNzPSJ0cmVlIj5PQ0xfMngyX2FycmF5PC90ZXh0PgogIDx0ZXh0IHg9Ijc0IiB5PSIzNTUiIGNsYXNzPSJ0cmVlIj5RdWFkX0NGQV9wYXR0ZXJuPC90ZXh0PgogIDx0ZXh0IHg9IjU2IiB5PSIzODgiIGNsYXNzPSJ0cmVlIj5zb2x2ZXJfZXhwb3J0czwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iNDEzIiBjbGFzcz0iY29kZSI+Z2VvbWV0cnlfaW1wb3J0Lmpzb248L3RleHQ+CiAgPHRleHQgeD0iNzQiIHk9IjQzNiIgY2xhc3M9ImNvZGUiPmZkdGQgZm9vdHByaW50IGF2YWlsYWJsZTwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iNDU5IiBjbGFzcz0iY29kZSI+Y3Jvc3N0YWxrIHRhcmdldDogcXVhZF80XzQ8L3RleHQ+CiAgPHJlY3QgeD0iMjg0IiB5PSIxMTAiIHdpZHRoPSI3OTgiIGhlaWdodD0iNTkyIiByeD0iOCIgZmlsbD0idXJsKCN2aWV3cG9ydEJnKSIgc3Ryb2tlPSIjOWZiMGJkIi8+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjg0IDExMCkiPgogICAgPHBhdGggZD0iTTAgNDkySDc5OE0wIDQ0NEg3OThNMCAzOTZINzk4TTAgMzQ4SDc5OE0wIDMwMEg3OThNMCAyNTJINzk4TTAgMjA0SDc5OE0wIDE1Nkg3OThNMCAxMDhINzk4IiBjbGFzcz0iZ3JpZCIvPgogICAgPHBhdGggZD0iTTgyIDBWNTkyTTE1NCAwVjU5Mk0yMjYgMFY1OTJNMjk4IDBWNTkyTTM3MCAwVjU5Mk00NDIgMFY1OTJNNTE0IDBWNTkyTTU4NiAwVjU5Mk02NTggMFY1OTJNNzMwIDBWNTkyIiBjbGFzcz0iZ3JpZCIvPgogICAgPHRleHQgeD0iMjgiIHk9IjM0IiBmaWxsPSIjZWFmNmZiIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iODAwIj5RdWFkIEJheWVyIDJ4MiBPQ0wsIDV4NSBjcm9zc3RhbGsgZG9tYWluPC90ZXh0PgogICAgPHRleHQgeD0iMjgiIHk9IjU4IiBmaWxsPSIjYWFiY2M3IiBmb250LXNpemU9IjEyIj5QdXJwb3NlOiBpbmNsdWRlIGVub3VnaCBuZWlnaGJvcmluZyBPQ0wgZ3JvdXBzIGZvciBiaW5uZWQtb3V0cHV0IGNyb3NzdGFsayBrZXJuZWwgcmV2aWV3LjwvdGV4dD4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM5NCAzMzIpIiBmaWx0ZXI9InVybCgjc2hhZG93KSI+CiAgICAgIDxwb2x5Z29uIHBvaW50cz0iMCwtMTQyIDI5MCw4IDAsMTU4IC0yOTAsOCIgZmlsbD0iIzIxMzk0YSIgc3Ryb2tlPSIjODlhYWJiIi8+CiAgICAgIDxwb2x5Z29uIHBvaW50cz0iLTI5MCw4IDAsMTU4IDAsMjE0IC0yOTAsNjQiIGZpbGw9IiMxNzJiMzgiIHN0cm9rZT0iIzVmN2E4YiIvPgogICAgICA8cG9seWdvbiBwb2ludHM9IjI5MCw4IDAsMTU4IDAsMjE0IDI5MCw2NCIgZmlsbD0iIzEyMjUzMiIgc3Ryb2tlPSIjNWY3YThiIi8+CiAgICAgIDxnIG9wYWNpdHk9Ii44OCI+CiAgICAgICAgPHBvbHlnb24gcG9pbnRzPSItMTc4LC04NCAtMTMyLC02MCAtMTc4LC0zNiAtMjI0LC02MCIgZmlsbD0iI2U2NGQ1NiIgY2xhc3M9ImNlbGwiLz4KICAgICAgICA8cG9seWdvbiBwb2ludHM9Ii0xMzIsLTYwIC04NiwtMzYgLTEzMiwtMTIgLTE3OCwtMzYiIGZpbGw9IiMzNWJiNzAiIGNsYXNzPSJjZWxsIi8+CiAgICAgICAgPHBvbHlnb24gcG9pbnRzPSItODYsLTM2IC00MCwtMTIgLTg2LDEyIC0xMzIsLTEyIiBmaWxsPSIjZTY0ZDU2IiBjbGFzcz0iY2VsbCIvPgogICAgICAgIDxwb2x5Z29uIHBvaW50cz0iLTQwLC0xMiA2LDEyIC00MCwzNiAtODYsMTIiIGZpbGw9IiMzNWJiNzAiIGNsYXNzPSJjZWxsIi8+CiAgICAgICAgPHBvbHlnb24gcG9pbnRzPSI2LDEyIDUyLDM2IDYsNjAgLTQwLDM2IiBmaWxsPSIjZTY0ZDU2IiBjbGFzcz0iY2VsbCIvPgogICAgICAgIDxwb2x5Z29uIHBvaW50cz0iNTIsMzYgOTgsNjAgNTIsODQgNiw2MCIgZmlsbD0iIzM1YmI3MCIgY2xhc3M9ImNlbGwiLz4KICAgICAgICA8cG9seWdvbiBwb2ludHM9Ijk4LDYwIDE0NCw4NCA5OCwxMDggNTIsODQiIGZpbGw9IiNlNjRkNTYiIGNsYXNzPSJjZWxsIi8+CiAgICAgICAgPHBvbHlnb24gcG9pbnRzPSItMjI0LC0zNiAtMTc4LC0xMiAtMjI0LDEyIC0yNzAsLTEyIiBmaWxsPSIjMzViYjcwIiBjbGFzcz0iY2VsbCIvPgogICAgICAgIDxwb2x5Z29uIHBvaW50cz0iLTE3OCwtMTIgLTEzMiwxMiAtMTc4LDM2IC0yMjQsMTIiIGZpbGw9IiMzNDdjZjAiIGNsYXNzPSJjZWxsIi8+CiAgICAgICAgPHBvbHlnb24gcG9pbnRzPSItMTMyLDEyIC04NiwzNiAtMTMyLDYwIC0xNzgsMzYiIGZpbGw9IiMzNWJiNzAiIGNsYXNzPSJjZWxsIi8+CiAgICAgICAgPHBvbHlnb24gcG9pbnRzPSItODYsMzYgLTQwLDYwIC04Niw4NCAtMTMyLDYwIiBmaWxsPSIjMzQ3Y2YwIiBjbGFzcz0iY2VsbCIvPgogICAgICAgIDxwb2x5Z29uIHBvaW50cz0iLTQwLDYwIDYsODQgLTQwLDEwOCAtODYsODQiIGZpbGw9IiMzNWJiNzAiIGNsYXNzPSJjZWxsIi8+CiAgICAgICAgPHBvbHlnb24gcG9pbnRzPSI2LDg0IDUyLDEwOCA2LDEzMiAtNDAsMTA4IiBmaWxsPSIjMzQ3Y2YwIiBjbGFzcz0iY2VsbCIvPgogICAgICAgIDxwb2x5Z29uIHBvaW50cz0iNTIsMTA4IDk4LDEzMiA1MiwxNTYgNiwxMzIiIGZpbGw9IiMzNWJiNzAiIGNsYXNzPSJjZWxsIi8+CiAgICAgICAgPHBvbHlnb24gcG9pbnRzPSItMTMyLC0xMDggLTg2LC04NCAtMTMyLC02MCAtMTc4LC04NCIgZmlsbD0iIzM1YmI3MCIgY2xhc3M9ImNlbGwiLz4KICAgICAgICA8cG9seWdvbiBwb2ludHM9Ii04NiwtODQgLTQwLC02MCAtODYsLTM2IC0xMzIsLTYwIiBmaWxsPSIjMzQ3Y2YwIiBjbGFzcz0iY2VsbCIvPgogICAgICAgIDxwb2x5Z29uIHBvaW50cz0iLTQwLC02MCA2LC0zNiAtNDAsLTEyIC04NiwtMzYiIGZpbGw9IiMzNWJiNzAiIGNsYXNzPSJjZWxsIi8+CiAgICAgICAgPHBvbHlnb24gcG9pbnRzPSI2LC0zNiA1MiwtMTIgNiwxMiAtNDAsLTEyIiBmaWxsPSIjMzQ3Y2YwIiBjbGFzcz0iY2VsbCIvPgogICAgICAgIDxwb2x5Z29uIHBvaW50cz0iNTIsLTEyIDk4LDEyIDUyLDM2IDYsMTIiIGZpbGw9IiMzNWJiNzAiIGNsYXNzPSJjZWxsIi8+CiAgICAgICAgPHBvbHlnb24gcG9pbnRzPSI5OCwxMiAxNDQsMzYgOTgsNjAgNTIsMzYiIGZpbGw9IiMzNDdjZjAiIGNsYXNzPSJjZWxsIi8+CiAgICAgICAgPHBvbHlnb24gcG9pbnRzPSIxNDQsMzYgMTkwLDYwIDE0NCw4NCA5OCw2MCIgZmlsbD0iIzM1YmI3MCIgY2xhc3M9ImNlbGwiLz4KICAgICAgPC9nPgogICAgICA8ZyBvcGFjaXR5PSIuOTMiPgogICAgICAgIDxlbGxpcHNlIGN4PSItMTU2IiBjeT0iLTU4IiByeD0iNTIiIHJ5PSIyMiIgZmlsbD0idXJsKCNsZW5zKSIgc3Ryb2tlPSIjZDRmNmZmIi8+CiAgICAgICAgPGVsbGlwc2UgY3g9Ii02NCIgY3k9Ii0xMCIgcng9IjUyIiByeT0iMjIiIGZpbGw9InVybCgjbGVucykiIHN0cm9rZT0iI2Q0ZjZmZiIvPgogICAgICAgIDxlbGxpcHNlIGN4PSIyOCIgY3k9IjM4IiByeD0iNTIiIHJ5PSIyMiIgZmlsbD0idXJsKCNsZW5zKSIgc3Ryb2tlPSIjZDRmNmZmIi8+CiAgICAgICAgPGVsbGlwc2UgY3g9IjEyMCIgY3k9Ijg2IiByeD0iNTIiIHJ5PSIyMiIgZmlsbD0idXJsKCNsZW5zKSIgc3Ryb2tlPSIjZDRmNmZmIi8+CiAgICAgICAgPGVsbGlwc2UgY3g9Ii0yMDIiIGN5PSIxNCIgcng9IjUyIiByeT0iMjIiIGZpbGw9InVybCgjbGVucykiIHN0cm9rZT0iI2Q0ZjZmZiIgb3BhY2l0eT0iLjYyIi8+CiAgICAgICAgPGVsbGlwc2UgY3g9Ii0xMTAiIGN5PSI2MiIgcng9IjUyIiByeT0iMjIiIGZpbGw9InVybCgjbGVucykiIHN0cm9rZT0iI2Q0ZjZmZiIgb3BhY2l0eT0iLjYyIi8+CiAgICAgICAgPGVsbGlwc2UgY3g9Ii0xOCIgY3k9IjExMCIgcng9IjUyIiByeT0iMjIiIGZpbGw9InVybCgjbGVucykiIHN0cm9rZT0iI2Q0ZjZmZiIgb3BhY2l0eT0iLjYyIi8+CiAgICAgIDwvZz4KICAgICAgPHBvbHlnb24gcG9pbnRzPSItODIsLTIyIDgyLDYyIDAsMTA2IC0xNjQsMjIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZTM2YiIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgICA8L2c+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2NzIgNDYwKSI+PGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iNjIiIHkyPSItMzIiIHN0cm9rZT0iI2ZmNWY1NyIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iLTQ4IiB5Mj0iLTI0IiBzdHJva2U9IiMyZjhjZmYiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSItNzIiIHN0cm9rZT0iIzI4Yzg0MCIgc3Ryb2tlLXdpZHRoPSI0Ii8+PHRleHQgeD0iNjciIHk9Ii0zMyIgZmlsbD0iI2ZmYjFhZCIgZm9udC1zaXplPSIxMyI+WDwvdGV4dD48dGV4dCB4PSItNjEiIHk9Ii0yNiIgZmlsbD0iIzllYzlmZiIgZm9udC1zaXplPSIxMyI+WTwvdGV4dD48dGV4dCB4PSI3IiB5PSItNzYiIGZpbGw9IiM5ZmU1YWQiIGZvbnQtc2l6ZT0iMTMiPlo8L3RleHQ+PC9nPgogICAgPHJlY3QgeD0iMjgiIHk9IjUxNCIgd2lkdGg9IjMzMCIgaGVpZ2h0PSI0NCIgcng9IjYiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsLjA4KSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LC4xNikiLz4KICAgIDx0ZXh0IHg9IjQyIiB5PSI1MzYiIGZpbGw9IiNmNWZhZmYiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI4MDAiPjEweDEwIHN1YnBpeGVscyDCtyA1eDUgT0NMIGdyb3VwcyDCtyAxNC4wIHVtIGRvbWFpbjwvdGV4dD4KICAgIDx0ZXh0IHg9IjQyIiB5PSI1NTMiIGZpbGw9IiNiN2NhZDQiIGZvbnQtc2l6ZT0iMTEiPlllbGxvdyBvdXRsaW5lIG1hcmtzIGNlbnRyYWwgdGFyZ2V0IGJpbm5lZCBncm91cCBmb3IgY3Jvc3N0YWxrIGtlcm5lbC48L3RleHQ+CiAgPC9nPgo8L3N2Zz4K" alt="FreeCAD-style viewport for Quad 2x2 OCL 5x5 crosstalk CAD source" />
+            <figcaption class="cad-caption">
+              <h3>FreeCAD View: 5x5 Crosstalk Domain</h3>
+              <p>Source folder: <code>runs/pixel_cad_template_library_reference/quad_2x2_ocl_5x5_crosstalk</code>. 중앙 2x2 OCL과 주변 5x5 group extent 확인용.</p>
+            </figcaption>
+          </figure>
+          <figure class="cad-figure">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAwIiBoZWlnaHQ9IjcyMCIgdmlld0JveD0iMCAwIDExMDAgNzIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkZyZWVDQUQtc3R5bGUgdmlld3BvcnQgZm9yIG1peGVkIE9DTCBib3VuZGFyeSB0ZW1wbGF0ZSI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InZpZXdwb3J0QmciIHgxPSIwIiB4Mj0iMSIgeTE9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMyNzNhNDkiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMxMTE5MjEiLz48L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsZW5zU21hbGwiIHgxPSIwIiB4Mj0iMCIgeTE9IjAiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNkOGY2ZmYiLz48c3RvcCBvZmZzZXQ9Ii41NSIgc3RvcC1jb2xvcj0iIzgyZDFmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzJiNzE5ZSIvPjwvbGluZWFyR3JhZGllbnQ+CiAgICA8ZmlsdGVyIGlkPSJzaGFkb3ciIHg9Ii0yMCUiIHk9Ii0yMCUiIHdpZHRoPSIxNDAlIiBoZWlnaHQ9IjE1MCUiPjxmZURyb3BTaGFkb3cgZHg9IjAiIGR5PSIxNiIgc3RkRGV2aWF0aW9uPSIxMiIgZmxvb2QtY29sb3I9IiMwMDAiIGZsb29kLW9wYWNpdHk9Ii4zMiIvPjwvZmlsdGVyPgogICAgPHN0eWxlPgogICAgICB0ZXh0e2ZvbnQtZmFtaWx5OkludGVyLEFyaWFsLHNhbnMtc2VyaWZ9LnVpe2ZpbGw6I2U3ZWJlZn0uYmFye2ZpbGw6I2Y1ZjdmOX0uc21hbGx7Zm9udC1zaXplOjEycHg7ZmlsbDojNTM2MDZifS50cmVle2ZvbnQtc2l6ZToxMnB4O2ZpbGw6IzMzNDE0Zn0uY29kZXtmb250LXNpemU6MTFweDtmaWxsOiM2YzdiODh9LnRvb2x7ZmlsbDojZDhkZGUyO3N0cm9rZTojYjljMWM5fS5ncmlke3N0cm9rZTojNTA2MzcxO3N0cm9rZS13aWR0aDouODtvcGFjaXR5Oi4yNH0uY2VsbHtzdHJva2U6I2VkZjhmZjtzdHJva2Utd2lkdGg6Ljg7b3BhY2l0eTouODZ9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMTEwMCIgaGVpZ2h0PSI3MjAiIHJ4PSIxOCIgZmlsbD0iI2NmZDZkZCIvPgogIDxyZWN0IHg9IjEyIiB5PSIxMiIgd2lkdGg9IjEwNzYiIGhlaWdodD0iMzYiIHJ4PSI4IiBjbGFzcz0iYmFyIi8+CiAgPGNpcmNsZSBjeD0iMzQiIGN5PSIzMCIgcj0iNyIgZmlsbD0iI2ZmNWY1NyIvPjxjaXJjbGUgY3g9IjU2IiBjeT0iMzAiIHI9IjciIGZpbGw9IiNmZmJkMmUiLz48Y2lyY2xlIGN4PSI3OCIgY3k9IjMwIiByPSI3IiBmaWxsPSIjMjhjODQwIi8+CiAgPHRleHQgeD0iMTEyIiB5PSIzNCIgZmlsbD0iIzI3MzIzYyIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9IjgwMCI+RnJlZUNBRCAtIG1peGVkXzF4MV8yeDJfM3gzX2JvdW5kYXJ5L21vZGVsLnN0ZXA8L3RleHQ+CiAgPHJlY3QgeD0iMTQiIHk9IjU2IiB3aWR0aD0iMTA3MiIgaGVpZ2h0PSI0MiIgcng9IjciIGZpbGw9IiNlZWYxZjQiLz4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyOCA2OCkiPjxyZWN0IHdpZHRoPSIyNiIgaGVpZ2h0PSIyMiIgcng9IjQiIGNsYXNzPSJ0b29sIi8+PHJlY3QgeD0iMzYiIHdpZHRoPSIyNiIgaGVpZ2h0PSIyMiIgcng9IjQiIGNsYXNzPSJ0b29sIi8+PHJlY3QgeD0iNzIiIHdpZHRoPSIyNiIgaGVpZ2h0PSIyMiIgcng9IjQiIGNsYXNzPSJ0b29sIi8+PHJlY3QgeD0iMTEyIiB3aWR0aD0iMTE2IiBoZWlnaHQ9IjIyIiByeD0iNCIgY2xhc3M9InRvb2wiLz48dGV4dCB4PSIxMjQiIHk9IjE1IiBjbGFzcz0ic21hbGwiPk9wZW5DQVNDQURFPC90ZXh0PjxyZWN0IHg9IjI0MiIgd2lkdGg9IjEyMiIgaGVpZ2h0PSIyMiIgcng9IjQiIGNsYXNzPSJ0b29sIi8+PHRleHQgeD0iMjU1IiB5PSIxNSIgY2xhc3M9InNtYWxsIj50b2dnbGUgc2VjdGlvbjwvdGV4dD48L2c+CiAgPHJlY3QgeD0iMTgiIHk9IjExMCIgd2lkdGg9IjI0NiIgaGVpZ2h0PSI1OTIiIHJ4PSI4IiBjbGFzcz0idWkiIHN0cm9rZT0iI2I4YzBjOCIvPgogIDx0ZXh0IHg9IjM0IiB5PSIxMzgiIGZpbGw9IiMyNTMxM2IiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSI4MDAiPk1vZGVsIHRyZWU8L3RleHQ+CiAgPHRleHQgeD0iMzgiIHk9IjE3MCIgY2xhc3M9InRyZWUiPm1peGVkX29jbF9ib3VuZGFyeTwvdGV4dD4KICA8dGV4dCB4PSI1NiIgeT0iMTk3IiBjbGFzcz0idHJlZSI+cmVnaW9uX0FfMXgxX09DTDwvdGV4dD4KICA8dGV4dCB4PSI1NiIgeT0iMjIyIiBjbGFzcz0idHJlZSI+cmVnaW9uX0JfMngyX09DTDwvdGV4dD4KICA8dGV4dCB4PSI1NiIgeT0iMjQ3IiBjbGFzcz0idHJlZSI+cmVnaW9uX0NfM3gzX09DTDwvdGV4dD4KICA8dGV4dCB4PSI1NiIgeT0iMjgwIiBjbGFzcz0idHJlZSI+dHJhbnNpdGlvbl9lZGdlczwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iMzA1IiBjbGFzcz0idHJlZSI+MXgxX3RvXzJ4MjwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iMzMwIiBjbGFzcz0idHJlZSI+MngyX3RvXzN4MzwvdGV4dD4KICA8dGV4dCB4PSI1NiIgeT0iMzYzIiBjbGFzcz0idHJlZSI+cmV2aWV3IGNoZWNrczwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iMzg4IiBjbGFzcz0iY29kZSI+T0NMIG92ZXJsYXA8L3RleHQ+CiAgPHRleHQgeD0iNzQiIHk9IjQxMSIgY2xhc3M9ImNvZGUiPkNGQSBncm91cGluZzwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iNDM0IiBjbGFzcz0iY29kZSI+Ym91bmRhcnkgbGVha2FnZSByaXNrPC90ZXh0PgogIDxyZWN0IHg9IjI4NCIgeT0iMTEwIiB3aWR0aD0iNzk4IiBoZWlnaHQ9IjU5MiIgcng9IjgiIGZpbGw9InVybCgjdmlld3BvcnRCZykiIHN0cm9rZT0iIzlmYjBiZCIvPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI4NCAxMTApIj4KICAgIDxwYXRoIGQ9Ik0wIDQ5Mkg3OThNMCA0NDRINzk4TTAgMzk2SDc5OE0wIDM0OEg3OThNMCAzMDBINzk4TTAgMjUySDc5OE0wIDIwNEg3OThNMCAxNTZINzk4TTAgMTA4SDc5OCIgY2xhc3M9ImdyaWQiLz4KICAgIDxwYXRoIGQ9Ik04MiAwVjU5Mk0xNTQgMFY1OTJNMjI2IDBWNTkyTTI5OCAwVjU5Mk0zNzAgMFY1OTJNNDQyIDBWNTkyTTUxNCAwVjU5Mk01ODYgMFY1OTJNNjU4IDBWNTkyTTczMCAwVjU5MiIgY2xhc3M9ImdyaWQiLz4KICAgIDx0ZXh0IHg9IjI4IiB5PSIzNCIgZmlsbD0iI2VhZjZmYiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjgwMCI+TWl4ZWQgMXgxIC8gMngyIC8gM3gzIE9DTCBib3VuZGFyeSBDQUQgc291cmNlPC90ZXh0PgogICAgPHRleHQgeD0iMjgiIHk9IjU4IiBmaWxsPSIjYWFiY2M3IiBmb250LXNpemU9IjEyIj5QdXJwb3NlOiByZXZpZXcgdHJhbnNpdGlvbiB0b3BvbG9neSBiZWZvcmUgYnVpbGRpbmcgYm91bmRhcnkgY3Jvc3N0YWxrIGFuZCBDUkEgY2FzZXMuPC90ZXh0PgogICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzk4IDMzOCkiIGZpbHRlcj0idXJsKCNzaGFkb3cpIj4KICAgICAgPHBvbHlnb24gcG9pbnRzPSIwLC0xMzIgMzAwLDI0IDAsMTgwIC0zMDAsMjQiIGZpbGw9IiMyMTM5NGEiIHN0cm9rZT0iIzg5YWFiYiIvPgogICAgICA8cG9seWdvbiBwb2ludHM9Ii0zMDAsMjQgMCwxODAgMCwyMzQgLTMwMCw3OCIgZmlsbD0iIzE3MmIzOCIgc3Ryb2tlPSIjNWY3YThiIi8+CiAgICAgIDxwb2x5Z29uIHBvaW50cz0iMzAwLDI0IDAsMTgwIDAsMjM0IDMwMCw3OCIgZmlsbD0iIzEyMjUzMiIgc3Ryb2tlPSIjNWY3YThiIi8+CiAgICAgIDxnIG9wYWNpdHk9Ii45Ij4KICAgICAgICA8cG9seWdvbiBwb2ludHM9Ii0yMzgsLTYgLTE5MCwxOSAtMjM4LDQ0IC0yODYsMTkiIGZpbGw9IiNlNjRkNTYiIGNsYXNzPSJjZWxsIi8+PHBvbHlnb24gcG9pbnRzPSItMTkwLDE5IC0xNDIsNDQgLTE5MCw2OSAtMjM4LDQ0IiBmaWxsPSIjMzViYjcwIiBjbGFzcz0iY2VsbCIvPgogICAgICAgIDxwb2x5Z29uIHBvaW50cz0iLTE0Miw0NCAtOTQsNjkgLTE0Miw5NCAtMTkwLDY5IiBmaWxsPSIjMzQ3Y2YwIiBjbGFzcz0iY2VsbCIvPjxwb2x5Z29uIHBvaW50cz0iLTk0LDY5IC00Niw5NCAtOTQsMTE5IC0xNDIsOTQiIGZpbGw9IiMzNWJiNzAiIGNsYXNzPSJjZWxsIi8+CiAgICAgICAgPHBvbHlnb24gcG9pbnRzPSItNDYsLTk0IDIsLTY5IC00NiwtNDQgLTk0LC02OSIgZmlsbD0iIzM1YmI3MCIgY2xhc3M9ImNlbGwiLz48cG9seWdvbiBwb2ludHM9IjIsLTY5IDUwLC00NCAyLC0xOSAtNDYsLTQ0IiBmaWxsPSIjMzQ3Y2YwIiBjbGFzcz0iY2VsbCIvPgogICAgICAgIDxwb2x5Z29uIHBvaW50cz0iNTAsLTQ0IDk4LC0xOSA1MCw2IDIsLTE5IiBmaWxsPSIjMzViYjcwIiBjbGFzcz0iY2VsbCIvPjxwb2x5Z29uIHBvaW50cz0iOTgsLTE5IDE0Niw2IDk4LDMxIDUwLDYiIGZpbGw9IiNlNjRkNTYiIGNsYXNzPSJjZWxsIi8+CiAgICAgICAgPHBvbHlnb24gcG9pbnRzPSIxNDYsNiAxOTQsMzEgMTQ2LDU2IDk4LDMxIiBmaWxsPSIjMzViYjcwIiBjbGFzcz0iY2VsbCIvPjxwb2x5Z29uIHBvaW50cz0iMTk0LDMxIDI0Miw1NiAxOTQsODEgMTQ2LDU2IiBmaWxsPSIjMzQ3Y2YwIiBjbGFzcz0iY2VsbCIvPgogICAgICA8L2c+CiAgICAgIDxlbGxpcHNlIGN4PSItMjE0IiBjeT0iMTkiIHJ4PSIzMiIgcnk9IjE0IiBmaWxsPSJ1cmwoI2xlbnNTbWFsbCkiIHN0cm9rZT0iI2Q4ZjdmZiIvPgogICAgICA8ZWxsaXBzZSBjeD0iLTE2NiIgY3k9IjQ0IiByeD0iMzIiIHJ5PSIxNCIgZmlsbD0idXJsKCNsZW5zU21hbGwpIiBzdHJva2U9IiNkOGY3ZmYiLz4KICAgICAgPHBhdGggZD0iTS02Ni01MEMtMjgtODIgMjgtODIgNjYtNTBMODgtMzkgMCA4IC04OC0zOVoiIGZpbGw9InVybCgjbGVuc1NtYWxsKSIgc3Ryb2tlPSIjZDhmN2ZmIiBvcGFjaXR5PSIuOTQiLz4KICAgICAgPHBhdGggZD0iTTY4LTZDMTMwLTU2IDIxMC01MiAyNjYgNEwxNzAgNTQgOTIgMTRaIiBmaWxsPSJ1cmwoI2xlbnNTbWFsbCkiIHN0cm9rZT0iI2Q4ZjdmZiIgb3BhY2l0eT0iLjg4Ii8+CiAgICAgIDxwYXRoIGQ9Ik0tOTYtNzJMLTQtMjRNLTIwLTMyTDkyIDI2IiBzdHJva2U9IiNmZmQ5NWEiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWRhc2hhcnJheT0iMTAgNyIvPgogICAgICA8dGV4dCB4PSItMjIwIiB5PSItMzYiIGZpbGw9IiNmZmYzYTciIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSI4MDAiPjF4MTwvdGV4dD4KICAgICAgPHRleHQgeD0iLTI4IiB5PSItMTAwIiBmaWxsPSIjZmZmM2E3IiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIj4yeDI8L3RleHQ+CiAgICAgIDx0ZXh0IHg9IjEyNiIgeT0iLTQ4IiBmaWxsPSIjZmZmM2E3IiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iODAwIj4zeDM8L3RleHQ+CiAgICA8L2c+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg2NzIgNDYwKSI+PGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iNjIiIHkyPSItMzIiIHN0cm9rZT0iI2ZmNWY1NyIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iLTQ4IiB5Mj0iLTI0IiBzdHJva2U9IiMyZjhjZmYiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSItNzIiIHN0cm9rZT0iIzI4Yzg0MCIgc3Ryb2tlLXdpZHRoPSI0Ii8+PHRleHQgeD0iNjciIHk9Ii0zMyIgZmlsbD0iI2ZmYjFhZCIgZm9udC1zaXplPSIxMyI+WDwvdGV4dD48dGV4dCB4PSItNjEiIHk9Ii0yNiIgZmlsbD0iIzllYzlmZiIgZm9udC1zaXplPSIxMyI+WTwvdGV4dD48dGV4dCB4PSI3IiB5PSItNzYiIGZpbGw9IiM5ZmU1YWQiIGZvbnQtc2l6ZT0iMTMiPlo8L3RleHQ+PC9nPgogICAgPHJlY3QgeD0iMjgiIHk9IjUxNCIgd2lkdGg9IjM0NiIgaGVpZ2h0PSI0NCIgcng9IjYiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsLjA4KSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LC4xNikiLz4KICAgIDx0ZXh0IHg9IjQyIiB5PSI1MzYiIGZpbGw9IiNmNWZhZmYiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSI4MDAiPkJvdW5kYXJ5IHJldmlldyDCtyAxeDEgLyAyeDIgLyAzeDMgT0NMIHRyYW5zaXRpb248L3RleHQ+CiAgICA8dGV4dCB4PSI0MiIgeT0iNTUzIiBmaWxsPSIjYjdjYWQ0IiBmb250LXNpemU9IjExIj5EYXNoZWQgZWRnZXMgaWRlbnRpZnkgdHJhbnNpdGlvbiB6b25lcyBmb3IgbGVha2FnZSBhbmQgYWxpZ25tZW50IGNoZWNrcy48L3RleHQ+CiAgPC9nPgo8L3N2Zz4K" alt="FreeCAD-style viewport for mixed OCL boundary CAD source" />
+            <figcaption class="cad-caption">
+              <h3>FreeCAD View: Mixed OCL Boundary</h3>
+              <p>Source folder: <code>runs/pixel_cad_template_library_reference/mixed_1x1_2x2_3x3_boundary</code>. 1x1/2x2/3x3 OCL transition 영역의 CAD review image.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="pipeline">
+        <div class="section-head">
+          <div>
+            <h2>Pipeline</h2>
+            <p>설계자는 template과 조건을 정의하고, backend가 solver input과 artifact를 생성합니다. 모든 실행은 command와 결과 파일을 남겨 재현성을 확인합니다.</p>
+          </div>
+        </div>
+        <div class="pipeline" role="list">
+          <div class="stage" role="listitem"><div class="stage-num">1</div><h3>Template 선택</h3><p>Bayer, Quad, Nona, QPD, mixed OCL boundary 등 base topology 선택.</p></div>
+          <div class="stage" role="listitem"><div class="stage-num">2</div><h3>CAD / Geometry</h3><p>STEP/BREP, geometry_import.json, optional mesh, FreeCAD review artifact 생성.</p></div>
+          <div class="stage" role="listitem"><div class="stage-num">3</div><h3>Variant 정의</h3><p>Pitch, lens height, CFA thickness, passivation, DTI 등 parameter override.</p></div>
+          <div class="stage" role="listitem"><div class="stage-num">4</div><h3>Condition</h3><p>Wavelength, color, CRA, field anchor, readout/split mode, OCL/CFA alignment.</p></div>
+          <div class="stage" role="listitem"><div class="stage-num">5</div><h3>Meep FDTD</h3><p>OCL/CFA/stack optical response, focal behavior, CRA roll-off, crosstalk kernel.</p></div>
+          <div class="stage" role="listitem"><div class="stage-num">6</div><h3>Electrical Diagnostics</h3><p>DEVSIM/Gmsh mesh import, split-PD/QPD weighting, DD smoke, sanity checks.</p></div>
+          <div class="stage" role="listitem"><div class="stage-num">7</div><h3>KPI / Charts</h3><p>QE proxy, edge-center ratio, crosstalk heatmap, PDAF phase/balance, gates.</p></div>
+          <div class="stage" role="listitem"><div class="stage-num">8</div><h3>Camera Export</h3><p>Research/trend CSV/JSON package for camera-system simulation ingestion.</p></div>
+        </div>
+      </section>
+
+      <section id="analysis">
+        <div class="section-head">
+          <div>
+            <h2>분석 가능 영역</h2>
+            <p>현재 의미 있게 볼 수 있는 것은 “상대 비교와 경향”입니다. 실측 stack/material/device calibration이 없는 절대 정확도 판단은 제외해야 합니다.</p>
+          </div>
+        </div>
+        <div class="grid cols-3">
+          <div class="card"><h3>Pattern / OCL Topology</h3><p>1x1 Bayer, 2x2 Quad OCL, 3x3 Nona OCL, mixed OCL boundary, QPD split template 비교.</p></div>
+          <div class="card"><h3>CRA / Field Response</h3><p>Center, edge, diagonal field anchor에서 response roll-off와 focal spot displacement 확인.</p></div>
+          <div class="card"><h3>Crosstalk Kernel</h3><p>1x1은 3x3 neighborhood, 2x2 OCL은 5x5 OCL-group domain으로 output kernel과 truncation risk 확인.</p></div>
+          <div class="card"><h3>PDAF / Split Pixel</h3><p>Dual-PD X/Z, QPD 2x2, shield/no-shield control의 phase/balance proxy 확인.</p></div>
+          <div class="card"><h3>Material / Stack Sensitivity</h3><p>CFA thickness, OCL index, passivation, Si thickness 등의 sweep과 tornado-style 민감도 정리.</p></div>
+          <div class="card"><h3>Traceability / Replay</h3><p>각 case의 solver_case.json, case_command.json, KPI artifact로 재현과 비교를 추적.</p></div>
+          <div class="card"><h3>Existing Sensor Reference Track</h3><p>TechInsights 등에서 사용자가 보유/라이선스한 sensor teardown/reference 정보를 구조화해 기존 sensor CAD template와 simulation case로 변환하는 track을 계획합니다.</p></div>
+        </div>
+      </section>
+
+      <section id="templates">
+        <div class="section-head">
+          <div>
+            <h2>핵심 Template 구분</h2>
+            <p>중요한 점은 layout review용 template과 crosstalk kernel용 simulation domain을 혼동하지 않는 것입니다.</p>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Template</th>
+              <th>용도</th>
+              <th>Domain</th>
+              <th>현재 판단</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>bayer_1x1_3x3</code></td>
+              <td>1x1 Bayer 기준 pixel 및 8-neighbor crosstalk</td>
+              <td>3 x 3 subpixels</td>
+              <td><span class="chip check">research baseline</span></td>
+            </tr>
+            <tr>
+              <td><code>quad_2x2_ocl</code></td>
+              <td>Quad 2x2 OCL compact layout review</td>
+              <td>4 x 4 subpixels = 2 x 2 OCL groups</td>
+              <td><span class="chip fail">crosstalk domain insufficient</span></td>
+            </tr>
+            <tr>
+              <td><code>quad_2x2_ocl_3x3_neighborhood</code></td>
+              <td>중앙 2x2 OCL group + 8 neighbor 최소 kernel</td>
+              <td>6 x 6 subpixels = 3 x 3 OCL groups</td>
+              <td><span class="chip check">minimum kernel</span></td>
+            </tr>
+            <tr>
+              <td><code>quad_2x2_ocl_5x5_crosstalk</code></td>
+              <td>High-CRA/long-range leakage truncation 확인</td>
+              <td>10 x 10 subpixels = 5 x 5 OCL groups</td>
+              <td><span class="chip pass">practical kernel domain</span></td>
+            </tr>
+            <tr>
+              <td><code>qpd_split_pd_2x2</code></td>
+              <td>QPD 2x2 split photodiode + shield proxy</td>
+              <td>2 x 2 subpixels, quad split</td>
+              <td><span class="chip check">PDAF proxy</span></td>
+            </tr>
+            <tr>
+              <td><code>mixed_1x1_2x2_3x3_boundary</code></td>
+              <td>OCL topology transition boundary risk</td>
+              <td>mixed finite layout</td>
+              <td><span class="chip check">boundary study</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="outputs">
+        <div class="section-head">
+          <div>
+            <h2>KPI / Chart Output</h2>
+            <p>결과는 설계 판단에 필요한 artifact 단위로 남기되, product-ready 여부는 별도 gate로 막습니다.</p>
+          </div>
+        </div>
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>주요 KPI</h3>
+            <div class="metric"><span>Total response / QE proxy</span><span>relative trend</span></div>
+            <div class="metric"><span>Edge-to-center response</span><span>CRA roll-off</span></div>
+            <div class="metric"><span>Crosstalk fraction</span><span>kernel leakage</span></div>
+            <div class="metric"><span>PDAF phase amplitude</span><span>L/R, Q1-Q4 balance</span></div>
+            <div class="metric"><span>Convergence gate</span><span>PASS / CHECK / FAIL</span></div>
+          </div>
+          <div class="card">
+            <h3>주요 Chart</h3>
+            <div class="metric"><span>CRA response curve</span><span>angle vs response</span></div>
+            <div class="metric"><span>Crosstalk heatmap</span><span>raw / binned kernel</span></div>
+            <div class="metric"><span>Subpixel matrix</span><span>2x2 / 3x3 group uniformity</span></div>
+            <div class="metric"><span>Material tornado</span><span>sensitivity ranking</span></div>
+            <div class="metric"><span>Report card</span><span>grid, PML, flux, measured gates</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="limits">
+        <div class="section-head">
+          <div>
+            <h2>한계와 사용 금지선</h2>
+            <p>아래 항목은 설계자에게 반드시 보여줘야 하는 제한입니다. 이 제한을 숨기면 시스템 개발 방향이 잘못 잡힐 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="risk-list">
+          <div class="risk"><div class="tag">Accuracy Blocker</div><p>Measured stack geometry와 measured n,k가 없으므로 현재 결과는 제품 정확도 LUT가 아닙니다.</p></div>
+          <div class="risk"><div class="tag">Device Blocker</div><p>TG, FD, pinned PD implant, interface trap, BDTI/DTI physics는 아직 calibrated production TCAD 수준이 아닙니다.</p></div>
+          <div class="risk"><div class="tag">Electrical Scope</div><p>DEVSIM은 현재 weighting/DD smoke와 mesh/contact sanity에 유용하지만, full readout circuit/transfer dynamics까지 포함한 모델은 아닙니다.</p></div>
+          <div class="risk"><div class="tag">Smoke Runs</div><p>빠른 smoke resolution은 workflow 검증용입니다. grid/convergence gate가 CHECK/FAIL이면 설계 sign-off 근거로 쓰면 안 됩니다.</p></div>
+          <div class="risk"><div class="tag">Geometry Import</div><p>큰 10x10 2x2 OCL crosstalk domain은 OCL geometry를 CAD import로 쓰고, CFA는 procedural pattern을 사용합니다. 모든 CFA cell polygon을 import하면 material function 제한을 넘습니다.</p></div>
+          <div class="risk"><div class="tag">Camera Export</div><p>Camera-system export는 구조와 trend를 검증하기 위한 package입니다. `product_lut_ready=false`가 정상입니다.</p></div>
+          <div class="risk"><div class="tag">Reference Data</div><p>TechInsights 기반 sensor 정보는 라이선스된 내부 reference 또는 사용자가 제공한 수치 parameter로 사용해야 하며, 원문 이미지/표를 HTML이나 repo에 재배포하면 안 됩니다. 파생 parameter와 provenance만 관리해야 합니다.</p></div>
+        </div>
+      </section>
+
+      <section id="questions">
+        <div class="section-head">
+          <div>
+            <h2>설계자에게 받고 싶은 조언</h2>
+            <p>아래 질문에 대한 답이 다음 개발 우선순위를 정합니다.</p>
+          </div>
+        </div>
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>설계 workflow</h3>
+            <p>Template 기반 방식이 실제 pixel 설계 초기 검토에 자연스러운가? 아니면 GDS/STEP import가 더 우선인가?</p>
+          </div>
+          <div class="card">
+            <h3>Topology coverage</h3>
+            <p>1x1, 2x2 OCL, 3x3 OCL, QPD, shield PDAF 외에 반드시 필요한 pixel/OCL topology는 무엇인가?</p>
+          </div>
+          <div class="card">
+            <h3>Crosstalk domain</h3>
+            <p>2x2 OCL crosstalk에서 5x5 OCL group이면 충분한가? High CRA 조건에서 7x7 이상이 필요한가?</p>
+          </div>
+          <div class="card">
+            <h3>KPI priority</h3>
+            <p>Camera simulation용으로 가장 먼저 필요한 output은 field response, crosstalk kernel, PDAF phase, tolerance envelope 중 무엇인가?</p>
+          </div>
+          <div class="card">
+            <h3>Calibration target</h3>
+            <p>실측이 가능해졌을 때 가장 현실적인 calibration target은 QE spectrum, CRA roll-off, PRNU/shading, crosstalk, PDAF curve 중 무엇인가?</p>
+          </div>
+          <div class="card">
+            <h3>UX decision gate</h3>
+            <p>PASS/CHECK/FAIL label이 충분한가? 설계자가 실제로 신뢰하려면 어떤 provenance와 report가 더 필요한가?</p>
+          </div>
+          <div class="card">
+            <h3>Existing sensor benchmark</h3>
+            <p>TechInsights 기반으로 먼저 CAD화해 비교하면 좋은 기존 sensor 또는 pixel family는 무엇인가?</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="next">
+        <div class="section-head">
+          <div>
+            <h2>제안하는 다음 개발 우선순위</h2>
+            <p>현재 구현을 더 실무적으로 만들기 위한 후보입니다. 설계자 피드백으로 우선순위를 조정해야 합니다.</p>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Priority</th>
+              <th>Item</th>
+              <th>Why it matters</th>
+              <th>Decision needed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>P0</td>
+              <td>GDS/STEP import workflow 정리</td>
+              <td>Template 가정이 실제 layout과 다를 때 신뢰가 급격히 떨어짐.</td>
+              <td>설계자가 주로 제공 가능한 원본 format은?</td>
+            </tr>
+            <tr>
+              <td>P0</td>
+              <td>Measured stack/n,k import schema</td>
+              <td>제품 정확도 gate의 첫 번째 blocker.</td>
+              <td>사내/외부 측정값을 어떤 형태로 받을 수 있는가?</td>
+            </tr>
+            <tr>
+              <td>P0</td>
+              <td>Existing sensor CAD database</td>
+              <td>TechInsights 등 teardown/reference 기반으로 기존 sensor를 template CAD화하면 설계자 리뷰와 benchmark가 훨씬 쉬워짐.</td>
+              <td>사용 가능한 sensor list, 공개/라이선스 범위, 추출 가능한 stack/geometry field는?</td>
+            </tr>
+            <tr>
+              <td>P1</td>
+              <td>Convergence tiers 자동화</td>
+              <td>Smoke와 design trend, quantitative evidence를 분리해야 함.</td>
+              <td>실무자가 기다릴 수 있는 runtime budget은?</td>
+            </tr>
+            <tr>
+              <td>P1</td>
+              <td>5x5/7x7 crosstalk 비교</td>
+              <td>Camera kernel truncation risk를 정량화해야 함.</td>
+              <td>어느 field/CRA/wavelength 조건을 anchor로 둘 것인가?</td>
+            </tr>
+            <tr>
+              <td>P2</td>
+              <td>Electrical calibration track</td>
+              <td>DEVSIM을 proxy에서 calibrated device model로 올리는 경로.</td>
+              <td>TG/FD/implant/interface trap 정보 접근 가능성은?</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="feedback">
+        <div class="section-head">
+          <div>
+            <h2>Feedback Form</h2>
+            <p>Standalone HTML이라 서버 전송은 하지 않습니다. 브라우저 localStorage에 임시 저장하고, JSON으로 복사/다운로드할 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="notice">권장 리뷰 방식: 먼저 pipeline과 한계를 읽고, 아래 항목에 “실제 업무에서는 이게 맞다/아니다”를 구체적으로 적어주세요.</div>
+        <div class="feedback-grid" style="margin-top: 14px;">
+          <div>
+            <label for="reviewer">Reviewer / role</label>
+            <input id="reviewer" data-feedback placeholder="예: Pixel design, optical simulation, camera tuning" />
+          </div>
+          <div>
+            <label for="priority">가장 중요한 개발 우선순위</label>
+            <select id="priority" data-feedback>
+              <option value="">선택</option>
+              <option>GDS/STEP import</option>
+              <option>Existing sensor CAD database</option>
+              <option>Measured stack/material calibration</option>
+              <option>Crosstalk kernel quality</option>
+              <option>PDAF/QPD modeling</option>
+              <option>UX simplification</option>
+              <option>Camera-system export</option>
+            </select>
+          </div>
+          <div>
+            <label for="workflow">Workflow feedback</label>
+            <textarea id="workflow" data-feedback placeholder="Template -> condition -> simulation -> KPI 흐름이 실제 설계 방식과 맞는지 적어주세요."></textarea>
+          </div>
+          <div>
+            <label for="coverage">Missing topology / test cases</label>
+            <textarea id="coverage" data-feedback placeholder="추가해야 할 pixel, OCL, CFA, shield, readout mode를 적어주세요."></textarea>
+          </div>
+          <div>
+            <label for="accuracy">Accuracy concerns</label>
+            <textarea id="accuracy" data-feedback placeholder="어떤 조건이 충족되어야 결과를 신뢰할 수 있는지 적어주세요."></textarea>
+          </div>
+          <div>
+            <label for="kpi">KPI / chart feedback</label>
+            <textarea id="kpi" data-feedback placeholder="실제 설계 판단에 필요한 KPI, chart, export format을 적어주세요."></textarea>
+          </div>
+          <div>
+            <label for="crosstalk">Crosstalk domain feedback</label>
+            <textarea id="crosstalk" data-feedback placeholder="2x2 OCL에서 5x5 group이 충분한지, 7x7/field/wavelength 조건이 필요한지 적어주세요."></textarea>
+          </div>
+          <div>
+            <label for="notes">Other notes</label>
+            <textarea id="notes" data-feedback placeholder="기타 조언이나 우려사항을 적어주세요."></textarea>
+          </div>
+        </div>
+        <div class="feedback-actions">
+          <button class="button primary" type="button" id="copyFeedback">Copy feedback JSON</button>
+          <button class="button" type="button" id="downloadFeedback">Download JSON</button>
+          <button class="button warn" type="button" id="clearFeedback">Clear local notes</button>
+          <span id="feedbackStatus" class="chip">No export yet</span>
+        </div>
+      </section>
+    </main>
+
+    <div class="footer">
+      Standalone review artifact. Current status: framework ready for research/trend studies, not product-LUT accurate.
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const storageKey = "pixel-workbench-template-review-feedback-v1";
+      const fields = Array.from(document.querySelectorAll("[data-feedback]"));
+      const status = document.getElementById("feedbackStatus");
+
+      function collect() {
+        const payload = {
+          schema: "pixel_workbench_template_review_feedback_v1",
+          created_at: new Date().toISOString(),
+          page: "template_design_analysis_review.html",
+          responses: {}
+        };
+        fields.forEach((field) => {
+          payload.responses[field.id] = field.value;
+        });
+        return payload;
+      }
+
+      function save() {
+        localStorage.setItem(storageKey, JSON.stringify(collect(), null, 2));
+        if (status) status.textContent = "Saved locally";
+      }
+
+      function load() {
+        const text = localStorage.getItem(storageKey);
+        if (!text) return;
+        try {
+          const payload = JSON.parse(text);
+          fields.forEach((field) => {
+            if (payload.responses && Object.prototype.hasOwnProperty.call(payload.responses, field.id)) {
+              field.value = payload.responses[field.id];
+            }
+          });
+          if (status) status.textContent = "Loaded local notes";
+        } catch (error) {
+          if (status) status.textContent = "Could not load notes";
+        }
+      }
+
+      fields.forEach((field) => field.addEventListener("input", save));
+      load();
+
+      document.getElementById("copyFeedback").addEventListener("click", async () => {
+        const text = JSON.stringify(collect(), null, 2);
+        try {
+          await navigator.clipboard.writeText(text);
+          if (status) status.textContent = "Copied JSON";
+        } catch (error) {
+          if (status) status.textContent = "Clipboard blocked";
+          window.prompt("Copy feedback JSON", text);
+        }
+      });
+
+      document.getElementById("downloadFeedback").addEventListener("click", () => {
+        const text = JSON.stringify(collect(), null, 2);
+        const blob = new Blob([text], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "pixel_workbench_template_review_feedback.json";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        if (status) status.textContent = "Downloaded JSON";
+      });
+
+      document.getElementById("clearFeedback").addEventListener("click", () => {
+        localStorage.removeItem(storageKey);
+        fields.forEach((field) => {
+          field.value = "";
+        });
+        if (status) status.textContent = "Cleared";
+      });
+    })();
+  </script>
+</body>
+</html>

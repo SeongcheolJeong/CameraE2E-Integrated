@@ -1,0 +1,383 @@
+{
+  "claims": [
+    {
+      "area": "Scene / color",
+      "current_evidence": "scene.py, illuminant.py, color.py, ROI helpers, chart/scene tests",
+      "gap_detail": "Scene capture calibration and measured illumination traces remain external evidence.",
+      "ppt_claim": "Spectral scenes, reflectance bases, calibration charts, spatial patterns, and ROI extraction.",
+      "readiness_tier": "validated",
+      "recommended_action": "Keep as validated research scene generation, not measured capture truth.",
+      "slide": 1,
+      "status": "implemented"
+    },
+    {
+      "area": "Optics / lens",
+      "current_evidence": "optics.py, lens_patents.py, RayOptics geometric PSF registry",
+      "gap_detail": "RayOptics PSF is geometric; flare/coating/tolerance and measured PSF are not implemented.",
+      "ppt_claim": "Diffraction/WVF, raytrace PSF/OTF, distortion, cos4 falloff, depth/defocus.",
+      "readiness_tier": "available",
+      "recommended_action": "Use diffraction/WVF comparisons and measured PSF evidence before calibration promotion.",
+      "slide": 1,
+      "status": "partial"
+    },
+    {
+      "area": "Sensor / RAW",
+      "current_evidence": "sensor.py, fdtd_sensor.py, tcad_sensor.py, image_sensor_db.py, dataset.py",
+      "gap_detail": "Sensor DB is metadata-derived; per-sensor calibrated process deck and sensor-specific LUTs are missing.",
+      "ppt_claim": "CFA, pixel/photodiode, exposure, noise, FDTD optical LUT, TCAD collection proxy, RAW output.",
+      "readiness_tier": "available",
+      "recommended_action": "Use analytic sweeps for exploration and FDTD/TCAD batches only for short-listed candidates.",
+      "slide": 1,
+      "status": "partial"
+    },
+    {
+      "area": "IP / ISP",
+      "current_evidence": "ip.py, camera.py, system_faca.py",
+      "gap_detail": "Advanced production ISP blocks such as HDR/TNR tuning are proxy or not complete.",
+      "ppt_claim": "Demosaic, sensor conversion, AWB, CCM, tone/gamma, display render.",
+      "readiness_tier": "validated",
+      "recommended_action": "Keep current ISP as research image-processing pipeline.",
+      "slide": 1,
+      "status": "implemented"
+    },
+    {
+      "area": "HW ISP timing",
+      "current_evidence": "hwisp.py, hwisp_db.py, goal gate HW ISP smoke",
+      "gap_detail": "Profiles are seed/public-derived; no board trace, hardware counter, or vendor BSP timing evidence.",
+      "ppt_claim": "Rolling shutter, line timing, stage latency, AE/AWB delay, DMA/queue/bandwidth.",
+      "readiness_tier": "proxy",
+      "recommended_action": "Block latency sign-off until board traces and 3A telemetry are attached.",
+      "slide": 1,
+      "status": "proxy"
+    },
+    {
+      "area": "Metrics / perception",
+      "current_evidence": "metrics.py, iso.py, scielab.py, perception.py, task_perception.py",
+      "gap_detail": "Task model profiles exist, but no trained model loop or dataset-specific evaluation evidence is included.",
+      "ppt_claim": "MTF/OTF, Delta E, SNR/VSNR, perceptual difference, mAP/mIoU task metrics.",
+      "readiness_tier": "available",
+      "recommended_action": "Treat model outputs as adapter metrics until training/evaluation manifests are provided.",
+      "slide": 1,
+      "status": "partial"
+    },
+    {
+      "area": "DNG read/write",
+      "current_evidence": "fileio.py supports DNG read and sensor_dng_read; dataset.py exports NPZ/TIFF/container",
+      "gap_detail": "Standards-compliant DNG writer remains intentionally missing.",
+      "ppt_claim": "Sensor and RAW module table includes DNG RAW read/write.",
+      "readiness_tier": "available",
+      "recommended_action": "Use optional DNG-like ZIP container for research packaging; keep true DNG writer as separate milestone.",
+      "slide": 2,
+      "status": "partial"
+    },
+    {
+      "area": "Reports and dashboards",
+      "current_evidence": "reports/camerae2e_goal, tools/render_* report scripts",
+      "gap_detail": "Reports are evidence snapshots and not automated product QA dashboards.",
+      "ppt_claim": "HTML/PPT/JSON reports, plots, metric tables, task results.",
+      "readiness_tier": "available",
+      "recommended_action": "Continue adding machine-readable gap/evidence reports.",
+      "slide": 2,
+      "status": "partial"
+    },
+    {
+      "area": "System FACA",
+      "current_evidence": "system_faca.py and tests/unit/test_system_faca.py",
+      "gap_detail": "Field/angle fidelity is only as strong as attached optics/sensor assets.",
+      "ppt_claim": "Field, angle, illuminant, color, artifact, control delay, use-case scenario analysis.",
+      "readiness_tier": "validated",
+      "recommended_action": "Use FACA for ranking and sensitivity, not final accuracy without calibration.",
+      "slide": 3,
+      "status": "implemented"
+    },
+    {
+      "area": "Optimization loops",
+      "current_evidence": "optimization.py with grid/random/LHS/evolutionary/GP/surrogate, constraints, Pareto, escalation plan",
+      "gap_detail": "Hardware-in-loop and measured calibration objectives are still external.",
+      "ppt_claim": "Discrete/continuous design variables, constraints, Pareto frontier, sweep table, updated design loop.",
+      "readiness_tier": "validated",
+      "recommended_action": "Route selected candidates through physics escalation and calibration evidence gates.",
+      "slide": 3,
+      "status": "implemented"
+    },
+    {
+      "area": "Training dataset outputs",
+      "current_evidence": "dataset.py NPZ/metadata/labels/perception index/stage outputs/container/uncertainty",
+      "gap_detail": "Automatic label synthesis for arbitrary scenes is not implemented.",
+      "ppt_claim": "RAW, labels, metadata, versioned/indexed training datasets.",
+      "readiness_tier": "validated",
+      "recommended_action": "Accept caller/synthetic-helper labels and preserve lineage.",
+      "slide": 3,
+      "status": "implemented"
+    },
+    {
+      "area": "RAW data formats",
+      "current_evidence": "dataset.py exports RAW NPZ, sensor_digital, RGB preview, per-stage NPZ, labels JSON",
+      "gap_detail": "OI photon/irradiance export and EXR/HDR scene files are not complete dataset formats.",
+      "ppt_claim": "Bayer RAW, OI photons/irradiance, sensor volts, sRGB, per-stage outputs, metadata, annotations.",
+      "readiness_tier": "available",
+      "recommended_action": "Add OI/stage exports incrementally without claiming measured RAW.",
+      "slide": 4,
+      "status": "partial"
+    },
+    {
+      "area": "Labels and metrics",
+      "current_evidence": "dataset.py preserves caller label payloads; task_perception.py supports boxes/masks/pose/tracking",
+      "gap_detail": "No general automatic label inference or mask generation from arbitrary RGB scenes.",
+      "ppt_claim": "Boxes, masks, semantic masks, keypoints, polylines, stage tags, quality and perception metrics.",
+      "readiness_tier": "available",
+      "recommended_action": "Use synthetic helpers or caller-provided labels only.",
+      "slide": 4,
+      "status": "partial"
+    },
+    {
+      "area": "Dataset split and regression baseline",
+      "current_evidence": "dataset split policy, checksums, optional uncertainty proxy maps",
+      "gap_detail": "Calibrated baseline and true uncertainty posterior require measured references.",
+      "ppt_claim": "Train/val/test split, reference images, calibrated pipeline baseline, uncertainty/confidence map.",
+      "readiness_tier": "available",
+      "recommended_action": "Keep proxy confidence maps separate from calibration confidence.",
+      "slide": 4,
+      "status": "partial"
+    },
+    {
+      "area": "Physics fidelity ladder",
+      "current_evidence": "db_catalog.py, calibration.py, physics_pipeline.py, goal gate sign-off guard",
+      "gap_detail": "Measured silicon sign-off evidence is absent by design.",
+      "ppt_claim": "Empirical proxy through ISETCam numerical, RayOptics, FDTD, TCAD, measured calibration.",
+      "readiness_tier": "validated",
+      "recommended_action": "Continue blocking calibrated tier until required external evidence validates.",
+      "slide": 5,
+      "status": "implemented"
+    },
+    {
+      "area": "FDTD/TCAD lineage",
+      "current_evidence": "physics_pipeline.py detects active FDTD/TCAD run mismatch",
+      "gap_detail": "Current active FDTD LUT and TCAD generation map are from different run roots.",
+      "ppt_claim": "FDTD LUT and TCAD/DEVSIM collection proxy with accuracy gate.",
+      "readiness_tier": "calibration_required",
+      "recommended_action": "Regenerate TCAD generation map from active FDTD LUT or repoint both to one lineage.",
+      "slide": 5,
+      "status": "blocked_external_evidence"
+    },
+    {
+      "area": "Repository evidence artifacts",
+      "current_evidence": "pytest suite, parity_report.py, render_* tools, reports/camerae2e_goal",
+      "gap_detail": "Risk/design-decision records are not yet first-class generated artifacts.",
+      "ppt_claim": "Unit tests, parity cases, HTML/JSON reports, design decisions, risk records.",
+      "readiness_tier": "available",
+      "recommended_action": "Promote PPT gap audit and goal gate reports as evidence snapshots.",
+      "slide": 6,
+      "status": "partial"
+    },
+    {
+      "area": "External data catalogs",
+      "current_evidence": "db_catalog.py registry and bundled/external asset discovery",
+      "gap_detail": "Several catalogs are proxy, metadata-derived, stale, or missing measured evidence.",
+      "ppt_claim": "Lens DB, Sensor FDTD LUT, TCAD/DEVSIM DB, HW ISP profiles, task model profiles, MATLAB parity baselines.",
+      "readiness_tier": "available",
+      "recommended_action": "Use registry readiness and calibration evidence plan before stronger claims.",
+      "slide": 6,
+      "status": "partial"
+    }
+  ],
+  "not_implemented_or_lacking": [
+    {
+      "area": "Optics / lens",
+      "current_evidence": "optics.py, lens_patents.py, RayOptics geometric PSF registry",
+      "gap_detail": "RayOptics PSF is geometric; flare/coating/tolerance and measured PSF are not implemented.",
+      "ppt_claim": "Diffraction/WVF, raytrace PSF/OTF, distortion, cos4 falloff, depth/defocus.",
+      "readiness_tier": "available",
+      "recommended_action": "Use diffraction/WVF comparisons and measured PSF evidence before calibration promotion.",
+      "slide": 1,
+      "status": "partial"
+    },
+    {
+      "area": "Sensor / RAW",
+      "current_evidence": "sensor.py, fdtd_sensor.py, tcad_sensor.py, image_sensor_db.py, dataset.py",
+      "gap_detail": "Sensor DB is metadata-derived; per-sensor calibrated process deck and sensor-specific LUTs are missing.",
+      "ppt_claim": "CFA, pixel/photodiode, exposure, noise, FDTD optical LUT, TCAD collection proxy, RAW output.",
+      "readiness_tier": "available",
+      "recommended_action": "Use analytic sweeps for exploration and FDTD/TCAD batches only for short-listed candidates.",
+      "slide": 1,
+      "status": "partial"
+    },
+    {
+      "area": "HW ISP timing",
+      "current_evidence": "hwisp.py, hwisp_db.py, goal gate HW ISP smoke",
+      "gap_detail": "Profiles are seed/public-derived; no board trace, hardware counter, or vendor BSP timing evidence.",
+      "ppt_claim": "Rolling shutter, line timing, stage latency, AE/AWB delay, DMA/queue/bandwidth.",
+      "readiness_tier": "proxy",
+      "recommended_action": "Block latency sign-off until board traces and 3A telemetry are attached.",
+      "slide": 1,
+      "status": "proxy"
+    },
+    {
+      "area": "Metrics / perception",
+      "current_evidence": "metrics.py, iso.py, scielab.py, perception.py, task_perception.py",
+      "gap_detail": "Task model profiles exist, but no trained model loop or dataset-specific evaluation evidence is included.",
+      "ppt_claim": "MTF/OTF, Delta E, SNR/VSNR, perceptual difference, mAP/mIoU task metrics.",
+      "readiness_tier": "available",
+      "recommended_action": "Treat model outputs as adapter metrics until training/evaluation manifests are provided.",
+      "slide": 1,
+      "status": "partial"
+    },
+    {
+      "area": "DNG read/write",
+      "current_evidence": "fileio.py supports DNG read and sensor_dng_read; dataset.py exports NPZ/TIFF/container",
+      "gap_detail": "Standards-compliant DNG writer remains intentionally missing.",
+      "ppt_claim": "Sensor and RAW module table includes DNG RAW read/write.",
+      "readiness_tier": "available",
+      "recommended_action": "Use optional DNG-like ZIP container for research packaging; keep true DNG writer as separate milestone.",
+      "slide": 2,
+      "status": "partial"
+    },
+    {
+      "area": "Reports and dashboards",
+      "current_evidence": "reports/camerae2e_goal, tools/render_* report scripts",
+      "gap_detail": "Reports are evidence snapshots and not automated product QA dashboards.",
+      "ppt_claim": "HTML/PPT/JSON reports, plots, metric tables, task results.",
+      "readiness_tier": "available",
+      "recommended_action": "Continue adding machine-readable gap/evidence reports.",
+      "slide": 2,
+      "status": "partial"
+    },
+    {
+      "area": "RAW data formats",
+      "current_evidence": "dataset.py exports RAW NPZ, sensor_digital, RGB preview, per-stage NPZ, labels JSON",
+      "gap_detail": "OI photon/irradiance export and EXR/HDR scene files are not complete dataset formats.",
+      "ppt_claim": "Bayer RAW, OI photons/irradiance, sensor volts, sRGB, per-stage outputs, metadata, annotations.",
+      "readiness_tier": "available",
+      "recommended_action": "Add OI/stage exports incrementally without claiming measured RAW.",
+      "slide": 4,
+      "status": "partial"
+    },
+    {
+      "area": "Labels and metrics",
+      "current_evidence": "dataset.py preserves caller label payloads; task_perception.py supports boxes/masks/pose/tracking",
+      "gap_detail": "No general automatic label inference or mask generation from arbitrary RGB scenes.",
+      "ppt_claim": "Boxes, masks, semantic masks, keypoints, polylines, stage tags, quality and perception metrics.",
+      "readiness_tier": "available",
+      "recommended_action": "Use synthetic helpers or caller-provided labels only.",
+      "slide": 4,
+      "status": "partial"
+    },
+    {
+      "area": "Dataset split and regression baseline",
+      "current_evidence": "dataset split policy, checksums, optional uncertainty proxy maps",
+      "gap_detail": "Calibrated baseline and true uncertainty posterior require measured references.",
+      "ppt_claim": "Train/val/test split, reference images, calibrated pipeline baseline, uncertainty/confidence map.",
+      "readiness_tier": "available",
+      "recommended_action": "Keep proxy confidence maps separate from calibration confidence.",
+      "slide": 4,
+      "status": "partial"
+    },
+    {
+      "area": "FDTD/TCAD lineage",
+      "current_evidence": "physics_pipeline.py detects active FDTD/TCAD run mismatch",
+      "gap_detail": "Current active FDTD LUT and TCAD generation map are from different run roots.",
+      "ppt_claim": "FDTD LUT and TCAD/DEVSIM collection proxy with accuracy gate.",
+      "readiness_tier": "calibration_required",
+      "recommended_action": "Regenerate TCAD generation map from active FDTD LUT or repoint both to one lineage.",
+      "slide": 5,
+      "status": "blocked_external_evidence"
+    },
+    {
+      "area": "Repository evidence artifacts",
+      "current_evidence": "pytest suite, parity_report.py, render_* tools, reports/camerae2e_goal",
+      "gap_detail": "Risk/design-decision records are not yet first-class generated artifacts.",
+      "ppt_claim": "Unit tests, parity cases, HTML/JSON reports, design decisions, risk records.",
+      "readiness_tier": "available",
+      "recommended_action": "Promote PPT gap audit and goal gate reports as evidence snapshots.",
+      "slide": 6,
+      "status": "partial"
+    },
+    {
+      "area": "External data catalogs",
+      "current_evidence": "db_catalog.py registry and bundled/external asset discovery",
+      "gap_detail": "Several catalogs are proxy, metadata-derived, stale, or missing measured evidence.",
+      "ppt_claim": "Lens DB, Sensor FDTD LUT, TCAD/DEVSIM DB, HW ISP profiles, task model profiles, MATLAB parity baselines.",
+      "readiness_tier": "available",
+      "recommended_action": "Use registry readiness and calibration evidence plan before stronger claims.",
+      "slide": 6,
+      "status": "partial"
+    }
+  ],
+  "schema_version": "camerae2e_ppt_gap_audit_v1",
+  "source": {
+    "media": [
+      {
+        "bytes": 1856615,
+        "index": 1,
+        "name": "ppt/media/image1.png",
+        "sha256": "sha256:96123fd640a88cce650d03a7cea45a1dadb3db434425fb5809a66756a8a59ef9"
+      },
+      {
+        "bytes": 1901072,
+        "index": 2,
+        "name": "ppt/media/image2.png",
+        "sha256": "sha256:a16c067dd4dedc7816bd3e0e6a020f59adee87df992b97f2f3e613fdd6d15940"
+      },
+      {
+        "bytes": 1515073,
+        "index": 3,
+        "name": "ppt/media/image3.png",
+        "sha256": "sha256:9efd3fbba85da2d376febe0374ffff6b56c35d70731234413f556c2c4b7a70ae"
+      },
+      {
+        "bytes": 1962001,
+        "index": 4,
+        "name": "ppt/media/image4.png",
+        "sha256": "sha256:d5188420aa2cf9f11033214c2042f1cb55a0ad03be9e28161e7d25c5ee79fc31"
+      },
+      {
+        "bytes": 1675338,
+        "index": 5,
+        "name": "ppt/media/image5.png",
+        "sha256": "sha256:86f61892945a996a171b661ad4c5faddc58d77d1a25e4773ede33c84c03ca421"
+      },
+      {
+        "bytes": 1638595,
+        "index": 6,
+        "name": "ppt/media/image6.png",
+        "sha256": "sha256:9367330a88e644c82fa56b2d620476c0f7bea60011074c8ec9a72272b927268f"
+      }
+    ],
+    "media_count": 6,
+    "sha256": "sha256:06fa684bf284def526504afa071b635e6157e76c6066c63260e59846140ffbde",
+    "slide_count": 6,
+    "status": "loaded"
+  },
+  "source_pptx": "/Users/seongcheoljeong/Downloads/camerae2e-technical-overview-images.pptx",
+  "summary": {
+    "area_counts": {
+      "DNG read/write": 1,
+      "Dataset split and regression baseline": 1,
+      "External data catalogs": 1,
+      "FDTD/TCAD lineage": 1,
+      "HW ISP timing": 1,
+      "IP / ISP": 1,
+      "Labels and metrics": 1,
+      "Metrics / perception": 1,
+      "Optics / lens": 1,
+      "Optimization loops": 1,
+      "Physics fidelity ladder": 1,
+      "RAW data formats": 1,
+      "Reports and dashboards": 1,
+      "Repository evidence artifacts": 1,
+      "Scene / color": 1,
+      "Sensor / RAW": 1,
+      "System FACA": 1,
+      "Training dataset outputs": 1
+    },
+    "claim_count": 18,
+    "gap_count": 12,
+    "status_counts": {
+      "blocked_external_evidence": 1,
+      "implemented": 6,
+      "partial": 10,
+      "proxy": 1
+    }
+  },
+  "truth_boundary": "This audit maps overview-slide claims to repository evidence. Items requiring measured calibration, vendor traces, process decks, or silicon data are intentionally blocked rather than simulated as sign-off."
+}

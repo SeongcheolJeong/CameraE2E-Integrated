@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>FDTD + DEVSIM Sensor Block Report</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 32px; color: #202124; }
+    h1, h2 { color: #12343b; }
+    .callout { padding: 14px 16px; border-left: 5px solid #b06000; background: #fff4e5; margin: 18px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 18px; }
+    figure { margin: 0; border: 1px solid #ddd; padding: 12px; background: #fff; }
+    figcaption { font-size: 0.92rem; color: #555; margin-top: 8px; }
+    img { width: 100%; height: auto; }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0 24px; }
+    th, td { border: 1px solid #d7d7d7; padding: 8px 10px; vertical-align: top; }
+    th { background: #f1f4f6; text-align: left; }
+    .pass { color: #116329; font-weight: 700; }
+    .warn { color: #8a5a00; font-weight: 700; }
+    .fail { color: #a50e0e; font-weight: 700; }
+    .diagram { width: 100%; max-width: 1180px; height: auto; display: block; margin: 12px auto 22px; border: 1px solid #d7d7d7; background: #fbfcfd; }
+    code { background: #f5f5f5; padding: 2px 4px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>FDTD + DEVSIM Sensor Block Report</h1>
+  <div class="callout">
+    <b>Status:</b> TCAD framework = <b>True</b>,
+    accuracy DB = <b>False</b>.
+    Current outputs must be labeled <b>proxy simulation</b> until measured optical stack n,k,
+    measured implant/profile, and measured QE/split/dark/lag targets are supplied and the gate passes.
+  </div>
+
+  <h2>Architecture</h2>
+  <pre>OI photons -> FDTD optical absorption LUT -> DEVSIM TCAD collection LUT -> pyisetcam sensor electrons/volts -> IP</pre>
+  <svg class="diagram" viewBox="0 0 1180 560" role="img" aria-label="FDTD and DEVSIM integration path into CameraE2E">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L12,4 L0,8 z" fill="#24424d"></path>
+    </marker>
+    <style>
+      .box { fill: #ffffff; stroke: #24424d; stroke-width: 2; rx: 14; }
+      .fdtd { fill: #e8f4f8; stroke: #1f6f8b; }
+      .tcad { fill: #edf7ee; stroke: #4f7f52; }
+      .cam { fill: #fff6e8; stroke: #b06000; }
+      .meta { fill: #f5f5f5; stroke: #777; stroke-dasharray: 5 4; }
+      .future { fill: #fff0f0; stroke: #a50e0e; stroke-dasharray: 5 4; }
+      .text { font: 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #202124; }
+      .small { font-size: 13px; fill: #4d5156; }
+      .title { font-size: 18px; font-weight: 700; fill: #12343b; }
+      .line { stroke: #24424d; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+      .dashed { stroke-dasharray: 6 5; }
+    </style>
+  </defs>
+
+  <rect class="box" x="25" y="225" width="150" height="86"></rect>
+  <text class="text title" x="100" y="255" text-anchor="middle">CameraE2E</text>
+  <text class="text small" x="100" y="280" text-anchor="middle">OI photons</text>
+  <text class="text small" x="100" y="300" text-anchor="middle">Scene + lens output</text>
+
+  <rect class="box fdtd" x="230" y="70" width="275" height="165"></rect>
+  <text class="text title" x="367" y="102" text-anchor="middle">FDTD / Meep</text>
+  <text class="text small" x="367" y="128" text-anchor="middle">Measured/proxy n,k, RI stack</text>
+  <text class="text small" x="367" y="150" text-anchor="middle">Microlens / CFA / Si absorption</text>
+  <text class="text small" x="367" y="172" text-anchor="middle">CRA, field, OCL shift, pupil</text>
+  <text class="text small" x="367" y="202" text-anchor="middle">Outputs: optical response LUT</text>
+  <text class="text small" x="367" y="222" text-anchor="middle">and G(x, depth)</text>
+
+  <rect class="box tcad" x="230" y="325" width="275" height="150"></rect>
+  <text class="text title" x="367" y="357" text-anchor="middle">DEVSIM / TCAD</text>
+  <text class="text small" x="367" y="383" text-anchor="middle">Consumes FDTD G(x, depth)</text>
+  <text class="text small" x="367" y="405" text-anchor="middle">Electrical collection model</text>
+  <text class="text small" x="367" y="427" text-anchor="middle">Left/right cathode currents</text>
+  <text class="text small" x="367" y="455" text-anchor="middle">Outputs: collection efficiency</text>
+
+  <rect class="box cam" x="585" y="70" width="260" height="165"></rect>
+  <text class="text title" x="715" y="102" text-anchor="middle">pyisetcam fdtd_sensor</text>
+  <text class="text small" x="715" y="130" text-anchor="middle">QE scale if mode has 'qe'</text>
+  <text class="text small" x="715" y="152" text-anchor="middle">Field rolloff map</text>
+  <text class="text small" x="715" y="174" text-anchor="middle">Regional crosstalk kernel</text>
+  <text class="text small" x="715" y="205" text-anchor="middle">Explicit attach only</text>
+
+  <rect class="box cam" x="585" y="325" width="260" height="150"></rect>
+  <text class="text title" x="715" y="357" text-anchor="middle">pyisetcam tcad_sensor</text>
+  <text class="text small" x="715" y="385" text-anchor="middle">Collection multiplier</text>
+  <text class="text small" x="715" y="407" text-anchor="middle">Split phase metadata/report</text>
+  <text class="text small" x="715" y="429" text-anchor="middle">Accuracy gate validation</text>
+  <text class="text small" x="715" y="455" text-anchor="middle">Explicit attach only</text>
+
+  <rect class="box cam" x="925" y="205" width="220" height="155"></rect>
+  <text class="text title" x="1035" y="237" text-anchor="middle">Sensor compute</text>
+  <text class="text small" x="1035" y="264" text-anchor="middle">Photons -> current</text>
+  <text class="text small" x="1035" y="286" text-anchor="middle">Current/electrons -> volts</text>
+  <text class="text small" x="1035" y="308" text-anchor="middle">Existing noise/ADC</text>
+  <text class="text small" x="1035" y="337" text-anchor="middle">IP receives sensor volts</text>
+
+  <rect class="box meta" x="925" y="405" width="220" height="95"></rect>
+  <text class="text title" x="1035" y="435" text-anchor="middle">Report / metadata</text>
+  <text class="text small" x="1035" y="462" text-anchor="middle">RI provenance, split phase,</text>
+  <text class="text small" x="1035" y="482" text-anchor="middle">terminal balance, accuracy gate</text>
+
+  <rect class="box future" x="585" y="500" width="560" height="42"></rect>
+  <text class="text small" x="865" y="526" text-anchor="middle">Not v1 image-affecting: DEVSIM dark current/noise/lag/full-well unless future calibrated DB hook is added</text>
+
+  <path class="line" d="M175 255 C205 220,205 170,230 150"></path>
+  <path class="line" d="M505 150 L585 150"></path>
+  <path class="line" d="M845 152 C880 175,900 215,925 250"></path>
+  <path class="line dashed" d="M505 205 C535 250,545 335,585 380"></path>
+  <path class="line" d="M505 400 L585 400"></path>
+  <path class="line" d="M845 400 C885 380,900 335,925 315"></path>
+  <path class="line dashed" d="M845 435 L925 450"></path>
+</svg>
+
+  <h2>What Is Actually Reflected In CameraE2E?</h2>
+  <table>
+    <tr><th>Parameter / effect</th><th>How it enters CameraE2E</th><th>Current implementation detail</th><th>Status</th></tr>
+    <tr><td>RI / n,k</td><td>Upstream FDTD generation only</td><td>The refractive-index stack is consumed by Meep when building the LUT. CameraE2E does not solve RI/FDTD per frame; it consumes the resulting optical-response LUT.</td><td class='warn'>Metadata + indirect response</td></tr>
+<tr><td>QE / spectral response</td><td>Image-affecting when FDTD mode includes qe</td><td>fdtd_sensor_qe_scale(...) multiplies sensor spectral QE before photon-to-current integration.</td><td class='pass'>Implemented</td></tr>
+<tr><td>CRA / field shading</td><td>Image-affecting when FDTD mode includes field</td><td>fdtd_sensor_field_response_map(...) applies center-to-edge response after spatial integration.</td><td class='pass'>Implemented</td></tr>
+<tr><td>Optical crosstalk</td><td>Image-affecting when FDTD mode includes crosstalk</td><td>fdtd_sensor_lut_crosstalk_kernel(...) applies a regional-response convolution. Current smoke LUT is a proxy, not product crosstalk PSF.</td><td class='warn'>Implemented as proxy</td></tr>
+<tr><td>G(x, depth)</td><td>DEVSIM input and report evidence</td><td>FDTD-derived generation map is loaded and visualized; DEVSIM summaries are generated from it. CameraE2E does not integrate G(x,depth) per pixel directly.</td><td class='pass'>Report + DB source</td></tr>
+<tr><td>Collection efficiency</td><td>Image-affecting when TCAD hook is attached</td><td>tcad_sensor_apply_collection_response(...) scales signal current/electron rate by DEVSIM total photo-current relative to center.</td><td class='pass'>Implemented</td></tr>
+<tr><td>Split-PD phase</td><td>Metadata/report only in v1</td><td>DEVSIM left/right current imbalance is loaded and reported. It is not yet used by autofocus/PDAF logic.</td><td class='warn'>Metadata</td></tr>
+<tr><td>Noise / dark current / lag / full-well</td><td>Not image-affecting from DEVSIM in v1</td><td>CameraE2E still uses existing sensor noise fields. DEVSIM dark current and terminal balance are evidence only until calibrated electrical hooks are added.</td><td class='fail'>Future calibrated hook</td></tr>
+  </table>
+
+  <h2>Source Artifacts</h2>
+  <table>
+    <tr><th>Artifact</th><th>Path / Value</th></tr>
+    <tr><td>FDTD LUT</td><td><code>/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json</code></td></tr>
+    <tr><td>Generation map</td><td><code>/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/tcad_generation_map_2d.npz</code></td></tr>
+    <tr><td>DEVSIM summaries</td><td><code>/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json, /Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json</code></td></tr>
+    <tr><td>Accuracy gate</td><td><code>/Users/seongcheoljeong/FDTD/runs/tcad_accuracy_gate_reference_profile/tcad_accuracy_gate.json</code></td></tr>
+    <tr><td>Summary JSON</td><td><code>/Users/seongcheoljeong/Documents/CameraE2E/reports/fdtd_sensor/fdtd_tcad_sensor_summary.json</code></td></tr>
+  </table>
+
+  <h2>Integration Warnings</h2>
+  <table>
+    <tr><th>Warning</th></tr>
+    <tr><td>/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json was generated from /Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz, not the selected generation map /Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/tcad_generation_map_2d.npz</td></tr>
+<tr><td>/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json uses proxy electrical model proxy-pinned-split-pd</td></tr>
+<tr><td>/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json was generated from /Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz, not the selected generation map /Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/tcad_generation_map_2d.npz</td></tr>
+<tr><td>/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json uses proxy electrical model proxy-pinned-split-pd</td></tr>
+<tr><td>TCAD accuracy gate is not ready; treat outputs as proxy simulation</td></tr>
+<tr><td>edge20x response exceeds bare cos^4 by &gt;20%; this can be valid with microlens/OCL concentration but needs calibration evidence</td></tr>
+<tr><td>cra10x response exceeds bare cos^4 by &gt;20%; this can be valid with microlens/OCL concentration but needs calibration evidence</td></tr>
+<tr><td>edge20x response exceeds bare cos^4 by &gt;20%; this can be valid with microlens/OCL concentration but needs calibration evidence</td></tr>
+<tr><td>cra10x response exceeds bare cos^4 by &gt;20%; this can be valid with microlens/OCL concentration but needs calibration evidence</td></tr>
+<tr><td>edge20x response exceeds bare cos^4 by &gt;20%; this can be valid with microlens/OCL concentration but needs calibration evidence</td></tr>
+<tr><td>no uncompensated/compensated OCL pair available</td></tr>
+<tr><td>no +/- CRA mirror pairs available for symmetry validation</td></tr>
+<tr><td>no regional crosstalk kernel available</td></tr>
+<tr><td>FDTD report is grid-qualified but not full resolution/time/PML convergence</td></tr>
+  </table>
+
+  <h2>FDTD Optical Evidence</h2>
+  <p>FDTD remains the optical layer. It contributes wavelength/QE proxy response, CRA/relative-illumination behavior, OCL shift behavior, and regional-response/crosstalk proxy data.</p>
+  <table>
+    <tr><th>FDTD optical item</th><th>Evidence</th></tr>
+    <tr><td>Schema / mode</td><td><code>camera_supercell_optical_lut_v2</code> / <code>split-pd-1x1</code></td></tr>
+    <tr><td>Wavelength / QE proxy samples</td><td>[450.0, 550.0, 650.0]</td></tr>
+    <tr><td>CRA / relative illumination check</td><td>warn</td></tr>
+    <tr><td>OCL shift check</td><td>warn</td></tr>
+    <tr><td>FDTD physics status</td><td>warn</td></tr>
+  </table>
+  <div class="grid">
+    <figure><img src="fdtd_tcad_fdtd_response.png" alt="FDTD response"><figcaption>FDTD response across available cases.</figcaption></figure>
+  </div>
+
+  <h2>FDTD-to-TCAD Generation Map</h2>
+  <p>The DEVSIM input is the FDTD-derived <code>G(x, depth)</code> generation map. This preserves lateral and depth-dependent absorption before electrical collection.</p>
+  <div class="grid">
+    <figure><img src="fdtd_tcad_generation_maps.png" alt="Generation maps"><figcaption>log10 generation maps for representative center/edge cases.</figcaption></figure>
+  </div>
+
+  <h2>DEVSIM Collection Evidence</h2>
+  <p>DEVSIM summaries provide left/right cathode photo-current deltas, split-PD phase proxy, and terminal current-balance checks.</p>
+  <div class="grid">
+    <figure><img src="fdtd_tcad_devsim_currents.png" alt="DEVSIM currents"><figcaption>Left/right collected photo-current per selected case.</figcaption></figure>
+    <figure><img src="fdtd_tcad_split_balance.png" alt="Split phase and terminal balance"><figcaption>Split phase and terminal-current balance.</figcaption></figure>
+  </div>
+
+  <h2>Accuracy Gate</h2>
+  <table>
+    <tr><th>Check</th><th>Status</th><th>Accuracy Blocking</th><th>Details</th></tr>
+    <tr><td>profile_load</td><td class='pass'>PASS</td><td>False</td><td>measured_tcad_profile_v1 loaded and schema validation passed.</td></tr>
+<tr><td>profile_calibration_status</td><td class='fail'>FAIL</td><td>True</td><td>Profile is marked reference/proxy, so it must not be used as a product accuracy LUT.</td></tr>
+<tr><td>reference_mode</td><td class='fail'>FAIL</td><td>True</td><td>reference_mode=true keeps public anchors and stable defaults for exploration only.</td></tr>
+<tr><td>implant_sources_measured</td><td class='fail'>FAIL</td><td>True</td><td>One or more implant profiles are unmeasured reference/analytic profiles.</td></tr>
+<tr><td>transfer_gate_proxy_present</td><td class='pass'>PASS</td><td>False</td><td>Transfer-gate barrier feature is present in the profile.</td></tr>
+<tr><td>floating_diffusion_proxy_present</td><td class='pass'>PASS</td><td>False</td><td>Floating-diffusion doping feature is present in the profile.</td></tr>
+<tr><td>dti_geometry_present</td><td class='pass'>PASS</td><td>False</td><td>DTI/liner geometry proxy is present.</td></tr>
+<tr><td>bdti_geometry_present</td><td class='pass'>PASS</td><td>False</td><td>BDTI geometry is present.</td></tr>
+<tr><td>fixed_charge_applied</td><td class='pass'>PASS</td><td>False</td><td>At least one fixed/effective interface charge term is executable.</td></tr>
+<tr><td>interface_trap_density_declared</td><td class='warn'>INFO</td><td>False</td><td>Interface trap density is supplied; solver implementation is checked from DEVSIM summaries.</td></tr>
+<tr><td>mobility_recombination_calibrated</td><td class='fail'>FAIL</td><td>True</td><td>Doping-dependent transport is configured, but it is still reference/unmeasured and lacks target-sensor calibration.</td></tr>
+<tr><td>split_devsim_profile_model</td><td class='pass'>PASS</td><td>False</td><td>All split-PD summaries used electrical_model=profile-ppd.</td></tr>
+<tr><td>optical_generation_map_imported</td><td class='pass'>PASS</td><td>False</td><td>All split-PD summaries used imported Meep G(x,depth).</td></tr>
+<tr><td>transport_models_applied</td><td class='pass'>PASS</td><td>False</td><td>DEVSIM split summaries used doping-dependent mobility/lifetime models in the solver path.</td></tr>
+<tr><td>field_dependent_mobility_applied</td><td class='pass'>PASS</td><td>False</td><td>DEVSIM split summaries include field-dependent effective edge mobility for velocity saturation.</td></tr>
+<tr><td>terminal_current_balance</td><td class='pass'>PASS</td><td>False</td><td>Illuminated terminal-current balance is within 1e-09 A/cm.</td></tr>
+<tr><td>profile_features_applied_to_netdoping</td><td class='pass'>PASS</td><td>False</td><td>Executable TG, FD, BDTI, and fixed-charge feature masks are present; nonzero-effect counts show runtime-disabled roles such as FD scale=0 for PD-only response sweeps.</td></tr>
+<tr><td>interface_trap_occupancy_equations</td><td class='pass'>PASS</td><td>False</td><td>DEVSIM summaries include potential-dependent interface-trap charge and SRH sheet recombination proxies.</td></tr>
+<tr><td>metadata_only_electrical_terms</td><td class='pass'>PASS</td><td>False</td><td>No metadata-only electrical terms were reported by the supplied split summaries.</td></tr>
+<tr><td>gmsh_contacts_imported</td><td class='pass'>PASS</td><td>False</td><td>Gmsh import summaries contain silicon and all three contacts.</td></tr>
+<tr><td>gmsh_dimensions_smoked</td><td class='pass'>PASS</td><td>False</td><td>Both 2D and 3D Gmsh import smoke solves were supplied.</td></tr>
+<tr><td>resolved_dti_oxide_solver_path</td><td class='pass'>PASS</td><td>False</td><td>Resolved side DTI/BDTI oxide regions and Si/oxide interface were exported to Gmsh and solved by DEVSIM.</td></tr>
+<tr><td>fdtd_convergence_report</td><td class='fail'>FAIL</td><td>True</td><td>FDTD grid/convergence report is partial; full resolution, time, and PML coverage has not all passed for accuracy use.</td></tr>
+<tr><td>fdtd_crosstalk_xsection_convergence</td><td class='pass'>PASS</td><td>False</td><td>High-resolution 2D FDTD crosstalk x-section convergence passed for configured split/OCL cases.</td></tr>
+<tr><td>native_devsim_response_convergence</td><td class='pass'>PASS</td><td>False</td><td>Native DEVSIM direct response passed mesh-refinement convergence.</td></tr>
+<tr><td>signed_field_symmetry_validation</td><td class='pass'>PASS</td><td>False</td><td>Signed field LUT was validated against direct negative-CRA FDTD/native-DEVSIM anchors.</td></tr>
+<tr><td>camera_lut_spectral_coverage</td><td class='pass'>PASS</td><td>False</td><td>Camera-system field LUT covers the required RGB wavelength anchors on a uniform signed field grid.</td></tr>
+<tr><td>camera_system_field_lut_direct_z_diag_coverage</td><td class='pass'>PASS</td><td>False</td><td>Dense field LUT uses direct RGB x-axis, z-axis, and diagonal native-DEVSIM anchors without radial fallback.</td></tr>
+<tr><td>tg_fd_terminal_diagnostic</td><td class='pass'>PASS</td><td>False</td><td>TG/FD diagnostic has a real floating-diffusion terminal, finite FD response rows, and terminal balance closure.</td></tr>
+<tr><td>tg_fd_transient_diagnostic</td><td class='pass'>PASS</td><td>False</td><td>TG/FD diagnostic uses paired photo-minus-dark DEVSIM transient time stepping and reports carrier inventory.</td></tr>
+<tr><td>tg_fd_transfer_inventory_effect</td><td class='pass'>PASS</td><td>False</td><td>Carrier inventory shows photo-generated electrons leaving the PD region and FD terminal integration collects positive electron charge.</td></tr>
+<tr><td>tg_fd_transfer_settling</td><td class='pass'>PASS</td><td>False</td><td>FD terminal photo-minus-dark current decays below 10% of its peak by the end of the transfer pulse.</td></tr>
+<tr><td>calibration_result</td><td class='pass'>PASS</td><td>False</td><td>Calibration optimizer reported success.</td></tr>
+<tr><td>calibration_targets_measured</td><td class='fail'>FAIL</td><td>True</td><td>Calibration targets are missing target_source=measured or are explicitly synthetic.</td></tr>
+<tr><td>calibration_target_residuals</td><td class='pass'>PASS</td><td>False</td><td>Best calibration entry passes per-target current and split residual tolerances.</td></tr>
+<tr><td>transport_runtime_calibration_controls</td><td class='pass'>PASS</td><td>False</td><td>Runtime mobility, lifetime, fixed-charge, and interface-trap calibration controls are wired into DEVSIM summaries.</td></tr>
+<tr><td>transport_multi_parameter_calibration</td><td class='pass'>PASS</td><td>False</td><td>Multi-parameter calibration report passes current/split and metric residual checks.</td></tr>
+<tr><td>measured_optical_stack_nk</td><td class='fail'>FAIL</td><td>True</td><td>Optical stack evidence exists, but geometry and/or material n,k are not marked measured.</td></tr>
+<tr><td>devsim_weighting_laplace_summary</td><td class='pass'>PASS</td><td>False</td><td>DEVSIM-native pure-Laplace terminal weighting summary is internally consistent.</td></tr>
+<tr><td>devsim_weighting_csv</td><td class='pass'>PASS</td><td>False</td><td>DEVSIM weighting CSV row count and required columns are valid.</td></tr>
+<tr><td>devsim_weighting_mesh_matches_split_runs</td><td class='warn'>INFO</td><td>False</td><td>DEVSIM weighting node count does not match one or more split-PD runs, but the supplied primary response manifest is native_devsim-only; the weighting surrogate mesh is not used by this direct terminal-current LUT.</td></tr>
+<tr><td>native_devsim_direct_method_present</td><td class='pass'>PASS</td><td>False</td><td>Camera diagnostic includes native_devsim direct FDTD-generation DEVSIM responses.</td></tr>
+<tr><td>native_devsim_direct_cases_present</td><td class='pass'>PASS</td><td>False</td><td>Every camera-system case has finite native DEVSIM terminal-current response and split phase.</td></tr>
+<tr><td>camera_system_research_lut_native_export</td><td class='pass'>PASS</td><td>False</td><td>Camera-system research LUT is exported from native_devsim direct responses.</td></tr>
+<tr><td>camera_system_research_lut_numerical_convergence</td><td class='pass'>PASS</td><td>False</td><td>Research LUT embeds a passing optical numerical-convergence report.</td></tr>
+<tr><td>camera_system_research_lut_full_numerical_coverage</td><td class='fail'>FAIL</td><td>True</td><td>Research LUT optical convergence is partial; one or more of resolution, time, or PML axes were not varied.</td></tr>
+<tr><td>camera_system_research_lut_optical_grid_evidence</td><td class='pass'>PASS</td><td>False</td><td>Research LUT includes per-case FDTD optical grid evidence and every case passes the configured grid-resolution gate.</td></tr>
+<tr><td>gw_manifest_weighting_methods</td><td class='warn'>INFO</td><td>False</td><td>Native-only research LUT manifest supplied; G*W surrogate weighting is not part of this direct terminal-current export.</td></tr>
+<tr><td>gw_devsim_dd_probe_method_present</td><td class='warn'>INFO</td><td>False</td><td>Native-only research LUT uses direct DEVSIM terminal-current deltas; sparse DD-probe surrogate is optional and not required for this export.</td></tr>
+  </table>
+</body>
+</html>

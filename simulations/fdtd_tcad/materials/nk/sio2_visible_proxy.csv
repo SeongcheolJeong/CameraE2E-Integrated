@@ -1,0 +1,9 @@
+# wavelength_um,n,k
+# SiO2-like visible proxy. Replace with the actual passivation/AR stack.
+0.400,1.470,0.0000
+0.450,1.466,0.0000
+0.500,1.463,0.0000
+0.550,1.460,0.0000
+0.600,1.458,0.0000
+0.650,1.457,0.0000
+0.700,1.456,0.0000

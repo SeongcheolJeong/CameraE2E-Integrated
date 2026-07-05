@@ -1,0 +1,129 @@
+{
+  "schema": "cfa_proxy_nk_library_v1",
+  "library_id": "common_rgb_color_resist_proxy_2026_06",
+  "source_kind": "inferred_proxy_nk",
+  "intended_use": "FDTD/optical sensitivity setup when product-specific CFA n,k is unavailable",
+  "not_for": "measured color response, calibrated QE, or product-accurate colorimetry",
+  "method": "Use a fixed color-resist real index close to public image-sensor high-n material guidance and derive effective k(lambda) from representative RGB transmission envelopes at 0.65 um reference thickness. Per-sensor CFA thickness then rescales absorption with Beer-Lambert law.",
+  "reference_thickness_um": 0.65,
+  "wavelength_unit": "nm",
+  "sources": [
+    {
+      "name": "Fujifilm High n / Low n functional material",
+      "url": "https://www.fujifilm.com/us/en/business/semiconductor-materials/wave-control-mosaic/high-n_low-n",
+      "used_for": "Representative image-sensor functional-material refractive index: high-n 1.7 at 550 nm."
+    },
+    {
+      "name": "Fujifilm RGB Color Mosaic application page",
+      "url": "https://www.fujifilm.com/us/en/business/semiconductor-materials/image-sensor-color-mosaic/rgb/applications",
+      "used_for": "Image-sensor RGB color resist application and RGB transmission/color-separation context."
+    },
+    {
+      "name": "Taguchi, Technology of color filter materials for image sensor, International Image Sensor Workshop 2011",
+      "url": "https://imagesensors.org/Past%20Workshops/2011%20Workshop/2011%20Papers/I01_Taguchi_ColorFilter.pdf",
+      "used_for": "Representative modern RGB spectral design constraints: blue peak improvement, low blue leakage around 540/700 nm, red slope shifted longer, green bottom transmittance around 5%."
+    },
+    {
+      "name": "Flexcompute Tidy3D CMOS RGB image sensor example",
+      "url": "https://www.flexcompute.com/tidy3d/examples/notebooks/CMOSRGBSensor/",
+      "used_for": "FDTD modeling pattern: absorptive dispersive RGB filter materials; imaginary index k is the key fitted quantity. Their material is explicitly hypothetical, so it is not copied as measured data."
+    },
+    {
+      "name": "TOPPAN color filter and micro lens for image sensors",
+      "url": "https://www.toppan.com/en/electronics/colorfilter/imagesensor/",
+      "used_for": "Industry context: RGB/CMYG color filters are directly formed on sensor wafers and spectral characteristics are customer/application tuned."
+    }
+  ],
+  "channels": {
+    "red": {
+      "description": "Common red color-resist proxy",
+      "data": [
+        {"wavelength_nm": 400, "n": 1.7, "k": 0.19157, "target_transmission": 0.02},
+        {"wavelength_nm": 425, "n": 1.7, "k": 0.20355, "target_transmission": 0.02},
+        {"wavelength_nm": 450, "n": 1.7, "k": 0.21552, "target_transmission": 0.02},
+        {"wavelength_nm": 475, "n": 1.7, "k": 0.21452, "target_transmission": 0.025},
+        {"wavelength_nm": 500, "n": 1.7, "k": 0.21465, "target_transmission": 0.03},
+        {"wavelength_nm": 525, "n": 1.7, "k": 0.19932, "target_transmission": 0.045},
+        {"wavelength_nm": 550, "n": 1.7, "k": 0.17007, "target_transmission": 0.08},
+        {"wavelength_nm": 575, "n": 1.7, "k": 0.12071, "target_transmission": 0.18},
+        {"wavelength_nm": 600, "n": 1.7, "k": 0.05866, "target_transmission": 0.45},
+        {"wavelength_nm": 625, "n": 1.7, "k": 0.02201, "target_transmission": 0.75},
+        {"wavelength_nm": 650, "n": 1.7, "k": 0.01017, "target_transmission": 0.88},
+        {"wavelength_nm": 675, "n": 1.7, "k": 0.00871, "target_transmission": 0.9},
+        {"wavelength_nm": 700, "n": 1.7, "k": 0.01096, "target_transmission": 0.88}
+      ]
+    },
+    "green": {
+      "description": "Common green color-resist proxy",
+      "data": [
+        {"wavelength_nm": 400, "n": 1.7, "k": 0.18065, "target_transmission": 0.025},
+        {"wavelength_nm": 425, "n": 1.7, "k": 0.17443, "target_transmission": 0.035},
+        {"wavelength_nm": 450, "n": 1.7, "k": 0.155, "target_transmission": 0.06},
+        {"wavelength_nm": 475, "n": 1.7, "k": 0.09972, "target_transmission": 0.18},
+        {"wavelength_nm": 500, "n": 1.7, "k": 0.0366, "target_transmission": 0.55},
+        {"wavelength_nm": 525, "n": 1.7, "k": 0.01276, "target_transmission": 0.82},
+        {"wavelength_nm": 550, "n": 1.7, "k": 0.01094, "target_transmission": 0.85},
+        {"wavelength_nm": 575, "n": 1.7, "k": 0.02313, "target_transmission": 0.72},
+        {"wavelength_nm": 600, "n": 1.7, "k": 0.07712, "target_transmission": 0.35},
+        {"wavelength_nm": 625, "n": 1.7, "k": 0.16224, "target_transmission": 0.12},
+        {"wavelength_nm": 650, "n": 1.7, "k": 0.22388, "target_transmission": 0.06},
+        {"wavelength_nm": 675, "n": 1.7, "k": 0.266, "target_transmission": 0.04},
+        {"wavelength_nm": 700, "n": 1.7, "k": 0.30051, "target_transmission": 0.03}
+      ]
+    },
+    "blue": {
+      "description": "Common blue color-resist proxy",
+      "data": [
+        {"wavelength_nm": 400, "n": 1.7, "k": 0.02928, "target_transmission": 0.55},
+        {"wavelength_nm": 425, "n": 1.7, "k": 0.01709, "target_transmission": 0.72},
+        {"wavelength_nm": 450, "n": 1.7, "k": 0.01093, "target_transmission": 0.82},
+        {"wavelength_nm": 475, "n": 1.7, "k": 0.01445, "target_transmission": 0.78},
+        {"wavelength_nm": 500, "n": 1.7, "k": 0.0531, "target_transmission": 0.42},
+        {"wavelength_nm": 525, "n": 1.7, "k": 0.13628, "target_transmission": 0.12},
+        {"wavelength_nm": 550, "n": 1.7, "k": 0.20881, "target_transmission": 0.045},
+        {"wavelength_nm": 575, "n": 1.7, "k": 0.25968, "target_transmission": 0.025},
+        {"wavelength_nm": 600, "n": 1.7, "k": 0.28736, "target_transmission": 0.02},
+        {"wavelength_nm": 625, "n": 1.7, "k": 0.3074, "target_transmission": 0.018},
+        {"wavelength_nm": 650, "n": 1.7, "k": 0.31969, "target_transmission": 0.018},
+        {"wavelength_nm": 675, "n": 1.7, "k": 0.33199, "target_transmission": 0.018},
+        {"wavelength_nm": 700, "n": 1.7, "k": 0.34429, "target_transmission": 0.018}
+      ]
+    },
+    "yellow": {
+      "description": "Common yellow/RYYB-style color-resist proxy",
+      "data": [
+        {"wavelength_nm": 400, "n": 1.7, "k": 0.17172, "target_transmission": 0.03},
+        {"wavelength_nm": 425, "n": 1.7, "k": 0.16748, "target_transmission": 0.04},
+        {"wavelength_nm": 450, "n": 1.7, "k": 0.13915, "target_transmission": 0.08},
+        {"wavelength_nm": 475, "n": 1.7, "k": 0.07403, "target_transmission": 0.28},
+        {"wavelength_nm": 500, "n": 1.7, "k": 0.02361, "target_transmission": 0.68},
+        {"wavelength_nm": 525, "n": 1.7, "k": 0.01121, "target_transmission": 0.84},
+        {"wavelength_nm": 550, "n": 1.7, "k": 0.01016, "target_transmission": 0.86},
+        {"wavelength_nm": 575, "n": 1.7, "k": 0.01227, "target_transmission": 0.84},
+        {"wavelength_nm": 600, "n": 1.7, "k": 0.01825, "target_transmission": 0.78},
+        {"wavelength_nm": 625, "n": 1.7, "k": 0.02514, "target_transmission": 0.72},
+        {"wavelength_nm": 650, "n": 1.7, "k": 0.03307, "target_transmission": 0.66},
+        {"wavelength_nm": 675, "n": 1.7, "k": 0.04221, "target_transmission": 0.6},
+        {"wavelength_nm": 700, "n": 1.7, "k": 0.05123, "target_transmission": 0.55}
+      ]
+    },
+    "clear": {
+      "description": "Clear/monochrome proxy coating",
+      "data": [
+        {"wavelength_nm": 400, "n": 1.52, "k": 0.002, "target_transmission": 0.96},
+        {"wavelength_nm": 425, "n": 1.52, "k": 0.00212, "target_transmission": 0.96},
+        {"wavelength_nm": 450, "n": 1.52, "k": 0.00225, "target_transmission": 0.96},
+        {"wavelength_nm": 475, "n": 1.52, "k": 0.00237, "target_transmission": 0.96},
+        {"wavelength_nm": 500, "n": 1.52, "k": 0.0025, "target_transmission": 0.96},
+        {"wavelength_nm": 525, "n": 1.52, "k": 0.00262, "target_transmission": 0.96},
+        {"wavelength_nm": 550, "n": 1.52, "k": 0.00275, "target_transmission": 0.96},
+        {"wavelength_nm": 575, "n": 1.52, "k": 0.00287, "target_transmission": 0.96},
+        {"wavelength_nm": 600, "n": 1.52, "k": 0.003, "target_transmission": 0.96},
+        {"wavelength_nm": 625, "n": 1.52, "k": 0.00312, "target_transmission": 0.96},
+        {"wavelength_nm": 650, "n": 1.52, "k": 0.00325, "target_transmission": 0.96},
+        {"wavelength_nm": 675, "n": 1.52, "k": 0.00337, "target_transmission": 0.96},
+        {"wavelength_nm": 700, "n": 1.52, "k": 0.0035, "target_transmission": 0.96}
+      ]
+    }
+  }
+}

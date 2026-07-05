@@ -1,0 +1,1932 @@
+{
+  "schema": "tcad_accuracy_gate_v1",
+  "profile": "measured_profiles/reference_cmos_ppd_1p4um/profile.json",
+  "profile_name": "reference_cmos_ppd_1p4um_not_measured",
+  "framework_ready": true,
+  "accuracy_ready": false,
+  "accuracy_blocking_failure_count": 8,
+  "framework_blocking_failure_count": 0,
+  "inputs": {
+    "split_summary": [
+      "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl450nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl550nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl650nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl450nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl550nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl650nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl450nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl550nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl650nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl450nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl550nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl650nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl450nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl550nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl650nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl450nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl550nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl650nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl450nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl550nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl650nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl450nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl550nm/summary.json",
+      "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl650nm/summary.json"
+    ],
+    "split_summary_dir": [
+      "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner",
+      "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner",
+      "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner"
+    ],
+    "gmsh_summary": [
+      "runs/devsim_gmsh_reference_import_2d/gmsh_pixel_2d_import_summary.json",
+      "runs/devsim_gmsh_reference_import_3d/gmsh_pixel_3d_import_summary.json"
+    ],
+    "resolved_dti_mesh_metadata": "runs/gmsh_split_pd_2d_resolved_dti_reference/mesh_metadata.json",
+    "resolved_dti_split_summary": "runs/devsim_split_pd_2d_resolved_dti_center_pd_only_sidewall_liner/summary.json",
+    "convergence_report": "runs/convergence_cra3_rgb_r84_gridsnap_quant/convergence_report.json",
+    "crosstalk_xsection_convergence": "runs/crosstalk_xsection_2d_reference/crosstalk_xsection_convergence.json",
+    "native_response_convergence_report": "runs/devsim_native_response_convergence_2d_resolved_dti_sidewall_liner/native_response_convergence_report.json",
+    "signed_field_symmetry_validation": "runs/signed_field_symmetry_validation_reference/signed_field_symmetry_validation.json",
+    "camera_lut_spectral_coverage": "runs/camera_lut_spectral_coverage_reference/camera_lut_spectral_coverage.json",
+    "camera_system_field_lut": "runs/camera_system_uncertainty_lut_reference/camera_system_field_lut.json",
+    "tg_fd_report": "runs/devsim_tg_fd_transfer_sweep_2d_reference/tg_fd_transfer_sweep_report.json",
+    "tg_fd_transient_report": "runs/devsim_tg_fd_transient_2d_reference/tg_fd_transient_report.json",
+    "calibration_result": "runs/tcad_calibration_reference_profile/calibration_result.json",
+    "targets_csv": "measured_profiles/reference_cmos_ppd_1p4um/calibration_targets_synthetic.csv",
+    "calibration_target_report": "runs/tcad_calibration_target_report_reference/calibration_target_report.json",
+    "transport_sensitivity_report": "runs/tcad_transport_sensitivity_reference/transport_sensitivity_report.json",
+    "transport_calibration_target_report": "runs/tcad_calibration_transport_target_report_reference/calibration_target_report.json",
+    "optical_stack_summary": "runs/optical_stack_evidence_reference/optical_stack_summary.json",
+    "weighting_summary": "runs/devsim_weighting_potential_2d_reference/weighting_potential_2d_summary.json",
+    "weighting_csv": "runs/devsim_weighting_potential_2d_reference/weighting_potential_2d.csv",
+    "gw_manifest": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_devsim_research_lut_manifest.json"
+  },
+  "checks": [
+    {
+      "name": "profile_load",
+      "status": "PASS",
+      "details": "measured_tcad_profile_v1 loaded and schema validation passed.",
+      "accuracy_blocking": false,
+      "framework_blocking": true,
+      "evidence": "/Users/seongcheoljeong/FDTD/measured_profiles/reference_cmos_ppd_1p4um/profile.json"
+    },
+    {
+      "name": "profile_calibration_status",
+      "status": "FAIL",
+      "details": "Profile is marked reference/proxy, so it must not be used as a product accuracy LUT.",
+      "accuracy_blocking": true,
+      "framework_blocking": false,
+      "evidence": {
+        "is_measured": false,
+        "mode": "reference_proxy",
+        "note": "Public-reference anchored defaults for practical exploration only."
+      }
+    },
+    {
+      "name": "reference_mode",
+      "status": "FAIL",
+      "details": "reference_mode=true keeps public anchors and stable defaults for exploration only.",
+      "accuracy_blocking": true,
+      "framework_blocking": false
+    },
+    {
+      "name": "implant_sources_measured",
+      "status": "FAIL",
+      "details": "One or more implant profiles are unmeasured reference/analytic profiles.",
+      "accuracy_blocking": true,
+      "framework_blocking": false,
+      "evidence": [
+        "front_p_plus_pinning_reference",
+        "left_n_storage_ppd_reference_stable",
+        "right_n_storage_ppd_reference_stable",
+        "center_split_isolation_reference",
+        "left_dti_p_liner_reference_stable",
+        "right_dti_p_liner_reference_stable"
+      ]
+    },
+    {
+      "name": "transfer_gate_proxy_present",
+      "status": "PASS",
+      "details": "Transfer-gate barrier feature is present in the profile.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": [
+        "transfer_gate_channel_barrier_reference"
+      ]
+    },
+    {
+      "name": "floating_diffusion_proxy_present",
+      "status": "PASS",
+      "details": "Floating-diffusion doping feature is present in the profile.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": [
+        "floating_diffusion_n_plus_reference_stable"
+      ]
+    },
+    {
+      "name": "dti_geometry_present",
+      "status": "PASS",
+      "details": "DTI/liner geometry proxy is present.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": [
+        "left_bdti_p_liner_reference_proxy",
+        "right_bdti_p_liner_reference_proxy",
+        "left_dti_p_liner_reference_stable",
+        "right_dti_p_liner_reference_stable"
+      ]
+    },
+    {
+      "name": "bdti_geometry_present",
+      "status": "PASS",
+      "details": "BDTI geometry is present.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": [
+        "left_bdti_p_liner_reference_proxy",
+        "right_bdti_p_liner_reference_proxy"
+      ]
+    },
+    {
+      "name": "fixed_charge_applied",
+      "status": "PASS",
+      "details": "At least one fixed/effective interface charge term is executable.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": [
+        "front_interface_fixed_charge_reference"
+      ]
+    },
+    {
+      "name": "interface_trap_density_declared",
+      "status": "INFO",
+      "details": "Interface trap density is supplied; solver implementation is checked from DEVSIM summaries.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": [
+        "front_si_oxide_interface_reference"
+      ]
+    },
+    {
+      "name": "mobility_recombination_calibrated",
+      "status": "FAIL",
+      "details": "Doping-dependent transport is configured, but it is still reference/unmeasured and lacks target-sensor calibration.",
+      "accuracy_blocking": true,
+      "framework_blocking": false,
+      "evidence": {
+        "transport_model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+        "mu_n_model": "caughey_thomas_doping_dependent_reference",
+        "mu_p_model": "caughey_thomas_doping_dependent_reference",
+        "recombination_model": "srh_doping_dependent_reference_lifetime",
+        "field_mobility_model": "canali_velocity_saturation_reference",
+        "field_mobility_enabled": true,
+        "electron_saturation_velocity_cm_s": 10000000.0,
+        "hole_saturation_velocity_cm_s": 8000000.0,
+        "transport_model_measured": false,
+        "transport_model_calibrated": false,
+        "tau_n_s": 1e-06,
+        "tau_p_s": 1e-06
+      }
+    },
+    {
+      "name": "split_devsim_profile_model",
+      "status": "PASS",
+      "details": "All split-PD summaries used electrical_model=profile-ppd.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": []
+    },
+    {
+      "name": "optical_generation_map_imported",
+      "status": "PASS",
+      "details": "All split-PD summaries used imported Meep G(x,depth).",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": []
+    },
+    {
+      "name": "transport_models_applied",
+      "status": "PASS",
+      "details": "DEVSIM split summaries used doping-dependent mobility/lifetime models in the solver path.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "summary_evidence": {
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl450nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 231.57585440915028,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 110.7995295882943,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl550nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 236.51034382084623,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 112.33205130860534,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl650nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 234.21066414891632,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 111.61984724848493,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl450nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 234.98769968092128,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 111.86088255123711,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl550nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 239.85538583248888,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 113.36186980513224,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl650nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 236.17625988753178,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 112.22880202325894,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl450nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 236.17449894516494,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 112.22825760761921,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl550nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 240.61333610031843,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 113.59422452928574,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl650nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 236.22318985439125,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 112.24331021737616,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl450nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 231.57585440915028,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 110.7995295882943,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl550nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 236.51034382084623,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 112.33205130860534,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl650nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 234.21066414891632,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 111.61984724848493,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl450nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 231.73121282388576,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 110.84802855636443,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl550nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 237.2027035089999,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 112.54579518616075,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl650nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 234.1771270799065,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 111.60943508388262,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl450nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 231.77017603487218,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 110.86018931390385,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl550nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 237.35277789842803,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 112.59208485402648,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl650nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 233.9508122435403,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 111.53915215948601,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl450nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 235.05851397379016,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 111.88282918496505,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl550nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 240.15678683473965,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 113.45430967619886,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl650nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 236.1686107852675,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 112.22643720037266,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl450nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 235.91876602671678,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 112.14917330039125,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl550nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 240.68497265271347,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 113.61616648877452,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl650nm/summary.json": {
+            "model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_mobility_min_cm2_v_s": 438.61296425441094,
+            "electron_mobility_max_cm2_v_s": 693.7828814191623,
+            "hole_mobility_min_cm2_v_s": 184.26965355559275,
+            "hole_mobility_max_cm2_v_s": 296.8944364415327,
+            "tau_n_min_s": 4.22132914531805e-07,
+            "tau_n_max_s": 9.91529266764934e-07,
+            "tau_p_min_s": 4.22132914531805e-07,
+            "tau_p_max_s": 9.91529266764934e-07,
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_effective_edge_min_cm2_v_s": 235.9061825883364,
+            "electron_mobility_effective_edge_max_cm2_v_s": 693.7785131864687,
+            "hole_mobility_effective_edge_min_cm2_v_s": 112.14528082148534,
+            "hole_mobility_effective_edge_max_cm2_v_s": 296.8794074316898
+          }
+        },
+        "failures": {}
+      }
+    },
+    {
+      "name": "field_dependent_mobility_applied",
+      "status": "PASS",
+      "details": "DEVSIM split summaries include field-dependent effective edge mobility for velocity saturation.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "summary_evidence": {
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl450nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 231.57585440915028,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 110.7995295882943,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl550nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 236.51034382084623,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 112.33205130860534,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl650nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 234.21066414891632,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 111.61984724848493,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl450nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 234.98769968092128,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 111.86088255123711,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl550nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 239.85538583248888,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 113.36186980513224,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl650nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 236.17625988753178,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 112.22880202325894,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl450nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 236.17449894516494,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 112.22825760761921,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl550nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 240.61333610031843,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 113.59422452928574,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl650nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 236.22318985439125,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 112.24331021737616,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl450nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 231.57585440915028,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 110.7995295882943,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl550nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 236.51034382084623,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 112.33205130860534,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl650nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 234.21066414891632,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 111.61984724848493,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl450nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 231.73121282388576,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 110.84802855636443,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl550nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 237.2027035089999,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 112.54579518616075,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl650nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 234.1771270799065,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 111.60943508388262,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl450nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 231.77017603487218,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 110.86018931390385,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl550nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 237.35277789842803,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 112.59208485402648,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl650nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 233.9508122435403,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 111.53915215948601,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl450nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 235.05851397379016,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 111.88282918496505,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl550nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 240.15678683473965,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 113.45430967619886,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl650nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 236.1686107852675,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 112.22643720037266,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl450nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 235.91876602671678,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 112.14917330039125,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl550nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 240.68497265271347,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 113.61616648877452,
+            "hole_effective_edge_max": 296.8794074316898
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl650nm/summary.json": {
+            "field_mobility_enabled": true,
+            "field_mobility_model": "canali_velocity_saturation_reference",
+            "electron_mobility_edge_model": "ElectronMobility_Edge",
+            "hole_mobility_edge_model": "HoleMobility_Edge",
+            "electron_effective_edge_min": 235.9061825883364,
+            "electron_effective_edge_max": 693.7785131864687,
+            "hole_effective_edge_min": 112.14528082148534,
+            "hole_effective_edge_max": 296.8794074316898
+          }
+        },
+        "failures": {}
+      }
+    },
+    {
+      "name": "terminal_current_balance",
+      "status": "PASS",
+      "details": "Illuminated terminal-current balance is within 1e-09 A/cm.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl450nm/summary.json": -8.569533971325427e-16,
+        "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl550nm/summary.json": -3.608224830031759e-16,
+        "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl650nm/summary.json": -7.147060721024445e-16,
+        "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl450nm/summary.json": 4.787836793695988e-16,
+        "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl550nm/summary.json": -1.3530843112619095e-16,
+        "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl650nm/summary.json": 2.2898349882893854e-16,
+        "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl450nm/summary.json": -7.251144129583054e-16,
+        "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl550nm/summary.json": 1.734723475976807e-16,
+        "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl650nm/summary.json": -6.83481049534862e-16,
+        "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl450nm/summary.json": -8.569533971325427e-16,
+        "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl550nm/summary.json": -3.608224830031759e-16,
+        "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl650nm/summary.json": -7.147060721024445e-16,
+        "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl450nm/summary.json": -4.163336342344337e-16,
+        "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl550nm/summary.json": -3.469446951953614e-16,
+        "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl650nm/summary.json": 2.8449465006019636e-16,
+        "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl450nm/summary.json": -2.0816681711721685e-17,
+        "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl550nm/summary.json": -5.169475958410885e-16,
+        "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl650nm/summary.json": 1.0755285551056204e-16,
+        "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl450nm/summary.json": -6.487865800153259e-16,
+        "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl550nm/summary.json": -1.1102230246251565e-16,
+        "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl650nm/summary.json": 1.5612511283791264e-16,
+        "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl450nm/summary.json": -4.475586568020162e-16,
+        "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl550nm/summary.json": -6.591949208711867e-16,
+        "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl650nm/summary.json": -1.0755285551056204e-16
+      }
+    },
+    {
+      "name": "profile_features_applied_to_netdoping",
+      "status": "PASS",
+      "details": "Executable TG, FD, BDTI, and fixed-charge feature masks are present; nonzero-effect counts show runtime-disabled roles such as FD scale=0 for PD-only response sweeps.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "roles": [
+          "bdti_liner",
+          "floating_diffusion",
+          "front_si_oxide_fixed_charge",
+          "interface_trap_occupancy",
+          "transfer_gate_barrier"
+        ],
+        "mask_node_counts": {
+          "transfer_gate_barrier": 648,
+          "floating_diffusion": 192,
+          "front_si_oxide_fixed_charge": 456,
+          "bdti_liner": 1032,
+          "interface_trap_occupancy": 456
+        },
+        "nonzero_effect_node_counts": {
+          "transfer_gate_barrier": 648,
+          "floating_diffusion": 0,
+          "front_si_oxide_fixed_charge": 456,
+          "bdti_liner": 648,
+          "interface_trap_occupancy": 456
+        },
+        "runtime_scales": {
+          "transfer_gate_barrier": [
+            1.0
+          ],
+          "floating_diffusion": [
+            0.0
+          ],
+          "front_si_oxide_fixed_charge": [
+            1.0
+          ],
+          "bdti_liner": [
+            0.0,
+            1.0
+          ],
+          "interface_trap_occupancy": [
+            1.0
+          ]
+        },
+        "disabled_by_scale": [
+          "floating_diffusion"
+        ],
+        "missing": []
+      }
+    },
+    {
+      "name": "interface_trap_occupancy_equations",
+      "status": "PASS",
+      "details": "DEVSIM summaries include potential-dependent interface-trap charge and SRH sheet recombination proxies.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "applied_interface_traps": [
+          "front_si_oxide_interface_reference"
+        ],
+        "metadata_only_interface_traps": [],
+        "summary_evidence": {
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl450nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl550nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl650nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl450nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl550nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl650nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl450nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl550nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl650nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl450nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl550nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl650nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl450nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl550nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl650nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl450nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl550nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl650nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl450nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl550nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl650nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl450nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl550nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          },
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl650nm/summary.json": {
+            "applied_interface_traps": [
+              "front_si_oxide_interface_reference"
+            ],
+            "trap_density_max_cm3": 2800000000000000.0,
+            "recombination_coeff_max_s1": 28000000.000000004
+          }
+        },
+        "failures": {}
+      }
+    },
+    {
+      "name": "metadata_only_electrical_terms",
+      "status": "PASS",
+      "details": "No metadata-only electrical terms were reported by the supplied split summaries.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": []
+    },
+    {
+      "name": "gmsh_contacts_imported",
+      "status": "PASS",
+      "details": "Gmsh import summaries contain silicon and all three contacts.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {}
+    },
+    {
+      "name": "gmsh_dimensions_smoked",
+      "status": "PASS",
+      "details": "Both 2D and 3D Gmsh import smoke solves were supplied.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": [
+        2,
+        3
+      ]
+    },
+    {
+      "name": "resolved_dti_oxide_solver_path",
+      "status": "PASS",
+      "details": "Resolved side DTI/BDTI oxide regions and Si/oxide interface were exported to Gmsh and solved by DEVSIM.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "mesh_metadata": "runs/gmsh_split_pd_2d_resolved_dti_reference/mesh_metadata.json",
+        "mesh_ok": true,
+        "mesh_failures": [],
+        "resolved_dti_oxide": [
+          {
+            "name": "left_dti_oxide",
+            "x_min_um": -0.7,
+            "x_max_um": -0.62,
+            "depth_min_um": 0.0,
+            "depth_max_um": 1.2
+          },
+          {
+            "name": "right_dti_oxide",
+            "x_min_um": 0.62,
+            "x_max_um": 0.7,
+            "depth_min_um": 0.0,
+            "depth_max_um": 1.2
+          }
+        ],
+        "line_counts": {
+          "anode": 6,
+          "cathode_left": 3,
+          "cathode_right": 4,
+          "transfer_gate": 0,
+          "floating_diffusion": 0,
+          "silicon_oxide_interface": 2,
+          "insulated": 21
+        },
+        "surface_counts": {
+          "silicon": 8,
+          "oxide": 2
+        },
+        "split_ok": true,
+        "split_failures": [],
+        "split_evidence": {
+          "path": "runs/devsim_split_pd_2d_resolved_dti_center_pd_only_sidewall_liner/summary.json",
+          "mesh_source": "gmsh",
+          "gmsh_mesh": "runs/gmsh_split_pd_2d_resolved_dti_reference/split_pixel_2d.msh",
+          "electrical_model": "profile-ppd",
+          "generation_source": "imported_2d_map",
+          "node_count": 714,
+          "generation_integral_rel_error": 1.6026909888187554e-15,
+          "terminal_current_balance_illuminated_a_per_cm": -5.516420653606247e-16,
+          "left_photo_delta_a_per_cm": 0.0006870029998386804,
+          "right_photo_delta_a_per_cm": 0.0006844137513496851,
+          "photo_split_phase_x_proxy": -0.0018880099625089772
+        }
+      }
+    },
+    {
+      "name": "fdtd_convergence_report",
+      "status": "FAIL",
+      "details": "FDTD grid/convergence report is partial; full resolution, time, and PML coverage has not all passed for accuracy use.",
+      "accuracy_blocking": true,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/convergence_cra3_rgb_r84_gridsnap_quant/convergence_report.json",
+        "passed": true,
+        "full_numerical_convergence_pass": false,
+        "spatial_convergence_pass": null,
+        "time_convergence_pass": null,
+        "pml_convergence_pass": null,
+        "varied_axes": [],
+        "unproven_axes": [
+          "resolution",
+          "after_source_time",
+          "pml"
+        ],
+        "negative_signed_flux_count": 0,
+        "fail_on_negative_signed_flux": true
+      }
+    },
+    {
+      "name": "fdtd_crosstalk_xsection_convergence",
+      "status": "PASS",
+      "details": "High-resolution 2D FDTD crosstalk x-section convergence passed for configured split/OCL cases.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/crosstalk_xsection_2d_reference/crosstalk_xsection_convergence.json",
+        "status": "PASS",
+        "pass_check_count": 24,
+        "fail_check_count": 0,
+        "min_resolution_px_per_um": 84.0,
+        "max_resolution_px_per_um": 84.0,
+        "failing_checks": []
+      }
+    },
+    {
+      "name": "native_devsim_response_convergence",
+      "status": "PASS",
+      "details": "Native DEVSIM direct response passed mesh-refinement convergence.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/devsim_native_response_convergence_2d_resolved_dti_sidewall_liner/native_response_convergence_report.json",
+        "passed": true,
+        "max_total_response_rel_delta_to_reference": 0.03981851192398727,
+        "max_split_phase_abs_delta_to_reference": 0.01773477987848726,
+        "total_rel_tol": 0.05,
+        "split_abs_tol": 0.05,
+        "reference_level": "fine"
+      }
+    },
+    {
+      "name": "signed_field_symmetry_validation",
+      "status": "PASS",
+      "details": "Signed field LUT was validated against direct negative-CRA FDTD/native-DEVSIM anchors.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/signed_field_symmetry_validation_reference/signed_field_symmetry_validation.json",
+        "validation_pass": true,
+        "case_count": 2,
+        "max_total_response_rel_error": 0.007706443019988463,
+        "max_split_phase_abs_error": 0.009932874693215021,
+        "max_total_rel_error_threshold": 0.02,
+        "max_split_abs_error_threshold": 0.02,
+        "failed_rows": []
+      }
+    },
+    {
+      "name": "camera_lut_spectral_coverage",
+      "status": "PASS",
+      "details": "Camera-system field LUT covers the required RGB wavelength anchors on a uniform signed field grid.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/camera_lut_spectral_coverage_reference/camera_lut_spectral_coverage.json",
+        "coverage_pass": true,
+        "required_wavelength_nm": [
+          450.0,
+          550.0,
+          650.0
+        ],
+        "available_wavelength_nm": [
+          450.0,
+          550.0,
+          650.0
+        ],
+        "missing_required_wavelength_nm": [],
+        "uniform_field_grid_per_wavelength": true,
+        "signed_field_grid": true,
+        "row_count": 5043,
+        "field_grid_count": 41,
+        "field_z_grid_count": 41,
+        "optical_stack_evidence_pass": false
+      }
+    },
+    {
+      "name": "camera_system_field_lut_direct_z_diag_coverage",
+      "status": "PASS",
+      "details": "Dense field LUT uses direct RGB x-axis, z-axis, and diagonal native-DEVSIM anchors without radial fallback.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/camera_system_uncertainty_lut_reference/camera_system_field_lut.json",
+        "row_count": 5043,
+        "field_grid_count": 41,
+        "field_z_grid_count": 41,
+        "available_wavelength_nm": [
+          450,
+          550,
+          650
+        ],
+        "interpolation_methods": [
+          "signed_separable_xz_piecewise_linear_3_anchor_x_piecewise_linear_3_anchor_z_diag2"
+        ],
+        "source_anchor_cases": [
+          "center",
+          "cra10x",
+          "edge20x"
+        ],
+        "source_z_axis_anchor_cases": [
+          "center",
+          "cra10z",
+          "edge20z"
+        ],
+        "source_diagonal_anchor_cases": [
+          "cra10x10z",
+          "edge20x20z"
+        ],
+        "accuracy_blockers": [
+          "missing_measured_implant_profile",
+          "missing_measured_optical_stack_nk",
+          "mobility_recombination_not_calibrated",
+          "reference_proxy_profile",
+          "rgb_r84_full_convergence_not_proven",
+          "synthetic_calibration_targets"
+        ],
+        "failures": []
+      }
+    },
+    {
+      "name": "tg_fd_terminal_diagnostic",
+      "status": "PASS",
+      "details": "TG/FD diagnostic has a real floating-diffusion terminal, finite FD response rows, and terminal balance closure.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/devsim_tg_fd_transfer_sweep_2d_reference/tg_fd_transfer_sweep_report.json",
+        "schema": "devsim_tg_fd_transfer_sweep_2d_v1",
+        "row_count": 8,
+        "max_fd_abs_fraction": 0.8418783099043188,
+        "terminal_balance_max_abs_a_per_cm": 4.163336342344337e-16,
+        "product_accuracy_ready": false
+      }
+    },
+    {
+      "name": "tg_fd_transient_diagnostic",
+      "status": "PASS",
+      "details": "TG/FD diagnostic uses paired photo-minus-dark DEVSIM transient time stepping and reports carrier inventory.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/devsim_tg_fd_transient_2d_reference/tg_fd_transient_report.json",
+        "schema": "devsim_tg_fd_transient_sweep_2d_v1",
+        "case_count": 2,
+        "row_count": 242,
+        "fd_abs_fractions": [
+          0.9968265692723401,
+          0.9969439822462094
+        ],
+        "signal_modes": [
+          "photo_minus_dark",
+          "photo_minus_dark"
+        ],
+        "carrier_inventory": [
+          {
+            "case": "center",
+            "signal_mode": "photo_minus_dark",
+            "method": "gmsh_triangle_integrated_photo_minus_dark_carrier_inventory",
+            "pd_total_excess_electron_fraction_remaining": 0.40258696827233525,
+            "floating_diffusion_excess_electron_gain_per_cm": -19948.199504551012,
+            "floating_diffusion_terminal_electrons_per_cm": 6824797047.8645,
+            "floating_diffusion_terminal_abs_electrons_per_cm": 6824797047.8645,
+            "floating_diffusion_terminal_abs_fraction_of_fd_plus_cathodes": 0.9968265692723401,
+            "floating_diffusion_last_abs_current_to_peak": 0.06935464086095092
+          },
+          {
+            "case": "edge20x",
+            "signal_mode": "photo_minus_dark",
+            "method": "gmsh_triangle_integrated_photo_minus_dark_carrier_inventory",
+            "pd_total_excess_electron_fraction_remaining": 0.44202899934051726,
+            "floating_diffusion_excess_electron_gain_per_cm": -19068.4196152559,
+            "floating_diffusion_terminal_electrons_per_cm": 6713460865.46112,
+            "floating_diffusion_terminal_abs_electrons_per_cm": 6713460865.46112,
+            "floating_diffusion_terminal_abs_fraction_of_fd_plus_cathodes": 0.9969439822462094,
+            "floating_diffusion_last_abs_current_to_peak": 0.07053280393151745
+          }
+        ],
+        "terminal_balance_max_abs_a_per_cm": 4.700382582450979e-05,
+        "product_accuracy_ready": false
+      }
+    },
+    {
+      "name": "tg_fd_transfer_inventory_effect",
+      "status": "PASS",
+      "details": "Carrier inventory shows photo-generated electrons leaving the PD region and FD terminal integration collects positive electron charge.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "pd_remaining_pass_threshold": "< 0.95",
+        "fd_terminal_collection_pass_threshold": "> 0 abs(electrons/cm)",
+        "fd_inventory_gain_note": "A voltage-clamped FD ohmic terminal can collect electrons while the local FD silicon inventory decreases; FD volume gain is evidence only, not the pass criterion.",
+        "carrier_inventory": [
+          {
+            "case": "center",
+            "signal_mode": "photo_minus_dark",
+            "method": "gmsh_triangle_integrated_photo_minus_dark_carrier_inventory",
+            "pd_total_excess_electron_fraction_remaining": 0.40258696827233525,
+            "floating_diffusion_excess_electron_gain_per_cm": -19948.199504551012,
+            "floating_diffusion_terminal_electrons_per_cm": 6824797047.8645,
+            "floating_diffusion_terminal_abs_electrons_per_cm": 6824797047.8645,
+            "floating_diffusion_terminal_abs_fraction_of_fd_plus_cathodes": 0.9968265692723401,
+            "floating_diffusion_last_abs_current_to_peak": 0.06935464086095092
+          },
+          {
+            "case": "edge20x",
+            "signal_mode": "photo_minus_dark",
+            "method": "gmsh_triangle_integrated_photo_minus_dark_carrier_inventory",
+            "pd_total_excess_electron_fraction_remaining": 0.44202899934051726,
+            "floating_diffusion_excess_electron_gain_per_cm": -19068.4196152559,
+            "floating_diffusion_terminal_electrons_per_cm": 6713460865.46112,
+            "floating_diffusion_terminal_abs_electrons_per_cm": 6713460865.46112,
+            "floating_diffusion_terminal_abs_fraction_of_fd_plus_cathodes": 0.9969439822462094,
+            "floating_diffusion_last_abs_current_to_peak": 0.07053280393151745
+          }
+        ]
+      }
+    },
+    {
+      "name": "tg_fd_transfer_settling",
+      "status": "PASS",
+      "details": "FD terminal photo-minus-dark current decays below 10% of its peak by the end of the transfer pulse.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "last_abs_current_to_peak_pass_threshold": "<= 0.10",
+        "last_abs_current_to_peak": [
+          0.06935464086095092,
+          0.07053280393151745
+        ],
+        "carrier_inventory": [
+          {
+            "case": "center",
+            "signal_mode": "photo_minus_dark",
+            "method": "gmsh_triangle_integrated_photo_minus_dark_carrier_inventory",
+            "pd_total_excess_electron_fraction_remaining": 0.40258696827233525,
+            "floating_diffusion_excess_electron_gain_per_cm": -19948.199504551012,
+            "floating_diffusion_terminal_electrons_per_cm": 6824797047.8645,
+            "floating_diffusion_terminal_abs_electrons_per_cm": 6824797047.8645,
+            "floating_diffusion_terminal_abs_fraction_of_fd_plus_cathodes": 0.9968265692723401,
+            "floating_diffusion_last_abs_current_to_peak": 0.06935464086095092
+          },
+          {
+            "case": "edge20x",
+            "signal_mode": "photo_minus_dark",
+            "method": "gmsh_triangle_integrated_photo_minus_dark_carrier_inventory",
+            "pd_total_excess_electron_fraction_remaining": 0.44202899934051726,
+            "floating_diffusion_excess_electron_gain_per_cm": -19068.4196152559,
+            "floating_diffusion_terminal_electrons_per_cm": 6713460865.46112,
+            "floating_diffusion_terminal_abs_electrons_per_cm": 6713460865.46112,
+            "floating_diffusion_terminal_abs_fraction_of_fd_plus_cathodes": 0.9969439822462094,
+            "floating_diffusion_last_abs_current_to_peak": 0.07053280393151745
+          }
+        ]
+      }
+    },
+    {
+      "name": "calibration_result",
+      "status": "PASS",
+      "details": "Calibration optimizer reported success.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/tcad_calibration_reference_profile/calibration_result.json",
+        "cost": 3.696772138547732e-13,
+        "best_parameters": {
+          "generation_map_scale": 0.9999993920036888
+        }
+      }
+    },
+    {
+      "name": "calibration_targets_measured",
+      "status": "FAIL",
+      "details": "Calibration targets are missing target_source=measured or are explicitly synthetic.",
+      "accuracy_blocking": true,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "measured_profiles/reference_cmos_ppd_1p4um/calibration_targets_synthetic.csv",
+        "non_measured_cases": [
+          "center",
+          "edge20x"
+        ]
+      }
+    },
+    {
+      "name": "calibration_target_residuals",
+      "status": "PASS",
+      "details": "Best calibration entry passes per-target current and split residual tolerances.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/tcad_calibration_target_report_reference/calibration_target_report.json",
+        "schema": "tcad_calibration_target_report_v1",
+        "row_count": 2,
+        "best_eval_index": 7,
+        "best_residual_norm": 8.387824761481645e-07,
+        "all_targets_measured": false,
+        "non_measured_targets": [
+          "center:550.0",
+          "edge20x:550.0"
+        ],
+        "product_accuracy_ready": false,
+        "issues": []
+      }
+    },
+    {
+      "name": "transport_runtime_calibration_controls",
+      "status": "PASS",
+      "details": "Runtime mobility, lifetime, fixed-charge, and interface-trap calibration controls are wired into DEVSIM summaries.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/tcad_transport_sensitivity_reference/transport_sensitivity_report.json",
+        "schema": "tcad_transport_sensitivity_v1",
+        "row_count": 10,
+        "scenario_count": 5,
+        "case_count": 2,
+        "response_sensitivity_pass": true,
+        "changed_row_count": 6,
+        "wiring_issues": []
+      }
+    },
+    {
+      "name": "transport_multi_parameter_calibration",
+      "status": "PASS",
+      "details": "Multi-parameter calibration report passes current/split and metric residual checks.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/tcad_calibration_transport_target_report_reference/calibration_target_report.json",
+        "schema": "tcad_calibration_target_report_v1",
+        "row_count": 2,
+        "metric_residual_row_count": 14,
+        "metric_residual_pass": true,
+        "residual_pass": true,
+        "all_targets_measured": false,
+        "product_accuracy_ready": false,
+        "max_abs_normalized_residual": 0.01,
+        "non_measured_targets": [
+          "center:550.0",
+          "edge20x:550.0"
+        ]
+      }
+    },
+    {
+      "name": "measured_optical_stack_nk",
+      "status": "FAIL",
+      "details": "Optical stack evidence exists, but geometry and/or material n,k are not marked measured.",
+      "accuracy_blocking": true,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/optical_stack_evidence_reference/optical_stack_summary.json",
+        "schema": "image_sensor_optical_stack_evidence_v1",
+        "stack_name": "proxy_1p4um_bsi_microlens_stack",
+        "calibration_status": {
+          "is_measured": false,
+          "stack_marked_measured": false,
+          "geometry_measured": false,
+          "all_materials_measured": false,
+          "mode": "reference_proxy",
+          "note": "Geometry and material n,k are public-reference/proxy values for framework development only."
+        },
+        "missing_required_geometry": [],
+        "missing_nk_tables": [],
+        "invalid_nk_tables": [],
+        "nk_coverage_failures": [],
+        "required_wavelengths_um": [
+          0.45,
+          0.55,
+          0.65
+        ],
+        "non_measured_materials": [
+          "silicon",
+          "cfa_red",
+          "cfa_green",
+          "cfa_blue",
+          "passivation",
+          "lens"
+        ],
+        "proxy_materials": [
+          "cfa_red",
+          "cfa_green",
+          "cfa_blue",
+          "passivation",
+          "lens"
+        ]
+      }
+    },
+    {
+      "name": "devsim_weighting_laplace_summary",
+      "status": "PASS",
+      "details": "DEVSIM-native pure-Laplace terminal weighting summary is internally consistent.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/devsim_weighting_potential_2d_reference/weighting_potential_2d_summary.json",
+        "schema": "devsim_weighting_potential_2d_v1",
+        "method": "pure_laplace_dirichlet_terminal_weighting",
+        "node_count": 712,
+        "missing_contacts": [],
+        "sum_all_contacts_max_abs_error_to_one": 1.1102230246251565e-16,
+        "sum_tolerance": 1e-09
+      }
+    },
+    {
+      "name": "devsim_weighting_csv",
+      "status": "PASS",
+      "details": "DEVSIM weighting CSV row count and required columns are valid.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/devsim_weighting_potential_2d_reference/weighting_potential_2d.csv",
+        "row_count": 712,
+        "expected_node_count": 712,
+        "missing_columns": []
+      }
+    },
+    {
+      "name": "devsim_weighting_mesh_matches_split_runs",
+      "status": "INFO",
+      "details": "DEVSIM weighting node count does not match one or more split-PD runs, but the supplied primary response manifest is native_devsim-only; the weighting surrogate mesh is not used by this direct terminal-current LUT.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "weighting_node_count": 712,
+        "split_node_counts": {
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl650nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl650nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl650nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl650nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl650nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl650nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl650nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl650nm/summary.json": 714
+        },
+        "mismatches": {
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl650nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl650nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl650nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl650nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10z_wl650nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20z_wl650nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x10z_wl650nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl450nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl550nm/summary.json": 714,
+          "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x20z_wl650nm/summary.json": 714
+        },
+        "primary_response_native_only": true,
+        "primary_response_manifest": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_devsim_research_lut_manifest.json"
+      }
+    },
+    {
+      "name": "native_devsim_direct_method_present",
+      "status": "PASS",
+      "details": "Camera diagnostic includes native_devsim direct FDTD-generation DEVSIM responses.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_devsim_research_lut_manifest.json",
+        "response_methods": [
+          "native_devsim"
+        ]
+      }
+    },
+    {
+      "name": "native_devsim_direct_cases_present",
+      "status": "PASS",
+      "details": "Every camera-system case has finite native DEVSIM terminal-current response and split phase.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "case_count": 9,
+        "native_cases": [
+          "center",
+          "cra10x",
+          "edge20x",
+          "center",
+          "cra10x",
+          "edge20x",
+          "center",
+          "cra10x",
+          "edge20x"
+        ]
+      }
+    },
+    {
+      "name": "camera_system_research_lut_native_export",
+      "status": "PASS",
+      "details": "Camera-system research LUT is exported from native_devsim direct responses.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "json": "/Users/seongcheoljeong/FDTD/runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_research_lut.json",
+        "json_exists": true,
+        "npz": "/Users/seongcheoljeong/FDTD/runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_research_lut.npz",
+        "npz_exists": true,
+        "primary_response_method": "native_devsim",
+        "research_lut_ready": true,
+        "case_count": 9
+      }
+    },
+    {
+      "name": "camera_system_research_lut_numerical_convergence",
+      "status": "PASS",
+      "details": "Research LUT embeds a passing optical numerical-convergence report.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "json": "/Users/seongcheoljeong/FDTD/runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_research_lut.json",
+        "optical_convergence_report": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/convergence_report.json",
+        "passed": true,
+        "spatial_convergence_pass": null,
+        "time_convergence_pass": null,
+        "pml_convergence_pass": null,
+        "full_numerical_convergence_pass": false,
+        "varied_axes": [],
+        "unproven_axes": [
+          "resolution",
+          "after_source_time",
+          "pml"
+        ],
+        "failed_axes": [],
+        "max_total_response_rel_delta_to_reference": null,
+        "negative_signed_flux_count": 0
+      }
+    },
+    {
+      "name": "camera_system_research_lut_full_numerical_coverage",
+      "status": "FAIL",
+      "details": "Research LUT optical convergence is partial; one or more of resolution, time, or PML axes were not varied.",
+      "accuracy_blocking": true,
+      "framework_blocking": false,
+      "evidence": {
+        "json": "/Users/seongcheoljeong/FDTD/runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_research_lut.json",
+        "optical_convergence_report": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/convergence_report.json",
+        "full_numerical_convergence_pass": false,
+        "spatial_convergence_pass": null,
+        "time_convergence_pass": null,
+        "pml_convergence_pass": null,
+        "varied_axes": [],
+        "unproven_axes": [
+          "resolution",
+          "after_source_time",
+          "pml"
+        ],
+        "failed_axes": [],
+        "unique_resolution_count": 1,
+        "unique_after_source_time_count": 1,
+        "unique_pml_count": 1
+      }
+    },
+    {
+      "name": "camera_system_research_lut_optical_grid_evidence",
+      "status": "PASS",
+      "details": "Research LUT includes per-case FDTD optical grid evidence and every case passes the configured grid-resolution gate.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "case_count": 9,
+        "missing_cases": [],
+        "all_grid_resolution_gate_pass": true,
+        "min_si_internal_wavelength_pixels": 8.057983372415263,
+        "min_critical_feature_pixels": 3.36
+      }
+    },
+    {
+      "name": "gw_manifest_weighting_methods",
+      "status": "INFO",
+      "details": "Native-only research LUT manifest supplied; G*W surrogate weighting is not part of this direct terminal-current export.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_devsim_research_lut_manifest.json",
+        "schema": "native_devsim_research_lut_export_v1",
+        "response_methods": [
+          "native_devsim"
+        ],
+        "method_sources": [
+          "manifest.response_methods"
+        ]
+      }
+    },
+    {
+      "name": "gw_devsim_dd_probe_method_present",
+      "status": "INFO",
+      "details": "Native-only research LUT uses direct DEVSIM terminal-current deltas; sparse DD-probe surrogate is optional and not required for this export.",
+      "accuracy_blocking": false,
+      "framework_blocking": false,
+      "evidence": {
+        "path": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_devsim_research_lut_manifest.json",
+        "schema": "native_devsim_research_lut_export_v1",
+        "response_methods": [
+          "native_devsim"
+        ]
+      }
+    }
+  ]
+}

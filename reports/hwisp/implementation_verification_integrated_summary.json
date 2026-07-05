@@ -1,0 +1,141 @@
+{
+  "generated_at": "2026-05-16T07:23:56",
+  "git_commit": "08e8511",
+  "profile": "rpi_vc4_imx219_public_seed",
+  "verification": [
+    {
+      "command": "python tools/render_hwisp_timeline_report.py --profile rpi_vc4_imx219_public_seed",
+      "status": "PASS",
+      "returncode": 0,
+      "summary": "Timeline, 3A, and latency artifacts exist in reports/hwisp/.",
+      "output_tail": []
+    },
+    {
+      "command": "python -m pytest -q tests/unit/test_hwisp_db.py tests/unit/test_hwisp.py",
+      "status": "NOT_RUN",
+      "returncode": null,
+      "summary": "Use --run-tests to execute targeted HW ISP verification.",
+      "output_tail": []
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "index.html",
+      "exists": true,
+      "bytes": 11969
+    },
+    {
+      "name": "frame_details.html",
+      "exists": true,
+      "bytes": 10206
+    },
+    {
+      "name": "timeline_report.md",
+      "exists": true,
+      "bytes": 1673
+    },
+    {
+      "name": "timeline_summary.json",
+      "exists": true,
+      "bytes": 97524
+    },
+    {
+      "name": "three_a_summary.json",
+      "exists": true,
+      "bytes": 147275
+    },
+    {
+      "name": "frame_timeline.png",
+      "exists": true,
+      "bytes": 147228
+    },
+    {
+      "name": "stage_latency.png",
+      "exists": true,
+      "bytes": 34725
+    },
+    {
+      "name": "e2e_latency.png",
+      "exists": true,
+      "bytes": 35182
+    },
+    {
+      "name": "ae_convergence.png",
+      "exists": true,
+      "bytes": 145677
+    },
+    {
+      "name": "awb_convergence.png",
+      "exists": true,
+      "bytes": 179965
+    },
+    {
+      "name": "three_a_thumbnails.png",
+      "exists": true,
+      "bytes": 451629
+    }
+  ],
+  "timeline_aggregate": {
+    "frame_count": 8.0,
+    "e2e_latency_mean_us": 12984.470000000005,
+    "e2e_latency_max_us": 12984.470000000012,
+    "e2e_latency_min_us": 12984.469999999996,
+    "queue_stall_total_us": 83565.16000000012,
+    "queue_stall_max_us": 20891.290000000037,
+    "ae_settle_frame": -1.0,
+    "ae_settle_frames_after_step": -1.0,
+    "ae_final_error_ev": -2.6208756425071407,
+    "awb_settle_frame": -1.0,
+    "awb_final_rgb_imbalance": 1.0092696688177165,
+    "max_clip_fraction": 0.0,
+    "max_clip_fraction_before_response": 0.0,
+    "max_clip_fraction_after_response": 0.0,
+    "warmup_frame_count": 2.0,
+    "validation_verdicts": {
+      "ae_settle": false,
+      "awb_settle": false,
+      "clamp_compliance": true,
+      "warmup_delay_mapping": true,
+      "clip_reduction": true
+    },
+    "validation_thresholds": {
+      "ae_settle_ev": 0.25,
+      "awb_settle_imbalance": 0.2,
+      "settle_consecutive_frames": 2.0
+    }
+  },
+  "three_a_aggregate": {
+    "frame_count": 12.0,
+    "e2e_latency_mean_us": 18099.252573206806,
+    "e2e_latency_max_us": 33768.46999999994,
+    "e2e_latency_min_us": 11753.165439240925,
+    "queue_stall_total_us": 0.0,
+    "queue_stall_max_us": 0.0,
+    "ae_settle_frame": 8.0,
+    "ae_settle_frames_after_step": 4.0,
+    "ae_final_error_ev": -0.15285087300087155,
+    "awb_settle_frame": 10.0,
+    "awb_final_rgb_imbalance": 0.15553446849312635,
+    "max_clip_fraction": 0.16380981532496683,
+    "max_clip_fraction_before_response": 0.16380981532496683,
+    "max_clip_fraction_after_response": 0.06348841954902561,
+    "warmup_frame_count": 2.0,
+    "validation_verdicts": {
+      "ae_settle": true,
+      "awb_settle": true,
+      "clamp_compliance": true,
+      "warmup_delay_mapping": true,
+      "clip_reduction": true
+    },
+    "validation_thresholds": {
+      "ae_settle_ev": 0.25,
+      "awb_settle_imbalance": 0.2,
+      "settle_consecutive_frames": 2.0
+    }
+  },
+  "embed_images": true,
+  "outputs": {
+    "html": "/Users/seongcheoljeong/Documents/CameraE2E/reports/hwisp/implementation_verification_report_integrated.html",
+    "summary": "/Users/seongcheoljeong/Documents/CameraE2E/reports/hwisp/implementation_verification_integrated_summary.json"
+  }
+}

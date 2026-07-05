@@ -1,0 +1,42 @@
+{
+  "schema": "gds_pixel_geometry_import_map_v1",
+  "description": "Reference GDS layer map for converting 2D mask polygons into pixel_geometry_import_v1 JSON.",
+  "top_cell": "PIXEL_IMPORT_REF",
+  "scale_to_um": 1.0,
+  "origin_um": {
+    "x": 0.0,
+    "z": 0.0
+  },
+  "localize": "bbox-center",
+  "max_points": 24,
+  "cfa_background": "passivation",
+  "ocl_layers": [
+    {
+      "layer": 10,
+      "datatype": 0,
+      "id": "imported_qpd"
+    },
+    {
+      "layer": 11,
+      "datatype": 0,
+      "id": "imported_center"
+    }
+  ],
+  "cfa_layers": [
+    {
+      "layer": 20,
+      "datatype": 0,
+      "color": "red"
+    },
+    {
+      "layer": 21,
+      "datatype": 0,
+      "color": "green"
+    },
+    {
+      "layer": 22,
+      "datatype": 0,
+      "color": "blue"
+    }
+  ]
+}

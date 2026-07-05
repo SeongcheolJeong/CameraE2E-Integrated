@@ -1,0 +1,39 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+
+# Python environments and local package caches
+.venv/
+.meep-env/
+.tcad-env/
+
+# Downloaded third-party source checkouts
+fdtd/
+
+# Node dependencies and build output
+node_modules/
+pixel_workbench_ui/node_modules/
+pixel_workbench_ui/dist/
+
+# Generated simulation/UI outputs
+runs/
+*.log
+
+# Locally generated reference-sensor databases.
+# These may contain licensed-source-derived metadata/evidence snippets and
+# user-local source paths, so keep them out of the repository.
+sensor_db/
+image_sensor_db/
+image_sensor_db_smoke/
+measured_profiles/techinsights_sims_seed/
+
+# Meep/DEVSIM/Gmsh generated scratch artifacts
+*.h5
+*.vtk
+*.vtu
+*.msh
+*.tec
+*.npz
+
+# Local browser/test scratch
+.playwright/

@@ -1,0 +1,337 @@
+{
+  "channel_metrics": {
+    "baseline": [
+      9.456206790918203e-05,
+      9.940056225549813e-05,
+      9.629214780160794e-05
+    ],
+    "fdtd": [
+      0.00012396447067682757,
+      0.00013032810347969517,
+      0.0001262886967201164
+    ]
+  },
+  "crop_metrics": {
+    "center_mean_ratio": 1.4182525670921124,
+    "edge_mean_ratio": 1.3193574561737065
+  },
+  "crosstalk_probe_center": 1.0,
+  "field_map_max": 5.43211287827112,
+  "field_map_min": 4.842209138869952,
+  "figures": {
+    "center_edge_crops": "/Users/seongcheoljeong/Documents/CameraE2E/reports/fdtd_sensor/center_edge_crops.png",
+    "crosstalk_kernel": "/Users/seongcheoljeong/Documents/CameraE2E/reports/fdtd_sensor/fdtd_crosstalk_kernel.png",
+    "ip_channel_means": "/Users/seongcheoljeong/Documents/CameraE2E/reports/fdtd_sensor/ip_channel_means.png",
+    "isp_output": "/Users/seongcheoljeong/Documents/CameraE2E/reports/fdtd_sensor/isp_output_triptych.png",
+    "response_rolloff": "/Users/seongcheoljeong/Documents/CameraE2E/reports/fdtd_sensor/fdtd_response_rolloff.png",
+    "sensor_volts": "/Users/seongcheoljeong/Documents/CameraE2E/reports/fdtd_sensor/sensor_volts_triptych.png"
+  },
+  "ip_metrics": {
+    "mae": 3.0114107097157186e-05,
+    "max_abs": 0.00015864355718830264,
+    "normalized_mae": 0.10978214190793165
+  },
+  "kernel_center": 1.0,
+  "kernel_sum": 1.0,
+  "lut": {
+    "cases": [
+      "center",
+      "cra10x",
+      "edge20x"
+    ],
+    "convergence_report": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/convergence_report.json",
+    "kernel_shape": [
+      0,
+      0
+    ],
+    "mode": "split-pd-1x1",
+    "n_cases": 3,
+    "n_long_rows": 18,
+    "n_regions": 2,
+    "n_summary_rows": 9,
+    "n_wavelengths": 3,
+    "notes": [
+      "Primary response uses Si-volume absorption distribution integrated over each collection region.",
+      "The absolute scale is calibrated to the full Si top/bottom flux absorption estimate.",
+      "TCAD 1D generation export collapses the Si volume absorption over x/z and scales it with incident_photon_flux_cm2_s.",
+      "TCAD 2D generation export preserves x/depth variation and collapses only the out-of-plane z direction.",
+      "TCAD 3D generation export preserves x/depth/z variation for future 3D electrical import.",
+      "Split-PD phase proxies are optical-only PDAF signals, not charge-collection TCAD results.",
+      "OCL shifts are explicit lens/aperture offsets in microns; replace defaults with product geometry.",
+      "Default imaging-pixel runs use shield.mode=off; metal optical masks are only present for edge or PDAF shield modes.",
+      "Finite-pupil integration samples a uniform disk in direction-cosine space using the supplied f-number.",
+      "Use resolution and time convergence before quantitative camera-system use."
+    ],
+    "response_model": "si_volume_absorption_flux_calibrated_v1",
+    "schema": "camera_supercell_optical_lut_v2",
+    "source_path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+    "wavelengths_nm": [
+      450.0,
+      550.0,
+      650.0
+    ]
+  },
+  "physics_validation": {
+    "checks": {
+      "convergence": {
+        "convergence_report": {
+          "all_critical_feature_gate_pass": true,
+          "all_grid_resolution_gate_pass": true,
+          "all_si_wavelength_gate_pass": true,
+          "case_count": 9,
+          "cases": [
+            "center",
+            "cra10x",
+            "edge20x"
+          ],
+          "fail_on_negative_signed_flux": true,
+          "failed_axes": [],
+          "full_numerical_convergence_pass": false,
+          "min_critical_feature_pixels": 3.36,
+          "min_si_internal_wavelength_pixels": 8.057983372415263,
+          "negative_signed_flux_count": 0,
+          "note": "RGB r84 anchor has per-case grid/Si-wavelength/feature gates, but no resolution/time/PML sweep. Treat as grid-qualified, not full numerical convergence.",
+          "passed": true,
+          "pml_convergence_pass": null,
+          "report_type": "single_run_grid_qualification",
+          "schema": "camera_lut_convergence_report_v1",
+          "single_run_grid_qualification_pass": true,
+          "source_summary_csv": "runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut_summary.csv",
+          "spatial_convergence_pass": null,
+          "time_convergence_pass": null,
+          "unique_after_source_time_count": 1,
+          "unique_pml_count": 1,
+          "unique_resolution_count": 1,
+          "unproven_axes": [
+            "resolution",
+            "after_source_time",
+            "pml"
+          ],
+          "varied_axes": [],
+          "wavelength_nm": [
+            450.0,
+            550.0,
+            650.0
+          ]
+        },
+        "failures": [],
+        "geometry": {
+          "air_top": 0.55,
+          "bottom_air": 0.24871428571428567,
+          "cfa_thickness": 0.8,
+          "lens_edge_gap": 0.04,
+          "lens_height": 0.657,
+          "metal_edge_width": 0.12,
+          "passivation_thickness": 0.08,
+          "pitch": 1.4,
+          "pml": 0.45,
+          "si_thickness": 2.8
+        },
+        "resolution_px_per_um": 84,
+        "source_path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+        "status": "warn",
+        "warnings": [
+          "FDTD report is grid-qualified but not full resolution/time/PML convergence"
+        ]
+      },
+      "crosstalk": {
+        "center_weight": 1.0,
+        "failures": [],
+        "kernel_shape": [
+          1,
+          1
+        ],
+        "status": "warn",
+        "uniformity_cv": 0.0,
+        "warnings": [
+          "no regional crosstalk kernel available"
+        ]
+      },
+      "energy": {
+        "failures": [],
+        "max_response": 0.4785433343548626,
+        "n_absorption_over_incident": 0,
+        "n_negative": 0,
+        "n_over_unity": 0,
+        "n_response_over_absorption": 0,
+        "n_response_values": 27,
+        "n_rows": 27,
+        "status": "pass",
+        "warnings": []
+      },
+      "ocl_shift": {
+        "failures": [],
+        "pairs": [],
+        "status": "warn",
+        "warnings": [
+          "no uncompensated/compensated OCL pair available"
+        ]
+      },
+      "relative_illumination": {
+        "comparisons": [
+          {
+            "case": "cra10x",
+            "cos4_response": 0.9406018657828263,
+            "cra_deg": 10.0,
+            "cra_x_deg": 10.0,
+            "cra_z_deg": 0.0,
+            "fdtd_response_norm": 1.0663266769886022,
+            "ratio_to_cos4": 1.133664216263424,
+            "status": "pass",
+            "wavelength_nm": 450.0
+          },
+          {
+            "case": "edge20x",
+            "cos4_response": 0.7797282437678554,
+            "cra_deg": 20.0,
+            "cra_x_deg": 20.0,
+            "cra_z_deg": 0.0,
+            "fdtd_response_norm": 1.0401389771322007,
+            "ratio_to_cos4": 1.3339762737155332,
+            "status": "warn",
+            "wavelength_nm": 450.0
+          },
+          {
+            "case": "cra10x",
+            "cos4_response": 0.9406018657828263,
+            "cra_deg": 10.0,
+            "cra_x_deg": 10.0,
+            "cra_z_deg": 0.0,
+            "fdtd_response_norm": 5.149924475082459,
+            "ratio_to_cos4": 5.475137422565473,
+            "status": "warn",
+            "wavelength_nm": 550.0
+          },
+          {
+            "case": "edge20x",
+            "cos4_response": 0.7797282437678554,
+            "cra_deg": 20.0,
+            "cra_x_deg": 20.0,
+            "cra_z_deg": 0.0,
+            "fdtd_response_norm": 5.43211287827112,
+            "ratio_to_cos4": 6.966674507032986,
+            "status": "warn",
+            "wavelength_nm": 550.0
+          },
+          {
+            "case": "cra10x",
+            "cos4_response": 0.9406018657828263,
+            "cra_deg": 10.0,
+            "cra_x_deg": 10.0,
+            "cra_z_deg": 0.0,
+            "fdtd_response_norm": 1.5580154186000235,
+            "ratio_to_cos4": 1.6564026452396496,
+            "status": "warn",
+            "wavelength_nm": 650.0
+          },
+          {
+            "case": "edge20x",
+            "cos4_response": 0.7797282437678554,
+            "cra_deg": 20.0,
+            "cra_x_deg": 20.0,
+            "cra_z_deg": 0.0,
+            "fdtd_response_norm": 1.3341677613318683,
+            "ratio_to_cos4": 1.711067634134699,
+            "status": "warn",
+            "wavelength_nm": 650.0
+          }
+        ],
+        "failures": [],
+        "status": "warn",
+        "warnings": [
+          "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+          "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+          "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+          "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+          "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence"
+        ]
+      },
+      "symmetry": {
+        "comparisons": [],
+        "failures": [],
+        "status": "warn",
+        "warnings": [
+          "no +/- CRA mirror pairs available for symmetry validation"
+        ]
+      },
+      "wavelength": {
+        "failures": [],
+        "has_rgb_representative_wavelengths": true,
+        "status": "pass",
+        "warnings": [],
+        "wavelengths_nm": [
+          450.0,
+          550.0,
+          650.0
+        ]
+      }
+    },
+    "failures": [],
+    "ok": true,
+    "status": "warn",
+    "warnings": [
+      "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+      "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+      "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+      "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+      "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+      "no uncompensated/compensated OCL pair available",
+      "no +/- CRA mirror pairs available for symmetry validation",
+      "no regional crosstalk kernel available",
+      "FDTD report is grid-qualified but not full resolution/time/PML convergence"
+    ]
+  },
+  "report": "/Users/seongcheoljeong/Documents/CameraE2E/reports/fdtd_sensor/fdtd_sensor_report.html",
+  "report_crosstalk_strength": 0.25,
+  "response_by_case": {
+    "center": 1.5484771982633752,
+    "cra10x": 1.5580154186000235,
+    "edge20x": 1.3341677613318683
+  },
+  "sensor_metrics": {
+    "mae": 2.2317206136827327e-05,
+    "max_abs": 0.00015191577868566984,
+    "normalized_mae": 0.08135823795795118
+  },
+  "using_external_default_lut": true,
+  "validation": {
+    "cases": [
+      "center",
+      "cra10x",
+      "edge20x"
+    ],
+    "convergence_report": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/convergence_report.json",
+    "issues": [],
+    "kernel_shape": [
+      0,
+      0
+    ],
+    "mode": "split-pd-1x1",
+    "n_cases": 3,
+    "n_long_rows": 18,
+    "n_regions": 2,
+    "n_summary_rows": 9,
+    "n_wavelengths": 3,
+    "notes": [
+      "Primary response uses Si-volume absorption distribution integrated over each collection region.",
+      "The absolute scale is calibrated to the full Si top/bottom flux absorption estimate.",
+      "TCAD 1D generation export collapses the Si volume absorption over x/z and scales it with incident_photon_flux_cm2_s.",
+      "TCAD 2D generation export preserves x/depth variation and collapses only the out-of-plane z direction.",
+      "TCAD 3D generation export preserves x/depth/z variation for future 3D electrical import.",
+      "Split-PD phase proxies are optical-only PDAF signals, not charge-collection TCAD results.",
+      "OCL shifts are explicit lens/aperture offsets in microns; replace defaults with product geometry.",
+      "Default imaging-pixel runs use shield.mode=off; metal optical masks are only present for edge or PDAF shield modes.",
+      "Finite-pupil integration samples a uniform disk in direction-cosine space using the supplied f-number.",
+      "Use resolution and time convergence before quantitative camera-system use."
+    ],
+    "ok": true,
+    "response_model": "si_volume_absorption_flux_calibrated_v1",
+    "schema": "camera_supercell_optical_lut_v2",
+    "source_path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+    "wavelengths_nm": [
+      450.0,
+      550.0,
+      650.0
+    ]
+  }
+}

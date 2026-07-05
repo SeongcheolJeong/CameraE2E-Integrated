@@ -1,0 +1,178 @@
+{
+  "schema": "image_sensor_stack_v1",
+  "name": "DEF-2603-802_def_2603_802_omnivision_ov50x_techinsights_proxy_stack",
+  "description": "FDTD runnable proxy stack derived from TechInsights local metadata. Use as a starting geometry, not as a calibrated product deck.",
+  "calibration_status": {
+    "is_measured": false,
+    "geometry_measured": false,
+    "mode": "techinsights_metadata_proxy",
+    "source_report_code": "DEF-2603-802",
+    "note": "Only public/report metadata fields were extracted; layer split and n,k remain proxy values."
+  },
+  "geometry_um": {
+    "pitch": 1.6,
+    "pml": 0.45,
+    "air_top": 0.55,
+    "lens_height": 0.64,
+    "lens_edge_gap": 0.048,
+    "cfa_thickness": 0.88,
+    "passivation_thickness": 1.28,
+    "si_thickness": 3.0,
+    "bottom_air": 0.25,
+    "metal_edge_width": 0.136
+  },
+  "shield": {
+    "mode": "off",
+    "mask_edge_width_um": 0.136,
+    "pdaf_axis": "x",
+    "notes": "Generated database keeps optical masks off unless a measured PDAF/aperture mask is modeled separately."
+  },
+  "materials": {
+    "silicon": {
+      "nk_table": "../../materials/Si-Green-2008.yml",
+      "measured": false,
+      "source": "M. A. Green, Solar Energy Materials and Solar Cells 92, 1305-1310 (2008), via refractiveindex.info database.",
+      "source_url": "https://doi.org/10.1016/j.solmat.2008.06.009",
+      "usage": "substrate / photodiode absorption volume"
+    },
+    "cfa_red": {
+      "nk_table": "../../materials/nk/cfa_red_proxy.csv",
+      "measured": false,
+      "source": "n anchored to published image-sensor-chip patent example: red filter n=1.59 at 620 nm; k remains a proxy absorption curve.",
+      "source_url": "https://patents.google.com/patent/US9657182B2/en",
+      "usage": "red color filter"
+    },
+    "cfa_green": {
+      "nk_table": "../../materials/nk/cfa_green_proxy.csv",
+      "measured": false,
+      "source": "n anchored to published image-sensor-chip patent example: green filter n=1.60 at 550 nm; k remains a proxy absorption curve.",
+      "source_url": "https://patents.google.com/patent/US9657182B2/en",
+      "usage": "green color filter"
+    },
+    "cfa_blue": {
+      "nk_table": "../../materials/nk/cfa_blue_proxy.csv",
+      "measured": false,
+      "source": "n anchored to published image-sensor-chip patent example: blue filter n=1.61 at 450 nm; k remains a proxy absorption curve.",
+      "source_url": "https://patents.google.com/patent/US9657182B2/en",
+      "usage": "blue color filter"
+    },
+    "passivation": {
+      "nk_table": "../../materials/nk/sio2_visible_proxy.csv",
+      "measured": false,
+      "source": "SiO2-like effective dielectric using fused-silica visible dispersion; BSI Al2O3 passivation patents report 1-150 nm passivation, but this single-layer model cannot represent the full AR/passivation stack.",
+      "source_url": "https://opg.optica.org/abstract.cfm?URI=josa-55-10-1205",
+      "usage": "passivation / dielectric layer"
+    },
+    "lens": {
+      "nk_table": "../../materials/nk/ocl_polymer_proxy.csv",
+      "measured": false,
+      "source": "n anchored to published image-sensor-chip patent example: microlens height 0.657 um and n=1.61; dispersion remains proxy.",
+      "source_url": "https://patents.google.com/patent/US9657182B2/en",
+      "usage": "on-chip microlens"
+    },
+    "metal": {
+      "model": "pec",
+      "source": "Stable PEC approximation for optional PDAF/edge-aperture masks. Use calibrated/dispersive metal only after stability and convergence checks.",
+      "usage": "optional PDAF/aperture mask only; not present when shield.mode is off"
+    }
+  },
+  "accuracy_notes": [
+    "Generated from report metadata/tables, not from a process deck.",
+    "CFA/OCL/passivation split is a lumped proxy when only optical stack height is known.",
+    "Material n,k values are inherited from proxy reference files.",
+    "Run optical/TCAD convergence gates before using this quantitatively.",
+    "This config is not a product-calibrated sensor stack.",
+    "CFA and OCL refractive-index anchors are public patent example values, not target-product measured values.",
+    "CFA extinction coefficients are proxy values; public sources found did not provide full RGB n,k dispersion for a target sensor.",
+    "The single passivation layer approximates a more complex BSI passivation/AR stack.",
+    "Quantitative CRA/color response requires measured geometry and n,k data for the target sensor.",
+    "Use convergence sweeps with field-decay termination before using the LUT quantitatively."
+  ],
+  "public_references": [
+    {
+      "topic": "CFA/microlens public example stack",
+      "url": "https://patents.google.com/patent/US9657182B2/en",
+      "reflected_values": [
+        "CFA film thickness 0.8 um",
+        "upper planarization 0.3 um, n=1.56, not explicitly modeled",
+        "microlens height 0.657 um, n=1.61",
+        "R/G/B filter n anchors: 1.59 at 620 nm, 1.60 at 550 nm, 1.61 at 450 nm"
+      ]
+    },
+    {
+      "topic": "BSI passivation thickness range",
+      "url": "https://patents.google.com/patent/US20110101482A1/en",
+      "reflected_values": [
+        "Al2O3 backside passivation range 1-150 nm; proxy config uses 80 nm effective dielectric"
+      ]
+    },
+    {
+      "topic": "Small-pixel BSI/DTI trend",
+      "url": "https://www.imagesensors.org/Past%20Workshops/2023%20Workshop/2023%20Papers/R1.pdf",
+      "reflected_values": [
+        "recent small-pixel DTI depth examples span roughly 1.7-3.8 um; proxy config uses 2.8 um Si optical thickness"
+      ]
+    },
+    {
+      "topic": "BSI optical-stack trend and lightpipe indices",
+      "url": "https://ptacts.uspto.gov/ptacts/public-informations/petitions/1550798/download-documents?artifactId=QFQI_f_G1F8TAPlesGyKpsIkr4F74yrtVmAL5q5KxSt5CObAqeEpCMs",
+      "reflected_values": [
+        "BSI is mainstream for sub-1.5 um pixels",
+        "example lightpipe materials: SiN n=2.05 and organic fill n=1.6"
+      ]
+    }
+  ],
+  "techinsights_source": {
+    "code": "DEF-2603-802",
+    "title": "OmniVision OV50X Device Essentials Folder",
+    "content_title": "OmniVision OV50X (OV50X50), 50MP, 1\" Format, 1.60 µm Pixel Pitch, Stacked Back Illuminated CMOS Image Sensor with TheiaCel™ Technology",
+    "source_html": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/007_DEF-2603-802.html"
+    ],
+    "derived_geometry_sources": {
+      "pitch": "pixel_pitch_um",
+      "si_thickness": "active_si_thickness_um",
+      "lumped_optical_stack": "lumped_from_report_optical_stack_height"
+    },
+    "derived_specs": {
+      "illumination": "back_illuminated",
+      "sensor_modality": "cmos_image_sensor",
+      "is_stacked": true,
+      "has_dbi": true,
+      "has_dti": true,
+      "is_tof": true,
+      "has_hdr": true,
+      "has_lofic": true,
+      "dti_type": "partial_depth_back_dti",
+      "pixel_architecture": "quad_pixel",
+      "transistors_per_pixel": 2.5,
+      "cfa_pattern": "bayer",
+      "microlens_type": "gapless_ocl",
+      "grid_material": "w",
+      "has_pdaf": true,
+      "pixel_pitch_um": 1.6,
+      "resolution_mp": 50.0,
+      "optical_format": "1\"",
+      "resolution_x": 50,
+      "resolution_y": 50,
+      "ocl_pitch_um": 3.2,
+      "color_filter_pitch_um": 3.2,
+      "grid_pitch_um": 3.2,
+      "active_si_thickness_um": 3.0,
+      "optical_stack_height_um": 2.8,
+      "dti_depth_um": 2.0,
+      "cfa_thickness_um": 3.0,
+      "cfa_thickness_min_um": 2.0,
+      "cfa_thickness_max_um": 3.0,
+      "package_dimensions_text": "24.0 mm × 23.2 mm × 10.8 mm thick",
+      "die_size_text": "15.06 mm × 11.54 mm (173.79 mm 2 )",
+      "die_area_mm2": 173.79,
+      "pixel_sharing": "4-shared (2 × 2-pixel configuration), 2.5T effective per pixel",
+      "cis_foundry": "TSMC",
+      "metal_stack": "6 Cu + MIM capacitor’s electrodes + 1 Cu DBI pad, 1 back W light shield/grid + 1 back Al bond pad",
+      "pixel_beol_metal_pitch_nm": 200.0,
+      "cis_process_nm": 65.0,
+      "logic_process_nm": 28.0
+    }
+  }
+}

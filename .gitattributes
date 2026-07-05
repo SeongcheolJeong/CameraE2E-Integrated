@@ -1,0 +1,4 @@
+*.sqlite binary
+*.npz binary
+*.png binary
+camerae2e_db/**/*.csv -whitespace

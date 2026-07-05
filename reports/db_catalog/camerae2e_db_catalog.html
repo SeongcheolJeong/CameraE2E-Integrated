@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CameraE2E DB Catalog</title>
+  <style>
+    body { margin: 32px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #1f2933; }
+    h1, h2, h3 { color: #102a43; }
+    code, pre { background: #edf2f7; border-radius: 6px; }
+    code { padding: 2px 5px; }
+    pre { padding: 14px; overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; margin: 12px 0 22px; }
+    th, td { border: 1px solid #d8dee4; padding: 8px; vertical-align: top; }
+    th { background: #eef4f8; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 18px; }
+    .card { border: 1px solid #d8dee4; border-radius: 12px; padding: 16px; background: #fbfcfd; }
+    .status { display: inline-block; border-radius: 999px; padding: 2px 9px; font-size: 12px; font-weight: 700; }
+    .active { background: #d8f3dc; color: #1b4332; }
+    .available { background: #dbeafe; color: #1e3a8a; }
+    .fallback { background: #fef3c7; color: #92400e; }
+    .missing { background: #fee2e2; color: #991b1b; }
+    .hint { color: #52606d; }
+    .path { word-break: break-all; }
+  </style>
+</head>
+<body>
+  <h1>CameraE2E DB Catalog</h1>
+  <p>This catalog indexes the DB/LUT/model-profile assets that CameraE2E can use as block parameters. It separates active external DBs from bundled fallback data and gives direct parameter bundles for runtime APIs.</p>
+
+  <h2>Summary</h2>
+  <table>
+    <tr><th>Total entries</th><td>10</td></tr>
+    <tr><th>Active entries</th><td>isetcam_upstream_snapshot, hwisp_parameter_profiles, lens_patents_active, task_perception_model_profiles, tcad_sensor_db_active, fdtd_sensor_lut_active</td></tr>
+  </table>
+  <table>
+    <tr><th>Family</th><th>Status counts</th></tr>
+    <tr><td>assets</td><td><span class='status active'>active: 1</span></td></tr>
+<tr><td>isp</td><td><span class='status active'>active: 1</span></td></tr>
+<tr><td>lens</td><td><span class='status active'>active: 1</span> <span class='status available'>available: 1</span> <span class='status fallback'>fallback: 1</span></td></tr>
+<tr><td>parity</td><td><span class='status available'>available: 1</span></td></tr>
+<tr><td>perception</td><td><span class='status active'>active: 1</span></td></tr>
+<tr><td>sensor</td><td><span class='status active'>active: 2</span> <span class='status available'>available: 1</span></td></tr>
+  </table>
+
+  <h2>Search And Parameter Use</h2>
+  <pre><code>from pyisetcam import camerae2e_db_search, camerae2e_db_parameters
+
+# Find all Lens DB entries.
+lens_rows = camerae2e_db_search("lens", include_missing=False)
+
+# Get direct parameters for the active Lens DB.
+lens_params = camerae2e_db_parameters("lens_patents_active")
+# lens_params["db_path"], lens_params["psf_dir"], lens_params["highres_psf_dir"]
+
+# Use the parameters in CameraE2E APIs.
+from pyisetcam import lens_patent_search, lens_patent_raytrace_optics
+rows = lens_patent_search(db_path=lens_params["db_path"], require_camerae2e=True, limit=5)
+optics = lens_patent_raytrace_optics(rows[0]["simulation_id"], psf_dir=lens_params["highres_psf_dir"])</code></pre>
+
+  <h2>Catalog Entries</h2>
+  <div class="grid">
+    <section class="card">
+  <h3>isetcam_upstream_snapshot <span class="status active">active</span></h3>
+  <p><b>Family:</b> assets / <b>Role:</b> upstream-matlab-asset-snapshot</p>
+  <p>Pinned upstream ISETCam asset snapshot used by AssetStore for MATLAB-origin data files.</p>
+  <p class="path"><b>Path:</b> <code>/Users/seongcheoljeong/Documents/CameraE2E/.cache/upstream/isetcam/412b9f9bdb3262f2552b96f0e769b5ad6cdff821</code></p>
+  <p><b>Parameter use:</b> Use AssetStore.default(), or pass PYISETCAM_UPSTREAM_ROOT for an explicit snapshot.</p>
+  <p><b>Env vars:</b> PYISETCAM_CACHE_ROOT, PYISETCAM_UPSTREAM_ROOT</p>
+  <p><b>Tags:</b> assets, upstream, isetcam, matlab, snapshot</p>
+  <table><tr><th>Parameter</th><th>Value</th></tr><tr><td>cache_root</td><td class='path'><code>/Users/seongcheoljeong/Documents/CameraE2E/.cache</code></td></tr>
+<tr><td>sha</td><td class='path'><code>412b9f9bdb3262f2552b96f0e769b5ad6cdff821</code></td></tr>
+<tr><td>snapshot_root</td><td class='path'><code>/Users/seongcheoljeong/Documents/CameraE2E/.cache/upstream/isetcam/412b9f9bdb3262f2552b96f0e769b5ad6cdff821</code></td></tr></table>
+  <details><summary>Metadata</summary><pre><code>{
+  &quot;sha&quot;: &quot;412b9f9bdb3262f2552b96f0e769b5ad6cdff821&quot;
+}</code></pre></details>
+</section>
+<section class="card">
+  <h3>hwisp_parameter_profiles <span class="status active">active</span></h3>
+  <p><b>Family:</b> isp / <b>Role:</b> timing-and-3a-parameter-profiles</p>
+  <p>HW ISP timing, transport, and 3A profile DB for system-level latency simulation.</p>
+  <p class="path"><b>Path:</b> <code>/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/hwisp</code></p>
+  <p><b>Parameter use:</b> Use profile_name with hw_isp_config_from_profile(profile_name).</p>
+  <p><b>Env vars:</b> PYISETCAM_HWISP_DB</p>
+  <p><b>Tags:</b> isp, hwisp, latency, 3a, profile</p>
+  <table><tr><th>Parameter</th><th>Value</th></tr><tr><td>db_path</td><td class='path'><code>/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/hwisp</code></td></tr>
+<tr><td>default_profile</td><td class='path'><code>generic_1080p_30fps</code></td></tr>
+<tr><td>profile_names</td><td class='path'><code>[&quot;generic_1080p_30fps&quot;, &quot;rpi_vc4_imx219_public_seed&quot;]</code></td></tr></table>
+  <details><summary>Metadata</summary><pre><code>{
+  &quot;profile_count&quot;: 2
+}</code></pre></details>
+</section>
+<section class="card">
+  <h3>rayoptics_lens_db_v9 <span class="status available">available</span></h3>
+  <p><b>Family:</b> lens / <b>Role:</b> external-optics-prescription-and-psf</p>
+  <p>External RayOptics v9 Lens DB package prepared for CameraE2E.</p>
+  <p class="path"><b>Path:</b> <code>/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite</code></p>
+  <p><b>Parameter use:</b> Set PYISETCAM_LENS_DB_ROOT to this package root, or pass db_path/psf_dir explicitly.</p>
+  <p><b>Env vars:</b> PYISETCAM_LENS_DB_ROOT</p>
+  <p><b>Tags:</b> lens, rayoptics, external, v9, sqlite, psf</p>
+  <table><tr><th>Parameter</th><th>Value</th></tr><tr><td>data_dir</td><td class='path'><code>/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents</code></td></tr>
+<tr><td>db_path</td><td class='path'><code>/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite</code></td></tr>
+<tr><td>highres_psf_dir</td><td class='path'><code>/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/raytrace_psf_highres</code></td></tr>
+<tr><td>psf_dir</td><td class='path'><code>/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/raytrace_psf</code></td></tr></table>
+  <details><summary>Metadata</summary><pre><code>{
+  &quot;highres_psf_summary&quot;: {
+    &quot;by_company&quot;: {
+      &quot;Canon&quot;: {
+        &quot;generated&quot;: 1,
+        &quot;total&quot;: 1
+      },
+      &quot;Largan&quot;: {
+        &quot;generated&quot;: 1,
+        &quot;total&quot;: 1
+      },
+      &quot;Panasonic&quot;: {
+        &quot;generated&quot;: 1,
+        &quot;total&quot;: 1
+      },
+      &quot;Ricoh/Pentax&quot;: {
+        &quot;generated&quot;: 1,
+        &quot;total&quot;: 1
+      },
+      &quot;Samsung&quot;: {
+        &quot;generated&quot;: 1,
+        &quot;total&quot;: 1
+      }
+    },
+    &quot;generated&quot;: 5,
+    &quot;total&quot;: 5
+  },
+  &quot;raytrace_psf_summary&quot;: {
+    &quot;by_company&quot;: {
+      &quot;Canon&quot;: {
+        &quot;failed&quot;: 48,
+        &quot;generated&quot;: 105,
+        &quot;total&quot;: 153
+      },
+      &quot;Konica Minolta&quot;: {
+        &quot;failed&quot;: 2,
+        &quot;generated&quot;: 26,
+        &quot;total&quot;: 28
+      },
+      &quot;Largan&quot;: {
+        &quot;failed&quot;: 70,
+        &quot;generated&quot;: 5,
+        &quot;total&quot;: 75
+      },
+      &quot;Nikon&quot;: {
+        &quot;failed&quot;: 3,
+        &quot;generated&quot;: 76,
+        &quot;total&quot;: 79
+      },
+      &quot;Olympus/OM System&quot;: {
+        &quot;failed&quot;: 4,
+        &quot;generated&quot;: 53,
+        &quot;total&quot;: 57
+      },
+      &quot;Panasonic&quot;: {
+        &quot;failed&quot;: 13,
+        &quot;generated&quot;: 128,
+        &quot;total&quot;: 141
+      },
+      &quot;Ricoh/Pentax&quot;: {
+        &quot;generated&quot;: 13,
+        &quot;total&quot;: 13
+      },
+      &quot;Samsung&quot;: {
+        &quot;generated&quot;: 26,
+        &quot;total&quot;: 26
+      },
+      &quot;Seiko Epson&quot;: {
+        &quot;failed&quot;: 6,
+        &quot;generated&quot;: 6,
+        &quot;total&quot;: 12
+      }
+    },
+    &quot;failed&quot;: 146,
+    &quot;generated&quot;: 438,
+    &quot;total&quot;: 584
+  },
+  &quot;selected_as_active&quot;: true,
+  &quot;summary&quot;: {
+    &quot;camerae2e_ready_by_company&quot;: {
+      &quot;Canon&quot;: 153,
+      &quot;Konica Minolta&quot;: 28,
+      &quot;Largan&quot;: 75,
+      &quot;Nikon&quot;: 79,
+      &quot;Olympus/OM System&quot;: 57,
+      &quot;Panasonic&quot;: 141,
+      &quot;Ricoh/Pentax&quot;: 13,
+      &quot;Samsung&quot;: 26,
+      &quot;Seiko Epson&quot;: 12
+    },
+    &quot;companies&quot;: 14,
+    &quot;lenses&quot;: 427,
+    &quot;readiness_counts&quot;: {
+      &quot;needs_variable_distances&quot;: 51,
+      &quot;ready_configured&quot;: 176,
+      &quot;ready_staging&quot;: 200
+    },
+    &quot;simulation_results&quot;: 822,
+    &quot;status_counts&quot;: {
+      &quot;camerae2e_ready&quot;: 584,
+      &quot;metadata_only&quot;: 3,
+      &quot;partial&quot;: 235
+    },
+    &quot;surfaces&quot;: 21493
+  }
+}</code></pre></details>
+</section>
+<section class="card">
+  <h3>lens_patents_bundled_v6 <span class="status fallback">fallback</span></h3>
+  <p><b>Family:</b> lens / <b>Role:</b> fallback-optics-prescription-and-psf</p>
+  <p>Bundled v6 Lens DB fallback shipped with pyisetcam package data.</p>
+  <p class="path"><b>Path:</b> <code>/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents/lens_patent_simulation_v6.sqlite</code></p>
+  <p><b>Parameter use:</b> Use when external RayOptics v9 package is unavailable or when a reproducible bundled fallback is needed.</p>
+  <p><b>Env vars:</b> -</p>
+  <p><b>Tags:</b> lens, rayoptics, fallback, sqlite</p>
+  <table><tr><th>Parameter</th><th>Value</th></tr><tr><td>data_dir</td><td class='path'><code>/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents</code></td></tr>
+<tr><td>db_path</td><td class='path'><code>/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents/lens_patent_simulation_v6.sqlite</code></td></tr>
+<tr><td>highres_psf_dir</td><td class='path'><code>/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents/raytrace_psf_highres</code></td></tr>
+<tr><td>psf_dir</td><td class='path'><code>/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents/raytrace_psf</code></td></tr></table>
+  <details><summary>Metadata</summary><pre><code>{
+  &quot;highres_psf_summary&quot;: {
+    &quot;by_company&quot;: {
+      &quot;Canon&quot;: {
+        &quot;generated&quot;: 1,
+        &quot;total&quot;: 1
+      }
+    },
+    &quot;generated&quot;: 1,
+    &quot;total&quot;: 1
+  },
+  &quot;raytrace_psf_summary&quot;: {
+    &quot;by_company&quot;: {
+      &quot;Canon&quot;: {
+        &quot;failed&quot;: 45,
+        &quot;generated&quot;: 99,
+        &quot;total&quot;: 144
+      },
+      &quot;Konica Minolta&quot;: {
+        &quot;failed&quot;: 2,
+        &quot;generated&quot;: 22,
+        &quot;total&quot;: 24
+      },
+      &quot;Largan&quot;: {
+        &quot;failed&quot;: 67,
+        &quot;total&quot;: 67
+      },
+      &quot;Nikon&quot;: {
+        &quot;failed&quot;: 3,
+        &quot;generated&quot;: 76,
+        &quot;total&quot;: 79
+      },
+      &quot;Olympus/OM System&quot;: {
+        &quot;failed&quot;: 4,
+        &quot;generated&quot;: 53,
+        &quot;total&quot;: 57
+      },
+      &quot;Panasonic&quot;: {
+        &quot;failed&quot;: 12,
+        &quot;generated&quot;: 126,
+        &quot;total&quot;: 138
+      },
+      &quot;Samsung&quot;: {
+        &quot;generated&quot;: 26,
+        &quot;total&quot;: 26
+      },
+      &quot;Seiko Epson&quot;: {
+        &quot;failed&quot;: 6,
+        &quot;generated&quot;: 6,
+        &quot;total&quot;: 12
+      }
+    },
+    &quot;failed&quot;: 139,
+    &quot;generated&quot;: 408,
+    &quot;total&quot;: 547
+  },
+  &quot;summary&quot;: {
+    &quot;camerae2e_ready_by_company&quot;: {
+      &quot;Canon&quot;: 144,
+      &quot;Konica Minolta&quot;: 24,
+      &quot;Largan&quot;: 67,
+      &quot;Nikon&quot;: 79,
+      &quot;Olympus/OM System&quot;: 57,
+      &quot;Panasonic&quot;: 138,
+      &quot;Samsung&quot;: 26,
+      &quot;Seiko Epson&quot;: 12
+    },
+    &quot;companies&quot;: 14,
+    &quot;lenses&quot;: 414,
+    &quot;readiness_counts&quot;: {
+      &quot;needs_variable_distances&quot;: 47,
+      &quot;ready_configured&quot;: 168,
+      &quot;ready_staging&quot;: 199
+    },
+    &quot;simulation_results&quot;: 793,
+    &quot;status_counts&quot;: {
+      &quot;camerae2e_ready&quot;: 547,
+      &quot;metadata_only&quot;: 4,
+      &quot;partial&quot;: 242
+    },
+    &quot;surfaces&quot;: 20693
+  }
+}</code></pre></details>
+</section>
+<section class="card">
+  <h3>lens_patents_active <span class="status active">active</span></h3>
+  <p><b>Family:</b> lens / <b>Role:</b> optics-prescription-and-psf</p>
+  <p>Active lens patent SQLite DB and RayOptics PSF package used by lens_patent_* APIs.</p>
+  <p class="path"><b>Path:</b> <code>/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite</code></p>
+  <p><b>Parameter use:</b> Use db_path for lens_patent_search/get/optics and psf_dir/highres_psf_dir for lens_patent_raytrace_optics.</p>
+  <p><b>Env vars:</b> PYISETCAM_LENS_PATENT_DB, PYISETCAM_LENS_DB_ROOT, PYISETCAM_LENS_PATENT_PSF_DIR</p>
+  <p><b>Tags:</b> lens, rayoptics, psf, sqlite, active</p>
+  <table><tr><th>Parameter</th><th>Value</th></tr><tr><td>data_dir</td><td class='path'><code>/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents</code></td></tr>
+<tr><td>db_path</td><td class='path'><code>/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite</code></td></tr>
+<tr><td>highres_psf_dir</td><td class='path'><code>/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/raytrace_psf_highres</code></td></tr>
+<tr><td>psf_dir</td><td class='path'><code>/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/raytrace_psf</code></td></tr></table>
+  <details><summary>Metadata</summary><pre><code>{
+  &quot;camerae2e_manifest&quot;: {
+    &quot;built_at&quot;: &quot;2026-06-27T01:51:09.755734+00:00&quot;,
+    &quot;caveats&quot;: [
+      &quot;Raytrace PSF files are RayOptics geometric ray-histogram PSFs; diffraction is not included.&quot;,
+      &quot;Rows with use_tier=proxy_only can feed thin-lens/proxy CameraE2E optics but do not have generated RayOptics PSF assets.&quot;,
+      &quot;Caption-derived rows preserve patent f/Fno/HFOV values and are marked with optical_spec_source=caption.&quot;
+    ],
+    &quot;files&quot;: {
+      &quot;company_sets_dir&quot;: &quot;companies&quot;,
+      &quot;inventory_csv&quot;: &quot;camerae2e_inventory.csv&quot;,
+      &quot;master_db&quot;: &quot;lens_patent_simulation_v9.sqlite&quot;,
+      &quot;psf_debug_dir&quot;: &quot;raytrace_psf&quot;,
+      &quot;psf_highres_dir&quot;: &quot;raytrace_psf_highres&quot;
+    }
+  },
+  &quot;highres_psf_summary&quot;: {
+    &quot;by_company&quot;: {
+      &quot;Canon&quot;: {
+        &quot;generated&quot;: 1,
+        &quot;total&quot;: 1
+      },
+      &quot;Largan&quot;: {
+        &quot;generated&quot;: 1,
+        &quot;total&quot;: 1
+      },
+      &quot;Panasonic&quot;: {
+        &quot;generated&quot;: 1,
+        &quot;total&quot;: 1
+      },
+      &quot;Ricoh/Pentax&quot;: {
+        &quot;generated&quot;: 1,
+        &quot;total&quot;: 1
+      },
+      &quot;Samsung&quot;: {
+        &quot;generated&quot;: 1,
+        &quot;total&quot;: 1
+      }
+    },
+    &quot;generated&quot;: 5,
+    &quot;total&quot;: 5
+  },
+  &quot;raytrace_psf_summary&quot;: {
+    &quot;by_company&quot;: {
+      &quot;Canon&quot;: {
+        &quot;failed&quot;: 48,
+        &quot;generated&quot;: 105,
+        &quot;total&quot;: 153
+      },
+      &quot;Konica Minolta&quot;: {
+        &quot;failed&quot;: 2,
+        &quot;generated&quot;: 26,
+        &quot;total&quot;: 28
+      },
+      &quot;Largan&quot;: {
+        &quot;failed&quot;: 70,
+        &quot;generated&quot;: 5,
+        &quot;total&quot;: 75
+      },
+      &quot;Nikon&quot;: {
+        &quot;failed&quot;: 3,
+        &quot;generated&quot;: 76,
+        &quot;total&quot;: 79
+      },
+      &quot;Olympus/OM System&quot;: {
+        &quot;failed&quot;: 4,
+        &quot;generated&quot;: 53,
+        &quot;total&quot;: 57
+      },
+      &quot;Panasonic&quot;: {
+        &quot;failed&quot;: 13,
+        &quot;generated&quot;: 128,
+        &quot;total&quot;: 141
+      },
+      &quot;Ricoh/Pentax&quot;: {
+        &quot;generated&quot;: 13,
+        &quot;total&quot;: 13
+      },
+      &quot;Samsung&quot;: {
+        &quot;generated&quot;: 26,
+        &quot;total&quot;: 26
+      },
+      &quot;Seiko Epson&quot;: {
+        &quot;failed&quot;: 6,
+        &quot;generated&quot;: 6,
+        &quot;total&quot;: 12
+      }
+    },
+    &quot;failed&quot;: 146,
+    &quot;generated&quot;: 438,
+    &quot;total&quot;: 584
+  },
+  &quot;summary&quot;: {
+    &quot;camerae2e_ready_by_company&quot;: {
+      &quot;Canon&quot;: 153,
+      &quot;Konica Minolta&quot;: 28,
+      &quot;Largan&quot;: 75,
+      &quot;Nikon&quot;: 79,
+      &quot;Olympus/OM System&quot;: 57,
+      &quot;Panasonic&quot;: 141,
+      &quot;Ricoh/Pentax&quot;: 13,
+      &quot;Samsung&quot;: 26,
+      &quot;Seiko Epson&quot;: 12
+    },
+    &quot;companies&quot;: 14,
+    &quot;lenses&quot;: 427,
+    &quot;readiness_counts&quot;: {
+      &quot;needs_variable_distances&quot;: 51,
+      &quot;ready_configured&quot;: 176,
+      &quot;ready_staging&quot;: 200
+    },
+    &quot;simulation_results&quot;: 822,
+    &quot;status_counts&quot;: {
+      &quot;camerae2e_ready&quot;: 584,
+      &quot;metadata_only&quot;: 3,
+      &quot;partial&quot;: 235
+    },
+    &quot;surfaces&quot;: 21493
+  }
+}</code></pre></details>
+</section>
+<section class="card">
+  <h3>matlab_parity_baselines <span class="status available">available</span></h3>
+  <p><b>Family:</b> parity / <b>Role:</b> matlab-baseline-evidence</p>
+  <p>Curated MATLAB baseline .mat DB and parity case registry for regression/evidence reports.</p>
+  <p class="path"><b>Path:</b> <code>/Users/seongcheoljeong/Documents/CameraE2E/tests/parity/baselines</code></p>
+  <p><b>Parameter use:</b> Use cases_yaml and baselines_dir with tests/parity or tools/parity_report.py.</p>
+  <p><b>Env vars:</b> PYISETCAM_RUN_PARITY</p>
+  <p><b>Tags:</b> parity, matlab, baseline, evidence</p>
+  <table><tr><th>Parameter</th><th>Value</th></tr><tr><td>baselines_dir</td><td class='path'><code>/Users/seongcheoljeong/Documents/CameraE2E/tests/parity/baselines</code></td></tr>
+<tr><td>cases_yaml</td><td class='path'><code>/Users/seongcheoljeong/Documents/CameraE2E/tests/parity/cases.yaml</code></td></tr>
+<tr><td>latest_report</td><td class='path'><code>/Users/seongcheoljeong/Documents/CameraE2E/reports/parity/latest.json</code></td></tr></table>
+  <details><summary>Metadata</summary><pre><code>{
+  &quot;baseline_count&quot;: 261,
+  &quot;latest_report_exists&quot;: true
+}</code></pre></details>
+</section>
+<section class="card">
+  <h3>task_perception_model_profiles <span class="status active">active</span></h3>
+  <p><b>Family:</b> perception / <b>Role:</b> model-profile-catalog</p>
+  <p>Task perception model profile DB covering YOLO, tracking, detection, segmentation, pose, OBB, and optional adapters.</p>
+  <p class="path"><b>Path:</b> <code>/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/task_perception/model_profiles.json</code></p>
+  <p><b>Parameter use:</b> Use profile_name with task_model_config_from_profile(profile_name), then task_model_from_config.</p>
+  <p><b>Env vars:</b> PYISETCAM_TASK_MODEL_CACHE</p>
+  <p><b>Tags:</b> perception, yolo, detection, segmentation, tracking, model-profile</p>
+  <table><tr><th>Parameter</th><th>Value</th></tr><tr><td>cache_dir</td><td class='path'><code>/Users/seongcheoljeong/.cache/pyisetcam/task_perception/yolo</code></td></tr>
+<tr><td>profile_names</td><td class='path'><code>[&quot;custom_callable&quot;, &quot;sam_vit_b_automatic&quot;, &quot;torchvision_fasterrcnn_resnet50_fpn_v2_coco&quot;, &quot;torchvision_maskrcnn_resnet50_fpn_v2_coco&quot;, &quot;transformers_detr_resnet50_coco&quot;, &quot;transformers_mask2former_ade20k&quot;, &quot;ultralytics_yolo11n_bytetrack&quot;,...</code></td></tr>
+<tr><td>profiles_path</td><td class='path'><code>/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/task_perception/model_profiles.json</code></td></tr></table>
+  <details><summary>Metadata</summary><pre><code>{
+  &quot;cached_model_count&quot;: 5,
+  &quot;profile_count&quot;: 12
+}</code></pre></details>
+</section>
+<section class="card">
+  <h3>tcad_sensor_db_active <span class="status active">active</span></h3>
+  <p><b>Family:</b> sensor / <b>Role:</b> electrical-collection-lut</p>
+  <p>Active DEVSIM/TCAD sensor collection DB joining FDTD generation maps with split-PD electrical summaries.</p>
+  <p class="path"><b>Path:</b> <code>/Users/seongcheoljeong/FDTD</code></p>
+  <p><b>Parameter use:</b> Use these paths with tcad_sensor_db_load(...) or sensor_attach_tcad_lut.</p>
+  <p><b>Env vars:</b> PYISETCAM_FDTD_ROOT</p>
+  <p><b>Tags:</b> sensor, tcad, devsim, collection, split-pd</p>
+  <table><tr><th>Parameter</th><th>Value</th></tr><tr><td>accuracy_gate_path</td><td class='path'><code>/Users/seongcheoljeong/FDTD/runs/tcad_accuracy_gate_reference_profile/tcad_accuracy_gate.json</code></td></tr>
+<tr><td>collection_summary_paths</td><td class='path'><code>[&quot;/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json&quot;, &quot;/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json&quot;]</code></td></tr>
+<tr><td>generation_map_path</td><td class='path'><code>/Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz</code></td></tr>
+<tr><td>root</td><td class='path'><code>/Users/seongcheoljeong/FDTD</code></td></tr></table>
+  <details><summary>Metadata</summary><pre><code>{
+  &quot;validation&quot;: {
+    &quot;accuracy_ready&quot;: false,
+    &quot;checks&quot;: {
+      &quot;accuracy_gate&quot;: {
+        &quot;accuracy_blocking_failure_count&quot;: 8,
+        &quot;accuracy_ready&quot;: false,
+        &quot;framework_blocking_failure_count&quot;: 0,
+        &quot;framework_ready&quot;: true,
+        &quot;issues&quot;: [],
+        &quot;ok&quot;: true,
+        &quot;profile_name&quot;: &quot;reference_cmos_ppd_1p4um_not_measured&quot;,
+        &quot;source_path&quot;: &quot;/Users/seongcheoljeong/FDTD/runs/tcad_accuracy_gate_reference_profile/tcad_accuracy_gate.json&quot;,
+        &quot;warnings&quot;: [
+          &quot;TCAD accuracy gate is not ready; treat outputs as proxy simulation&quot;
+        ]
+      },
+      &quot;collection_summaries&quot;: {
+        &quot;cases&quot;: [
+          &quot;center&quot;,
+          &quot;edge20x&quot;
+        ],
+        &quot;issues&quot;: [],
+        &quot;n_summaries&quot;: 2,
+        &quot;ok&quot;: true,
+        &quot;warnings&quot;: [
+          &quot;/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json uses proxy electrical model proxy-pinned-split-pd&quot;,
+          &quot;/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json uses proxy electrical model proxy-pinned-split-pd&quot;
+        ]
+      },
+      &quot;generation_map&quot;: {
+        &quot;cases&quot;: [
+          &quot;center&quot;,
+          &quot;edge20x&quot;
+        ],
+        &quot;generation_max&quot;: 6.507544160470456e+22,
+        &quot;generation_min&quot;: 2.5512580123495656,
+        &quot;issues&quot;: [],
+        &quot;ok&quot;: true,
+        &quot;schema&quot;: &quot;tcad_generation_map_2d_x_depth_v1&quot;,
+        &quot;shape&quot;: [
+          2,
+          10,
+          19
+        ],
+        &quot;source_path&quot;: &quot;/Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz&quot;,
+        &quot;warnings&quot;: []
+      }
+    },
+    &quot;framework_ready&quot;: true,
+    &quot;issues&quot;: [],
+    &quot;ok&quot;: true,
+    &quot;status&quot;: &quot;proxy-framework&quot;,
+    &quot;warnings&quot;: [
+      &quot;/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json uses proxy electrical model proxy-pinned-split-pd&quot;,
+      &quot;/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json uses proxy electrical model proxy-pinned-split-pd&quot;,
+      &quot;TCAD accuracy gate is not ready; treat outputs as proxy simulation&quot;
+    ]
+  }
+}</code></pre></details>
+</section>
+<section class="card">
+  <h3>fdtd_sensor_lut_active <span class="status active">active</span></h3>
+  <p><b>Family:</b> sensor / <b>Role:</b> optical-response-lut</p>
+  <p>Active FDTD-informed sensor optical-response LUT used for QE/RI/crosstalk proxy configuration.</p>
+  <p class="path"><b>Path:</b> <code>/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json</code></p>
+  <p><b>Parameter use:</b> Use lut_path with fdtd_sensor_config(lut_path) and sensor_attach_fdtd_lut.</p>
+  <p><b>Env vars:</b> PYISETCAM_FDTD_LUT_PATH, PYISETCAM_FDTD_ROOT</p>
+  <p><b>Tags:</b> sensor, fdtd, qe, relative-illumination, crosstalk, lut</p>
+  <table><tr><th>Parameter</th><th>Value</th></tr><tr><td>config</td><td class='path'><code>{&quot;enabled&quot;: true, &quot;lut&quot;: &quot;/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json&quot;}</code></td></tr>
+<tr><td>lut_path</td><td class='path'><code>/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json</code></td></tr></table>
+  <details><summary>Metadata</summary><pre><code>{
+  &quot;summary&quot;: {
+    &quot;cases&quot;: [
+      &quot;center&quot;,
+      &quot;cra10x&quot;,
+      &quot;edge20x&quot;
+    ],
+    &quot;convergence_report&quot;: &quot;/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/convergence_report.json&quot;,
+    &quot;kernel_shape&quot;: [
+      0,
+      0
+    ],
+    &quot;mode&quot;: &quot;split-pd-1x1&quot;,
+    &quot;n_cases&quot;: 3,
+    &quot;n_long_rows&quot;: 18,
+    &quot;n_regions&quot;: 2,
+    &quot;n_summary_rows&quot;: 9,
+    &quot;n_wavelengths&quot;: 3,
+    &quot;notes&quot;: [
+      &quot;Primary response uses Si-volume absorption distribution integrated over each collection region.&quot;,
+      &quot;The absolute scale is calibrated to the full Si top/bottom flux absorption estimate.&quot;,
+      &quot;TCAD 1D generation export collapses the Si volume absorption over x/z and scales it with incident_photon_flux_cm2_s.&quot;,
+      &quot;TCAD 2D generation export preserves x/depth variation and collapses only the out-of-plane z direction.&quot;,
+      &quot;TCAD 3D generation export preserves x/depth/z variation for future 3D electrical import.&quot;,
+      &quot;Split-PD phase proxies are optical-only PDAF signals, not charge-collection TCAD results.&quot;,
+      &quot;OCL shifts are explicit lens/aperture offsets in microns; replace defaults with product geometry.&quot;,
+      &quot;Default imaging-pixel runs use shield.mode=off; metal optical masks are only present for edge or PDAF shield modes.&quot;,
+      &quot;Finite-pupil integration samples a uniform disk in direction-cosine space using the supplied f-number.&quot;,
+      &quot;Use resolution and time convergence before quantitative camera-system use.&quot;
+    ],
+    &quot;response_model&quot;: &quot;si_volume_absorption_flux_calibrated_v1&quot;,
+    &quot;schema&quot;: &quot;camera_supercell_optical_lut_v2&quot;,
+    &quot;source_path&quot;: &quot;/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json&quot;,
+    &quot;wavelengths_nm&quot;: [
+      450.0,
+      550.0,
+      650.0
+    ]
+  }
+}</code></pre></details>
+</section>
+<section class="card">
+  <h3>fdtd_sensor_stack_catalog <span class="status available">available</span></h3>
+  <p><b>Family:</b> sensor / <b>Role:</b> sensor-stack-parameter-catalog</p>
+  <p>External FDTD sensor stack catalog and generated layer-stack configs.</p>
+  <p class="path"><b>Path:</b> <code>/Users/seongcheoljeong/FDTD/sensor_db/sensor_catalog.json</code></p>
+  <p><b>Parameter use:</b> Use catalog_path to choose a sensor stack, then feed selected FDTD/TCAD artifacts into sensor config.</p>
+  <p><b>Env vars:</b> PYISETCAM_FDTD_ROOT</p>
+  <p><b>Tags:</b> sensor, fdtd, stack, catalog, external</p>
+  <table><tr><th>Parameter</th><th>Value</th></tr><tr><td>catalog_path</td><td class='path'><code>/Users/seongcheoljeong/FDTD/sensor_db/sensor_catalog.json</code></td></tr>
+<tr><td>stack_config_dir</td><td class='path'><code>/Users/seongcheoljeong/FDTD/sensor_db/generated_stack_configs</code></td></tr></table>
+  <details><summary>Metadata</summary><pre><code>{
+  &quot;csv_path&quot;: &quot;/Users/seongcheoljeong/FDTD/sensor_db/sensor_catalog.csv&quot;,
+  &quot;stack_config_count&quot;: 216,
+  &quot;validation_path&quot;: &quot;/Users/seongcheoljeong/FDTD/sensor_db/validation.json&quot;
+}</code></pre></details>
+</section>
+  </div>
+
+  <p class="hint">JSON catalog: <code>camerae2e_db_catalog.json</code></p>
+</body>
+</html>

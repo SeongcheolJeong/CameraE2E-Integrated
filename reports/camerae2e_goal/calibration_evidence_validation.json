@@ -1,0 +1,389 @@
+{
+  "promotion_plan": {
+    "evidence_validation": {
+      "issue_count": 0,
+      "issues": [],
+      "ok": true,
+      "warning_count": 0,
+      "warnings": []
+    },
+    "ok": true,
+    "plans": [
+      {
+        "artifact_id": "isp:hwisp:profiles",
+        "current_tier": "proxy",
+        "entry": "hwisp_parameter_profiles",
+        "evidence_ids": [],
+        "family": "isp",
+        "missing_evidence_types": [
+          "3a_telemetry_trace",
+          "board_latency_trace",
+          "hardware_counter_trace"
+        ],
+        "present_evidence_types": [],
+        "promotion_blocking_warnings": [],
+        "required_evidence_types": [
+          "3a_telemetry_trace",
+          "board_latency_trace",
+          "hardware_counter_trace"
+        ],
+        "role": "timing-and-3a-parameter-profiles",
+        "status": "blocked_missing_evidence",
+        "target_tier": "proxy",
+        "truth_boundary": "seed_or_public_profile_not_vendor_trace_signoff",
+        "validation_issues": []
+      },
+      {
+        "artifact_id": "lens:rayoptics:v9",
+        "current_tier": "proxy",
+        "entry": "rayoptics_lens_db_v9",
+        "evidence_ids": [],
+        "family": "lens",
+        "missing_evidence_types": [
+          "diffraction_or_wave_optics_reference",
+          "measured_psf"
+        ],
+        "present_evidence_types": [],
+        "promotion_blocking_warnings": [],
+        "required_evidence_types": [
+          "diffraction_or_wave_optics_reference",
+          "measured_psf"
+        ],
+        "role": "external-optics-prescription-and-psf",
+        "status": "blocked_missing_evidence",
+        "target_tier": "proxy",
+        "truth_boundary": "geometric_psf_not_diffraction_wave_optics",
+        "validation_issues": []
+      },
+      {
+        "artifact_id": "lens:patents:bundled:v6",
+        "current_tier": "proxy",
+        "entry": "lens_patents_bundled_v6",
+        "evidence_ids": [],
+        "family": "lens",
+        "missing_evidence_types": [
+          "diffraction_or_wave_optics_reference",
+          "measured_psf"
+        ],
+        "present_evidence_types": [],
+        "promotion_blocking_warnings": [],
+        "required_evidence_types": [
+          "diffraction_or_wave_optics_reference",
+          "measured_psf"
+        ],
+        "role": "fallback-optics-prescription-and-psf",
+        "status": "blocked_missing_evidence",
+        "target_tier": "proxy",
+        "truth_boundary": "geometric_psf_not_diffraction_wave_optics",
+        "validation_issues": []
+      },
+      {
+        "artifact_id": "lens:patents:active",
+        "current_tier": "proxy",
+        "entry": "lens_patents_active",
+        "evidence_ids": [],
+        "family": "lens",
+        "missing_evidence_types": [
+          "diffraction_or_wave_optics_reference",
+          "measured_psf"
+        ],
+        "present_evidence_types": [],
+        "promotion_blocking_warnings": [],
+        "required_evidence_types": [
+          "diffraction_or_wave_optics_reference",
+          "measured_psf"
+        ],
+        "role": "optics-prescription-and-psf",
+        "status": "blocked_missing_evidence",
+        "target_tier": "proxy",
+        "truth_boundary": "geometric_psf_not_diffraction_wave_optics",
+        "validation_issues": []
+      },
+      {
+        "artifact_id": "perception:task_model_profiles",
+        "current_tier": "available",
+        "entry": "task_perception_model_profiles",
+        "evidence_ids": [],
+        "family": "perception",
+        "missing_evidence_types": [
+          "dataset_split_manifest",
+          "model_evaluation_report"
+        ],
+        "present_evidence_types": [],
+        "promotion_blocking_warnings": [],
+        "required_evidence_types": [
+          "dataset_split_manifest",
+          "model_evaluation_report"
+        ],
+        "role": "model-profile-catalog",
+        "status": "blocked_missing_evidence",
+        "target_tier": "available",
+        "truth_boundary": "adapter_profiles_not_training_dataset_or_model_accuracy_claim",
+        "validation_issues": []
+      },
+      {
+        "artifact_id": "sensor:tcad:active_collection",
+        "current_tier": "calibration_required",
+        "entry": "tcad_sensor_db_active",
+        "evidence_ids": [],
+        "family": "sensor",
+        "missing_evidence_types": [
+          "fdtd_tcad_lineage_match",
+          "measured_electrical_response",
+          "tcad_process_deck"
+        ],
+        "present_evidence_types": [],
+        "promotion_blocking_warnings": [],
+        "required_evidence_types": [
+          "fdtd_tcad_lineage_match",
+          "measured_electrical_response",
+          "tcad_process_deck"
+        ],
+        "role": "electrical-collection-lut",
+        "status": "blocked_missing_evidence",
+        "target_tier": "calibration_required",
+        "truth_boundary": "carrier_collection_framework_not_product_calibrated_tcad",
+        "validation_issues": []
+      },
+      {
+        "artifact_id": "sensor:fdtd:active_lut",
+        "current_tier": "proxy",
+        "entry": "fdtd_sensor_lut_active",
+        "evidence_ids": [],
+        "family": "sensor",
+        "missing_evidence_types": [
+          "measured_qe_response",
+          "optical_stack_materials",
+          "sensor_specific_fdtd_lut"
+        ],
+        "present_evidence_types": [],
+        "promotion_blocking_warnings": [],
+        "required_evidence_types": [
+          "measured_qe_response",
+          "optical_stack_materials",
+          "sensor_specific_fdtd_lut"
+        ],
+        "role": "optical-response-lut",
+        "status": "blocked_missing_evidence",
+        "target_tier": "proxy",
+        "truth_boundary": "optical_absorption_and_regional_response_proxy",
+        "validation_issues": []
+      },
+      {
+        "artifact_id": "sensor:fdtd:stack_catalog",
+        "current_tier": "proxy",
+        "entry": "fdtd_sensor_stack_catalog",
+        "evidence_ids": [],
+        "family": "sensor",
+        "missing_evidence_types": [
+          "material_index_reference",
+          "measured_stack_or_cad"
+        ],
+        "present_evidence_types": [],
+        "promotion_blocking_warnings": [],
+        "required_evidence_types": [
+          "material_index_reference",
+          "measured_stack_or_cad"
+        ],
+        "role": "sensor-stack-parameter-catalog",
+        "status": "blocked_missing_evidence",
+        "target_tier": "proxy",
+        "truth_boundary": "metadata_derived_stack_configs_unless_product_cad_listed",
+        "validation_issues": []
+      }
+    ],
+    "registry_validation": {
+      "ok": true,
+      "stale_dependency_count": 1,
+      "warning_count": 1
+    },
+    "schema_version": "camerae2e_readiness_promotion_plan_v1",
+    "strict": false,
+    "summary": {
+      "blocked_count": 8,
+      "evidence_count": 0,
+      "plan_count": 8,
+      "promotion_candidate_count": 0,
+      "status_counts": {
+        "blocked_missing_evidence": 8
+      }
+    }
+  },
+  "requirements": {
+    "entries": [
+      {
+        "artifact_id": "isp:hwisp:profiles",
+        "current_tier": "proxy",
+        "entry": "hwisp_parameter_profiles",
+        "family": "isp",
+        "recommended_evidence_types": [
+          "bsp_revision_lock",
+          "thermal_or_bandwidth_stress_trace"
+        ],
+        "required_evidence_types": [
+          "board_latency_trace",
+          "hardware_counter_trace",
+          "3a_telemetry_trace"
+        ],
+        "role": "timing-and-3a-parameter-profiles",
+        "truth_boundary": "seed_or_public_profile_not_vendor_trace_signoff"
+      },
+      {
+        "artifact_id": "lens:rayoptics:v9",
+        "current_tier": "proxy",
+        "entry": "rayoptics_lens_db_v9",
+        "family": "lens",
+        "recommended_evidence_types": [
+          "coating_or_flare_trace",
+          "manufacturing_tolerance_stack"
+        ],
+        "required_evidence_types": [
+          "measured_psf",
+          "diffraction_or_wave_optics_reference"
+        ],
+        "role": "external-optics-prescription-and-psf",
+        "truth_boundary": "geometric_psf_not_diffraction_wave_optics"
+      },
+      {
+        "artifact_id": "lens:patents:bundled:v6",
+        "current_tier": "proxy",
+        "entry": "lens_patents_bundled_v6",
+        "family": "lens",
+        "recommended_evidence_types": [
+          "coating_or_flare_trace",
+          "manufacturing_tolerance_stack"
+        ],
+        "required_evidence_types": [
+          "measured_psf",
+          "diffraction_or_wave_optics_reference"
+        ],
+        "role": "fallback-optics-prescription-and-psf",
+        "truth_boundary": "geometric_psf_not_diffraction_wave_optics"
+      },
+      {
+        "artifact_id": "lens:patents:active",
+        "current_tier": "proxy",
+        "entry": "lens_patents_active",
+        "family": "lens",
+        "recommended_evidence_types": [
+          "coating_or_flare_trace",
+          "manufacturing_tolerance_stack"
+        ],
+        "required_evidence_types": [
+          "measured_psf",
+          "diffraction_or_wave_optics_reference"
+        ],
+        "role": "optics-prescription-and-psf",
+        "truth_boundary": "geometric_psf_not_diffraction_wave_optics"
+      },
+      {
+        "artifact_id": "perception:task_model_profiles",
+        "current_tier": "available",
+        "entry": "task_perception_model_profiles",
+        "family": "perception",
+        "recommended_evidence_types": [
+          "training_config",
+          "domain_shift_report"
+        ],
+        "required_evidence_types": [
+          "dataset_split_manifest",
+          "model_evaluation_report"
+        ],
+        "role": "model-profile-catalog",
+        "truth_boundary": "adapter_profiles_not_training_dataset_or_model_accuracy_claim"
+      },
+      {
+        "artifact_id": "sensor:tcad:active_collection",
+        "current_tier": "calibration_required",
+        "entry": "tcad_sensor_db_active",
+        "family": "sensor",
+        "recommended_evidence_types": [
+          "dark_current_measurement",
+          "lag_or_full_well_measurement"
+        ],
+        "required_evidence_types": [
+          "tcad_process_deck",
+          "measured_electrical_response",
+          "fdtd_tcad_lineage_match"
+        ],
+        "role": "electrical-collection-lut",
+        "truth_boundary": "carrier_collection_framework_not_product_calibrated_tcad"
+      },
+      {
+        "artifact_id": "sensor:fdtd:active_lut",
+        "current_tier": "proxy",
+        "entry": "fdtd_sensor_lut_active",
+        "family": "sensor",
+        "recommended_evidence_types": [
+          "localized_crosstalk_scan",
+          "cra_response_measurement"
+        ],
+        "required_evidence_types": [
+          "measured_qe_response",
+          "sensor_specific_fdtd_lut",
+          "optical_stack_materials"
+        ],
+        "role": "optical-response-lut",
+        "truth_boundary": "optical_absorption_and_regional_response_proxy"
+      },
+      {
+        "artifact_id": "sensor:fdtd:stack_catalog",
+        "current_tier": "proxy",
+        "entry": "fdtd_sensor_stack_catalog",
+        "family": "sensor",
+        "recommended_evidence_types": [
+          "process_corner_table"
+        ],
+        "required_evidence_types": [
+          "measured_stack_or_cad",
+          "material_index_reference"
+        ],
+        "role": "sensor-stack-parameter-catalog",
+        "truth_boundary": "metadata_derived_stack_configs_unless_product_cad_listed"
+      }
+    ],
+    "schema_version": "camerae2e_calibration_evidence_requirements_v1",
+    "summary": {
+      "entry_count": 8,
+      "required_evidence_types": [
+        "3a_telemetry_trace",
+        "board_latency_trace",
+        "dataset_split_manifest",
+        "diffraction_or_wave_optics_reference",
+        "fdtd_tcad_lineage_match",
+        "hardware_counter_trace",
+        "material_index_reference",
+        "measured_electrical_response",
+        "measured_psf",
+        "measured_qe_response",
+        "measured_stack_or_cad",
+        "model_evaluation_report",
+        "optical_stack_materials",
+        "sensor_specific_fdtd_lut",
+        "tcad_process_deck"
+      ]
+    }
+  },
+  "schema_version": "camerae2e_calibration_evidence_cli_v1",
+  "validation": {
+    "issue_count": 0,
+    "issues": [],
+    "manifest": {
+      "entries": [],
+      "schema_version": "camerae2e_calibration_evidence_manifest_v1",
+      "source": null,
+      "source_status": "not_provided",
+      "summary": {
+        "by_entry": {},
+        "by_type": {},
+        "evidence_count": 0
+      },
+      "truth_boundary": "Evidence manifest only describes external measured artifacts; readiness promotion is not applied until validation passes."
+    },
+    "ok": true,
+    "schema_version": "camerae2e_calibration_evidence_validation_v1",
+    "strict": false,
+    "warning_count": 0,
+    "warnings": []
+  }
+}

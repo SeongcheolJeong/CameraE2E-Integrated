@@ -1,0 +1,3407 @@
+{
+  "cases": [
+    {
+      "name": "scene_macbeth_default",
+      "matlab_function": "sceneCreate",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_macbeth_tungsten",
+      "matlab_function": "sceneCreate('macbethtungsten')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_checkerboard_small",
+      "matlab_function": "sceneCreate",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_uniform_bb_small",
+      "matlab_function": "sceneCreate",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_uniformbb_small",
+      "matlab_function": "sceneCreate('uniformbb')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_uniformblackbody_small",
+      "matlab_function": "sceneCreate('uniformbb')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_uniform_monochromatic_small",
+      "matlab_function": "sceneCreate('uniform monochromatic')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_uniform_d65_small",
+      "matlab_function": "sceneCreate('uniform d65')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_empty_small",
+      "matlab_function": "sceneCreate('empty')",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "illuminant_energy": {
+          "mode": "scale_invariant",
+          "max_mean_rel": 1e-05
+        }
+      }
+    },
+    {
+      "name": "scene_lstar_small",
+      "matlab_function": "sceneCreate('lstar')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_hdr_small",
+      "matlab_function": "sceneCreate('hdr')",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "mean_spd_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.01
+        },
+        "row_profile_summaries": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.05
+        }
+      }
+    },
+    {
+      "name": "scene_uniform_ep_small",
+      "matlab_function": "sceneCreate('uniform equal photon')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_uniformephoton_small",
+      "matlab_function": "sceneCreate('uniformephoton')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_uniformep_small",
+      "matlab_function": "sceneCreate('uniformephoton')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_uniformequalphoton_small",
+      "matlab_function": "sceneCreate('uniformequalphoton')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_uniformequalphotons_small",
+      "matlab_function": "sceneCreate('uniformequalphoton')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_uniform_ee_small",
+      "matlab_function": "sceneCreate('uniform')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_uniform_ee_specify_small",
+      "matlab_function": "sceneCreate('uniformEESpecify')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_exponential_intensity_ramp_small",
+      "matlab_function": "sceneCreate('exponential intensity ramp')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_linear_intensity_ramp_small",
+      "matlab_function": "sceneCreate('linear intensity ramp')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_rings_rays_small",
+      "matlab_function": "sceneCreate('rings rays')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_point_array_small",
+      "matlab_function": "sceneCreate('point array')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_grid_lines_small",
+      "matlab_function": "sceneCreate('grid lines')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_white_noise_small",
+      "matlab_function": "sceneCreate('white noise')",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "mean_luminance": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        },
+        "pattern_stats_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.08
+        },
+        "pattern_percentiles_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        }
+      }
+    },
+    {
+      "name": "scene_disk_array_small",
+      "matlab_function": "sceneCreate('disk array')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_square_array_small",
+      "matlab_function": "sceneCreate('square array')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_frequency_orientation_small",
+      "matlab_function": "sceneCreate",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_harmonic_small",
+      "matlab_function": "sceneCreate",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_sinusoid_small",
+      "matlab_function": "sceneCreate('sinusoid')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_sweep_frequency_small",
+      "matlab_function": "sceneCreate",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_reflectance_chart_small",
+      "matlab_function": "sceneCreate",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_star_pattern_small",
+      "matlab_function": "sceneCreate",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_zone_plate_small",
+      "matlab_function": "s_sceneZonePlate.m",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_dead_leaves_small",
+      "matlab_function": "sceneCreate('dead leaves')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_bar_small",
+      "matlab_function": "sceneCreate('bar')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_line_ee_small",
+      "matlab_function": "sceneCreate('line ee')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_lineee_small",
+      "matlab_function": "sceneCreate('lineee')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_line_ep_small",
+      "matlab_function": "sceneCreate('line ep')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_lineequalphoton_small",
+      "matlab_function": "sceneCreate('lineequalphoton')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_line_d65_small",
+      "matlab_function": "sceneCreate('lined65')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_line_small",
+      "matlab_function": "sceneCreate('line')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_impulse1dd65_small",
+      "matlab_function": "sceneCreate('impulse1dd65')",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "utility_unit_frequency_list",
+      "matlab_function": "unitFrequencyList",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "utility_energy_quanta_1d",
+      "matlab_function": "Energy2Quanta/Quanta2Energy",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "utility_energy_quanta_matrix",
+      "matlab_function": "Energy2Quanta/Quanta2Energy",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "utility_blackbody_energy_small",
+      "matlab_function": "blackbody",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "utility_blackbody_quanta_small",
+      "matlab_function": "blackbody",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "utility_ie_param_format_string",
+      "matlab_function": "ieParamFormat",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_load_thibos_virtual_eyes_small",
+      "matlab_function": "wvfLoadThibosVirtualEyes",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_thibos_model_small",
+      "matlab_function": "s_wvfThibosModel",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_pupil_size_human_small",
+      "matlab_function": "wvfCreate/wvfCompute",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_pupil_size_measured_compare_small",
+      "matlab_function": "wvfLoadThibosVirtualEyes/wvfCreate/wvfCompute",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_psf_spacing_small",
+      "matlab_function": "wvfSet/wvfGet",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_osa_index_conversion_small",
+      "matlab_function": "wvfOSAIndexToZernikeNM/wvfZernikeNMToOSAIndex",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_spatial_controls_small",
+      "matlab_function": "wvfSet/wvfGet/wvfCompute",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_xyz_from_energy_1d",
+      "matlab_function": "ieXYZFromEnergy",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_xyz_to_luv_1d",
+      "matlab_function": "xyz2luv",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_xyz_to_lab_1d",
+      "matlab_function": "ieXYZ2LAB",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_xyz_to_uv_1d",
+      "matlab_function": "xyz2uv (uv)",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "optics_airy_disk_small",
+      "matlab_function": "airyDisk",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "optics_coc_small",
+      "matlab_function": "opticsCoC",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_cct_from_uv_1d",
+      "matlab_function": "cct",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_delta_e_ab_1976_1d",
+      "matlab_function": "deltaEab (1976)",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_spd_angle_1d",
+      "matlab_function": "metricsSPD (angle)",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_spd_cielab_1d",
+      "matlab_function": "metricsSPD (cielab)",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_spd_mired_1d",
+      "matlab_function": "metricsSPD (mired)",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_spd_daylight_sweep_small",
+      "matlab_function": "s_metricsSPD.m",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_vsnr_small",
+      "matlab_function": "s_metricsVSNR.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "vsnr_norm": {"mode": "mean_rel", "max_mean_rel": 0.006},
+        "delta_e_norm": {"mode": "mean_rel", "max_mean_rel": 0.006},
+        "result_channel_means_norm": {"mode": "mean_rel", "max_mean_rel": 0.003}
+      }
+    },
+    {
+      "name": "metrics_sqri_tutorial_small",
+      "matlab_function": "t_metricsSQRI.m",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_scielab_rgb_small",
+      "matlab_function": "t_metricsScielab.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "error_stats": {"mode": "mean_rel", "max_mean_rel": 0.0001},
+        "error_center_row_norm": {"mode": "mean_rel", "max_mean_rel": 0.00002}
+      }
+    },
+    {
+      "name": "metrics_rgb2scielab_small",
+      "matlab_function": "s_rgb2scielab.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "error_center_row_norm": {"mode": "mean_rel", "max_mean_rel": 0.00002}
+      }
+    },
+    {
+      "name": "metrics_scielab_example_small",
+      "matlab_function": "s_scielabExample.m",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_scielab_filters_small",
+      "matlab_function": "s_scielabFilters.m",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_scielab_mtf_small",
+      "matlab_function": "s_scielabMTF.m",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_scielab_patches_small",
+      "matlab_function": "s_scielabPatches.m",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_scielab_masking_small",
+      "matlab_function": "s_scielabMasking.m",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "metrics_scielab_tutorial_small",
+      "matlab_function": "s_scielabTutorial.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "img_opp_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.07
+        },
+        "filtered_opp_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.07
+        },
+        "original_render_center_row_luma_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.08
+        },
+        "filtered_render_center_row_luma_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "result_l_center_row_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.03
+        },
+        "filtered_xyz_delta_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.25
+        },
+        "result_lab_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        },
+        "filtered_render_mean_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.002
+        },
+        "original_render_mean_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.001
+        }
+      }
+    },
+    {
+      "name": "metrics_scielab_harmonic_experiments_small",
+      "matlab_function": "s_scielabHarmonicExperiments.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "original_opp_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "altered_opp_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "altered_render_mean_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.001
+        },
+        "error_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.015
+        },
+        "error_center_row_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        }
+      }
+    },
+    {
+      "name": "metrics_edge2mtf_small",
+      "matlab_function": "s_metricsEdge2MTF",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "bar_green_mean_profile_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "lag_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "lsf_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.05
+        },
+        "mtf_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        }
+      }
+    },
+    {
+      "name": "metrics_mtf_slanted_bar_small",
+      "matlab_function": "s_metricsMTFSlantedBar.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "color_direct_aliasing_percentage": {"mode": "mean_rel", "max_mean_rel": 0.2},
+        "color_direct_esf_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.03},
+        "color_direct_lsf_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.28},
+        "color_direct_mtf50": {"mode": "mean_rel", "max_mean_rel": 0.05},
+        "color_direct_mtf_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.13},
+        "ie_color_aliasing_percentage": {"mode": "mean_rel", "max_mean_rel": 0.11},
+        "ie_color_esf_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.03},
+        "ie_color_lsf_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.22},
+        "ie_color_mtf50": {"mode": "mean_rel", "max_mean_rel": 0.03},
+        "ie_color_mtf_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.1},
+        "mono_direct_aliasing_percentage": {"mode": "mean_rel", "max_mean_rel": 0.05},
+        "mono_direct_esf_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.01},
+        "mono_direct_lsf_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.2},
+        "mono_direct_mtf50": {"mode": "mean_rel", "max_mean_rel": 0.02},
+        "mono_direct_mtf_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.03}
+      }
+    },
+    {
+      "name": "metrics_mtf_pixel_size_small",
+      "matlab_function": "s_metricsMTFPixelSize.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "mtf50": {"mode": "mean_rel", "max_mean_rel": 0.02},
+        "mtf_profiles_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.06}
+      }
+    },
+    {
+      "name": "metrics_snr_pixel_size_luxsec_small",
+      "matlab_function": "s_metricsSNRPixelSizeLuxsec.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "luxsec_curves": {"mode": "mean_rel", "max_mean_rel": 0.06},
+        "volts_per_lux_sec": {"mode": "mean_rel", "max_mean_rel": 0.06},
+        "luxsec_saturation": {"mode": "mean_rel", "max_mean_rel": 0.06},
+        "mean_volts": {"mode": "mean_rel", "max_mean_rel": 0.001}
+      }
+    },
+    {
+      "name": "metrics_mtf_slanted_bar_infrared_small",
+      "matlab_function": "s_metricsMTFSlantedBarInfrared.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "filter_spectra_stats": {"mode": "mean_rel", "max_mean_rel": 0.001},
+        "fixed_esf_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.01},
+        "fixed_lsf_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.24},
+        "fixed_mtf50": {"mode": "mean_rel", "max_mean_rel": 0.03},
+        "fixed_mtf_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.07},
+        "blocked_lsf_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.3},
+        "blocked_mtf50": {"mode": "mean_rel", "max_mean_rel": 0.01},
+        "blocked_mtf_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.02}
+      }
+    },
+    {
+      "name": "metrics_acutance_small",
+      "matlab_function": "s_metricsAcutance.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "rect": {"mode": "mean_rel", "max_mean_rel": 0.05},
+        "cpd_stats": {"mode": "mean_rel", "max_mean_rel": 0.03},
+        "cpiq_norm": {"mode": "mean_rel", "max_mean_rel": 0.01},
+        "lum_mtf_norm": {"mode": "normalized_mae", "max_normalized_mae": 0.05},
+        "acutance": {"mode": "mean_rel", "max_mean_rel": 0.03},
+        "camera_acutance": {"mode": "mean_rel", "max_mean_rel": 0.03}
+      }
+    },
+    {
+      "name": "metrics_color_accuracy_small",
+      "matlab_function": "s_metricsColorAccuracy.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "white_xyz_norm": {"mode": "mean_rel", "max_mean_rel": 0.01},
+        "delta_e": {"mode": "normalized_mae", "max_normalized_mae": 0.5},
+        "delta_e_stats": {"mode": "mean_rel", "max_mean_rel": 0.4},
+        "macbeth_lab": {"mode": "normalized_mae", "max_normalized_mae": 0.08},
+        "compare_patch_srgb": {"mode": "normalized_mae", "max_normalized_mae": 0.02},
+        "ideal_patch_srgb": {"mode": "mean_rel", "max_mean_rel": 0.001},
+        "embedded_channel_means": {"mode": "mean_rel", "max_mean_rel": 0.003}
+      }
+    },
+    {
+      "name": "metrics_macbeth_delta_e_small",
+      "matlab_function": "s_metricsMacbethDeltaE.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "ccm_matrix": {"mode": "mean_rel", "max_mean_rel": 0.01},
+        "white_xyz_norm": {"mode": "mean_rel", "max_mean_rel": 0.001},
+        "delta_e": {"mode": "normalized_mae", "max_normalized_mae": 0.7},
+        "delta_e_stats": {"mode": "normalized_mae", "max_normalized_mae": 1.2},
+        "macbeth_lab": {"mode": "normalized_mae", "max_normalized_mae": 0.02},
+        "result_channel_means_norm": {"mode": "mean_rel", "max_mean_rel": 0.003},
+        "result_channel_p95_norm": {"mode": "mean_rel", "max_mean_rel": 0.001}
+      }
+    },
+    {
+      "name": "scene_illuminant_change",
+      "matlab_function": "sceneAdjustIlluminant",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_cct_blackbody_small",
+      "matlab_function": "s_sceneCCT",
+      "rtol": 1e-04,
+      "atol": 1e-04
+    },
+    {
+      "name": "scene_daylight_small",
+      "matlab_function": "s_sceneDaylight",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_illuminant_small",
+      "matlab_function": "s_sceneIlluminant",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_illuminant_mixtures_small",
+      "matlab_function": "s_sceneIlluminantMixtures",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_illuminant_space_small",
+      "matlab_function": "s_sceneIlluminantSpace",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "source_mean_reflectance": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "row_mid_illuminant_energy": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.005
+        },
+        "row_mean_reflectance": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "col_mean_reflectance": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        }
+      }
+    },
+    {
+      "name": "scene_xyz_illuminant_transforms_small",
+      "matlab_function": "s_sceneXYZilluminantTransforms",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "xyz_d65_mean_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.07
+        },
+        "xyz_tungsten_mean_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.07
+        },
+        "full_transform": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "diagonal_transform": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "predicted_full_rmse_ratio": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.15
+        },
+        "predicted_diagonal_rmse_ratio": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.08
+        }
+      }
+    },
+    {
+      "name": "scene_from_rgb_lcd_apple_small",
+      "matlab_function": "s_sceneFromRGB",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "roi_mean_reflectance": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.001
+        }
+      }
+    },
+    {
+      "name": "scene_from_multispectral_stuffed_animals_small",
+      "matlab_function": "s_sceneFromMultispectral",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_from_rgb_vs_multispectral_stuffed_animals_small",
+      "matlab_function": "s_sceneFromRGBvsMultispectral",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "rgb_channel_corr": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.002
+        },
+        "xyz_channel_corr": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.002
+        }
+      }
+    },
+    {
+      "name": "scene_reflectance_samples_small",
+      "matlab_function": "s_sceneReflectanceSamples",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_reflectance_chart_basis_functions_small",
+      "matlab_function": "s_sceneReflectanceChartBasisFunctions",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "basis_projector_999": {
+          "mode": "mean_rel",
+          "max_mean_rel": 1e-05
+        },
+        "coef_stats_999": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "coef_stats_95": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        }
+      }
+    },
+    {
+      "name": "color_illuminant_transforms_small",
+      "matlab_function": "s_colorIlluminantTransforms",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "transform_diagonal_terms": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.005
+        },
+        "buddha_similarity": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.003
+        },
+        "flower_similarity": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.003
+        }
+      }
+    },
+    {
+      "name": "chromatic_spatial_chart_small",
+      "matlab_function": "s_chromaticSpatialChart",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "color_constancy_small",
+      "matlab_function": "s_colorConstancy",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "stuffed_mean_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.003
+        },
+        "stuffed_center_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.003
+        },
+        "uniform_mean_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.012
+        },
+        "uniform_center_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.012
+        }
+      }
+    },
+    {
+      "name": "rgb_color_temperature_small",
+      "matlab_function": "s_rgbColorTemperature",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "tungsten_c_temp": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.15
+        },
+        "d65_c_temp": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        },
+        "tungsten_srgb_mean_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.04
+        },
+        "d65_srgb_mean_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.025
+        }
+      }
+    },
+    {
+      "name": "srgb_gamut_small",
+      "matlab_function": "s_srgbGamut",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_reflectance_charts_small",
+      "matlab_function": "s_sceneReflectanceCharts",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_change_illuminant_small",
+      "matlab_function": "s_sceneChangeIlluminant",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "equal_energy_mean_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.002
+        },
+        "horizon_mean_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        }
+      }
+    },
+    {
+      "name": "scene_data_extraction_plotting_small",
+      "matlab_function": "s_sceneDataExtractionAndPlotting",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_monochrome_small",
+      "matlab_function": "s_sceneMonochrome",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "adjusted_mean_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.001
+        }
+      }
+    },
+    {
+      "name": "scene_slanted_bar_small",
+      "matlab_function": "s_sceneSlantedBar",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_harmonics_script_small",
+      "matlab_function": "s_sceneHarmonics",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "surface_munsell_small",
+      "matlab_function": "s_surfaceMunsell",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_demo_small",
+      "matlab_function": "s_sceneDemo",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_introduction_tutorial_small",
+      "matlab_function": "t_sceneIntroduction.m",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_examples_small",
+      "matlab_function": "s_sceneExamples",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "scene_center_row_luminance_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 3e-03
+        },
+        "scene_center_col_luminance_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 3e-03
+        }
+      }
+    },
+    {
+      "name": "scene_roi_small",
+      "matlab_function": "s_sceneRoi",
+      "rtol": 1e-05,
+      "atol": 1e-07,
+      "field_overrides": {
+        "roi_photons_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 5e-05
+        },
+        "roi_energy_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 5e-05
+        },
+        "roi_illuminant_photons_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 5e-05
+        },
+        "roi_reflectance_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 5e-05
+        }
+      }
+    },
+    {
+      "name": "scene_rotate_small",
+      "matlab_function": "s_sceneRotate",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_wavelength_small",
+      "matlab_function": "s_sceneWavelength",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_hc_compress_small",
+      "matlab_function": "s_sceneHCCompress",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_increase_size_small",
+      "matlab_function": "s_sceneIncreaseSize",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "scene_render_small",
+      "matlab_function": "s_sceneRender",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "daylight_srgb_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.15
+        },
+        "daylight_srgb_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.15
+        },
+        "daylight_srgb_center_rgb": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.15
+        },
+        "daylight_srgb_center_row_luma_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        },
+        "hdr_render_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        },
+        "hdr_srgb_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.15
+        },
+        "hdr_srgb_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.15
+        },
+        "hdr_render_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        },
+        "hdr_render_center_rgb": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.15
+        },
+        "hdr_render_center_row_luma_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        },
+        "hdr_render_delta_mean_abs": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "standard_render_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        },
+        "standard_srgb_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.15
+        },
+        "standard_srgb_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.15
+        },
+        "standard_render_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        },
+        "standard_render_center_rgb": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.15
+        },
+        "standard_render_center_row_luma_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        },
+        "standard_render_delta_mean_abs": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        }
+      }
+    },
+    {
+      "name": "scene_rgb2radiance_displays_small",
+      "matlab_function": "t_sceneRGB2Radiance",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "oled_rgb_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        },
+        "oled_rgb_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        },
+        "lcd_rgb_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        },
+        "lcd_rgb_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        },
+        "crt_rgb_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        },
+        "crt_rgb_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        }
+      }
+    },
+    {
+      "name": "scene_surface_models_small",
+      "matlab_function": "t_sceneSurfaceModels",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "reflectance_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.002
+        },
+        "render_1_rgb_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "render_1_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "render_1_center_rgb": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "render_2_rgb_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "render_2_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "render_2_center_rgb": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "render_3_rgb_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "render_3_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "render_3_center_rgb": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "render_4_rgb_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "render_4_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "render_4_center_rgb": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "render_full_rgb_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "render_full_channel_means": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "render_full_center_rgb": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        }
+      }
+    },
+    {
+      "name": "color_reflectance_basis_small",
+      "matlab_function": "s_reflectanceBasis",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "reflectance_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 1e-05
+        },
+        "approx_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 1e-05
+        }
+      }
+    },
+    {
+      "name": "display_create_lcd_example",
+      "matlab_function": "displayCreate",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "oi_psf_default_small",
+      "matlab_function": "oiCreate/oiCompute",
+      "rtol": 1e-04,
+      "atol": 1e-06
+    },
+    {
+      "name": "oi_psf550_diffraction_small",
+      "matlab_function": "oiPlot (psf 550)",
+      "rtol": 1e-04,
+      "atol": 1e-06
+    },
+    {
+      "name": "oi_psfxaxis_diffraction_small",
+      "matlab_function": "oiPlot (psf xaxis)",
+      "rtol": 1e-04,
+      "atol": 1e-06
+    },
+    {
+      "name": "oi_psfyaxis_diffraction_small",
+      "matlab_function": "oiPlot (psf yaxis)",
+      "rtol": 1e-04,
+      "atol": 1e-06
+    },
+    {
+      "name": "oi_psf_plot_diffraction_small",
+      "matlab_function": "s_opticsPSFPlot.m",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "oi_psfxaxis_wvf_small",
+      "matlab_function": "wvf2oi/oiGet/wvfGet",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "oi_samp": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        },
+        "wvf_samp": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "oi_psfyaxis_wvf_small",
+      "matlab_function": "wvf2oi/oiGet/wvfGet",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "oi_samp": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        },
+        "wvf_samp": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "oi_psf550_wvf_small",
+      "matlab_function": "wvf2oi/oiPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        },
+        "y": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "oi_lswavelength_wvf_small",
+      "matlab_function": "wvf2oi/oiPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "oi_wvf_otf_compare_small",
+      "matlab_function": "wvf2oi/oiGet/wvfGet",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "oi_si_lorentzian_small",
+      "matlab_function": "siSynthetic/oiSet/oiCompute",
+      "rtol": 1e-04,
+      "atol": 1e-06,
+      "field_overrides": {
+        "photons": {
+          "mode": "scale_invariant",
+          "max_mean_rel": 0.06
+        }
+      }
+    },
+    {
+      "name": "oi_otfwavelength_si_lorentzian_small",
+      "matlab_function": "siSynthetic/oiPlot (otf wavelength)",
+      "rtol": 1e-04,
+      "atol": 1e-06
+    },
+    {
+      "name": "oi_psf550_si_lorentzian_small",
+      "matlab_function": "siSynthetic/oiPlot (psf 550)",
+      "rtol": 1e-04,
+      "atol": 1e-06
+    },
+    {
+      "name": "oi_si_pillbox_small",
+      "matlab_function": "siSynthetic/oiSet/oiCompute",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "oi_si_gaussian_small",
+      "matlab_function": "siSynthetic/oiSet/oiCompute",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "oi_si_gaussian_ratio_small",
+      "matlab_function": "siSynthetic/oiSet/oiCompute",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "oi_gaussian_psf_point_array_small",
+      "matlab_function": "s_opticsGaussianPSF.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "center_row_normalized": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.19
+        },
+        "center_col_normalized": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.17
+        }
+      }
+    },
+    {
+      "name": "oi_psf550_si_gaussian_ratio_small",
+      "matlab_function": "siSynthetic/oiPlot (psf 550)",
+      "rtol": 1e-04,
+      "atol": 1e-06
+    },
+    {
+      "name": "oi_illuminance_lines_si_gaussian_ratio_small",
+      "matlab_function": "siSynthetic/oiPlot (illuminance hline/vline)",
+      "rtol": 1e-04,
+      "atol": 1e-06,
+      "field_overrides": {
+        "v_data": {
+          "mode": "scale_invariant",
+          "max_mean_rel": 0.45
+        },
+        "h_data": {
+          "mode": "scale_invariant",
+          "max_mean_rel": 0.13
+        }
+      }
+    },
+    {
+      "name": "oi_si_custom_file_small",
+      "matlab_function": "ieSaveSIDataFile/siSynthetic/oiSet/oiCompute",
+      "rtol": 1e-04,
+      "atol": 1e-06,
+      "field_overrides": {
+        "photons": {
+          "mode": "scale_invariant",
+          "max_mean_rel": 1e-05
+        }
+      }
+    },
+    {
+      "name": "oi_custom_otf_flare_small",
+      "matlab_function": "opticsPSF2OTF/oiSet/oiCompute",
+      "rtol": 1e-04,
+      "atol": 1e-06,
+      "field_overrides": {
+        "photons": {
+          "mode": "scale_invariant",
+          "max_mean_rel": 5e-05
+        }
+      }
+    },
+    {
+      "name": "optics_psf_to_otf_flare_small",
+      "matlab_function": "opticsPSF2OTF",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "oi_ideal_otf_small",
+      "matlab_function": "oiGet/oiSet/oiCompute",
+      "rtol": 1e-04,
+      "atol": 1e-06,
+      "field_overrides": {
+        "photons": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.03
+        }
+      }
+    },
+    {
+      "name": "oi_wvf_defocus_small",
+      "matlab_function": "wvfSet/oiCompute",
+      "rtol": 1e-04,
+      "atol": 1e-06,
+      "field_overrides": {
+        "photons": {
+          "mode": "mean_rel",
+          "max_mean_rel": 5e-05
+        }
+      }
+    },
+    {
+      "name": "oi_wvf_script_defocus_small",
+      "matlab_function": "wvfCompute/wvf2oi/oiCompute",
+      "rtol": 1e-04,
+      "atol": 1e-06,
+      "field_overrides": {
+        "photons": {
+          "mode": "mean_rel",
+          "max_mean_rel": 5e-05
+        }
+      }
+    },
+    {
+      "name": "optics_defocus_wvf_small",
+      "matlab_function": "s_opticsDefocusWVF",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "diffraction_limited_psf_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "diffraction_limited_oi_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "explicit_defocus_psf_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "explicit_defocus_oi_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "oi_method_base_psf_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "oi_method_base_oi_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "oi_method_defocus_psf_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "oi_method_defocus_oi_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "explicit_vs_oi_method_psf_center_row_550_normalized_mae": {
+          "mode": "mean_rel",
+          "max_mean_rel": 1.0
+        }
+      }
+    },
+    {
+      "name": "optics_rt_synthetic_small",
+      "matlab_function": "s_opticsRTSynthetic",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "center_psf_mid_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "edge_psf_mid_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "oi_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.08
+        },
+        "oi_mean_photons_by_wave": {
+          "mode": "scale_invariant",
+          "max_mean_rel": 1e-06
+        },
+        "oi_p95_photons_by_wave": {
+          "mode": "scale_invariant",
+          "max_mean_rel": 1e-06
+        },
+        "oi_max_photons_by_wave": {
+          "mode": "scale_invariant",
+          "max_mean_rel": 1e-06
+        }
+      }
+    },
+    {
+      "name": "optics_rt_gridlines_small",
+      "matlab_function": "s_opticsRTGridLines",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "geometry_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.08
+        },
+        "stepwise_rt_center_row_550_widths": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        },
+        "stepwise_rt_size": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "automated_rt_center_row_550_widths": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "automated_rt_size": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "diffraction_large_center_row_550_widths": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "rt_small_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.15
+        },
+        "rt_small_center_row_550_widths": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "dl_small_center_row_550_widths": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        }
+      }
+    },
+    {
+      "name": "optics_rt_psf_small",
+      "matlab_function": "s_opticsRTPSF",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "rt_center_psf_mid_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "rt_edge_psf_mid_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "rt_mean_photons_by_wave": {
+          "mode": "scale_invariant",
+          "max_mean_rel": 0.01
+        },
+        "rt_max_photons_by_wave": {
+          "mode": "scale_invariant",
+          "max_mean_rel": 0.01
+        },
+        "rt_center_row_550_widths": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "dl_mean_photons_by_wave": {
+          "mode": "scale_invariant",
+          "max_mean_rel": 0.05
+        },
+        "dl_max_photons_by_wave": {
+          "mode": "scale_invariant",
+          "max_mean_rel": 0.05
+        },
+        "dl_center_row_550_widths": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.08
+        }
+      }
+    },
+    {
+      "name": "optics_rt_psf_view_small",
+      "matlab_function": "s_opticsRTPSFView",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "field_height_psf_mid_rows_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.18
+        },
+        "field_height_psf_widths_10pct": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.02
+        },
+        "angle_sweep_edge_psf_mid_rows_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.1
+        },
+        "angle_sweep_edge_psf_widths_10pct": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.02
+        },
+        "center_rtplot_psf_mid_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.22
+        },
+        "edge_rtplot_psf_mid_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.14
+        }
+      }
+    },
+    {
+      "name": "optics_defocus_small",
+      "matlab_function": "s_opticsDefocus",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "base_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "defocus_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "astig_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "reset_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "large_pupil_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "final_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        }
+      }
+    },
+    {
+      "name": "optics_defocus_displacement_small",
+      "matlab_function": "s_opticsDefocusDisplacement",
+      "rtol": 1e-08,
+      "atol": 1e-12
+    },
+    {
+      "name": "optics_dof_small",
+      "matlab_function": "s_opticsDoF",
+      "rtol": 1e-08,
+      "atol": 1e-12
+    },
+    {
+      "name": "optics_depth_defocus_small",
+      "matlab_function": "s_opticsDepthDefocus",
+      "rtol": 1e-08,
+      "atol": 1e-12
+    },
+    {
+      "name": "optics_defocus_scene_small",
+      "matlab_function": "s_opticsDefocusScene",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "focus_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.06
+        },
+        "defocus5_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.06
+        },
+        "miss10_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.06
+        },
+        "miss40_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.06
+        },
+        "focus_peak_550": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.04
+        },
+        "defocus5_peak_550": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.04
+        },
+        "miss10_peak_550": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.04
+        },
+        "miss40_peak_550": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.04
+        }
+      }
+    },
+    {
+      "name": "wvf_astigmatism_small",
+      "matlab_function": "s_wvfAstigmatism",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_zernike_set_small",
+      "matlab_function": "s_wvfZernikeSet",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "psf_mid_rows": {
+          "mode": "mean_rel",
+          "max_mean_rel": 1e-05
+        },
+        "oi_center_rows_550": {
+          "mode": "mean_rel",
+          "max_mean_rel": 1e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_wavefronts_small",
+      "matlab_function": "s_wvfWavefronts",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "wavefront_mid_rows_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 1e-05
+        },
+        "wavefront_mid_cols_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 1e-05
+        }
+      }
+    },
+    {
+      "name": "zernike_interpolation_small",
+      "matlab_function": "s_zernikeInterpolation",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_plot_script_sequence_small",
+      "matlab_function": "s_wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "line_550_um_x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        },
+        "line_550_mm_x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        },
+        "psf_angle_460_x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_diffraction_small",
+      "matlab_function": "s_wvfDiffraction",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "lca_mid_rows": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        }
+      }
+    },
+    {
+      "name": "wvf_spatial_sampling_small",
+      "matlab_function": "wvfGet/wvfCompute",
+      "rtol": 3e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "psf_xaxis_um": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_compute_psf_small",
+      "matlab_function": "wvfPupilFunction/wvfComputePSF",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "psf_mid_row": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "pupil_amp_row": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.06
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_otf_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "fx": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_otf_normalized_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "fx": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_1d_otf_angle_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "fx": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_1d_otf_angle_normalized_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "fx": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_1d_otf_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "fx": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_1d_otf_normalized_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "fx": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_pupil_amp_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_plot_2d_pupil_amplitude_space_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_plot_pupil_phase_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_plot_2d_pupil_phase_space_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_plot_wavefront_aberrations_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_plot_2d_wavefront_aberrations_space_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_plot_image_psf_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_image_psf_airy_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_image_psf_normalized_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_psf_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_psf_normalized_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_image_psf_angle_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_image_psf_angle_normalized_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_2d_psf_angle_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_2d_psf_angle_normalized_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_1d_psf_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_1d_psf_space_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_1d_psf_normalized_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_1d_psf_angle_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_1d_psf_angle_normalized_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "x": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_psf_xaxis_airy_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "samp": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_psfxaxis_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "samp": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_psf_yaxis_airy_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "samp": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_plot_psfyaxis_small",
+      "matlab_function": "wvfPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "samp": {
+          "mode": "mean_rel",
+          "max_mean_rel": 3e-05
+        }
+      }
+    },
+    {
+      "name": "wvf_psf2zcoeff_error_small",
+      "matlab_function": "psf2zcoeff",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_aperture_polygon_clean_small",
+      "matlab_function": "wvfAperture",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "wvf_compute_aperture_polygon_small",
+      "matlab_function": "wvfCompute/wvfAperture",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "psf_mid_row": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "pupil_amp_row": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.06
+        }
+      }
+    },
+    {
+      "name": "oi_lswavelength_diffraction_small",
+      "matlab_function": "oiPlot (ls wavelength)",
+      "rtol": 1e-04,
+      "atol": 1e-06
+    },
+    {
+      "name": "oi_lswavelength_wvf_small",
+      "matlab_function": "oiPlot (ls wavelength wvf)",
+      "rtol": 1e-04,
+      "atol": 1e-06
+    },
+    {
+      "name": "oi_otfwavelength_diffraction_small",
+      "matlab_function": "oiPlot (otf wavelength diffraction)",
+      "rtol": 1e-04,
+      "atol": 1e-06
+    },
+    {
+      "name": "oi_otfwavelength_wvf_small",
+      "matlab_function": "oiPlot (otf wavelength wvf)",
+      "rtol": 1e-04,
+      "atol": 1e-06
+    },
+    {
+      "name": "oi_irradiance_hline_diffraction_lineep_small",
+      "matlab_function": "oiPlot (irradiance hline diffraction line ep)",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "data": {
+          "mode": "scale_invariant",
+          "max_mean_rel": 5e-05
+        }
+      }
+    },
+    {
+      "name": "oi_diffraction_limited_default",
+      "matlab_function": "oiCompute",
+      "rtol": 1e-04,
+      "atol": 1e-06
+    },
+    {
+      "name": "oi_cos4th_small",
+      "matlab_function": "s_opticsCos4th",
+      "rtol": 1e-05,
+      "atol": 1e-06,
+      "field_overrides": {
+        "pos_default_um": {
+          "mode": "mean_rel",
+          "max_mean_rel": 2e-06
+        },
+        "pos_long_um": {
+          "mode": "mean_rel",
+          "max_mean_rel": 2e-06
+        },
+        "center_line_default_lux": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 1e-05
+        },
+        "center_line_long_lux": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 1e-05
+        }
+      }
+    },
+    {
+      "name": "oi_wvf_small_scene",
+      "matlab_function": "oiCompute",
+      "rtol": 1e-04,
+      "atol": 1e-06,
+      "field_overrides": {
+        "photons": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        }
+      }
+    },
+    {
+      "name": "optics_diffraction_small",
+      "matlab_function": "s_opticsDiffraction",
+      "rtol": 1e-04,
+      "atol": 1e-06
+    },
+    {
+      "name": "optics_flare_small",
+      "matlab_function": "s_opticsFlare",
+      "rtol": 1e-04,
+      "atol": 1e-06,
+      "field_overrides": {
+        "initial_aperture_dark_fraction": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "initial_aperture_mean": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.08
+        },
+        "initial_aperture_sum": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.08
+        },
+        "initial_psf_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "initial_psf_widths": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        },
+        "five_aperture_dark_fraction": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "five_aperture_mean": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.07
+        },
+        "five_aperture_sum": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.07
+        },
+        "five_psf_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.02
+        },
+        "five_hdr_mean_photons_550_ratio": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.0002
+        },
+        "defocus_aperture_dark_fraction": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        },
+        "defocus_aperture_mean": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.06
+        },
+        "defocus_aperture_sum": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.06
+        },
+        "defocus_psf_center_row_550_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.09
+        },
+        "defocus_psf_widths": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.12
+        }
+      }
+    },
+    {
+      "name": "optics_flare2_small",
+      "matlab_function": "s_opticsFlare2",
+      "rtol": 1e-04,
+      "atol": 1e-06,
+      "field_overrides": {
+        "initial_aperture_sum": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "five_aperture_sum": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "five_hdr_mean_photons_550_ratio": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.0001
+        },
+        "defocus_aperture_sum": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.06
+        },
+        "defocus_hdr_mean_photons_550_ratio": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.001
+        }
+      }
+    },
+    {
+      "name": "oi_pad_crop_small",
+      "matlab_function": "s_opticsPadCrop",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "optics_microlens_small",
+      "matlab_function": "s_opticsMicrolens",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_bayer_noiseless",
+      "matlab_function": "sensorCompute",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_monochrome_noise_stats",
+      "matlab_function": "sensorCompute",
+      "rtol": 0.01,
+      "atol": 0.02
+    },
+    {
+      "name": "sensor_imx363_crop_small",
+      "matlab_function": "sensorCreate/sensorCrop",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_plot_line_volts_space_small",
+      "matlab_function": "sensorPlotLine",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_signal_current_uniform_small",
+      "matlab_function": "signalCurrent",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_split_pixel_ovt_saturated_small",
+      "matlab_function": "sensorCreateArray/sensorComputeArray (OVT saturated)",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "combined_volts": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.0002
+        }
+      }
+    },
+    {
+      "name": "sensor_stacked_pixels_foveon_small",
+      "matlab_function": "s_sensorStackedPixels",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "stacked_center_patch_mean": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        },
+        "stacked_center_patch_std": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "stacked_center_patch_p90": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.04
+        },
+        "stacked_mean_volts": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.001
+        },
+        "stacked_std_volts": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "bayer_line_mean": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "bayer_line_std": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "bayer_line_p90": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        }
+      }
+    },
+    {
+      "name": "sensor_microlens_etendue_small",
+      "matlab_function": "s_sensorMicrolens",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_comparison_small",
+      "matlab_function": "s_sensorComparison",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "nonimx_small_sensor_mean_volts": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.005
+        },
+        "nonimx_small_sensor_p90_volts": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.005
+        },
+        "nonimx_large_sensor_mean_volts": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.005
+        },
+        "nonimx_large_sensor_p90_volts": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.005
+        },
+        "imx363_mean_ratio_large_small": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "imx363_p90_ratio_large_small": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        }
+      }
+    },
+    {
+      "name": "sensor_noise_samples_small",
+      "matlab_function": "s_sensorNoise",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "noise_free_mean": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "noise_std_image_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.12
+        },
+        "noise_distribution_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.18
+        },
+        "mean_residual_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.25
+        },
+        "pair_diff_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.2
+        }
+      }
+    },
+    {
+      "name": "sensor_mcc_small",
+      "matlab_function": "s_sensorMCC",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "estimated_ccm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "uncorrected_mean_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "uncorrected_p95_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "corrected_mean_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "corrected_p95_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        }
+      }
+    },
+    {
+      "name": "sensor_rolling_shutter_small",
+      "matlab_function": "s_sensorRollingShutter",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "first_crop_rect": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.05
+        },
+        "last_crop_rect": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.05
+        },
+        "temporal_mean_volts": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        },
+        "center_pixel_trace": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.07
+        },
+        "final_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "sampled_row_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.11
+        },
+        "result_mean_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "result_p95_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        }
+      }
+    },
+    {
+      "name": "sensor_imx490_uniform_small",
+      "matlab_function": "s_sensorIMX490/imx490Compute",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "capture_mean_electrons": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "capture_mean_volts": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "capture_mean_dv": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "large_gain_ratio": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "small_area_ratio": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "combined_volts_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        }
+      }
+    },
+    {
+      "name": "sensor_filter_transmissivities_small",
+      "matlab_function": "sensorGet/sensorSet",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_hdr_pixel_size_small",
+      "matlab_function": "s_sensorHDR_PixelSize.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "mean_volts": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.0003
+        },
+        "p95_volts": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.001
+        },
+        "mean_electrons": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.0003
+        },
+        "result_mean_gray": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.0003
+        },
+        "result_p95_gray": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.001
+        }
+      }
+    },
+    {
+      "name": "sensor_log_ar0132at_small",
+      "matlab_function": "s_sensorLogAR0132AT.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "volts_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.001
+        },
+        "row15_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.003
+        },
+        "row114_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.001
+        },
+        "row15_profile_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.0001
+        },
+        "row114_profile_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.0001
+        }
+      }
+    },
+    {
+      "name": "sensor_aliasing_small",
+      "matlab_function": "s_sensorAliasing.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "small_line_data_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.001
+        },
+        "small_line_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "large_line_data_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.05
+        },
+        "large_line_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        },
+        "blur_line_data_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.02
+        },
+        "blur_line_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "slanted_sharp_center_row_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.05
+        },
+        "slanted_sharp_center_col_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.07
+        },
+        "slanted_blur_center_row_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.05
+        },
+        "slanted_blur_center_col_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.07
+        },
+        "slanted_scene_size": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.001
+        },
+        "slanted_sharp_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "slanted_blur_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        }
+      }
+    },
+    {
+      "name": "sensor_external_analysis_small",
+      "matlab_function": "s_sensorExternalAnalysis.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "volts_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.0001
+        }
+      }
+    },
+    {
+      "name": "sensor_color_filter_gaussian_roundtrip_small",
+      "matlab_function": "sensorColorFilter/ieSaveColorFilter/ieReadColorFilter",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_color_filter_asset_nikond100_small",
+      "matlab_function": "ieReadColorFilter",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_cfa_ycmy_small",
+      "matlab_function": "sensorCreate (ycmy)",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "rgb": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        }
+      }
+    },
+    {
+      "name": "sensor_cfa_pattern_and_size_rgb_small",
+      "matlab_function": "sensorSet (pattern and size)",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_cfa_script_small",
+      "matlab_function": "s_sensorCFA.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "branch_center_row_luma_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.06
+        },
+        "branch_center_col_luma_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.06
+        },
+        "branch_mean_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "branch_center_rgb_norm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        }
+      }
+    },
+    {
+      "name": "sensor_snr_components_small",
+      "matlab_function": "sensorSNR",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_counting_photons_small",
+      "matlab_function": "s_sensorCountingPhotons",
+      "rtol": 1e-04,
+      "atol": 1e-06
+    },
+    {
+      "name": "sensor_poisson_noise_small",
+      "matlab_function": "s_sensorPoissonNoise",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "roi_mean_dv": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.12
+        },
+        "roi_std_dv": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.9
+        },
+        "roi_percentiles": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.2
+        },
+        "sqrt_mean_dv": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.08
+        },
+        "sensor_mean_dv": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.12
+        }
+      }
+    },
+    {
+      "name": "sensor_estimation_small",
+      "matlab_function": "ieReadSpectra/pinv spectral estimation",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_macbeth_daylight_estimate_small",
+      "matlab_function": "s_sensorMacbethDaylightEstimate.m",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_spectral_radiometer_small",
+      "matlab_function": "s_spectralRadiometer.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "noise_free_line": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "shot_sd_line": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "noisy_line_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        },
+        "noisy_full_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "noise_free_full_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        }
+      }
+    },
+    {
+      "name": "sensor_spectral_estimation_small",
+      "matlab_function": "s_sensorSpectralEstimation",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "exposure_times": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.001
+        },
+        "responsivity": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "estimated_filters": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        }
+      }
+    },
+    {
+      "name": "sensor_exposure_color_small",
+      "matlab_function": "sensorCompute/ipCompute overexposure color",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "exposure_time": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "mean_rgb": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "white_patch_rgb": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "result": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.02
+        }
+      }
+    },
+    {
+      "name": "sensor_exposure_bracket_small",
+      "matlab_function": "s_sensorExposureBracket",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_exposure_cfa_small",
+      "matlab_function": "s_sensorExposureCFA",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "bluish_mean_volts": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.11
+        },
+        "reddish_mean_volts": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        },
+        "camera_mean_volts": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        }
+      }
+    },
+    {
+      "name": "sensor_dark_voltage_small",
+      "matlab_function": "sensorCompute/ieFitLine",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "mean_volts": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.01
+        },
+        "dark_voltage_estimate": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.001
+        },
+        "offset": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.2
+        }
+      }
+    },
+    {
+      "name": "sensor_prnu_estimate_small",
+      "matlab_function": "sensorCompute/PRNU slope estimate",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "prnu_estimate": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.3
+        },
+        "slope_std": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.3
+        },
+        "offset_mean": {
+          "mode": "mean_rel",
+          "max_mean_rel": 6.0
+        },
+        "offset_std": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.5
+        },
+        "slope_sample": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.05
+        }
+      }
+    },
+    {
+      "name": "sensor_dsnu_estimate_small",
+      "matlab_function": "sensorCompute/DSNU estimate",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "estimated_dsnu": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.15
+        },
+        "mean_offset_mean": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        },
+        "mean_offset_std": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.2
+        },
+        "mean_offset_percentiles": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.1
+        }
+      }
+    },
+    {
+      "name": "sensor_spatial_resolution_small",
+      "matlab_function": "sensorPlotLine/oiPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "coarse_pixData": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "fine_pixData": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        }
+      }
+    },
+    {
+      "name": "sensor_size_resolution_small",
+      "matlab_function": "s_sensorSizeResolution.m",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_cfa_point_spread_small",
+      "matlab_function": "s_sensorCFAPointSpread.m",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "crop_mean_rgb": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        },
+        "crop_peak_rgb": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.05
+        },
+        "green_row_width_30_um": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.2
+        }
+      }
+    },
+    {
+      "name": "sensor_fpn_noise_modes_small",
+      "matlab_function": "sensorCompute/sensorPlot",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "noise0_pixData": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 1e-06
+        },
+        "noiseM2_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.15
+        },
+        "noise1_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.15
+        },
+        "noise2_stats": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.15
+        }
+      }
+    },
+    {
+      "name": "optics_rt_center_edge_psf_small",
+      "matlab_function": "oiCreate/oiGet rtpsfdata",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "center_psf_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.03
+        },
+        "edge_psf_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.05
+        },
+        "center_psf_center_row_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.03
+        },
+        "edge_psf_center_row_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.05
+        }
+      }
+    },
+    {
+      "name": "optics_rt_point_array_field_small",
+      "matlab_function": "sceneCreate/oiCompute point array",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "render_rgb": {
+          "mode": "mae",
+          "max_mae": 0.01
+        },
+        "center_crop_rgb": {
+          "mode": "mae",
+          "max_mae": 0.01
+        },
+        "edge_crop_rgb": {
+          "mode": "mae",
+          "max_mae": 0.01
+        },
+        "center_peak_rc": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "edge_peak_rc": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "center_crop_metrics": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.5
+        },
+        "edge_crop_metrics": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.5
+        },
+        "center_crop_luma_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.3
+        },
+        "edge_crop_luma_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.3
+        }
+      }
+    },
+    {
+      "name": "optics_rt_distortion_field_small",
+      "matlab_function": "sceneCreate/oiCompute distortion grid",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "ideal_grid_rgb": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.01
+        },
+        "distorted_grid_rgb": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.04
+        },
+        "distortion_percent": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "distorted_height_mm": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.01
+        }
+      }
+    },
+    {
+      "name": "ip_rt_point_array_pipeline_small",
+      "matlab_function": "sceneCreate/oiCompute/sensorCompute/ipCompute ray trace point array",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "sensor_volts": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.06
+        },
+        "result": {
+          "mode": "mae",
+          "max_mae": 0.01
+        },
+        "sensor_center_peak_rc": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "sensor_edge_peak_rc": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "result_center_peak_rc": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "result_edge_peak_rc": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.02
+        },
+        "sensor_center_crop_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.2
+        },
+        "sensor_edge_crop_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.2
+        },
+        "sensor_center_crop_metrics": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.3
+        },
+        "sensor_edge_crop_metrics": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.3
+        },
+        "result_center_crop_rgb": {
+          "mode": "mae",
+          "max_mae": 0.01
+        },
+        "result_edge_crop_rgb": {
+          "mode": "mae",
+          "max_mae": 0.01
+        },
+        "result_center_crop_luma_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.3
+        },
+        "result_edge_crop_luma_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.3
+        },
+        "result_center_crop_metrics": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.3
+        },
+        "result_edge_crop_metrics": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.3
+        }
+      }
+    },
+    {
+      "name": "pipeline_rt_bar_small",
+      "matlab_function": "sceneCreate/rtPrecomputePSFApply/sensorCompute/ipCompute ray trace bar",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "oi_size": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        },
+        "oi_edge_rc": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        },
+        "sensor_edge_rc": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        },
+        "result_edge_rc": {
+          "mode": "mean_rel",
+          "max_mean_rel": 0.03
+        },
+        "oi_edge_crop_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.08
+        },
+        "oi_edge_profile_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.12
+        },
+        "sensor_edge_crop_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.08
+        },
+        "sensor_edge_profile_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.14
+        },
+        "result_edge_crop_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.08
+        },
+        "result_edge_profile_norm": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.08
+        }
+      }
+    },
+    {
+      "name": "sensor_description_fpn_small",
+      "matlab_function": "sensorDescription",
+      "rtol": 1e-05,
+      "atol": 1e-08
+    },
+    {
+      "name": "sensor_dng_read_crop_small",
+      "matlab_function": "sensorDNGRead/ipCompute",
+      "rtol": 1e-05,
+      "atol": 1e-08,
+      "field_overrides": {
+        "result": {
+          "mode": "normalized_mae",
+          "max_normalized_mae": 0.3
+        }
+      }
+    },
+    {
+      "name": "ip_default_pipeline",
+      "matlab_function": "ipCompute",
+      "rtol": 0.001,
+      "atol": 0.001
+    },
+    {
+      "name": "camera_default_pipeline",
+      "matlab_function": "cameraCompute",
+      "rtol": 0.001,
+      "atol": 0.001
+    }
+  ]
+}

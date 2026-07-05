@@ -1,0 +1,1582 @@
+{
+  "baseline": {
+    "detection_metrics": {
+      "average_precision": 1.0,
+      "f1": 1.0,
+      "false_negative": 0,
+      "false_positive": 0,
+      "iou_threshold": 0.5,
+      "matches": [
+        {
+          "ground_truth_index": 0,
+          "iou": 1.0,
+          "label": "red_box",
+          "prediction_index": 0,
+          "score": 1.0
+        },
+        {
+          "ground_truth_index": 2,
+          "iou": 1.0,
+          "label": "blue_stripes",
+          "prediction_index": 1,
+          "score": 1.0
+        },
+        {
+          "ground_truth_index": 1,
+          "iou": 1.0,
+          "label": "green_circle",
+          "prediction_index": 2,
+          "score": 0.9860000000000003
+        }
+      ],
+      "mean_matched_iou": 1.0,
+      "per_label": {
+        "blue_stripes": {
+          "average_precision": 1.0,
+          "f1": 1.0,
+          "false_negative": 0.0,
+          "false_positive": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 1.0
+        },
+        "green_circle": {
+          "average_precision": 1.0,
+          "f1": 1.0,
+          "false_negative": 0.0,
+          "false_positive": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 1.0
+        },
+        "red_box": {
+          "average_precision": 1.0,
+          "f1": 1.0,
+          "false_negative": 0.0,
+          "false_positive": 0.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 1.0
+        }
+      },
+      "precision": 1.0,
+      "recall": 1.0,
+      "true_positive": 3
+    },
+    "detections": [
+      {
+        "area": 3596.0,
+        "label": "red_box",
+        "metadata": {},
+        "score": 1.0,
+        "xyxy": [
+          30.0,
+          34.0,
+          92.0,
+          92.0
+        ]
+      },
+      {
+        "area": 3969.0,
+        "label": "green_circle",
+        "metadata": {},
+        "score": 0.9860000000000003,
+        "xyxy": [
+          141.0,
+          35.0,
+          204.0,
+          98.0
+        ]
+      },
+      {
+        "area": 8704.0,
+        "label": "blue_stripes",
+        "metadata": {},
+        "score": 1.0,
+        "xyxy": [
+          58.0,
+          130.0,
+          194.0,
+          194.0
+        ]
+      }
+    ],
+    "map": {
+      "ap50": 1.0,
+      "ap75": 1.0,
+      "by_threshold": {
+        "ap50": {
+          "per_label": {
+            "blue_stripes": 1.0,
+            "green_circle": 1.0,
+            "red_box": 1.0
+          },
+          "value": 1.0
+        },
+        "ap75": {
+          "per_label": {
+            "blue_stripes": 1.0,
+            "green_circle": 1.0,
+            "red_box": 1.0
+          },
+          "value": 1.0
+        }
+      },
+      "map": 1.0,
+      "thresholds": [
+        0.5,
+        0.75
+      ]
+    },
+    "segmentation_metrics": {
+      "f1": 1.0,
+      "false_negative": 0,
+      "false_positive": 0,
+      "iou_threshold": 0.5,
+      "matches": [
+        {
+          "boundary_f1": 1.0,
+          "ground_truth_index": 0,
+          "iou": 1.0,
+          "label": "red_box",
+          "prediction_index": 0,
+          "score": 1.0
+        },
+        {
+          "boundary_f1": 1.0,
+          "ground_truth_index": 2,
+          "iou": 1.0,
+          "label": "blue_stripes",
+          "prediction_index": 1,
+          "score": 1.0
+        },
+        {
+          "boundary_f1": 1.0,
+          "ground_truth_index": 1,
+          "iou": 1.0,
+          "label": "green_circle",
+          "prediction_index": 2,
+          "score": 0.9860000000000003
+        }
+      ],
+      "mean_boundary_f1": 1.0,
+      "mean_iou": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "true_positive": 3
+    },
+    "segmentations": [
+      {
+        "area": 3596,
+        "bbox": {
+          "area": 3596.0,
+          "label": "red_box",
+          "metadata": {},
+          "score": 1.0,
+          "xyxy": [
+            30.0,
+            34.0,
+            92.0,
+            92.0
+          ]
+        },
+        "label": "red_box",
+        "metadata": {},
+        "score": 1.0,
+        "shape": [
+          224,
+          256
+        ]
+      },
+      {
+        "area": 3001,
+        "bbox": {
+          "area": 3969.0,
+          "label": "green_circle",
+          "metadata": {},
+          "score": 0.9860000000000003,
+          "xyxy": [
+            141.0,
+            35.0,
+            204.0,
+            98.0
+          ]
+        },
+        "label": "green_circle",
+        "metadata": {},
+        "score": 0.9860000000000003,
+        "shape": [
+          224,
+          256
+        ]
+      },
+      {
+        "area": 4608,
+        "bbox": {
+          "area": 8704.0,
+          "label": "blue_stripes",
+          "metadata": {},
+          "score": 1.0,
+          "xyxy": [
+            58.0,
+            130.0,
+            194.0,
+            194.0
+          ]
+        },
+        "label": "blue_stripes",
+        "metadata": {},
+        "score": 1.0,
+        "shape": [
+          224,
+          256
+        ]
+      }
+    ]
+  },
+  "config": {
+    "boundary_tolerance_px": 1,
+    "iou_threshold": 0.5,
+    "label_agnostic": false,
+    "map_iou_thresholds": [
+      0.5,
+      0.75
+    ],
+    "mask_threshold": 0.5,
+    "max_detections": null,
+    "score_threshold": 0.05
+  },
+  "downloaded_yolo_models": [
+    [
+      "yolo11n.pt",
+      "ultralytics_yolo11n_detection",
+      5.354,
+      "/Users/seongcheoljeong/.cache/pyisetcam/task_perception/yolo/yolo11n.pt"
+    ],
+    [
+      "yolo11n-seg.pt",
+      "ultralytics_yolo11n_segmentation",
+      5.896,
+      "/Users/seongcheoljeong/.cache/pyisetcam/task_perception/yolo/yolo11n-seg.pt"
+    ],
+    [
+      "yolo11n-cls.pt",
+      "ultralytics_yolo11n_classification",
+      5.522,
+      "/Users/seongcheoljeong/.cache/pyisetcam/task_perception/yolo/yolo11n-cls.pt"
+    ],
+    [
+      "yolo11n-pose.pt",
+      "ultralytics_yolo11n_pose",
+      5.966,
+      "/Users/seongcheoljeong/.cache/pyisetcam/task_perception/yolo/yolo11n-pose.pt"
+    ],
+    [
+      "yolo11n-obb.pt",
+      "ultralytics_yolo11n_obb",
+      5.527,
+      "/Users/seongcheoljeong/.cache/pyisetcam/task_perception/yolo/yolo11n-obb.pt"
+    ]
+  ],
+  "figures": {
+    "degraded_overlay": "/Users/seongcheoljeong/Documents/CameraE2E/reports/perception/task_perception/task_degraded_overlay.png",
+    "detection_overlay": "/Users/seongcheoljeong/Documents/CameraE2E/reports/perception/task_perception/task_detection_overlay.png",
+    "reference": "/Users/seongcheoljeong/Documents/CameraE2E/reports/perception/task_perception/task_reference.png",
+    "robustness_sweep": "/Users/seongcheoljeong/Documents/CameraE2E/reports/perception/task_perception/task_robustness_sweep.png",
+    "segmentation_overlay": "/Users/seongcheoljeong/Documents/CameraE2E/reports/perception/task_perception/task_segmentation_overlay.png"
+  },
+  "generated_at": "2026-05-25T08:13:19",
+  "git_commit": "ecc712f",
+  "model_profiles": [
+    [
+      "custom_callable",
+      "callable",
+      "detection_segmentation",
+      null,
+      "custom callable"
+    ],
+    [
+      "sam_vit_b_automatic",
+      "sam_automatic",
+      "segmentation",
+      "sam_vit_b",
+      "pip install segment-anything torch"
+    ],
+    [
+      "torchvision_fasterrcnn_resnet50_fpn_v2_coco",
+      "torchvision_detection",
+      "detection",
+      "fasterrcnn_resnet50_fpn_v2",
+      "pip install torch torchvision"
+    ],
+    [
+      "torchvision_maskrcnn_resnet50_fpn_v2_coco",
+      "torchvision_detection",
+      "detection_segmentation",
+      "maskrcnn_resnet50_fpn_v2",
+      "pip install torch torchvision"
+    ],
+    [
+      "transformers_detr_resnet50_coco",
+      "transformers_object_detection",
+      "detection",
+      "facebook/detr-resnet-50",
+      "pip install transformers torch pillow"
+    ],
+    [
+      "transformers_mask2former_ade20k",
+      "transformers_segmentation",
+      "segmentation",
+      "facebook/mask2former-swin-small-ade-semantic",
+      "pip install transformers torch pillow"
+    ],
+    [
+      "ultralytics_yolo11n_bytetrack",
+      "ultralytics_yolo",
+      "tracking",
+      "yolo11n.pt",
+      "pip install ultralytics lap"
+    ],
+    [
+      "ultralytics_yolo11n_classification",
+      "ultralytics_yolo",
+      "classification",
+      "yolo11n-cls.pt",
+      "pip install ultralytics lap"
+    ],
+    [
+      "ultralytics_yolo11n_detection",
+      "ultralytics_yolo",
+      "detection",
+      "yolo11n.pt",
+      "pip install ultralytics lap"
+    ],
+    [
+      "ultralytics_yolo11n_obb",
+      "ultralytics_yolo",
+      "oriented_detection",
+      "yolo11n-obb.pt",
+      "pip install ultralytics lap"
+    ],
+    [
+      "ultralytics_yolo11n_pose",
+      "ultralytics_yolo",
+      "pose",
+      "yolo11n-pose.pt",
+      "pip install ultralytics lap"
+    ],
+    [
+      "ultralytics_yolo11n_segmentation",
+      "ultralytics_yolo",
+      "detection_segmentation",
+      "yolo11n-seg.pt",
+      "pip install ultralytics lap"
+    ]
+  ],
+  "sweep": {
+    "cases": [
+      {
+        "amount": 0.0,
+        "detection_count": 3,
+        "detection_metrics": {
+          "average_precision": 1.0,
+          "f1": 1.0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "iou_threshold": 0.5,
+          "matches": [
+            {
+              "ground_truth_index": 0,
+              "iou": 1.0,
+              "label": "red_box",
+              "prediction_index": 0,
+              "score": 1.0
+            },
+            {
+              "ground_truth_index": 2,
+              "iou": 1.0,
+              "label": "blue_stripes",
+              "prediction_index": 1,
+              "score": 1.0
+            },
+            {
+              "ground_truth_index": 1,
+              "iou": 1.0,
+              "label": "green_circle",
+              "prediction_index": 2,
+              "score": 0.9860000000000003
+            }
+          ],
+          "mean_matched_iou": 1.0,
+          "per_label": {
+            "blue_stripes": {
+              "average_precision": 1.0,
+              "f1": 1.0,
+              "false_negative": 0.0,
+              "false_positive": 0.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "true_positive": 1.0
+            },
+            "green_circle": {
+              "average_precision": 1.0,
+              "f1": 1.0,
+              "false_negative": 0.0,
+              "false_positive": 0.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "true_positive": 1.0
+            },
+            "red_box": {
+              "average_precision": 1.0,
+              "f1": 1.0,
+              "false_negative": 0.0,
+              "false_positive": 0.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "true_positive": 1.0
+            }
+          },
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 3
+        },
+        "detections": [
+          {
+            "area": 3596.0,
+            "label": "red_box",
+            "metadata": {},
+            "score": 1.0,
+            "xyxy": [
+              30.0,
+              34.0,
+              92.0,
+              92.0
+            ]
+          },
+          {
+            "area": 8704.0,
+            "label": "blue_stripes",
+            "metadata": {},
+            "score": 1.0,
+            "xyxy": [
+              58.0,
+              130.0,
+              194.0,
+              194.0
+            ]
+          },
+          {
+            "area": 3969.0,
+            "label": "green_circle",
+            "metadata": {},
+            "score": 0.9860000000000003,
+            "xyxy": [
+              141.0,
+              35.0,
+              204.0,
+              98.0
+            ]
+          }
+        ],
+        "kind": "identity",
+        "map": {
+          "ap50": 1.0,
+          "ap75": 1.0,
+          "by_threshold": {
+            "ap50": {
+              "per_label": {
+                "blue_stripes": 1.0,
+                "green_circle": 1.0,
+                "red_box": 1.0
+              },
+              "value": 1.0
+            },
+            "ap75": {
+              "per_label": {
+                "blue_stripes": 1.0,
+                "green_circle": 1.0,
+                "red_box": 1.0
+              },
+              "value": 1.0
+            }
+          },
+          "map": 1.0,
+          "thresholds": [
+            0.5,
+            0.75
+          ]
+        },
+        "mean_detection_score": 0.9953333333333334,
+        "name": "baseline",
+        "segmentation_count": 3,
+        "segmentation_metrics": {
+          "f1": 1.0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "iou_threshold": 0.5,
+          "matches": [
+            {
+              "boundary_f1": 1.0,
+              "ground_truth_index": 0,
+              "iou": 1.0,
+              "label": "red_box",
+              "prediction_index": 0,
+              "score": 1.0
+            },
+            {
+              "boundary_f1": 1.0,
+              "ground_truth_index": 2,
+              "iou": 1.0,
+              "label": "blue_stripes",
+              "prediction_index": 1,
+              "score": 1.0
+            },
+            {
+              "boundary_f1": 1.0,
+              "ground_truth_index": 1,
+              "iou": 1.0,
+              "label": "green_circle",
+              "prediction_index": 2,
+              "score": 0.9860000000000003
+            }
+          ],
+          "mean_boundary_f1": 1.0,
+          "mean_iou": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 3
+        },
+        "segmentations": [
+          {
+            "area": 3596,
+            "bbox": {
+              "area": 3596.0,
+              "label": "red_box",
+              "metadata": {},
+              "score": 1.0,
+              "xyxy": [
+                30.0,
+                34.0,
+                92.0,
+                92.0
+              ]
+            },
+            "label": "red_box",
+            "metadata": {},
+            "score": 1.0,
+            "shape": [
+              224,
+              256
+            ]
+          },
+          {
+            "area": 4608,
+            "bbox": {
+              "area": 8704.0,
+              "label": "blue_stripes",
+              "metadata": {},
+              "score": 1.0,
+              "xyxy": [
+                58.0,
+                130.0,
+                194.0,
+                194.0
+              ]
+            },
+            "label": "blue_stripes",
+            "metadata": {},
+            "score": 1.0,
+            "shape": [
+              224,
+              256
+            ]
+          },
+          {
+            "area": 3001,
+            "bbox": {
+              "area": 3969.0,
+              "label": "green_circle",
+              "metadata": {},
+              "score": 0.9860000000000003,
+              "xyxy": [
+                141.0,
+                35.0,
+                204.0,
+                98.0
+              ]
+            },
+            "label": "green_circle",
+            "metadata": {},
+            "score": 0.9860000000000003,
+            "shape": [
+              224,
+              256
+            ]
+          }
+        ]
+      },
+      {
+        "amount": 0.45,
+        "detection_count": 3,
+        "detection_metrics": {
+          "average_precision": 1.0,
+          "f1": 1.0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "iou_threshold": 0.5,
+          "matches": [
+            {
+              "ground_truth_index": 0,
+              "iou": 1.0,
+              "label": "red_box",
+              "prediction_index": 0,
+              "score": 0.6273
+            },
+            {
+              "ground_truth_index": 2,
+              "iou": 1.0,
+              "label": "blue_stripes",
+              "prediction_index": 1,
+              "score": 0.5355
+            },
+            {
+              "ground_truth_index": 1,
+              "iou": 1.0,
+              "label": "green_circle",
+              "prediction_index": 2,
+              "score": 0.4437000000000001
+            }
+          ],
+          "mean_matched_iou": 1.0,
+          "per_label": {
+            "blue_stripes": {
+              "average_precision": 1.0,
+              "f1": 1.0,
+              "false_negative": 0.0,
+              "false_positive": 0.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "true_positive": 1.0
+            },
+            "green_circle": {
+              "average_precision": 1.0,
+              "f1": 1.0,
+              "false_negative": 0.0,
+              "false_positive": 0.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "true_positive": 1.0
+            },
+            "red_box": {
+              "average_precision": 1.0,
+              "f1": 1.0,
+              "false_negative": 0.0,
+              "false_positive": 0.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "true_positive": 1.0
+            }
+          },
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 3
+        },
+        "detections": [
+          {
+            "area": 3596.0,
+            "label": "red_box",
+            "metadata": {},
+            "score": 0.6273,
+            "xyxy": [
+              30.0,
+              34.0,
+              92.0,
+              92.0
+            ]
+          },
+          {
+            "area": 8704.0,
+            "label": "blue_stripes",
+            "metadata": {},
+            "score": 0.5355,
+            "xyxy": [
+              58.0,
+              130.0,
+              194.0,
+              194.0
+            ]
+          },
+          {
+            "area": 3969.0,
+            "label": "green_circle",
+            "metadata": {},
+            "score": 0.4437000000000001,
+            "xyxy": [
+              141.0,
+              35.0,
+              204.0,
+              98.0
+            ]
+          }
+        ],
+        "kind": "brightness",
+        "map": {
+          "ap50": 1.0,
+          "ap75": 1.0,
+          "by_threshold": {
+            "ap50": {
+              "per_label": {
+                "blue_stripes": 1.0,
+                "green_circle": 1.0,
+                "red_box": 1.0
+              },
+              "value": 1.0
+            },
+            "ap75": {
+              "per_label": {
+                "blue_stripes": 1.0,
+                "green_circle": 1.0,
+                "red_box": 1.0
+              },
+              "value": 1.0
+            }
+          },
+          "map": 1.0,
+          "thresholds": [
+            0.5,
+            0.75
+          ]
+        },
+        "mean_detection_score": 0.5355,
+        "name": "low_light_45pct",
+        "segmentation_count": 3,
+        "segmentation_metrics": {
+          "f1": 1.0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "iou_threshold": 0.5,
+          "matches": [
+            {
+              "boundary_f1": 1.0,
+              "ground_truth_index": 0,
+              "iou": 1.0,
+              "label": "red_box",
+              "prediction_index": 0,
+              "score": 0.6273
+            },
+            {
+              "boundary_f1": 1.0,
+              "ground_truth_index": 2,
+              "iou": 1.0,
+              "label": "blue_stripes",
+              "prediction_index": 1,
+              "score": 0.5355
+            },
+            {
+              "boundary_f1": 1.0,
+              "ground_truth_index": 1,
+              "iou": 1.0,
+              "label": "green_circle",
+              "prediction_index": 2,
+              "score": 0.4437000000000001
+            }
+          ],
+          "mean_boundary_f1": 1.0,
+          "mean_iou": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 3
+        },
+        "segmentations": [
+          {
+            "area": 3596,
+            "bbox": {
+              "area": 3596.0,
+              "label": "red_box",
+              "metadata": {},
+              "score": 0.6273,
+              "xyxy": [
+                30.0,
+                34.0,
+                92.0,
+                92.0
+              ]
+            },
+            "label": "red_box",
+            "metadata": {},
+            "score": 0.6273,
+            "shape": [
+              224,
+              256
+            ]
+          },
+          {
+            "area": 4608,
+            "bbox": {
+              "area": 8704.0,
+              "label": "blue_stripes",
+              "metadata": {},
+              "score": 0.5355,
+              "xyxy": [
+                58.0,
+                130.0,
+                194.0,
+                194.0
+              ]
+            },
+            "label": "blue_stripes",
+            "metadata": {},
+            "score": 0.5355,
+            "shape": [
+              224,
+              256
+            ]
+          },
+          {
+            "area": 3001,
+            "bbox": {
+              "area": 3969.0,
+              "label": "green_circle",
+              "metadata": {},
+              "score": 0.4437000000000001,
+              "xyxy": [
+                141.0,
+                35.0,
+                204.0,
+                98.0
+              ]
+            },
+            "label": "green_circle",
+            "metadata": {},
+            "score": 0.4437000000000001,
+            "shape": [
+              224,
+              256
+            ]
+          }
+        ]
+      },
+      {
+        "amount": 2.0,
+        "detection_count": 3,
+        "detection_metrics": {
+          "average_precision": 1.0,
+          "f1": 1.0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "iou_threshold": 0.5,
+          "matches": [
+            {
+              "ground_truth_index": 0,
+              "iou": 0.8787878787878788,
+              "label": "red_box",
+              "prediction_index": 0,
+              "score": 1.0
+            },
+            {
+              "ground_truth_index": 1,
+              "iou": 0.9251748251748252,
+              "label": "green_circle",
+              "prediction_index": 1,
+              "score": 0.8561747345312296
+            },
+            {
+              "ground_truth_index": 2,
+              "iou": 0.9142857142857143,
+              "label": "blue_stripes",
+              "prediction_index": 2,
+              "score": 0.7054827026085233
+            }
+          ],
+          "mean_matched_iou": 0.906082806082806,
+          "per_label": {
+            "blue_stripes": {
+              "average_precision": 1.0,
+              "f1": 1.0,
+              "false_negative": 0.0,
+              "false_positive": 0.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "true_positive": 1.0
+            },
+            "green_circle": {
+              "average_precision": 1.0,
+              "f1": 1.0,
+              "false_negative": 0.0,
+              "false_positive": 0.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "true_positive": 1.0
+            },
+            "red_box": {
+              "average_precision": 1.0,
+              "f1": 1.0,
+              "false_negative": 0.0,
+              "false_positive": 0.0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "true_positive": 1.0
+            }
+          },
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 3
+        },
+        "detections": [
+          {
+            "area": 4092.0,
+            "label": "red_box",
+            "metadata": {},
+            "score": 1.0,
+            "xyxy": [
+              28.0,
+              32.0,
+              94.0,
+              94.0
+            ]
+          },
+          {
+            "area": 4290.0,
+            "label": "green_circle",
+            "metadata": {},
+            "score": 0.8561747345312296,
+            "xyxy": [
+              140.0,
+              34.0,
+              205.0,
+              100.0
+            ]
+          },
+          {
+            "area": 9520.0,
+            "label": "blue_stripes",
+            "metadata": {},
+            "score": 0.7054827026085233,
+            "xyxy": [
+              56.0,
+              128.0,
+              196.0,
+              196.0
+            ]
+          }
+        ],
+        "kind": "gaussian_blur",
+        "map": {
+          "ap50": 1.0,
+          "ap75": 1.0,
+          "by_threshold": {
+            "ap50": {
+              "per_label": {
+                "blue_stripes": 1.0,
+                "green_circle": 1.0,
+                "red_box": 1.0
+              },
+              "value": 1.0
+            },
+            "ap75": {
+              "per_label": {
+                "blue_stripes": 1.0,
+                "green_circle": 1.0,
+                "red_box": 1.0
+              },
+              "value": 1.0
+            }
+          },
+          "map": 1.0,
+          "thresholds": [
+            0.5,
+            0.75
+          ]
+        },
+        "mean_detection_score": 0.8538858123799177,
+        "name": "blur_sigma_2p0",
+        "segmentation_count": 3,
+        "segmentation_metrics": {
+          "f1": 1.0,
+          "false_negative": 0,
+          "false_positive": 0,
+          "iou_threshold": 0.5,
+          "matches": [
+            {
+              "boundary_f1": 0.022408963585434174,
+              "ground_truth_index": 0,
+              "iou": 0.8835380835380835,
+              "label": "red_box",
+              "prediction_index": 0,
+              "score": 1.0
+            },
+            {
+              "boundary_f1": 0.016853932584269662,
+              "ground_truth_index": 1,
+              "iou": 0.8762043795620438,
+              "label": "green_circle",
+              "prediction_index": 1,
+              "score": 0.8561747345312296
+            },
+            {
+              "boundary_f1": 0.03755868544600939,
+              "ground_truth_index": 2,
+              "iou": 0.6448362720403022,
+              "label": "blue_stripes",
+              "prediction_index": 2,
+              "score": 0.7054827026085233
+            }
+          ],
+          "mean_boundary_f1": 0.02560719387190441,
+          "mean_iou": 0.8015262450468098,
+          "precision": 1.0,
+          "recall": 1.0,
+          "true_positive": 3
+        },
+        "segmentations": [
+          {
+            "area": 4070,
+            "bbox": {
+              "area": 4092.0,
+              "label": "red_box",
+              "metadata": {},
+              "score": 1.0,
+              "xyxy": [
+                28.0,
+                32.0,
+                94.0,
+                94.0
+              ]
+            },
+            "label": "red_box",
+            "metadata": {},
+            "score": 1.0,
+            "shape": [
+              224,
+              256
+            ]
+          },
+          {
+            "area": 3425,
+            "bbox": {
+              "area": 4290.0,
+              "label": "green_circle",
+              "metadata": {},
+              "score": 0.8561747345312296,
+              "xyxy": [
+                140.0,
+                34.0,
+                205.0,
+                100.0
+              ]
+            },
+            "label": "green_circle",
+            "metadata": {},
+            "score": 0.8561747345312296,
+            "shape": [
+              224,
+              256
+            ]
+          },
+          {
+            "area": 7146,
+            "bbox": {
+              "area": 9520.0,
+              "label": "blue_stripes",
+              "metadata": {},
+              "score": 0.7054827026085233,
+              "xyxy": [
+                56.0,
+                128.0,
+                196.0,
+                196.0
+              ]
+            },
+            "label": "blue_stripes",
+            "metadata": {},
+            "score": 0.7054827026085233,
+            "shape": [
+              224,
+              256
+            ]
+          }
+        ]
+      },
+      {
+        "amount": 0.07,
+        "detection_count": 3,
+        "detection_metrics": {
+          "average_precision": 0.0,
+          "f1": 0.0,
+          "false_negative": 3,
+          "false_positive": 3,
+          "iou_threshold": 0.5,
+          "matches": [],
+          "mean_matched_iou": 0.0,
+          "per_label": {
+            "blue_stripes": {
+              "average_precision": 0.0,
+              "f1": 0.0,
+              "false_negative": 1.0,
+              "false_positive": 1.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "true_positive": 0.0
+            },
+            "green_circle": {
+              "average_precision": 0.0,
+              "f1": 0.0,
+              "false_negative": 1.0,
+              "false_positive": 1.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "true_positive": 0.0
+            },
+            "red_box": {
+              "average_precision": 0.0,
+              "f1": 0.0,
+              "false_negative": 1.0,
+              "false_positive": 1.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "true_positive": 0.0
+            }
+          },
+          "precision": 0.0,
+          "recall": 0.0,
+          "true_positive": 0
+        },
+        "detections": [
+          {
+            "area": 57344.0,
+            "label": "red_box",
+            "metadata": {},
+            "score": 0.920146153179286,
+            "xyxy": [
+              0.0,
+              0.0,
+              256.0,
+              224.0
+            ]
+          },
+          {
+            "area": 57344.0,
+            "label": "blue_stripes",
+            "metadata": {},
+            "score": 0.8104323362654419,
+            "xyxy": [
+              0.0,
+              0.0,
+              256.0,
+              224.0
+            ]
+          },
+          {
+            "area": 57344.0,
+            "label": "green_circle",
+            "metadata": {},
+            "score": 0.5134188744258517,
+            "xyxy": [
+              0.0,
+              0.0,
+              256.0,
+              224.0
+            ]
+          }
+        ],
+        "kind": "gaussian_noise",
+        "map": {
+          "ap50": 0.0,
+          "ap75": 0.0,
+          "by_threshold": {
+            "ap50": {
+              "per_label": {
+                "blue_stripes": 0.0,
+                "green_circle": 0.0,
+                "red_box": 0.0
+              },
+              "value": 0.0
+            },
+            "ap75": {
+              "per_label": {
+                "blue_stripes": 0.0,
+                "green_circle": 0.0,
+                "red_box": 0.0
+              },
+              "value": 0.0
+            }
+          },
+          "map": 0.0,
+          "thresholds": [
+            0.5,
+            0.75
+          ]
+        },
+        "mean_detection_score": 0.7479991212901931,
+        "name": "noise_sigma_0p07",
+        "segmentation_count": 3,
+        "segmentation_metrics": {
+          "f1": 0.6666666666666666,
+          "false_negative": 1,
+          "false_positive": 1,
+          "iou_threshold": 0.5,
+          "matches": [
+            {
+              "boundary_f1": 0.18001525553012968,
+              "ground_truth_index": 0,
+              "iou": 0.62528255955486,
+              "label": "red_box",
+              "prediction_index": 0,
+              "score": 0.920146153179286
+            },
+            {
+              "boundary_f1": 0.47752172270494897,
+              "ground_truth_index": 2,
+              "iou": 0.6201049656842955,
+              "label": "blue_stripes",
+              "prediction_index": 1,
+              "score": 0.8104323362654419
+            }
+          ],
+          "mean_boundary_f1": 0.3287684891175393,
+          "mean_iou": 0.6226937626195778,
+          "precision": 0.6666666666666666,
+          "recall": 0.6666666666666666,
+          "true_positive": 2
+        },
+        "segmentations": [
+          {
+            "area": 5751,
+            "bbox": {
+              "area": 57344.0,
+              "label": "red_box",
+              "metadata": {},
+              "score": 0.920146153179286,
+              "xyxy": [
+                0.0,
+                0.0,
+                256.0,
+                224.0
+              ]
+            },
+            "label": "red_box",
+            "metadata": {},
+            "score": 0.920146153179286,
+            "shape": [
+              224,
+              256
+            ]
+          },
+          {
+            "area": 7431,
+            "bbox": {
+              "area": 57344.0,
+              "label": "blue_stripes",
+              "metadata": {},
+              "score": 0.8104323362654419,
+              "xyxy": [
+                0.0,
+                0.0,
+                256.0,
+                224.0
+              ]
+            },
+            "label": "blue_stripes",
+            "metadata": {},
+            "score": 0.8104323362654419,
+            "shape": [
+              224,
+              256
+            ]
+          },
+          {
+            "area": 7843,
+            "bbox": {
+              "area": 57344.0,
+              "label": "green_circle",
+              "metadata": {},
+              "score": 0.5134188744258517,
+              "xyxy": [
+                0.0,
+                0.0,
+                256.0,
+                224.0
+              ]
+            },
+            "label": "green_circle",
+            "metadata": {},
+            "score": 0.5134188744258517,
+            "shape": [
+              224,
+              256
+            ]
+          }
+        ]
+      },
+      {
+        "amount": 0.0,
+        "detection_count": 3,
+        "detection_metrics": {
+          "average_precision": 0.0,
+          "f1": 0.0,
+          "false_negative": 3,
+          "false_positive": 3,
+          "iou_threshold": 0.5,
+          "matches": [],
+          "mean_matched_iou": 0.0,
+          "per_label": {
+            "blue_stripes": {
+              "average_precision": 0.0,
+              "f1": 0.0,
+              "false_negative": 1.0,
+              "false_positive": 1.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "true_positive": 0.0
+            },
+            "green_circle": {
+              "average_precision": 0.0,
+              "f1": 0.0,
+              "false_negative": 1.0,
+              "false_positive": 1.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "true_positive": 0.0
+            },
+            "red_box": {
+              "average_precision": 0.0,
+              "f1": 0.0,
+              "false_negative": 1.0,
+              "false_positive": 1.0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "true_positive": 0.0
+            }
+          },
+          "precision": 0.0,
+          "recall": 0.0,
+          "true_positive": 0
+        },
+        "detections": [
+          {
+            "area": 57344.0,
+            "label": "red_box",
+            "metadata": {},
+            "score": 0.997485051258722,
+            "xyxy": [
+              0.0,
+              0.0,
+              256.0,
+              224.0
+            ]
+          },
+          {
+            "area": 57344.0,
+            "label": "blue_stripes",
+            "metadata": {},
+            "score": 0.6834006130529706,
+            "xyxy": [
+              0.0,
+              0.0,
+              256.0,
+              224.0
+            ]
+          },
+          {
+            "area": 57344.0,
+            "label": "green_circle",
+            "metadata": {},
+            "score": 0.5509387713435826,
+            "xyxy": [
+              0.0,
+              0.0,
+              256.0,
+              224.0
+            ]
+          }
+        ],
+        "kind": "blur_noise",
+        "map": {
+          "ap50": 0.0,
+          "ap75": 0.0,
+          "by_threshold": {
+            "ap50": {
+              "per_label": {
+                "blue_stripes": 0.0,
+                "green_circle": 0.0,
+                "red_box": 0.0
+              },
+              "value": 0.0
+            },
+            "ap75": {
+              "per_label": {
+                "blue_stripes": 0.0,
+                "green_circle": 0.0,
+                "red_box": 0.0
+              },
+              "value": 0.0
+            }
+          },
+          "map": 0.0,
+          "thresholds": [
+            0.5,
+            0.75
+          ]
+        },
+        "mean_detection_score": 0.7439414785517585,
+        "name": "blur_noise",
+        "segmentation_count": 3,
+        "segmentation_metrics": {
+          "f1": 0.6666666666666666,
+          "false_negative": 1,
+          "false_positive": 1,
+          "iou_threshold": 0.5,
+          "matches": [
+            {
+              "boundary_f1": 0.17677424146767187,
+              "ground_truth_index": 0,
+              "iou": 0.7143424711958681,
+              "label": "red_box",
+              "prediction_index": 0,
+              "score": 0.997485051258722
+            },
+            {
+              "boundary_f1": 0.39740721401513773,
+              "ground_truth_index": 2,
+              "iou": 0.585759694850604,
+              "label": "blue_stripes",
+              "prediction_index": 1,
+              "score": 0.6834006130529706
+            }
+          ],
+          "mean_boundary_f1": 0.2870907277414048,
+          "mean_iou": 0.650051083023236,
+          "precision": 0.6666666666666666,
+          "recall": 0.6666666666666666,
+          "true_positive": 2
+        },
+        "segmentations": [
+          {
+            "area": 5034,
+            "bbox": {
+              "area": 57344.0,
+              "label": "red_box",
+              "metadata": {},
+              "score": 0.997485051258722,
+              "xyxy": [
+                0.0,
+                0.0,
+                256.0,
+                224.0
+              ]
+            },
+            "label": "red_box",
+            "metadata": {},
+            "score": 0.997485051258722,
+            "shape": [
+              224,
+              256
+            ]
+          },
+          {
+            "area": 7864,
+            "bbox": {
+              "area": 57344.0,
+              "label": "blue_stripes",
+              "metadata": {},
+              "score": 0.6834006130529706,
+              "xyxy": [
+                0.0,
+                0.0,
+                256.0,
+                224.0
+              ]
+            },
+            "label": "blue_stripes",
+            "metadata": {},
+            "score": 0.6834006130529706,
+            "shape": [
+              224,
+              256
+            ]
+          },
+          {
+            "area": 6529,
+            "bbox": {
+              "area": 57344.0,
+              "label": "green_circle",
+              "metadata": {},
+              "score": 0.5509387713435826,
+              "xyxy": [
+                0.0,
+                0.0,
+                256.0,
+                224.0
+              ]
+            },
+            "label": "green_circle",
+            "metadata": {},
+            "score": 0.5509387713435826,
+            "shape": [
+              224,
+              256
+            ]
+          }
+        ]
+      }
+    ],
+    "config": {
+      "boundary_tolerance_px": 1,
+      "iou_threshold": 0.5,
+      "label_agnostic": false,
+      "map_iou_thresholds": [
+        0.5,
+        0.75
+      ],
+      "mask_threshold": 0.5,
+      "max_detections": null,
+      "score_threshold": 0.05
+    },
+    "degradation": {
+      "baseline": "baseline",
+      "cases": [
+        {
+          "map_drop": 0.0,
+          "mean_iou_drop": 0.0,
+          "mean_score_drop": 0.0,
+          "name": "baseline",
+          "precision_drop": 0.0,
+          "recall_drop": 0.0
+        },
+        {
+          "map_drop": 0.0,
+          "mean_iou_drop": 0.0,
+          "mean_score_drop": 0.4598333333333334,
+          "name": "low_light_45pct",
+          "precision_drop": 0.0,
+          "recall_drop": 0.0
+        },
+        {
+          "map_drop": 0.0,
+          "mean_iou_drop": 0.1984737549531902,
+          "mean_score_drop": 0.14144752095341573,
+          "name": "blur_sigma_2p0",
+          "precision_drop": 0.0,
+          "recall_drop": 0.0
+        },
+        {
+          "map_drop": 1.0,
+          "mean_iou_drop": 0.37730623738042224,
+          "mean_score_drop": 0.24733421204314032,
+          "name": "noise_sigma_0p07",
+          "precision_drop": 1.0,
+          "recall_drop": 1.0
+        },
+        {
+          "map_drop": 1.0,
+          "mean_iou_drop": 0.349948916976764,
+          "mean_score_drop": 0.2513918547815749,
+          "name": "blur_noise",
+          "precision_drop": 1.0,
+          "recall_drop": 1.0
+        }
+      ]
+    }
+  }
+}

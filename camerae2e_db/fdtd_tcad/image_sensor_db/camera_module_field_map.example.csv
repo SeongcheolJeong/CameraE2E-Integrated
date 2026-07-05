@@ -1,0 +1,3 @@
+slug,code,field_case,field_x_norm,field_z_norm,cra_x_deg,cra_z_deg,lens_shift_x_um,lens_shift_z_um,wavelength_set_nm,measurement_gate,source
+dep_2511_801_samsung_hp5,DEP-2511-801,center,0,0,0,0,0,0,450;550;620,EXAMPLE_NOT_VALIDATED,example only - replace with module raytrace or measured calibration
+dep_2511_801_samsung_hp5,DEP-2511-801,x_plus_edge,1,0,18,0,0.15,0,450;550;620,EXAMPLE_NOT_VALIDATED,example only - replace with module raytrace or measured calibration

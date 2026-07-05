@@ -1,0 +1,33 @@
+{
+  "schema": "tcad_calibration_config_v1",
+  "name": "reference_profile_generation_scale_fit_not_measured",
+  "simulator": {
+    "script": "devsim_split_pd_2d.py",
+    "python": ".tcad-env/bin/python",
+    "generation_map_npz": "runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz",
+    "electrical_model": "profile-ppd",
+    "output_root": "runs/tcad_calibration_reference_profile/evals"
+  },
+  "targets_csv": "measured_profiles/reference_cmos_ppd_1p4um/calibration_targets_synthetic.csv",
+  "parameters": [
+    {
+      "name": "generation_map_scale",
+      "cli": "--generation-map-scale",
+      "initial": 0.8,
+      "lower": 0.2,
+      "upper": 2.0,
+      "scale": "linear"
+    }
+  ],
+  "fixed_cli_args": {
+    "--measured-profile": "measured_profiles/reference_cmos_ppd_1p4um/profile.json",
+    "--width-um": "1.4",
+    "--depth-um": "3.0",
+    "--dd-relative-error": "1e-9",
+    "--dd-max-iterations": "160"
+  },
+  "residuals": {
+    "current_relative_floor_a_per_cm": 1e-12,
+    "phase_absolute_scale": 0.05
+  }
+}

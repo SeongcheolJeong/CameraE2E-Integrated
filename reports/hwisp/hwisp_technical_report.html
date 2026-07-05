@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HW ISP Technical Report</title>
+  <style>
+    :root {
+      --ink: #18232f;
+      --muted: #5a6877;
+      --line: #d4dde6;
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --accent: #245d79;
+      --code: #eef3f5;
+    }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgb(36 93 121 / 10%), transparent 34rem),
+        linear-gradient(135deg, #f7f2e8 0%, #eef7f8 100%);
+      color: var(--ink);
+      font: 15px/1.58 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 36px 24px 56px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 38px;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+    }
+    h2 {
+      margin: 36px 0 14px;
+      font-size: 24px;
+      letter-spacing: -0.015em;
+    }
+    h3 {
+      margin: 22px 0 10px;
+      font-size: 18px;
+    }
+    .lead {
+      max-width: 920px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin: 24px 0;
+    }
+    .card, .panel, table {
+      background: rgb(255 255 255 / 94%);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 10px 28px rgb(24 35 47 / 7%);
+    }
+    .card, .panel {
+      padding: 17px 18px;
+    }
+    .label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 760;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .value {
+      display: block;
+      margin-top: 6px;
+      font-size: 25px;
+      font-weight: 780;
+      letter-spacing: -0.03em;
+    }
+    .diagram {
+      width: 100%;
+      min-width: 920px;
+      height: auto;
+    }
+    .diagram.compact {
+      min-width: 760px;
+    }
+    .diagram text {
+      fill: var(--ink);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .diagram line {
+      stroke: #2d3a45;
+      stroke-width: 2.2;
+    }
+    .scroll {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #eaf0f4;
+      color: #344054;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    tr:last-child td {
+      border-bottom: 0;
+    }
+    code, pre {
+      background: var(--code);
+      border-radius: 8px;
+    }
+    code {
+      padding: 2px 6px;
+    }
+    pre {
+      overflow-x: auto;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .links a {
+      color: var(--accent);
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      text-decoration: none;
+    }
+    .callout {
+      border-left: 4px solid var(--accent);
+      background: rgb(255 255 255 / 80%);
+      padding: 12px 14px;
+      margin: 16px 0;
+    }
+  </style>
+</head>
+<body>
+<main>
+
+<h1>HW ISP Technical Report</h1>
+<p class="lead">Detailed technical documentation for the pyisetcam HW ISP simulation layer. This report explains the model, data flow, parameterization, timing equations, delayed AE/AWB behavior, and verification hooks.</p>
+
+<div class="cards">
+  <div class="card"><span class="label">Git Commit</span><span class="value">504ac83</span></div>
+  <div class="card"><span class="label">Active Profile</span><span class="value">rpi_vc4_imx219_public_seed</span></div>
+  <div class="card"><span class="label">E2E Mean</span><span class="value">12.984 ms</span></div>
+  <div class="card"><span class="label">3A Verdict</span><span class="value">PASS</span></div>
+</div>
+
+<div class="callout"><strong>Boundary:</strong> this is a system timing/control simulator, not a vendor fixed-point ISP replacement. Pixel values still come from the existing pyisetcam camera pipeline. HW ISP metadata is attached on top.</div>
+
+<h2>1. System Architecture</h2>
+<div class="panel">
+<svg class="diagram" viewBox="0 0 1260 520" role="img" aria-label="Detailed HW ISP architecture">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2d3a45" />
+    </marker>
+  </defs>
+  <g class="lane">
+    <text x="48" y="42">Image Data Path</text>
+    <rect x="36" y="62" width="150" height="72" rx="14" fill="#f7d794" />
+    <text x="111" y="92" text-anchor="middle">Scene</text>
+    <text x="111" y="112" text-anchor="middle">photons</text>
+
+    <rect x="234" y="62" width="150" height="72" rx="14" fill="#f7d794" />
+    <text x="309" y="92" text-anchor="middle">Optics / OI</text>
+    <text x="309" y="112" text-anchor="middle">photons</text>
+
+    <rect x="432" y="62" width="168" height="72" rx="14" fill="#a3d8e6" />
+    <text x="516" y="88" text-anchor="middle">Sensor</text>
+    <text x="516" y="108" text-anchor="middle">exposure, gain, readout</text>
+
+    <rect x="648" y="62" width="248" height="72" rx="14" fill="#cdb4db" />
+    <text x="772" y="88" text-anchor="middle">ISP Core</text>
+    <text x="772" y="108" text-anchor="middle">BLC, DPC, LSC, demosaic, CCM, gamma</text>
+
+    <rect x="944" y="62" width="128" height="72" rx="14" fill="#ffafcc" />
+    <text x="1008" y="92" text-anchor="middle">DMA</text>
+    <text x="1008" y="112" text-anchor="middle">driver queue</text>
+
+    <rect x="1120" y="62" width="104" height="72" rx="14" fill="#ffafcc" />
+    <text x="1172" y="92" text-anchor="middle">App</text>
+    <text x="1172" y="112" text-anchor="middle">visible</text>
+  </g>
+
+  <g class="lane">
+    <text x="48" y="214">Control And Metadata Path</text>
+    <rect x="432" y="234" width="168" height="72" rx="14" fill="#b7e4c7" />
+    <text x="516" y="260" text-anchor="middle">H3A-like Stats</text>
+    <text x="516" y="280" text-anchor="middle">tile luma, RGB means</text>
+
+    <rect x="648" y="234" width="168" height="72" rx="14" fill="#b7e4c7" />
+    <text x="732" y="260" text-anchor="middle">AE/AWB Logic</text>
+    <text x="732" y="280" text-anchor="middle">request controls</text>
+
+    <rect x="864" y="234" width="168" height="72" rx="14" fill="#b7e4c7" />
+    <text x="948" y="260" text-anchor="middle">Delay Queue</text>
+    <text x="948" y="280" text-anchor="middle">N + apply_delay</text>
+
+    <rect x="234" y="382" width="168" height="72" rx="14" fill="#d8e2dc" />
+    <text x="318" y="408" text-anchor="middle">Parameter DB</text>
+    <text x="318" y="428" text-anchor="middle">profile, stages, limits</text>
+
+    <rect x="648" y="382" width="248" height="72" rx="14" fill="#d8e2dc" />
+    <text x="772" y="408" text-anchor="middle">Timeline Metadata</text>
+    <text x="772" y="428" text-anchor="middle">camera.metadata / ip.metadata</text>
+  </g>
+
+  <g class="arrows">
+    <line x1="186" y1="98" x2="234" y2="98" marker-end="url(#arrow)" />
+    <line x1="384" y1="98" x2="432" y2="98" marker-end="url(#arrow)" />
+    <line x1="600" y1="98" x2="648" y2="98" marker-end="url(#arrow)" />
+    <line x1="896" y1="98" x2="944" y2="98" marker-end="url(#arrow)" />
+    <line x1="1072" y1="98" x2="1120" y2="98" marker-end="url(#arrow)" />
+
+    <line x1="516" y1="134" x2="516" y2="234" marker-end="url(#arrow)" />
+    <line x1="600" y1="270" x2="648" y2="270" marker-end="url(#arrow)" />
+    <line x1="816" y1="270" x2="864" y2="270" marker-end="url(#arrow)" />
+    <line x1="948" y1="234" x2="520" y2="134" marker-end="url(#arrow)" />
+    <line x1="402" y1="418" x2="648" y2="418" marker-end="url(#arrow)" />
+    <line x1="772" y1="382" x2="772" y2="134" marker-end="url(#arrow)" />
+  </g>
+</svg>
+</div>
+
+<h2>2. Public Surface</h2>
+<div class="scroll"><table><thead><tr><th>API</th><th>Purpose</th><th>Output</th></tr></thead><tbody><tr><td><code>hw_isp_config(**overrides)</code></td><td>Create an inline simulator config.</td><td><code>HWIspConfig</code></td></tr><tr><td><code>hw_isp_config_from_profile(name, **overrides)</code></td><td>Load a named parameter DB profile and override nested fields.</td><td><code>HWIspConfig</code></td></tr><tr><td><code>hw_isp_simulate_frame(camera, scene, config)</code></td><td>Run one camera frame and attach HW ISP metadata.</td><td><code>HWIspFrameResult</code></td></tr><tr><td><code>hw_isp_simulate_sequence(camera, scenes, config)</code></td><td>Run frame sequence with queue history and delayed controls.</td><td><code>HWIspSequenceResult</code></td></tr><tr><td><code>hw_isp_timeline_table(result)</code></td><td>Flatten frame/stage timing into report rows.</td><td><code>list[dict]</code></td></tr><tr><td><code>hw_isp_export_json(result, path)</code></td><td>Export stable machine-readable timing and 3A metadata.</td><td><code>Path</code></td></tr></tbody></table></div>
+
+<h2>3. Parameter DB</h2>
+<p>Profiles are normalized JSON seed databases under <code>src/pyisetcam/data/hwisp/</code>. Product-specific profiles can be loaded with <code>PYISETCAM_HWISP_DB</code>.</p>
+<div class="scroll"><table><thead><tr><th>Item</th><th>Field</th><th>Value</th></tr></thead><tbody><tr><td>Profile</td><td><code>rpi_vc4_imx219_public_seed</code></td><td>public_seed_approximate_timing</td></tr><tr><td>Sensor timing</td><td>fps / line / active lines</td><td>30.0 fps, 15.200 us, 1080 lines</td></tr><tr><td>Exposure limits</td><td>min / max fraction</td><td>100.0 us / 0.90 frame</td></tr><tr><td>3A delay</td><td>AE / AWB</td><td>2 / 2 frames</td></tr><tr><td>Stats</td><td>grid / metering</td><td>(8, 8), center_weighted</td></tr><tr><td>Transport</td><td>queue / buffers</td><td>4 / 6</td></tr></tbody></table></div>
+
+<h3>Available Profiles</h3>
+<div class="scroll"><table><thead><tr><th>Profile</th><th>Status</th></tr></thead><tbody><tr><td><code>generic_1080p_30fps</code></td><td>available</td></tr><tr><td><code>rpi_vc4_imx219_public_seed</code></td><td>active</td></tr></tbody></table></div>
+
+<h2>4. Sensor Timing Model</h2>
+<p>The sensor model is deterministic and uses microsecond timestamps. Rolling shutter row timing is derived from configured hidden lines and line time.</p>
+<pre>frame_interval_us = 1e6 / fps
+t_request       = frame_id * frame_interval_us + deterministic_jitter
+t_exposure_mid  = t_exposure_start + exposure_time_us / 2
+t_readout_start = t_exposure_start + exposure_time_us
+t_row_start(r)  = t_readout_start + (hidden_lines_top + r) * line_time_us
+t_readout_end   = t_readout_start
+                + (hidden_top + active_lines + hidden_bottom) * line_time_us
+t_stats_ready   = t_readout_end</pre>
+
+<h2>5. ISP Stage Timing Model</h2>
+<p>Stages are modeled as stream, line-buffer, or frame-buffer blocks. Stream and line-buffer stages can begin before full-frame readout ends. Frame-buffer stages wait for full previous-stage completion.</p>
+<div class="scroll"><table><thead><tr><th>Stage</th><th>Domain</th><th>Buffering</th><th>Window lines</th><th>Cycles</th><th>Clock MHz</th><th>Pixels/cycle</th><th>Enabled</th></tr></thead><tbody><tr><td><code>unicam_capture</code></td><td>raw_bayer</td><td>stream</td><td>1</td><td>32.0</td><td>400.0</td><td>2.00</td><td>yes</td></tr><tr><td><code>black_level_dpc</code></td><td>bayer</td><td>line</td><td>3</td><td>96.0</td><td>400.0</td><td>2.00</td><td>yes</td></tr><tr><td><code>lens_shading_geq</code></td><td>bayer</td><td>line</td><td>3</td><td>120.0</td><td>400.0</td><td>2.00</td><td>yes</td></tr><tr><td><code>demosaic_ccm_gamma</code></td><td>bayer_to_rgb</td><td>line</td><td>5</td><td>260.0</td><td>400.0</td><td>2.00</td><td>yes</td></tr><tr><td><code>denoise_sharpen</code></td><td>yuv</td><td>frame</td><td>1</td><td>0.0</td><td>400.0</td><td>2.00</td><td>no</td></tr></tbody></table></div>
+<pre>cycle_latency_us = stage_latency_cycles / clock_mhz
+cycle_latency_us *= stage.latency_factor * global_latency_factor
+
+line_delay_us = max(window_lines - 1, 0) * line_time_us
+line_delay_us *= stage.latency_factor * global_latency_factor
+
+frame_stage_throughput_us = pixel_count / (clock_mhz * pixels_per_cycle)</pre>
+
+<h2>6. Transport, Queue, And App Visibility</h2>
+<p>The transport model separates frame request, ISP completion, DMA completion, and app-visible timing. Queue stalls are recorded when request depth or output buffer limits would be exceeded.</p>
+<pre>depth = min(request_queue_depth, max_buffers)
+if requested_time &lt; app_visible_time_of_frame[-depth]:
+    queue_stall_us = app_visible_time_of_frame[-depth] - requested_time
+
+t_dma_done    = t_isp_done + dma_submit_us + dma_complete_us
+t_app_visible = t_dma_done + app_processing_us</pre>
+
+<h2>7. AE/AWB Feedback Model</h2>
+<div class="panel">
+<svg class="diagram compact" viewBox="0 0 980 300" role="img" aria-label="AE/AWB delayed feedback sequence">
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2d3a45" />
+    </marker>
+  </defs>
+  <text x="34" y="38">Delayed 3A feedback timing</text>
+  <g>
+    <rect x="40" y="70" width="120" height="52" rx="12" fill="#a3d8e6" />
+    <text x="100" y="100" text-anchor="middle">Frame N</text>
+    <rect x="230" y="70" width="120" height="52" rx="12" fill="#b7e4c7" />
+    <text x="290" y="92" text-anchor="middle">Stats</text>
+    <text x="290" y="110" text-anchor="middle">ready</text>
+    <rect x="420" y="70" width="120" height="52" rx="12" fill="#b7e4c7" />
+    <text x="480" y="92" text-anchor="middle">AE/AWB</text>
+    <text x="480" y="110" text-anchor="middle">request</text>
+    <rect x="610" y="70" width="120" height="52" rx="12" fill="#b7e4c7" />
+    <text x="670" y="92" text-anchor="middle">Delay</text>
+    <text x="670" y="110" text-anchor="middle">queue</text>
+    <rect x="800" y="70" width="140" height="52" rx="12" fill="#a3d8e6" />
+    <text x="870" y="92" text-anchor="middle">Frame N + d</text>
+    <text x="870" y="110" text-anchor="middle">controls applied</text>
+  </g>
+  <g class="arrows">
+    <line x1="160" y1="96" x2="230" y2="96" marker-end="url(#arrow2)" />
+    <line x1="350" y1="96" x2="420" y2="96" marker-end="url(#arrow2)" />
+    <line x1="540" y1="96" x2="610" y2="96" marker-end="url(#arrow2)" />
+    <line x1="730" y1="96" x2="800" y2="96" marker-end="url(#arrow2)" />
+  </g>
+  <text x="40" y="176">Current implementation stores warmup, source stats frame, requested controls, and applied controls per frame.</text>
+  <text x="40" y="204">If apply_to_image=False, pixels remain unchanged and controls are metadata only.</text>
+  <text x="40" y="232">If apply_to_image=True, delayed exposure/gain and WB gains are applied to cloned sensor/IP objects.</text>
+</svg>
+</div>
+<p>When <code>apply_to_image=False</code>, controls are recorded as metadata only. When <code>apply_to_image=True</code>, delayed controls are applied to cloned sensor/IP objects before computing the frame.</p>
+<div class="scroll"><table><thead><tr><th>Area</th><th>Current model</th></tr></thead><tbody><tr><td>AE stats</td><td>8x8 H3A-like grid, center-weighted luma, clipped fraction, EV error.</td></tr><tr><td>AE control</td><td>Exposure/gain product moves toward target luma with max EV step and highlight limiting.</td></tr><tr><td>AWB stats</td><td>Valid-luma ROI from sensor-space RGB, excluding dark and clipped pixels.</td></tr><tr><td>AWB control</td><td>Gray-world RGB gain estimate, normalized to green, clamped by WB gain limits.</td></tr><tr><td>Delay</td><td>Stats from frame N apply to frame N + ae/awb_apply_delay_frames.</td></tr></tbody></table></div>
+
+<h2>8. Metadata Contract</h2>
+<p>Each simulated frame stores HW ISP metadata under both <code>camera.metadata["hw_isp"]</code> and <code>ip.metadata["hw_isp"]</code>.</p>
+<pre>{
+  &quot;timeline&quot;: {
+    &quot;frame_id&quot;: int,
+    &quot;timestamps_us&quot;: {...},
+    &quot;stages&quot;: [...]
+  },
+  &quot;controls_applied&quot;: {
+    &quot;warmup&quot;: bool,
+    &quot;applied_controls&quot;: {...},
+    &quot;produced_stats&quot;: {&quot;ae&quot;: {...}, &quot;awb&quot;: {...}},
+    &quot;requested_controls&quot;: {&quot;ae&quot;: {...}, &quot;awb&quot;: {...}}
+  },
+  &quot;config&quot;: {...}
+}</pre>
+
+<h2>9. Verification Hooks</h2>
+<div class="scroll"><table><thead><tr><th>Verification</th><th>Evidence</th></tr></thead><tbody><tr><td>Timeline monotonicity</td><td>Unit tests check sensor, readout, ISP, DMA, and app-visible order.</td></tr><tr><td>Rolling shutter</td><td>Unit tests verify row_start_us formula.</td></tr><tr><td>Latency factors</td><td>Unit tests verify global and per-stage latency scaling.</td></tr><tr><td>Queue model</td><td>Unit tests force high-FPS queue stall.</td></tr><tr><td>AE/AWB delay</td><td>Unit tests verify source frame maps to apply frame.</td></tr><tr><td>3A convergence</td><td>Report scenario checks AE settle, AWB settle, clamp compliance, warmup mapping, clip reduction.</td></tr><tr><td>Profile DB</td><td>Unit tests load built-in profiles and collected libcamera-style profile JSON.</td></tr></tbody></table></div>
+
+<h3>Latest Report Metrics</h3>
+<div class="scroll"><table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>Mean E2E latency</td><td>12.984 ms</td></tr><tr><td>Max E2E latency</td><td>12.984 ms</td></tr><tr><td>Queue stall total</td><td>83.565 ms</td></tr><tr><td>AE settle frame</td><td>8.0</td></tr><tr><td>AWB settle frame</td><td>10.0</td></tr><tr><td>AWB final imbalance</td><td>0.15553446849312635</td></tr></tbody></table></div>
+
+<h2>10. Known Gaps And Sign-off Requirements</h2>
+<div class="panel">
+  <ul>
+    <li>Public seed DB values are not silicon sign-off data.</li>
+    <li>Block cycle latency, DMA timing, and queue behavior should be replaced by BSP documentation, kernel traces, hardware counters, or bench measurements.</li>
+    <li>AF is intentionally out of scope for this phase.</li>
+    <li>Fixed-point vendor ISP numerical matching is separate from this timing/control simulation layer.</li>
+  </ul>
+</div>
+
+<div class="links">
+  <a href="implementation_verification_report.html">Implementation report</a>
+  <a href="implementation_verification_report_integrated.html">Integrated implementation report</a>
+  <a href="index.html">Timeline dashboard</a>
+  <a href="frame_details.html">Frame details</a>
+  <a href="hwisp_technical_summary.json">Technical summary JSON</a>
+</div>
+<p class="lead">Generated at 2026-05-17T08:43:53.</p>
+
+</main>
+</body>
+</html>

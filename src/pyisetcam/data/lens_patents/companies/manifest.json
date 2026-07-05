@@ -1,0 +1,236 @@
+{
+  "built_at": "2026-06-21T08:25:58.957792+00:00",
+  "companies": [
+    {
+      "camerae2e_ready": 144,
+      "company": "Canon",
+      "company_slug": "canon",
+      "db": "canon/lens_patent_simulation_v6_canon.sqlite",
+      "lenses": 50,
+      "metadata_only": 0,
+      "partial": 2,
+      "readiness_counts": {
+        "needs_variable_distances": 2,
+        "ready_configured": 48
+      },
+      "simulation_results": 146,
+      "status": "generated",
+      "surfaces": 4748
+    },
+    {
+      "camerae2e_ready": 0,
+      "company": "Fujifilm",
+      "company_slug": "fujifilm",
+      "db": "fujifilm/lens_patent_simulation_v6_fujifilm.sqlite",
+      "lenses": 24,
+      "metadata_only": 0,
+      "partial": 24,
+      "readiness_counts": {
+        "ready_staging": 24
+      },
+      "simulation_results": 24,
+      "status": "generated",
+      "surfaces": 936
+    },
+    {
+      "camerae2e_ready": 24,
+      "company": "Konica Minolta",
+      "company_slug": "konica-minolta",
+      "db": "konica-minolta/lens_patent_simulation_v6_konica-minolta.sqlite",
+      "lenses": 13,
+      "metadata_only": 0,
+      "partial": 0,
+      "readiness_counts": {
+        "ready_configured": 8,
+        "ready_staging": 5
+      },
+      "simulation_results": 24,
+      "status": "generated",
+      "surfaces": 477
+    },
+    {
+      "camerae2e_ready": 0,
+      "company": "LG Innotek",
+      "company_slug": "lg-innotek",
+      "db": "lg-innotek/lens_patent_simulation_v6_lg-innotek.sqlite",
+      "lenses": 2,
+      "metadata_only": 0,
+      "partial": 2,
+      "readiness_counts": {
+        "ready_staging": 2
+      },
+      "simulation_results": 2,
+      "status": "generated",
+      "surfaces": 29
+    },
+    {
+      "camerae2e_ready": 67,
+      "company": "Largan",
+      "company_slug": "largan",
+      "db": "largan/lens_patent_simulation_v6_largan.sqlite",
+      "lenses": 75,
+      "metadata_only": 0,
+      "partial": 8,
+      "readiness_counts": {
+        "ready_staging": 75
+      },
+      "simulation_results": 75,
+      "status": "generated",
+      "surfaces": 1200
+    },
+    {
+      "camerae2e_ready": 79,
+      "company": "Nikon",
+      "company_slug": "nikon",
+      "db": "nikon/lens_patent_simulation_v6_nikon.sqlite",
+      "lenses": 54,
+      "metadata_only": 0,
+      "partial": 88,
+      "readiness_counts": {
+        "needs_variable_distances": 11,
+        "ready_configured": 37,
+        "ready_staging": 6
+      },
+      "simulation_results": 167,
+      "status": "generated",
+      "surfaces": 4651
+    },
+    {
+      "camerae2e_ready": 57,
+      "company": "Olympus/OM System",
+      "company_slug": "olympus-om-system",
+      "db": "olympus-om-system/lens_patent_simulation_v6_olympus-om-system.sqlite",
+      "lenses": 54,
+      "metadata_only": 0,
+      "partial": 35,
+      "readiness_counts": {
+        "needs_variable_distances": 34,
+        "ready_configured": 19,
+        "ready_staging": 1
+      },
+      "simulation_results": 92,
+      "status": "generated",
+      "surfaces": 1842
+    },
+    {
+      "camerae2e_ready": 138,
+      "company": "Panasonic",
+      "company_slug": "panasonic",
+      "db": "panasonic/lens_patent_simulation_v6_panasonic.sqlite",
+      "lenses": 46,
+      "metadata_only": 1,
+      "partial": 6,
+      "readiness_counts": {
+        "ready_configured": 45,
+        "ready_staging": 1
+      },
+      "simulation_results": 145,
+      "status": "generated",
+      "surfaces": 3763
+    },
+    {
+      "camerae2e_ready": 0,
+      "company": "Ricoh/Pentax",
+      "company_slug": "ricoh-pentax",
+      "db": "ricoh-pentax/lens_patent_simulation_v6_ricoh-pentax.sqlite",
+      "lenses": 1,
+      "metadata_only": 1,
+      "partial": 0,
+      "readiness_counts": {
+        "ready_staging": 1
+      },
+      "simulation_results": 1,
+      "status": "generated",
+      "surfaces": 8
+    },
+    {
+      "camerae2e_ready": 26,
+      "company": "Samsung",
+      "company_slug": "samsung",
+      "db": "samsung/lens_patent_simulation_v6_samsung.sqlite",
+      "lenses": 26,
+      "metadata_only": 0,
+      "partial": 0,
+      "readiness_counts": {
+        "ready_staging": 26
+      },
+      "simulation_results": 26,
+      "status": "generated",
+      "surfaces": 416
+    },
+    {
+      "camerae2e_ready": 12,
+      "company": "Seiko Epson",
+      "company_slug": "seiko-epson",
+      "db": "seiko-epson/lens_patent_simulation_v6_seiko-epson.sqlite",
+      "lenses": 11,
+      "metadata_only": 2,
+      "partial": 1,
+      "readiness_counts": {
+        "ready_configured": 2,
+        "ready_staging": 9
+      },
+      "simulation_results": 15,
+      "status": "generated",
+      "surfaces": 866
+    },
+    {
+      "camerae2e_ready": 0,
+      "company": "Sony",
+      "company_slug": "sony",
+      "db": "sony/lens_patent_simulation_v6_sony.sqlite",
+      "lenses": 14,
+      "metadata_only": 0,
+      "partial": 14,
+      "readiness_counts": {
+        "ready_staging": 14
+      },
+      "simulation_results": 14,
+      "status": "generated",
+      "surfaces": 350
+    },
+    {
+      "camerae2e_ready": 0,
+      "company": "Sunny Optical",
+      "company_slug": "sunny-optical",
+      "db": "sunny-optical/lens_patent_simulation_v6_sunny-optical.sqlite",
+      "lenses": 33,
+      "metadata_only": 0,
+      "partial": 33,
+      "readiness_counts": {
+        "ready_staging": 33
+      },
+      "simulation_results": 33,
+      "status": "generated",
+      "surfaces": 576
+    },
+    {
+      "camerae2e_ready": 0,
+      "company": "Tamron",
+      "company_slug": "tamron",
+      "db": "tamron/lens_patent_simulation_v6_tamron.sqlite",
+      "lenses": 11,
+      "metadata_only": 0,
+      "partial": 29,
+      "readiness_counts": {
+        "ready_configured": 9,
+        "ready_staging": 2
+      },
+      "simulation_results": 29,
+      "status": "generated",
+      "surfaces": 831
+    }
+  ],
+  "company_count": 14,
+  "master_db": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents/lens_patent_simulation_v6.sqlite",
+  "schema": "camerae2e_lens_patent_company_sets_v1",
+  "summary": {
+    "camerae2e_ready": 547,
+    "companies": 14,
+    "lenses": 414,
+    "metadata_only": 4,
+    "partial": 242,
+    "simulation_results": 793,
+    "surfaces": 20693
+  }
+}

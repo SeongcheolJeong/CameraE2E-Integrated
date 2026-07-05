@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HW ISP Parameter DB Requirements</title>
+  <style>
+    :root {
+      --ink: #192733;
+      --muted: #627282;
+      --line: #d5dee7;
+      --card: #ffffff;
+      --bg: #f4f7f8;
+      --required: #ab3e31;
+      --recommended: #a7651c;
+      --optional: #2b6f8a;
+      --ok: #267545;
+      --seed: #8a641d;
+    }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% 4%, rgb(43 111 138 / 12%), transparent 28rem),
+        linear-gradient(135deg, #f8f3e7 0%, #eef7f8 100%);
+      color: var(--ink);
+      font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 34px 24px 54px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: 37px;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+    }
+    h2 {
+      margin: 34px 0 14px;
+      font-size: 23px;
+    }
+    .lead {
+      max-width: 940px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+      margin: 24px 0;
+    }
+    .card, table, .panel {
+      background: rgb(255 255 255 / 94%);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 10px 28px rgb(25 39 51 / 7%);
+    }
+    .card, .panel {
+      padding: 16px 18px;
+    }
+    .label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 760;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .value {
+      display: block;
+      margin-top: 6px;
+      font-size: 26px;
+      font-weight: 780;
+      letter-spacing: -0.03em;
+    }
+    .scroll {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 9px 10px;
+      text-align: left;
+      vertical-align: top;
+      min-width: 120px;
+    }
+    th {
+      background: #eaf0f4;
+      color: #344054;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    tr:last-child td {
+      border-bottom: 0;
+    }
+    code {
+      background: #edf3f5;
+      border-radius: 6px;
+      padding: 2px 6px;
+    }
+    .required {
+      color: var(--required);
+      font-weight: 800;
+    }
+    .recommended {
+      color: var(--recommended);
+      font-weight: 800;
+    }
+    .optional {
+      color: var(--optional);
+      font-weight: 800;
+    }
+    .ok {
+      color: var(--ok);
+      font-weight: 800;
+    }
+    .seed {
+      color: var(--seed);
+      font-weight: 800;
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .links a {
+      color: var(--optional);
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<main>
+
+<h1>HW ISP Parameter DB Requirements Report</h1>
+<p class="lead">This report lists the parameters needed to turn the HW ISP simulator from a public/synthetic seed model into product-grade system verification data. It separates what is already present in the current profile from what must come from vendor BSP, sensor documentation, runtime trace, or factory calibration.</p>
+
+<div class="cards">
+  <div class="card"><span class="label">Git Commit</span><span class="value">6c55ba9</span></div>
+  <div class="card"><span class="label">Active Profile</span><span class="value">rpi_vc4_imx219_public_seed</span></div>
+  <div class="card"><span class="label">Required Items</span><span class="value">20</span></div>
+  <div class="card"><span class="label">Required Real-Data Replacements</span><span class="value">15</span></div>
+  <div class="card"><span class="label">Missing Fields</span><span class="value">5</span></div>
+</div>
+
+<div class="panel">
+  <strong>Conclusion:</strong> the current profile is sufficient for simulator development and report generation, but not for hardware sign-off. The latency-critical fields must be replaced with board-specific BSP or measured values.
+</div>
+
+<h2>1. Parameter Source Priority</h2>
+<div class="scroll"><table><thead><tr><th>Source</th><th>Priority</th><th>What It Provides</th></tr></thead><tbody><tr><td>Vendor BSP / ISP manual</td><td><span class="required">Required for sign-off</span></td><td>Stage order, buffering, clocks, cycles, queue behavior, DMA timing.</td></tr><tr><td>Sensor datasheet / driver mode table</td><td><span class="required">Required</span></td><td>Line time, blanking, exposure limits, gain limits, active geometry.</td></tr><tr><td>Runtime trace / measurement</td><td><span class="required">Required for latency accuracy</span></td><td>Real request-to-visible latency, queue stall, DMA timing, 3A apply delay.</td></tr><tr><td>Factory calibration / OTP</td><td><span class="recommended">Recommended</span></td><td>Black level, defective pixels, lens shading, module-specific calibration.</td></tr><tr><td>Public libcamera/RPi tuning</td><td><span class="seed">Seed only</span></td><td>Useful starting point for black level, lux reference, noise, GEQ, AGC target.</td></tr></tbody></table></div>
+
+<h2>2. Required DB Parameter Matrix</h2>
+<div class="scroll"><table><thead><tr><th>Group</th><th>Priority</th><th>Parameter</th><th>Profile field</th><th>Current value</th><th>Current status</th><th>Real source needed</th><th>Simulator use</th></tr></thead><tbody><tr><td>Sensor mode</td><td><span class="required">Required</span></td><td>frame rate</td><td><code>config.sensor_timing.fps</code></td><td><code>30.0</code></td><td><span class="seed">Seed only</span></td><td>vendor BSP or runtime query</td><td>frame interval and request cadence</td></tr><tr><td>Sensor mode</td><td><span class="required">Required</span></td><td>line time</td><td><code>config.sensor_timing.line_time_us</code></td><td><code>15.2</code></td><td><span class="seed">Synthetic seed</span></td><td>sensor datasheet or measurement</td><td>rolling shutter and readout timing</td></tr><tr><td>Sensor mode</td><td><span class="required">Required</span></td><td>active lines</td><td><code>config.sensor_timing.active_lines</code></td><td><code>1080</code></td><td><span class="seed">Seed only</span></td><td>driver mode table</td><td>readout end and frame duration</td></tr><tr><td>Sensor mode</td><td><span class="required">Required</span></td><td>hidden top/bottom lines</td><td><code>config.sensor_timing.hidden_lines_top</code></td><td><code>16</code></td><td><span class="seed">Synthetic seed</span></td><td>BSP or sensor driver</td><td>row start and readout end</td></tr><tr><td>Exposure/gain</td><td><span class="required">Required</span></td><td>default exposure</td><td><code>config.sensor_timing.exposure_time_us</code></td><td><code>8000.0</code></td><td><span class="seed">Seed only</span></td><td>HAL or tuning file</td><td>exposure start/mid/readout timing</td></tr><tr><td>Exposure/gain</td><td><span class="required">Required</span></td><td>min exposure</td><td><code>config.control_path.min_exposure_time_us</code></td><td><code>100.0</code></td><td><span class="seed">Synthetic seed</span></td><td>sensor datasheet or V4L2 controls</td><td>AE clamp behavior</td></tr><tr><td>Exposure/gain</td><td><span class="required">Required</span></td><td>max exposure fraction</td><td><code>config.control_path.max_exposure_fraction</code></td><td><code>0.9</code></td><td><span class="seed">Synthetic seed</span></td><td>vendor tuning or product policy</td><td>AE clamp behavior</td></tr><tr><td>Exposure/gain</td><td><span class="required">Required</span></td><td>analog gain range</td><td><code>config.control_path.max_analog_gain</code></td><td><code>16.0</code></td><td><span class="seed">Synthetic seed</span></td><td>sensor datasheet or V4L2 controls</td><td>AE exposure/gain allocation</td></tr><tr><td>ISP stages</td><td><span class="required">Required</span></td><td>stage list/order</td><td><code>config.stages</code></td><td><code>[{&#x27;name&#x27;: &#x27;unicam_capture&#x27;, &#x27;domain&#x27;: &#x27;raw_bayer&#x27;, &#x27;buffering&#x27;: &#x27;stream&#x27;, &#x27;window_lines&#x27;: 1, &#x27;stage_latency_cycles&#x27;: 32, &#x27;clock_mhz&#x27;: 400.0, &#x27;pixels_per_cycle&#x27;: 2.0, &#x27;latency_factor&#x27;: 1.0, &#x27;enabled&#x27;: True, &#x27;history_frames&#x27;: 0}, {&#x27;name&#x27;: &#x27;black_level_dpc&#x27;, &#x27;domain&#x27;: &#x27;bayer&#x27;, &#x27;buffering&#x27;: &#x27;line&#x27;, &#x27;window_lines&#x27;: 3, &#x27;stage_latency_cycles&#x27;: 96, &#x27;clock_mhz&#x27;: 400.0, &#x27;pixels_per_cycle&#x27;: 2.0, &#x27;latency_factor&#x27;: 1.0, &#x27;enabled&#x27;: True, &#x27;history_frames&#x27;: 0}, {&#x27;name&#x27;: &#x27;lens_shading_geq&#x27;, &#x27;domain&#x27;: &#x27;bayer&#x27;, &#x27;buffering&#x27;: &#x27;line&#x27;, &#x27;window_lines&#x27;: 3, &#x27;stage_latency_cycles&#x27;: 120, &#x27;clock_mhz&#x27;: 400.0, &#x27;pixels_per_cycle&#x27;: 2.0, &#x27;latency_factor&#x27;: 1.0, &#x27;enabled&#x27;: True, &#x27;history_frames&#x27;: 0}, {&#x27;name&#x27;: &#x27;demosaic_ccm_gamma&#x27;, &#x27;domain&#x27;: &#x27;bayer_to_rgb&#x27;, &#x27;buffering&#x27;: &#x27;line&#x27;, &#x27;window_lines&#x27;: 5, &#x27;stage_latency_cycles&#x27;: 260, &#x27;clock_mhz&#x27;: 400.0, &#x27;pixels_per_cycle&#x27;: 2.0, &#x27;latency_factor&#x27;: 1.0, &#x27;enabled&#x27;: True, &#x27;history_frames&#x27;: 0}, {&#x27;name&#x27;: &#x27;denoise_sharpen&#x27;, &#x27;domain&#x27;: &#x27;yuv&#x27;, &#x27;buffering&#x27;: &#x27;frame&#x27;, &#x27;window_lines&#x27;: 1, &#x27;stage_latency_cycles&#x27;: 0, &#x27;clock_mhz&#x27;: 400.0, &#x27;pixels_per_cycle&#x27;: 2.0, &#x27;latency_factor&#x27;: 1.0, &#x27;enabled&#x27;: False, &#x27;history_frames&#x27;: 1}]</code></td><td><span class="seed">Synthetic seed</span></td><td>vendor ISP manual/BSP</td><td>stage timeline and reporting</td></tr><tr><td>ISP stages</td><td><span class="required">Required</span></td><td>stage buffering mode</td><td><code>config.stages.*.buffering</code></td><td><em>missing</em></td><td><span class="required">Missing</span></td><td>vendor ISP manual</td><td>stream, line-buffer, frame-buffer scheduling</td></tr><tr><td>ISP stages</td><td><span class="required">Required</span></td><td>window lines</td><td><code>config.stages.*.window_lines</code></td><td><em>missing</em></td><td><span class="required">Missing</span></td><td>vendor ISP manual</td><td>line-buffer delay</td></tr><tr><td>ISP stages</td><td><span class="required">Required</span></td><td>stage latency cycles</td><td><code>config.stages.*.stage_latency_cycles</code></td><td><em>missing</em></td><td><span class="required">Missing</span></td><td>vendor data or hardware measurement</td><td>per-block latency</td></tr><tr><td>ISP stages</td><td><span class="required">Required</span></td><td>clock MHz</td><td><code>config.stages.*.clock_mhz</code></td><td><em>missing</em></td><td><span class="required">Missing</span></td><td>device tree, debugfs, BSP</td><td>cycle latency conversion</td></tr><tr><td>ISP stages</td><td><span class="recommended">Recommended</span></td><td>pixels per cycle</td><td><code>config.stages.*.pixels_per_cycle</code></td><td><em>missing</em></td><td><span class="required">Missing</span></td><td>vendor ISP manual or measured throughput</td><td>frame-buffer stage throughput</td></tr><tr><td>Transport/queue</td><td><span class="required">Required</span></td><td>request queue depth</td><td><code>config.transport.request_queue_depth</code></td><td><code>4</code></td><td><span class="seed">Synthetic seed</span></td><td>driver source or runtime trace</td><td>queue stall model</td></tr><tr><td>Transport/queue</td><td><span class="required">Required</span></td><td>max output buffers</td><td><code>config.transport.max_buffers</code></td><td><code>6</code></td><td><span class="seed">Synthetic seed</span></td><td>driver source or runtime trace</td><td>queue stall model</td></tr><tr><td>Transport/queue</td><td><span class="required">Required</span></td><td>DMA submit/complete delay</td><td><code>config.transport.dma_complete_us</code></td><td><code>320.0</code></td><td><span class="seed">Synthetic seed</span></td><td>measurement</td><td>app-visible latency</td></tr><tr><td>3A stats/control</td><td><span class="required">Required</span></td><td>AE/AWB apply delay</td><td><code>config.control_path.ae_apply_delay_frames</code></td><td><code>2</code></td><td><span class="seed">Synthetic seed</span></td><td>HAL/libcamera logs or measurement</td><td>delayed feedback simulation</td></tr><tr><td>3A stats/control</td><td><span class="required">Required</span></td><td>stats grid</td><td><code>config.control_path.stats_grid</code></td><td><code>[8, 8]</code></td><td><span class="seed">Synthetic seed</span></td><td>vendor ISP manual or tuning</td><td>AE/AWB stats model</td></tr><tr><td>3A stats/control</td><td><span class="required">Required</span></td><td>AE target luma</td><td><code>config.control_path.target_luma</code></td><td><code>0.165</code></td><td><span class="seed">Seed only</span></td><td>public libcamera seed or vendor tuning</td><td>AE convergence</td></tr><tr><td>3A stats/control</td><td><span class="recommended">Recommended</span></td><td>highlight clip threshold</td><td><code>config.control_path.ae_highlight_clip</code></td><td><code>0.98</code></td><td><span class="seed">Synthetic seed</span></td><td>vendor tuning or product policy</td><td>highlight-preserving AE response</td></tr><tr><td>3A stats/control</td><td><span class="recommended">Recommended</span></td><td>AWB valid luma range</td><td><code>config.control_path.awb_min_luma</code></td><td><code>0.02</code></td><td><span class="seed">Synthetic seed</span></td><td>vendor tuning</td><td>AWB dark/clip exclusion</td></tr><tr><td>Calibration/tuning</td><td><span class="required">Required</span></td><td>black level</td><td><code>calibration.black_level.value</code></td><td><code>4096</code></td><td><span class="seed">Seed only</span></td><td>OTP, tuning file, factory calibration</td><td>BLC seed and report provenance</td></tr><tr><td>Calibration/tuning</td><td><span class="recommended">Recommended</span></td><td>noise model</td><td><code>calibration.noise.reference_slope</code></td><td><code>3.67</code></td><td><span class="seed">Seed only</span></td><td>lab characterization/vendor tuning</td><td>future noise/denoise simulation</td></tr><tr><td>Calibration/tuning</td><td><span class="recommended">Recommended</span></td><td>GEQ/lens shading seed</td><td><code>calibration.geq.slope</code></td><td><code>0.01633</code></td><td><span class="seed">Seed only</span></td><td>factory/tuning data</td><td>future green-equalization/LSC simulation</td></tr><tr><td>Calibration/tuning</td><td><span class="recommended">Recommended</span></td><td>lux reference</td><td><code>calibration.lux_reference.reference_lux</code></td><td><code>998</code></td><td><span class="seed">Seed only</span></td><td>tuning file/lab calibration</td><td>AE scale/reference sanity check</td></tr></tbody></table></div>
+
+<h2>3. Minimum Sign-off Checklist</h2>
+<div class="scroll"><table><thead><tr><th>Checklist item</th><th>Pass condition</th></tr></thead><tbody><tr><td>Sensor mode timing</td><td>fps, line time, active/hidden lines match selected hardware mode.</td></tr><tr><td>Exposure/gain limits</td><td>min/max exposure and analog gain verified against sensor controls.</td></tr><tr><td>ISP stage model</td><td>stage order, buffering mode, window lines, clocks, and cycle latency come from vendor docs or profiling.</td></tr><tr><td>Transport timing</td><td>DMA and app-visible timing measured under target driver/HAL configuration.</td></tr><tr><td>3A delay</td><td>AE/AWB stats frame to applied-control frame mapping verified on device logs or capture traces.</td></tr><tr><td>Calibration</td><td>black level, lens shading, noise, and color seeds are tied to module calibration or tuning release.</td></tr><tr><td>Traceability</td><td>every non-seed field has a source file, command, measurement date, or ticket reference.</td></tr></tbody></table></div>
+
+<h2>4. How To Collect More DB Data</h2>
+<pre># Public/local libcamera tuning summary
+python tools/collect_hwisp_parameter_db.py /usr/share/libcamera/ipa/rpi/vc4 --output-dir configs/hwisp/collected
+
+# Use collected profiles
+export PYISETCAM_HWISP_DB=configs/hwisp/collected
+
+# Generate reports with a collected profile
+python tools/render_hwisp_timeline_report.py --profile &lt;profile_name&gt;
+python tools/render_hwisp_parameter_requirements_report.py --profile &lt;profile_name&gt;</pre>
+
+<h2>5. Available Profiles</h2>
+<div class="scroll"><table><thead><tr><th>Profile</th><th>Status</th></tr></thead><tbody><tr><td><code>generic_1080p_30fps</code></td><td>available</td></tr><tr><td><code>rpi_vc4_imx219_public_seed</code></td><td>active</td></tr></tbody></table></div>
+
+<div class="links">
+  <a href="hwisp_technical_report.html">Technical report</a>
+  <a href="implementation_verification_report.html">Implementation report</a>
+  <a href="index.html">Timeline dashboard</a>
+  <a href="hwisp_parameter_requirements_summary.json">Parameter requirements JSON</a>
+</div>
+<p class="lead">Generated at 2026-05-17T09:06:10.</p>
+
+</main>
+</body>
+</html>

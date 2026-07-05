@@ -1,0 +1,206 @@
+{
+  "camerae2e_package_summary": {
+    "built_at": "2026-06-27T01:51:09.755734+00:00",
+    "by_company": {
+      "Canon": {
+        "highres_psf": 1,
+        "partial": 2,
+        "proxy_only": 48,
+        "raytrace_psf": 104,
+        "total": 155
+      },
+      "Fujifilm": {
+        "partial": 24,
+        "total": 24
+      },
+      "Konica Minolta": {
+        "proxy_only": 2,
+        "raytrace_psf": 26,
+        "total": 28
+      },
+      "LG Innotek": {
+        "partial": 2,
+        "total": 2
+      },
+      "Largan": {
+        "highres_psf": 1,
+        "proxy_only": 70,
+        "raytrace_psf": 4,
+        "total": 75
+      },
+      "Nikon": {
+        "partial": 88,
+        "proxy_only": 3,
+        "raytrace_psf": 76,
+        "total": 167
+      },
+      "Olympus/OM System": {
+        "partial": 35,
+        "proxy_only": 4,
+        "raytrace_psf": 53,
+        "total": 92
+      },
+      "Panasonic": {
+        "highres_psf": 1,
+        "metadata_only": 1,
+        "partial": 6,
+        "proxy_only": 13,
+        "raytrace_psf": 127,
+        "total": 148
+      },
+      "Ricoh/Pentax": {
+        "highres_psf": 1,
+        "raytrace_psf": 12,
+        "total": 13
+      },
+      "Samsung": {
+        "highres_psf": 1,
+        "raytrace_psf": 25,
+        "total": 26
+      },
+      "Seiko Epson": {
+        "metadata_only": 2,
+        "partial": 1,
+        "proxy_only": 6,
+        "raytrace_psf": 6,
+        "total": 15
+      },
+      "Sony": {
+        "partial": 14,
+        "total": 14
+      },
+      "Sunny Optical": {
+        "partial": 33,
+        "total": 33
+      },
+      "Tamron": {
+        "partial": 30,
+        "total": 30
+      }
+    },
+    "caveats": [
+      "Raytrace PSF files are RayOptics geometric ray-histogram PSFs; diffraction is not included.",
+      "Rows with use_tier=proxy_only can feed thin-lens/proxy CameraE2E optics but do not have generated RayOptics PSF assets.",
+      "Caption-derived rows preserve patent f/Fno/HFOV values and are marked with optical_spec_source=caption."
+    ],
+    "psf_debug_summary": {
+      "by_company": {
+        "Canon": {
+          "failed": 48,
+          "generated": 105,
+          "total": 153
+        },
+        "Konica Minolta": {
+          "failed": 2,
+          "generated": 26,
+          "total": 28
+        },
+        "Largan": {
+          "failed": 70,
+          "generated": 5,
+          "total": 75
+        },
+        "Nikon": {
+          "failed": 3,
+          "generated": 76,
+          "total": 79
+        },
+        "Olympus/OM System": {
+          "failed": 4,
+          "generated": 53,
+          "total": 57
+        },
+        "Panasonic": {
+          "failed": 13,
+          "generated": 128,
+          "total": 141
+        },
+        "Ricoh/Pentax": {
+          "generated": 13,
+          "total": 13
+        },
+        "Samsung": {
+          "generated": 26,
+          "total": 26
+        },
+        "Seiko Epson": {
+          "failed": 6,
+          "generated": 6,
+          "total": 12
+        }
+      },
+      "failed": 146,
+      "generated": 438,
+      "total": 584
+    },
+    "psf_highres_summary": {
+      "by_company": {
+        "Canon": {
+          "generated": 1,
+          "total": 1
+        },
+        "Largan": {
+          "generated": 1,
+          "total": 1
+        },
+        "Panasonic": {
+          "generated": 1,
+          "total": 1
+        },
+        "Ricoh/Pentax": {
+          "generated": 1,
+          "total": 1
+        },
+        "Samsung": {
+          "generated": 1,
+          "total": 1
+        }
+      },
+      "generated": 5,
+      "total": 5
+    },
+    "recommended_for_camerae2e": 438,
+    "schema": "camerae2e_lens_patent_package_v1",
+    "total_simulation_results": 822,
+    "use_tier_counts": {
+      "highres_psf": 5,
+      "metadata_only": 3,
+      "partial": 235,
+      "proxy_only": 146,
+      "raytrace_psf": 433
+    }
+  },
+  "caption_enrichment": {
+    "applied_at": "2026-06-27T01:46:14.797778+00:00",
+    "policy": "Only non-variable-distance proxy/paraxial rows were updated from captions containing explicit f and Fno values.",
+    "source_sqlite": "/Users/seongcheoljeong/Lens_Patent_DB/data/lens_simulation_expanded_v9.sqlite",
+    "updated_rows": 76
+  },
+  "summary": {
+    "camerae2e_ready_by_company": {
+      "Canon": 153,
+      "Konica Minolta": 28,
+      "Largan": 75,
+      "Nikon": 79,
+      "Olympus/OM System": 57,
+      "Panasonic": 141,
+      "Ricoh/Pentax": 13,
+      "Samsung": 26,
+      "Seiko Epson": 12
+    },
+    "companies": 14,
+    "lenses": 427,
+    "readiness_counts": {
+      "needs_variable_distances": 51,
+      "ready_configured": 176,
+      "ready_staging": 200
+    },
+    "simulation_results": 822,
+    "status_counts": {
+      "camerae2e_ready": 584,
+      "metadata_only": 3,
+      "partial": 235
+    },
+    "surfaces": 21493
+  }
+}

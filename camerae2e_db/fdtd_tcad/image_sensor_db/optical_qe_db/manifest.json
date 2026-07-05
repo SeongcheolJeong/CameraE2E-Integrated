@@ -1,0 +1,70 @@
+{
+  "schema": "image_sensor_optical_qe_db_v1",
+  "generated_at": "2026-06-25T20:01:57.035505+00:00",
+  "source_catalog": "/Users/seongcheoljeong/FDTD/image_sensor_db/sensor_catalog.json",
+  "proxy_nk_library": "/Users/seongcheoljeong/FDTD/cfa_proxy_nk_library.json",
+  "output_dir": "/Users/seongcheoljeong/FDTD/image_sensor_db/optical_qe_db",
+  "summary": {
+    "schema": "image_sensor_optical_qe_db_v1",
+    "record_count": 224,
+    "readiness": {
+      "optical_context_only": 26,
+      "optical_ready_medium": 54,
+      "optical_ready_high": 136,
+      "insufficient_optical_evidence": 8
+    },
+    "qe_status": {
+      "not_found": 211,
+      "reported_qe_points": 1,
+      "qualitative_only": 12
+    },
+    "cfa_pattern": {
+      "missing": 61,
+      "bayer": 109,
+      "quad_bayer": 27,
+      "monochrome": 14,
+      "tetracell_bayer": 8,
+      "rggb_bayer": 5
+    },
+    "color_filter_pitch_source": {
+      "inferred_rule": 163,
+      "extracted": 53,
+      "unavailable": 8
+    },
+    "ocl_pitch_source": {
+      "inferred_rule": 155,
+      "extracted": 61,
+      "unavailable": 8
+    },
+    "grid_pitch_source": {
+      "inferred_rule": 165,
+      "extracted": 51,
+      "unavailable": 8
+    },
+    "cfa_proxy_applicability": {
+      "unknown_cfa_pattern": 61,
+      "rgb_color_filter_proxy": 149,
+      "clear_or_monochrome": 14
+    },
+    "cfa_proxy_thickness_source": {
+      "inferred_proxy_default": 143,
+      "derived_from_extracted_range": 65,
+      "extracted": 16
+    },
+    "cfa_proxy_nk_records": 163,
+    "reported_qe_point_records": 1,
+    "reported_qe_points": 3,
+    "cfa_thickness_records": 81,
+    "optical_stack_height_records": 178,
+    "color_filter_pitch_records": 216,
+    "ocl_pitch_records": 216
+  },
+  "files": {
+    "index_html": "/Users/seongcheoljeong/FDTD/image_sensor_db/optical_qe_db/index.html",
+    "summary_csv": "/Users/seongcheoljeong/FDTD/image_sensor_db/optical_qe_db/optical_qe_summary.csv",
+    "manifest_json": "/Users/seongcheoljeong/FDTD/image_sensor_db/optical_qe_db/manifest.json",
+    "validation_json": "/Users/seongcheoljeong/FDTD/image_sensor_db/optical_qe_db/validation.json",
+    "proxy_nk_library": "/Users/seongcheoljeong/FDTD/cfa_proxy_nk_library.json",
+    "models_dir": "/Users/seongcheoljeong/FDTD/image_sensor_db/optical_qe_db/models"
+  }
+}

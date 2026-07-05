@@ -1,0 +1,228 @@
+{
+  "checks": [
+    {
+      "kind": "required_path",
+      "name": "camerae2e_code",
+      "ok": true,
+      "path": "src/pyisetcam"
+    },
+    {
+      "kind": "required_path",
+      "name": "camerae2e_tests",
+      "ok": true,
+      "path": "tests"
+    },
+    {
+      "kind": "required_path",
+      "name": "camerae2e_tools",
+      "ok": true,
+      "path": "tools"
+    },
+    {
+      "kind": "required_path",
+      "name": "fdtd_tcad_workspace",
+      "ok": true,
+      "path": "simulations/fdtd_tcad"
+    },
+    {
+      "kind": "required_path",
+      "name": "rayoptics_workspace",
+      "ok": true,
+      "path": "simulations/rayoptics"
+    },
+    {
+      "kind": "required_path",
+      "name": "camera_db_manifest",
+      "ok": true,
+      "path": "camerae2e_db/manifest.json"
+    },
+    {
+      "kind": "required_path",
+      "name": "sensor_catalog",
+      "ok": true,
+      "path": "camerae2e_db/fdtd_tcad/sensor_db/sensor_catalog.json"
+    },
+    {
+      "kind": "required_path",
+      "name": "lens_db_package",
+      "ok": true,
+      "path": "camerae2e_db/lens_db/CameraE2E_Lens_DB_v9_20260627/data/lens_patents"
+    },
+    {
+      "kind": "file_size",
+      "largest_files": [
+        {
+          "bytes": 18829312,
+          "path": "camerae2e_db/lens_db/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite"
+        },
+        {
+          "bytes": 17469440,
+          "path": "src/pyisetcam/data/lens_patents/lens_patent_simulation_v6.sqlite"
+        },
+        {
+          "bytes": 16403165,
+          "path": "tests/parity/baselines/oi_custom_otf_flare_small.mat"
+        },
+        {
+          "bytes": 10373754,
+          "path": "outputs/camerae2e-technical-overview-images.pptx"
+        },
+        {
+          "bytes": 4558848,
+          "path": "camerae2e_db/lens_db/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/companies/canon/lens_patent_simulation_v9_canon.sqlite"
+        },
+        {
+          "bytes": 4120576,
+          "path": "src/pyisetcam/data/lens_patents/companies/canon/lens_patent_simulation_v6_canon.sqlite"
+        },
+        {
+          "bytes": 3846144,
+          "path": "camerae2e_db/lens_db/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/companies/nikon/lens_patent_simulation_v9_nikon.sqlite"
+        },
+        {
+          "bytes": 3735552,
+          "path": "src/pyisetcam/data/lens_patents/companies/nikon/lens_patent_simulation_v6_nikon.sqlite"
+        },
+        {
+          "bytes": 3575808,
+          "path": "camerae2e_db/lens_db/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/companies/panasonic/lens_patent_simulation_v9_panasonic.sqlite"
+        },
+        {
+          "bytes": 3346432,
+          "path": "src/pyisetcam/data/lens_patents/companies/panasonic/lens_patent_simulation_v6_panasonic.sqlite"
+        }
+      ],
+      "limit_bytes": 104857600,
+      "name": "github_regular_file_limit",
+      "ok": true,
+      "oversized": []
+    },
+    {
+      "kind": "repository_shape",
+      "name": "no_nested_git_directories",
+      "ok": true,
+      "paths": []
+    },
+    {
+      "hits": [],
+      "kind": "runtime_path",
+      "name": "runtime_defaults_are_not_user_absolute_paths",
+      "ok": true
+    },
+    {
+      "kind": "repo_local_default",
+      "name": "image_sensor_db_root",
+      "ok": true,
+      "path": "camerae2e_db/fdtd_tcad/sensor_db"
+    },
+    {
+      "kind": "repo_local_default",
+      "name": "fdtd_sensor_default_lut_path",
+      "ok": true,
+      "path": "camerae2e_db/fdtd_tcad/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json"
+    },
+    {
+      "kind": "repo_local_default",
+      "name": "tcad_generation_map_path",
+      "ok": true,
+      "path": "camerae2e_db/fdtd_tcad/runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz"
+    },
+    {
+      "kind": "repo_local_default",
+      "name": "tcad_center_collection_summary",
+      "ok": true,
+      "path": "camerae2e_db/fdtd_tcad/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json"
+    },
+    {
+      "kind": "repo_local_default",
+      "name": "rayoptics_lens_package",
+      "ok": true,
+      "path": "camerae2e_db/lens_db/CameraE2E_Lens_DB_v9_20260627/data/lens_patents"
+    },
+    {
+      "kind": "repo_local_default",
+      "name": "physics_simulation_manifest_snapshot",
+      "ok": true,
+      "path": "reports/camerae2e_goal/physics_simulation_manifest.json"
+    },
+    {
+      "kind": "repo_local_default",
+      "name": "physics_simulation_manifest_snapshot_schema",
+      "ok": true,
+      "stage_count": 6,
+      "status_counts": {
+        "available": 5,
+        "stale_dependency": 1
+      }
+    }
+  ],
+  "components": {
+    "camera_db_manifest": {
+      "bytes": 420202,
+      "exists": true,
+      "kind": "file",
+      "path": "camerae2e_db/manifest.json"
+    },
+    "camerae2e_code": {
+      "bytes": 41618130,
+      "exists": true,
+      "kind": "directory",
+      "path": "src/pyisetcam"
+    },
+    "camerae2e_tests": {
+      "bytes": 33038815,
+      "exists": true,
+      "kind": "directory",
+      "path": "tests"
+    },
+    "camerae2e_tools": {
+      "bytes": 1131436,
+      "exists": true,
+      "kind": "directory",
+      "path": "tools"
+    },
+    "fdtd_tcad_workspace": {
+      "bytes": 5450986,
+      "exists": true,
+      "kind": "directory",
+      "path": "simulations/fdtd_tcad"
+    },
+    "lens_db_package": {
+      "bytes": 41953048,
+      "exists": true,
+      "kind": "directory",
+      "path": "camerae2e_db/lens_db/CameraE2E_Lens_DB_v9_20260627/data/lens_patents"
+    },
+    "rayoptics_workspace": {
+      "bytes": 586221,
+      "exists": true,
+      "kind": "directory",
+      "path": "simulations/rayoptics"
+    },
+    "sensor_catalog": {
+      "bytes": 1791205,
+      "exists": true,
+      "kind": "file",
+      "path": "camerae2e_db/fdtd_tcad/sensor_db/sensor_catalog.json"
+    }
+  },
+  "ok": true,
+  "repository_root": "/Users/seongcheoljeong/Documents/CameraE2E-Integrated",
+  "schema_version": "camerae2e_integrated_repository_manifest_v1",
+  "summary": {
+    "bytes": 226073896,
+    "check_count": 18,
+    "failed_checks": [],
+    "file_count": 3545,
+    "size_mb": 215.601
+  },
+  "truth_boundary": {
+    "claim": "research-grade self-contained checkout",
+    "not_claimed": [
+      "product sign-off",
+      "measured TCAD calibration",
+      "vendor ISP latency trace sign-off",
+      "wave-optics sign-off for geometric RayOptics PSF"
+    ]
+  }
+}

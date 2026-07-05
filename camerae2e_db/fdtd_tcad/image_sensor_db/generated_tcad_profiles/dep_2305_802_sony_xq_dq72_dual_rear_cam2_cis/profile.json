@@ -1,0 +1,332 @@
+{
+  "schema": "measured_tcad_profile_v1",
+  "profile_name": "DEP-2305-802_dep_2305_802_sony_xq_dq72_dual_rear_cam2_cis_techinsights_proxy_profile",
+  "units": {
+    "length": "um",
+    "doping": "cm^-3",
+    "sheet_charge": "cm^-2"
+  },
+  "reference_mode": true,
+  "reference_notes": [
+    "Generated from TechInsights metadata for FDTD/TCAD setup exploration.",
+    "This is not a measured implant profile or calibrated process deck.",
+    "Pixel width came from derived pixel_pitch_um; depth source: active_si_thickness_um."
+  ],
+  "public_reference_anchors": [
+    {
+      "topic": "Vertical PPD TCAD anchor",
+      "source": "https://lirias.kuleuven.be/retrieve/7cf861bd-7ced-477b-b91a-db2a61ef05c9",
+      "values": {
+        "pd_depth_um": 3.0,
+        "tg_n_plus_poly_cm3": 1e+21,
+        "fd_n_plus_cm3": 1e+19,
+        "p_plus_region_cm3": 8e+18,
+        "p_well_cm3": 1e+18,
+        "n_type_region_example_cm3": 1e+17
+      }
+    },
+    {
+      "topic": "Pinned layer dark-current reduction estimate",
+      "source": "https://indico.cern.ch/event/522485/contributions/2174996/attachments/1282603/1906227/2016_5FEE_teranishi_ver5.pdf",
+      "values": {
+        "p_plus_pin_hole_density_cm3": 1e+17,
+        "intrinsic_carrier_density_cm3": 14500000000.0
+      }
+    },
+    {
+      "topic": "Positive dielectric charge impact near pinning interface",
+      "source": "https://www.imagesensors.org/Past%20Workshops/2019%20Workshop/2019%20Papers/R11.pdf",
+      "values": {
+        "strong_positive_charge_example_cm2": 6000000000000.0
+      }
+    },
+    {
+      "topic": "Silicon transport reference",
+      "source": "https://www.ioffe.ru/SVA/NSM/Semicond/Si/electric.html",
+      "values": {
+        "electron_mobility_upper_cm2_v_s": 1400,
+        "hole_mobility_upper_cm2_v_s": 450
+      }
+    }
+  ],
+  "geometry": {
+    "width_um": 1.12,
+    "depth_um": 4.4,
+    "z_width_um": 1.12,
+    "split_gap_um": 0.0336,
+    "pinning_depth_um": 0.1188,
+    "dti_width_um": 0.0504,
+    "bdti": {
+      "enabled": true,
+      "model": "side_wall_pair_proxy",
+      "x_left_min_um": -0.56,
+      "x_left_max_um": -0.5096,
+      "x_right_min_um": 0.5096,
+      "x_right_max_um": 0.56,
+      "depth_min_um": 0.0,
+      "depth_max_um": 1.76,
+      "liner_width_um": 0.016,
+      "note": "Proxy BDTI geometry scaled from TechInsights-derived pixel pitch. Replace with measured trench geometry for product work."
+    },
+    "transfer_gate": {
+      "x_min_um": -0.144,
+      "x_max_um": 0.144,
+      "oxide_thickness_um": 0.0048,
+      "source_anchor_poly_doping_cm3": 1e+21
+    },
+    "floating_diffusion": {
+      "x_min_um": 0.36,
+      "x_max_um": 0.496,
+      "depth_min_um": 0.0,
+      "depth_max_um": 0.176,
+      "source_anchor_donor_cm3": 1e+19
+    }
+  },
+  "background": {
+    "acceptor_cm3": 100000000000000.0,
+    "donor_cm3": 0.0
+  },
+  "implants": [
+    {
+      "name": "front_p_plus_pinning_reference",
+      "type": "analytic_smooth_box",
+      "x_min_um": -0.544,
+      "x_max_um": 0.544,
+      "depth_min_um": 0.0,
+      "depth_max_um": 0.205333,
+      "x_rolloff_um": 0.028,
+      "depth_rolloff_um": 0.036667,
+      "depth_peak_um": 0.036667,
+      "depth_sigma_um": 0.066,
+      "acceptor_cm3": 5e+16,
+      "donor_cm3": 0.0,
+      "reference_anchor_cm3": 1e+17,
+      "measured": false
+    },
+    {
+      "name": "left_n_storage_ppd_reference_stable",
+      "type": "analytic_smooth_box",
+      "x_min_um": -0.496,
+      "x_max_um": -0.016,
+      "depth_min_um": 0.117333,
+      "depth_max_um": 4.106667,
+      "x_rolloff_um": 0.028,
+      "depth_rolloff_um": 0.117333,
+      "donor_cm3": 5000000000000000.0,
+      "acceptor_cm3": 0.0,
+      "source_anchor_cm3": 1e+17,
+      "measured": false
+    },
+    {
+      "name": "right_n_storage_ppd_reference_stable",
+      "type": "analytic_smooth_box",
+      "x_min_um": 0.016,
+      "x_max_um": 0.496,
+      "depth_min_um": 0.117333,
+      "depth_max_um": 4.106667,
+      "x_rolloff_um": 0.028,
+      "depth_rolloff_um": 0.117333,
+      "donor_cm3": 5000000000000000.0,
+      "acceptor_cm3": 0.0,
+      "source_anchor_cm3": 1e+17,
+      "measured": false
+    },
+    {
+      "name": "center_split_isolation_reference",
+      "type": "analytic_smooth_box",
+      "x_min_um": -0.028,
+      "x_max_um": 0.028,
+      "depth_min_um": 0.117333,
+      "depth_max_um": 4.4,
+      "x_rolloff_um": 0.012,
+      "depth_rolloff_um": 0.117333,
+      "acceptor_cm3": 5e+16,
+      "donor_cm3": 0.0,
+      "measured": false
+    },
+    {
+      "name": "left_dti_p_liner_reference_stable",
+      "type": "analytic_smooth_box",
+      "x_min_um": -0.56,
+      "x_max_um": -0.512,
+      "depth_min_um": 0.0,
+      "depth_max_um": 4.4,
+      "x_rolloff_um": 0.012,
+      "depth_rolloff_um": 0.117333,
+      "acceptor_cm3": 2e+16,
+      "donor_cm3": 0.0,
+      "source_anchor_cm3": 8e+18,
+      "measured": false
+    },
+    {
+      "name": "right_dti_p_liner_reference_stable",
+      "type": "analytic_smooth_box",
+      "x_min_um": 0.512,
+      "x_max_um": 0.56,
+      "depth_min_um": 0.0,
+      "depth_max_um": 4.4,
+      "x_rolloff_um": 0.012,
+      "depth_rolloff_um": 0.117333,
+      "acceptor_cm3": 2e+16,
+      "donor_cm3": 0.0,
+      "source_anchor_cm3": 8e+18,
+      "measured": false
+    }
+  ],
+  "electrical_features": [
+    {
+      "name": "transfer_gate_channel_barrier_reference",
+      "type": "doping_box",
+      "role": "transfer_gate_barrier",
+      "x_min_um": -0.144,
+      "x_max_um": 0.144,
+      "depth_min_um": 0.0,
+      "depth_max_um": 0.366667,
+      "acceptor_cm3": 2e+16,
+      "donor_cm3": 0.0,
+      "source_anchor_p_well_cm3": 1e+18,
+      "measured": false
+    },
+    {
+      "name": "floating_diffusion_n_plus_reference_stable",
+      "type": "doping_box",
+      "role": "floating_diffusion",
+      "x_min_um": 0.36,
+      "x_max_um": 0.496,
+      "depth_min_um": 0.0,
+      "depth_max_um": 0.176,
+      "donor_cm3": 5e+16,
+      "acceptor_cm3": 0.0,
+      "source_anchor_cm3": 1e+19,
+      "measured": false
+    },
+    {
+      "name": "front_interface_fixed_charge_reference",
+      "type": "fixed_charge_sheet",
+      "role": "front_si_oxide_fixed_charge",
+      "location": "depth_um=0",
+      "sheet_thickness_um": 0.02,
+      "fixed_charge_cm2": 10000000000.0,
+      "stress_anchor_charge_cm2": 6000000000000.0,
+      "measured": false
+    },
+    {
+      "name": "left_bdti_p_liner_reference_proxy",
+      "type": "doping_box",
+      "role": "bdti_liner",
+      "x_min_um": -0.56,
+      "x_max_um": -0.496,
+      "depth_min_um": 0.0,
+      "depth_max_um": 1.76,
+      "acceptor_cm3": 2e+16,
+      "donor_cm3": 0.0,
+      "source_anchor_cm3": 8e+18,
+      "measured": false,
+      "note": "Proxy BDTI p-liner term. It overlaps the side isolation in this coarse 2D deck and must be replaced by measured BDTI geometry/dose."
+    },
+    {
+      "name": "right_bdti_p_liner_reference_proxy",
+      "type": "doping_box",
+      "role": "bdti_liner",
+      "x_min_um": 0.496,
+      "x_max_um": 0.56,
+      "depth_min_um": 0.0,
+      "depth_max_um": 1.76,
+      "acceptor_cm3": 2e+16,
+      "donor_cm3": 0.0,
+      "source_anchor_cm3": 8e+18,
+      "measured": false,
+      "note": "Proxy BDTI p-liner term. It overlaps the side isolation in this coarse 2D deck and must be replaced by measured BDTI geometry/dose."
+    }
+  ],
+  "interfaces": [
+    {
+      "name": "front_si_oxide_interface_reference",
+      "location": "depth_um=0",
+      "dit_cm2_ev": 10000000000.0,
+      "sigma_n_cm2": 1e-15,
+      "sigma_p_cm2": 1e-15,
+      "fixed_charge_cm2": 0.0,
+      "sheet_thickness_um": 0.02,
+      "measured": false,
+      "note": "Dit is consumed by devsim_split_pd_2d as potential-dependent trap charge and SRH sheet recombination proxy."
+    }
+  ],
+  "mobility_recombination": {
+    "transport_model": "caughey_thomas_doping_and_field_dependent_reference_v1",
+    "transport_model_measured": false,
+    "transport_model_calibrated": false,
+    "mu_n_model": "caughey_thomas_doping_dependent_reference",
+    "mu_p_model": "caughey_thomas_doping_dependent_reference",
+    "mu_n_cm2_v_s": 400.0,
+    "mu_p_cm2_v_s": 200.0,
+    "mu_n_min_cm2_v_s": 250.0,
+    "mu_n_max_cm2_v_s": 700.0,
+    "mu_n_ref_doping_cm3": 5e+16,
+    "mu_n_alpha": 0.72,
+    "mu_p_min_cm2_v_s": 100.0,
+    "mu_p_max_cm2_v_s": 300.0,
+    "mu_p_ref_doping_cm3": 5e+16,
+    "mu_p_alpha": 0.7,
+    "source_anchor_mu_n_upper_cm2_v_s": 1400.0,
+    "source_anchor_mu_p_upper_cm2_v_s": 450.0,
+    "recombination_model": "srh_doping_dependent_reference_lifetime",
+    "tau_n_s": 1e-06,
+    "tau_p_s": 1e-06,
+    "tau_n_min_s": 2e-08,
+    "tau_n_max_s": 1e-06,
+    "tau_p_min_s": 2e-08,
+    "tau_p_max_s": 1e-06,
+    "lifetime_ref_doping_cm3": 5e+16,
+    "lifetime_alpha": 0.8,
+    "field_mobility_model": "canali_velocity_saturation_reference",
+    "field_mobility_enabled": true,
+    "electron_saturation_velocity_cm_s": 10000000.0,
+    "hole_saturation_velocity_cm_s": 8000000.0,
+    "field_mobility_beta_n": 2.0,
+    "field_mobility_beta_p": 1.0,
+    "field_mobility_floor_v_per_cm": 1.0,
+    "source_anchor_generation_lifetime_s": 0.0025,
+    "note": "Reference Caughey-Thomas-style doping-dependent low-field mobility plus Canali-style field saturation for practical open-source runs; not measured or calibrated to a target sensor."
+  },
+  "calibration_status": {
+    "is_measured": false,
+    "geometry_measured": false,
+    "mode": "techinsights_metadata_proxy",
+    "source_report_code": "DEP-2305-802",
+    "note": "Doping terms are scaled from the reference proxy profile and are not product measured."
+  },
+  "techinsights_source": {
+    "code": "DEP-2305-802",
+    "title": "Sony 2-Layer Transistor Pixel (ExmorT) Device Essentials Plus",
+    "content_title": "",
+    "source_html": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download_dep_a6pf30000009PYHAA2/html/reports/023_DEP-2305-802.html"
+    ],
+    "derived_specs": {
+      "illumination": "back_illuminated",
+      "sensor_modality": "cmos_image_sensor",
+      "is_stacked": true,
+      "has_dbi": true,
+      "has_dti": true,
+      "is_tof": true,
+      "dti_type": "full_depth_front_dti",
+      "dti_liner_material": "tin",
+      "pixel_architecture": "quad_pixel",
+      "transistors_per_pixel": 12.0,
+      "cfa_pattern": "quad_bayer",
+      "microlens_type": "gapless_ocl",
+      "grid_material": "w",
+      "has_pdaf": true,
+      "pixel_pitch_um": 1.12,
+      "resolution_mp": 48.0,
+      "optical_format": "1/1.35\"",
+      "active_si_thickness_um": 4.4,
+      "color_filter_pitch_um": 2.24,
+      "optical_stack_height_um": 1.8,
+      "dti_depth_um": 3.9,
+      "dti_width_nm": 97.0,
+      "dti_width_um": 0.097
+    }
+  }
+}

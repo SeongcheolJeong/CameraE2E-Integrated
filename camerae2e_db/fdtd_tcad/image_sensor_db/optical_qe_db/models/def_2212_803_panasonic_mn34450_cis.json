@@ -1,0 +1,525 @@
+{
+  "schema": "image_sensor_optical_qe_model_v1",
+  "code": "DEF-2212-803",
+  "source": {
+    "code": "DEF-2212-803",
+    "manufacturer": "Panasonic",
+    "device_name": "MN34450_CIS",
+    "title": "Nuvoton (Panasonic) KM34450PLJ Device Essentials Folder",
+    "report_type": "DEF",
+    "release_date": "2023-03-06T00:00:00.000+00:00",
+    "html_files": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/064_DEF-2212-803.html"
+    ],
+    "pdf_files": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf"
+    ]
+  },
+  "optical": {
+    "geometry": {
+      "pixel_pitch_um": {
+        "value": 4.3,
+        "source_kind": "extracted",
+        "confidence": 0.9,
+        "method": "sensor_catalog.derived_specs.pixel_pitch_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: KM34450PLJ, Full Frame, 47.3 MP , 4.3 µm Pixel Pitch Front-Illuminated",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf"
+      },
+      "optical_format": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.optical_format missing"
+      },
+      "optical_stack_height_um": {
+        "value": 4.3,
+        "source_kind": "extracted",
+        "confidence": 0.86,
+        "method": "sensor_catalog.derived_specs.optical_stack_height_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: Optical stack height (microlens/coating to Si) 4.3 µm",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf"
+      },
+      "active_si_thickness_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.active_si_thickness_um missing",
+        "unit": "um"
+      }
+    },
+    "cfa": {
+      "pattern": {
+        "value": "bayer",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_pattern",
+        "evidence": "combined_text: bayer"
+      },
+      "representative_thickness_um": {
+        "value": 0.92,
+        "source_kind": "derived_from_extracted_range",
+        "confidence": 0.76,
+        "method": "midpoint(cfa_thickness_min_um,cfa_thickness_max_um)",
+        "unit": "um",
+        "evidence": "pdf_design_snippet:  Planar CFA on planarized buffer layer; measured CFA thickness ranges from 910 nm to 930 nm (dependent on color and measured location)",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf"
+      },
+      "thickness_min_um": {
+        "value": 0.91,
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_min_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet:  Planar CFA on planarized buffer layer; measured CFA thickness ranges from 910 nm to 930 nm (dependent on color and measured location)",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf"
+      },
+      "thickness_max_um": {
+        "value": 0.93,
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_max_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet:  Planar CFA on planarized buffer layer; measured CFA thickness ranges from 910 nm to 930 nm (dependent on color and measured location)",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf"
+      },
+      "color_filter_pitch_um": {
+        "value": 4.3,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.color_filter_pitch_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: – OCL pitch of 4.3 µm, color filter pitch of 4.3 µm , and grid pitch of 4.3 µm",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "bayer",
+          "field": "cfa_pattern"
+        },
+        {
+          "source": "pdf_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf",
+          "text": " Planar CFA on planarized buffer layer; measured CFA thickness ranges from 910 nm to 930 nm (dependent on color and measured location)",
+          "field": "cfa_thickness_min_um"
+        },
+        {
+          "source": "pdf_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf",
+          "text": "– OCL pitch of 4.3 µm, color filter pitch of 4.3 µm , and grid pitch of 4.3 µm",
+          "field": "color_filter_pitch_um"
+        }
+      ]
+    },
+    "microlens": {
+      "type": {
+        "value": "ocl",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.microlens_type",
+        "evidence": "combined_text: ocl"
+      },
+      "ocl_pitch_um": {
+        "value": 4.3,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.ocl_pitch_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: – OCL pitch of 4.3 µm, color filter pitch of 4.3 µm , and grid pitch of 4.3 µm",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "ocl",
+          "field": "microlens_type"
+        },
+        {
+          "source": "pdf_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf",
+          "text": "– OCL pitch of 4.3 µm, color filter pitch of 4.3 µm , and grid pitch of 4.3 µm",
+          "field": "ocl_pitch_um"
+        },
+        {
+          "source": "pdf_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf",
+          "text": "Optical stack height (microlens/coating to Si) 4.3 µm",
+          "field": "optical_stack_height_um"
+        }
+      ]
+    },
+    "grid": {
+      "material": {
+        "value": "tin",
+        "source_kind": "extracted",
+        "confidence": 0.76,
+        "method": "sensor_catalog.derived_specs.grid_material",
+        "evidence": "combined_text: tin"
+      },
+      "pitch_um": {
+        "value": 4.3,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.grid_pitch_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: – OCL pitch of 4.3 µm, color filter pitch of 4.3 µm , and grid pitch of 4.3 µm",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "tin",
+          "field": "grid_material"
+        },
+        {
+          "source": "pdf_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf",
+          "text": "– OCL pitch of 4.3 µm, color filter pitch of 4.3 µm , and grid pitch of 4.3 µm",
+          "field": "grid_pitch_um"
+        }
+      ]
+    },
+    "sensor_context": {
+      "illumination": {
+        "value": "front_illuminated",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.illumination",
+        "evidence": "combined_text: front_illuminated"
+      },
+      "sensor_modality": {
+        "value": "cmos_image_sensor",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.sensor_modality",
+        "evidence": "combined_text: cmos_image_sensor"
+      },
+      "is_nir": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.is_nir missing"
+      }
+    }
+  },
+  "cfa_proxy_nk": {
+    "enabled": true,
+    "library_id": "common_rgb_color_resist_proxy_2026_06",
+    "source_kind": "inferred_proxy_nk",
+    "applicability": "rgb_color_filter_proxy",
+    "reference_thickness_um": 0.65,
+    "thickness_um": {
+      "value": 0.92,
+      "source_kind": "derived_from_extracted_range",
+      "confidence": 0.76,
+      "method": "sensor-specific CFA thickness for proxy n,k transmission scaling",
+      "unit": "um",
+      "evidence": "pdf_design_snippet:  Planar CFA on planarized buffer layer; measured CFA thickness ranges from 910 nm to 930 nm (dependent on color and measured location)",
+      "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf"
+    },
+    "channels": {
+      "red": {
+        "description": "Common red color-resist proxy",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.48,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.7,
+            "k": 0.19157,
+            "transmission_absorption_only": 0.003939
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.7,
+            "k": 0.20355,
+            "transmission_absorption_only": 0.003938
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.7,
+            "k": 0.21552,
+            "transmission_absorption_only": 0.003938
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.7,
+            "k": 0.21452,
+            "transmission_absorption_only": 0.005401
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.7,
+            "k": 0.21465,
+            "transmission_absorption_only": 0.006991
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.7,
+            "k": 0.19932,
+            "transmission_absorption_only": 0.01241
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.7,
+            "k": 0.17007,
+            "transmission_absorption_only": 0.028019
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.7,
+            "k": 0.12071,
+            "transmission_absorption_only": 0.0883
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.7,
+            "k": 0.05866,
+            "transmission_absorption_only": 0.322941
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.7,
+            "k": 0.02201,
+            "transmission_absorption_only": 0.665555
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.7,
+            "k": 0.01017,
+            "transmission_absorption_only": 0.83453
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.7,
+            "k": 0.00871,
+            "transmission_absorption_only": 0.861414
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.7,
+            "k": 0.01096,
+            "transmission_absorption_only": 0.834424
+          }
+        ]
+      },
+      "green": {
+        "description": "Common green color-resist proxy",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.48,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.7,
+            "k": 0.18065,
+            "transmission_absorption_only": 0.0054
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.7,
+            "k": 0.17443,
+            "transmission_absorption_only": 0.008696
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.7,
+            "k": 0.155,
+            "transmission_absorption_only": 0.018646
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.7,
+            "k": 0.09972,
+            "transmission_absorption_only": 0.088293
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.7,
+            "k": 0.0366,
+            "transmission_absorption_only": 0.429012
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.7,
+            "k": 0.01276,
+            "transmission_absorption_only": 0.755037
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.7,
+            "k": 0.01094,
+            "transmission_absorption_only": 0.794565
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.7,
+            "k": 0.02313,
+            "transmission_absorption_only": 0.6281
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.7,
+            "k": 0.07712,
+            "transmission_absorption_only": 0.22628
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.7,
+            "k": 0.16224,
+            "transmission_absorption_only": 0.049734
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.7,
+            "k": 0.22388,
+            "transmission_absorption_only": 0.018649
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.7,
+            "k": 0.266,
+            "transmission_absorption_only": 0.010505
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.7,
+            "k": 0.30051,
+            "transmission_absorption_only": 0.006991
+          }
+        ]
+      },
+      "blue": {
+        "description": "Common blue color-resist proxy",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.48,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.7,
+            "k": 0.02928,
+            "transmission_absorption_only": 0.429012
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.7,
+            "k": 0.01709,
+            "transmission_absorption_only": 0.628204
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.7,
+            "k": 0.01093,
+            "transmission_absorption_only": 0.755175
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.7,
+            "k": 0.01445,
+            "transmission_absorption_only": 0.703491
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.7,
+            "k": 0.0531,
+            "transmission_absorption_only": 0.292941
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.7,
+            "k": 0.13628,
+            "transmission_absorption_only": 0.049736
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.7,
+            "k": 0.20881,
+            "transmission_absorption_only": 0.012411
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.7,
+            "k": 0.25968,
+            "transmission_absorption_only": 0.005401
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.7,
+            "k": 0.28736,
+            "transmission_absorption_only": 0.003938
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.7,
+            "k": 0.3074,
+            "transmission_absorption_only": 0.003392
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.7,
+            "k": 0.31969,
+            "transmission_absorption_only": 0.003393
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.7,
+            "k": 0.33199,
+            "transmission_absorption_only": 0.003393
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.7,
+            "k": 0.34429,
+            "transmission_absorption_only": 0.003392
+          }
+        ]
+      }
+    },
+    "model_limitations": [
+      "Absorption-only CFA layer proxy; does not include full optical-stack interference, microlens focusing, grid diffraction, or silicon absorption.",
+      "Common R/G/B n,k proxy, not product-specific measured optical constants."
+    ]
+  },
+  "qe": {
+    "measurement_data_status": "not_found",
+    "quantitative_points": [],
+    "qualitative_mentions": [],
+    "spectral_ranges": [
+      {
+        "low_nm": 910.0,
+        "high_nm": 930.0,
+        "source_kind": "reported_spectral_range",
+        "confidence": 0.72,
+        "source_file": "sensor_catalog_record",
+        "context": "_download/html/pdfs/064_DEF-2212-803/Nuvoton_KM34450PLJ_DEF-2212-803.pdf\", \"source\": \"pdf_design_snippet\", \"text\": \" Planar CFA on planarized buffer layer; measured CFA thickness ranges from 910 nm to 930 nm (dependent on color and measured location)\"}], \"cfa_thickness_max_um\": [{\"source_file\": \"/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/064_DEF-"
+      }
+    ],
+    "filter_sets": []
+  },
+  "readiness": {
+    "level": "optical_ready_high",
+    "score": 88,
+    "reasons": [
+      "cfa_pattern",
+      "microlens_type",
+      "optical_stack_height",
+      "cfa_thickness",
+      "color_filter_pitch",
+      "ocl_pitch",
+      "grid_pitch",
+      "grid_material"
+    ]
+  },
+  "notes": [
+    "QE quantitative_points are reported text points, not reconstructed curves.",
+    "inferred_rule values are setup defaults and must not be treated as measurements.",
+    "cfa_proxy_nk is a common color-resist n,k proxy for setup/sensitivity work, not measured product-specific optical constants."
+  ]
+}

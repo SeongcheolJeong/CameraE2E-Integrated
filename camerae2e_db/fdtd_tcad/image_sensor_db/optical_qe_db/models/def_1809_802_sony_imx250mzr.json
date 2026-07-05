@@ -1,0 +1,307 @@
+{
+  "schema": "image_sensor_optical_qe_model_v1",
+  "code": "DEF-1809-802",
+  "source": {
+    "code": "DEF-1809-802",
+    "manufacturer": "Sony",
+    "device_name": "IMX250MZR",
+    "title": "Sony IMX250MZR Global Shutter CIS Device Essentials Folder",
+    "report_type": "DEF",
+    "release_date": "2018-11-01T00:00:00.000+00:00",
+    "html_files": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/131_DEF-1809-802.html"
+    ],
+    "pdf_files": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/131_DEF-1809-802/Sony_IMX250MZR_DEF-1809-802.pdf"
+    ]
+  },
+  "optical": {
+    "geometry": {
+      "pixel_pitch_um": {
+        "value": 3.45,
+        "source_kind": "extracted",
+        "confidence": 0.9,
+        "method": "sensor_catalog.derived_specs.pixel_pitch_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: IMX250MZR, 2/3”, 5.0 MP , 3.45 µm Pixel Pitch",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/131_DEF-1809-802/Sony_IMX250MZR_DEF-1809-802.pdf"
+      },
+      "optical_format": {
+        "value": "2/3\"",
+        "source_kind": "extracted",
+        "confidence": 0.74,
+        "method": "sensor_catalog.derived_specs.optical_format",
+        "evidence": "pdf_design_snippet: IMX250MZR, 2/3”, 5.0 MP , 3.45 µm Pixel Pitch",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/131_DEF-1809-802/Sony_IMX250MZR_DEF-1809-802.pdf"
+      },
+      "optical_stack_height_um": {
+        "value": 6.7,
+        "source_kind": "extracted",
+        "confidence": 0.86,
+        "method": "sensor_catalog.derived_specs.optical_stack_height_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: Optical stack height (microlens/coating to Si) 6.7 µm",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/131_DEF-1809-802/Sony_IMX250MZR_DEF-1809-802.pdf"
+      },
+      "active_si_thickness_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.active_si_thickness_um missing",
+        "unit": "um"
+      }
+    },
+    "cfa": {
+      "pattern": {
+        "value": "monochrome",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_pattern",
+        "evidence": "combined_text: monochrome"
+      },
+      "representative_thickness_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_um missing",
+        "unit": "um"
+      },
+      "thickness_min_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_min_um missing",
+        "unit": "um"
+      },
+      "thickness_max_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_max_um missing",
+        "unit": "um"
+      },
+      "color_filter_pitch_um": {
+        "value": 3.45,
+        "source_kind": "inferred_rule",
+        "confidence": 0.38,
+        "method": "color_filter_pitch_um inferred from pixel_pitch_um; 1x pitch fallback",
+        "unit": "um"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "monochrome",
+          "field": "cfa_pattern"
+        }
+      ]
+    },
+    "microlens": {
+      "type": {
+        "value": "gapless_ocl",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.microlens_type",
+        "evidence": "combined_text: gapless_ocl"
+      },
+      "ocl_pitch_um": {
+        "value": 3.45,
+        "source_kind": "inferred_rule",
+        "confidence": 0.4,
+        "method": "ocl_pitch_um inferred from pixel_pitch_um; OCL pitch usually follows pixel pitch when not reported",
+        "unit": "um"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "gapless_ocl",
+          "field": "microlens_type"
+        },
+        {
+          "source": "pdf_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/131_DEF-1809-802/Sony_IMX250MZR_DEF-1809-802.pdf",
+          "text": "Optical stack height (microlens/coating to Si) 6.7 µm",
+          "field": "optical_stack_height_um"
+        }
+      ]
+    },
+    "grid": {
+      "material": {
+        "value": "tin",
+        "source_kind": "extracted",
+        "confidence": 0.76,
+        "method": "sensor_catalog.derived_specs.grid_material",
+        "evidence": "combined_text: tin"
+      },
+      "pitch_um": {
+        "value": 3.45,
+        "source_kind": "inferred_rule",
+        "confidence": 0.35,
+        "method": "grid_pitch_um inferred from pixel_pitch_um; grid pitch approximated as pixel pitch",
+        "unit": "um"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "tin",
+          "field": "grid_material"
+        }
+      ]
+    },
+    "sensor_context": {
+      "illumination": {
+        "value": "back_illuminated",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.illumination",
+        "evidence": "combined_text: back_illuminated"
+      },
+      "sensor_modality": {
+        "value": "global_shutter_cis",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.sensor_modality",
+        "evidence": "combined_text: global_shutter_cis"
+      },
+      "is_nir": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.is_nir missing"
+      }
+    }
+  },
+  "cfa_proxy_nk": {
+    "enabled": true,
+    "library_id": "common_rgb_color_resist_proxy_2026_06",
+    "source_kind": "inferred_proxy_nk",
+    "applicability": "clear_or_monochrome",
+    "reference_thickness_um": 0.65,
+    "thickness_um": {
+      "value": 0.65,
+      "source_kind": "inferred_proxy_default",
+      "confidence": 0.3,
+      "method": "proxy library reference_thickness_um used because sensor-specific CFA thickness is unavailable",
+      "unit": "um"
+    },
+    "channels": {
+      "clear": {
+        "description": "Clear/monochrome proxy coating",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.38,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.52,
+            "k": 0.002,
+            "transmission_absorption_only": 0.959982
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.52,
+            "k": 0.00212,
+            "transmission_absorption_only": 0.960074
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.52,
+            "k": 0.00225,
+            "transmission_absorption_only": 0.959982
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.52,
+            "k": 0.00237,
+            "transmission_absorption_only": 0.960065
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.52,
+            "k": 0.0025,
+            "transmission_absorption_only": 0.959982
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.52,
+            "k": 0.00262,
+            "transmission_absorption_only": 0.960057
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.52,
+            "k": 0.00275,
+            "transmission_absorption_only": 0.959982
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.52,
+            "k": 0.00287,
+            "transmission_absorption_only": 0.96005
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.52,
+            "k": 0.003,
+            "transmission_absorption_only": 0.959982
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.52,
+            "k": 0.00312,
+            "transmission_absorption_only": 0.960045
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.52,
+            "k": 0.00325,
+            "transmission_absorption_only": 0.959982
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.52,
+            "k": 0.00337,
+            "transmission_absorption_only": 0.96004
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.52,
+            "k": 0.0035,
+            "transmission_absorption_only": 0.959982
+          }
+        ]
+      }
+    },
+    "model_limitations": [
+      "Absorption-only CFA layer proxy; does not include full optical-stack interference, microlens focusing, grid diffraction, or silicon absorption.",
+      "Common R/G/B n,k proxy, not product-specific measured optical constants."
+    ]
+  },
+  "qe": {
+    "measurement_data_status": "not_found",
+    "quantitative_points": [],
+    "qualitative_mentions": [],
+    "spectral_ranges": [],
+    "filter_sets": []
+  },
+  "readiness": {
+    "level": "optical_ready_high",
+    "score": 72,
+    "reasons": [
+      "cfa_pattern",
+      "microlens_type",
+      "optical_stack_height",
+      "color_filter_pitch",
+      "ocl_pitch",
+      "grid_pitch",
+      "grid_material"
+    ]
+  },
+  "notes": [
+    "QE quantitative_points are reported text points, not reconstructed curves.",
+    "inferred_rule values are setup defaults and must not be treated as measurements.",
+    "cfa_proxy_nk is a common color-resist n,k proxy for setup/sensitivity work, not measured product-specific optical constants."
+  ]
+}

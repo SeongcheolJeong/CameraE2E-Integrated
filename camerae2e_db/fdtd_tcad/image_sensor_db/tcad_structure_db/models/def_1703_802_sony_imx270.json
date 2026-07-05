@@ -1,0 +1,441 @@
+{
+  "schema": "image_sensor_tcad_structure_model_v1",
+  "code": "DEF-1703-802",
+  "source": {
+    "code": "DEF-1703-802",
+    "manufacturer": "Sony",
+    "device_name": "IMX270",
+    "title": "Sony IMX270 from Olympus OM-D E-M1 Mark II Device Essentials Image Set and Summary",
+    "report_type": "DEF",
+    "analysis_year": 2017,
+    "release_date": "2017-04-12T00:00:00.000+00:00",
+    "source_html": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/151_DEF-1703-802.html"
+    ],
+    "source_pdf": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/151_DEF-1703-802/Sony_IMX270_Olympus_OM-D_E-M1_Mark_II_MILC_DEF-1703-802.pdf"
+    ]
+  },
+  "structure": {
+    "tcad_cell": {
+      "width_um": {
+        "value": 3.3,
+        "source_kind": "extracted",
+        "confidence": 0.96,
+        "method": "sensor_catalog.derived_specs.pixel_pitch_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: 3.3 µm Pixel Pitch, Front-Illuminated “Live MOS”"
+      },
+      "depth_um": {
+        "value": 3.6,
+        "source_kind": "inferred_empirical",
+        "confidence": 0.68,
+        "method": "manufacturer_median:Sony; n=43",
+        "unit": "um"
+      },
+      "z_width_um": {
+        "value": 3.3,
+        "source_kind": "inferred_layout",
+        "confidence": 0.96,
+        "method": "single-pixel square cell z width = pitch",
+        "unit": "um"
+      },
+      "split_gap_um": {
+        "value": 0.12,
+        "source_kind": "inferred_layout",
+        "confidence": 0.3,
+        "method": "split gap seed=clamp(0.04*pitch,0.02,0.12)",
+        "unit": "um"
+      },
+      "x_min_um": {
+        "value": -1.65,
+        "source_kind": "derived_geometry",
+        "confidence": 0.96,
+        "method": "centered single pixel cell",
+        "unit": "um"
+      },
+      "x_max_um": {
+        "value": 1.65,
+        "source_kind": "derived_geometry",
+        "confidence": 0.96,
+        "method": "centered single pixel cell",
+        "unit": "um"
+      },
+      "recommended_mesh_um": {
+        "value": 0.18,
+        "source_kind": "derived_meshing",
+        "confidence": 0.55,
+        "method": "mesh seed from pixel pitch",
+        "unit": "um"
+      },
+      "recommended_fine_mesh_um": {
+        "value": 0.06,
+        "source_kind": "derived_meshing",
+        "confidence": 0.5,
+        "method": "fine mesh from pitch and DTI width",
+        "unit": "um"
+      },
+      "dti_left_x_min_um": {
+        "value": -1.65,
+        "source_kind": "derived_geometry",
+        "confidence": 0.48,
+        "method": "side DTI left boundary",
+        "unit": "um"
+      },
+      "dti_left_x_max_um": {
+        "value": -1.43,
+        "source_kind": "derived_geometry",
+        "confidence": 0.48,
+        "method": "side DTI left boundary",
+        "unit": "um"
+      },
+      "dti_right_x_min_um": {
+        "value": 1.43,
+        "source_kind": "derived_geometry",
+        "confidence": 0.48,
+        "method": "side DTI right boundary",
+        "unit": "um"
+      },
+      "dti_right_x_max_um": {
+        "value": 1.65,
+        "source_kind": "derived_geometry",
+        "confidence": 0.48,
+        "method": "side DTI right boundary",
+        "unit": "um"
+      },
+      "dti_depth_max_um": {
+        "value": 3.6,
+        "source_kind": "derived_geometry",
+        "confidence": 0.2,
+        "method": "DTI depth clipped to active silicon for mesh",
+        "unit": "um"
+      }
+    },
+    "dti": {
+      "type": {
+        "value": "unknown",
+        "source_kind": "unavailable",
+        "confidence": 0.1,
+        "method": "no DTI evidence"
+      },
+      "depth_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "no DTI depth evidence",
+        "unit": "um"
+      },
+      "width_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "no DTI width evidence",
+        "unit": "um"
+      },
+      "fill_material": {
+        "value": "unknown",
+        "source_kind": "inferred_rule",
+        "confidence": 0.1,
+        "method": "DTI subtype material heuristic"
+      },
+      "sidewall_liner_thickness_nm": {
+        "value": 20.7,
+        "source_kind": "inferred_rule",
+        "confidence": 0.28,
+        "method": "liner~23% of DTI width, clamped 8-28 nm",
+        "unit": "nm"
+      }
+    },
+    "sti": {
+      "depth_um": {
+        "value": 0.24,
+        "source_kind": "inferred_rule",
+        "confidence": 0.35,
+        "method": "modern CIS STI depth seed",
+        "unit": "um"
+      },
+      "fill_material": {
+        "value": "oxide",
+        "source_kind": "inferred_rule",
+        "confidence": 0.45,
+        "method": "standard STI fill assumption"
+      },
+      "liner_material": {
+        "value": "oxide_nitride",
+        "source_kind": "inferred_rule",
+        "confidence": 0.35,
+        "method": "standard STI liner assumption"
+      }
+    },
+    "photodiode": {
+      "photocathode_depth_um": {
+        "value": 3.168,
+        "source_kind": "inferred_rule",
+        "confidence": 0.326,
+        "method": "photocathode_depth=0.88*active_si",
+        "unit": "um"
+      },
+      "p_well_depth_um": {
+        "value": 0.576,
+        "source_kind": "inferred_rule",
+        "confidence": 0.42,
+        "method": "p_well_depth=clamp(0.16*active_si,0.35,0.8)",
+        "unit": "um"
+      },
+      "pinning_depth_um": {
+        "value": 0.1,
+        "source_kind": "inferred_rule",
+        "confidence": 0.35,
+        "method": "typical CIS P+ pinning depth seed",
+        "unit": "um"
+      },
+      "collection_model": {
+        "value": "pinned_photodiode",
+        "source_kind": "inferred_rule",
+        "confidence": 0.55,
+        "method": "image-sensor CIS default collection region model"
+      }
+    },
+    "transfer_gate": {
+      "type": {
+        "value": "unknown",
+        "source_kind": "unavailable",
+        "confidence": 0.12,
+        "method": "no transfer gate type evidence"
+      },
+      "depth_um": {
+        "value": 0.0,
+        "source_kind": "inferred_rule",
+        "confidence": 0.25,
+        "method": "planar/unknown TG depth placeholder",
+        "unit": "um"
+      },
+      "x_min_um": {
+        "value": -0.25,
+        "source_kind": "inferred_layout",
+        "confidence": 0.4,
+        "method": "centered TG lateral placement",
+        "unit": "um"
+      },
+      "x_max_um": {
+        "value": 0.25,
+        "source_kind": "inferred_layout",
+        "confidence": 0.4,
+        "method": "centered TG lateral placement",
+        "unit": "um"
+      },
+      "gate_oxide_thickness_nm": {
+        "value": 4.5,
+        "source_kind": "inferred_rule",
+        "confidence": 0.35,
+        "method": "typical CIS TG nitrided oxide seed",
+        "unit": "nm"
+      }
+    },
+    "fd_sd": {
+      "floating_diffusion_depth_um": {
+        "value": 0.198,
+        "source_kind": "inferred_rule",
+        "confidence": 0.42,
+        "method": "FD depth seed=clamp(0.055*active_si,0.12,0.28)",
+        "unit": "um"
+      },
+      "source_drain_depth_um": {
+        "value": 0.198,
+        "source_kind": "inferred_rule",
+        "confidence": 0.42,
+        "method": "FD depth seed=clamp(0.055*active_si,0.12,0.28)",
+        "unit": "um"
+      },
+      "floating_diffusion_x_min_um": {
+        "value": 0.924,
+        "source_kind": "inferred_layout",
+        "confidence": 0.35,
+        "method": "right-side FD placement seed",
+        "unit": "um"
+      },
+      "floating_diffusion_x_max_um": {
+        "value": 1.174,
+        "source_kind": "inferred_layout",
+        "confidence": 0.35,
+        "method": "right-side FD placement seed",
+        "unit": "um"
+      }
+    },
+    "optical_stack": {
+      "height_um": {
+        "value": 6.2,
+        "source_kind": "extracted",
+        "confidence": 0.86,
+        "method": "sensor_catalog.derived_specs.optical_stack_height_um",
+        "unit": "um",
+        "evidence": "pdf_design_snippet: Optical stack height (microlens/coating to Si) 6.2 µm"
+      },
+      "cfa_thickness_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "no CFA thickness evidence",
+        "unit": "um"
+      },
+      "grid_pitch_um": {
+        "value": 3.3,
+        "source_kind": "inferred_rule",
+        "confidence": 0.35,
+        "method": "grid pitch approximated as pixel pitch",
+        "unit": "um"
+      }
+    },
+    "process": {
+      "cis_process_nm": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "no CIS process node evidence",
+        "unit": "nm"
+      },
+      "pixel_beol_metal_pitch_nm": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "no BEOL metal pitch evidence",
+        "unit": "nm"
+      },
+      "pixel_architecture": {
+        "value": "two_shared",
+        "source_kind": "extracted",
+        "confidence": 0.86,
+        "method": "sensor_catalog.derived_specs.pixel_architecture",
+        "evidence": "combined_text: two_shared"
+      }
+    },
+    "doping": {
+      "model_kind": {
+        "value": "estimated_archetype_only",
+        "source_kind": "derived",
+        "confidence": 0.25,
+        "method": "SIMS availability and measured anchor scan"
+      },
+      "sims_seed_profile": null,
+      "anchors": {
+        "p_pinning": {
+          "value": 8e+18,
+          "source_kind": "inferred_archetype",
+          "confidence": 0.28,
+          "method": "global median from measured SIMS candidate roles or conservative CIS default",
+          "unit": "cm^-3"
+        },
+        "p_plus_contact": {
+          "value": 2e+20,
+          "source_kind": "inferred_archetype",
+          "confidence": 0.28,
+          "method": "global median from measured SIMS candidate roles or conservative CIS default",
+          "unit": "cm^-3"
+        },
+        "fd_sd": {
+          "value": 1e+20,
+          "source_kind": "inferred_archetype",
+          "confidence": 0.28,
+          "method": "global median from measured SIMS candidate roles or conservative CIS default",
+          "unit": "cm^-3"
+        },
+        "floating_diffusion": {
+          "value": 2e+19,
+          "source_kind": "inferred_archetype",
+          "confidence": 0.28,
+          "method": "global median from measured SIMS candidate roles or conservative CIS default",
+          "unit": "cm^-3"
+        },
+        "source_drain": {
+          "value": 2e+19,
+          "source_kind": "inferred_archetype",
+          "confidence": 0.28,
+          "method": "global median from measured SIMS candidate roles or conservative CIS default",
+          "unit": "cm^-3"
+        },
+        "transfer_gate": {
+          "value": 5e+19,
+          "source_kind": "inferred_archetype",
+          "confidence": 0.28,
+          "method": "global median from measured SIMS candidate roles or conservative CIS default",
+          "unit": "cm^-3"
+        },
+        "p_well": {
+          "value": 5e+17,
+          "source_kind": "inferred_archetype",
+          "confidence": 0.28,
+          "method": "global median from measured SIMS candidate roles or conservative CIS default",
+          "unit": "cm^-3"
+        },
+        "photocathode": {
+          "value": 1.5e+16,
+          "source_kind": "inferred_archetype",
+          "confidence": 0.28,
+          "method": "global median from measured SIMS candidate roles or conservative CIS default",
+          "unit": "cm^-3"
+        },
+        "pixel_isolation": {
+          "value": 7.5e+16,
+          "source_kind": "inferred_archetype",
+          "confidence": 0.28,
+          "method": "global median from measured SIMS candidate roles or conservative CIS default",
+          "unit": "cm^-3"
+        },
+        "background_acceptor": {
+          "value": 100000000000000.0,
+          "source_kind": "inferred_archetype",
+          "confidence": 0.28,
+          "method": "global median from measured SIMS candidate roles or conservative CIS default",
+          "unit": "cm^-3"
+        }
+      },
+      "solver_warning": "Use anchors as seed values only. They are not process-calibrated implant profiles and may need scaling for drift-diffusion convergence."
+    },
+    "tcad_profiles": {
+      "recommended_profile": {
+        "value": "/Users/seongcheoljeong/FDTD/image_sensor_db/generated_tcad_profiles/def_1703_802_sony_imx270/profile.json",
+        "source_kind": "derived",
+        "confidence": 0.35,
+        "method": "fallback to existing proxy profile"
+      },
+      "recommended_profile_kind": {
+        "value": "techinsights_proxy_profile",
+        "source_kind": "derived",
+        "confidence": 0.35,
+        "method": "fallback to existing proxy profile"
+      },
+      "sims_seed_profile": "",
+      "proxy_profile": "/Users/seongcheoljeong/FDTD/image_sensor_db/generated_tcad_profiles/def_1703_802_sony_imx270/profile.json",
+      "warning": "Recommended profile is a TCAD starting point. SIMS seed is stronger than proxy, but neither is product-calibrated."
+    }
+  },
+  "readiness": {
+    "level": "proxy_structure_low",
+    "score": 40.2,
+    "candidate_level": "process_snippet_only",
+    "tcad_candidate_score": 5,
+    "missing_for_structure_model": [
+      "dti.depth_um",
+      "transfer_gate.type"
+    ],
+    "missing_for_calibrated_deck": [
+      "continuous implant profile or process simulation recipe",
+      "interface trap/fixed-charge calibration",
+      "measured dark current/full-well/lag/charge-transfer targets",
+      "exact lateral implant masks and 3D sharing geometry"
+    ],
+    "recommended_use": "Use for mesh/profile seeding and sensitivity sweeps. Do not use for product accuracy claims without calibration."
+  },
+  "source_candidate_report": {
+    "candidate_level": "process_snippet_only",
+    "geometry_score": 3,
+    "doping_row_count": 0,
+    "doping_table_count": 0,
+    "source_html": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/151_DEF-1703-802.html"
+    ],
+    "source_pdf": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/pdfs/151_DEF-1703-802/Sony_IMX270_Olympus_OM-D_E-M1_Mark_II_MILC_DEF-1703-802.pdf"
+    ]
+  }
+}

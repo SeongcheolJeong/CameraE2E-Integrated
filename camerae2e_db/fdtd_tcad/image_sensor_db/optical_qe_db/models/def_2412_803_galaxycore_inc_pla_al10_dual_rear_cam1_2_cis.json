@@ -1,0 +1,251 @@
+{
+  "schema": "image_sensor_optical_qe_model_v1",
+  "code": "DEF-2412-803",
+  "source": {
+    "code": "DEF-2412-803",
+    "manufacturer": "Galaxycore Inc",
+    "device_name": "PLA-AL10_Dual-Rear-Cam1-2_CIS",
+    "title": "GalaxyCore Multispectral Image Sensor from Mate 70 Pro+ Device Essentials Folder",
+    "report_type": "DEF",
+    "release_date": "2025-01-30T00:00:00.000+00:00",
+    "html_files": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/028_DEF-2412-803.html"
+    ],
+    "pdf_files": []
+  },
+  "optical": {
+    "geometry": {
+      "pixel_pitch_um": {
+        "value": 1.75,
+        "source_kind": "extracted",
+        "confidence": 0.9,
+        "method": "sensor_catalog.derived_specs.pixel_pitch_um",
+        "unit": "um",
+        "evidence": "search_description: The GalaxyCore multispectral image sensor with features of 1.5 MP resolution, pixel pitch of 1.75 µm, and 3 × 3 color filter pattern is a front illuminated (FI) CMOS image sensor extracted from Huawei Mate 70 Pro+ smart.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/data/search_results.json"
+      },
+      "optical_format": {
+        "value": "1/3.1\"",
+        "source_kind": "extracted",
+        "confidence": 0.74,
+        "method": "sensor_catalog.derived_specs.optical_format",
+        "evidence": "html_design_snippet: This image sensor, extracted from the Techno Spark front camera, provides the features including 1/3.1” optical format, 32 MP resolution, and 0.70 µm pixel pitch.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/028_DEF-2412-803.html"
+      },
+      "optical_stack_height_um": {
+        "value": 3.4,
+        "source_kind": "extracted",
+        "confidence": 0.86,
+        "method": "sensor_catalog.derived_specs.optical_stack_height_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: No shieled pixels observed Single row of bond pads arranged along the left and right sides of the die Structure No apparent OCL coating in use No shift of outer pixels toward the array center Multispectral 3 × 3 color f.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/028_DEF-2412-803.html"
+      },
+      "active_si_thickness_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.active_si_thickness_um missing",
+        "unit": "um"
+      }
+    },
+    "cfa": {
+      "pattern": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.cfa_pattern missing"
+      },
+      "representative_thickness_um": {
+        "value": 0.85,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: No shieled pixels observed Single row of bond pads arranged along the left and right sides of the die Structure No apparent OCL coating in use No shift of outer pixels toward the array center Multispectral 3 × 3 color f.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/028_DEF-2412-803.html"
+      },
+      "thickness_min_um": {
+        "value": 0.85,
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_min_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: No shieled pixels observed Single row of bond pads arranged along the left and right sides of the die Structure No apparent OCL coating in use No shift of outer pixels toward the array center Multispectral 3 × 3 color f.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/028_DEF-2412-803.html"
+      },
+      "thickness_max_um": {
+        "value": 3.4,
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_max_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: No shieled pixels observed Single row of bond pads arranged along the left and right sides of the die Structure No apparent OCL coating in use No shift of outer pixels toward the array center Multispectral 3 × 3 color f.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/028_DEF-2412-803.html"
+      },
+      "color_filter_pitch_um": {
+        "value": 1.75,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.color_filter_pitch_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Salient Features Overview GalaxyCore’s first multispectral front illuminated CMOS image sensor for smartphone applications CIS manufactured in 180 nm process node with 130 nm design rules 1.75 μm pixel generation Many d.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/028_DEF-2412-803.html"
+      },
+      "evidence": [
+        {
+          "source": "html_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/028_DEF-2412-803.html",
+          "text": "No shieled pixels observed Single row of bond pads arranged along the left and right sides of the die Structure No apparent OCL coating in use No shift of outer pixels toward the array center Multispectral 3 × 3 color f...",
+          "field": "cfa_thickness_um"
+        },
+        {
+          "source": "html_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/028_DEF-2412-803.html",
+          "text": "Salient Features Overview GalaxyCore’s first multispectral front illuminated CMOS image sensor for smartphone applications CIS manufactured in 180 nm process node with 130 nm design rules 1.75 μm pixel generation Many d...",
+          "field": "color_filter_pitch_um"
+        }
+      ]
+    },
+    "microlens": {
+      "type": {
+        "value": "gapless_ocl",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.microlens_type",
+        "evidence": "combined_text: gapless_ocl"
+      },
+      "ocl_pitch_um": {
+        "value": 1.75,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.ocl_pitch_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Salient Features Overview GalaxyCore’s first multispectral front illuminated CMOS image sensor for smartphone applications CIS manufactured in 180 nm process node with 130 nm design rules 1.75 μm pixel generation Many d.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/028_DEF-2412-803.html"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "gapless_ocl",
+          "field": "microlens_type"
+        },
+        {
+          "source": "html_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/028_DEF-2412-803.html",
+          "text": "Salient Features Overview GalaxyCore’s first multispectral front illuminated CMOS image sensor for smartphone applications CIS manufactured in 180 nm process node with 130 nm design rules 1.75 μm pixel generation Many d...",
+          "field": "ocl_pitch_um"
+        },
+        {
+          "source": "html_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/028_DEF-2412-803.html",
+          "text": "No shieled pixels observed Single row of bond pads arranged along the left and right sides of the die Structure No apparent OCL coating in use No shift of outer pixels toward the array center Multispectral 3 × 3 color f...",
+          "field": "optical_stack_height_um"
+        }
+      ]
+    },
+    "grid": {
+      "material": {
+        "value": "tin",
+        "source_kind": "extracted",
+        "confidence": 0.76,
+        "method": "sensor_catalog.derived_specs.grid_material",
+        "evidence": "combined_text: tin"
+      },
+      "pitch_um": {
+        "value": 1.75,
+        "source_kind": "inferred_rule",
+        "confidence": 0.35,
+        "method": "grid_pitch_um inferred from pixel_pitch_um; grid pitch approximated as pixel pitch",
+        "unit": "um"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "tin",
+          "field": "grid_material"
+        }
+      ]
+    },
+    "sensor_context": {
+      "illumination": {
+        "value": "front_illuminated",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.illumination",
+        "evidence": "combined_text: front_illuminated"
+      },
+      "sensor_modality": {
+        "value": "nir_cis",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.sensor_modality",
+        "evidence": "combined_text: nir_cis"
+      },
+      "is_nir": {
+        "value": true,
+        "source_kind": "extracted",
+        "confidence": 0.72,
+        "method": "sensor_catalog.derived_specs.is_nir",
+        "evidence": "combined_text: is_nir"
+      }
+    }
+  },
+  "cfa_proxy_nk": {
+    "enabled": false,
+    "library_id": "common_rgb_color_resist_proxy_2026_06",
+    "source_kind": "inferred_proxy_nk",
+    "applicability": "unknown_cfa_pattern",
+    "reference_thickness_um": 0.65,
+    "thickness_um": {
+      "value": 0.85,
+      "source_kind": "extracted",
+      "confidence": 0.84,
+      "method": "sensor-specific CFA thickness for proxy n,k transmission scaling",
+      "unit": "um",
+      "evidence": "html_design_snippet: No shieled pixels observed Single row of bond pads arranged along the left and right sides of the die Structure No apparent OCL coating in use No shift of outer pixels toward the array center Multispectral 3 × 3 color f.",
+      "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/028_DEF-2412-803.html"
+    },
+    "channels": {},
+    "model_limitations": [
+      "Absorption-only CFA layer proxy; does not include full optical-stack interference, microlens focusing, grid diffraction, or silicon absorption.",
+      "Common R/G/B n,k proxy, not product-specific measured optical constants."
+    ]
+  },
+  "qe": {
+    "measurement_data_status": "not_found",
+    "quantitative_points": [],
+    "qualitative_mentions": [],
+    "spectral_ranges": [
+      {
+        "low_nm": 850.0,
+        "high_nm": 1100.0,
+        "source_kind": "reported_spectral_range",
+        "confidence": 0.72,
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/028_DEF-2412-803.html",
+        "context": "sides of the die Structure No apparent OCL coating in use No shift of outer pixels toward the array center Multispectral 3 × 3 color filter pattern Measured color filter thickness ranges from 0.85 µm to 1.1 µm (dependent on color and measured location) Optical stack height ~3.4 µm 330 nm deep shallow trench isolation (STI) used in the pixel array and periphery Non-silicided pixel array"
+      }
+    ],
+    "filter_sets": []
+  },
+  "readiness": {
+    "level": "optical_ready_high",
+    "score": 76,
+    "reasons": [
+      "microlens_type",
+      "optical_stack_height",
+      "cfa_thickness",
+      "color_filter_pitch",
+      "ocl_pitch",
+      "grid_pitch",
+      "grid_material"
+    ]
+  },
+  "notes": [
+    "QE quantitative_points are reported text points, not reconstructed curves.",
+    "inferred_rule values are setup defaults and must not be treated as measurements.",
+    "cfa_proxy_nk is a common color-resist n,k proxy for setup/sensitivity work, not measured product-specific optical constants."
+  ]
+}

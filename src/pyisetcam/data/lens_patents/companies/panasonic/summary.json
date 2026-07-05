@@ -1,0 +1,12 @@
+{
+  "camerae2e_ready": 138,
+  "lenses": 46,
+  "metadata_only": 1,
+  "partial": 6,
+  "readiness_counts": {
+    "ready_configured": 45,
+    "ready_staging": 1
+  },
+  "simulation_results": 145,
+  "surfaces": 3763
+}

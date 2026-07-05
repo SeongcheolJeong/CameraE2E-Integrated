@@ -1,0 +1,519 @@
+{
+  "schema": "image_sensor_optical_qe_model_v1",
+  "code": "DEF-2605-801",
+  "source": {
+    "code": "DEF-2605-801",
+    "manufacturer": "OmniVision",
+    "device_name": "OV52A",
+    "title": "Technical Report: OmniVision OV52A Device Essentials Folder",
+    "report_type": "DEF",
+    "release_date": "2026-06-12T00:00:00.000+00:00",
+    "html_files": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/002_DEF-2605-801.html"
+    ],
+    "pdf_files": []
+  },
+  "optical": {
+    "geometry": {
+      "pixel_pitch_um": {
+        "value": 0.61,
+        "source_kind": "extracted",
+        "confidence": 0.9,
+        "method": "sensor_catalog.derived_specs.pixel_pitch_um",
+        "unit": "um",
+        "evidence": "search_description: The OmniVision OV52A is an image sensor with 200 MP resolution and a 0.61 µm pixel pitch, for mobile applications, and the first 200 MP from OmniVision to be analyzed. It has a 4×4 Bayer color filter array. This report..",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/data/search_results.json"
+      },
+      "optical_format": {
+        "value": "1/1.28\"",
+        "source_kind": "extracted",
+        "confidence": 0.74,
+        "method": "sensor_catalog.derived_specs.optical_format",
+        "evidence": "content_title: OmniVision OV52A, 200MP, 1/1.28\" Format, 0.61 µm Pixel Pitch, Stacked Back Illuminated CMOS Image Sensor",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/data/content/002_DEF-2605-801_b9cfc20e-fc89-4c20-b946-5af88c391c74.json"
+      },
+      "optical_stack_height_um": {
+        "value": 1.6,
+        "source_kind": "extracted",
+        "confidence": 0.86,
+        "method": "sensor_catalog.derived_specs.optical_stack_height_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Single row of bond pads arranged along the left, right, and bottom sides of the die Structure OCL coating in use Outer pixels OCL, color filter, and composite metal grid gradually shift toward the pixel array center Mea.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/002_DEF-2605-801.html"
+      },
+      "active_si_thickness_um": {
+        "value": 3.0,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.active_si_thickness_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Single row of bond pads arranged along the left, right, and bottom sides of the die Structure OCL coating in use Outer pixels OCL, color filter, and composite metal grid gradually shift toward the pixel array center Mea.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/002_DEF-2605-801.html"
+      }
+    },
+    "cfa": {
+      "pattern": {
+        "value": "rggb_bayer",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_pattern",
+        "evidence": "combined_text: rggb_bayer"
+      },
+      "representative_thickness_um": {
+        "value": 3.0,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Single row of bond pads arranged along the left, right, and bottom sides of the die Structure OCL coating in use Outer pixels OCL, color filter, and composite metal grid gradually shift toward the pixel array center Mea.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/002_DEF-2605-801.html"
+      },
+      "thickness_min_um": {
+        "value": 1.6,
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_min_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Single row of bond pads arranged along the left, right, and bottom sides of the die Structure OCL coating in use Outer pixels OCL, color filter, and composite metal grid gradually shift toward the pixel array center Mea.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/002_DEF-2605-801.html"
+      },
+      "thickness_max_um": {
+        "value": 3.0,
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_max_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Single row of bond pads arranged along the left, right, and bottom sides of the die Structure OCL coating in use Outer pixels OCL, color filter, and composite metal grid gradually shift toward the pixel array center Mea.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/002_DEF-2605-801.html"
+      },
+      "color_filter_pitch_um": {
+        "value": 1.22,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.color_filter_pitch_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Use of CMG with Aluminum (Al) and oxide extension Overview Stacked back-illuminated, stacked CMOS image sensor (CIS) for mobile applications XMC-fabricated 40 nm process generation CIS XMC-fabricated 40 nm process gener.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/002_DEF-2605-801.html"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "rggb_bayer",
+          "field": "cfa_pattern"
+        },
+        {
+          "source": "html_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/002_DEF-2605-801.html",
+          "text": "Single row of bond pads arranged along the left, right, and bottom sides of the die Structure OCL coating in use Outer pixels OCL, color filter, and composite metal grid gradually shift toward the pixel array center Mea...",
+          "field": "cfa_thickness_um"
+        },
+        {
+          "source": "html_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/002_DEF-2605-801.html",
+          "text": "Use of CMG with Aluminum (Al) and oxide extension Overview Stacked back-illuminated, stacked CMOS image sensor (CIS) for mobile applications XMC-fabricated 40 nm process generation CIS XMC-fabricated 40 nm process gener...",
+          "field": "color_filter_pitch_um"
+        }
+      ]
+    },
+    "microlens": {
+      "type": {
+        "value": "gapless_ocl",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.microlens_type",
+        "evidence": "combined_text: gapless_ocl"
+      },
+      "ocl_pitch_um": {
+        "value": 1.22,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.ocl_pitch_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Use of CMG with Aluminum (Al) and oxide extension Overview Stacked back-illuminated, stacked CMOS image sensor (CIS) for mobile applications XMC-fabricated 40 nm process generation CIS XMC-fabricated 40 nm process gener.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/002_DEF-2605-801.html"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "gapless_ocl",
+          "field": "microlens_type"
+        },
+        {
+          "source": "html_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/002_DEF-2605-801.html",
+          "text": "Use of CMG with Aluminum (Al) and oxide extension Overview Stacked back-illuminated, stacked CMOS image sensor (CIS) for mobile applications XMC-fabricated 40 nm process generation CIS XMC-fabricated 40 nm process gener...",
+          "field": "ocl_pitch_um"
+        },
+        {
+          "source": "html_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/002_DEF-2605-801.html",
+          "text": "Single row of bond pads arranged along the left, right, and bottom sides of the die Structure OCL coating in use Outer pixels OCL, color filter, and composite metal grid gradually shift toward the pixel array center Mea...",
+          "field": "optical_stack_height_um"
+        }
+      ]
+    },
+    "grid": {
+      "material": {
+        "value": "tin",
+        "source_kind": "extracted",
+        "confidence": 0.76,
+        "method": "sensor_catalog.derived_specs.grid_material",
+        "evidence": "combined_text: tin"
+      },
+      "pitch_um": {
+        "value": 0.61,
+        "source_kind": "inferred_rule",
+        "confidence": 0.35,
+        "method": "grid_pitch_um inferred from pixel_pitch_um; grid pitch approximated as pixel pitch",
+        "unit": "um"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "tin",
+          "field": "grid_material"
+        }
+      ]
+    },
+    "sensor_context": {
+      "illumination": {
+        "value": "back_illuminated",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.illumination",
+        "evidence": "combined_text: back_illuminated"
+      },
+      "sensor_modality": {
+        "value": "cmos_image_sensor",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.sensor_modality",
+        "evidence": "combined_text: cmos_image_sensor"
+      },
+      "is_nir": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "sensor_catalog.derived_specs.is_nir missing"
+      }
+    }
+  },
+  "cfa_proxy_nk": {
+    "enabled": true,
+    "library_id": "common_rgb_color_resist_proxy_2026_06",
+    "source_kind": "inferred_proxy_nk",
+    "applicability": "rgb_color_filter_proxy",
+    "reference_thickness_um": 0.65,
+    "thickness_um": {
+      "value": 3.0,
+      "source_kind": "extracted",
+      "confidence": 0.84,
+      "method": "sensor-specific CFA thickness for proxy n,k transmission scaling",
+      "unit": "um",
+      "evidence": "html_design_snippet: Single row of bond pads arranged along the left, right, and bottom sides of the die Structure OCL coating in use Outer pixels OCL, color filter, and composite metal grid gradually shift toward the pixel array center Mea.",
+      "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/002_DEF-2605-801.html"
+    },
+    "channels": {
+      "red": {
+        "description": "Common red color-resist proxy",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.48,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.7,
+            "k": 0.19157,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.7,
+            "k": 0.20355,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.7,
+            "k": 0.21552,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.7,
+            "k": 0.21452,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.7,
+            "k": 0.21465,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.7,
+            "k": 0.19932,
+            "transmission_absorption_only": 1e-06
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.7,
+            "k": 0.17007,
+            "transmission_absorption_only": 9e-06
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.7,
+            "k": 0.12071,
+            "transmission_absorption_only": 0.000366
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.7,
+            "k": 0.05866,
+            "transmission_absorption_only": 0.025079
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.7,
+            "k": 0.02201,
+            "transmission_absorption_only": 0.26511
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.7,
+            "k": 0.01017,
+            "transmission_absorption_only": 0.554413
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.7,
+            "k": 0.00871,
+            "transmission_absorption_only": 0.6148
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.7,
+            "k": 0.01096,
+            "transmission_absorption_only": 0.554183
+          }
+        ]
+      },
+      "green": {
+        "description": "Common green color-resist proxy",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.48,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.7,
+            "k": 0.18065,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.7,
+            "k": 0.17443,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.7,
+            "k": 0.155,
+            "transmission_absorption_only": 2e-06
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.7,
+            "k": 0.09972,
+            "transmission_absorption_only": 0.000365
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.7,
+            "k": 0.0366,
+            "transmission_absorption_only": 0.063319
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.7,
+            "k": 0.01276,
+            "transmission_absorption_only": 0.400009
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.7,
+            "k": 0.01094,
+            "transmission_absorption_only": 0.472428
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.7,
+            "k": 0.02313,
+            "transmission_absorption_only": 0.219481
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.7,
+            "k": 0.07712,
+            "transmission_absorption_only": 0.007863
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.7,
+            "k": 0.16224,
+            "transmission_absorption_only": 5.6e-05
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.7,
+            "k": 0.22388,
+            "transmission_absorption_only": 2e-06
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.7,
+            "k": 0.266,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.7,
+            "k": 0.30051,
+            "transmission_absorption_only": 0.0
+          }
+        ]
+      },
+      "blue": {
+        "description": "Common blue color-resist proxy",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.48,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.7,
+            "k": 0.02928,
+            "transmission_absorption_only": 0.063319
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.7,
+            "k": 0.01709,
+            "transmission_absorption_only": 0.2196
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.7,
+            "k": 0.01093,
+            "transmission_absorption_only": 0.400249
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.7,
+            "k": 0.01445,
+            "transmission_absorption_only": 0.317637
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.7,
+            "k": 0.0531,
+            "transmission_absorption_only": 0.018249
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.7,
+            "k": 0.13628,
+            "transmission_absorption_only": 5.6e-05
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.7,
+            "k": 0.20881,
+            "transmission_absorption_only": 1e-06
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.7,
+            "k": 0.25968,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.7,
+            "k": 0.28736,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.7,
+            "k": 0.3074,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.7,
+            "k": 0.31969,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.7,
+            "k": 0.33199,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.7,
+            "k": 0.34429,
+            "transmission_absorption_only": 0.0
+          }
+        ]
+      }
+    },
+    "model_limitations": [
+      "Absorption-only CFA layer proxy; does not include full optical-stack interference, microlens focusing, grid diffraction, or silicon absorption.",
+      "Common R/G/B n,k proxy, not product-specific measured optical constants."
+    ]
+  },
+  "qe": {
+    "measurement_data_status": "not_found",
+    "quantitative_points": [],
+    "qualitative_mentions": [],
+    "spectral_ranges": [
+      {
+        "low_nm": 550.0,
+        "high_nm": 600.0,
+        "source_kind": "reported_spectral_range",
+        "confidence": 0.72,
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/002_DEF-2605-801.html",
+        "context": "bottom sides of the die Structure OCL coating in use Outer pixels OCL, color filter, and composite metal grid gradually shift toward the pixel array center Measured CFA thickness ranges from 550 nm to 600 nm (dependent on color and measured location) 3.0 µm thick active Si Optical stack height 1.6 µm Dielectric-filled partial depth B-DTI is used in the active pixel array for pixel iso"
+      }
+    ],
+    "filter_sets": []
+  },
+  "readiness": {
+    "level": "optical_ready_high",
+    "score": 88,
+    "reasons": [
+      "cfa_pattern",
+      "microlens_type",
+      "optical_stack_height",
+      "cfa_thickness",
+      "color_filter_pitch",
+      "ocl_pitch",
+      "grid_pitch",
+      "grid_material"
+    ]
+  },
+  "notes": [
+    "QE quantitative_points are reported text points, not reconstructed curves.",
+    "inferred_rule values are setup defaults and must not be treated as measurements.",
+    "cfa_proxy_nk is a common color-resist n,k proxy for setup/sensitivity work, not measured product-specific optical constants."
+  ]
+}

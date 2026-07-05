@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "name": "generic_1080p_30fps",
+  "description": "Synthetic 1080p30 HW ISP seed profile for system-level latency and delayed 3A simulations.",
+  "confidence": "engineering_seed",
+  "source": {
+    "type": "synthetic",
+    "name": "pyisetcam default HW ISP timing model",
+    "url": null,
+    "license": "MIT",
+    "notes": [
+      "This is not vendor silicon data.",
+      "Use this profile as a starting point when board-specific BSP, driver, or measured timing data is unavailable."
+    ]
+  },
+  "config": {
+    "sensor_timing": {
+      "fps": 30.0,
+      "line_time_us": 15.2,
+      "active_lines": 1080,
+      "hidden_lines_top": 16,
+      "hidden_lines_bottom": 20,
+      "exposure_time_us": 8000.0,
+      "rolling_shutter": true
+    },
+    "stages": [
+      {
+        "name": "blc",
+        "domain": "bayer",
+        "buffering": "stream",
+        "window_lines": 1,
+        "stage_latency_cycles": 24,
+        "clock_mhz": 400.0,
+        "pixels_per_cycle": 2.0,
+        "latency_factor": 1.0,
+        "enabled": true,
+        "history_frames": 0
+      },
+      {
+        "name": "dpc",
+        "domain": "bayer",
+        "buffering": "line",
+        "window_lines": 3,
+        "stage_latency_cycles": 80,
+        "clock_mhz": 400.0,
+        "pixels_per_cycle": 2.0,
+        "latency_factor": 1.0,
+        "enabled": true,
+        "history_frames": 0
+      },
+      {
+        "name": "demosaic",
+        "domain": "bayer_to_rgb",
+        "buffering": "line",
+        "window_lines": 5,
+        "stage_latency_cycles": 220,
+        "clock_mhz": 400.0,
+        "pixels_per_cycle": 2.0,
+        "latency_factor": 1.0,
+        "enabled": true,
+        "history_frames": 0
+      },
+      {
+        "name": "ccm_gamma",
+        "domain": "rgb",
+        "buffering": "stream",
+        "window_lines": 1,
+        "stage_latency_cycles": 48,
+        "clock_mhz": 400.0,
+        "pixels_per_cycle": 2.0,
+        "latency_factor": 1.0,
+        "enabled": true,
+        "history_frames": 0
+      },
+      {
+        "name": "tnr",
+        "domain": "yuv",
+        "buffering": "frame",
+        "window_lines": 1,
+        "stage_latency_cycles": 0,
+        "clock_mhz": 400.0,
+        "pixels_per_cycle": 2.0,
+        "latency_factor": 1.0,
+        "enabled": false,
+        "history_frames": 2
+      }
+    ],
+    "control_path": {
+      "ae_enabled": true,
+      "awb_enabled": true,
+      "stats_ready_at": "frame_end",
+      "ae_apply_delay_frames": 2,
+      "awb_apply_delay_frames": 2,
+      "apply_to_image": false,
+      "target_luma": 0.18,
+      "min_exposure_time_us": 100.0,
+      "max_exposure_fraction": 0.90,
+      "min_analog_gain": 1.0,
+      "max_analog_gain": 16.0,
+      "max_ae_step_ev": 1.0,
+      "awb_method": "gray_world",
+      "min_wb_gain": 0.25,
+      "max_wb_gain": 4.0,
+      "max_awb_step_ev": 0.5,
+      "stats_grid": [8, 8],
+      "ae_metering": "center_weighted",
+      "ae_highlight_clip": 0.98,
+      "ae_highlight_weight": 0.5,
+      "awb_stats_roi": "valid_luma",
+      "awb_min_luma": 0.02,
+      "awb_max_luma": 0.95
+    },
+    "transport": {
+      "request_queue_depth": 4,
+      "max_buffers": 6,
+      "dma_submit_us": 120.0,
+      "dma_complete_us": 320.0,
+      "app_processing_us": 500.0,
+      "jitter_us_std": 0.0,
+      "drop_policy": "stall"
+    },
+    "global_latency_factor": 1.0,
+    "seed": 42
+  },
+  "calibration": {
+    "black_level": {
+      "value": null,
+      "units": null,
+      "source": "not available"
+    },
+    "notes": [
+      "Synthetic profile intentionally omits sensor/module calibration values."
+    ]
+  },
+  "notes": [
+    "Replace line_time_us, blanking, queue depths, clock_mhz, and stage latencies with board measurements for accurate latency verification."
+  ]
+}

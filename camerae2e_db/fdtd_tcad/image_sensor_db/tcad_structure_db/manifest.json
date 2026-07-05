@@ -1,0 +1,1826 @@
+{
+  "schema": "image_sensor_tcad_structure_db_v1",
+  "generated_at": "2026-06-24T12:43:59.884996+00:00",
+  "record_count": 224,
+  "model_count": 224,
+  "sims_seed_ready": 9,
+  "structure_ready_high": 137,
+  "structure_ready_medium": 33,
+  "proxy_structure_low": 45,
+  "insufficient": 0,
+  "doping_model_counts": {
+    "measured_sims_seed_available": 9,
+    "estimated_archetype_only": 215
+  },
+  "notes": [
+    "Extracted values have source_kind=extracted or measured_sims_table.",
+    "Inferred values carry source_kind=inferred_* and lower confidence.",
+    "This DB is for TCAD setup, meshing, and sensitivity sweeps, not product accuracy claims."
+  ],
+  "source_catalog": "/Users/seongcheoljeong/FDTD/image_sensor_db/sensor_catalog.json",
+  "source_candidate_report": "/Users/seongcheoljeong/FDTD/image_sensor_db/tcad_candidate_report.json",
+  "source_sims_manifest": "/Users/seongcheoljeong/FDTD/measured_profiles/techinsights_sims_seed/manifest.json",
+  "models_dir": "models",
+  "models": [
+    {
+      "code": "DEP-2511-801",
+      "manufacturer": "Samsung",
+      "device_name": "HP5",
+      "readiness_level": "sims_seed_ready",
+      "readiness_score": 93.9,
+      "model_json": "models/dep_2511_801_samsung_hp5.json"
+    },
+    {
+      "code": "DEP-2506-801",
+      "manufacturer": "Samsung",
+      "device_name": "JNP (S5KJNP)",
+      "readiness_level": "sims_seed_ready",
+      "readiness_score": 93.0,
+      "model_json": "models/dep_2506_801_samsung_jnp_s5kjnp.json"
+    },
+    {
+      "code": "DEP-2504-801",
+      "manufacturer": "Sony",
+      "device_name": "IMX487-AAMJ-C",
+      "readiness_level": "sims_seed_ready",
+      "readiness_score": 92.2,
+      "model_json": "models/dep_2504_801_sony_imx487_aamj_c.json"
+    },
+    {
+      "code": "DEP-2505-802",
+      "manufacturer": "SmartSens",
+      "device_name": "SC550XS",
+      "readiness_level": "sims_seed_ready",
+      "readiness_score": 88.7,
+      "model_json": "models/dep_2505_802_smartsens_sc550xs.json"
+    },
+    {
+      "code": "DEP-2412-801",
+      "manufacturer": "Sony",
+      "device_name": "IMX900",
+      "readiness_level": "sims_seed_ready",
+      "readiness_score": 88.7,
+      "model_json": "models/dep_2412_801_sony_imx900.json"
+    },
+    {
+      "code": "DEP-2511-802",
+      "manufacturer": "STMicroelectronics",
+      "device_name": "56G812A1A_CIS",
+      "readiness_level": "sims_seed_ready",
+      "readiness_score": 87.8,
+      "model_json": "models/dep_2511_802_stmicroelectronics_56g812a1a_cis.json"
+    },
+    {
+      "code": "DEP-2411-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OX08D10",
+      "readiness_level": "sims_seed_ready",
+      "readiness_score": 87.8,
+      "model_json": "models/dep_2411_801_omnivision_ox08d10.json"
+    },
+    {
+      "code": "DEP-2409-801",
+      "manufacturer": "Samsung",
+      "device_name": "S5KGNJSP03_CIS",
+      "readiness_level": "sims_seed_ready",
+      "readiness_score": 81.9,
+      "model_json": "models/dep_2409_801_samsung_s5kgnjsp03_cis.json"
+    },
+    {
+      "code": "DEP-2405-801",
+      "manufacturer": "Samsung",
+      "device_name": "S5K1H1SB_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 73.8,
+      "model_json": "models/dep_2405_801_samsung_s5k1h1sb_cis.json"
+    },
+    {
+      "code": "DEF-2603-801",
+      "manufacturer": "Samsung",
+      "device_name": "S5K931SX",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 73.8,
+      "model_json": "models/def_2603_801_samsung_s5k931sx.json"
+    },
+    {
+      "code": "DEP-2103-802",
+      "manufacturer": "Leopard Imaging Inc",
+      "device_name": "LI-IMX490-GW5400",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 72.4,
+      "model_json": "models/dep_2103_802_leopard_imaging_inc_li_imx490_gw5400.json"
+    },
+    {
+      "code": "DEP-2301-801",
+      "manufacturer": "Sony",
+      "device_name": "IMX758",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 72.0,
+      "model_json": "models/dep_2301_801_sony_imx758.json"
+    },
+    {
+      "code": "DEP-2206-801",
+      "manufacturer": "Sony",
+      "device_name": "IMX662",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 72.0,
+      "model_json": "models/dep_2206_801_sony_imx662.json"
+    },
+    {
+      "code": "DEF-2201-802",
+      "manufacturer": "OmniVision",
+      "device_name": "OV50A",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 72.0,
+      "model_json": "models/def_2201_802_omnivision_ov50a.json"
+    },
+    {
+      "code": "DEF-2201-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OV60A",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 72.0,
+      "model_json": "models/def_2201_801_omnivision_ov60a.json"
+    },
+    {
+      "code": "DEF-2012-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OV64B",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 72.0,
+      "model_json": "models/def_2012_801_omnivision_ov64b.json"
+    },
+    {
+      "code": "DEP-2407-801",
+      "manufacturer": "SmartSens",
+      "device_name": "SC100AT-CS1AF00",
+      "readiness_level": "sims_seed_ready",
+      "readiness_score": 71.9,
+      "model_json": "models/dep_2407_801_smartsens_sc100at_cs1af00.json"
+    },
+    {
+      "code": "DEF-2605-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OV52A",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 69.9,
+      "model_json": "models/def_2605_801_omnivision_ov52a.json"
+    },
+    {
+      "code": "DEF-2604-801",
+      "manufacturer": "Sony",
+      "device_name": "LYT-901",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 69.9,
+      "model_json": "models/def_2604_801_sony_lyt_901.json"
+    },
+    {
+      "code": "DEF-2502-802",
+      "manufacturer": "Sony",
+      "device_name": "IMX487-AAMJ-C",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 69.9,
+      "model_json": "models/def_2502_802_sony_imx487_aamj_c.json"
+    },
+    {
+      "code": "DEF-2305-805",
+      "manufacturer": "Sony",
+      "device_name": "IMX675",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 69.0,
+      "model_json": "models/def_2305_805_sony_imx675.json"
+    },
+    {
+      "code": "DEF-2003-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OV48B",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 69.0,
+      "model_json": "models/def_2003_801_omnivision_ov48b.json"
+    },
+    {
+      "code": "DEF-2604-802",
+      "manufacturer": "Samsung",
+      "device_name": "3LD (S5K3LD)",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.9,
+      "model_json": "models/def_2604_802_samsung_3ld_s5k3ld.json"
+    },
+    {
+      "code": "DEF-2511-802",
+      "manufacturer": "Samsung",
+      "device_name": "HP5",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.9,
+      "model_json": "models/def_2511_802_samsung_hp5.json"
+    },
+    {
+      "code": "DEF-2506-803",
+      "manufacturer": "Sony",
+      "device_name": "ISX031_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.9,
+      "model_json": "models/def_2506_803_sony_isx031_cis.json"
+    },
+    {
+      "code": "DEF-2409-803",
+      "manufacturer": "Samsung",
+      "device_name": "S5KGNJSP03_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.9,
+      "model_json": "models/def_2409_803_samsung_s5kgnjsp03_cis.json"
+    },
+    {
+      "code": "DEF-2409-801",
+      "manufacturer": "Samsung",
+      "device_name": "JN5",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.9,
+      "model_json": "models/def_2409_801_samsung_jn5.json"
+    },
+    {
+      "code": "DEF-2405-801",
+      "manufacturer": "Samsung",
+      "device_name": "S5K1H1SB_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.9,
+      "model_json": "models/def_2405_801_samsung_s5k1h1sb_cis.json"
+    },
+    {
+      "code": "DEF-2304-807",
+      "manufacturer": "Samsung",
+      "device_name": "S5KHP3SP_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.9,
+      "model_json": "models/def_2304_807_samsung_s5khp3sp_cis.json"
+    },
+    {
+      "code": "DEF-2212-804",
+      "manufacturer": "Sony",
+      "device_name": "IMX758",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.9,
+      "model_json": "models/def_2212_804_sony_imx758.json"
+    },
+    {
+      "code": "DEF-2209-801",
+      "manufacturer": "Samsung",
+      "device_name": "HP1",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.9,
+      "model_json": "models/def_2209_801_samsung_hp1.json"
+    },
+    {
+      "code": "DEF-2208-803",
+      "manufacturer": "Sony",
+      "device_name": "IMX678AAQR1-C",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.9,
+      "model_json": "models/def_2208_803_sony_imx678aaqr1_c.json"
+    },
+    {
+      "code": "DEF-2206-801",
+      "manufacturer": "Samsung",
+      "device_name": "S5KJNVSQ_ISP",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.9,
+      "model_json": "models/def_2206_801_samsung_s5kjnvsq_isp.json"
+    },
+    {
+      "code": "DEF-1905-801",
+      "manufacturer": "Samsung",
+      "device_name": "S5K3P9",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.9,
+      "model_json": "models/def_1905_801_samsung_s5k3p9.json"
+    },
+    {
+      "code": "DEF-2306-802",
+      "manufacturer": "Unknown",
+      "device_name": "AT-OX03D4C-5183YUV-VBO_Cam",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.6,
+      "model_json": "models/def_2306_802_unknown_at_ox03d4c_5183yuv_vbo_cam.json"
+    },
+    {
+      "code": "DEP-2305-802",
+      "manufacturer": "Sony",
+      "device_name": "XQ-DQ72_Dual-Rear-Cam2_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.5,
+      "model_json": "models/dep_2305_802_sony_xq_dq72_dual_rear_cam2_cis.json"
+    },
+    {
+      "code": "DEF-2309-801",
+      "manufacturer": "STMicroelectronics",
+      "device_name": "5940AA_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.5,
+      "model_json": "models/def_2309_801_stmicroelectronics_5940aa_cis.json"
+    },
+    {
+      "code": "DEF-2204-803",
+      "manufacturer": "STMicroelectronics",
+      "device_name": "55G0AB",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.5,
+      "model_json": "models/def_2204_803_stmicroelectronics_55g0ab.json"
+    },
+    {
+      "code": "DEP-2305-801",
+      "manufacturer": "Samsung",
+      "device_name": "S5KHP3SP_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.0,
+      "model_json": "models/dep_2305_801_samsung_s5khp3sp_cis.json"
+    },
+    {
+      "code": "DEP-2002-801",
+      "manufacturer": "Samsung",
+      "device_name": "S5KGH1",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.0,
+      "model_json": "models/dep_2002_801_samsung_s5kgh1.json"
+    },
+    {
+      "code": "DEP-1901-802",
+      "manufacturer": "Samsung",
+      "device_name": "S5KGM1",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 68.0,
+      "model_json": "models/dep_1901_802_samsung_s5kgm1.json"
+    },
+    {
+      "code": "DEP-2310-801",
+      "manufacturer": "Unknown",
+      "device_name": "AT-OX03D4C-5183YUV-VBO_Cam",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 67.9,
+      "model_json": "models/dep_2310_801_unknown_at_ox03d4c_5183yuv_vbo_cam.json"
+    },
+    {
+      "code": "DEP-2304-802",
+      "manufacturer": "Sony",
+      "device_name": "LI-IMX728-9295_Front-Cam_ISP",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 67.6,
+      "model_json": "models/dep_2304_802_sony_li_imx728_9295_front_cam_isp.json"
+    },
+    {
+      "code": "DEP-2207-801",
+      "manufacturer": "STMicroelectronics",
+      "device_name": "55G0AB",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 67.6,
+      "model_json": "models/dep_2207_801_stmicroelectronics_55g0ab.json"
+    },
+    {
+      "code": "DEP-1810-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OS05A20",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 67.6,
+      "model_json": "models/dep_1810_801_omnivision_os05a20.json"
+    },
+    {
+      "code": "DEF-2204-804",
+      "manufacturer": "Samsung",
+      "device_name": "S5KHM6",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 67.6,
+      "model_json": "models/def_2204_804_samsung_s5khm6.json"
+    },
+    {
+      "code": "DEF-2002-801",
+      "manufacturer": "Samsung",
+      "device_name": "S5KGH1",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 67.6,
+      "model_json": "models/def_2002_801_samsung_s5kgh1.json"
+    },
+    {
+      "code": "DEP-2202-801",
+      "manufacturer": "Sony",
+      "device_name": "IMX636AAMR-ES",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.8,
+      "model_json": "models/dep_2202_801_sony_imx636aamr_es.json"
+    },
+    {
+      "code": "DEF-2603-803",
+      "manufacturer": "OmniVision",
+      "device_name": "L3A_Triple-Gimbal-Cam1_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.8,
+      "model_json": "models/def_2603_803_omnivision_l3a_triple_gimbal_cam1_cis.json"
+    },
+    {
+      "code": "DEF-2603-802",
+      "manufacturer": "OmniVision",
+      "device_name": "OV50X",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.8,
+      "model_json": "models/def_2603_802_omnivision_ov50x.json"
+    },
+    {
+      "code": "DEF-2511-803",
+      "manufacturer": "STMicroelectronics",
+      "device_name": "56G812A1A_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.8,
+      "model_json": "models/def_2511_803_stmicroelectronics_56g812a1a_cis.json"
+    },
+    {
+      "code": "DEF-2509-802",
+      "manufacturer": "Sony",
+      "device_name": "IMX914",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.8,
+      "model_json": "models/def_2509_802_sony_imx914.json"
+    },
+    {
+      "code": "DEF-2405-802",
+      "manufacturer": "OmniVision",
+      "device_name": "OV50K",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.8,
+      "model_json": "models/def_2405_802_omnivision_ov50k.json"
+    },
+    {
+      "code": "DEF-2403-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OV50H",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.8,
+      "model_json": "models/def_2403_801_omnivision_ov50h.json"
+    },
+    {
+      "code": "DEF-2201-803",
+      "manufacturer": "Sony",
+      "device_name": "IMX709",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.8,
+      "model_json": "models/def_2201_803_sony_imx709.json"
+    },
+    {
+      "code": "DEF-2103-804",
+      "manufacturer": "Samsung",
+      "device_name": "S5KGN2",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.8,
+      "model_json": "models/def_2103_804_samsung_s5kgn2.json"
+    },
+    {
+      "code": "DEF-2011-804",
+      "manufacturer": "Sony",
+      "device_name": "IMX462",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.8,
+      "model_json": "models/def_2011_804_sony_imx462.json"
+    },
+    {
+      "code": "DEF-1908-801",
+      "manufacturer": "Sony",
+      "device_name": "IMX374",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.8,
+      "model_json": "models/def_1908_801_sony_imx374.json"
+    },
+    {
+      "code": "DEF-1906-802",
+      "manufacturer": "Samsung",
+      "device_name": "S5K3J1SX03_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.8,
+      "model_json": "models/def_1906_802_samsung_s5k3j1sx03_cis.json"
+    },
+    {
+      "code": "DEF-1810-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OS05A20",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.8,
+      "model_json": "models/def_1810_801_omnivision_os05a20.json"
+    },
+    {
+      "code": "DEP-2209-801",
+      "manufacturer": "Apple",
+      "device_name": "iPhone 14 Pro",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.3,
+      "model_json": "models/dep_2209_801_apple_iphone_14_pro.json"
+    },
+    {
+      "code": "DEF-2602-801",
+      "manufacturer": "SmartSens",
+      "device_name": "SC485SL-CS3NNH0",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.3,
+      "model_json": "models/def_2602_801_smartsens_sc485sl_cs3nnh0.json"
+    },
+    {
+      "code": "DEF-2408-802",
+      "manufacturer": "SmartSens",
+      "device_name": "SC535HGS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.3,
+      "model_json": "models/def_2408_802_smartsens_sc535hgs.json"
+    },
+    {
+      "code": "DEF-2401-802",
+      "manufacturer": "ON Semi",
+      "device_name": "AR0341AT",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.3,
+      "model_json": "models/def_2401_802_on_semi_ar0341at.json"
+    },
+    {
+      "code": "DEF-2310-802",
+      "manufacturer": "ON Semi",
+      "device_name": "AR0823_ISP",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.3,
+      "model_json": "models/def_2310_802_on_semi_ar0823_isp.json"
+    },
+    {
+      "code": "DEF-2212-802",
+      "manufacturer": "Leopard Imaging Inc",
+      "device_name": "LI-IMX728-9295",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.3,
+      "model_json": "models/def_2212_802_leopard_imaging_inc_li_imx728_9295.json"
+    },
+    {
+      "code": "DEF-2203-801",
+      "manufacturer": "SmartSens",
+      "device_name": "SC410GS-CC3AF00",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.3,
+      "model_json": "models/def_2203_801_smartsens_sc410gs_cc3af00.json"
+    },
+    {
+      "code": "DEF-2102-801",
+      "manufacturer": "Leopard Imaging Inc",
+      "device_name": "OX08A4Y-GMSL",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.3,
+      "model_json": "models/def_2102_801_leopard_imaging_inc_ox08a4y_gmsl.json"
+    },
+    {
+      "code": "DEF-2505-803",
+      "manufacturer": "SmartSens",
+      "device_name": "SC550XS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 66.0,
+      "model_json": "models/def_2505_803_smartsens_sc550xs.json"
+    },
+    {
+      "code": "DEP-2103-804",
+      "manufacturer": "Samsung",
+      "device_name": "S5KGN2",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 65.9,
+      "model_json": "models/dep_2103_804_samsung_s5kgn2.json"
+    },
+    {
+      "code": "DEF-2312-801",
+      "manufacturer": "Samsung",
+      "device_name": "S5KGM5SX_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 65.9,
+      "model_json": "models/def_2312_801_samsung_s5kgm5sx_cis.json"
+    },
+    {
+      "code": "DEF-2308-804",
+      "manufacturer": "Sony",
+      "device_name": "IMX623",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 65.9,
+      "model_json": "models/def_2308_804_sony_imx623.json"
+    },
+    {
+      "code": "DEF-2206-805",
+      "manufacturer": "Sony",
+      "device_name": "IMX662",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 65.9,
+      "model_json": "models/def_2206_805_sony_imx662.json"
+    },
+    {
+      "code": "DEF-1911-803",
+      "manufacturer": "Samsung",
+      "device_name": "S5KHMX",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 65.9,
+      "model_json": "models/def_1911_803_samsung_s5khmx.json"
+    },
+    {
+      "code": "DEF-1901-804",
+      "manufacturer": "Samsung",
+      "device_name": "S5KGM1",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 65.9,
+      "model_json": "models/def_1901_804_samsung_s5kgm1.json"
+    },
+    {
+      "code": "DEP-2401-801",
+      "manufacturer": "Galaxycore Inc",
+      "device_name": "KJ5n_Front-Cam_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 65.4,
+      "model_json": "models/dep_2401_801_galaxycore_inc_kj5n_front_cam_cis.json"
+    },
+    {
+      "code": "DEF-2509-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OG05C10_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 65.4,
+      "model_json": "models/def_2509_801_omnivision_og05c10_cis.json"
+    },
+    {
+      "code": "DEP-2401-802",
+      "manufacturer": "Prophesee",
+      "device_name": "PEK3X320CDMP_Cam_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 64.9,
+      "model_json": "models/dep_2401_802_prophesee_pek3x320cdmp_cam_cis.json"
+    },
+    {
+      "code": "DEP-2307-801",
+      "manufacturer": "SK Hynix",
+      "device_name": "Hi-5021Q",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 64.9,
+      "model_json": "models/dep_2307_801_sk_hynix_hi_5021q.json"
+    },
+    {
+      "code": "DEP-2103-801",
+      "manufacturer": "Leopard Imaging Inc",
+      "device_name": "OX08A4Y-GMSL",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 64.9,
+      "model_json": "models/dep_2103_801_leopard_imaging_inc_ox08a4y_gmsl.json"
+    },
+    {
+      "code": "DEF-2506-802",
+      "manufacturer": "Samsung",
+      "device_name": "JNP (S5KJNP)",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 64.7,
+      "model_json": "models/def_2506_802_samsung_jnp_s5kjnp.json"
+    },
+    {
+      "code": "DEP-2201-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OV60A",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 64.6,
+      "model_json": "models/dep_2201_801_omnivision_ov60a.json"
+    },
+    {
+      "code": "DEF-2504-802",
+      "manufacturer": "OmniVision",
+      "device_name": "OX12A10",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 64.6,
+      "model_json": "models/def_2504_802_omnivision_ox12a10.json"
+    },
+    {
+      "code": "DEF-2412-801",
+      "manufacturer": "Sony",
+      "device_name": "LYT-818",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 64.6,
+      "model_json": "models/def_2412_801_sony_lyt_818.json"
+    },
+    {
+      "code": "DEF-2305-803",
+      "manufacturer": "Sony",
+      "device_name": "XQ-DQ72_Dual-Rear-Cam2_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 64.6,
+      "model_json": "models/def_2305_803_sony_xq_dq72_dual_rear_cam2_cis.json"
+    },
+    {
+      "code": "DEF-2207-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OV2K0EAA_P_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 64.6,
+      "model_json": "models/def_2207_801_omnivision_ov2k0eaa_p_cis.json"
+    },
+    {
+      "code": "DEF-2112-801",
+      "manufacturer": "OmniVision",
+      "device_name": "0X01F10-E48Y",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 64.6,
+      "model_json": "models/def_2112_801_omnivision_0x01f10_e48y.json"
+    },
+    {
+      "code": "DEF-1909-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OV24A1Q",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 64.6,
+      "model_json": "models/def_1909_801_omnivision_ov24a1q.json"
+    },
+    {
+      "code": "DEP-1901-801",
+      "manufacturer": "Sony",
+      "device_name": "PCT-AL10_Dual-Rear-Cam1_ISP",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 64.5,
+      "model_json": "models/dep_1901_801_sony_pct_al10_dual_rear_cam1_isp.json"
+    },
+    {
+      "code": "DEF-2412-802",
+      "manufacturer": "SmartSens",
+      "device_name": "PLA-AL10_Dual-Rear-Cam2-4_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 64.1,
+      "model_json": "models/def_2412_802_smartsens_pla_al10_dual_rear_cam2_4_cis.json"
+    },
+    {
+      "code": "DEF-2404-802",
+      "manufacturer": "OmniVision",
+      "device_name": "OX08D10",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.8,
+      "model_json": "models/def_2404_802_omnivision_ox08d10.json"
+    },
+    {
+      "code": "DEF-2305-802",
+      "manufacturer": "OmniVision",
+      "device_name": "OS12D40-J08A-001A_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.8,
+      "model_json": "models/def_2305_802_omnivision_os12d40_j08a_001a_cis.json"
+    },
+    {
+      "code": "DEF-2109-802",
+      "manufacturer": "OmniVision",
+      "device_name": "OS04C10-A43A",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.8,
+      "model_json": "models/def_2109_802_omnivision_os04c10_a43a.json"
+    },
+    {
+      "code": "DEF-1909-803",
+      "manufacturer": "Sony",
+      "device_name": "12MP Wide",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.8,
+      "model_json": "models/def_1909_803_sony_12mp_wide.json"
+    },
+    {
+      "code": "DEF-1904-801",
+      "manufacturer": "Sony",
+      "device_name": "VOG-L29_Triple-Rear-Cam2-ISP",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.8,
+      "model_json": "models/def_1904_801_sony_vog_l29_triple_rear_cam2_isp.json"
+    },
+    {
+      "code": "DEF-1809-801",
+      "manufacturer": "Samsung",
+      "device_name": "S5K2P7",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.8,
+      "model_json": "models/def_1809_801_samsung_s5k2p7.json"
+    },
+    {
+      "code": "DEP-2403-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OV50H",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.7,
+      "model_json": "models/dep_2403_801_omnivision_ov50h.json"
+    },
+    {
+      "code": "DEP-2103-803",
+      "manufacturer": "Samsung",
+      "device_name": "S5K231YX",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.7,
+      "model_json": "models/dep_2103_803_samsung_s5k231yx.json"
+    },
+    {
+      "code": "DEP-1912-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OV24A1Q",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.7,
+      "model_json": "models/dep_1912_801_omnivision_ov24a1q.json"
+    },
+    {
+      "code": "DEF-2603-804",
+      "manufacturer": "Sony",
+      "device_name": "IMX775",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.6,
+      "model_json": "models/def_2603_804_sony_imx775.json"
+    },
+    {
+      "code": "DEF-2601-804",
+      "manufacturer": "OmniVision",
+      "device_name": "OX05C1S_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.6,
+      "model_json": "models/def_2601_804_omnivision_ox05c1s_cis.json"
+    },
+    {
+      "code": "DEF-2601-802",
+      "manufacturer": "STMicroelectronics",
+      "device_name": "55G1BA_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.6,
+      "model_json": "models/def_2601_802_stmicroelectronics_55g1ba_cis.json"
+    },
+    {
+      "code": "DEF-2405-803",
+      "manufacturer": "Sony",
+      "device_name": "IMX681",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.6,
+      "model_json": "models/def_2405_803_sony_imx681.json"
+    },
+    {
+      "code": "DEF-2310-803",
+      "manufacturer": "Sony",
+      "device_name": "IMX904",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.6,
+      "model_json": "models/def_2310_803_sony_imx904.json"
+    },
+    {
+      "code": "DEF-2011-803",
+      "manufacturer": "Sony",
+      "device_name": "IMX510",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.6,
+      "model_json": "models/def_2011_803_sony_imx510.json"
+    },
+    {
+      "code": "DEF-2010-804",
+      "manufacturer": "Sony",
+      "device_name": "LI-IMX415-MIPI-M12_Front-Cam",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.6,
+      "model_json": "models/def_2010_804_sony_li_imx415_mipi_m12_front_cam.json"
+    },
+    {
+      "code": "DEF-2002-803",
+      "manufacturer": "Sony",
+      "device_name": "SM-G986N_Triple-Rear-Cam1_ISP",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.6,
+      "model_json": "models/def_2002_803_sony_sm_g986n_triple_rear_cam1_isp.json"
+    },
+    {
+      "code": "DEF-1901-803",
+      "manufacturer": "Sony",
+      "device_name": "PCT-AL10_Dual-Rear-Cam1_ISP",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.6,
+      "model_json": "models/def_1901_803_sony_pct_al10_dual_rear_cam1_isp.json"
+    },
+    {
+      "code": "DEF-1807-801",
+      "manufacturer": "Sony",
+      "device_name": "IMX307LQD-C",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.6,
+      "model_json": "models/def_1807_801_sony_imx307lqd_c.json"
+    },
+    {
+      "code": "DEF-2512-801",
+      "manufacturer": "Galaxycore Inc",
+      "device_name": "GC50F6",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.5,
+      "model_json": "models/def_2512_801_galaxycore_inc_gc50f6.json"
+    },
+    {
+      "code": "DEF-2508-801",
+      "manufacturer": "Unknown",
+      "device_name": "LMR-AL10_Ultra_Dual-Rear-Cam2_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.5,
+      "model_json": "models/def_2508_801_unknown_lmr_al10_ultra_dual_rear_cam2_cis.json"
+    },
+    {
+      "code": "DEF-2412-804",
+      "manufacturer": "OPPO",
+      "device_name": "Reno12",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.5,
+      "model_json": "models/def_2412_804_oppo_reno12.json"
+    },
+    {
+      "code": "DEF-2312-802",
+      "manufacturer": "SK Hynix",
+      "device_name": "Hi-5022Q",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.3,
+      "model_json": "models/def_2312_802_sk_hynix_hi_5022q.json"
+    },
+    {
+      "code": "DEF-2310-801",
+      "manufacturer": "ams OSRAM",
+      "device_name": "Mira050-1QM1WB_FT_SE",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.3,
+      "model_json": "models/def_2310_801_ams_osram_mira050_1qm1wb_ft_se.json"
+    },
+    {
+      "code": "DEF-2307-801",
+      "manufacturer": "SK Hynix",
+      "device_name": "Hi-5021Q",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.3,
+      "model_json": "models/def_2307_801_sk_hynix_hi_5021q.json"
+    },
+    {
+      "code": "DEF-2212-801",
+      "manufacturer": "SmartSens",
+      "device_name": "SC910GS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.3,
+      "model_json": "models/def_2212_801_smartsens_sc910gs.json"
+    },
+    {
+      "code": "DEP-2112-802",
+      "manufacturer": "Canon",
+      "device_name": "LC1720_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.1,
+      "model_json": "models/dep_2112_802_canon_lc1720_cis.json"
+    },
+    {
+      "code": "DEF-2407-803",
+      "manufacturer": "Nikon",
+      "device_name": "Nikon Z6 III",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.1,
+      "model_json": "models/def_2407_803_nikon_nikon_z6_iii.json"
+    },
+    {
+      "code": "DEF-2401-803",
+      "manufacturer": "Prophesee",
+      "device_name": "PEK3X320CDMP_Cam_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.1,
+      "model_json": "models/def_2401_803_prophesee_pek3x320cdmp_cam_cis.json"
+    },
+    {
+      "code": "DEF-2204-801",
+      "manufacturer": "Nikon",
+      "device_name": "Nikon Z9",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.1,
+      "model_json": "models/def_2204_801_nikon_nikon_z9.json"
+    },
+    {
+      "code": "DEF-2111-803",
+      "manufacturer": "Canon",
+      "device_name": "LC1720_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 63.1,
+      "model_json": "models/def_2111_803_canon_lc1720_cis.json"
+    },
+    {
+      "code": "EXR-2603-803",
+      "manufacturer": "Ring",
+      "device_name": "Wired Video Doorbell Pro (3rd Gen)",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 62.9,
+      "model_json": "models/exr_2603_803_ring_wired_video_doorbell_pro_3rd_gen.json"
+    },
+    {
+      "code": "DEP-2004-802",
+      "manufacturer": "Sony",
+      "device_name": "IMX608",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 62.7,
+      "model_json": "models/dep_2004_802_sony_imx608.json"
+    },
+    {
+      "code": "DEP-1911-801",
+      "manufacturer": "Samsung",
+      "device_name": "S5K3J1SX03_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 62.7,
+      "model_json": "models/dep_1911_801_samsung_s5k3j1sx03_cis.json"
+    },
+    {
+      "code": "DEP-1905-803",
+      "manufacturer": "Sony",
+      "device_name": "IMX362",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 62.7,
+      "model_json": "models/dep_1905_803_sony_imx362.json"
+    },
+    {
+      "code": "DEP-2004-801",
+      "manufacturer": "ON Semi",
+      "device_name": "LI-AR0820-GMSL2_Front-Cam",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 62.6,
+      "model_json": "models/dep_2004_801_on_semi_li_ar0820_gmsl2_front_cam.json"
+    },
+    {
+      "code": "DEF-2210-801",
+      "manufacturer": "SmartSens",
+      "device_name": "SC850SL-CSMNN00",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 61.1,
+      "model_json": "models/def_2210_801_smartsens_sc850sl_csmnn00.json"
+    },
+    {
+      "code": "DEF-2409-804",
+      "manufacturer": "Sony",
+      "device_name": "IMX972",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 60.6,
+      "model_json": "models/def_2409_804_sony_imx972.json"
+    },
+    {
+      "code": "DEF-2306-803",
+      "manufacturer": "Sony",
+      "device_name": "IMX715",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 60.6,
+      "model_json": "models/def_2306_803_sony_imx715.json"
+    },
+    {
+      "code": "DEF-2304-801",
+      "manufacturer": "Sony",
+      "device_name": "IMX500",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 60.6,
+      "model_json": "models/def_2304_801_sony_imx500.json"
+    },
+    {
+      "code": "DEF-2208-801",
+      "manufacturer": "Sony",
+      "device_name": "IMX787",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 60.6,
+      "model_json": "models/def_2208_801_sony_imx787.json"
+    },
+    {
+      "code": "DEF-2207-802",
+      "manufacturer": "Sony",
+      "device_name": "IMX989",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 60.6,
+      "model_json": "models/def_2207_802_sony_imx989.json"
+    },
+    {
+      "code": "DEF-2202-802",
+      "manufacturer": "Sony",
+      "device_name": "IMX636AAMR-ES",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 60.6,
+      "model_json": "models/def_2202_802_sony_imx636aamr_es.json"
+    },
+    {
+      "code": "DEF-2103-802",
+      "manufacturer": "STMicroelectronics",
+      "device_name": "VG6640AB1M",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 60.6,
+      "model_json": "models/def_2103_802_stmicroelectronics_vg6640ab1m.json"
+    },
+    {
+      "code": "DEF-1811-802",
+      "manufacturer": "Sony",
+      "device_name": "IMX309BQJ",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 60.6,
+      "model_json": "models/def_1811_802_sony_imx309bqj.json"
+    },
+    {
+      "code": "DEF-2401-801",
+      "manufacturer": "Galaxycore Inc",
+      "device_name": "KJ5n_Front-Cam_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 60.5,
+      "model_json": "models/def_2401_801_galaxycore_inc_kj5n_front_cam_cis.json"
+    },
+    {
+      "code": "DEF-2104-801",
+      "manufacturer": "ON Semi",
+      "device_name": "ARX3A0_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 60.5,
+      "model_json": "models/def_2104_801_on_semi_arx3a0_cis.json"
+    },
+    {
+      "code": "DEF-1907-801",
+      "manufacturer": "Unknown",
+      "device_name": "NZ1GXD",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 60.1,
+      "model_json": "models/def_1907_801_unknown_nz1gxd.json"
+    },
+    {
+      "code": "DEF-1806-801",
+      "manufacturer": "ON Semi",
+      "device_name": "AR0430",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 59.9,
+      "model_json": "models/def_1806_801_on_semi_ar0430.json"
+    },
+    {
+      "code": "DEF-1911-802",
+      "manufacturer": "Samsung",
+      "device_name": "S5K231YX",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 59.7,
+      "model_json": "models/def_1911_802_samsung_s5k231yx.json"
+    },
+    {
+      "code": "DEF-1710-801",
+      "manufacturer": "SmartSens",
+      "device_name": "CMOS Image Sensor",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 59.2,
+      "model_json": "models/def_1710_801_smartsens_cmos_image_sensor.json"
+    },
+    {
+      "code": "DEF-2110-804",
+      "manufacturer": "SmartSens",
+      "device_name": "SAV-WBCMSBML500WH_Front-Cam_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 59.0,
+      "model_json": "models/def_2110_804_smartsens_sav_wbcmsbml500wh_front_cam_cis.json"
+    },
+    {
+      "code": "DEP-1811-801",
+      "manufacturer": "Sony",
+      "device_name": "IMX424_CIS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 58.9,
+      "model_json": "models/dep_1811_801_sony_imx424_cis.json"
+    },
+    {
+      "code": "DEF-1705-802",
+      "manufacturer": "Sony",
+      "device_name": "IMX274",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 58.9,
+      "model_json": "models/def_1705_802_sony_imx274.json"
+    },
+    {
+      "code": "DEP-2104-801",
+      "manufacturer": "Sony",
+      "device_name": "IMX991-AABA",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 58.8,
+      "model_json": "models/dep_2104_801_sony_imx991_aaba.json"
+    },
+    {
+      "code": "DEF-2507-801",
+      "manufacturer": "SmartSens",
+      "device_name": "SC5A5XS",
+      "readiness_level": "structure_ready_high",
+      "readiness_score": 58.7,
+      "model_json": "models/def_2507_801_smartsens_sc5a5xs.json"
+    },
+    {
+      "code": "DEF-2206-804",
+      "manufacturer": "SmartSens",
+      "device_name": "SC501CS",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 57.5,
+      "model_json": "models/def_2206_804_smartsens_sc501cs.json"
+    },
+    {
+      "code": "DEF-2004-801",
+      "manufacturer": "Brillnics",
+      "device_name": "BRV0500",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 57.4,
+      "model_json": "models/def_2004_801_brillnics_brv0500.json"
+    },
+    {
+      "code": "DEF-1807-802",
+      "manufacturer": "ON Semi",
+      "device_name": "AR0522",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 57.4,
+      "model_json": "models/def_1807_802_on_semi_ar0522.json"
+    },
+    {
+      "code": "DEF-1806-802",
+      "manufacturer": "Sony",
+      "device_name": "IMX410",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 57.1,
+      "model_json": "models/def_1806_802_sony_imx410.json"
+    },
+    {
+      "code": "DEF-1803-805",
+      "manufacturer": "Sony",
+      "device_name": "IMX390E07",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 57.1,
+      "model_json": "models/def_1803_805_sony_imx390e07.json"
+    },
+    {
+      "code": "DEF-2111-801",
+      "manufacturer": "Galaxycore Inc",
+      "device_name": "GC8054",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 56.5,
+      "model_json": "models/def_2111_801_galaxycore_inc_gc8054.json"
+    },
+    {
+      "code": "DEP-1804-802",
+      "manufacturer": "STMicroelectronics",
+      "device_name": "56G08A",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 56.2,
+      "model_json": "models/dep_1804_802_stmicroelectronics_56g08a.json"
+    },
+    {
+      "code": "DEF-1912-801",
+      "manufacturer": "ON Semi",
+      "device_name": "LI-AR0820-GMSL2_Front-Cam",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 55.6,
+      "model_json": "models/def_1912_801_on_semi_li_ar0820_gmsl2_front_cam.json"
+    },
+    {
+      "code": "DEF-2103-803",
+      "manufacturer": "SmartSens",
+      "device_name": "SC4335",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 54.1,
+      "model_json": "models/def_2103_803_smartsens_sc4335.json"
+    },
+    {
+      "code": "DEF-1804-803",
+      "manufacturer": "Sony",
+      "device_name": "IMX324",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 54.1,
+      "model_json": "models/def_1804_803_sony_imx324.json"
+    },
+    {
+      "code": "DEF-1802-802",
+      "manufacturer": "Sony",
+      "device_name": "IMX299CJK",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 54.1,
+      "model_json": "models/def_1802_802_sony_imx299cjk.json"
+    },
+    {
+      "code": "DEF-1712-801",
+      "manufacturer": "Sony",
+      "device_name": "IMX309AQJ",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 54.1,
+      "model_json": "models/def_1712_801_sony_imx309aqj.json"
+    },
+    {
+      "code": "DEF-1605-803",
+      "manufacturer": "Sony",
+      "device_name": "IPCX-HC28551080S-POE_Image-Sensor",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 54.1,
+      "model_json": "models/def_1605_803_sony_ipcx_hc28551080s_poe_image_sensor.json"
+    },
+    {
+      "code": "DEF-1602-801",
+      "manufacturer": "Sony",
+      "device_name": "ISX017",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 54.1,
+      "model_json": "models/def_1602_801_sony_isx017.json"
+    },
+    {
+      "code": "DEF-2410-802",
+      "manufacturer": "Sony",
+      "device_name": "IMX900",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 54.0,
+      "model_json": "models/def_2410_802_sony_imx900.json"
+    },
+    {
+      "code": "DEF-1707-802",
+      "manufacturer": "Unknown",
+      "device_name": "Sony A9 Image Sensor",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 53.6,
+      "model_json": "models/def_1707_802_unknown_sony_a9_image_sensor.json"
+    },
+    {
+      "code": "DEF-2412-803",
+      "manufacturer": "Galaxycore Inc",
+      "device_name": "PLA-AL10_Dual-Rear-Cam1-2_CIS",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 52.5,
+      "model_json": "models/def_2412_803_galaxycore_inc_pla_al10_dual_rear_cam1_2_cis.json"
+    },
+    {
+      "code": "DEF-1801-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OVM6946-RAJA",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 51.9,
+      "model_json": "models/def_1801_801_omnivision_ovm6946_raja.json"
+    },
+    {
+      "code": "DEP-1902-801",
+      "manufacturer": "GPixel Inc",
+      "device_name": "GMAX0505-BM",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 50.7,
+      "model_json": "models/dep_1902_801_gpixel_inc_gmax0505_bm.json"
+    },
+    {
+      "code": "DEF-1902-803",
+      "manufacturer": "GPixel Inc",
+      "device_name": "GMAX0505-BM",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 50.7,
+      "model_json": "models/def_1902_803_gpixel_inc_gmax0505_bm.json"
+    },
+    {
+      "code": "DEP-2211-801",
+      "manufacturer": "Stratio",
+      "device_name": "BeyonSense 1",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 50.4,
+      "model_json": "models/dep_2211_801_stratio_beyonsense_1.json"
+    },
+    {
+      "code": "DEF-2304-806",
+      "manufacturer": null,
+      "device_name": null,
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 48.5,
+      "model_json": "models/def_2304_806_none_none.json"
+    },
+    {
+      "code": "DEF-1801-802",
+      "manufacturer": "Aptina",
+      "device_name": "510689",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 46.5,
+      "model_json": "models/def_1801_802_aptina_510689.json"
+    },
+    {
+      "code": "DEF-2508-802",
+      "manufacturer": "Sony",
+      "device_name": "IMX454_CIS",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 45.1,
+      "model_json": "models/def_2508_802_sony_imx454_cis.json"
+    },
+    {
+      "code": "DEF-1811-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OV10650",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 45.1,
+      "model_json": "models/def_1811_801_omnivision_ov10650.json"
+    },
+    {
+      "code": "DEF-1805-801",
+      "manufacturer": "SmartSens",
+      "device_name": "SC130GS",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 45.1,
+      "model_json": "models/def_1805_801_smartsens_sc130gs.json"
+    },
+    {
+      "code": "DEP-1806-801",
+      "manufacturer": "SmartSens",
+      "device_name": "SC130GS",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 44.2,
+      "model_json": "models/dep_1806_801_smartsens_sc130gs.json"
+    },
+    {
+      "code": "DEF-2011-801",
+      "manufacturer": "GPixel Inc",
+      "device_name": "GSENSE2020BSI-ANM-NUN",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 43.7,
+      "model_json": "models/def_2011_801_gpixel_inc_gsense2020bsi_anm_nun.json"
+    },
+    {
+      "code": "DEF-2304-805",
+      "manufacturer": null,
+      "device_name": null,
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 42.5,
+      "model_json": "models/def_2304_805_none_none.json"
+    },
+    {
+      "code": "DEF-2407-802",
+      "manufacturer": "SmartSens",
+      "device_name": "SC100AT-CS1AF00",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 42.1,
+      "model_json": "models/def_2407_802_smartsens_sc100at_cs1af00.json"
+    },
+    {
+      "code": "DEF-2308-801",
+      "manufacturer": "Fujifilm",
+      "device_name": "X-H2s",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 42.1,
+      "model_json": "models/def_2308_801_fujifilm_x_h2s.json"
+    },
+    {
+      "code": "DEF-2206-802",
+      "manufacturer": "ON Semi",
+      "device_name": "AR0220AT3B00XUEA0-DPBR",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 42.1,
+      "model_json": "models/def_2206_802_on_semi_ar0220at3b00xuea0_dpbr.json"
+    },
+    {
+      "code": "DEF-1908-802",
+      "manufacturer": "ON Semi",
+      "device_name": "AR0221SR2C00SUEAH3-GEVB",
+      "readiness_level": "structure_ready_medium",
+      "readiness_score": 42.1,
+      "model_json": "models/def_1908_802_on_semi_ar0221sr2c00sueah3_gevb.json"
+    },
+    {
+      "code": "DEF-2308-803",
+      "manufacturer": null,
+      "device_name": null,
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 40.7,
+      "model_json": "models/def_2308_803_none_none.json"
+    },
+    {
+      "code": "DEF-2103-801",
+      "manufacturer": "ON Semi",
+      "device_name": "MARS1-AR0234ATSMS-GEVB",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 40.2,
+      "model_json": "models/def_2103_801_on_semi_mars1_ar0234atsms_gevb.json"
+    },
+    {
+      "code": "DEF-1902-801",
+      "manufacturer": "ON Semi",
+      "device_name": "AR0233AT1B00XUEA0-DRBR-E",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 40.2,
+      "model_json": "models/def_1902_801_on_semi_ar0233at1b00xuea0_drbr_e.json"
+    },
+    {
+      "code": "DEF-1901-801",
+      "manufacturer": "ON Semi",
+      "device_name": "AR0237 RGB-IR",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 40.2,
+      "model_json": "models/def_1901_801_on_semi_ar0237_rgb_ir.json"
+    },
+    {
+      "code": "DEF-1809-802",
+      "manufacturer": "Sony",
+      "device_name": "IMX250MZR",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 40.2,
+      "model_json": "models/def_1809_802_sony_imx250mzr.json"
+    },
+    {
+      "code": "DEF-1805-803",
+      "manufacturer": "ON Semi",
+      "device_name": "AS0140",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 40.2,
+      "model_json": "models/def_1805_803_on_semi_as0140.json"
+    },
+    {
+      "code": "DEF-1802-801",
+      "manufacturer": "ON Semi",
+      "device_name": "AR0144CSSC00SUKAH3-GEVB",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 40.2,
+      "model_json": "models/def_1802_801_on_semi_ar0144cssc00sukah3_gevb.json"
+    },
+    {
+      "code": "DEF-1703-802",
+      "manufacturer": "Sony",
+      "device_name": "IMX270",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 40.2,
+      "model_json": "models/def_1703_802_sony_imx270.json"
+    },
+    {
+      "code": "DEF-1503-802",
+      "manufacturer": "SmartSens",
+      "device_name": "SC1035",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 40.2,
+      "model_json": "models/def_1503_802_smartsens_sc1035.json"
+    },
+    {
+      "code": "DEF-1412-801",
+      "manufacturer": "Sony",
+      "device_name": "IMX210AQL",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 40.2,
+      "model_json": "models/def_1412_801_sony_imx210aql.json"
+    },
+    {
+      "code": "DEF-1311-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OV07955-E53V-PF",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 40.2,
+      "model_json": "models/def_1311_801_omnivision_ov07955_e53v_pf.json"
+    },
+    {
+      "code": "DEP-1811-802",
+      "manufacturer": "Sony",
+      "device_name": "IMX250MZR",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 39.3,
+      "model_json": "models/dep_1811_802_sony_imx250mzr.json"
+    },
+    {
+      "code": "DEF-2104-802",
+      "manufacturer": "Sony",
+      "device_name": "IMX991-AABA",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 39.3,
+      "model_json": "models/def_2104_802_sony_imx991_aaba.json"
+    },
+    {
+      "code": "DEF-1408-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OV5670",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 39.3,
+      "model_json": "models/def_1408_801_omnivision_ov5670.json"
+    },
+    {
+      "code": "DEF-2402-804",
+      "manufacturer": "Canon",
+      "device_name": "LI5030SAC",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 38.4,
+      "model_json": "models/def_2402_804_canon_li5030sac.json"
+    },
+    {
+      "code": "DEF-2001-802",
+      "manufacturer": "Canon",
+      "device_name": "3862C002",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 38.4,
+      "model_json": "models/def_2001_802_canon_3862c002.json"
+    },
+    {
+      "code": "DEF-1905-803",
+      "manufacturer": "PMD Technologies",
+      "device_name": "IRS2381C",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 38.4,
+      "model_json": "models/def_1905_803_pmd_technologies_irs2381c.json"
+    },
+    {
+      "code": "DEF-1708-805",
+      "manufacturer": "Aptina",
+      "device_name": "522487",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 38.4,
+      "model_json": "models/def_1708_805_aptina_522487.json"
+    },
+    {
+      "code": "DEF-1606-801",
+      "manufacturer": "Canon",
+      "device_name": "0931C001_Pri-Camera",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 38.4,
+      "model_json": "models/def_1606_801_canon_0931c001_pri_camera.json"
+    },
+    {
+      "code": "DEF-1605-801",
+      "manufacturer": "Nikon",
+      "device_name": "5119",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 38.4,
+      "model_json": "models/def_1605_801_nikon_5119.json"
+    },
+    {
+      "code": "DEF-1406-801",
+      "manufacturer": "E2V Technologies",
+      "device_name": "EV76C570",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 37.8,
+      "model_json": "models/def_1406_801_e2v_technologies_ev76c570.json"
+    },
+    {
+      "code": "DEF-2012-802",
+      "manufacturer": "Unknown",
+      "device_name": "CeleX-V",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 37.2,
+      "model_json": "models/def_2012_802_unknown_celex_v.json"
+    },
+    {
+      "code": "DEF-1907-803",
+      "manufacturer": "OmniVision",
+      "device_name": "OV2311",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 37.2,
+      "model_json": "models/def_1907_803_omnivision_ov2311.json"
+    },
+    {
+      "code": "DEF-1809-803",
+      "manufacturer": "OmniVision",
+      "device_name": "OV2775_CIS",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 37.2,
+      "model_json": "models/def_1809_803_omnivision_ov2775_cis.json"
+    },
+    {
+      "code": "DEF-1708-804",
+      "manufacturer": "OmniVision",
+      "device_name": "OS05A10",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 37.2,
+      "model_json": "models/def_1708_804_omnivision_os05a10.json"
+    },
+    {
+      "code": "DEF-1708-803",
+      "manufacturer": "OmniVision",
+      "device_name": "OV4688",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 37.2,
+      "model_json": "models/def_1708_803_omnivision_ov4688.json"
+    },
+    {
+      "code": "DEF-1511-803",
+      "manufacturer": "Sony",
+      "device_name": "IMX224",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 37.2,
+      "model_json": "models/def_1511_803_sony_imx224.json"
+    },
+    {
+      "code": "DEF-1407-803",
+      "manufacturer": "Galaxycore Inc",
+      "device_name": "GC5004",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 37.2,
+      "model_json": "models/def_1407_803_galaxycore_inc_gc5004.json"
+    },
+    {
+      "code": "DEF-1407-802",
+      "manufacturer": "OmniVision",
+      "device_name": "OV10635-N29Y-PB",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 37.2,
+      "model_json": "models/def_1407_802_omnivision_ov10635_n29y_pb.json"
+    },
+    {
+      "code": "DEP-2603-801",
+      "manufacturer": "Samsung",
+      "device_name": "JN5",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 35.4,
+      "model_json": "models/dep_2603_801_samsung_jn5.json"
+    },
+    {
+      "code": "DEF-2212-803",
+      "manufacturer": "Panasonic",
+      "device_name": "MN34450_CIS",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 35.4,
+      "model_json": "models/def_2212_803_panasonic_mn34450_cis.json"
+    },
+    {
+      "code": "DEF-2107-801",
+      "manufacturer": "Canon",
+      "device_name": "LY1240_CIS",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 35.4,
+      "model_json": "models/def_2107_801_canon_ly1240_cis.json"
+    },
+    {
+      "code": "DEF-2105-801",
+      "manufacturer": "Prophesee",
+      "device_name": "V2M_CIS",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 35.4,
+      "model_json": "models/def_2105_801_prophesee_v2m_cis.json"
+    },
+    {
+      "code": "DEF-1810-802",
+      "manufacturer": "Canon",
+      "device_name": "LC1510_CIS",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 35.4,
+      "model_json": "models/def_1810_802_canon_lc1510_cis.json"
+    },
+    {
+      "code": "DEF-1707-803",
+      "manufacturer": "Fujitsu",
+      "device_name": "F-04G_Biometric",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 35.4,
+      "model_json": "models/def_1707_803_fujitsu_f_04g_biometric.json"
+    },
+    {
+      "code": "DEF-1609-802",
+      "manufacturer": "Nikon",
+      "device_name": "IMX321AQJ",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 35.4,
+      "model_json": "models/def_1609_802_nikon_imx321aqj.json"
+    },
+    {
+      "code": "DEF-1506-804",
+      "manufacturer": "E2V Technologies",
+      "device_name": "LINCE5M",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 35.4,
+      "model_json": "models/def_1506_804_e2v_technologies_lince5m.json"
+    },
+    {
+      "code": "DEF-1405-802",
+      "manufacturer": "Leica",
+      "device_name": "X1000",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 35.4,
+      "model_json": "models/def_1405_802_leica_x1000.json"
+    },
+    {
+      "code": "DEF-1405-801",
+      "manufacturer": "Melexis",
+      "device_name": "MLX75411",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 35.4,
+      "model_json": "models/def_1405_801_melexis_mlx75411.json"
+    },
+    {
+      "code": "DEF-2007-801",
+      "manufacturer": "Newsight Imaging",
+      "device_name": "NSI1000A0",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 34.0,
+      "model_json": "models/def_2007_801_newsight_imaging_nsi1000a0.json"
+    },
+    {
+      "code": "DEP-2606-801",
+      "manufacturer": "Sony",
+      "device_name": "LYT-901",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 32.4,
+      "model_json": "models/dep_2606_801_sony_lyt_901.json"
+    },
+    {
+      "code": "DEP-2602-801",
+      "manufacturer": "OmniVision",
+      "device_name": "OX05C1S_CIS",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 32.4,
+      "model_json": "models/dep_2602_801_omnivision_ox05c1s_cis.json"
+    },
+    {
+      "code": "DEF-2606-802",
+      "manufacturer": "OmniVision",
+      "device_name": "BKQ-N49_Rear-Cam3_CIS",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 32.4,
+      "model_json": "models/def_2606_802_omnivision_bkq_n49_rear_cam3_cis.json"
+    },
+    {
+      "code": "DEF-2502-803",
+      "manufacturer": "Melexis",
+      "device_name": "MLX90632SLD-BCB-000-SP",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 31.6,
+      "model_json": "models/def_2502_803_melexis_mlx90632sld_bcb_000_sp.json"
+    },
+    {
+      "code": "DEF-2211-801",
+      "manufacturer": "Stratio",
+      "device_name": "BeyonSense 1",
+      "readiness_level": "proxy_structure_low",
+      "readiness_score": 28.6,
+      "model_json": "models/def_2211_801_stratio_beyonsense_1.json"
+    }
+  ],
+  "validation": {
+    "schema": "image_sensor_tcad_structure_db_validation_v1",
+    "pass": true,
+    "model_count": 224,
+    "csv_row_count": 224,
+    "issue_count": 0,
+    "issues": []
+  }
+}

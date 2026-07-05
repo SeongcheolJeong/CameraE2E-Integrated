@@ -1,0 +1,1769 @@
+{
+  "blocking": [],
+  "checks": {
+    "fdtd_tcad_lineage": {
+      "message": "TCAD/FDTD active artifact mismatch: active FDTD LUT is under /Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant, but TCAD generation map is under /Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke",
+      "readiness": "calibration_required",
+      "status": "warn"
+    },
+    "hwisp_truth_boundary": {
+      "message": "HW ISP profiles are seed/public-derived unless replaced by board measurements or vendor traces.",
+      "readiness": "proxy",
+      "status": "pass"
+    },
+    "rayoptics_truth_boundary": {
+      "message": "RayOptics PSF assets are cataloged as geometric PSFs, not wave-optics sign-off.",
+      "readiness": "proxy",
+      "status": "pass"
+    }
+  },
+  "lineage": {
+    "fdtd_sensor_lut_active": {
+      "edges": [
+        {
+          "from": "fdtd_sensor_lut_active",
+          "to": "fdtd_sensor_stack_catalog"
+        }
+      ],
+      "nodes": [
+        {
+          "artifact_id": "sensor:fdtd:active_lut",
+          "dependencies": [
+            "fdtd_sensor_stack_catalog"
+          ],
+          "description": "Active FDTD-informed sensor optical-response LUT used for QE/RI/crosstalk proxy configuration.",
+          "env_vars": [
+            "PYISETCAM_FDTD_LUT_PATH",
+            "PYISETCAM_FDTD_ROOT"
+          ],
+          "family": "sensor",
+          "metadata": {
+            "physics_validation": {
+              "checks": {
+                "convergence": {
+                  "convergence_report": {
+                    "all_critical_feature_gate_pass": true,
+                    "all_grid_resolution_gate_pass": true,
+                    "all_si_wavelength_gate_pass": true,
+                    "case_count": 9,
+                    "cases": [
+                      "center",
+                      "cra10x",
+                      "edge20x"
+                    ],
+                    "fail_on_negative_signed_flux": true,
+                    "failed_axes": [],
+                    "full_numerical_convergence_pass": false,
+                    "min_critical_feature_pixels": 3.36,
+                    "min_si_internal_wavelength_pixels": 8.057983372415263,
+                    "negative_signed_flux_count": 0,
+                    "note": "RGB r84 anchor has per-case grid/Si-wavelength/feature gates, but no resolution/time/PML sweep. Treat as grid-qualified, not full numerical convergence.",
+                    "passed": true,
+                    "pml_convergence_pass": null,
+                    "report_type": "single_run_grid_qualification",
+                    "schema": "camera_lut_convergence_report_v1",
+                    "single_run_grid_qualification_pass": true,
+                    "source_summary_csv": "runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut_summary.csv",
+                    "spatial_convergence_pass": null,
+                    "time_convergence_pass": null,
+                    "unique_after_source_time_count": 1,
+                    "unique_pml_count": 1,
+                    "unique_resolution_count": 1,
+                    "unproven_axes": [
+                      "resolution",
+                      "after_source_time",
+                      "pml"
+                    ],
+                    "varied_axes": [],
+                    "wavelength_nm": [
+                      450.0,
+                      550.0,
+                      650.0
+                    ]
+                  },
+                  "failures": [],
+                  "geometry": {
+                    "air_top": 0.55,
+                    "bottom_air": 0.24871428571428567,
+                    "cfa_thickness": 0.8,
+                    "lens_edge_gap": 0.04,
+                    "lens_height": 0.657,
+                    "metal_edge_width": 0.12,
+                    "passivation_thickness": 0.08,
+                    "pitch": 1.4,
+                    "pml": 0.45,
+                    "si_thickness": 2.8
+                  },
+                  "resolution_px_per_um": 84,
+                  "source_path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+                  "status": "warn",
+                  "warnings": [
+                    "FDTD report is grid-qualified but not full resolution/time/PML convergence"
+                  ]
+                },
+                "crosstalk": {
+                  "center_weight": 1.0,
+                  "failures": [],
+                  "kernel_shape": [
+                    1,
+                    1
+                  ],
+                  "status": "warn",
+                  "uniformity_cv": 0.0,
+                  "warnings": [
+                    "no regional crosstalk kernel available"
+                  ]
+                },
+                "energy": {
+                  "failures": [],
+                  "max_response": 0.4785433343548626,
+                  "n_absorption_over_incident": 0,
+                  "n_negative": 0,
+                  "n_over_unity": 0,
+                  "n_response_over_absorption": 0,
+                  "n_response_values": 27,
+                  "n_rows": 27,
+                  "status": "pass",
+                  "warnings": []
+                },
+                "ocl_shift": {
+                  "failures": [],
+                  "pairs": [],
+                  "status": "warn",
+                  "warnings": [
+                    "no uncompensated/compensated OCL pair available"
+                  ]
+                },
+                "relative_illumination": {
+                  "comparisons": [
+                    {
+                      "case": "cra10x",
+                      "cos4_response": 0.9406018657828263,
+                      "cra_deg": 10.0,
+                      "cra_x_deg": 10.0,
+                      "cra_z_deg": 0.0,
+                      "fdtd_response_norm": 1.0663266769886022,
+                      "ratio_to_cos4": 1.133664216263424,
+                      "status": "pass",
+                      "wavelength_nm": 450.0
+                    },
+                    {
+                      "case": "edge20x",
+                      "cos4_response": 0.7797282437678554,
+                      "cra_deg": 20.0,
+                      "cra_x_deg": 20.0,
+                      "cra_z_deg": 0.0,
+                      "fdtd_response_norm": 1.0401389771322007,
+                      "ratio_to_cos4": 1.3339762737155332,
+                      "status": "warn",
+                      "wavelength_nm": 450.0
+                    },
+                    {
+                      "case": "cra10x",
+                      "cos4_response": 0.9406018657828263,
+                      "cra_deg": 10.0,
+                      "cra_x_deg": 10.0,
+                      "cra_z_deg": 0.0,
+                      "fdtd_response_norm": 5.149924475082459,
+                      "ratio_to_cos4": 5.475137422565473,
+                      "status": "warn",
+                      "wavelength_nm": 550.0
+                    },
+                    {
+                      "case": "edge20x",
+                      "cos4_response": 0.7797282437678554,
+                      "cra_deg": 20.0,
+                      "cra_x_deg": 20.0,
+                      "cra_z_deg": 0.0,
+                      "fdtd_response_norm": 5.43211287827112,
+                      "ratio_to_cos4": 6.966674507032986,
+                      "status": "warn",
+                      "wavelength_nm": 550.0
+                    },
+                    {
+                      "case": "cra10x",
+                      "cos4_response": 0.9406018657828263,
+                      "cra_deg": 10.0,
+                      "cra_x_deg": 10.0,
+                      "cra_z_deg": 0.0,
+                      "fdtd_response_norm": 1.5580154186000235,
+                      "ratio_to_cos4": 1.6564026452396496,
+                      "status": "warn",
+                      "wavelength_nm": 650.0
+                    },
+                    {
+                      "case": "edge20x",
+                      "cos4_response": 0.7797282437678554,
+                      "cra_deg": 20.0,
+                      "cra_x_deg": 20.0,
+                      "cra_z_deg": 0.0,
+                      "fdtd_response_norm": 1.3341677613318683,
+                      "ratio_to_cos4": 1.711067634134699,
+                      "status": "warn",
+                      "wavelength_nm": 650.0
+                    }
+                  ],
+                  "failures": [],
+                  "status": "warn",
+                  "warnings": [
+                    "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                    "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                    "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                    "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                    "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence"
+                  ]
+                },
+                "symmetry": {
+                  "comparisons": [],
+                  "failures": [],
+                  "status": "warn",
+                  "warnings": [
+                    "no +/- CRA mirror pairs available for symmetry validation"
+                  ]
+                },
+                "wavelength": {
+                  "failures": [],
+                  "has_rgb_representative_wavelengths": true,
+                  "status": "pass",
+                  "warnings": [],
+                  "wavelengths_nm": [
+                    450.0,
+                    550.0,
+                    650.0
+                  ]
+                }
+              },
+              "failures": [],
+              "ok": true,
+              "status": "warn",
+              "warnings": [
+                "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                "no uncompensated/compensated OCL pair available",
+                "no +/- CRA mirror pairs available for symmetry validation",
+                "no regional crosstalk kernel available",
+                "FDTD report is grid-qualified but not full resolution/time/PML convergence"
+              ]
+            },
+            "summary": {
+              "cases": [
+                "center",
+                "cra10x",
+                "edge20x"
+              ],
+              "convergence_report": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/convergence_report.json",
+              "kernel_shape": [
+                0,
+                0
+              ],
+              "mode": "split-pd-1x1",
+              "n_cases": 3,
+              "n_long_rows": 18,
+              "n_regions": 2,
+              "n_summary_rows": 9,
+              "n_wavelengths": 3,
+              "notes": [
+                "Primary response uses Si-volume absorption distribution integrated over each collection region.",
+                "The absolute scale is calibrated to the full Si top/bottom flux absorption estimate.",
+                "TCAD 1D generation export collapses the Si volume absorption over x/z and scales it with incident_photon_flux_cm2_s.",
+                "TCAD 2D generation export preserves x/depth variation and collapses only the out-of-plane z direction.",
+                "TCAD 3D generation export preserves x/depth/z variation for future 3D electrical import.",
+                "Split-PD phase proxies are optical-only PDAF signals, not charge-collection TCAD results.",
+                "OCL shifts are explicit lens/aperture offsets in microns; replace defaults with product geometry.",
+                "Default imaging-pixel runs use shield.mode=off; metal optical masks are only present for edge or PDAF shield modes.",
+                "Finite-pupil integration samples a uniform disk in direction-cosine space using the supplied f-number.",
+                "Use resolution and time convergence before quantitative camera-system use."
+              ],
+              "response_model": "si_volume_absorption_flux_calibrated_v1",
+              "schema": "camera_supercell_optical_lut_v2",
+              "source_path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+              "wavelengths_nm": [
+                450.0,
+                550.0,
+                650.0
+              ]
+            }
+          },
+          "name": "fdtd_sensor_lut_active",
+          "parameter_hint": "Use lut_path with fdtd_sensor_config(lut_path) and sensor_attach_fdtd_lut.",
+          "parameters": {
+            "config": {
+              "enabled": true,
+              "lut": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json"
+            },
+            "lut_path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json"
+          },
+          "path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+          "provenance": {
+            "source": "external FDTD workspace",
+            "truth_boundary": "optical_absorption_and_regional_response_proxy"
+          },
+          "readiness_tier": "proxy",
+          "refresh_command": "python tools/render_fdtd_sensor_physics_report.py",
+          "role": "optical-response-lut",
+          "schema_version": "camerae2e_db_entry_v2",
+          "source_hash": "sha256:153635879c6f9167255af740c430e1e3fb277b0645c2143b65e6bf92606e646c",
+          "stale_reason": null,
+          "status": "active",
+          "tags": [
+            "sensor",
+            "fdtd",
+            "qe",
+            "relative-illumination",
+            "crosstalk",
+            "lut"
+          ],
+          "validation_gates": [
+            "lut_schema",
+            "physics_sanity",
+            "convergence_metadata",
+            "proxy_caveat"
+          ]
+        },
+        {
+          "artifact_id": "sensor:fdtd:stack_catalog",
+          "dependencies": [],
+          "description": "External FDTD sensor stack catalog and generated layer-stack configs.",
+          "env_vars": [
+            "PYISETCAM_FDTD_ROOT"
+          ],
+          "family": "sensor",
+          "metadata": {
+            "csv_path": "/Users/seongcheoljeong/FDTD/sensor_db/sensor_catalog.csv",
+            "stack_config_count": 216,
+            "validation_path": "/Users/seongcheoljeong/FDTD/sensor_db/validation.json"
+          },
+          "name": "fdtd_sensor_stack_catalog",
+          "parameter_hint": "Use catalog_path to choose a sensor stack, then feed selected FDTD/TCAD artifacts into sensor config.",
+          "parameters": {
+            "catalog_path": "/Users/seongcheoljeong/FDTD/sensor_db/sensor_catalog.json",
+            "stack_config_dir": "/Users/seongcheoljeong/FDTD/sensor_db/generated_stack_configs"
+          },
+          "path": "/Users/seongcheoljeong/FDTD/sensor_db/sensor_catalog.json",
+          "provenance": {
+            "source": "external FDTD sensor_db package",
+            "truth_boundary": "metadata_derived_stack_configs_unless_product_cad_listed"
+          },
+          "readiness_tier": "proxy",
+          "refresh_command": "python tools/render_sensor_db_overview.py",
+          "role": "sensor-stack-parameter-catalog",
+          "schema_version": "camerae2e_db_entry_v2",
+          "source_hash": "sha256:b9018deb20edf2bb00517a4f221aaeefcc60658301a7c1d87dd328c32063209c",
+          "stale_reason": null,
+          "status": "available",
+          "tags": [
+            "sensor",
+            "fdtd",
+            "stack",
+            "catalog",
+            "external"
+          ],
+          "validation_gates": [
+            "catalog_exists",
+            "generated_stack_config_count",
+            "metadata_proxy_caveat"
+          ]
+        }
+      ],
+      "root": "fdtd_sensor_lut_active",
+      "schema_version": "camerae2e_db_lineage_v1"
+    },
+    "lens_patents_active": {
+      "edges": [],
+      "nodes": [
+        {
+          "artifact_id": "lens:patents:active",
+          "dependencies": [],
+          "description": "Active lens patent SQLite DB and RayOptics PSF package used by lens_patent_* APIs.",
+          "env_vars": [
+            "PYISETCAM_LENS_PATENT_DB",
+            "PYISETCAM_LENS_DB_ROOT",
+            "PYISETCAM_LENS_PATENT_PSF_DIR"
+          ],
+          "family": "lens",
+          "metadata": {
+            "camerae2e_manifest": {
+              "asset_rows": 589,
+              "built_at": "2026-06-27T01:51:09.755734+00:00",
+              "by_company": {
+                "Canon": {
+                  "highres_psf": 1,
+                  "partial": 2,
+                  "proxy_only": 48,
+                  "raytrace_psf": 104,
+                  "total": 155
+                },
+                "Fujifilm": {
+                  "partial": 24,
+                  "total": 24
+                },
+                "Konica Minolta": {
+                  "proxy_only": 2,
+                  "raytrace_psf": 26,
+                  "total": 28
+                },
+                "LG Innotek": {
+                  "partial": 2,
+                  "total": 2
+                },
+                "Largan": {
+                  "highres_psf": 1,
+                  "proxy_only": 70,
+                  "raytrace_psf": 4,
+                  "total": 75
+                },
+                "Nikon": {
+                  "partial": 88,
+                  "proxy_only": 3,
+                  "raytrace_psf": 76,
+                  "total": 167
+                },
+                "Olympus/OM System": {
+                  "partial": 35,
+                  "proxy_only": 4,
+                  "raytrace_psf": 53,
+                  "total": 92
+                },
+                "Panasonic": {
+                  "highres_psf": 1,
+                  "metadata_only": 1,
+                  "partial": 6,
+                  "proxy_only": 13,
+                  "raytrace_psf": 127,
+                  "total": 148
+                },
+                "Ricoh/Pentax": {
+                  "highres_psf": 1,
+                  "raytrace_psf": 12,
+                  "total": 13
+                },
+                "Samsung": {
+                  "highres_psf": 1,
+                  "raytrace_psf": 25,
+                  "total": 26
+                },
+                "Seiko Epson": {
+                  "metadata_only": 2,
+                  "partial": 1,
+                  "proxy_only": 6,
+                  "raytrace_psf": 6,
+                  "total": 15
+                },
+                "Sony": {
+                  "partial": 14,
+                  "total": 14
+                },
+                "Sunny Optical": {
+                  "partial": 33,
+                  "total": 33
+                },
+                "Tamron": {
+                  "partial": 30,
+                  "total": 30
+                }
+              },
+              "caveats": [
+                "Raytrace PSF files are RayOptics geometric ray-histogram PSFs; diffraction is not included.",
+                "Rows with use_tier=proxy_only can feed thin-lens/proxy CameraE2E optics but do not have generated RayOptics PSF assets.",
+                "Caption-derived rows preserve patent f/Fno/HFOV values and are marked with optical_spec_source=caption."
+              ],
+              "files": {
+                "company_sets_dir": "companies",
+                "inventory_csv": "camerae2e_inventory.csv",
+                "master_db": "lens_patent_simulation_v9.sqlite",
+                "psf_debug_dir": "raytrace_psf",
+                "psf_highres_dir": "raytrace_psf_highres"
+              },
+              "psf_debug_summary": {
+                "by_company": {
+                  "Canon": {
+                    "failed": 48,
+                    "generated": 105,
+                    "total": 153
+                  },
+                  "Konica Minolta": {
+                    "failed": 2,
+                    "generated": 26,
+                    "total": 28
+                  },
+                  "Largan": {
+                    "failed": 70,
+                    "generated": 5,
+                    "total": 75
+                  },
+                  "Nikon": {
+                    "failed": 3,
+                    "generated": 76,
+                    "total": 79
+                  },
+                  "Olympus/OM System": {
+                    "failed": 4,
+                    "generated": 53,
+                    "total": 57
+                  },
+                  "Panasonic": {
+                    "failed": 13,
+                    "generated": 128,
+                    "total": 141
+                  },
+                  "Ricoh/Pentax": {
+                    "generated": 13,
+                    "total": 13
+                  },
+                  "Samsung": {
+                    "generated": 26,
+                    "total": 26
+                  },
+                  "Seiko Epson": {
+                    "failed": 6,
+                    "generated": 6,
+                    "total": 12
+                  }
+                },
+                "failed": 146,
+                "generated": 438,
+                "total": 584
+              },
+              "psf_highres_summary": {
+                "by_company": {
+                  "Canon": {
+                    "generated": 1,
+                    "total": 1
+                  },
+                  "Largan": {
+                    "generated": 1,
+                    "total": 1
+                  },
+                  "Panasonic": {
+                    "generated": 1,
+                    "total": 1
+                  },
+                  "Ricoh/Pentax": {
+                    "generated": 1,
+                    "total": 1
+                  },
+                  "Samsung": {
+                    "generated": 1,
+                    "total": 1
+                  }
+                },
+                "generated": 5,
+                "total": 5
+              },
+              "recommended_for_camerae2e": 438,
+              "sample_highres_ids": [
+                "p0014:intermediate",
+                "p0410:base",
+                "p0320:telephoto",
+                "p0137:middle",
+                "p0102:base"
+              ],
+              "schema": "camerae2e_lens_patent_package_v1",
+              "total_simulation_results": 822,
+              "use_tier_counts": {
+                "highres_psf": 5,
+                "metadata_only": 3,
+                "partial": 235,
+                "proxy_only": 146,
+                "raytrace_psf": 433
+              }
+            },
+            "highres_psf_summary": {
+              "by_company": {
+                "Canon": {
+                  "generated": 1,
+                  "total": 1
+                },
+                "Largan": {
+                  "generated": 1,
+                  "total": 1
+                },
+                "Panasonic": {
+                  "generated": 1,
+                  "total": 1
+                },
+                "Ricoh/Pentax": {
+                  "generated": 1,
+                  "total": 1
+                },
+                "Samsung": {
+                  "generated": 1,
+                  "total": 1
+                }
+              },
+              "generated": 5,
+              "total": 5
+            },
+            "raytrace_psf_summary": {
+              "by_company": {
+                "Canon": {
+                  "failed": 48,
+                  "generated": 105,
+                  "total": 153
+                },
+                "Konica Minolta": {
+                  "failed": 2,
+                  "generated": 26,
+                  "total": 28
+                },
+                "Largan": {
+                  "failed": 70,
+                  "generated": 5,
+                  "total": 75
+                },
+                "Nikon": {
+                  "failed": 3,
+                  "generated": 76,
+                  "total": 79
+                },
+                "Olympus/OM System": {
+                  "failed": 4,
+                  "generated": 53,
+                  "total": 57
+                },
+                "Panasonic": {
+                  "failed": 13,
+                  "generated": 128,
+                  "total": 141
+                },
+                "Ricoh/Pentax": {
+                  "generated": 13,
+                  "total": 13
+                },
+                "Samsung": {
+                  "generated": 26,
+                  "total": 26
+                },
+                "Seiko Epson": {
+                  "failed": 6,
+                  "generated": 6,
+                  "total": 12
+                }
+              },
+              "failed": 146,
+              "generated": 438,
+              "total": 584
+            },
+            "summary": {
+              "camerae2e_ready_by_company": {
+                "Canon": 153,
+                "Konica Minolta": 28,
+                "Largan": 75,
+                "Nikon": 79,
+                "Olympus/OM System": 57,
+                "Panasonic": 141,
+                "Ricoh/Pentax": 13,
+                "Samsung": 26,
+                "Seiko Epson": 12
+              },
+              "companies": 14,
+              "lenses": 427,
+              "readiness_counts": {
+                "needs_variable_distances": 51,
+                "ready_configured": 176,
+                "ready_staging": 200
+              },
+              "simulation_results": 822,
+              "status_counts": {
+                "camerae2e_ready": 584,
+                "metadata_only": 3,
+                "partial": 235
+              },
+              "surfaces": 21493
+            }
+          },
+          "name": "lens_patents_active",
+          "parameter_hint": "Use db_path for lens_patent_search/get/optics and psf_dir/highres_psf_dir for lens_patent_raytrace_optics.",
+          "parameters": {
+            "data_dir": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents",
+            "db_path": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite",
+            "highres_psf_dir": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/raytrace_psf_highres",
+            "psf_dir": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/raytrace_psf"
+          },
+          "path": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite",
+          "provenance": {
+            "selected_data_dir": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents",
+            "source": "RayOptics Lens Patent DB package or bundled fallback",
+            "truth_boundary": "geometric_psf_not_diffraction_wave_optics"
+          },
+          "readiness_tier": "proxy",
+          "refresh_command": "python tools/render_lens_db_camerae2e_report.py",
+          "role": "optics-prescription-and-psf",
+          "schema_version": "camerae2e_db_entry_v2",
+          "source_hash": "sha256:b8e4f0f0990c478700cb27b7a46460f0da07f048452555905011254efa3bb198",
+          "stale_reason": null,
+          "status": "active",
+          "tags": [
+            "lens",
+            "rayoptics",
+            "psf",
+            "sqlite",
+            "active"
+          ],
+          "validation_gates": [
+            "sqlite_exists",
+            "rayoptics_psf_manifest_exists",
+            "geometric_psf_caveat"
+          ]
+        }
+      ],
+      "root": "lens_patents_active",
+      "schema_version": "camerae2e_db_lineage_v1"
+    },
+    "tcad_sensor_db_active": {
+      "edges": [
+        {
+          "from": "tcad_sensor_db_active",
+          "to": "fdtd_sensor_lut_active"
+        },
+        {
+          "from": "fdtd_sensor_lut_active",
+          "to": "fdtd_sensor_stack_catalog"
+        },
+        {
+          "from": "tcad_sensor_db_active",
+          "to": "fdtd_sensor_stack_catalog"
+        }
+      ],
+      "nodes": [
+        {
+          "artifact_id": "sensor:tcad:active_collection",
+          "dependencies": [
+            "fdtd_sensor_lut_active",
+            "fdtd_sensor_stack_catalog"
+          ],
+          "description": "Active DEVSIM/TCAD sensor collection DB joining FDTD generation maps with split-PD electrical summaries.",
+          "env_vars": [
+            "PYISETCAM_FDTD_ROOT"
+          ],
+          "family": "sensor",
+          "metadata": {
+            "validation": {
+              "accuracy_ready": false,
+              "checks": {
+                "accuracy_gate": {
+                  "accuracy_blocking_failure_count": 8,
+                  "accuracy_ready": false,
+                  "framework_blocking_failure_count": 0,
+                  "framework_ready": true,
+                  "issues": [],
+                  "ok": true,
+                  "profile_name": "reference_cmos_ppd_1p4um_not_measured",
+                  "source_path": "/Users/seongcheoljeong/FDTD/runs/tcad_accuracy_gate_reference_profile/tcad_accuracy_gate.json",
+                  "warnings": [
+                    "TCAD accuracy gate is not ready; treat outputs as proxy simulation"
+                  ]
+                },
+                "collection_summaries": {
+                  "cases": [
+                    "center",
+                    "edge20x"
+                  ],
+                  "issues": [],
+                  "n_summaries": 2,
+                  "ok": true,
+                  "warnings": [
+                    "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json uses proxy electrical model proxy-pinned-split-pd",
+                    "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json uses proxy electrical model proxy-pinned-split-pd"
+                  ]
+                },
+                "generation_map": {
+                  "cases": [
+                    "center",
+                    "edge20x"
+                  ],
+                  "generation_max": 6.507544160470456e+22,
+                  "generation_min": 2.5512580123495656,
+                  "issues": [],
+                  "ok": true,
+                  "schema": "tcad_generation_map_2d_x_depth_v1",
+                  "shape": [
+                    2,
+                    10,
+                    19
+                  ],
+                  "source_path": "/Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz",
+                  "warnings": []
+                }
+              },
+              "framework_ready": true,
+              "issues": [],
+              "ok": true,
+              "status": "proxy-framework",
+              "warnings": [
+                "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json uses proxy electrical model proxy-pinned-split-pd",
+                "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json uses proxy electrical model proxy-pinned-split-pd",
+                "TCAD accuracy gate is not ready; treat outputs as proxy simulation"
+              ]
+            }
+          },
+          "name": "tcad_sensor_db_active",
+          "parameter_hint": "Use these paths with tcad_sensor_db_load(...) or sensor_attach_tcad_lut.",
+          "parameters": {
+            "accuracy_gate_path": "/Users/seongcheoljeong/FDTD/runs/tcad_accuracy_gate_reference_profile/tcad_accuracy_gate.json",
+            "collection_summary_paths": [
+              "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json",
+              "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json"
+            ],
+            "generation_map_path": "/Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz",
+            "root": "/Users/seongcheoljeong/FDTD"
+          },
+          "path": "/Users/seongcheoljeong/FDTD",
+          "provenance": {
+            "source": "external FDTD/DEVSIM workspace",
+            "truth_boundary": "carrier_collection_framework_not_product_calibrated_tcad"
+          },
+          "readiness_tier": "calibration_required",
+          "refresh_command": "python tools/render_fdtd_tcad_sensor_report.py",
+          "role": "electrical-collection-lut",
+          "schema_version": "camerae2e_db_entry_v2",
+          "source_hash": "sha256:99b035db170419880846161fa443cd2dc0061d4de879d3bc407154855db2adb4",
+          "stale_reason": "TCAD/FDTD active artifact mismatch: active FDTD LUT is under /Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant, but TCAD generation map is under /Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke",
+          "status": "active",
+          "tags": [
+            "sensor",
+            "tcad",
+            "devsim",
+            "collection",
+            "split-pd"
+          ],
+          "validation_gates": [
+            "generation_map_schema",
+            "devsim_summary_balance",
+            "accuracy_gate",
+            "lineage_match"
+          ]
+        },
+        {
+          "artifact_id": "sensor:fdtd:active_lut",
+          "dependencies": [
+            "fdtd_sensor_stack_catalog"
+          ],
+          "description": "Active FDTD-informed sensor optical-response LUT used for QE/RI/crosstalk proxy configuration.",
+          "env_vars": [
+            "PYISETCAM_FDTD_LUT_PATH",
+            "PYISETCAM_FDTD_ROOT"
+          ],
+          "family": "sensor",
+          "metadata": {
+            "physics_validation": {
+              "checks": {
+                "convergence": {
+                  "convergence_report": {
+                    "all_critical_feature_gate_pass": true,
+                    "all_grid_resolution_gate_pass": true,
+                    "all_si_wavelength_gate_pass": true,
+                    "case_count": 9,
+                    "cases": [
+                      "center",
+                      "cra10x",
+                      "edge20x"
+                    ],
+                    "fail_on_negative_signed_flux": true,
+                    "failed_axes": [],
+                    "full_numerical_convergence_pass": false,
+                    "min_critical_feature_pixels": 3.36,
+                    "min_si_internal_wavelength_pixels": 8.057983372415263,
+                    "negative_signed_flux_count": 0,
+                    "note": "RGB r84 anchor has per-case grid/Si-wavelength/feature gates, but no resolution/time/PML sweep. Treat as grid-qualified, not full numerical convergence.",
+                    "passed": true,
+                    "pml_convergence_pass": null,
+                    "report_type": "single_run_grid_qualification",
+                    "schema": "camera_lut_convergence_report_v1",
+                    "single_run_grid_qualification_pass": true,
+                    "source_summary_csv": "runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut_summary.csv",
+                    "spatial_convergence_pass": null,
+                    "time_convergence_pass": null,
+                    "unique_after_source_time_count": 1,
+                    "unique_pml_count": 1,
+                    "unique_resolution_count": 1,
+                    "unproven_axes": [
+                      "resolution",
+                      "after_source_time",
+                      "pml"
+                    ],
+                    "varied_axes": [],
+                    "wavelength_nm": [
+                      450.0,
+                      550.0,
+                      650.0
+                    ]
+                  },
+                  "failures": [],
+                  "geometry": {
+                    "air_top": 0.55,
+                    "bottom_air": 0.24871428571428567,
+                    "cfa_thickness": 0.8,
+                    "lens_edge_gap": 0.04,
+                    "lens_height": 0.657,
+                    "metal_edge_width": 0.12,
+                    "passivation_thickness": 0.08,
+                    "pitch": 1.4,
+                    "pml": 0.45,
+                    "si_thickness": 2.8
+                  },
+                  "resolution_px_per_um": 84,
+                  "source_path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+                  "status": "warn",
+                  "warnings": [
+                    "FDTD report is grid-qualified but not full resolution/time/PML convergence"
+                  ]
+                },
+                "crosstalk": {
+                  "center_weight": 1.0,
+                  "failures": [],
+                  "kernel_shape": [
+                    1,
+                    1
+                  ],
+                  "status": "warn",
+                  "uniformity_cv": 0.0,
+                  "warnings": [
+                    "no regional crosstalk kernel available"
+                  ]
+                },
+                "energy": {
+                  "failures": [],
+                  "max_response": 0.4785433343548626,
+                  "n_absorption_over_incident": 0,
+                  "n_negative": 0,
+                  "n_over_unity": 0,
+                  "n_response_over_absorption": 0,
+                  "n_response_values": 27,
+                  "n_rows": 27,
+                  "status": "pass",
+                  "warnings": []
+                },
+                "ocl_shift": {
+                  "failures": [],
+                  "pairs": [],
+                  "status": "warn",
+                  "warnings": [
+                    "no uncompensated/compensated OCL pair available"
+                  ]
+                },
+                "relative_illumination": {
+                  "comparisons": [
+                    {
+                      "case": "cra10x",
+                      "cos4_response": 0.9406018657828263,
+                      "cra_deg": 10.0,
+                      "cra_x_deg": 10.0,
+                      "cra_z_deg": 0.0,
+                      "fdtd_response_norm": 1.0663266769886022,
+                      "ratio_to_cos4": 1.133664216263424,
+                      "status": "pass",
+                      "wavelength_nm": 450.0
+                    },
+                    {
+                      "case": "edge20x",
+                      "cos4_response": 0.7797282437678554,
+                      "cra_deg": 20.0,
+                      "cra_x_deg": 20.0,
+                      "cra_z_deg": 0.0,
+                      "fdtd_response_norm": 1.0401389771322007,
+                      "ratio_to_cos4": 1.3339762737155332,
+                      "status": "warn",
+                      "wavelength_nm": 450.0
+                    },
+                    {
+                      "case": "cra10x",
+                      "cos4_response": 0.9406018657828263,
+                      "cra_deg": 10.0,
+                      "cra_x_deg": 10.0,
+                      "cra_z_deg": 0.0,
+                      "fdtd_response_norm": 5.149924475082459,
+                      "ratio_to_cos4": 5.475137422565473,
+                      "status": "warn",
+                      "wavelength_nm": 550.0
+                    },
+                    {
+                      "case": "edge20x",
+                      "cos4_response": 0.7797282437678554,
+                      "cra_deg": 20.0,
+                      "cra_x_deg": 20.0,
+                      "cra_z_deg": 0.0,
+                      "fdtd_response_norm": 5.43211287827112,
+                      "ratio_to_cos4": 6.966674507032986,
+                      "status": "warn",
+                      "wavelength_nm": 550.0
+                    },
+                    {
+                      "case": "cra10x",
+                      "cos4_response": 0.9406018657828263,
+                      "cra_deg": 10.0,
+                      "cra_x_deg": 10.0,
+                      "cra_z_deg": 0.0,
+                      "fdtd_response_norm": 1.5580154186000235,
+                      "ratio_to_cos4": 1.6564026452396496,
+                      "status": "warn",
+                      "wavelength_nm": 650.0
+                    },
+                    {
+                      "case": "edge20x",
+                      "cos4_response": 0.7797282437678554,
+                      "cra_deg": 20.0,
+                      "cra_x_deg": 20.0,
+                      "cra_z_deg": 0.0,
+                      "fdtd_response_norm": 1.3341677613318683,
+                      "ratio_to_cos4": 1.711067634134699,
+                      "status": "warn",
+                      "wavelength_nm": 650.0
+                    }
+                  ],
+                  "failures": [],
+                  "status": "warn",
+                  "warnings": [
+                    "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                    "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                    "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                    "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                    "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence"
+                  ]
+                },
+                "symmetry": {
+                  "comparisons": [],
+                  "failures": [],
+                  "status": "warn",
+                  "warnings": [
+                    "no +/- CRA mirror pairs available for symmetry validation"
+                  ]
+                },
+                "wavelength": {
+                  "failures": [],
+                  "has_rgb_representative_wavelengths": true,
+                  "status": "pass",
+                  "warnings": [],
+                  "wavelengths_nm": [
+                    450.0,
+                    550.0,
+                    650.0
+                  ]
+                }
+              },
+              "failures": [],
+              "ok": true,
+              "status": "warn",
+              "warnings": [
+                "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                "cra10x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                "edge20x response exceeds bare cos^4 by >20%; this can be valid with microlens/OCL concentration but needs calibration evidence",
+                "no uncompensated/compensated OCL pair available",
+                "no +/- CRA mirror pairs available for symmetry validation",
+                "no regional crosstalk kernel available",
+                "FDTD report is grid-qualified but not full resolution/time/PML convergence"
+              ]
+            },
+            "summary": {
+              "cases": [
+                "center",
+                "cra10x",
+                "edge20x"
+              ],
+              "convergence_report": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/convergence_report.json",
+              "kernel_shape": [
+                0,
+                0
+              ],
+              "mode": "split-pd-1x1",
+              "n_cases": 3,
+              "n_long_rows": 18,
+              "n_regions": 2,
+              "n_summary_rows": 9,
+              "n_wavelengths": 3,
+              "notes": [
+                "Primary response uses Si-volume absorption distribution integrated over each collection region.",
+                "The absolute scale is calibrated to the full Si top/bottom flux absorption estimate.",
+                "TCAD 1D generation export collapses the Si volume absorption over x/z and scales it with incident_photon_flux_cm2_s.",
+                "TCAD 2D generation export preserves x/depth variation and collapses only the out-of-plane z direction.",
+                "TCAD 3D generation export preserves x/depth/z variation for future 3D electrical import.",
+                "Split-PD phase proxies are optical-only PDAF signals, not charge-collection TCAD results.",
+                "OCL shifts are explicit lens/aperture offsets in microns; replace defaults with product geometry.",
+                "Default imaging-pixel runs use shield.mode=off; metal optical masks are only present for edge or PDAF shield modes.",
+                "Finite-pupil integration samples a uniform disk in direction-cosine space using the supplied f-number.",
+                "Use resolution and time convergence before quantitative camera-system use."
+              ],
+              "response_model": "si_volume_absorption_flux_calibrated_v1",
+              "schema": "camera_supercell_optical_lut_v2",
+              "source_path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+              "wavelengths_nm": [
+                450.0,
+                550.0,
+                650.0
+              ]
+            }
+          },
+          "name": "fdtd_sensor_lut_active",
+          "parameter_hint": "Use lut_path with fdtd_sensor_config(lut_path) and sensor_attach_fdtd_lut.",
+          "parameters": {
+            "config": {
+              "enabled": true,
+              "lut": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json"
+            },
+            "lut_path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json"
+          },
+          "path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+          "provenance": {
+            "source": "external FDTD workspace",
+            "truth_boundary": "optical_absorption_and_regional_response_proxy"
+          },
+          "readiness_tier": "proxy",
+          "refresh_command": "python tools/render_fdtd_sensor_physics_report.py",
+          "role": "optical-response-lut",
+          "schema_version": "camerae2e_db_entry_v2",
+          "source_hash": "sha256:153635879c6f9167255af740c430e1e3fb277b0645c2143b65e6bf92606e646c",
+          "stale_reason": null,
+          "status": "active",
+          "tags": [
+            "sensor",
+            "fdtd",
+            "qe",
+            "relative-illumination",
+            "crosstalk",
+            "lut"
+          ],
+          "validation_gates": [
+            "lut_schema",
+            "physics_sanity",
+            "convergence_metadata",
+            "proxy_caveat"
+          ]
+        },
+        {
+          "artifact_id": "sensor:fdtd:stack_catalog",
+          "dependencies": [],
+          "description": "External FDTD sensor stack catalog and generated layer-stack configs.",
+          "env_vars": [
+            "PYISETCAM_FDTD_ROOT"
+          ],
+          "family": "sensor",
+          "metadata": {
+            "csv_path": "/Users/seongcheoljeong/FDTD/sensor_db/sensor_catalog.csv",
+            "stack_config_count": 216,
+            "validation_path": "/Users/seongcheoljeong/FDTD/sensor_db/validation.json"
+          },
+          "name": "fdtd_sensor_stack_catalog",
+          "parameter_hint": "Use catalog_path to choose a sensor stack, then feed selected FDTD/TCAD artifacts into sensor config.",
+          "parameters": {
+            "catalog_path": "/Users/seongcheoljeong/FDTD/sensor_db/sensor_catalog.json",
+            "stack_config_dir": "/Users/seongcheoljeong/FDTD/sensor_db/generated_stack_configs"
+          },
+          "path": "/Users/seongcheoljeong/FDTD/sensor_db/sensor_catalog.json",
+          "provenance": {
+            "source": "external FDTD sensor_db package",
+            "truth_boundary": "metadata_derived_stack_configs_unless_product_cad_listed"
+          },
+          "readiness_tier": "proxy",
+          "refresh_command": "python tools/render_sensor_db_overview.py",
+          "role": "sensor-stack-parameter-catalog",
+          "schema_version": "camerae2e_db_entry_v2",
+          "source_hash": "sha256:b9018deb20edf2bb00517a4f221aaeefcc60658301a7c1d87dd328c32063209c",
+          "stale_reason": null,
+          "status": "available",
+          "tags": [
+            "sensor",
+            "fdtd",
+            "stack",
+            "catalog",
+            "external"
+          ],
+          "validation_gates": [
+            "catalog_exists",
+            "generated_stack_config_count",
+            "metadata_proxy_caveat"
+          ]
+        }
+      ],
+      "root": "tcad_sensor_db_active",
+      "schema_version": "camerae2e_db_lineage_v1"
+    }
+  },
+  "manifest_validation": {
+    "issue_count": 0,
+    "issues": [],
+    "ok": true,
+    "schema_version": "camerae2e_db_validation_v1",
+    "stale_dependencies": [
+      {
+        "entry": "tcad_sensor_db_active",
+        "kind": "stale_dependency",
+        "message": "TCAD/FDTD active artifact mismatch: active FDTD LUT is under /Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant, but TCAD generation map is under /Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke"
+      }
+    ],
+    "stale_dependency_count": 1,
+    "strict": false,
+    "warning_count": 1,
+    "warnings": [
+      {
+        "entry": "tcad_sensor_db_active",
+        "kind": "stale_dependency",
+        "message": "TCAD/FDTD active artifact mismatch: active FDTD LUT is under /Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant, but TCAD generation map is under /Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke"
+      }
+    ]
+  },
+  "ok": true,
+  "plan": {
+    "actions": [
+      {
+        "action": "keep_proxy_label_or_calibrate",
+        "artifact_id": "sensor:fdtd:stack_catalog",
+        "blocks_strict_validation": true,
+        "dependencies": [],
+        "entry": "fdtd_sensor_stack_catalog",
+        "env_vars": [
+          "PYISETCAM_FDTD_ROOT"
+        ],
+        "family": "sensor",
+        "inputs": {
+          "catalog_path": "/Users/seongcheoljeong/FDTD/sensor_db/sensor_catalog.json"
+        },
+        "kind": "proxy_truth_boundary",
+        "outputs": {
+          "path": "/Users/seongcheoljeong/FDTD/sensor_db/sensor_catalog.json"
+        },
+        "path": "/Users/seongcheoljeong/FDTD/sensor_db/sensor_catalog.json",
+        "readiness_tier": "proxy",
+        "reason": "Research sweeps may use this asset, but calibrated/sign-off claims are blocked.",
+        "refresh_command": "python tools/render_sensor_db_overview.py",
+        "remediation": [
+          {
+            "current_truth_boundary": "metadata_derived_stack_configs_unless_product_cad_listed",
+            "required_evidence": "measured stack, sensor-specific FDTD LUT, TCAD process deck, QE/noise data",
+            "step": "Attach calibration evidence before raising readiness tier."
+          }
+        ],
+        "role": "sensor-stack-parameter-catalog",
+        "severity": "info",
+        "status": "available",
+        "truth_boundary": "metadata_derived_stack_configs_unless_product_cad_listed",
+        "validation_gates": [
+          "catalog_exists",
+          "generated_stack_config_count",
+          "metadata_proxy_caveat"
+        ]
+      },
+      {
+        "action": "keep_proxy_label_or_calibrate",
+        "artifact_id": "sensor:fdtd:active_lut",
+        "blocks_strict_validation": true,
+        "dependencies": [
+          "fdtd_sensor_stack_catalog"
+        ],
+        "entry": "fdtd_sensor_lut_active",
+        "env_vars": [
+          "PYISETCAM_FDTD_LUT_PATH",
+          "PYISETCAM_FDTD_ROOT"
+        ],
+        "family": "sensor",
+        "inputs": {
+          "lut_path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json"
+        },
+        "kind": "proxy_truth_boundary",
+        "outputs": {
+          "lut_path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json"
+        },
+        "path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+        "readiness_tier": "proxy",
+        "reason": "Research sweeps may use this asset, but calibrated/sign-off claims are blocked.",
+        "refresh_command": "python tools/render_fdtd_sensor_physics_report.py",
+        "remediation": [
+          {
+            "current_truth_boundary": "optical_absorption_and_regional_response_proxy",
+            "required_evidence": "measured stack, sensor-specific FDTD LUT, TCAD process deck, QE/noise data",
+            "step": "Attach calibration evidence before raising readiness tier."
+          }
+        ],
+        "role": "optical-response-lut",
+        "severity": "info",
+        "status": "active",
+        "truth_boundary": "optical_absorption_and_regional_response_proxy",
+        "validation_gates": [
+          "lut_schema",
+          "physics_sanity",
+          "convergence_metadata",
+          "proxy_caveat"
+        ]
+      },
+      {
+        "action": "refresh_downstream_from_current_dependency",
+        "artifact_id": "sensor:tcad:active_collection",
+        "blocks_strict_validation": true,
+        "dependencies": [
+          "fdtd_sensor_lut_active",
+          "fdtd_sensor_stack_catalog"
+        ],
+        "entry": "tcad_sensor_db_active",
+        "env_vars": [
+          "PYISETCAM_FDTD_ROOT"
+        ],
+        "family": "sensor",
+        "inputs": {
+          "accuracy_gate_path": "/Users/seongcheoljeong/FDTD/runs/tcad_accuracy_gate_reference_profile/tcad_accuracy_gate.json",
+          "collection_summary_paths": [
+            "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json",
+            "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json"
+          ],
+          "generation_map_path": "/Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz"
+        },
+        "kind": "stale_dependency",
+        "outputs": {
+          "accuracy_gate_path": "/Users/seongcheoljeong/FDTD/runs/tcad_accuracy_gate_reference_profile/tcad_accuracy_gate.json",
+          "collection_summary_paths": [
+            "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json",
+            "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json"
+          ],
+          "generation_map_path": "/Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz"
+        },
+        "path": "/Users/seongcheoljeong/FDTD",
+        "readiness_tier": "calibration_required",
+        "reason": "TCAD/FDTD active artifact mismatch: active FDTD LUT is under /Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant, but TCAD generation map is under /Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke",
+        "refresh_command": "python tools/render_fdtd_tcad_sensor_report.py",
+        "remediation": [
+          {
+            "command": "python tools/render_fdtd_tcad_sensor_report.py",
+            "current_generation_map_parent": "/Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke",
+            "expected_output_parent": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant",
+            "input": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+            "step": "Regenerate FDTD-to-TCAD generation map from the active FDTD LUT run."
+          },
+          {
+            "dependency": "fdtd_sensor_lut_active",
+            "inputs": [
+              "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json",
+              "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json"
+            ],
+            "step": "Regenerate or re-point DEVSIM summaries to that generation map."
+          },
+          {
+            "command": "python tools/validate_camerae2e_physics_pipeline.py --strict",
+            "step": "Re-run CameraE2E registry validation in strict mode before promotion."
+          }
+        ],
+        "role": "electrical-collection-lut",
+        "severity": "warning",
+        "status": "active",
+        "truth_boundary": "carrier_collection_framework_not_product_calibrated_tcad",
+        "validation_gates": [
+          "generation_map_schema",
+          "devsim_summary_balance",
+          "accuracy_gate",
+          "lineage_match"
+        ]
+      },
+      {
+        "action": "keep_proxy_label_or_calibrate",
+        "artifact_id": "lens:patents:active",
+        "blocks_strict_validation": true,
+        "dependencies": [],
+        "entry": "lens_patents_active",
+        "env_vars": [
+          "PYISETCAM_LENS_PATENT_DB",
+          "PYISETCAM_LENS_DB_ROOT",
+          "PYISETCAM_LENS_PATENT_PSF_DIR"
+        ],
+        "family": "lens",
+        "inputs": {
+          "db_path": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite",
+          "psf_dir": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/raytrace_psf"
+        },
+        "kind": "proxy_truth_boundary",
+        "outputs": {
+          "db_path": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite",
+          "highres_psf_dir": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/raytrace_psf_highres",
+          "psf_dir": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/raytrace_psf"
+        },
+        "path": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite",
+        "readiness_tier": "proxy",
+        "reason": "Research sweeps may use this asset, but calibrated/sign-off claims are blocked.",
+        "refresh_command": "python tools/render_lens_db_camerae2e_report.py",
+        "remediation": [
+          {
+            "current_truth_boundary": "geometric_psf_not_diffraction_wave_optics",
+            "required_evidence": "wave-optics/diffraction comparison, measured PSF, tolerance, coating data",
+            "step": "Attach calibration evidence before raising readiness tier."
+          }
+        ],
+        "role": "optics-prescription-and-psf",
+        "severity": "info",
+        "status": "active",
+        "truth_boundary": "geometric_psf_not_diffraction_wave_optics",
+        "validation_gates": [
+          "sqlite_exists",
+          "rayoptics_psf_manifest_exists",
+          "geometric_psf_caveat"
+        ]
+      },
+      {
+        "action": "keep_proxy_label_or_calibrate",
+        "artifact_id": "isp:hwisp:profiles",
+        "blocks_strict_validation": true,
+        "dependencies": [],
+        "entry": "hwisp_parameter_profiles",
+        "env_vars": [
+          "PYISETCAM_HWISP_DB"
+        ],
+        "family": "isp",
+        "inputs": {
+          "db_path": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/hwisp",
+          "profile_names": [
+            "generic_1080p_30fps",
+            "rpi_vc4_imx219_public_seed"
+          ]
+        },
+        "kind": "proxy_truth_boundary",
+        "outputs": {
+          "path": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/hwisp"
+        },
+        "path": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/hwisp",
+        "readiness_tier": "proxy",
+        "reason": "Research sweeps may use this asset, but calibrated/sign-off claims are blocked.",
+        "refresh_command": "python tools/render_hwisp_parameter_requirements_report.py --profile rpi_vc4_imx219_public_seed",
+        "remediation": [
+          {
+            "current_truth_boundary": "seed_or_public_profile_not_vendor_trace_signoff",
+            "required_evidence": "board traces, hardware counters, BSP timing, and 3A telemetry",
+            "step": "Attach calibration evidence before raising readiness tier."
+          }
+        ],
+        "role": "timing-and-3a-parameter-profiles",
+        "severity": "info",
+        "status": "active",
+        "truth_boundary": "seed_or_public_profile_not_vendor_trace_signoff",
+        "validation_gates": [
+          "profile_schema",
+          "seed_profile_caveat",
+          "timing_report"
+        ]
+      },
+      {
+        "action": "validate_current_asset",
+        "artifact_id": "perception:task_model_profiles",
+        "blocks_strict_validation": false,
+        "dependencies": [],
+        "entry": "task_perception_model_profiles",
+        "env_vars": [
+          "PYISETCAM_TASK_MODEL_CACHE"
+        ],
+        "family": "perception",
+        "inputs": {
+          "profile_names": [
+            "custom_callable",
+            "sam_vit_b_automatic",
+            "torchvision_fasterrcnn_resnet50_fpn_v2_coco",
+            "torchvision_maskrcnn_resnet50_fpn_v2_coco",
+            "transformers_detr_resnet50_coco",
+            "transformers_mask2former_ade20k",
+            "ultralytics_yolo11n_bytetrack",
+            "ultralytics_yolo11n_classification",
+            "ultralytics_yolo11n_detection",
+            "ultralytics_yolo11n_obb",
+            "ultralytics_yolo11n_pose",
+            "ultralytics_yolo11n_segmentation"
+          ],
+          "profiles_path": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/task_perception/model_profiles.json"
+        },
+        "kind": "ready",
+        "outputs": {
+          "path": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/task_perception/model_profiles.json"
+        },
+        "path": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/task_perception/model_profiles.json",
+        "readiness_tier": "available",
+        "reason": "Asset is discoverable and has no stale dependency marker.",
+        "refresh_command": "python tools/render_task_perception_report.py",
+        "remediation": [],
+        "role": "model-profile-catalog",
+        "severity": "info",
+        "status": "active",
+        "truth_boundary": "adapter_profiles_not_training_dataset_or_model_accuracy_claim",
+        "validation_gates": [
+          "profile_schema",
+          "optional_backend_import"
+        ]
+      },
+      {
+        "action": "validate_current_asset",
+        "artifact_id": "assets:isetcam_upstream_snapshot",
+        "blocks_strict_validation": false,
+        "dependencies": [],
+        "entry": "isetcam_upstream_snapshot",
+        "env_vars": [
+          "PYISETCAM_CACHE_ROOT",
+          "PYISETCAM_UPSTREAM_ROOT"
+        ],
+        "family": "assets",
+        "inputs": {},
+        "kind": "ready",
+        "outputs": {
+          "path": "/Users/seongcheoljeong/Documents/CameraE2E/.cache/upstream/isetcam/412b9f9bdb3262f2552b96f0e769b5ad6cdff821"
+        },
+        "path": "/Users/seongcheoljeong/Documents/CameraE2E/.cache/upstream/isetcam/412b9f9bdb3262f2552b96f0e769b5ad6cdff821",
+        "readiness_tier": "validated",
+        "reason": "Asset is discoverable and has no stale dependency marker.",
+        "refresh_command": "python tools/fetch_upstream.py",
+        "remediation": [],
+        "role": "upstream-matlab-asset-snapshot",
+        "severity": "info",
+        "status": "active",
+        "truth_boundary": null,
+        "validation_gates": [
+          "snapshot_exists",
+          "pinned_sha"
+        ]
+      },
+      {
+        "action": "keep_proxy_label_or_calibrate",
+        "artifact_id": "lens:patents:bundled:v6",
+        "blocks_strict_validation": true,
+        "dependencies": [],
+        "entry": "lens_patents_bundled_v6",
+        "env_vars": [],
+        "family": "lens",
+        "inputs": {
+          "db_path": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents/lens_patent_simulation_v6.sqlite",
+          "psf_dir": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents/raytrace_psf"
+        },
+        "kind": "proxy_truth_boundary",
+        "outputs": {
+          "path": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents/lens_patent_simulation_v6.sqlite"
+        },
+        "path": "/Users/seongcheoljeong/Documents/CameraE2E/src/pyisetcam/data/lens_patents/lens_patent_simulation_v6.sqlite",
+        "readiness_tier": "proxy",
+        "reason": "Research sweeps may use this asset, but calibrated/sign-off claims are blocked.",
+        "refresh_command": "python tools/build_lens_patent_simulation_db.py",
+        "remediation": [
+          {
+            "current_truth_boundary": "geometric_psf_not_diffraction_wave_optics",
+            "required_evidence": "wave-optics/diffraction comparison, measured PSF, tolerance, coating data",
+            "step": "Attach calibration evidence before raising readiness tier."
+          }
+        ],
+        "role": "fallback-optics-prescription-and-psf",
+        "severity": "info",
+        "status": "fallback",
+        "truth_boundary": "geometric_psf_not_diffraction_wave_optics",
+        "validation_gates": [
+          "sqlite_exists",
+          "rayoptics_psf_manifest_exists",
+          "geometric_psf_caveat"
+        ]
+      },
+      {
+        "action": "validate_current_asset",
+        "artifact_id": "parity:matlab_baselines",
+        "blocks_strict_validation": false,
+        "dependencies": [],
+        "entry": "matlab_parity_baselines",
+        "env_vars": [
+          "PYISETCAM_RUN_PARITY"
+        ],
+        "family": "parity",
+        "inputs": {},
+        "kind": "ready",
+        "outputs": {
+          "path": "/Users/seongcheoljeong/Documents/CameraE2E/tests/parity/baselines"
+        },
+        "path": "/Users/seongcheoljeong/Documents/CameraE2E/tests/parity/baselines",
+        "readiness_tier": "validated",
+        "reason": "Asset is discoverable and has no stale dependency marker.",
+        "refresh_command": "python tools/parity_report.py",
+        "remediation": [],
+        "role": "matlab-baseline-evidence",
+        "severity": "info",
+        "status": "available",
+        "truth_boundary": null,
+        "validation_gates": [
+          "cases_yaml_exists",
+          "baseline_count",
+          "parity_report"
+        ]
+      },
+      {
+        "action": "keep_proxy_label_or_calibrate",
+        "artifact_id": "lens:rayoptics:v9",
+        "blocks_strict_validation": true,
+        "dependencies": [],
+        "entry": "rayoptics_lens_db_v9",
+        "env_vars": [
+          "PYISETCAM_LENS_DB_ROOT"
+        ],
+        "family": "lens",
+        "inputs": {
+          "db_path": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite",
+          "psf_dir": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/raytrace_psf"
+        },
+        "kind": "proxy_truth_boundary",
+        "outputs": {
+          "path": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite"
+        },
+        "path": "/Users/seongcheoljeong/RayOptics/CameraE2E_Lens_DB_v9_20260627/data/lens_patents/lens_patent_simulation_v9.sqlite",
+        "readiness_tier": "proxy",
+        "reason": "Research sweeps may use this asset, but calibrated/sign-off claims are blocked.",
+        "refresh_command": "python tools/render_lens_db_camerae2e_report.py",
+        "remediation": [
+          {
+            "current_truth_boundary": "geometric_psf_not_diffraction_wave_optics",
+            "required_evidence": "wave-optics/diffraction comparison, measured PSF, tolerance, coating data",
+            "step": "Attach calibration evidence before raising readiness tier."
+          }
+        ],
+        "role": "external-optics-prescription-and-psf",
+        "severity": "info",
+        "status": "available",
+        "truth_boundary": "geometric_psf_not_diffraction_wave_optics",
+        "validation_gates": [
+          "sqlite_exists",
+          "rayoptics_psf_manifest_exists",
+          "geometric_psf_caveat"
+        ]
+      }
+    ],
+    "active_runs": {
+      "fdtd_lut_path": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+      "fdtd_lut_run": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant",
+      "lineage_match": false,
+      "tcad_generation_map_path": "/Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz",
+      "tcad_generation_map_run": "/Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke"
+    },
+    "manifest_validation": {
+      "issue_count": 0,
+      "ok": true,
+      "stale_dependency_count": 1,
+      "warning_count": 1
+    },
+    "ok": true,
+    "refresh_order": [
+      {
+        "action": "refresh_downstream_from_current_dependency",
+        "artifact_id": "sensor:tcad:active_collection",
+        "blocks_strict_validation": true,
+        "dependencies": [
+          "fdtd_sensor_lut_active",
+          "fdtd_sensor_stack_catalog"
+        ],
+        "entry": "tcad_sensor_db_active",
+        "env_vars": [
+          "PYISETCAM_FDTD_ROOT"
+        ],
+        "family": "sensor",
+        "inputs": {
+          "accuracy_gate_path": "/Users/seongcheoljeong/FDTD/runs/tcad_accuracy_gate_reference_profile/tcad_accuracy_gate.json",
+          "collection_summary_paths": [
+            "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json",
+            "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json"
+          ],
+          "generation_map_path": "/Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz"
+        },
+        "kind": "stale_dependency",
+        "outputs": {
+          "accuracy_gate_path": "/Users/seongcheoljeong/FDTD/runs/tcad_accuracy_gate_reference_profile/tcad_accuracy_gate.json",
+          "collection_summary_paths": [
+            "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json",
+            "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json"
+          ],
+          "generation_map_path": "/Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz"
+        },
+        "path": "/Users/seongcheoljeong/FDTD",
+        "readiness_tier": "calibration_required",
+        "reason": "TCAD/FDTD active artifact mismatch: active FDTD LUT is under /Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant, but TCAD generation map is under /Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke",
+        "refresh_command": "python tools/render_fdtd_tcad_sensor_report.py",
+        "remediation": [
+          {
+            "command": "python tools/render_fdtd_tcad_sensor_report.py",
+            "current_generation_map_parent": "/Users/seongcheoljeong/FDTD/runs/fdtd_to_tcad_generation_2d_cra_smoke",
+            "expected_output_parent": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant",
+            "input": "/Users/seongcheoljeong/FDTD/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+            "step": "Regenerate FDTD-to-TCAD generation map from the active FDTD LUT run."
+          },
+          {
+            "dependency": "fdtd_sensor_lut_active",
+            "inputs": [
+              "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json",
+              "/Users/seongcheoljeong/FDTD/runs/devsim_split_pd_2d_fdtd_map_proxy_edge20x_smoke/summary.json"
+            ],
+            "step": "Regenerate or re-point DEVSIM summaries to that generation map."
+          },
+          {
+            "command": "python tools/validate_camerae2e_physics_pipeline.py --strict",
+            "step": "Re-run CameraE2E registry validation in strict mode before promotion."
+          }
+        ],
+        "role": "electrical-collection-lut",
+        "severity": "warning",
+        "status": "active",
+        "truth_boundary": "carrier_collection_framework_not_product_calibrated_tcad",
+        "validation_gates": [
+          "generation_map_schema",
+          "devsim_summary_balance",
+          "accuracy_gate",
+          "lineage_match"
+        ]
+      }
+    ],
+    "schema_version": "camerae2e_physics_pipeline_plan_v1",
+    "strict": false,
+    "summary": {
+      "action_count": 10,
+      "blocking_count": 0,
+      "calibration_required_count": 7,
+      "refresh_action_count": 1,
+      "stale_dependency_count": 1
+    },
+    "truth_boundaries": [
+      {
+        "blocks_strict_validation": true,
+        "entry": "fdtd_sensor_stack_catalog",
+        "readiness_tier": "proxy",
+        "truth_boundary": "metadata_derived_stack_configs_unless_product_cad_listed"
+      },
+      {
+        "blocks_strict_validation": true,
+        "entry": "fdtd_sensor_lut_active",
+        "readiness_tier": "proxy",
+        "truth_boundary": "optical_absorption_and_regional_response_proxy"
+      },
+      {
+        "blocks_strict_validation": true,
+        "entry": "tcad_sensor_db_active",
+        "readiness_tier": "calibration_required",
+        "truth_boundary": "carrier_collection_framework_not_product_calibrated_tcad"
+      },
+      {
+        "blocks_strict_validation": true,
+        "entry": "lens_patents_active",
+        "readiness_tier": "proxy",
+        "truth_boundary": "geometric_psf_not_diffraction_wave_optics"
+      },
+      {
+        "blocks_strict_validation": true,
+        "entry": "hwisp_parameter_profiles",
+        "readiness_tier": "proxy",
+        "truth_boundary": "seed_or_public_profile_not_vendor_trace_signoff"
+      },
+      {
+        "blocks_strict_validation": false,
+        "entry": "task_perception_model_profiles",
+        "readiness_tier": "available",
+        "truth_boundary": "adapter_profiles_not_training_dataset_or_model_accuracy_claim"
+      },
+      {
+        "blocks_strict_validation": true,
+        "entry": "lens_patents_bundled_v6",
+        "readiness_tier": "proxy",
+        "truth_boundary": "geometric_psf_not_diffraction_wave_optics"
+      },
+      {
+        "blocks_strict_validation": true,
+        "entry": "rayoptics_lens_db_v9",
+        "readiness_tier": "proxy",
+        "truth_boundary": "geometric_psf_not_diffraction_wave_optics"
+      }
+    ]
+  },
+  "schema_version": "camerae2e_physics_pipeline_validation_v1",
+  "strict": false
+}

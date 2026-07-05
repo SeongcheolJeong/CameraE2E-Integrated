@@ -1,0 +1,627 @@
+{
+  "schema": "image_sensor_pixel_studio_project_v1",
+  "project": {
+    "name": "Reference 1.4um BSI Split-PD Pixel",
+    "short_name": "ref_1p4um_split_pd",
+    "description": "Open-source image-sensor pixel design studio project using proxy stack geometry, Meep optical generation maps, Gmsh-native DEVSIM split-PD solves, and camera-LUT oriented reports.",
+    "status": "framework_ready_accuracy_not_ready"
+  },
+  "inputs": {
+    "stack_config": "configs/sensor_stack_proxy_1p4um.json",
+    "tcad_profile": "measured_profiles/reference_cmos_ppd_1p4um/profile.json",
+    "design_space": "configs/image_sensor_design_space_reference.json",
+    "generation_map_2d": "runs/convergence_cra3_rgb_r84_gridsnap_quant/tcad_generation_map_2d.npz",
+    "generation_volume_3d": "runs/convergence_cra3_rgb_r84_gridsnap_quant/tcad_generation_volume_3d.npz",
+    "design_viewer_manifest": "runs/tcad_design_viewer_reference/manifest.json",
+    "accuracy_gate": "runs/tcad_accuracy_gate_reference_profile/tcad_accuracy_gate.json",
+    "optical_stack_summary": "runs/optical_stack_evidence_reference/optical_stack_summary.json"
+  },
+  "views": {
+    "cross_section_2d": "runs/tcad_design_viewer_reference/viewers/cross_section_2d.html",
+    "geometry_3d": "runs/tcad_design_viewer_reference/viewers/geometry_3d.html",
+    "parameter_report": "runs/tcad_design_viewer_reference/reports/parameter_sweep_comparison.html",
+    "parameter_report_csv": "runs/tcad_design_viewer_reference/reports/parameter_sweep_comparison.csv",
+    "gw_coupling_manifest": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_devsim_research_lut_manifest.json",
+    "gw_coupling_report": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_research_lut_report.html",
+    "gw_coupling_summary_csv": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_research_lut_summary.csv",
+    "camera_system_diagnostic_report": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_research_lut_report.html",
+    "camera_system_research_lut": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_research_lut.json",
+    "camera_system_research_lut_npz": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_research_lut.npz",
+    "camera_system_research_lut_report": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_research_lut_report.html",
+    "camera_system_lut_report": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_lut_report.html",
+    "camera_system_uncertainty_lut": "runs/camera_system_uncertainty_lut_reference/camera_system_uncertainty_lut.json",
+    "camera_system_uncertainty_lut_csv": "runs/camera_system_uncertainty_lut_reference/camera_system_uncertainty_lut.csv",
+    "camera_system_uncertainty_lut_report": "runs/camera_system_uncertainty_lut_reference/camera_system_uncertainty_lut.html",
+    "camera_system_field_lut": "runs/camera_system_uncertainty_lut_reference/camera_system_field_lut.json",
+    "camera_system_field_lut_csv": "runs/camera_system_uncertainty_lut_reference/camera_system_field_lut.csv",
+    "camera_system_field_lut_report": "runs/camera_system_uncertainty_lut_reference/camera_system_field_lut.html",
+    "camera_system_field_lut_npz": "runs/camera_system_uncertainty_lut_reference/camera_system_field_lut.npz",
+    "camera_system_field_lut_query": "runs/camera_system_field_lut_query_reference/field_lut_query.json",
+    "camera_system_field_lut_query_csv": "runs/camera_system_field_lut_query_reference/field_lut_query.csv",
+    "camera_lut_spectral_coverage": "runs/camera_lut_spectral_coverage_reference/camera_lut_spectral_coverage.json",
+    "camera_lut_spectral_coverage_csv": "runs/camera_lut_spectral_coverage_reference/camera_lut_spectral_coverage.csv",
+    "camera_lut_spectral_coverage_report": "runs/camera_lut_spectral_coverage_reference/camera_lut_spectral_coverage.html",
+    "camera_system_quantitative_evidence": "runs/camera_system_quantitative_evidence_reference/camera_system_quantitative_evidence.json",
+    "camera_system_quantitative_evidence_csv": "runs/camera_system_quantitative_evidence_reference/camera_system_quantitative_evidence.csv",
+    "camera_system_quantitative_blockers_csv": "runs/camera_system_quantitative_evidence_reference/camera_system_quantitative_blockers.csv",
+    "camera_system_quantitative_evidence_report": "runs/camera_system_quantitative_evidence_reference/camera_system_quantitative_evidence.md",
+    "measured_profile_interpolation_check": "runs/measured_profile_interpolation_check/interpolation_check.json",
+    "calibration_target_report": "runs/tcad_calibration_target_report_reference/calibration_target_report.json",
+    "calibration_target_report_csv": "runs/tcad_calibration_target_report_reference/calibration_target_report.csv",
+    "calibration_target_metric_csv": "runs/tcad_calibration_target_report_reference/calibration_target_metric_residuals.csv",
+    "calibration_transport_result": "runs/tcad_calibration_transport_reference/calibration_result.json",
+    "calibration_transport_history_csv": "runs/tcad_calibration_transport_reference/calibration_history.csv",
+    "calibration_transport_target_report": "runs/tcad_calibration_transport_target_report_reference/calibration_target_report.json",
+    "calibration_transport_target_report_csv": "runs/tcad_calibration_transport_target_report_reference/calibration_target_report.csv",
+    "calibration_transport_target_metric_csv": "runs/tcad_calibration_transport_target_report_reference/calibration_target_metric_residuals.csv",
+    "transport_sensitivity_report": "runs/tcad_transport_sensitivity_reference/transport_sensitivity_report.json",
+    "transport_sensitivity_report_csv": "runs/tcad_transport_sensitivity_reference/transport_sensitivity_report.csv",
+    "camera_system_research_lut_cra5_r20_legacy": "runs/tcad_gw_coupling_cra5_r20_gridsnap_smoke/camera_system_research_lut.json",
+    "camera_system_research_lut_cra5_r20_legacy_report": "runs/tcad_gw_coupling_cra5_r20_gridsnap_smoke/camera_system_research_lut_report.html",
+    "camera_system_research_lut_reference": "runs/tcad_gw_coupling_reference/camera_system_research_lut.json",
+    "camera_system_research_lut_reference_report": "runs/tcad_gw_coupling_reference/camera_system_research_lut_report.html",
+    "cra5_optical_convergence_report": "runs/convergence_cra5_r15_r20_gridsnap_smoke/convergence_report.json",
+    "cra5_optical_convergence_csv": "runs/convergence_cra5_r15_r20_gridsnap_smoke/convergence_results.csv",
+    "cra5_generation_map_2d": "runs/convergence_cra5_r15_r20_gridsnap_smoke/r20_t12_pml0p45/tcad_generation_map_2d.npz",
+    "center_optical_grid_gate_report": "runs/convergence_center_r20_r25_gridsnap_gate_smoke/convergence_report.json",
+    "center_optical_grid_gate_csv": "runs/convergence_center_r20_r25_gridsnap_gate_smoke/convergence_results.csv",
+    "center_3d_r60_summary_csv": "runs/supercell_center_r60_quant_smoke/camera_lut_summary.csv",
+    "center_3d_r60_generation_map_2d": "runs/supercell_center_r60_quant_smoke/tcad_generation_map_2d.npz",
+    "center_3d_r60_generation_volume_3d": "runs/supercell_center_r60_quant_smoke/tcad_generation_volume_3d.npz",
+    "cra10x_3d_r60_summary_csv": "runs/supercell_cra10x_r60_quant_smoke/camera_lut_summary.csv",
+    "cra10x_3d_r60_generation_map_2d": "runs/supercell_cra10x_r60_quant_smoke/tcad_generation_map_2d.npz",
+    "cra10x_3d_r60_generation_volume_3d": "runs/supercell_cra10x_r60_quant_smoke/tcad_generation_volume_3d.npz",
+    "edge20x_3d_r60_summary_csv": "runs/supercell_edge20x_r60_quant_smoke/camera_lut_summary.csv",
+    "edge20x_3d_r60_generation_map_2d": "runs/supercell_edge20x_r60_quant_smoke/tcad_generation_map_2d.npz",
+    "edge20x_3d_r60_generation_volume_3d": "runs/supercell_edge20x_r60_quant_smoke/tcad_generation_volume_3d.npz",
+    "cra3_optical_convergence_r60_r70_report": "runs/convergence_cra3_r60_r70_gridsnap_quant/convergence_report.json",
+    "cra3_optical_convergence_r60_r70_csv": "runs/convergence_cra3_r60_r70_gridsnap_quant/convergence_results.csv",
+    "cra3_r70_summary_csv": "runs/convergence_cra3_r60_r70_gridsnap_quant/r70_t8_pml0p45/camera_lut_summary.csv",
+    "cra3_r70_generation_map_2d": "runs/convergence_cra3_r60_r70_gridsnap_quant/r70_t8_pml0p45/tcad_generation_map_2d.npz",
+    "cra3_r70_generation_volume_3d": "runs/convergence_cra3_r60_r70_gridsnap_quant/r70_t8_pml0p45/tcad_generation_volume_3d.npz",
+    "cra3_optical_convergence_r60_r70_r80_report": "runs/convergence_cra3_r60_r70_r80_gridsnap_quant/convergence_report.json",
+    "cra3_optical_convergence_r60_r70_r80_csv": "runs/convergence_cra3_r60_r70_r80_gridsnap_quant/convergence_results.csv",
+    "cra3_optical_convergence_full_axes_report": "runs/convergence_cra3_full_axes_quant/convergence_report.json",
+    "cra3_optical_convergence_full_axes_csv": "runs/convergence_cra3_full_axes_quant/convergence_results.csv",
+    "cra3_r80_summary_csv": "runs/convergence_cra3_r60_r70_r80_gridsnap_quant/r80_t8_pml0p45/camera_lut_summary.csv",
+    "cra3_r80_generation_map_2d": "runs/convergence_cra3_r60_r70_r80_gridsnap_quant/r80_t8_pml0p45/tcad_generation_map_2d.npz",
+    "cra3_r80_generation_volume_3d": "runs/convergence_cra3_r60_r70_r80_gridsnap_quant/r80_t8_pml0p45/tcad_generation_volume_3d.npz",
+    "cra3_r80_t12_summary_csv": "runs/convergence_cra3_full_axes_quant/r80_t12_pml0p45/camera_lut_summary.csv",
+    "cra3_r80_pml0p60_summary_csv": "runs/convergence_cra3_full_axes_quant/r80_t8_pml0p60/camera_lut_summary.csv",
+    "center_r60_native_response_manifest": "runs/devsim_native_response_sweep_2d_center_r60_quant_smoke/native_response_sweep_manifest.json",
+    "cra10x_r60_native_response_manifest": "runs/devsim_native_response_sweep_2d_cra10x_r60_quant_smoke/native_response_sweep_manifest.json",
+    "edge20x_r60_native_response_manifest": "runs/devsim_native_response_sweep_2d_edge20x_r60_quant_smoke/native_response_sweep_manifest.json",
+    "cra3_r60_native_research_lut_manifest": "runs/native_devsim_research_lut_cra3_r60_quant_smoke/native_devsim_research_lut_manifest.json",
+    "cra3_r70_native_response_manifest": "runs/devsim_native_response_sweep_2d_cra3_r70_quant/native_response_sweep_manifest.json",
+    "cra3_r70_native_research_lut_manifest": "runs/native_devsim_research_lut_cra3_r70_quant/native_devsim_research_lut_manifest.json",
+    "cra3_r80_native_response_manifest": "runs/devsim_native_response_sweep_2d_cra3_r80_quant/native_response_sweep_manifest.json",
+    "cra3_r80_native_research_lut_manifest": "runs/native_devsim_research_lut_cra3_r80_quant/native_devsim_research_lut_manifest.json",
+    "cra3_r80_pd_only_native_response_manifest": "runs/devsim_native_response_sweep_2d_cra3_r80_quant_pd_only/native_response_sweep_manifest.json",
+    "cra3_r80_resolved_dti_pd_only_native_response_manifest": "runs/devsim_native_response_sweep_2d_cra3_r80_resolved_dti_pd_only_sidewall_liner/native_response_sweep_manifest.json",
+    "cra3_r80_resolved_dti_pd_only_native_research_lut_manifest": "runs/native_devsim_research_lut_cra3_r80_resolved_dti_pd_only_sidewall_liner/native_devsim_research_lut_manifest.json",
+    "cra3z_r80_resolved_dti_pd_only_native_response_manifest": "runs/devsim_native_response_sweep_2d_cra3z_r80_resolved_dti_pd_only_sidewall_liner/native_response_sweep_manifest.json",
+    "cra3z_r80_resolved_dti_pd_only_native_research_lut_manifest": "runs/native_devsim_research_lut_cra3z_r80_resolved_dti_pd_only_sidewall_liner/native_devsim_research_lut_manifest.json",
+    "cra_diag_r80_resolved_dti_pd_only_native_response_manifest": "runs/devsim_native_response_sweep_2d_cra_diag_r80_resolved_dti_pd_only_sidewall_liner/native_response_sweep_manifest.json",
+    "cra_diag_r80_resolved_dti_pd_only_native_research_lut_manifest": "runs/native_devsim_research_lut_cra_diag_r80_resolved_dti_pd_only_sidewall_liner/native_devsim_research_lut_manifest.json",
+    "cra_negative_r80_resolved_dti_pd_only_native_response_manifest": "runs/devsim_native_response_sweep_2d_cra_negative_r80_resolved_dti_pd_only_sidewall_liner/native_response_sweep_manifest.json",
+    "cra_negative_r80_resolved_dti_pd_only_native_research_lut_manifest": "runs/native_devsim_research_lut_cra_negative_r80_resolved_dti_pd_only_sidewall_liner/native_devsim_research_lut_manifest.json",
+    "signed_field_symmetry_validation": "runs/signed_field_symmetry_validation_reference/signed_field_symmetry_validation.json",
+    "signed_field_symmetry_validation_csv": "runs/signed_field_symmetry_validation_reference/signed_field_symmetry_validation.csv",
+    "signed_field_symmetry_validation_report": "runs/signed_field_symmetry_validation_reference/signed_field_symmetry_validation.html",
+    "resolved_dti_pd_only_response_compare": "runs/native_response_compare_cra3_r80_resolved_dti_pd_only_sidewall_liner/native_response_compare.json",
+    "resolved_dti_pd_only_response_compare_csv": "runs/native_response_compare_cra3_r80_resolved_dti_pd_only_sidewall_liner/native_response_compare.csv",
+    "resolved_dti_pd_only_response_compare_report": "runs/native_response_compare_cra3_r80_resolved_dti_pd_only_sidewall_liner/native_response_compare.html",
+    "cra5_native_response_manifest": "runs/devsim_native_response_sweep_2d_cra5_r20_gridsnap_smoke/native_response_sweep_manifest.json",
+    "crosstalk_kernel_manifest": "runs/crosstalk_kernel_reference/crosstalk_kernel.json",
+    "crosstalk_output_kernel_csv": "runs/crosstalk_kernel_reference/crosstalk_output_kernel.csv",
+    "crosstalk_raw_pd_kernel_csv": "runs/crosstalk_kernel_reference/crosstalk_raw_pd_kernel.csv",
+    "crosstalk_kernel_summary_csv": "runs/crosstalk_kernel_reference/crosstalk_kernel_summary.csv",
+    "crosstalk_kernel_heatmap": "runs/crosstalk_kernel_reference/crosstalk_kernel_heatmap.png",
+    "crosstalk_convergence_report": "runs/crosstalk_kernel_reference/crosstalk_convergence.json",
+    "crosstalk_xsection_manifest": "runs/crosstalk_xsection_2d_reference/crosstalk_xsection_kernel.json",
+    "crosstalk_xsection_output_csv": "runs/crosstalk_xsection_2d_reference/crosstalk_xsection_output_kernel.csv",
+    "crosstalk_xsection_raw_pd_csv": "runs/crosstalk_xsection_2d_reference/crosstalk_xsection_raw_pd_kernel.csv",
+    "crosstalk_xsection_summary_csv": "runs/crosstalk_xsection_2d_reference/crosstalk_xsection_summary.csv",
+    "crosstalk_xsection_plot": "runs/crosstalk_xsection_2d_reference/crosstalk_xsection_kernel_lines.png",
+    "crosstalk_xsection_convergence": "runs/crosstalk_xsection_2d_reference/crosstalk_xsection_convergence.json",
+    "variant_run_manifest": "runs/image_sensor_design_variants_reference/variant_run_manifest.json",
+    "variant_comparison_report": "runs/image_sensor_design_variants_reference/variant_comparison_report.html",
+    "variant_comparison_csv": "runs/image_sensor_design_variants_reference/variant_comparison.csv",
+    "variant_comparison_json": "runs/image_sensor_design_variants_reference/variant_comparison.json",
+    "run_manager_report": "runs/image_sensor_design_variants_reference/run_manager_status.html",
+    "run_manager_csv": "runs/image_sensor_design_variants_reference/run_manager_status.csv",
+    "run_manager_json": "runs/image_sensor_design_variants_reference/run_manager_status.json",
+    "dataset_catalog_report": "runs/image_sensor_design_variants_reference/dataset_catalog.html",
+    "dataset_catalog_csv": "runs/image_sensor_design_variants_reference/dataset_catalog.csv",
+    "dataset_catalog_json": "runs/image_sensor_design_variants_reference/dataset_catalog.json",
+    "optical_nk_interpolation_check": "runs/optical_nk_interpolation_check/optical_nk_interpolation_check.json",
+    "orchestrator_last_run": "runs/image_sensor_design_variants_reference/orchestrator_last_run.json",
+    "orchestrator_history": "runs/image_sensor_design_variants_reference/orchestrator_history.jsonl",
+    "native_response_convergence_report": "runs/devsim_native_response_convergence_2d_resolved_dti_sidewall_liner/native_response_convergence_report.json",
+    "resolved_dti_mesh_metadata": "runs/gmsh_split_pd_2d_resolved_dti_reference/mesh_metadata.json",
+    "resolved_dti_split_summary": "runs/devsim_split_pd_2d_resolved_dti_center_pd_only_sidewall_liner/summary.json",
+    "resolved_dti_split_currents": "runs/devsim_split_pd_2d_resolved_dti_center_pd_only_sidewall_liner/split_currents.csv",
+    "tg_fd_transfer_sweep_report": "runs/devsim_tg_fd_transfer_sweep_2d_reference/tg_fd_transfer_sweep_report.json",
+    "tg_fd_transfer_sweep_csv": "runs/devsim_tg_fd_transfer_sweep_2d_reference/tg_fd_transfer_sweep_summary.csv",
+    "tg_fd_transient_report": "runs/devsim_tg_fd_transient_2d_reference/tg_fd_transient_report.json",
+    "tg_fd_transient_csv": "runs/devsim_tg_fd_transient_2d_reference/tg_fd_transient_timeseries.csv",
+    "cra3_rgb_r84_summary_csv": "runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut_summary.csv",
+    "cra3_rgb_r84_lut_json": "runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
+    "cra3_rgb_r84_generation_map_2d": "runs/convergence_cra3_rgb_r84_gridsnap_quant/tcad_generation_map_2d.npz",
+    "cra3_rgb_r84_generation_volume_3d": "runs/convergence_cra3_rgb_r84_gridsnap_quant/tcad_generation_volume_3d.npz",
+    "cra3_rgb_r84_convergence_report": "runs/convergence_cra3_rgb_r84_gridsnap_quant/convergence_report.json",
+    "cra3_rgb_r84_native_response_manifest": "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_response_sweep_manifest.json",
+    "cra3_rgb_r84_native_response_summary": "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_response_sweep_summary.csv",
+    "cra3_rgb_r84_native_research_lut_manifest": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_devsim_research_lut_manifest.json",
+    "cra3z_rgb_r84_summary_csv": "runs/convergence_cra3z_rgb_r84_gridsnap_quant/camera_lut_summary.csv",
+    "cra3z_rgb_r84_lut_json": "runs/convergence_cra3z_rgb_r84_gridsnap_quant/camera_lut.json",
+    "cra3z_rgb_r84_generation_map_2d": "runs/convergence_cra3z_rgb_r84_gridsnap_quant/tcad_generation_map_2d.npz",
+    "cra3z_rgb_r84_generation_volume_3d": "runs/convergence_cra3z_rgb_r84_gridsnap_quant/tcad_generation_volume_3d.npz",
+    "cra3z_rgb_r84_native_response_manifest": "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_response_sweep_manifest.json",
+    "cra3z_rgb_r84_native_response_summary": "runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_response_sweep_summary.csv",
+    "cra3z_rgb_r84_native_research_lut_manifest": "runs/native_devsim_research_lut_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_devsim_research_lut_manifest.json",
+    "cra_diag_rgb_r84_summary_csv": "runs/convergence_cra_diag_rgb_r84_gridsnap_quant/camera_lut_summary.csv",
+    "cra_diag_rgb_r84_lut_json": "runs/convergence_cra_diag_rgb_r84_gridsnap_quant/camera_lut.json",
+    "cra_diag_rgb_r84_generation_map_2d": "runs/convergence_cra_diag_rgb_r84_gridsnap_quant/tcad_generation_map_2d.npz",
+    "cra_diag_rgb_r84_generation_volume_3d": "runs/convergence_cra_diag_rgb_r84_gridsnap_quant/tcad_generation_volume_3d.npz",
+    "cra_diag_rgb_r84_native_response_manifest": "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_response_sweep_manifest.json",
+    "cra_diag_rgb_r84_native_response_summary": "runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_response_sweep_summary.csv",
+    "cra_diag_rgb_r84_native_research_lut_manifest": "runs/native_devsim_research_lut_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_devsim_research_lut_manifest.json",
+    "cra_negative_r84_summary_csv": "runs/convergence_cra_negative_r84_gridsnap_quant/camera_lut_summary.csv",
+    "cra_negative_r84_generation_map_2d": "runs/convergence_cra_negative_r84_gridsnap_quant/tcad_generation_map_2d.npz",
+    "cra_negative_r84_native_response_manifest": "runs/devsim_native_response_sweep_2d_cra_negative_r84_resolved_dti_pd_only_sidewall_liner/native_response_sweep_manifest.json",
+    "cra_negative_r84_native_response_summary": "runs/devsim_native_response_sweep_2d_cra_negative_r84_resolved_dti_pd_only_sidewall_liner/native_response_sweep_summary.csv"
+  },
+  "native_split_runs": {
+    "center": "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/center_wl550nm/summary.json",
+    "cra10x": "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/cra10x_wl550nm/summary.json",
+    "edge20x": "runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/cases/edge20x_wl550nm/summary.json"
+  },
+  "workflow": {
+    "optical": {
+      "solver": "Meep FDTD",
+      "primary_result": "G(x, depth) and G(x, depth, z)",
+      "current_scope": "3D RGB r84 native-DEVSIM research LUT with direct x-axis, z-axis, and diagonal CRA anchors plus high-resolution 2D r72/r84 split/OCL crosstalk x-section. Legacy CRA5 r20 and r70/r80 CRA3 LUTs remain trend-only."
+    },
+    "electrical": {
+      "solver": "DEVSIM",
+      "primary_result": "split-PD cathode current deltas on Gmsh-native 2D mesh",
+      "current_scope": "profile-ppd proxy model; primary optical-response sweeps use PD-only FD feature scale 0, while TG/FD-specific behavior remains in separate transfer/transient diagnostics"
+    },
+    "coupling_next": {
+      "method": "Primary direct DEVSIM solve from FDTD G(x,depth), plus G*W surrogate diagnostics",
+      "status": "native_devsim_direct_primary_with_surrogate_error_gates",
+      "reason": "Split-PD left/right response is not reliably reconstructed by sparse local DD-probe superposition. The primary camera-system response artifact therefore uses native DEVSIM terminal-current deltas from the full imported FDTD generation map. G*W_proxy, W_mesh, W_devsim_laplace, and W_devsim_dd_probe remain available as speed-oriented surrogate diagnostics and are accepted only when their error gates pass against native_devsim."
+    },
+    "crosstalk_kernel": {
+      "solver": "Meep finite-array FDTD",
+      "method": "Simulate a guarded OCL/pixel neighborhood, illuminate the center output cell, and integrate Si absorption in binned output cells plus raw PD cells.",
+      "status": "implemented_truncation_pass_grid_resolution_fail_on_reference_inputs",
+      "reason": "This replaces analytic crosstalk proxy values with a real finite-array FDTD kernel. Current support truncation is low for the largest exported kernels, but resolution convergence and grid feature gates fail because the Si internal wavelength and DTI/passivation features are under-resolved at the smoke resolutions."
+    },
+    "crosstalk_xsection": {
+      "solver": "Meep 2D high-resolution FDTD",
+      "method": "Solve a finite x-y cross-section at 72 and 84 px/um, using the same optical stack, CRA-x source phase, DTI geometry, and split-PD/OCL layouts.",
+      "status": "implemented_convergence_pass_for_split_2x2_3x3_xsection",
+      "reason": "This resolves the numerical grid blocker for CRA-x lateral crosstalk on a practical local mesh: 84 px/um gives 11.33 grid pixels per Si internal wavelength at 550 nm and 3.36 pixels on the 40 nm lens-edge feature. Full 3D OCL footprint convergence still needs a separate heavy run or calibrated reduction."
+    }
+  },
+  "runbook": [
+    {
+      "id": "mesh_native_split_2d",
+      "label": "Build Gmsh native split-PD mesh",
+      "command": ".tcad-env/bin/python tcad_gmsh_pixel_mesh.py --dimension 2 --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --mesh-um 0.10 --fine-mesh-um 0.025 --output-dir runs/gmsh_split_pd_2d_reference_native"
+    },
+    {
+      "id": "devsim_center_native",
+      "label": "Run DEVSIM native center case",
+      "command": ".tcad-env/bin/python devsim_split_pd_2d.py --mesh-source gmsh --gmsh-mesh runs/gmsh_split_pd_2d_reference_native/split_pixel_2d.msh --width-um 1.4 --depth-um 3.0 --split-gap-um 0.04 --generation-map-npz runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz --generation-profile-case center --generation-profile-wavelength-nm 550 --electrical-model profile-ppd --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --output-dir runs/devsim_split_pd_2d_reference_profile_center_gmsh_native"
+    },
+    {
+      "id": "devsim_edge_native",
+      "label": "Run DEVSIM native edge20x case",
+      "command": ".tcad-env/bin/python devsim_split_pd_2d.py --mesh-source gmsh --gmsh-mesh runs/gmsh_split_pd_2d_reference_native/split_pixel_2d.msh --width-um 1.4 --depth-um 3.0 --split-gap-um 0.04 --generation-map-npz runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz --generation-profile-case edge20x --generation-profile-wavelength-nm 550 --electrical-model profile-ppd --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --output-dir runs/devsim_split_pd_2d_reference_profile_edge20x_gmsh_native"
+    },
+    {
+      "id": "devsim_native_response_sweep",
+      "label": "Run native DEVSIM response sweep from FDTD generation map",
+      "command": ".tcad-env/bin/python devsim_native_response_sweep_2d.py --generation-map-npz runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz --mesh runs/gmsh_split_pd_2d_reference_native/split_pixel_2d.msh --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --output-dir runs/devsim_native_response_sweep_2d_reference"
+    },
+    {
+      "id": "fdtd_cra5_convergence_r15_r20",
+      "label": "Run CRA 5-point FDTD r15/r20 convergence",
+      "command": ".meep-env/bin/python run_convergence_sweep.py --mode split-pd-1x1 --split-mode dual-x --wavelengths-nm 550 --cases center:0:0:0:0:0:0,cra05x:5:0:0.25:0:0:0,cra10x:10:0:0.5:0:0:0,cra15x:15:0:0.75:0:0:0,edge20x:20:0:1:0:0:0 --resolutions 15,20 --after-source-times 12 --pml-um 0.45 --grid-snap-y nearest --relative-tolerance 0.10 --output-dir runs/convergence_cra5_r15_r20_gridsnap_smoke"
+    },
+    {
+      "id": "fdtd_center_grid_gate_r20_r25",
+      "label": "Run center optical grid gate at r20/r25",
+      "command": ".meep-env/bin/python run_convergence_sweep.py --mode split-pd-1x1 --split-mode dual-x --wavelengths-nm 550 --cases center:0:0:0:0:0:0 --resolutions 20,25 --after-source-times 8 --pml-um 0.45 --grid-snap-y nearest --relative-tolerance 0.10 --output-dir runs/convergence_center_r20_r25_gridsnap_gate_smoke"
+    },
+    {
+      "id": "fdtd_center_3d_r60_quant_smoke",
+      "label": "Run center 3D FDTD r60 grid-qualified smoke",
+      "command": ".meep-env/bin/python meep_supercell_lut.py --mode split-pd-1x1 --split-mode dual-x --wavelengths-nm 550 --cases center:0:0:0:0:0:0 --resolution 60 --after-source-time 8 --pml-um 0.45 --grid-snap-y nearest --output-dir runs/supercell_center_r60_quant_smoke"
+    },
+    {
+      "id": "fdtd_cra10x_3d_r60_quant_smoke",
+      "label": "Run cra10x 3D FDTD r60 grid-qualified smoke",
+      "command": ".meep-env/bin/python meep_supercell_lut.py --mode split-pd-1x1 --split-mode dual-x --wavelengths-nm 550 --cases cra10x:10:0:0.5:0:0:0 --resolution 60 --after-source-time 8 --pml-um 0.45 --grid-snap-y nearest --output-dir runs/supercell_cra10x_r60_quant_smoke"
+    },
+    {
+      "id": "fdtd_edge20x_3d_r60_quant_smoke",
+      "label": "Run edge20x 3D FDTD r60 grid-qualified smoke",
+      "command": ".meep-env/bin/python meep_supercell_lut.py --mode split-pd-1x1 --split-mode dual-x --wavelengths-nm 550 --cases edge20x:20:0:1:0:0:0 --resolution 60 --after-source-time 8 --pml-um 0.45 --grid-snap-y nearest --output-dir runs/supercell_edge20x_r60_quant_smoke"
+    },
+    {
+      "id": "devsim_native_response_sweep_center_r60",
+      "label": "Run native DEVSIM response from center r60 FDTD map",
+      "command": ".tcad-env/bin/python devsim_native_response_sweep_2d.py --generation-map-npz runs/supercell_center_r60_quant_smoke/tcad_generation_map_2d.npz --mesh runs/gmsh_split_pd_2d_reference_native/split_pixel_2d.msh --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --output-dir runs/devsim_native_response_sweep_2d_center_r60_quant_smoke --force"
+    },
+    {
+      "id": "devsim_native_response_sweep_cra10x_r60",
+      "label": "Run native DEVSIM response from cra10x r60 FDTD map",
+      "command": ".tcad-env/bin/python devsim_native_response_sweep_2d.py --generation-map-npz runs/supercell_cra10x_r60_quant_smoke/tcad_generation_map_2d.npz --mesh runs/gmsh_split_pd_2d_reference_native/split_pixel_2d.msh --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --output-dir runs/devsim_native_response_sweep_2d_cra10x_r60_quant_smoke --force"
+    },
+    {
+      "id": "devsim_native_response_sweep_edge20x_r60",
+      "label": "Run native DEVSIM response from edge20x r60 FDTD map",
+      "command": ".tcad-env/bin/python devsim_native_response_sweep_2d.py --generation-map-npz runs/supercell_edge20x_r60_quant_smoke/tcad_generation_map_2d.npz --mesh runs/gmsh_split_pd_2d_reference_native/split_pixel_2d.msh --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --output-dir runs/devsim_native_response_sweep_2d_edge20x_r60_quant_smoke --force"
+    },
+    {
+      "id": "native_devsim_research_lut_cra3_r60",
+      "label": "Export native-DEVSIM center/cra10x/edge r60 camera research LUT",
+      "command": ".tcad-env/bin/python native_devsim_research_lut.py --native-sweep-manifest runs/devsim_native_response_sweep_2d_center_r60_quant_smoke/native_response_sweep_manifest.json runs/devsim_native_response_sweep_2d_cra10x_r60_quant_smoke/native_response_sweep_manifest.json runs/devsim_native_response_sweep_2d_edge20x_r60_quant_smoke/native_response_sweep_manifest.json --optical-summary-csv runs/supercell_center_r60_quant_smoke/camera_lut_summary.csv runs/supercell_cra10x_r60_quant_smoke/camera_lut_summary.csv runs/supercell_edge20x_r60_quant_smoke/camera_lut_summary.csv --reference-case center --output-dir runs/native_devsim_research_lut_cra3_r60_quant_smoke"
+    },
+    {
+      "id": "fdtd_cra3_convergence_r60_r70",
+      "label": "Run CRA3 3D FDTD r60/r70 integer-grid convergence",
+      "command": ".meep-env/bin/python run_convergence_sweep.py --mode split-pd-1x1 --split-mode dual-x --wavelengths-nm 550 --cases center:0:0:0:0:0:0,cra10x:10:0:0.5:0:0:0,edge20x:20:0:1:0:0:0 --resolutions 60,70 --after-source-times 8 --pml-um 0.45 --grid-snap-y nearest --relative-tolerance 0.05 --import-run 60:8:0.45:runs/supercell_center_r60_quant_smoke --import-run 60:8:0.45:runs/supercell_cra10x_r60_quant_smoke --import-run 60:8:0.45:runs/supercell_edge20x_r60_quant_smoke --skip-imported-settings --output-dir runs/convergence_cra3_r60_r70_gridsnap_quant"
+    },
+    {
+      "id": "devsim_native_response_sweep_cra3_r70",
+      "label": "Run native DEVSIM response from CRA3 r70 convergence FDTD map",
+      "command": ".tcad-env/bin/python devsim_native_response_sweep_2d.py --generation-map-npz runs/convergence_cra3_r60_r70_gridsnap_quant/r70_t8_pml0p45/tcad_generation_map_2d.npz --mesh runs/gmsh_split_pd_2d_reference_native/split_pixel_2d.msh --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --output-dir runs/devsim_native_response_sweep_2d_cra3_r70_quant --force"
+    },
+    {
+      "id": "native_devsim_research_lut_cra3_r70",
+      "label": "Export native-DEVSIM CRA3 r70 camera research LUT with r60/r70 convergence evidence",
+      "command": ".tcad-env/bin/python native_devsim_research_lut.py --native-sweep-manifest runs/devsim_native_response_sweep_2d_cra3_r70_quant/native_response_sweep_manifest.json --optical-summary-csv runs/convergence_cra3_r60_r70_gridsnap_quant/r70_t8_pml0p45/camera_lut_summary.csv --optical-convergence-report runs/convergence_cra3_r60_r70_gridsnap_quant/convergence_report.json --reference-case center --output-dir runs/native_devsim_research_lut_cra3_r70_quant"
+    },
+    {
+      "id": "fdtd_cra3_convergence_r60_r70_r80",
+      "label": "Run CRA3 3D FDTD r60/r70/r80 integer-grid convergence",
+      "command": ".meep-env/bin/python run_convergence_sweep.py --mode split-pd-1x1 --split-mode dual-x --wavelengths-nm 550 --cases center:0:0:0:0:0:0,cra10x:10:0:0.5:0:0:0,edge20x:20:0:1:0:0:0 --resolutions 60,70,80 --after-source-times 8 --pml-um 0.45 --grid-snap-y nearest --relative-tolerance 0.05 --import-run 60:8:0.45:runs/supercell_center_r60_quant_smoke --import-run 60:8:0.45:runs/supercell_cra10x_r60_quant_smoke --import-run 60:8:0.45:runs/supercell_edge20x_r60_quant_smoke --import-run 70:8:0.45:runs/convergence_cra3_r60_r70_gridsnap_quant/r70_t8_pml0p45 --skip-imported-settings --output-dir runs/convergence_cra3_r60_r70_r80_gridsnap_quant"
+    },
+    {
+      "id": "fdtd_cra3_r80_time_convergence",
+      "label": "Run CRA3 r80 FDTD time-decay convergence case",
+      "command": ".meep-env/bin/python meep_supercell_lut.py --mode split-pd-1x1 --split-mode dual-x --wavelengths-nm 550 --cases center:0:0:0:0:0:0,cra10x:10:0:0.5:0:0:0,edge20x:20:0:1:0:0:0 --resolution 80 --after-source-time 12 --pml-um 0.45 --grid-snap-y nearest --min-feature-pixels 2 --min-si-wavelength-pixels 8 --output-dir runs/convergence_cra3_full_axes_quant/r80_t12_pml0p45"
+    },
+    {
+      "id": "fdtd_cra3_r80_pml_convergence",
+      "label": "Run CRA3 r80 FDTD PML-thickness convergence case",
+      "command": ".meep-env/bin/python meep_supercell_lut.py --mode split-pd-1x1 --split-mode dual-x --wavelengths-nm 550 --cases center:0:0:0:0:0:0,cra10x:10:0:0.5:0:0:0,edge20x:20:0:1:0:0:0 --resolution 80 --after-source-time 8 --pml-um 0.60 --grid-snap-y nearest --min-feature-pixels 2 --min-si-wavelength-pixels 8 --output-dir runs/convergence_cra3_full_axes_quant/r80_t8_pml0p60"
+    },
+    {
+      "id": "fdtd_cra3_full_axes_convergence_report",
+      "label": "Build CRA3 full-axis FDTD convergence report from imported runs",
+      "command": ".meep-env/bin/python run_convergence_sweep.py --mode split-pd-1x1 --split-mode dual-x --wavelengths-nm 550 --cases center:0:0:0:0:0:0,cra10x:10:0:0.5:0:0:0,edge20x:20:0:1:0:0:0 --resolutions 60,70,80 --after-source-times 8,12 --pml-um 0.45,0.60 --grid-snap-y nearest --relative-tolerance 0.05 --import-run 60:8:0.45:runs/supercell_center_r60_quant_smoke --import-run 60:8:0.45:runs/supercell_cra10x_r60_quant_smoke --import-run 60:8:0.45:runs/supercell_edge20x_r60_quant_smoke --import-run 70:8:0.45:runs/convergence_cra3_r60_r70_gridsnap_quant/r70_t8_pml0p45 --import-run 80:8:0.45:runs/convergence_cra3_r60_r70_r80_gridsnap_quant/r80_t8_pml0p45 --import-run 80:12:0.45:runs/convergence_cra3_full_axes_quant/r80_t12_pml0p45 --import-run 80:8:0.60:runs/convergence_cra3_full_axes_quant/r80_t8_pml0p60 --imports-only --output-dir runs/convergence_cra3_full_axes_quant"
+    },
+    {
+      "id": "devsim_native_response_sweep_cra3_r80",
+      "label": "Run native DEVSIM response from CRA3 r80 convergence FDTD map",
+      "command": ".tcad-env/bin/python devsim_native_response_sweep_2d.py --generation-map-npz runs/convergence_cra3_r60_r70_r80_gridsnap_quant/r80_t8_pml0p45/tcad_generation_map_2d.npz --mesh runs/gmsh_split_pd_2d_reference_native/split_pixel_2d.msh --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --output-dir runs/devsim_native_response_sweep_2d_cra3_r80_quant --force"
+    },
+    {
+      "id": "native_devsim_research_lut_cra3_r80",
+      "label": "Export native-DEVSIM CRA3 r80 camera research LUT with full-axis convergence evidence",
+      "command": ".tcad-env/bin/python native_devsim_research_lut.py --native-sweep-manifest runs/devsim_native_response_sweep_2d_cra3_r80_quant/native_response_sweep_manifest.json --optical-summary-csv runs/convergence_cra3_r60_r70_r80_gridsnap_quant/r80_t8_pml0p45/camera_lut_summary.csv --optical-convergence-report runs/convergence_cra3_full_axes_quant/convergence_report.json --reference-case center --output-dir runs/native_devsim_research_lut_cra3_r80_quant"
+    },
+    {
+      "id": "devsim_native_response_sweep_cra3_r80_pd_only",
+      "label": "Run CRA3 r80 native DEVSIM PD-only response with FD feature disabled",
+      "command": ".tcad-env/bin/python devsim_native_response_sweep_2d.py --generation-map-npz runs/convergence_cra3_r60_r70_r80_gridsnap_quant/r80_t8_pml0p45/tcad_generation_map_2d.npz --mesh runs/gmsh_split_pd_2d_reference_native/split_pixel_2d.msh --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --floating-diffusion-feature-scale 0 --output-dir runs/devsim_native_response_sweep_2d_cra3_r80_quant_pd_only --force"
+    },
+    {
+      "id": "devsim_native_response_sweep_cra3_r80_resolved_dti_pd_only",
+      "label": "Run CRA3 r80 native DEVSIM response on resolved DTI mesh with FD disabled and BDTI sidewall liner",
+      "command": ".tcad-env/bin/python devsim_native_response_sweep_2d.py --generation-map-npz runs/convergence_cra3_r60_r70_r80_gridsnap_quant/r80_t8_pml0p45/tcad_generation_map_2d.npz --mesh runs/gmsh_split_pd_2d_resolved_dti_reference/split_pixel_2d.msh --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --floating-diffusion-feature-scale 0 --resolved-bdti-sidewall-liner --output-dir runs/devsim_native_response_sweep_2d_cra3_r80_resolved_dti_pd_only_sidewall_liner --force"
+    },
+    {
+      "id": "native_response_compare_cra3_r80_resolved_dti_pd_only",
+      "label": "Compare baseline and sidewall-liner resolved-DTI CRA3 r80 PD-only native responses",
+      "command": ".tcad-env/bin/python devsim_native_response_compare.py --baseline-summary-csv runs/devsim_native_response_sweep_2d_cra3_r80_quant_pd_only/native_response_sweep_summary.csv --candidate-summary-csv runs/devsim_native_response_sweep_2d_cra3_r80_resolved_dti_pd_only_sidewall_liner/native_response_sweep_summary.csv --baseline-label baseline_pd_only --candidate-label resolved_dti_pd_only_sidewall_liner --output-dir runs/native_response_compare_cra3_r80_resolved_dti_pd_only_sidewall_liner --dark-alert-ratio 10 --dark-signal-fraction-alert 0.01"
+    },
+    {
+      "id": "native_devsim_research_lut_cra3_r80_resolved_dti_pd_only",
+      "label": "Export primary resolved-DTI sidewall-liner PD-only CRA3 r80 camera research LUT",
+      "command": ".tcad-env/bin/python native_devsim_research_lut.py --native-sweep-manifest runs/devsim_native_response_sweep_2d_cra3_r80_resolved_dti_pd_only_sidewall_liner/native_response_sweep_manifest.json --optical-summary-csv runs/convergence_cra3_r60_r70_r80_gridsnap_quant/r80_t8_pml0p45/camera_lut_summary.csv --optical-convergence-report runs/convergence_cra3_full_axes_quant/convergence_report.json --reference-case center --output-dir runs/native_devsim_research_lut_cra3_r80_resolved_dti_pd_only_sidewall_liner"
+    },
+    {
+      "id": "fdtd_supercell_cra3z_rgb_r84_gridsnap",
+      "label": "Run direct CRA-z RGB r84 Meep optical generation anchors",
+      "command": ".meep-env/bin/python meep_supercell_lut.py --mode split-pd-1x1 --split-mode dual-x --wavelengths-nm 450,550,650 --cases center:0:0:0:0:0:0,cra10z:0:10:0:0.5:0:0,edge20z:0:20:0:1:0:0 --resolution 84 --after-source-time 8 --pml-um 0.45 --grid-snap-y nearest --min-feature-pixels 2 --min-si-wavelength-pixels 8 --output-dir runs/convergence_cra3z_rgb_r84_gridsnap_quant"
+    },
+    {
+      "id": "devsim_native_response_sweep_cra3z_rgb_r84_resolved_dti_pd_only",
+      "label": "Run direct CRA-z RGB r84 native DEVSIM response on resolved DTI sidewall-liner mesh",
+      "command": ".tcad-env/bin/python devsim_native_response_sweep_2d.py --generation-map-npz runs/convergence_cra3z_rgb_r84_gridsnap_quant/tcad_generation_map_2d.npz --mesh runs/gmsh_split_pd_2d_resolved_dti_reference/split_pixel_2d.msh --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --floating-diffusion-feature-scale 0 --resolved-bdti-sidewall-liner --output-dir runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner --force"
+    },
+    {
+      "id": "native_devsim_research_lut_cra3z_rgb_r84_resolved_dti_pd_only",
+      "label": "Export direct CRA-z RGB r84 resolved-DTI sidewall-liner PD-only camera research LUT",
+      "command": ".tcad-env/bin/python native_devsim_research_lut.py --native-sweep-manifest runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_response_sweep_manifest.json --optical-summary-csv runs/convergence_cra3z_rgb_r84_gridsnap_quant/camera_lut_summary.csv --reference-case center --output-dir runs/native_devsim_research_lut_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner"
+    },
+    {
+      "id": "fdtd_supercell_cra_diag_rgb_r84_gridsnap",
+      "label": "Run direct diagonal CRA RGB r84 Meep optical generation anchors",
+      "command": ".meep-env/bin/python meep_supercell_lut.py --mode split-pd-1x1 --split-mode dual-x --wavelengths-nm 450,550,650 --cases cra10x10z:10:10:0.5:0.5:0:0,edge20x20z:20:20:1:1:0:0 --resolution 84 --after-source-time 8 --pml-um 0.45 --grid-snap-y nearest --min-feature-pixels 2 --min-si-wavelength-pixels 8 --output-dir runs/convergence_cra_diag_rgb_r84_gridsnap_quant"
+    },
+    {
+      "id": "devsim_native_response_sweep_cra_diag_rgb_r84_resolved_dti_pd_only",
+      "label": "Run direct diagonal CRA RGB r84 native DEVSIM response on resolved DTI sidewall-liner mesh",
+      "command": ".tcad-env/bin/python devsim_native_response_sweep_2d.py --generation-map-npz runs/convergence_cra_diag_rgb_r84_gridsnap_quant/tcad_generation_map_2d.npz --mesh runs/gmsh_split_pd_2d_resolved_dti_reference/split_pixel_2d.msh --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --floating-diffusion-feature-scale 0 --resolved-bdti-sidewall-liner --output-dir runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner --force"
+    },
+    {
+      "id": "native_devsim_research_lut_cra_diag_rgb_r84_resolved_dti_pd_only",
+      "label": "Export direct diagonal CRA RGB r84 resolved-DTI sidewall-liner PD-only camera research LUT",
+      "command": ".tcad-env/bin/python native_devsim_research_lut.py --native-sweep-manifest runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_response_sweep_manifest.json --optical-summary-csv runs/convergence_cra_diag_rgb_r84_gridsnap_quant/camera_lut_summary.csv --reference-case cra10x10z --output-dir runs/native_devsim_research_lut_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner"
+    },
+    {
+      "id": "fdtd_supercell_cra_negative_r80_gridsnap",
+      "label": "Run direct negative CRA r80 Meep optical generation anchors",
+      "command": ".meep-env/bin/python meep_supercell_lut.py --mode split-pd-1x1 --split-mode dual-x --wavelengths-nm 550 --cases neg_edge20x:-20:0:-1:0:0:0,neg_edge20x20z:-20:20:-1:1:0:0 --resolution 80 --after-source-time 8 --pml-um 0.45 --grid-snap-y nearest --min-feature-pixels 2 --min-si-wavelength-pixels 8 --output-dir runs/convergence_cra_negative_r80_gridsnap_quant"
+    },
+    {
+      "id": "devsim_native_response_sweep_cra_negative_r80_resolved_dti_pd_only",
+      "label": "Run direct negative CRA native DEVSIM response on resolved DTI sidewall-liner mesh",
+      "command": ".tcad-env/bin/python devsim_native_response_sweep_2d.py --generation-map-npz runs/convergence_cra_negative_r80_gridsnap_quant/tcad_generation_map_2d.npz --mesh runs/gmsh_split_pd_2d_resolved_dti_reference/split_pixel_2d.msh --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --floating-diffusion-feature-scale 0 --resolved-bdti-sidewall-liner --output-dir runs/devsim_native_response_sweep_2d_cra_negative_r80_resolved_dti_pd_only_sidewall_liner --force"
+    },
+    {
+      "id": "native_devsim_research_lut_cra_negative_r80_resolved_dti_pd_only",
+      "label": "Export direct negative CRA resolved-DTI sidewall-liner PD-only r80 camera research LUT",
+      "command": ".tcad-env/bin/python native_devsim_research_lut.py --native-sweep-manifest runs/devsim_native_response_sweep_2d_cra_negative_r80_resolved_dti_pd_only_sidewall_liner/native_response_sweep_manifest.json --optical-summary-csv runs/convergence_cra_negative_r80_gridsnap_quant/camera_lut_summary.csv --reference-case neg_edge20x --output-dir runs/native_devsim_research_lut_cra_negative_r80_resolved_dti_pd_only_sidewall_liner"
+    },
+    {
+      "id": "devsim_native_response_sweep_cra5_r20_gridsnap",
+      "label": "Run native DEVSIM CRA 5-point sweep from grid-safe r20 FDTD generation map",
+      "command": ".tcad-env/bin/python devsim_native_response_sweep_2d.py --generation-map-npz runs/convergence_cra5_r15_r20_gridsnap_smoke/r20_t12_pml0p45/tcad_generation_map_2d.npz --mesh runs/gmsh_split_pd_2d_reference_native/split_pixel_2d.msh --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --output-dir runs/devsim_native_response_sweep_2d_cra5_r20_gridsnap_smoke"
+    },
+    {
+      "id": "gw_coupling_cra5_r20_gridsnap",
+      "label": "Export grid-safe CRA 5-point native-DEVSIM camera research LUT",
+      "command": ".tcad-env/bin/python tcad_gw_coupling.py --generation-map-npz runs/convergence_cra5_r15_r20_gridsnap_smoke/r20_t12_pml0p45/tcad_generation_map_2d.npz --split-summary-manifest runs/devsim_native_response_sweep_2d_cra5_r20_gridsnap_smoke/native_response_sweep_manifest.json --devsim-weighting-csv runs/devsim_weighting_potential_2d_reference/weighting_potential_2d.csv --optical-convergence-report runs/convergence_cra5_r15_r20_gridsnap_smoke/convergence_report.json --output-dir runs/tcad_gw_coupling_cra5_r20_gridsnap_smoke"
+    },
+    {
+      "id": "devsim_native_response_convergence",
+      "label": "Run native DEVSIM response mesh convergence",
+      "command": ".tcad-env/bin/python devsim_native_response_convergence_2d.py --levels reference:0.10:0.025,fine:0.08:0.02 --generation-map-npz runs/convergence_cra3_r60_r70_r80_gridsnap_quant/r80_t8_pml0p45/tcad_generation_map_2d.npz --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --include-dti-oxide --floating-diffusion-feature-scale 0 --resolved-bdti-sidewall-liner --output-dir runs/devsim_native_response_convergence_2d_resolved_dti_sidewall_liner --force"
+    },
+    {
+      "id": "mesh_resolved_dti_2d",
+      "label": "Build resolved DTI/BDTI oxide 2D mesh",
+      "command": ".tcad-env/bin/python tcad_gmsh_pixel_mesh.py --dimension 2 --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --mesh-um 0.10 --fine-mesh-um 0.025 --include-dti-oxide --output-dir runs/gmsh_split_pd_2d_resolved_dti_reference"
+    },
+    {
+      "id": "devsim_resolved_dti_center",
+      "label": "Run PD-only DEVSIM center case on resolved DTI oxide mesh with BDTI sidewall liner",
+      "command": ".tcad-env/bin/python devsim_split_pd_2d.py --mesh-source gmsh --gmsh-mesh runs/gmsh_split_pd_2d_resolved_dti_reference/split_pixel_2d.msh --width-um 1.4 --depth-um 3.0 --split-gap-um 0.04 --generation-map-npz runs/convergence_cra3_r60_r70_r80_gridsnap_quant/r80_t8_pml0p45/tcad_generation_map_2d.npz --generation-profile-case center --generation-profile-wavelength-nm 550 --electrical-model profile-ppd --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --floating-diffusion-feature-scale 0 --resolved-bdti-sidewall-liner --reverse-bias-v -1 --dd-max-iterations 160 --output-dir runs/devsim_split_pd_2d_resolved_dti_center_pd_only_sidewall_liner"
+    },
+    {
+      "id": "devsim_tg_fd_transfer_sweep",
+      "label": "Run TG/FD terminal transfer diagnostic",
+      "command": ".tcad-env/bin/python devsim_tg_fd_transfer_sweep_2d.py --generation-map-npz runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --output-dir runs/devsim_tg_fd_transfer_sweep_2d_reference"
+    },
+    {
+      "id": "devsim_tg_fd_transient",
+      "label": "Run TG/FD transient transfer diagnostic",
+      "command": ".tcad-env/bin/python devsim_tg_fd_transient_2d.py --generation-map-npz runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --tg-drive-mode resolved_gate --transfer-gate-open-bias-v 1.5 --dd-relative-error 2e-5 --output-dir runs/devsim_tg_fd_transient_2d_reference"
+    },
+    {
+      "id": "devsim_weighting_native",
+      "label": "Export DEVSIM-native Laplace weighting potentials",
+      "command": ".tcad-env/bin/python devsim_weighting_potential_2d.py --mesh runs/gmsh_split_pd_2d_reference_native/split_pixel_2d.msh --output-dir runs/devsim_weighting_potential_2d_reference"
+    },
+    {
+      "id": "design_viewer_export",
+      "label": "Regenerate VTK/VTU, viewers, and report",
+      "command": ".tcad-env/bin/python tcad_design_viewer.py"
+    },
+    {
+      "id": "devsim_dd_probe_response",
+      "label": "Regenerate sparse DEVSIM DD probe response",
+      "command": ".tcad-env/bin/python devsim_dd_probe_response_2d.py --x-count 5 --depth-count 5 --baseline-generation-map-npz runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz --baseline-cases center,edge20x --baseline-summary runs/devsim_native_response_sweep_2d_reference/cases/center_wl550nm/summary.json runs/devsim_native_response_sweep_2d_reference/cases/edge20x_wl550nm/summary.json --output-dir runs/devsim_dd_probe_response_2d_reference --force"
+    },
+    {
+      "id": "gw_coupling_report",
+      "label": "Regenerate G*W coupling report",
+      "command": ".tcad-env/bin/python tcad_gw_coupling.py --split-summary-manifest runs/devsim_native_response_sweep_2d_reference/native_response_sweep_manifest.json --devsim-weighting-csv runs/devsim_weighting_potential_2d_reference/weighting_potential_2d.csv --devsim-dd-probe-csv runs/devsim_dd_probe_response_2d_reference/dd_probe_response_2d.csv"
+    },
+    {
+      "id": "optical_stack_evidence",
+      "label": "Regenerate optical stack/n,k evidence",
+      "command": ".tcad-env/bin/python optical_stack_evidence.py --stack-config configs/sensor_stack_proxy_1p4um.json --required-wavelengths-um 0.45,0.55,0.65 --output-dir runs/optical_stack_evidence_reference"
+    },
+    {
+      "id": "optical_nk_interpolation_check",
+      "label": "Validate optical n,k interpolation and evidence gates",
+      "command": ".meep-env/bin/python optical_nk_interpolation_check.py --output-dir runs/optical_nk_interpolation_check"
+    },
+    {
+      "id": "fdtd_crosstalk_kernel_baseline",
+      "label": "Run full-array FDTD crosstalk baseline support sweep",
+      "command": ".meep-env/bin/python meep_crosstalk_kernel.py --modes split-pd-1x1,ocl-2x2,ocl-3x3 --neighborhoods 3,5 --guard-cells 1 --resolutions 6 --cases center:0:0:0:0,edge20x:20:0:1:0 --after-source-time 12 --source-scale 0.92 --source-sigma-scale 0.30 --min-feature-pixels 2 --min-si-wavelength-pixels 8 --output-dir runs/crosstalk_kernel_reference"
+    },
+    {
+      "id": "fdtd_crosstalk_kernel_split_support",
+      "label": "Extend split-pd crosstalk support to 9x9",
+      "command": ".meep-env/bin/python meep_crosstalk_kernel.py --modes split-pd-1x1 --neighborhoods 7,9 --guard-cells 1 --resolutions 6,7 --cases center:0:0:0:0,edge20x:20:0:1:0 --after-source-time 12 --source-scale 0.92 --source-sigma-scale 0.30 --min-feature-pixels 2 --min-si-wavelength-pixels 8 --merge-existing --output-dir runs/crosstalk_kernel_reference"
+    },
+    {
+      "id": "fdtd_crosstalk_kernel_ocl_resolution",
+      "label": "Add OCL 5x5 support resolution check",
+      "command": ".meep-env/bin/python meep_crosstalk_kernel.py --modes ocl-2x2,ocl-3x3 --neighborhoods 5 --guard-cells 1 --resolutions 7 --cases center:0:0:0:0,edge20x:20:0:1:0 --after-source-time 12 --source-scale 0.92 --source-sigma-scale 0.30 --min-feature-pixels 2 --min-si-wavelength-pixels 8 --merge-existing --output-dir runs/crosstalk_kernel_reference"
+    },
+    {
+      "id": "fdtd_crosstalk_kernel_refresh",
+      "label": "Refresh merged crosstalk manifest and convergence report",
+      "command": ".meep-env/bin/python meep_crosstalk_kernel.py --modes \"\" --min-feature-pixels 2 --min-si-wavelength-pixels 8 --merge-existing --output-dir runs/crosstalk_kernel_reference"
+    },
+    {
+      "id": "fdtd_crosstalk_xsection_split",
+      "label": "Run high-resolution 2D split-PD crosstalk x-section",
+      "command": ".meep-env/bin/python meep_crosstalk_xsection_2d.py --modes split-pd-1x1 --neighborhoods 9 --resolutions 72,84 --cases center:0:0:0:0,edge20x:20:0:1:0 --after-source-time 12 --source-scale 0.92 --source-sigma-scale 0.30 --output-dir runs/crosstalk_xsection_2d_split_n9_r72_84"
+    },
+    {
+      "id": "fdtd_crosstalk_xsection_ocl2",
+      "label": "Run high-resolution 2D 2x2 OCL crosstalk x-section",
+      "command": ".meep-env/bin/python meep_crosstalk_xsection_2d.py --modes ocl-2x2 --neighborhoods 5 --resolutions 72,84 --cases center:0:0:0:0,edge20x:20:0:1:0 --after-source-time 12 --source-scale 0.92 --source-sigma-scale 0.30 --output-dir runs/crosstalk_xsection_2d_ocl2_n5_r72_84"
+    },
+    {
+      "id": "fdtd_crosstalk_xsection_ocl3",
+      "label": "Run high-resolution 2D 3x3 OCL crosstalk x-section",
+      "command": ".meep-env/bin/python meep_crosstalk_xsection_2d.py --modes ocl-3x3 --neighborhoods 5 --resolutions 72,84 --cases center:0:0:0:0,edge20x:20:0:1:0 --after-source-time 12 --source-scale 0.92 --source-sigma-scale 0.30 --output-dir runs/crosstalk_xsection_2d_ocl3_n5_r72_84"
+    },
+    {
+      "id": "fdtd_crosstalk_xsection_merge",
+      "label": "Merge high-resolution 2D crosstalk x-section references",
+      "command": ".meep-env/bin/python merge_crosstalk_xsection_2d.py --output-dir runs/crosstalk_xsection_2d_reference"
+    },
+    {
+      "id": "tcad_calibration_target_report",
+      "label": "Validate calibration target residuals",
+      "command": "python3 tcad_calibration_target_report.py --calibration-result runs/tcad_calibration_reference_profile/calibration_result.json --targets-csv measured_profiles/reference_cmos_ppd_1p4um/calibration_targets_synthetic.csv --output-dir runs/tcad_calibration_target_report_reference"
+    },
+    {
+      "id": "tcad_calibration_transport_reference",
+      "label": "Run multi-parameter transport/interface calibration smoke",
+      "command": ".tcad-env/bin/python tcad_calibration_loop.py --config configs/tcad_calibration_transport_reference.json --output-dir runs/tcad_calibration_transport_reference --max-evals 8"
+    },
+    {
+      "id": "tcad_calibration_transport_target_report",
+      "label": "Validate multi-parameter calibration residuals",
+      "command": "python3 tcad_calibration_target_report.py --calibration-result runs/tcad_calibration_transport_reference/calibration_result.json --targets-csv measured_profiles/reference_cmos_ppd_1p4um/calibration_targets_transport_synthetic.csv --output-dir runs/tcad_calibration_transport_target_report_reference --max-abs-normalized-residual 0.01"
+    },
+    {
+      "id": "tcad_transport_sensitivity",
+      "label": "Validate transport/interface calibration controls",
+      "command": ".tcad-env/bin/python tcad_transport_parameter_sensitivity.py --output-dir runs/tcad_transport_sensitivity_reference"
+    },
+    {
+      "id": "accuracy_gate_reference",
+      "label": "Regenerate TCAD accuracy gate",
+      "command": ".tcad-env/bin/python tcad_accuracy_gate.py --profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --split-summary-dir runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner --split-summary-dir runs/devsim_native_response_sweep_2d_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner --split-summary-dir runs/devsim_native_response_sweep_2d_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner --gmsh-summary runs/devsim_gmsh_reference_import_2d/gmsh_pixel_2d_import_summary.json --gmsh-summary runs/devsim_gmsh_reference_import_3d/gmsh_pixel_3d_import_summary.json --resolved-dti-mesh-metadata runs/gmsh_split_pd_2d_resolved_dti_reference/mesh_metadata.json --resolved-dti-split-summary runs/devsim_split_pd_2d_resolved_dti_center_pd_only_sidewall_liner/summary.json --convergence-report runs/convergence_cra3_rgb_r84_gridsnap_quant/convergence_report.json --crosstalk-xsection-convergence runs/crosstalk_xsection_2d_reference/crosstalk_xsection_convergence.json --native-response-convergence-report runs/devsim_native_response_convergence_2d_resolved_dti_sidewall_liner/native_response_convergence_report.json --signed-field-symmetry-validation runs/signed_field_symmetry_validation_reference/signed_field_symmetry_validation.json --camera-lut-spectral-coverage runs/camera_lut_spectral_coverage_reference/camera_lut_spectral_coverage.json --camera-system-field-lut runs/camera_system_uncertainty_lut_reference/camera_system_field_lut.json --tg-fd-report runs/devsim_tg_fd_transfer_sweep_2d_reference/tg_fd_transfer_sweep_report.json --tg-fd-transient-report runs/devsim_tg_fd_transient_2d_reference/tg_fd_transient_report.json --calibration-result runs/tcad_calibration_reference_profile/calibration_result.json --targets-csv measured_profiles/reference_cmos_ppd_1p4um/calibration_targets_synthetic.csv --calibration-target-report runs/tcad_calibration_target_report_reference/calibration_target_report.json --transport-sensitivity-report runs/tcad_transport_sensitivity_reference/transport_sensitivity_report.json --transport-calibration-target-report runs/tcad_calibration_transport_target_report_reference/calibration_target_report.json --optical-stack-summary runs/optical_stack_evidence_reference/optical_stack_summary.json --weighting-summary runs/devsim_weighting_potential_2d_reference/weighting_potential_2d_summary.json --weighting-csv runs/devsim_weighting_potential_2d_reference/weighting_potential_2d.csv --gw-manifest runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_devsim_research_lut_manifest.json --output-dir runs/tcad_accuracy_gate_reference_profile"
+    },
+    {
+      "id": "fdtd_supercell_cra3_rgb_r84_gridsnap",
+      "label": "Run RGB r84 FDTD CRA anchors",
+      "command": ".meep-env/bin/python meep_supercell_lut.py --mode split-pd-1x1 --split-mode dual-x --wavelengths-nm 450,550,650 --cases center:0:0:0:0:0:0,cra10x:10:0:0.5:0:0:0,edge20x:20:0:1:0:0:0 --resolution 84 --after-source-time 8 --pml-um 0.45 --grid-snap-y nearest --min-feature-pixels 2 --min-si-wavelength-pixels 8 --output-dir runs/convergence_cra3_rgb_r84_gridsnap_quant"
+    },
+    {
+      "id": "devsim_native_response_sweep_cra3_rgb_r84_resolved_dti_pd_only",
+      "label": "Run native DEVSIM response sweep for RGB r84 anchors",
+      "command": ".tcad-env/bin/python devsim_native_response_sweep_2d.py --generation-map-npz runs/convergence_cra3_rgb_r84_gridsnap_quant/tcad_generation_map_2d.npz --mesh runs/gmsh_split_pd_2d_resolved_dti_reference/split_pixel_2d.msh --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --floating-diffusion-feature-scale 0 --resolved-bdti-sidewall-liner --output-dir runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner --force"
+    },
+    {
+      "id": "native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only",
+      "label": "Export native-DEVSIM RGB r84 research LUT",
+      "command": ".tcad-env/bin/python native_devsim_research_lut.py --native-sweep-manifest runs/devsim_native_response_sweep_2d_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/native_response_sweep_manifest.json --optical-summary-csv runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut_summary.csv --optical-convergence-report runs/convergence_cra3_rgb_r84_gridsnap_quant/convergence_report.json --reference-case center --output-dir runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner"
+    },
+    {
+      "id": "fdtd_supercell_cra_negative_r84_gridsnap",
+      "label": "Run r84 negative CRA FDTD anchors for signed-field validation",
+      "command": ".meep-env/bin/python meep_supercell_lut.py --mode split-pd-1x1 --split-mode dual-x --wavelengths-nm 550 --cases neg_edge20x:-20:0:-1:0:0:0,neg_edge20x20z:-20:20:-1:1:0:0 --resolution 84 --after-source-time 8 --pml-um 0.45 --grid-snap-y nearest --min-feature-pixels 2 --min-si-wavelength-pixels 8 --output-dir runs/convergence_cra_negative_r84_gridsnap_quant"
+    },
+    {
+      "id": "devsim_native_response_sweep_cra_negative_r84_resolved_dti_pd_only",
+      "label": "Run native DEVSIM response sweep for r84 negative CRA anchors",
+      "command": ".tcad-env/bin/python devsim_native_response_sweep_2d.py --generation-map-npz runs/convergence_cra_negative_r84_gridsnap_quant/tcad_generation_map_2d.npz --mesh runs/gmsh_split_pd_2d_resolved_dti_reference/split_pixel_2d.msh --measured-profile measured_profiles/reference_cmos_ppd_1p4um/profile.json --floating-diffusion-feature-scale 0 --resolved-bdti-sidewall-liner --output-dir runs/devsim_native_response_sweep_2d_cra_negative_r84_resolved_dti_pd_only_sidewall_liner --force"
+    },
+    {
+      "id": "camera_system_uncertainty_lut",
+      "label": "Export camera-system uncertainty envelope from completed stress variants",
+      "command": "python3 camera_lut_uncertainty.py --research-lut-json runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_research_lut.json --z-research-lut-json runs/native_devsim_research_lut_cra3z_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_research_lut.json --diagonal-research-lut-json runs/native_devsim_research_lut_cra_diag_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_research_lut.json --variant-comparison-csv runs/image_sensor_design_variants_reference/variant_comparison.csv --accuracy-blocker reference_proxy_profile --accuracy-blocker synthetic_calibration_targets --accuracy-blocker missing_measured_implant_profile --accuracy-blocker missing_measured_optical_stack_nk --accuracy-blocker mobility_recombination_not_calibrated --accuracy-blocker rgb_r84_full_convergence_not_proven --output-dir runs/camera_system_uncertainty_lut_reference --field-grid-count 41 --field-z-grid-count 41 --signed-field-grid"
+    },
+    {
+      "id": "camera_system_field_lut_query",
+      "label": "Validate and query dense camera-system field LUT",
+      "command": "python3 camera_system_field_lut_query.py --lut-json runs/camera_system_uncertainty_lut_reference/camera_system_field_lut.json --lut-npz runs/camera_system_uncertainty_lut_reference/camera_system_field_lut.npz --field-x=-1,-0.5,0,0.5,1 --field-z=-1,0,1 --output-dir runs/camera_system_field_lut_query_reference"
+    },
+    {
+      "id": "camera_system_quantitative_evidence",
+      "label": "Build camera-system quantitative evidence and blocker manifest",
+      "command": "python3 camera_system_quantitative_evidence.py --config configs/image_sensor_pixel_studio_reference.json --output-dir runs/camera_system_quantitative_evidence_reference"
+    },
+    {
+      "id": "signed_field_symmetry_validation",
+      "label": "Validate signed field LUT against direct negative-CRA native DEVSIM anchors",
+      "command": "python3 signed_field_symmetry_validation.py --field-lut-json runs/camera_system_uncertainty_lut_reference/camera_system_field_lut.json --negative-native-summary-csv runs/devsim_native_response_sweep_2d_cra_negative_r84_resolved_dti_pd_only_sidewall_liner/native_response_sweep_summary.csv --output-dir runs/signed_field_symmetry_validation_reference"
+    },
+    {
+      "id": "camera_lut_spectral_coverage",
+      "label": "Validate camera-system field LUT wavelength coverage",
+      "command": "python3 camera_lut_spectral_coverage.py --field-lut-json runs/camera_system_uncertainty_lut_reference/camera_system_field_lut.json --optical-stack-summary runs/optical_stack_evidence_reference/optical_stack_summary.json --required-wavelengths-nm 450,550,650 --output-dir runs/camera_lut_spectral_coverage_reference"
+    },
+    {
+      "id": "measured_profile_interpolation_check",
+      "label": "Validate measured-profile scattered implant interpolation",
+      "command": "python3 measured_profile_interpolation_check.py --output-dir runs/measured_profile_interpolation_check"
+    },
+    {
+      "id": "variant_run_plans",
+      "label": "Materialize design variant configs and run plans",
+      "command": ".tcad-env/bin/python image_sensor_variant_builder.py"
+    },
+    {
+      "id": "design_variant_preview_custom_split_gap",
+      "label": "Preview custom split-gap design edit",
+      "command": ".tcad-env/bin/python image_sensor_design_variant_create.py --id custom_split_gap_050um --label \"Custom split gap 0.050um\" --param split_gap_um=0.05"
+    },
+    {
+      "id": "design_variant_materialize_custom_split_gap",
+      "label": "Materialize custom split-gap design edit",
+      "command": ".tcad-env/bin/python image_sensor_design_variant_create.py --id custom_split_gap_050um --label \"Custom split gap 0.050um\" --param split_gap_um=0.05 --materialize --overwrite --refresh"
+    },
+    {
+      "id": "variant_compare",
+      "label": "Compare completed variants against baseline",
+      "command": ".tcad-env/bin/python image_sensor_variant_compare.py"
+    },
+    {
+      "id": "run_manager_status",
+      "label": "Build run manager and dataset catalog",
+      "command": ".tcad-env/bin/python image_sensor_run_manager.py"
+    },
+    {
+      "id": "variant_orchestrator_dry_run",
+      "label": "Preview pending variant execution",
+      "command": ".tcad-env/bin/python image_sensor_variant_orchestrator.py --all --next-needed"
+    },
+    {
+      "id": "studio_export",
+      "label": "Regenerate Image Sensor Pixel Studio",
+      "command": ".tcad-env/bin/python image_sensor_pixel_studio.py"
+    }
+  ],
+  "accuracy_position": {
+    "framework_ready": true,
+    "accuracy_ready": false,
+    "must_not_call_product_lut": true,
+    "research_lut_ready": true,
+    "primary_response_method": "native_devsim",
+    "research_lut": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_research_lut.json",
+    "research_lut_status": "READY_PARTIAL_CONVERGENCE_PASS",
+    "research_lut_scope": "RGB 450/550/650 nm, CRA x-axis center/cra10x/edge20x, z-axis center/cra10z/edge20z, and diagonal cra10x10z/edge20x20z r84 3D FDTD generation maps with per-case grid/Si-wavelength gates, native DEVSIM split-PD terminal-current response, and dense signed x/z field LUT. Full resolution/time/PML convergence is not yet proven for RGB r84.",
+    "legacy_cra5_r20_research_lut": "runs/tcad_gw_coupling_cra5_r20_gridsnap_smoke/camera_system_research_lut.json",
+    "optical_crosstalk_xsection_status": "PASS at r72/r84 for split-pd-1x1, 2x2 OCL, and 3x3 OCL center/edge20x",
+    "optical_3d_grid_qualified_smoke": "runs/native_devsim_research_lut_cra3_rgb_r84_resolved_dti_pd_only_sidewall_liner/camera_system_research_lut.json",
+    "main_blockers": [
+      "reference/proxy TCAD profile",
+      "synthetic calibration targets",
+      "missing measured implant/profile inputs",
+      "missing measured optical stack geometry and material n,k inputs",
+      "mobility/recombination not calibrated",
+      "RGB r84 full resolution/time/PML convergence not proven"
+    ]
+  }
+}

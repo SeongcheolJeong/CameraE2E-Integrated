@@ -1,0 +1,48 @@
+{
+  "caveat": "These PSFs are geometric ray histograms. Add diffraction/wavefront PSF before treating them as final image-quality PSFs.",
+  "debug_grid": {
+    "field_count": 3,
+    "min_success_fraction": 0.25,
+    "model": "rayoptics_geometric_histogram",
+    "preset": "debug",
+    "psf_size": 64,
+    "pupil_samples": 13,
+    "sample_spacing_um": null,
+    "wavelengths": [
+      550.0
+    ]
+  },
+  "default_runtime_policy": {
+    "downsample": "Use lens_patent_raytrace_optics(..., target_psf_size=N) to preserve PSF energy.",
+    "fallback": "raytrace_psf debug assets, then diffractionlimited/proxy optics",
+    "prefer": "raytrace_psf_highres when available"
+  },
+  "highres_sample_grid": {
+    "field_count": 5,
+    "min_success_fraction": 0.25,
+    "model": "rayoptics_geometric_histogram",
+    "preset": "production",
+    "psf_size": 512,
+    "pupil_samples": 65,
+    "sample_spacing_um": null,
+    "wavelengths": [
+      450.0,
+      550.0,
+      650.0
+    ]
+  },
+  "recommended_future_production_grid": {
+    "field_count": 7,
+    "model": "rayoptics_geometric_histogram",
+    "psf_size": 768,
+    "pupil_samples": 97,
+    "wavelengths": [
+      450.0,
+      500.0,
+      550.0,
+      600.0,
+      650.0
+    ]
+  },
+  "schema": "camerae2e_psf_grid_spec_v1"
+}

@@ -1,0 +1,1259 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Template-Based Pixel Design Analysis System Review</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #071013;
+      --surface: #0d1a20;
+      --surface-2: #10242d;
+      --surface-3: #142e38;
+      --line: #28505d;
+      --line-soft: rgba(125, 183, 200, 0.24);
+      --text: #e9f5f7;
+      --muted: #a9c3ca;
+      --soft: #7ea0aa;
+      --cyan: #43d8ee;
+      --green: #58d37a;
+      --yellow: #f5ce5c;
+      --red: #ff7b70;
+      --blue: #68a7ff;
+      --ink: #061014;
+      --shadow: 0 18px 50px rgba(0, 0, 0, 0.26);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(67, 216, 238, 0.12), transparent 36rem),
+        linear-gradient(180deg, #061014 0%, #08161b 45%, #071013 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 52px;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: rgba(13, 26, 32, 0.82);
+      box-shadow: var(--shadow);
+      padding: 10px 14px;
+      position: sticky;
+      top: 12px;
+      z-index: 5;
+      backdrop-filter: blur(10px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background:
+        linear-gradient(90deg, transparent 46%, rgba(255,255,255,0.28) 47%, rgba(255,255,255,0.28) 53%, transparent 54%),
+        linear-gradient(0deg, transparent 46%, rgba(255,255,255,0.28) 47%, rgba(255,255,255,0.28) 53%, transparent 54%),
+        linear-gradient(135deg, #43d8ee, #58d37a);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.16) inset;
+      flex: 0 0 auto;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 13px;
+      padding: 7px 9px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+      border-color: var(--line-soft);
+      background: rgba(255,255,255,0.04);
+      text-decoration: none;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+      gap: 22px;
+      align-items: stretch;
+      margin-top: 24px;
+      min-height: 430px;
+    }
+
+    .hero-copy {
+      padding: 38px;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background:
+        linear-gradient(145deg, rgba(16, 36, 45, 0.94), rgba(8, 20, 25, 0.92)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 54px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      font-size: clamp(32px, 4vw, 58px);
+      max-width: 11ch;
+    }
+
+    h2 {
+      font-size: clamp(24px, 2.3vw, 34px);
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .hero-copy .lead {
+      margin-top: 18px;
+      font-size: 18px;
+      max-width: 68ch;
+      color: #cde1e6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 13px;
+      font-family: inherit;
+    }
+
+    .button.primary {
+      color: #062128;
+      background: linear-gradient(135deg, var(--cyan), #72e7ba);
+      border-color: transparent;
+    }
+
+    .button.warn {
+      border-color: rgba(245, 206, 92, 0.5);
+      color: #ffe9a1;
+      background: rgba(245, 206, 92, 0.08);
+    }
+
+    .system-map {
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: rgba(7, 16, 19, 0.78);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: #cce4eb;
+      background: rgba(255,255,255,0.035);
+      font-size: 12px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .chip.pass {
+      border-color: rgba(88, 211, 122, 0.45);
+      color: #baf7c9;
+      background: rgba(88, 211, 122, 0.09);
+    }
+
+    .chip.check {
+      border-color: rgba(245, 206, 92, 0.5);
+      color: #ffe58d;
+      background: rgba(245, 206, 92, 0.08);
+    }
+
+    .chip.fail {
+      border-color: rgba(255, 123, 112, 0.5);
+      color: #ffc3be;
+      background: rgba(255, 123, 112, 0.08);
+    }
+
+    .stack-visual {
+      display: grid;
+      gap: 9px;
+      align-content: center;
+    }
+
+    .stack-layer {
+      position: relative;
+      min-height: 42px;
+      border: 1px solid var(--line-soft);
+      border-radius: 6px;
+      background: var(--surface-2);
+      overflow: hidden;
+    }
+
+    .stack-layer .label {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text);
+      z-index: 1;
+    }
+
+    .layer-lens {
+      height: 84px;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(67,216,238,0.78) 0 47%, transparent 48%),
+        radial-gradient(ellipse at 14% 100%, rgba(104,167,255,0.42) 0 45%, transparent 46%),
+        radial-gradient(ellipse at 86% 100%, rgba(104,167,255,0.42) 0 45%, transparent 46%),
+        #102b36;
+    }
+
+    .layer-cfa {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+      background: transparent;
+      border: 0;
+    }
+
+    .layer-cfa span {
+      min-height: 34px;
+      border-radius: 5px;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .red { background: #e84d55; }
+    .green { background: #35b96c; }
+    .blue { background: #387ee6; }
+
+    .layer-si {
+      height: 120px;
+      background:
+        linear-gradient(90deg, transparent 0 22%, rgba(150,183,210,0.32) 22% 25%, transparent 25% 75%, rgba(150,183,210,0.32) 75% 78%, transparent 78%),
+        radial-gradient(ellipse at 50% 62%, rgba(245,206,92,0.75) 0 23%, transparent 24%),
+        linear-gradient(180deg, rgba(26,57,75,0.95), rgba(11,25,33,0.95));
+    }
+
+    section {
+      margin-top: 22px;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: rgba(13, 26, 32, 0.72);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-head p {
+      max-width: 78ch;
+    }
+
+    .grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .grid.cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid.cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid.cols-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .card {
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: rgba(8, 20, 25, 0.82);
+      padding: 16px;
+      min-width: 0;
+    }
+
+    .card strong {
+      color: var(--text);
+    }
+
+    .metric {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(125, 183, 200, 0.14);
+    }
+
+    .metric:last-child {
+      border-bottom: 0;
+    }
+
+    .metric span:first-child {
+      color: var(--muted);
+    }
+
+    .metric span:last-child {
+      font-weight: 850;
+      color: var(--text);
+      text-align: right;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(120px, 1fr));
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .stage {
+      min-width: 128px;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: linear-gradient(180deg, rgba(20,46,56,0.92), rgba(8,20,25,0.92));
+      padding: 12px;
+      position: relative;
+    }
+
+    .stage::after {
+      content: "";
+      position: absolute;
+      right: -11px;
+      top: 50%;
+      width: 10px;
+      height: 1px;
+      background: var(--line);
+    }
+
+    .stage:last-child::after {
+      display: none;
+    }
+
+    .stage-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(67,216,238,0.12);
+      color: var(--cyan);
+      border: 1px solid rgba(67,216,238,0.38);
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 9px;
+    }
+
+    .stage h3 {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .stage p {
+      font-size: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      overflow: hidden;
+      display: table;
+      background: rgba(8,20,25,0.8);
+    }
+
+    th, td {
+      text-align: left;
+      vertical-align: top;
+      padding: 11px 12px;
+      border-bottom: 1px solid rgba(125, 183, 200, 0.16);
+      font-size: 13px;
+    }
+
+    th {
+      color: var(--text);
+      background: rgba(20,46,56,0.82);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    td {
+      color: #cbe0e5;
+    }
+
+    code {
+      color: #d9f8ff;
+      background: rgba(67,216,238,0.08);
+      border: 1px solid rgba(67,216,238,0.18);
+      border-radius: 5px;
+      padding: 1px 5px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 0.92em;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .risk-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .cad-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .cad-figure {
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(8, 20, 25, 0.82);
+      min-width: 0;
+    }
+
+    .cad-figure img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 940 / 560;
+      object-fit: cover;
+      background: #071318;
+      border-bottom: 1px solid rgba(125, 183, 200, 0.16);
+    }
+
+    .cad-caption {
+      padding: 12px;
+    }
+
+    .cad-caption h3 {
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+
+    .cad-caption p {
+      font-size: 12px;
+    }
+
+    .freecad-note {
+      margin-top: 14px;
+      border: 1px solid rgba(67,216,238,0.18);
+      border-radius: 8px;
+      background: rgba(67,216,238,0.055);
+      padding: 12px 14px;
+    }
+
+    .freecad-note strong {
+      color: #f4fbfd;
+    }
+
+    .freecad-gallery {
+      margin-top: 14px;
+    }
+
+    .risk {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      border: 1px solid rgba(255,123,112,0.24);
+      border-radius: 8px;
+      padding: 12px;
+      background: rgba(255,123,112,0.055);
+    }
+
+    .risk .tag {
+      color: #ffd1cd;
+      font-weight: 900;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .feedback-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    label {
+      display: block;
+      color: var(--text);
+      font-weight: 800;
+      margin-bottom: 7px;
+      font-size: 13px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #071318;
+      color: var(--text);
+      font: inherit;
+      padding: 10px 11px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 112px;
+      resize: vertical;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(67,216,238,0.12);
+    }
+
+    .feedback-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .notice {
+      border: 1px solid rgba(245, 206, 92, 0.42);
+      background: rgba(245, 206, 92, 0.08);
+      color: #ffe9a1;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 13px;
+    }
+
+    .footer {
+      margin-top: 24px;
+      color: var(--soft);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 960px) {
+      .hero,
+      .grid.cols-2,
+      .grid.cols-3,
+      .grid.cols-4,
+      .cad-gallery,
+      .feedback-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        position: static;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .hero-copy {
+        padding: 24px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+        color: #101820;
+      }
+
+      .topbar, .hero-actions, .feedback-actions {
+        display: none;
+      }
+
+      .page {
+        width: 100%;
+        padding: 0;
+      }
+
+      section, .hero-copy, .system-map, .card {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <span>Image Sensor Pixel Workbench Review</span>
+      </div>
+      <nav class="nav" aria-label="Page sections">
+        <a href="#pipeline">Pipeline</a>
+        <a href="#opensource">Open Source</a>
+        <a href="#cadviews">CAD Views</a>
+        <a href="#analysis">Analysis Scope</a>
+        <a href="#limits">Limits</a>
+        <a href="#questions">Review Questions</a>
+        <a href="#feedback">Feedback Form</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">Designer Review Brief</div>
+          <h1>Template 기반 Pixel 설계 분석 시스템</h1>
+          <p class="lead">
+            이 문서는 현재 개발 중인 image sensor pixel workbench를 설계자 관점에서 검토하기 위한
+            standalone HTML입니다. 목적은 “어떤 설계 의사결정에 도움이 되는가”, “어떤 결과를 아직 믿으면
+            안 되는가”, “다음 개발 우선순위가 맞는가”에 대한 실무 피드백을 받는 것입니다.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="http://127.0.0.1:8766/runs/image_sensor_pixel_studio_reference/index.html">Open Local Workbench</a>
+            <a class="button" href="#feedback">Write Review Notes</a>
+            <button class="button warn" type="button" onclick="window.print()">Print / PDF</button>
+          </div>
+        </div>
+
+        <aside class="system-map" aria-label="Pixel stack visual summary">
+          <div class="chip-row">
+            <span class="chip pass">Framework ready</span>
+            <span class="chip check">Research / trend use</span>
+            <span class="chip fail">Not product LUT ready</span>
+          </div>
+          <div class="stack-visual">
+            <div class="stack-layer layer-lens"><span class="label">Microlens / OCL</span></div>
+            <div class="layer-cfa" aria-label="CFA pattern">
+              <span class="red"></span><span class="green"></span><span class="green"></span><span class="blue"></span><span class="red"></span>
+              <span class="green"></span><span class="blue"></span><span class="red"></span><span class="green"></span><span class="blue"></span>
+            </div>
+            <div class="stack-layer"><span class="label">Passivation / CFA / imports</span></div>
+            <div class="stack-layer layer-si"><span class="label">Si + DTI + PD response</span></div>
+          </div>
+        </aside>
+      </div>
+
+      <section id="summary">
+        <div class="section-head">
+          <div>
+            <h2>현재 상태 요약</h2>
+            <p>이 시스템은 “정확도 보장 TCAD/FDTD 제품 도구”가 아니라, CAD template 기반으로 설계 후보를 빠르게 만들고 광학/전기 진단/카메라 export 흐름을 검증하는 open-source research workbench입니다.</p>
+          </div>
+        </div>
+        <div class="grid cols-4">
+          <div class="card">
+            <h3>Geometry Authority</h3>
+            <p>Template이 geometry source입니다. topology 변경은 base template, height/thickness/pitch 같은 scalar 변경은 variant로 관리합니다.</p>
+          </div>
+          <div class="card">
+            <h3>Solver Path</h3>
+            <p>Meep FDTD가 optical response, CRA, crosstalk, OCL/CFA 효과를 계산합니다. DEVSIM은 현재 electrical sanity/proxy 진단입니다.</p>
+          </div>
+          <div class="card">
+            <h3>Output</h3>
+            <p>KPI, charts, case command, solver input, camera-system research export를 JSON/CSV/PNG로 남깁니다.</p>
+          </div>
+          <div class="card">
+            <h3>Accuracy Gate</h3>
+            <p>Measured geometry, measured n,k, calibrated implant/device, convergence PASS 전까지 product LUT로 쓰면 안 됩니다.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="opensource">
+        <div class="section-head">
+          <div>
+            <h2>사용하는 Open-Source 구성요소</h2>
+            <p>목표는 상용 image-sensor workflow와 유사한 설계/분석 흐름을 open-source solver와 CAD/mesh 도구로 재현하는 것입니다.</p>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Tool</th>
+              <th>역할</th>
+              <th>현재 사용 방식</th>
+              <th>검토 포인트</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Meep</strong></td>
+              <td>FDTD optical simulation</td>
+              <td>Microlens/OCL, CFA, CRA, crosstalk kernel, field response, generation map 계열 계산.</td>
+              <td>Convergence, mesh resolution, material n,k, runtime scaling.</td>
+            </tr>
+            <tr>
+              <td><strong>DEVSIM</strong></td>
+              <td>Device/electrical diagnostics</td>
+              <td>Weighting potential, split-PD/QPD proxy, DD smoke, mesh/contact sanity check.</td>
+              <td>Pinned PD, TG, FD, implants, traps, calibrated mobility/recombination 구현 필요.</td>
+            </tr>
+            <tr>
+              <td><strong>FreeCAD</strong></td>
+              <td>CAD review / edit loop</td>
+              <td>Generated STEP/BREP/FCStd template를 열어 3D geometry를 검토하고 working copy를 만드는 경로.</td>
+              <td>설계자가 실제로 CAD에서 수정할 parameter와 topology 경계 정의.</td>
+            </tr>
+            <tr>
+              <td><strong>Gmsh / OpenCASCADE</strong></td>
+              <td>Parametric CAD and mesh</td>
+              <td>Template geometry 생성, coarse CAD review mesh, TCAD bridge mesh 준비.</td>
+              <td>Solver-native mesh와 visualization mesh를 명확히 구분해야 함.</td>
+            </tr>
+            <tr>
+              <td><strong>Python stack</strong></td>
+              <td>Pipeline / analysis</td>
+              <td>NumPy, SciPy, CSV/JSON, Matplotlib, replay/validation scripts로 solver artifact를 처리.</td>
+              <td>Reproducibility, artifact schema, batch/HPC orchestration.</td>
+            </tr>
+            <tr>
+              <td><strong>React / Vite / Playwright</strong></td>
+              <td>Workbench UX and test</td>
+              <td>Design, condition, simulate, analyze UI와 browser functional test를 구성.</td>
+              <td>설계자가 이해하기 쉬운 UX 단순화와 result viewer 품질.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="cadviews">
+        <div class="section-head">
+          <div>
+            <h2>3D CAD / FreeCAD Review Views</h2>
+            <p>아래 이미지는 현재 CAD template의 STEP/BREP/FCStd source와 동일한 template parameter에서 생성한 3D isometric preview입니다. FreeCAD가 설치된 환경에서는 같은 template 폴더의 <code>model.step</code>, <code>model.brep</code>, <code>model.FCStd</code>를 열어 실제 CAD body를 검토합니다.</p>
+          </div>
+          <span class="chip check">CAD-derived preview</span>
+        </div>
+        <div class="cad-gallery">
+          <figure class="cad-figure">
+            <img src="review_assets/cad_qpd_split_pd_2x2.svg" alt="QPD 2x2 split photodiode CAD-derived isometric preview" />
+            <figcaption class="cad-caption">
+              <h3>QPD 2x2 Split-PD</h3>
+              <p>FreeCAD-openable <code>qpd_split_pd_2x2/model.step</code> source. QPD split, green CFA, shield proxy 검토용.</p>
+            </figcaption>
+          </figure>
+          <figure class="cad-figure">
+            <img src="review_assets/cad_quad_2x2_ocl_5x5.svg" alt="Quad 2x2 OCL 5x5 crosstalk CAD-derived isometric preview" />
+            <figcaption class="cad-caption">
+              <h3>Quad 2x2 OCL 5x5 Domain</h3>
+              <p><code>quad_2x2_ocl_5x5_crosstalk/model.step</code> 기반. 중앙 2x2 OCL group과 주변 ring을 포함한 crosstalk domain.</p>
+            </figcaption>
+          </figure>
+          <figure class="cad-figure">
+            <img src="review_assets/cad_mixed_ocl_boundary.svg" alt="Mixed OCL boundary CAD-derived isometric preview" />
+            <figcaption class="cad-caption">
+              <h3>Mixed OCL Boundary</h3>
+              <p><code>mixed_1x1_2x2_3x3_boundary/model.step</code> 기반. 1x1, 2x2, 3x3 OCL transition leakage 검토용.</p>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="freecad-note">
+          <p><strong>FreeCAD review image 목적:</strong> 설계자 리뷰에서는 CAD source가 실제로 어떤 body/tree/viewport로 보이는지가 중요합니다. 아래 snapshot은 FreeCAD viewport 형태로 만든 CAD-source review frame이며, 각 template의 <code>model.step</code>/<code>model.FCStd</code>와 같은 parameter를 기준으로 합니다. 실제 FreeCAD가 설치된 workstation에서는 이 frame을 실제 앱 캡처로 교체할 수 있습니다.</p>
+        </div>
+        <div class="cad-gallery freecad-gallery">
+          <figure class="cad-figure">
+            <img src="review_assets/freecad_view_qpd_split_pd_2x2.svg" alt="FreeCAD-style viewport for QPD 2x2 split photodiode CAD source" />
+            <figcaption class="cad-caption">
+              <h3>FreeCAD View: QPD Split-PD</h3>
+              <p>Source folder: <code>runs/pixel_cad_template_library_reference/qpd_split_pd_2x2</code>. Q1-Q4 split, PD, CFA/OCL body 구성을 설계자가 확인하는 장면.</p>
+            </figcaption>
+          </figure>
+          <figure class="cad-figure">
+            <img src="review_assets/freecad_view_quad_2x2_ocl_5x5.svg" alt="FreeCAD-style viewport for Quad 2x2 OCL 5x5 crosstalk CAD source" />
+            <figcaption class="cad-caption">
+              <h3>FreeCAD View: 5x5 Crosstalk Domain</h3>
+              <p>Source folder: <code>runs/pixel_cad_template_library_reference/quad_2x2_ocl_5x5_crosstalk</code>. 중앙 2x2 OCL과 주변 5x5 group extent 확인용.</p>
+            </figcaption>
+          </figure>
+          <figure class="cad-figure">
+            <img src="review_assets/freecad_view_mixed_ocl_boundary.svg" alt="FreeCAD-style viewport for mixed OCL boundary CAD source" />
+            <figcaption class="cad-caption">
+              <h3>FreeCAD View: Mixed OCL Boundary</h3>
+              <p>Source folder: <code>runs/pixel_cad_template_library_reference/mixed_1x1_2x2_3x3_boundary</code>. 1x1/2x2/3x3 OCL transition 영역의 CAD review image.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="pipeline">
+        <div class="section-head">
+          <div>
+            <h2>Pipeline</h2>
+            <p>설계자는 template과 조건을 정의하고, backend가 solver input과 artifact를 생성합니다. 모든 실행은 command와 결과 파일을 남겨 재현성을 확인합니다.</p>
+          </div>
+        </div>
+        <div class="pipeline" role="list">
+          <div class="stage" role="listitem"><div class="stage-num">1</div><h3>Template 선택</h3><p>Bayer, Quad, Nona, QPD, mixed OCL boundary 등 base topology 선택.</p></div>
+          <div class="stage" role="listitem"><div class="stage-num">2</div><h3>CAD / Geometry</h3><p>STEP/BREP, geometry_import.json, optional mesh, FreeCAD review artifact 생성.</p></div>
+          <div class="stage" role="listitem"><div class="stage-num">3</div><h3>Variant 정의</h3><p>Pitch, lens height, CFA thickness, passivation, DTI 등 parameter override.</p></div>
+          <div class="stage" role="listitem"><div class="stage-num">4</div><h3>Condition</h3><p>Wavelength, color, CRA, field anchor, readout/split mode, OCL/CFA alignment.</p></div>
+          <div class="stage" role="listitem"><div class="stage-num">5</div><h3>Meep FDTD</h3><p>OCL/CFA/stack optical response, focal behavior, CRA roll-off, crosstalk kernel.</p></div>
+          <div class="stage" role="listitem"><div class="stage-num">6</div><h3>Electrical Diagnostics</h3><p>DEVSIM/Gmsh mesh import, split-PD/QPD weighting, DD smoke, sanity checks.</p></div>
+          <div class="stage" role="listitem"><div class="stage-num">7</div><h3>KPI / Charts</h3><p>QE proxy, edge-center ratio, crosstalk heatmap, PDAF phase/balance, gates.</p></div>
+          <div class="stage" role="listitem"><div class="stage-num">8</div><h3>Camera Export</h3><p>Research/trend CSV/JSON package for camera-system simulation ingestion.</p></div>
+        </div>
+      </section>
+
+      <section id="analysis">
+        <div class="section-head">
+          <div>
+            <h2>분석 가능 영역</h2>
+            <p>현재 의미 있게 볼 수 있는 것은 “상대 비교와 경향”입니다. 실측 stack/material/device calibration이 없는 절대 정확도 판단은 제외해야 합니다.</p>
+          </div>
+        </div>
+        <div class="grid cols-3">
+          <div class="card"><h3>Pattern / OCL Topology</h3><p>1x1 Bayer, 2x2 Quad OCL, 3x3 Nona OCL, mixed OCL boundary, QPD split template 비교.</p></div>
+          <div class="card"><h3>CRA / Field Response</h3><p>Center, edge, diagonal field anchor에서 response roll-off와 focal spot displacement 확인.</p></div>
+          <div class="card"><h3>Crosstalk Kernel</h3><p>1x1은 3x3 neighborhood, 2x2 OCL은 5x5 OCL-group domain으로 output kernel과 truncation risk 확인.</p></div>
+          <div class="card"><h3>PDAF / Split Pixel</h3><p>Dual-PD X/Z, QPD 2x2, shield/no-shield control의 phase/balance proxy 확인.</p></div>
+          <div class="card"><h3>Material / Stack Sensitivity</h3><p>CFA thickness, OCL index, passivation, Si thickness 등의 sweep과 tornado-style 민감도 정리.</p></div>
+          <div class="card"><h3>Traceability / Replay</h3><p>각 case의 solver_case.json, case_command.json, KPI artifact로 재현과 비교를 추적.</p></div>
+          <div class="card"><h3>Existing Sensor Reference Track</h3><p>TechInsights 등에서 사용자가 보유/라이선스한 sensor teardown/reference 정보를 구조화해 기존 sensor CAD template와 simulation case로 변환하는 track을 계획합니다.</p></div>
+        </div>
+      </section>
+
+      <section id="templates">
+        <div class="section-head">
+          <div>
+            <h2>핵심 Template 구분</h2>
+            <p>중요한 점은 layout review용 template과 crosstalk kernel용 simulation domain을 혼동하지 않는 것입니다.</p>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Template</th>
+              <th>용도</th>
+              <th>Domain</th>
+              <th>현재 판단</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>bayer_1x1_3x3</code></td>
+              <td>1x1 Bayer 기준 pixel 및 8-neighbor crosstalk</td>
+              <td>3 x 3 subpixels</td>
+              <td><span class="chip check">research baseline</span></td>
+            </tr>
+            <tr>
+              <td><code>quad_2x2_ocl</code></td>
+              <td>Quad 2x2 OCL compact layout review</td>
+              <td>4 x 4 subpixels = 2 x 2 OCL groups</td>
+              <td><span class="chip fail">crosstalk domain insufficient</span></td>
+            </tr>
+            <tr>
+              <td><code>quad_2x2_ocl_3x3_neighborhood</code></td>
+              <td>중앙 2x2 OCL group + 8 neighbor 최소 kernel</td>
+              <td>6 x 6 subpixels = 3 x 3 OCL groups</td>
+              <td><span class="chip check">minimum kernel</span></td>
+            </tr>
+            <tr>
+              <td><code>quad_2x2_ocl_5x5_crosstalk</code></td>
+              <td>High-CRA/long-range leakage truncation 확인</td>
+              <td>10 x 10 subpixels = 5 x 5 OCL groups</td>
+              <td><span class="chip pass">practical kernel domain</span></td>
+            </tr>
+            <tr>
+              <td><code>qpd_split_pd_2x2</code></td>
+              <td>QPD 2x2 split photodiode + shield proxy</td>
+              <td>2 x 2 subpixels, quad split</td>
+              <td><span class="chip check">PDAF proxy</span></td>
+            </tr>
+            <tr>
+              <td><code>mixed_1x1_2x2_3x3_boundary</code></td>
+              <td>OCL topology transition boundary risk</td>
+              <td>mixed finite layout</td>
+              <td><span class="chip check">boundary study</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="outputs">
+        <div class="section-head">
+          <div>
+            <h2>KPI / Chart Output</h2>
+            <p>결과는 설계 판단에 필요한 artifact 단위로 남기되, product-ready 여부는 별도 gate로 막습니다.</p>
+          </div>
+        </div>
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>주요 KPI</h3>
+            <div class="metric"><span>Total response / QE proxy</span><span>relative trend</span></div>
+            <div class="metric"><span>Edge-to-center response</span><span>CRA roll-off</span></div>
+            <div class="metric"><span>Crosstalk fraction</span><span>kernel leakage</span></div>
+            <div class="metric"><span>PDAF phase amplitude</span><span>L/R, Q1-Q4 balance</span></div>
+            <div class="metric"><span>Convergence gate</span><span>PASS / CHECK / FAIL</span></div>
+          </div>
+          <div class="card">
+            <h3>주요 Chart</h3>
+            <div class="metric"><span>CRA response curve</span><span>angle vs response</span></div>
+            <div class="metric"><span>Crosstalk heatmap</span><span>raw / binned kernel</span></div>
+            <div class="metric"><span>Subpixel matrix</span><span>2x2 / 3x3 group uniformity</span></div>
+            <div class="metric"><span>Material tornado</span><span>sensitivity ranking</span></div>
+            <div class="metric"><span>Report card</span><span>grid, PML, flux, measured gates</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="limits">
+        <div class="section-head">
+          <div>
+            <h2>한계와 사용 금지선</h2>
+            <p>아래 항목은 설계자에게 반드시 보여줘야 하는 제한입니다. 이 제한을 숨기면 시스템 개발 방향이 잘못 잡힐 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="risk-list">
+          <div class="risk"><div class="tag">Accuracy Blocker</div><p>Measured stack geometry와 measured n,k가 없으므로 현재 결과는 제품 정확도 LUT가 아닙니다.</p></div>
+          <div class="risk"><div class="tag">Device Blocker</div><p>TG, FD, pinned PD implant, interface trap, BDTI/DTI physics는 아직 calibrated production TCAD 수준이 아닙니다.</p></div>
+          <div class="risk"><div class="tag">Electrical Scope</div><p>DEVSIM은 현재 weighting/DD smoke와 mesh/contact sanity에 유용하지만, full readout circuit/transfer dynamics까지 포함한 모델은 아닙니다.</p></div>
+          <div class="risk"><div class="tag">Smoke Runs</div><p>빠른 smoke resolution은 workflow 검증용입니다. grid/convergence gate가 CHECK/FAIL이면 설계 sign-off 근거로 쓰면 안 됩니다.</p></div>
+          <div class="risk"><div class="tag">Geometry Import</div><p>큰 10x10 2x2 OCL crosstalk domain은 OCL geometry를 CAD import로 쓰고, CFA는 procedural pattern을 사용합니다. 모든 CFA cell polygon을 import하면 material function 제한을 넘습니다.</p></div>
+          <div class="risk"><div class="tag">Camera Export</div><p>Camera-system export는 구조와 trend를 검증하기 위한 package입니다. `product_lut_ready=false`가 정상입니다.</p></div>
+          <div class="risk"><div class="tag">Reference Data</div><p>TechInsights 기반 sensor 정보는 라이선스된 내부 reference 또는 사용자가 제공한 수치 parameter로 사용해야 하며, 원문 이미지/표를 HTML이나 repo에 재배포하면 안 됩니다. 파생 parameter와 provenance만 관리해야 합니다.</p></div>
+        </div>
+      </section>
+
+      <section id="questions">
+        <div class="section-head">
+          <div>
+            <h2>설계자에게 받고 싶은 조언</h2>
+            <p>아래 질문에 대한 답이 다음 개발 우선순위를 정합니다.</p>
+          </div>
+        </div>
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>설계 workflow</h3>
+            <p>Template 기반 방식이 실제 pixel 설계 초기 검토에 자연스러운가? 아니면 GDS/STEP import가 더 우선인가?</p>
+          </div>
+          <div class="card">
+            <h3>Topology coverage</h3>
+            <p>1x1, 2x2 OCL, 3x3 OCL, QPD, shield PDAF 외에 반드시 필요한 pixel/OCL topology는 무엇인가?</p>
+          </div>
+          <div class="card">
+            <h3>Crosstalk domain</h3>
+            <p>2x2 OCL crosstalk에서 5x5 OCL group이면 충분한가? High CRA 조건에서 7x7 이상이 필요한가?</p>
+          </div>
+          <div class="card">
+            <h3>KPI priority</h3>
+            <p>Camera simulation용으로 가장 먼저 필요한 output은 field response, crosstalk kernel, PDAF phase, tolerance envelope 중 무엇인가?</p>
+          </div>
+          <div class="card">
+            <h3>Calibration target</h3>
+            <p>실측이 가능해졌을 때 가장 현실적인 calibration target은 QE spectrum, CRA roll-off, PRNU/shading, crosstalk, PDAF curve 중 무엇인가?</p>
+          </div>
+          <div class="card">
+            <h3>UX decision gate</h3>
+            <p>PASS/CHECK/FAIL label이 충분한가? 설계자가 실제로 신뢰하려면 어떤 provenance와 report가 더 필요한가?</p>
+          </div>
+          <div class="card">
+            <h3>Existing sensor benchmark</h3>
+            <p>TechInsights 기반으로 먼저 CAD화해 비교하면 좋은 기존 sensor 또는 pixel family는 무엇인가?</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="next">
+        <div class="section-head">
+          <div>
+            <h2>제안하는 다음 개발 우선순위</h2>
+            <p>현재 구현을 더 실무적으로 만들기 위한 후보입니다. 설계자 피드백으로 우선순위를 조정해야 합니다.</p>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Priority</th>
+              <th>Item</th>
+              <th>Why it matters</th>
+              <th>Decision needed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>P0</td>
+              <td>GDS/STEP import workflow 정리</td>
+              <td>Template 가정이 실제 layout과 다를 때 신뢰가 급격히 떨어짐.</td>
+              <td>설계자가 주로 제공 가능한 원본 format은?</td>
+            </tr>
+            <tr>
+              <td>P0</td>
+              <td>Measured stack/n,k import schema</td>
+              <td>제품 정확도 gate의 첫 번째 blocker.</td>
+              <td>사내/외부 측정값을 어떤 형태로 받을 수 있는가?</td>
+            </tr>
+            <tr>
+              <td>P0</td>
+              <td>Existing sensor CAD database</td>
+              <td>TechInsights 등 teardown/reference 기반으로 기존 sensor를 template CAD화하면 설계자 리뷰와 benchmark가 훨씬 쉬워짐.</td>
+              <td>사용 가능한 sensor list, 공개/라이선스 범위, 추출 가능한 stack/geometry field는?</td>
+            </tr>
+            <tr>
+              <td>P1</td>
+              <td>Convergence tiers 자동화</td>
+              <td>Smoke와 design trend, quantitative evidence를 분리해야 함.</td>
+              <td>실무자가 기다릴 수 있는 runtime budget은?</td>
+            </tr>
+            <tr>
+              <td>P1</td>
+              <td>5x5/7x7 crosstalk 비교</td>
+              <td>Camera kernel truncation risk를 정량화해야 함.</td>
+              <td>어느 field/CRA/wavelength 조건을 anchor로 둘 것인가?</td>
+            </tr>
+            <tr>
+              <td>P2</td>
+              <td>Electrical calibration track</td>
+              <td>DEVSIM을 proxy에서 calibrated device model로 올리는 경로.</td>
+              <td>TG/FD/implant/interface trap 정보 접근 가능성은?</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="feedback">
+        <div class="section-head">
+          <div>
+            <h2>Feedback Form</h2>
+            <p>Standalone HTML이라 서버 전송은 하지 않습니다. 브라우저 localStorage에 임시 저장하고, JSON으로 복사/다운로드할 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="notice">권장 리뷰 방식: 먼저 pipeline과 한계를 읽고, 아래 항목에 “실제 업무에서는 이게 맞다/아니다”를 구체적으로 적어주세요.</div>
+        <div class="feedback-grid" style="margin-top: 14px;">
+          <div>
+            <label for="reviewer">Reviewer / role</label>
+            <input id="reviewer" data-feedback placeholder="예: Pixel design, optical simulation, camera tuning" />
+          </div>
+          <div>
+            <label for="priority">가장 중요한 개발 우선순위</label>
+            <select id="priority" data-feedback>
+              <option value="">선택</option>
+              <option>GDS/STEP import</option>
+              <option>Existing sensor CAD database</option>
+              <option>Measured stack/material calibration</option>
+              <option>Crosstalk kernel quality</option>
+              <option>PDAF/QPD modeling</option>
+              <option>UX simplification</option>
+              <option>Camera-system export</option>
+            </select>
+          </div>
+          <div>
+            <label for="workflow">Workflow feedback</label>
+            <textarea id="workflow" data-feedback placeholder="Template -> condition -> simulation -> KPI 흐름이 실제 설계 방식과 맞는지 적어주세요."></textarea>
+          </div>
+          <div>
+            <label for="coverage">Missing topology / test cases</label>
+            <textarea id="coverage" data-feedback placeholder="추가해야 할 pixel, OCL, CFA, shield, readout mode를 적어주세요."></textarea>
+          </div>
+          <div>
+            <label for="accuracy">Accuracy concerns</label>
+            <textarea id="accuracy" data-feedback placeholder="어떤 조건이 충족되어야 결과를 신뢰할 수 있는지 적어주세요."></textarea>
+          </div>
+          <div>
+            <label for="kpi">KPI / chart feedback</label>
+            <textarea id="kpi" data-feedback placeholder="실제 설계 판단에 필요한 KPI, chart, export format을 적어주세요."></textarea>
+          </div>
+          <div>
+            <label for="crosstalk">Crosstalk domain feedback</label>
+            <textarea id="crosstalk" data-feedback placeholder="2x2 OCL에서 5x5 group이 충분한지, 7x7/field/wavelength 조건이 필요한지 적어주세요."></textarea>
+          </div>
+          <div>
+            <label for="notes">Other notes</label>
+            <textarea id="notes" data-feedback placeholder="기타 조언이나 우려사항을 적어주세요."></textarea>
+          </div>
+        </div>
+        <div class="feedback-actions">
+          <button class="button primary" type="button" id="copyFeedback">Copy feedback JSON</button>
+          <button class="button" type="button" id="downloadFeedback">Download JSON</button>
+          <button class="button warn" type="button" id="clearFeedback">Clear local notes</button>
+          <span id="feedbackStatus" class="chip">No export yet</span>
+        </div>
+      </section>
+    </main>
+
+    <div class="footer">
+      Standalone review artifact. Current status: framework ready for research/trend studies, not product-LUT accurate.
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const storageKey = "pixel-workbench-template-review-feedback-v1";
+      const fields = Array.from(document.querySelectorAll("[data-feedback]"));
+      const status = document.getElementById("feedbackStatus");
+
+      function collect() {
+        const payload = {
+          schema: "pixel_workbench_template_review_feedback_v1",
+          created_at: new Date().toISOString(),
+          page: "template_design_analysis_review.html",
+          responses: {}
+        };
+        fields.forEach((field) => {
+          payload.responses[field.id] = field.value;
+        });
+        return payload;
+      }
+
+      function save() {
+        localStorage.setItem(storageKey, JSON.stringify(collect(), null, 2));
+        if (status) status.textContent = "Saved locally";
+      }
+
+      function load() {
+        const text = localStorage.getItem(storageKey);
+        if (!text) return;
+        try {
+          const payload = JSON.parse(text);
+          fields.forEach((field) => {
+            if (payload.responses && Object.prototype.hasOwnProperty.call(payload.responses, field.id)) {
+              field.value = payload.responses[field.id];
+            }
+          });
+          if (status) status.textContent = "Loaded local notes";
+        } catch (error) {
+          if (status) status.textContent = "Could not load notes";
+        }
+      }
+
+      fields.forEach((field) => field.addEventListener("input", save));
+      load();
+
+      document.getElementById("copyFeedback").addEventListener("click", async () => {
+        const text = JSON.stringify(collect(), null, 2);
+        try {
+          await navigator.clipboard.writeText(text);
+          if (status) status.textContent = "Copied JSON";
+        } catch (error) {
+          if (status) status.textContent = "Clipboard blocked";
+          window.prompt("Copy feedback JSON", text);
+        }
+      });
+
+      document.getElementById("downloadFeedback").addEventListener("click", () => {
+        const text = JSON.stringify(collect(), null, 2);
+        const blob = new Blob([text], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "pixel_workbench_template_review_feedback.json";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        if (status) status.textContent = "Downloaded JSON";
+      });
+
+      document.getElementById("clearFeedback").addEventListener("click", () => {
+        localStorage.removeItem(storageKey);
+        fields.forEach((field) => {
+          field.value = "";
+        });
+        if (status) status.textContent = "Cleared";
+      });
+    })();
+  </script>
+</body>
+</html>

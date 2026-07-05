@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HW ISP Implementation Verification</title>
+  <style>
+    :root {
+      --ink: #1d2733;
+      --muted: #5d6b78;
+      --line: #d6dee8;
+      --bg: #f2f6f8;
+      --card: #ffffff;
+      --accent: #1f6f8b;
+      --pass: #237a3b;
+      --fail: #aa3b2e;
+      --warn: #9a5a21;
+    }
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #eef7f8 0%, #f7f3eb 100%);
+      color: var(--ink);
+      font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 34px 24px 52px;
+    }
+    h1, h2, h3 {
+      line-height: 1.15;
+      margin: 0 0 14px;
+    }
+    h1 {
+      font-size: 36px;
+      letter-spacing: -0.035em;
+    }
+    h2 {
+      margin-top: 34px;
+      font-size: 23px;
+    }
+    h3 {
+      margin-top: 22px;
+      font-size: 18px;
+    }
+    .lead {
+      color: var(--muted);
+      max-width: 900px;
+      font-size: 17px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px;
+      margin: 24px 0;
+    }
+    .card, figure, table, .panel {
+      background: rgb(255 255 255 / 92%);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 10px 26px rgb(31 49 62 / 8%);
+    }
+    .card {
+      padding: 16px 18px;
+    }
+    .label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .value {
+      display: block;
+      margin-top: 6px;
+      font-size: 26px;
+      font-weight: 760;
+      letter-spacing: -0.03em;
+    }
+    .panel {
+      padding: 18px;
+      overflow-x: auto;
+    }
+    .architecture {
+      width: 100%;
+      min-width: 900px;
+      height: auto;
+    }
+    .architecture text {
+      fill: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .architecture .caption {
+      fill: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .architecture line {
+      stroke: #344054;
+      stroke-width: 2.2;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #e9f0f3;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    tr:last-child td {
+      border-bottom: 0;
+    }
+    code {
+      background: #edf3f5;
+      border-radius: 6px;
+      padding: 2px 5px;
+    }
+    .pass {
+      color: var(--pass);
+      font-weight: 800;
+    }
+    .fail {
+      color: var(--fail);
+      font-weight: 800;
+    }
+    .warn {
+      color: var(--warn);
+      font-weight: 800;
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .links a {
+      color: var(--accent);
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      text-decoration: none;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    figure {
+      margin: 0;
+      overflow: hidden;
+    }
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: white;
+    }
+    figcaption {
+      padding: 11px 13px 13px;
+      color: var(--muted);
+    }
+    ul {
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+<main>
+
+<h1>HW ISP Implementation And Verification Report</h1>
+<p class="lead">This report summarizes the HW ISP simulation implementation, architecture, parameter DB integration, and latest verification evidence. It is a system-verification layer: image values remain produced by the existing pyisetcam camera pipeline, while HW ISP adds timing, queue, and delayed AE/AWB behavior.</p>
+<div class="cards">
+  <div class="card"><span class="label">Git Commit</span><span class="value">65256a6</span></div>
+  <div class="card"><span class="label">HW ISP Profile</span><span class="value">rpi_vc4_imx219_public_seed</span></div>
+  <div class="card"><span class="label">Frame Count</span><span class="value">8</span></div>
+  <div class="card"><span class="label">3A Verdict</span><span class="value">PASS</span></div>
+</div>
+
+<h2>Architecture</h2>
+<div class="panel">
+<svg class="architecture" viewBox="0 0 1248 410" role="img" aria-label="HW ISP architecture diagram">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#344054" />
+    </marker>
+  </defs>
+  <g class="links"><line x1="164" y1="111" x2="174" y2="111" marker-end="url(#arrow)" /><line x1="314" y1="111" x2="324" y2="111" marker-end="url(#arrow)" /><line x1="464" y1="111" x2="704" y2="111" marker-end="url(#arrow)" /><line x1="844" y1="111" x2="914" y2="111" marker-end="url(#arrow)" /><line x1="1054" y1="111" x2="1084" y2="111" marker-end="url(#arrow)" /><line x1="394" y1="72" x2="504" y2="67" marker-end="url(#arrow)" /><line x1="574" y1="106" x2="574" y2="146" marker-end="url(#arrow)" /><line x1="504" y1="185" x2="394" y2="151" marker-end="url(#arrow)" /><line x1="574" y1="286" x2="574" y2="224" marker-end="url(#arrow)" /><line x1="644" y1="325" x2="704" y2="151" marker-end="url(#arrow)" /></g>
+  <g class="blocks"><rect x="24" y="72" width="140" height="78" rx="14" fill="#f6d365" /><text x="94" y="102" text-anchor="middle"><tspan x="94" dy="0">Scene</tspan></text><rect x="174" y="72" width="140" height="78" rx="14" fill="#f6d365" /><text x="244" y="102" text-anchor="middle"><tspan x="244" dy="0">Optics / OI</tspan></text><rect x="324" y="72" width="140" height="78" rx="14" fill="#9dd6df" /><text x="394" y="102" text-anchor="middle"><tspan x="394" dy="0">Sensor</tspan><tspan x="394" dy="18">Exposure + Gain</tspan><tspan x="394" dy="18">Readout</tspan></text><rect x="504" y="28" width="140" height="78" rx="14" fill="#b7e4c7" /><text x="574" y="58" text-anchor="middle"><tspan x="574" dy="0">H3A-like</tspan><tspan x="574" dy="18">Stats Grid</tspan></text><rect x="504" y="146" width="140" height="78" rx="14" fill="#b7e4c7" /><text x="574" y="176" text-anchor="middle"><tspan x="574" dy="0">AE/AWB</tspan><tspan x="574" dy="18">Delay Queue</tspan></text><rect x="704" y="72" width="140" height="78" rx="14" fill="#c8b6ff" /><text x="774" y="102" text-anchor="middle"><tspan x="774" dy="0">ISP Core</tspan><tspan x="774" dy="18">BLC / DPC / LSC</tspan><tspan x="774" dy="18">Demosaic / CCM / Gamma</tspan></text><rect x="914" y="72" width="140" height="78" rx="14" fill="#ffafcc" /><text x="984" y="102" text-anchor="middle"><tspan x="984" dy="0">DMA + Driver</tspan><tspan x="984" dy="18">Queue</tspan></text><rect x="1084" y="72" width="140" height="78" rx="14" fill="#ffafcc" /><text x="1154" y="102" text-anchor="middle"><tspan x="1154" dy="0">App-visible</tspan><tspan x="1154" dy="18">Frame</tspan></text><rect x="504" y="286" width="140" height="78" rx="14" fill="#d8e2dc" /><text x="574" y="316" text-anchor="middle"><tspan x="574" dy="0">HW ISP</tspan><tspan x="574" dy="18">Profile DB</tspan></text></g>
+  <text x="624" y="390" text-anchor="middle" class="caption">
+    Pixel values stay in the existing camera pipeline; HW ISP adds timing, queue, and delayed-control metadata.
+  </text>
+</svg>
+</div>
+
+<h2>Implemented Scope</h2>
+<div class="grid">
+  <div class="card"><span class="label">Latency Layer</span><p>Sensor exposure/readout timestamps, line-buffer and frame-buffer ISP stage timing, DMA, queue stall, and app-visible timing.</p></div>
+  <div class="card"><span class="label">Image-affecting 3A</span><p>Optional <code>apply_to_image=True</code> delayed AE/AWB control loop with H3A-like stats grid, highlight handling, and valid-luma AWB stats.</p></div>
+  <div class="card"><span class="label">Parameter DB</span><p>Named profile loader, built-in public seed profiles, environment override via <code>PYISETCAM_HWISP_DB</code>, and libcamera tuning collector.</p></div>
+  <div class="card"><span class="label">Reports</span><p>Timeline dashboard, frame details, 3A convergence plots, machine-readable JSON, and this implementation verification report.</p></div>
+</div>
+
+<h2>Parameter DB</h2>
+<table><thead><tr><th>Profile</th><th>Use</th><th>Confidence</th><th>Description</th></tr></thead><tbody><tr><td><code>generic_1080p_30fps</code></td><td>Available</td><td>engineering_seed</td><td>Synthetic 1080p30 HW ISP seed profile for system-level latency and delayed 3A simulations.</td></tr><tr><td><code>rpi_vc4_imx219_public_seed</code></td><td>Active</td><td>public_seed_approximate_timing</td><td>Public Raspberry Pi VC4 + IMX219 seed profile normalized for pyisetcam HW ISP simulation.</td></tr><tr><td><code>rpi_vc4_imx219_public_seed timing</code></td><td>Active values</td><td>Config</td><td>30.0 fps, 15.200 us/line, 1080 active lines, target luma 0.165</td></tr></tbody></table>
+
+<h2>Verification Results</h2>
+<table><thead><tr><th>Command</th><th>Status</th><th>Result</th></tr></thead><tbody><tr><td><code>python tools/render_hwisp_timeline_report.py --profile rpi_vc4_imx219_public_seed</code></td><td class="pass">PASS</td><td>Timeline, 3A, and latency artifacts exist in reports/hwisp/.</td></tr><tr><td><code>/Users/seongcheoljeong/miniforge3/envs/isetcam-py/bin/python -m pytest -q tests/unit/test_hwisp_db.py tests/unit/test_hwisp.py</code></td><td class="pass">PASS</td><td>29 passed in 3.73s</td></tr></tbody></table>
+
+<h2>3A Validation Results</h2>
+<div class="grid">
+  <div><table><thead><tr><th>Validation</th><th>Status</th></tr></thead><tbody><tr><td>AE settle</td><td class="pass">PASS</td></tr><tr><td>AWB settle</td><td class="pass">PASS</td></tr><tr><td>Clamp compliance</td><td class="pass">PASS</td></tr><tr><td>Warmup delay mapping</td><td class="pass">PASS</td></tr><tr><td>Highlight clip reduction</td><td class="pass">PASS</td></tr></tbody></table></div>
+  <div class="card">
+    <span class="label">Measured Values</span>
+    <ul>
+      <li>AE settle frame: <code>8.0</code></li>
+      <li>AE final error: <code>-0.15285087300087155</code> EV</li>
+      <li>AWB settle frame: <code>10.0</code></li>
+      <li>AWB final RGB imbalance: <code>0.15553446849312635</code></li>
+      <li>Max clip before/after response: <code>0.16380981532496683</code> / <code>0.06348841954902561</code></li>
+    </ul>
+  </div>
+</div>
+
+<h2>Latency Evidence</h2>
+<div class="cards">
+  <div class="card"><span class="label">Mean E2E</span><span class="value">12.984 ms</span></div>
+  <div class="card"><span class="label">Max E2E</span><span class="value">12.984 ms</span></div>
+  <div class="card"><span class="label">Queue Stall Total</span><span class="value">83.565 ms</span></div>
+</div>
+<div class="grid">
+  <figure><img src="frame_timeline.png" alt="Frame timeline"><figcaption><strong>Frame timeline</strong><br>Per-frame ISP stage spans and queue timing.</figcaption></figure>
+  <figure><img src="stage_latency.png" alt="Stage latency"><figcaption><strong>Stage latency</strong><br>Mean modeled latency by HW ISP block.</figcaption></figure>
+  <figure><img src="e2e_latency.png" alt="E2E latency"><figcaption><strong>E2E latency</strong><br>Application-visible latency and queue stall.</figcaption></figure>
+  <figure><img src="ae_convergence.png" alt="AE convergence"><figcaption><strong>AE convergence</strong><br>Metered luma, exposure/gain, clipping, and settle frame.</figcaption></figure>
+  <figure><img src="awb_convergence.png" alt="AWB convergence"><figcaption><strong>AWB convergence</strong><br>Valid-luma gray-world correction and RGB imbalance.</figcaption></figure>
+  <figure><img src="three_a_thumbnails.png" alt="3A thumbnails"><figcaption><strong>3A thumbnails</strong><br>Representative output frames before and after delayed control response.</figcaption></figure>
+</div>
+
+<h2>Artifact Check</h2>
+<table><thead><tr><th>Artifact</th><th>Status</th><th>Bytes</th></tr></thead><tbody><tr><td><code>index.html</code></td><td class="pass">PASS</td><td>11,969</td></tr><tr><td><code>frame_details.html</code></td><td class="pass">PASS</td><td>10,206</td></tr><tr><td><code>timeline_report.md</code></td><td class="pass">PASS</td><td>1,673</td></tr><tr><td><code>timeline_summary.json</code></td><td class="pass">PASS</td><td>97,524</td></tr><tr><td><code>three_a_summary.json</code></td><td class="pass">PASS</td><td>147,275</td></tr><tr><td><code>frame_timeline.png</code></td><td class="pass">PASS</td><td>147,228</td></tr><tr><td><code>stage_latency.png</code></td><td class="pass">PASS</td><td>34,725</td></tr><tr><td><code>e2e_latency.png</code></td><td class="pass">PASS</td><td>35,182</td></tr><tr><td><code>ae_convergence.png</code></td><td class="pass">PASS</td><td>145,677</td></tr><tr><td><code>awb_convergence.png</code></td><td class="pass">PASS</td><td>179,965</td></tr><tr><td><code>three_a_thumbnails.png</code></td><td class="pass">PASS</td><td>451,629</td></tr></tbody></table>
+
+<h2>Known Limits</h2>
+<div class="panel">
+  <ul>
+    <li>Public seed profiles are not vendor sign-off databases. Accurate block latency requires BSP documentation, kernel trace, hardware counters, or bench measurement.</li>
+    <li>AF is intentionally out of scope in the current 3A layer.</li>
+    <li>The simulator models timing/control behavior; fixed-point vendor ISP numerical matching is a separate task.</li>
+  </ul>
+</div>
+
+<div class="links">
+  <a href="index.html">Timeline dashboard</a>
+  <a href="frame_details.html">Frame details</a>
+  <a href="timeline_summary.json">Timeline JSON</a>
+  <a href="three_a_summary.json">3A JSON</a>
+  <a href="implementation_verification_summary.json">Implementation summary JSON</a>
+</div>
+<p class="lead">Generated at 2026-05-16T07:18:26.</p>
+
+</main>
+</body>
+</html>

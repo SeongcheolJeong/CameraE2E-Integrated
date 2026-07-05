@@ -1,0 +1,537 @@
+{
+  "schema": "image_sensor_optical_qe_model_v1",
+  "code": "DEF-2509-801",
+  "source": {
+    "code": "DEF-2509-801",
+    "manufacturer": "OmniVision",
+    "device_name": "OG05C10_CIS",
+    "title": "OmniVision OG05C10 3.5µm Global Shutter Sensor Device Essentials Folder",
+    "report_type": "DEF",
+    "release_date": "2025-10-28T00:00:00.000+00:00",
+    "html_files": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html"
+    ],
+    "pdf_files": []
+  },
+  "optical": {
+    "geometry": {
+      "pixel_pitch_um": {
+        "value": 3.45,
+        "source_kind": "extracted",
+        "confidence": 0.9,
+        "method": "sensor_catalog.derived_specs.pixel_pitch_um",
+        "unit": "um",
+        "evidence": "search_description: The OmniVision OG05C10, a voltage domain global shutter (VDGS) image sensor, is primarily designed for machine vision applications such as barcode scanners, robotics, industrial metrology, and automation, and may also b.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/data/search_results.json"
+      },
+      "optical_format": {
+        "value": "1/1.45\"",
+        "source_kind": "extracted",
+        "confidence": 0.74,
+        "method": "sensor_catalog.derived_specs.optical_format",
+        "evidence": "html_design_snippet: Device Essentials Summary Camera module/CIS package dimensions 38.26 mm × 37.93 mm × 37.88 mm thick Device manufacturer, part number, downstream OmniVision, OG05C10, LI-OG05C10-MIPI Die stack size (from die edge) 11.80..",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html"
+      },
+      "optical_stack_height_um": {
+        "value": 3.6,
+        "source_kind": "extracted",
+        "confidence": 0.86,
+        "method": "sensor_catalog.derived_specs.optical_stack_height_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Planar Bayer-patterned CFA on planarized buffer layer Measured color filter thickness ranges from 680 nm to 870 nm (dependent on color and measured location) Optical stack height 3.6 µm.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html"
+      },
+      "active_si_thickness_um": {
+        "value": 5.9,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.active_si_thickness_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: 5.9 µm active Si in the pixel array.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html"
+      }
+    },
+    "cfa": {
+      "pattern": {
+        "value": "bayer",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_pattern",
+        "evidence": "combined_text: bayer"
+      },
+      "representative_thickness_um": {
+        "value": 3.6,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Planar Bayer-patterned CFA on planarized buffer layer Measured color filter thickness ranges from 680 nm to 870 nm (dependent on color and measured location) Optical stack height 3.6 µm.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html"
+      },
+      "thickness_min_um": {
+        "value": 0.68,
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_min_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Planar Bayer-patterned CFA on planarized buffer layer Measured color filter thickness ranges from 680 nm to 870 nm (dependent on color and measured location) Optical stack height 3.6 µm.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html"
+      },
+      "thickness_max_um": {
+        "value": 0.87,
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.cfa_thickness_max_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: Planar Bayer-patterned CFA on planarized buffer layer Measured color filter thickness ranges from 680 nm to 870 nm (dependent on color and measured location) Optical stack height 3.6 µm.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html"
+      },
+      "color_filter_pitch_um": {
+        "value": 3.45,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.color_filter_pitch_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: W grid structure, aperture grid fill factor of 91.2% Planar organic color filter array (CFA) Organic on-chip microlens (OCL) array OCL pitch of 3.45 μm, color filter pitch of 3.45 μm, and grid pitch of 3.45 μm 188-pin c.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "bayer",
+          "field": "cfa_pattern"
+        },
+        {
+          "source": "html_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html",
+          "text": "Planar Bayer-patterned CFA on planarized buffer layer Measured color filter thickness ranges from 680 nm to 870 nm (dependent on color and measured location) Optical stack height 3.6 µm.",
+          "field": "cfa_thickness_um"
+        },
+        {
+          "source": "html_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html",
+          "text": "W grid structure, aperture grid fill factor of 91.2% Planar organic color filter array (CFA) Organic on-chip microlens (OCL) array OCL pitch of 3.45 μm, color filter pitch of 3.45 μm, and grid pitch of 3.45 μm 188-pin c...",
+          "field": "color_filter_pitch_um"
+        }
+      ]
+    },
+    "microlens": {
+      "type": {
+        "value": "ocl",
+        "source_kind": "extracted",
+        "confidence": 0.82,
+        "method": "sensor_catalog.derived_specs.microlens_type",
+        "evidence": "combined_text: ocl"
+      },
+      "ocl_pitch_um": {
+        "value": 3.45,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.ocl_pitch_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: W grid structure, aperture grid fill factor of 91.2% Planar organic color filter array (CFA) Organic on-chip microlens (OCL) array OCL pitch of 3.45 μm, color filter pitch of 3.45 μm, and grid pitch of 3.45 μm 188-pin c.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "ocl",
+          "field": "microlens_type"
+        },
+        {
+          "source": "html_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html",
+          "text": "W grid structure, aperture grid fill factor of 91.2% Planar organic color filter array (CFA) Organic on-chip microlens (OCL) array OCL pitch of 3.45 μm, color filter pitch of 3.45 μm, and grid pitch of 3.45 μm 188-pin c...",
+          "field": "ocl_pitch_um"
+        },
+        {
+          "source": "html_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html",
+          "text": "Planar Bayer-patterned CFA on planarized buffer layer Measured color filter thickness ranges from 680 nm to 870 nm (dependent on color and measured location) Optical stack height 3.6 µm.",
+          "field": "optical_stack_height_um"
+        }
+      ]
+    },
+    "grid": {
+      "material": {
+        "value": "tin",
+        "source_kind": "extracted",
+        "confidence": 0.76,
+        "method": "sensor_catalog.derived_specs.grid_material",
+        "evidence": "combined_text: tin"
+      },
+      "pitch_um": {
+        "value": 3.45,
+        "source_kind": "extracted",
+        "confidence": 0.84,
+        "method": "sensor_catalog.derived_specs.grid_pitch_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: W grid structure, aperture grid fill factor of 91.2% Planar organic color filter array (CFA) Organic on-chip microlens (OCL) array OCL pitch of 3.45 μm, color filter pitch of 3.45 μm, and grid pitch of 3.45 μm 188-pin c.",
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html"
+      },
+      "evidence": [
+        {
+          "source": "combined_text",
+          "source_file": "",
+          "text": "tin",
+          "field": "grid_material"
+        },
+        {
+          "source": "html_design_snippet",
+          "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html",
+          "text": "W grid structure, aperture grid fill factor of 91.2% Planar organic color filter array (CFA) Organic on-chip microlens (OCL) array OCL pitch of 3.45 μm, color filter pitch of 3.45 μm, and grid pitch of 3.45 μm 188-pin c...",
+          "field": "grid_pitch_um"
+        }
+      ]
+    },
+    "sensor_context": {
+      "illumination": {
+        "value": "back_illuminated",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.illumination",
+        "evidence": "combined_text: back_illuminated"
+      },
+      "sensor_modality": {
+        "value": "global_shutter_cis",
+        "source_kind": "extracted",
+        "confidence": 0.78,
+        "method": "sensor_catalog.derived_specs.sensor_modality",
+        "evidence": "combined_text: global_shutter_cis"
+      },
+      "is_nir": {
+        "value": true,
+        "source_kind": "extracted",
+        "confidence": 0.72,
+        "method": "sensor_catalog.derived_specs.is_nir",
+        "evidence": "combined_text: is_nir"
+      }
+    }
+  },
+  "cfa_proxy_nk": {
+    "enabled": true,
+    "library_id": "common_rgb_color_resist_proxy_2026_06",
+    "source_kind": "inferred_proxy_nk",
+    "applicability": "rgb_color_filter_proxy",
+    "reference_thickness_um": 0.65,
+    "thickness_um": {
+      "value": 3.6,
+      "source_kind": "extracted",
+      "confidence": 0.84,
+      "method": "sensor-specific CFA thickness for proxy n,k transmission scaling",
+      "unit": "um",
+      "evidence": "html_design_snippet: Planar Bayer-patterned CFA on planarized buffer layer Measured color filter thickness ranges from 680 nm to 870 nm (dependent on color and measured location) Optical stack height 3.6 µm.",
+      "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html"
+    },
+    "channels": {
+      "red": {
+        "description": "Common red color-resist proxy",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.48,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.7,
+            "k": 0.19157,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.7,
+            "k": 0.20355,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.7,
+            "k": 0.21552,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.7,
+            "k": 0.21452,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.7,
+            "k": 0.21465,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.7,
+            "k": 0.19932,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.7,
+            "k": 0.17007,
+            "transmission_absorption_only": 1e-06
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.7,
+            "k": 0.12071,
+            "transmission_absorption_only": 7.5e-05
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.7,
+            "k": 0.05866,
+            "transmission_absorption_only": 0.012
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.7,
+            "k": 0.02201,
+            "transmission_absorption_only": 0.203287
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.7,
+            "k": 0.01017,
+            "transmission_absorption_only": 0.492719
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.7,
+            "k": 0.00871,
+            "transmission_absorption_only": 0.557803
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.7,
+            "k": 0.01096,
+            "transmission_absorption_only": 0.492475
+          }
+        ]
+      },
+      "green": {
+        "description": "Common green color-resist proxy",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.48,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.7,
+            "k": 0.18065,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.7,
+            "k": 0.17443,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.7,
+            "k": 0.155,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.7,
+            "k": 0.09972,
+            "transmission_absorption_only": 7.5e-05
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.7,
+            "k": 0.0366,
+            "transmission_absorption_only": 0.036462
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.7,
+            "k": 0.01276,
+            "transmission_absorption_only": 0.33303
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.7,
+            "k": 0.01094,
+            "transmission_absorption_only": 0.406633
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.7,
+            "k": 0.02313,
+            "transmission_absorption_only": 0.162061
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.7,
+            "k": 0.07712,
+            "transmission_absorption_only": 0.002983
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.7,
+            "k": 0.16224,
+            "transmission_absorption_only": 8e-06
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.7,
+            "k": 0.22388,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.7,
+            "k": 0.266,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.7,
+            "k": 0.30051,
+            "transmission_absorption_only": 0.0
+          }
+        ]
+      },
+      "blue": {
+        "description": "Common blue color-resist proxy",
+        "source_kind": "inferred_proxy_nk",
+        "confidence": 0.48,
+        "method": "fixed common CFA n,k proxy with sensor-specific thickness scaling",
+        "data": [
+          {
+            "wavelength_nm": 400.0,
+            "n": 1.7,
+            "k": 0.02928,
+            "transmission_absorption_only": 0.036462
+          },
+          {
+            "wavelength_nm": 425.0,
+            "n": 1.7,
+            "k": 0.01709,
+            "transmission_absorption_only": 0.162166
+          },
+          {
+            "wavelength_nm": 450.0,
+            "n": 1.7,
+            "k": 0.01093,
+            "transmission_absorption_only": 0.33327
+          },
+          {
+            "wavelength_nm": 475.0,
+            "n": 1.7,
+            "k": 0.01445,
+            "transmission_absorption_only": 0.252532
+          },
+          {
+            "wavelength_nm": 500.0,
+            "n": 1.7,
+            "k": 0.0531,
+            "transmission_absorption_only": 0.008194
+          },
+          {
+            "wavelength_nm": 525.0,
+            "n": 1.7,
+            "k": 0.13628,
+            "transmission_absorption_only": 8e-06
+          },
+          {
+            "wavelength_nm": 550.0,
+            "n": 1.7,
+            "k": 0.20881,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 575.0,
+            "n": 1.7,
+            "k": 0.25968,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 600.0,
+            "n": 1.7,
+            "k": 0.28736,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 625.0,
+            "n": 1.7,
+            "k": 0.3074,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 650.0,
+            "n": 1.7,
+            "k": 0.31969,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 675.0,
+            "n": 1.7,
+            "k": 0.33199,
+            "transmission_absorption_only": 0.0
+          },
+          {
+            "wavelength_nm": 700.0,
+            "n": 1.7,
+            "k": 0.34429,
+            "transmission_absorption_only": 0.0
+          }
+        ]
+      }
+    },
+    "model_limitations": [
+      "Absorption-only CFA layer proxy; does not include full optical-stack interference, microlens focusing, grid diffraction, or silicon absorption.",
+      "Common R/G/B n,k proxy, not product-specific measured optical constants."
+    ]
+  },
+  "qe": {
+    "measurement_data_status": "qualitative_only",
+    "quantitative_points": [],
+    "qualitative_mentions": [
+      {
+        "term": "quantum efficiency",
+        "source_kind": "text_mention",
+        "confidence": 0.62,
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html",
+        "context": "GS CMOS image sensor (CIS) was extracted from the LI-OG05C10-MIPI camera from Leopard Imaging [ 2 ]. This Omnivision OG05C10 is a 5 MP, 3.45 µm pixel pitch, stacked back-illuminated (BI) VDGS CIS using Omnivision's Nyxel® near-infrared (NIR) and PureCel Plus-S® technologies [ 1 ]. These technologies, combined with dual conversion gain (DCG) and enhanced NIR quantum efficiency, offer high-sensitivity performance at high dynamic range (HDR), even at low-light conditions. TechInsights has previously analyzed other voltage domain global shutter image sensors. Examples of some recently analyzed ones used for machine v"
+      }
+    ],
+    "spectral_ranges": [
+      {
+        "low_nm": 680.0,
+        "high_nm": 870.0,
+        "source_kind": "reported_spectral_range",
+        "confidence": 0.72,
+        "source_file": "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download/html/reports/017_DEF-2509-801.html",
+        "context": "s, microlens, color filters, and W grid structures gradually shifted toward the array center. Planar Bayer-patterned CFA on planarized buffer layer Measured color filter thickness ranges from 680 nm to 870 nm (dependent on color and measured location) Optical stack height 3.6 µm. 5.9 µm active Si in the pixel array. A combination of shallow trech isolation (STI) and dielectric-filled f"
+      }
+    ],
+    "filter_sets": []
+  },
+  "readiness": {
+    "level": "optical_ready_high",
+    "score": 92,
+    "reasons": [
+      "cfa_pattern",
+      "microlens_type",
+      "optical_stack_height",
+      "cfa_thickness",
+      "color_filter_pitch",
+      "ocl_pitch",
+      "grid_pitch",
+      "grid_material",
+      "qe_qualitative"
+    ]
+  },
+  "notes": [
+    "QE quantitative_points are reported text points, not reconstructed curves.",
+    "inferred_rule values are setup defaults and must not be treated as measurements.",
+    "cfa_proxy_nk is a common color-resist n,k proxy for setup/sensitivity work, not measured product-specific optical constants."
+  ]
+}

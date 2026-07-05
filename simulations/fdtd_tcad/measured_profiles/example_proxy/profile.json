@@ -1,0 +1,89 @@
+{
+  "schema": "measured_tcad_profile_v1",
+  "profile_name": "example_proxy_not_measured",
+  "units": {
+    "length": "um",
+    "doping": "cm^-3"
+  },
+  "geometry": {
+    "width_um": 1.4,
+    "depth_um": 2.8,
+    "z_width_um": 1.4,
+    "split_gap_um": 0.04,
+    "pinning_depth_um": 0.08,
+    "dti_width_um": 0.05,
+    "transfer_gate": {
+      "x_min_um": -0.18,
+      "x_max_um": 0.18,
+      "oxide_thickness_um": 0.006
+    },
+    "floating_diffusion": {
+      "x_min_um": 0.45,
+      "x_max_um": 0.62,
+      "depth_min_um": 0.0,
+      "depth_max_um": 0.12
+    }
+  },
+  "background": {
+    "acceptor_cm3": 100000000000000.0,
+    "donor_cm3": 0.0
+  },
+  "implants": [
+    {
+      "name": "csv_proxy_pin_and_collection",
+      "type": "csv_scattered",
+      "file": "implants_proxy.csv",
+      "interpolation": "linear_nearest",
+      "scale": 1.0
+    },
+    {
+      "name": "center_split_isolation_proxy",
+      "type": "analytic_box",
+      "x_min_um": -0.02,
+      "x_max_um": 0.02,
+      "depth_min_um": 0.08,
+      "depth_max_um": 2.8,
+      "acceptor_cm3": 20000000000000000.0,
+      "donor_cm3": 0.0
+    },
+    {
+      "name": "left_dti_proxy",
+      "type": "analytic_box",
+      "x_min_um": -0.7,
+      "x_max_um": -0.65,
+      "depth_min_um": 0.0,
+      "depth_max_um": 2.8,
+      "acceptor_cm3": 20000000000000000.0,
+      "donor_cm3": 0.0
+    },
+    {
+      "name": "right_dti_proxy",
+      "type": "analytic_box",
+      "x_min_um": 0.65,
+      "x_max_um": 0.7,
+      "depth_min_um": 0.0,
+      "depth_max_um": 2.8,
+      "acceptor_cm3": 20000000000000000.0,
+      "donor_cm3": 0.0
+    }
+  ],
+  "interfaces": [
+    {
+      "name": "si_front_interface_proxy",
+      "location": "depth_um=0",
+      "dit_cm2_ev": 10000000000.0,
+      "sigma_n_cm2": 1e-15,
+      "sigma_p_cm2": 1e-15
+    }
+  ],
+  "mobility_recombination": {
+    "mu_n_model": "simple_physics_default",
+    "mu_p_model": "simple_physics_default",
+    "tau_n_s": 1e-6,
+    "tau_p_s": 1e-6
+  },
+  "calibration_status": {
+    "is_measured": false,
+    "note": "Proxy values for open-source framework smoke tests only."
+  }
+}

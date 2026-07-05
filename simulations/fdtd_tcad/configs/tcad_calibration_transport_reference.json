@@ -1,0 +1,67 @@
+{
+  "schema": "tcad_calibration_config_v1",
+  "name": "reference_profile_transport_multi_parameter_fit_not_measured",
+  "simulator": {
+    "script": "devsim_split_pd_2d.py",
+    "python": ".tcad-env/bin/python",
+    "generation_map_npz": "runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz",
+    "electrical_model": "profile-ppd",
+    "output_root": "runs/tcad_calibration_transport_reference/evals"
+  },
+  "targets_csv": "measured_profiles/reference_cmos_ppd_1p4um/calibration_targets_transport_synthetic.csv",
+  "parameters": [
+    {
+      "name": "generation_map_scale",
+      "cli": "--generation-map-scale",
+      "initial": 0.7,
+      "lower": 0.2,
+      "upper": 2.0,
+      "scale": "linear"
+    },
+    {
+      "name": "electron_mobility_scale",
+      "cli": "--electron-mobility-scale",
+      "initial": 0.75,
+      "lower": 0.3,
+      "upper": 1.7,
+      "scale": "linear"
+    },
+    {
+      "name": "lifetime_scale",
+      "cli": "--lifetime-scale",
+      "initial": 0.5,
+      "lower": 0.2,
+      "upper": 2.0,
+      "scale": "linear"
+    },
+    {
+      "name": "fixed_charge_scale",
+      "cli": "--fixed-charge-scale",
+      "initial": 1.4,
+      "lower": 0.5,
+      "upper": 2.0,
+      "scale": "linear"
+    },
+    {
+      "name": "interface_trap_recombination_scale",
+      "cli": "--interface-trap-recombination-scale",
+      "initial": 1.6,
+      "lower": 0.3,
+      "upper": 3.0,
+      "scale": "linear"
+    }
+  ],
+  "fixed_cli_args": {
+    "--measured-profile": "measured_profiles/reference_cmos_ppd_1p4um/profile.json",
+    "--width-um": "1.4",
+    "--depth-um": "3.0",
+    "--dd-relative-error": "1e-9",
+    "--dd-max-iterations": "160"
+  },
+  "residuals": {
+    "current_relative_floor_a_per_cm": 1e-12,
+    "dark_current_relative_floor_a_per_cm": 1e-15,
+    "phase_absolute_scale": 0.05,
+    "generic_relative_floor": 1e-30
+  }
+}

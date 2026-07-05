@@ -1,0 +1,446 @@
+{
+  "schema": "image_sensor_tcad_structure_model_v1",
+  "code": "DEP-2504-801",
+  "source": {
+    "code": "DEP-2504-801",
+    "manufacturer": "Sony",
+    "device_name": "IMX487-AAMJ-C",
+    "title": "Sony IMX487 Device Essentials Plus",
+    "report_type": "DEP",
+    "analysis_year": 2025,
+    "release_date": "2025-10-10T00:00:00.000+00:00",
+    "source_html": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download_dep_a6pf30000009PYHAA2/html/reports/005_DEP-2504-801.html"
+    ],
+    "source_pdf": []
+  },
+  "structure": {
+    "tcad_cell": {
+      "width_um": {
+        "value": 2.74,
+        "source_kind": "extracted",
+        "confidence": 0.96,
+        "method": "sensor_catalog.derived_specs.pixel_pitch_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: The Sony IMX487 is introduced as a monochrome UV sensor, 8.13 MP resolution, 2.74 µm pixel pitch, charge domain stacked, back-illuminated (BI) global shutter UV waveband sensor wit"
+      },
+      "depth_um": {
+        "value": 3.1,
+        "source_kind": "extracted",
+        "confidence": 0.94,
+        "method": "sensor_catalog.derived_specs.active_si_thickness_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: CIS GENERAL SALIENT FEATURES Manufactured by Sony in a 90 nm stacked BI CMOS imager process 2.74 µm pixel generation 3.1 µm thick active Si No deep trench isolation (DTI) for pixel"
+      },
+      "z_width_um": {
+        "value": 2.74,
+        "source_kind": "inferred_layout",
+        "confidence": 0.96,
+        "method": "single-pixel square cell z width = pitch",
+        "unit": "um"
+      },
+      "split_gap_um": {
+        "value": 0.1096,
+        "source_kind": "inferred_layout",
+        "confidence": 0.3,
+        "method": "split gap seed=clamp(0.04*pitch,0.02,0.12)",
+        "unit": "um"
+      },
+      "x_min_um": {
+        "value": -1.37,
+        "source_kind": "derived_geometry",
+        "confidence": 0.96,
+        "method": "centered single pixel cell",
+        "unit": "um"
+      },
+      "x_max_um": {
+        "value": 1.37,
+        "source_kind": "derived_geometry",
+        "confidence": 0.96,
+        "method": "centered single pixel cell",
+        "unit": "um"
+      },
+      "recommended_mesh_um": {
+        "value": 0.18,
+        "source_kind": "derived_meshing",
+        "confidence": 0.55,
+        "method": "mesh seed from pixel pitch",
+        "unit": "um"
+      },
+      "recommended_fine_mesh_um": {
+        "value": 0.06,
+        "source_kind": "derived_meshing",
+        "confidence": 0.5,
+        "method": "fine mesh from pitch and DTI width",
+        "unit": "um"
+      },
+      "dti_left_x_min_um": {
+        "value": -1.37,
+        "source_kind": "derived_geometry",
+        "confidence": 0.82,
+        "method": "side DTI left boundary",
+        "unit": "um"
+      },
+      "dti_left_x_max_um": {
+        "value": -1.229,
+        "source_kind": "derived_geometry",
+        "confidence": 0.82,
+        "method": "side DTI left boundary",
+        "unit": "um"
+      },
+      "dti_right_x_min_um": {
+        "value": 1.229,
+        "source_kind": "derived_geometry",
+        "confidence": 0.82,
+        "method": "side DTI right boundary",
+        "unit": "um"
+      },
+      "dti_right_x_max_um": {
+        "value": 1.37,
+        "source_kind": "derived_geometry",
+        "confidence": 0.82,
+        "method": "side DTI right boundary",
+        "unit": "um"
+      },
+      "dti_depth_max_um": {
+        "value": 3.0,
+        "source_kind": "derived_geometry",
+        "confidence": 0.9,
+        "method": "DTI depth clipped to active silicon for mesh",
+        "unit": "um"
+      }
+    },
+    "dti": {
+      "type": {
+        "value": "full_depth_front_dti",
+        "source_kind": "extracted",
+        "confidence": 0.9,
+        "method": "sensor_catalog.derived_specs.dti_type",
+        "evidence": "combined_text: full_depth_front_dti"
+      },
+      "depth_um": {
+        "value": 3.0,
+        "source_kind": "extracted",
+        "confidence": 0.9,
+        "method": "sensor_catalog.derived_specs.dti_depth_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: The F-DTI is 3.0 μm thick."
+      },
+      "width_um": {
+        "value": 0.141,
+        "source_kind": "inferred_empirical",
+        "confidence": 0.68,
+        "method": "manufacturer_median:Sony; n=4",
+        "unit": "um"
+      },
+      "fill_material": {
+        "value": "poly_si_with_oxide_or_dual_poly_fill",
+        "source_kind": "inferred_rule",
+        "confidence": 0.45,
+        "method": "DTI subtype material heuristic"
+      },
+      "sidewall_liner_thickness_nm": {
+        "value": 28.0,
+        "source_kind": "inferred_rule",
+        "confidence": 0.28,
+        "method": "liner~23% of DTI width, clamped 8-28 nm",
+        "unit": "nm"
+      }
+    },
+    "sti": {
+      "depth_um": {
+        "value": 0.074,
+        "source_kind": "extracted_region_text",
+        "confidence": 0.8,
+        "method": "tcad_candidate_report.region_depths.sti_depth_um",
+        "unit": "um",
+        "evidence": "ion (STI) used in the periphery and in the pixel regions. For both regions, the STI trench is 74 nm deep, and the oxide fill is 110 nm thick. The combination of STI and full-depth F-DTI is used to isolate"
+      },
+      "fill_material": {
+        "value": "oxide",
+        "source_kind": "inferred_rule",
+        "confidence": 0.45,
+        "method": "standard STI fill assumption"
+      },
+      "liner_material": {
+        "value": "oxide_nitride",
+        "source_kind": "inferred_rule",
+        "confidence": 0.35,
+        "method": "standard STI liner assumption"
+      }
+    },
+    "photodiode": {
+      "photocathode_depth_um": {
+        "value": 2.9,
+        "source_kind": "measured_sims_table",
+        "confidence": 0.86,
+        "method": "SIMS/SPM table role photocathode",
+        "unit": "um",
+        "evidence": "Table 8.0.1: Pixel Array SIMS Doping Concentration: Photocathode depth 2.9"
+      },
+      "p_well_depth_um": {
+        "value": 0.5,
+        "source_kind": "measured_sims_table",
+        "confidence": 0.86,
+        "method": "SIMS/SPM table role p_well",
+        "unit": "um",
+        "evidence": "Table 8.0.1: Pixel Array SIMS Doping Concentration: P-well depth 0.50-1.1"
+      },
+      "pinning_depth_um": {
+        "value": 0.07,
+        "source_kind": "measured_sims_table",
+        "confidence": 0.86,
+        "method": "SIMS/SPM table role p_pinning",
+        "unit": "um",
+        "evidence": "Table 8.0.1: Pixel Array SIMS Doping Concentration: P-pinning depth 0.07"
+      },
+      "collection_model": {
+        "value": "pinned_photodiode",
+        "source_kind": "inferred_rule",
+        "confidence": 0.55,
+        "method": "image-sensor CIS default collection region model"
+      }
+    },
+    "transfer_gate": {
+      "type": {
+        "value": "vertical_transfer_gate",
+        "source_kind": "extracted",
+        "confidence": 0.88,
+        "method": "sensor_catalog.derived_specs.transfer_gate_type",
+        "evidence": "combined_text: vertical_transfer_gate"
+      },
+      "depth_um": {
+        "value": 0.44,
+        "source_kind": "measured_sims_table",
+        "confidence": 0.86,
+        "method": "SIMS/SPM table role transfer_gate",
+        "unit": "um",
+        "evidence": "Table 8.0.1: Pixel Array SIMS Doping Concentration: Vertical transistor gate (VTG) depth 0.44"
+      },
+      "x_min_um": {
+        "value": -0.25,
+        "source_kind": "inferred_layout",
+        "confidence": 0.4,
+        "method": "centered TG lateral placement",
+        "unit": "um"
+      },
+      "x_max_um": {
+        "value": 0.25,
+        "source_kind": "inferred_layout",
+        "confidence": 0.4,
+        "method": "centered TG lateral placement",
+        "unit": "um"
+      },
+      "gate_oxide_thickness_nm": {
+        "value": 7.0,
+        "source_kind": "extracted_region_text",
+        "confidence": 0.8,
+        "method": "tcad_candidate_report.region_depths.gate_dielectric_nm",
+        "unit": "nm",
+        "evidence": "m deep. All transistors have non-silicided gates and S/D regions, with a single gate dielectric process with a 7.0 nm thick oxide. Pixel array P- and N-type regions include: 0.07 µm deep P-pinning layer 0.50 - 1.1 µm"
+      }
+    },
+    "fd_sd": {
+      "floating_diffusion_depth_um": {
+        "value": 0.35,
+        "source_kind": "measured_sims_table",
+        "confidence": 0.86,
+        "method": "SIMS/SPM table role fd_sd",
+        "unit": "um",
+        "evidence": "Table 8.0.1: Pixel Array SIMS Doping Concentration: N^+^ FD and S/D depth 0.35"
+      },
+      "source_drain_depth_um": {
+        "value": 0.35,
+        "source_kind": "measured_sims_table",
+        "confidence": 0.86,
+        "method": "SIMS/SPM table role fd_sd",
+        "unit": "um",
+        "evidence": "Table 8.0.1: Pixel Array SIMS Doping Concentration: N^+^ FD and S/D depth 0.35"
+      },
+      "floating_diffusion_x_min_um": {
+        "value": 0.7672,
+        "source_kind": "inferred_layout",
+        "confidence": 0.35,
+        "method": "right-side FD placement seed",
+        "unit": "um"
+      },
+      "floating_diffusion_x_max_um": {
+        "value": 1.0172,
+        "source_kind": "inferred_layout",
+        "confidence": 0.35,
+        "method": "right-side FD placement seed",
+        "unit": "um"
+      }
+    },
+    "optical_stack": {
+      "height_um": {
+        "value": 3.9,
+        "source_kind": "extracted",
+        "confidence": 0.86,
+        "method": "sensor_catalog.derived_specs.optical_stack_height_um",
+        "unit": "um",
+        "evidence": "html_design_snippet: The optical stack height is 3.9 µm."
+      },
+      "cfa_thickness_um": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "no CFA thickness evidence",
+        "unit": "um"
+      },
+      "grid_pitch_um": {
+        "value": 2.74,
+        "source_kind": "inferred_rule",
+        "confidence": 0.35,
+        "method": "grid pitch approximated as pixel pitch",
+        "unit": "um"
+      }
+    },
+    "process": {
+      "cis_process_nm": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "no CIS process node evidence",
+        "unit": "nm"
+      },
+      "pixel_beol_metal_pitch_nm": {
+        "value": null,
+        "source_kind": "unavailable",
+        "confidence": 0.0,
+        "method": "no BEOL metal pitch evidence",
+        "unit": "nm"
+      },
+      "pixel_architecture": {
+        "value": "four_shared",
+        "source_kind": "extracted",
+        "confidence": 0.86,
+        "method": "sensor_catalog.derived_specs.pixel_architecture",
+        "evidence": "combined_text: four_shared"
+      }
+    },
+    "doping": {
+      "model_kind": {
+        "value": "measured_sims_seed_available",
+        "source_kind": "derived",
+        "confidence": 0.76,
+        "method": "SIMS availability and measured anchor scan"
+      },
+      "sims_seed_profile": "/Users/seongcheoljeong/FDTD/measured_profiles/techinsights_sims_seed/dep_2504_801_sony_imx487_aamj_c/profile.json",
+      "anchors": {
+        "p_pinning": {
+          "value": 5e+18,
+          "source_kind": "measured_sims_table",
+          "confidence": 0.78,
+          "method": "median SIMS/SPM concentration for role p_pinning; n=1",
+          "unit": "cm^-3"
+        },
+        "p_plus_contact": {
+          "value": 2e+20,
+          "source_kind": "inferred_archetype",
+          "confidence": 0.28,
+          "method": "global median from measured SIMS candidate roles or conservative CIS default",
+          "unit": "cm^-3"
+        },
+        "fd_sd": {
+          "value": 1e+20,
+          "source_kind": "measured_sims_table",
+          "confidence": 0.78,
+          "method": "median SIMS/SPM concentration for role fd_sd; n=1",
+          "unit": "cm^-3"
+        },
+        "floating_diffusion": {
+          "value": 2e+19,
+          "source_kind": "inferred_archetype",
+          "confidence": 0.28,
+          "method": "global median from measured SIMS candidate roles or conservative CIS default",
+          "unit": "cm^-3"
+        },
+        "source_drain": {
+          "value": 2e+19,
+          "source_kind": "inferred_archetype",
+          "confidence": 0.28,
+          "method": "global median from measured SIMS candidate roles or conservative CIS default",
+          "unit": "cm^-3"
+        },
+        "transfer_gate": {
+          "value": 2e+18,
+          "source_kind": "measured_sims_table",
+          "confidence": 0.78,
+          "method": "median SIMS/SPM concentration for role transfer_gate; n=1",
+          "unit": "cm^-3"
+        },
+        "p_well": {
+          "value": 6e+17,
+          "source_kind": "measured_sims_table",
+          "confidence": 0.78,
+          "method": "median SIMS/SPM concentration for role p_well; n=2",
+          "unit": "cm^-3"
+        },
+        "photocathode": {
+          "value": 1.05e+16,
+          "source_kind": "measured_sims_table",
+          "confidence": 0.78,
+          "method": "median SIMS/SPM concentration for role photocathode; n=2",
+          "unit": "cm^-3"
+        },
+        "pixel_isolation": {
+          "value": 5.05e+16,
+          "source_kind": "measured_sims_table",
+          "confidence": 0.78,
+          "method": "median SIMS/SPM concentration for role pixel_isolation; n=2",
+          "unit": "cm^-3"
+        },
+        "background_acceptor": {
+          "value": 100000000000000.0,
+          "source_kind": "inferred_archetype",
+          "confidence": 0.28,
+          "method": "global median from measured SIMS candidate roles or conservative CIS default",
+          "unit": "cm^-3"
+        }
+      },
+      "solver_warning": "Use anchors as seed values only. They are not process-calibrated implant profiles and may need scaling for drift-diffusion convergence."
+    },
+    "tcad_profiles": {
+      "recommended_profile": {
+        "value": "/Users/seongcheoljeong/FDTD/measured_profiles/techinsights_sims_seed/dep_2504_801_sony_imx487_aamj_c/profile.json",
+        "source_kind": "derived",
+        "confidence": 0.76,
+        "method": "prefer SIMS table seed profile"
+      },
+      "recommended_profile_kind": {
+        "value": "sims_seed_profile",
+        "source_kind": "derived",
+        "confidence": 0.76,
+        "method": "prefer SIMS table seed profile"
+      },
+      "sims_seed_profile": "/Users/seongcheoljeong/FDTD/measured_profiles/techinsights_sims_seed/dep_2504_801_sony_imx487_aamj_c/profile.json",
+      "proxy_profile": "/Users/seongcheoljeong/FDTD/image_sensor_db/generated_tcad_profiles/dep_2504_801_sony_imx487_aamj_c/profile.json",
+      "warning": "Recommended profile is a TCAD starting point. SIMS seed is stronger than proxy, but neither is product-calibrated."
+    }
+  },
+  "readiness": {
+    "level": "sims_seed_ready",
+    "score": 92.2,
+    "candidate_level": "measured_doping_table",
+    "tcad_candidate_score": 25,
+    "missing_for_structure_model": [],
+    "missing_for_calibrated_deck": [
+      "continuous implant profile or process simulation recipe",
+      "interface trap/fixed-charge calibration",
+      "measured dark current/full-well/lag/charge-transfer targets",
+      "exact lateral implant masks and 3D sharing geometry"
+    ],
+    "recommended_use": "Use for mesh/profile seeding and sensitivity sweeps. Do not use for product accuracy claims without calibration."
+  },
+  "source_candidate_report": {
+    "candidate_level": "measured_doping_table",
+    "geometry_score": 7,
+    "doping_row_count": 14,
+    "doping_table_count": 2,
+    "source_html": [
+      "/Users/seongcheoljeong/Sensor_DB_TechInsight/techinsights_html_download_dep_a6pf30000009PYHAA2/html/reports/005_DEP-2504-801.html"
+    ],
+    "source_pdf": []
+  }
+}

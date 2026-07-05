@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="720" viewBox="0 0 1100 720" role="img" aria-label="FreeCAD-style viewport for QPD 2x2 split photodiode template">
+  <defs>
+    <linearGradient id="viewportBg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#263746"/><stop offset="1" stop-color="#101922"/></linearGradient>
+    <linearGradient id="lens" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#d7f5ff"/><stop offset="0.52" stop-color="#7bcfff"/><stop offset="1" stop-color="#2d72a2"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="16" stdDeviation="12" flood-color="#000" flood-opacity=".32"/></filter>
+    <style>
+      text{font-family:Inter,Arial,sans-serif}.ui{fill:#e7ebef}.bar{fill:#f5f7f9}.line{stroke:#c6cdd4;stroke-width:1}.small{font-size:12px;fill:#53606b}.label{font-size:13px;fill:#f5faff;font-weight:700}.tree{font-size:12px;fill:#33414f}.code{font-size:11px;fill:#6c7b88}.tool{fill:#d8dde2;stroke:#b9c1c9}.grid{stroke:#516574;stroke-width:.8;opacity:.24}.edge{stroke:#eff8ff;stroke-width:1.2;opacity:.55}
+    </style>
+  </defs>
+  <rect width="1100" height="720" rx="18" fill="#cfd6dd"/>
+  <rect x="12" y="12" width="1076" height="36" rx="8" class="bar"/>
+  <circle cx="34" cy="30" r="7" fill="#ff5f57"/><circle cx="56" cy="30" r="7" fill="#ffbd2e"/><circle cx="78" cy="30" r="7" fill="#28c840"/>
+  <text x="112" y="34" fill="#27323c" font-size="14" font-weight="800">FreeCAD - qpd_split_pd_2x2/model.FCStd</text>
+  <rect x="14" y="56" width="1072" height="42" rx="7" fill="#eef1f4"/>
+  <g transform="translate(28 68)"><rect width="26" height="22" rx="4" class="tool"/><rect x="36" width="26" height="22" rx="4" class="tool"/><rect x="72" width="26" height="22" rx="4" class="tool"/><rect x="112" width="88" height="22" rx="4" class="tool"/><text x="123" y="15" class="small">Part Design</text><rect x="214" width="72" height="22" rx="4" class="tool"/><text x="226" y="15" class="small">Fit view</text></g>
+  <rect x="18" y="110" width="246" height="592" rx="8" class="ui" stroke="#b8c0c8"/>
+  <text x="34" y="138" fill="#25313b" font-size="14" font-weight="800">Model tree</text>
+  <text x="38" y="170" class="tree">qpd_split_pd_2x2</text>
+  <text x="56" y="197" class="tree">solid_stack</text>
+  <text x="74" y="222" class="tree">Si_substrate</text>
+  <text x="74" y="247" class="tree">DTI_grid</text>
+  <text x="74" y="272" class="tree">PD_Q1 / PD_Q2</text>
+  <text x="74" y="297" class="tree">PD_Q3 / PD_Q4</text>
+  <text x="56" y="330" class="tree">optical_stack</text>
+  <text x="74" y="355" class="tree">CFA_green_2x2</text>
+  <text x="74" y="380" class="tree">OCL_2x2_lens</text>
+  <text x="56" y="413" class="tree">review_sources</text>
+  <text x="74" y="438" class="code">model.step</text>
+  <text x="74" y="461" class="code">model.brep</text>
+  <text x="74" y="484" class="code">geometry_import.json</text>
+  <rect x="284" y="110" width="798" height="592" rx="8" fill="url(#viewportBg)" stroke="#9fb0bd"/>
+  <g transform="translate(284 110)">
+    <path d="M0 492H798M0 444H798M0 396H798M0 348H798M0 300H798M0 252H798M0 204H798M0 156H798M0 108H798" class="grid"/>
+    <path d="M82 0V592M154 0V592M226 0V592M298 0V592M370 0V592M442 0V592M514 0V592M586 0V592M658 0V592M730 0V592" class="grid"/>
+    <text x="28" y="34" fill="#eaf6fb" font-size="18" font-weight="800">QPD 2x2 split photodiode CAD source</text>
+    <text x="28" y="58" fill="#aabcc7" font-size="12">CAD-source review frame: same template parameters as STEP/BREP/FCStd; not a solver mesh.</text>
+    <g transform="translate(400 344)" filter="url(#shadow)">
+      <polygon points="0,-32 205,74 0,180 -205,74" fill="#20394a" stroke="#86a7b7"/>
+      <polygon points="-205,74 0,180 0,236 -205,130" fill="#172b38" stroke="#567184"/>
+      <polygon points="205,74 0,180 0,236 205,130" fill="#122532" stroke="#567184"/>
+      <polygon points="-112,8 -16,58 -96,100 -192,50" fill="#31b56f" class="edge"/>
+      <polygon points="16,58 112,8 192,50 96,100" fill="#31b56f" class="edge"/>
+      <polygon points="-96,116 -16,74 80,124 0,166" fill="#31b56f" class="edge"/>
+      <polygon points="16,74 96,116 192,74 112,32" fill="#31b56f" opacity=".85" stroke="#eff8ff"/>
+      <polygon points="-116,42 -18,93 -88,130 -186,79" fill="#d2aa31" opacity=".58" stroke="#ffe28a"/>
+      <polygon points="18,93 116,42 186,79 88,130" fill="#d2aa31" opacity=".58" stroke="#ffe28a"/>
+      <polygon points="-88,144 -18,107 80,158 10,195" fill="#d2aa31" opacity=".58" stroke="#ffe28a"/>
+      <polygon points="18,107 88,144 186,93 116,56" fill="#d2aa31" opacity=".58" stroke="#ffe28a"/>
+      <path d="M-178 30C-114-30-48-38 0 8C48-38 114-30 178 30L96 73C66 40 28 40 0 62C-28 40-66 40-96 73Z" fill="url(#lens)" stroke="#c7f2ff" stroke-width="2" opacity=".95"/>
+      <path d="M-1 10V180M-116 42L116 158M116 42L-116 158" stroke="#ebf8ff" stroke-width="1" opacity=".35"/>
+    </g>
+    <g transform="translate(690 460)"><line x1="0" y1="0" x2="62" y2="-32" stroke="#ff5f57" stroke-width="4"/><line x1="0" y1="0" x2="-48" y2="-24" stroke="#2f8cff" stroke-width="4"/><line x1="0" y1="0" x2="0" y2="-72" stroke="#28c840" stroke-width="4"/><text x="67" y="-33" fill="#ffb1ad" font-size="13">X</text><text x="-61" y="-26" fill="#9ec9ff" font-size="13">Y</text><text x="7" y="-76" fill="#9fe5ad" font-size="13">Z</text></g>
+    <rect x="28" y="514" width="290" height="44" rx="6" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.16)"/>
+    <text x="42" y="536" class="label">Pixel pitch 1.400 um · 2x2 OCL · QPD</text>
+    <text x="42" y="553" fill="#b7cad4" font-size="11">Open STEP in FreeCAD for face/body inspection before solver export.</text>
+  </g>
+</svg>
