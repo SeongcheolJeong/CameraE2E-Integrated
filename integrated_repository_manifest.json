@@ -164,7 +164,7 @@
       "path": "camerae2e_db/manifest.json"
     },
     "camerae2e_code": {
-      "bytes": 41618130,
+      "bytes": 41516978,
       "exists": true,
       "kind": "directory",
       "path": "src/pyisetcam"
@@ -210,11 +210,11 @@
   "repository_root": "/Users/seongcheoljeong/Documents/CameraE2E-Integrated",
   "schema_version": "camerae2e_integrated_repository_manifest_v1",
   "summary": {
-    "bytes": 226073896,
+    "bytes": 226075130,
     "check_count": 18,
     "failed_checks": [],
     "file_count": 3545,
-    "size_mb": 215.601
+    "size_mb": 215.602
   },
   "truth_boundary": {
     "claim": "research-grade self-contained checkout",
