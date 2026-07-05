@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+numpy
+scipy
+scikit-image
+imageio
+imagecodecs
+tifffile
+h5py
+matplotlib
+

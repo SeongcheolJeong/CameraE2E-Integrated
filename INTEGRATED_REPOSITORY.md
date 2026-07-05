@@ -7,6 +7,8 @@ intended to be cloned once and used as the local source of truth for:
 - selected FDTD/TCAD scripts and compact handoff fixtures
 - selected RayOptics UI/backend code and lens DB final-result assets
 - packaged CameraE2E camera DB artifacts under `camerae2e_db`
+- a local React/FastAPI CameraE2E Workbench for simulation, optimization,
+  RAW dataset export, and report generation
 
 The repository is deliberately not a product sign-off package. FDTD, TCAD, and
 RayOptics assets here remain research/proxy inputs unless measured calibration,
@@ -17,6 +19,7 @@ vendor traces, and strict lineage gates are attached.
 - `src/pyisetcam`: CameraE2E runtime code and public APIs
 - `simulations/fdtd_tcad`: FDTD/TCAD scripts, configs, and small fixtures
 - `simulations/rayoptics`: RayOptics app/backend and lens-package inputs
+- `camerae2e-workbench`: local CameraE2E engineering Workbench UI/backend
 - `camerae2e_db`: final-result lens and image-sensor DB artifacts
 - `tools`: packaging, validation, reporting, and integration scripts
 - `docs`, `reports`, `outputs`: project documentation and generated evidence
@@ -39,6 +42,22 @@ External solver workspaces may still be attached when needed:
 - `PYISETCAM_CAMERA_DB_ROOT`
 - `PYISETCAM_EXTERNAL_FDTD_ROOT`
 - `PYISETCAM_EXTERNAL_RAYOPTICS_ROOT`
+
+## Workbench
+
+Run the local CameraE2E Workbench from the repository root:
+
+```bash
+cd camerae2e-workbench
+npm install
+npm run backend
+npm run dev
+```
+
+The Workbench calls the real CameraE2E FACA, optimization, DB/LUT status,
+dataset export, and report APIs. It exposes analytic, FDTD LUT-backed,
+RayOptics geometric, and TCAD calibration-required fidelity boundaries in the
+UI instead of treating proxy assets as product sign-off evidence.
 
 ## Validation
 

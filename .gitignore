@@ -13,3 +13,7 @@ outputs/adas-kitti-yolo-raw-demo/
 outputs/adas-kitti-camera-variants-demo/
 outputs/camerae2e-goal-gate-smoke/
 reports/camerae2e_goal/goal_gate_artifacts/
+camerae2e-workbench/node_modules/
+camerae2e-workbench/dist/
+camerae2e-workbench/runs/
+camerae2e-workbench/.vite/
