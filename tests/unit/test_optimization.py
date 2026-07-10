@@ -74,6 +74,7 @@ def test_camerae2e_optimization_config_catalog_lists_configure_targets() -> None
     assert "sensor.ocl_group_equalization" in catalog["registered_axes"]
     assert "sensor.ocl_fnumber" in catalog["registered_axes"]
     assert "optics.si_psf_radius_um" in catalog["registered_axes"]
+    assert "ip.sensor_conversion_method" in catalog["registered_axes"]
     assert "fdtd.ocl_shift_um" in catalog["registered_axes"]
     assert "fdtd.crosstalk_strength" in catalog["registered_axes"]
     assert "hw_isp.global_latency_factor" in catalog["registered_axes"]
@@ -101,6 +102,7 @@ def test_camerae2e_parameter_space_validate_classifies_axes() -> None:
             "sensor.integration_time": [0.001, 0.004],
             "optics.focal_length": [0.002, 0.004],
             "hw_isp.ae_apply_delay_frames": [0, 2],
+            "ip.sensor_conversion_method": ["mcc_optimized", "esser_optimized"],
             "optics.transmittance_scale": [[1, 1, 1]],
         }
     )
@@ -109,6 +111,7 @@ def test_camerae2e_parameter_space_validate_classifies_axes() -> None:
     assert validation["axes"]["sensor.integration_time"]["status"] == "registered"
     assert validation["axes"]["hw_isp.ae_apply_delay_frames"]["status"] == "registered"
     assert validation["axes"]["optics.focal_length"]["status"] == "registered"
+    assert validation["axes"]["ip.sensor_conversion_method"]["status"] == "registered"
     assert validation["axes"]["optics.transmittance_scale"]["status"] == "custom_passthrough"
     assert validation["warning_count"] == 1
 
@@ -149,6 +152,7 @@ def test_camerae2e_parameter_space_validate_reports_invalid_values() -> None:
             "sensor.ocl_group_shape": ["3x3"],
             "sensor.ocl_group_equalization": [1.5],
             "sensor.ocl_fnumber": [0.0],
+            "ip.sensor_conversion_method": ["unsupported"],
             "optics.si_psf_radius_um": [-1.0],
         }
     )
@@ -602,7 +606,10 @@ def test_camerae2e_scenario_applies_extended_configure_axes() -> None:
                 "ocl_refractive_index": 1.55,
                 "ocl_vignetting": "centered",
             },
-            "parameters": {"optics.si_psf_radius_um": 2.0},
+            "parameters": {
+                "optics.si_psf_radius_um": 2.0,
+                "ip.sensor_conversion_method": "esser_optimized",
+            },
         },
         include_arrays=False,
     )
@@ -618,6 +625,7 @@ def test_camerae2e_scenario_applies_extended_configure_axes() -> None:
     assert any(item["path"] == "sensor.ocl_refractive_index" for item in lineage)
     assert any(item["path"] == "sensor.ocl_vignetting" for item in lineage)
     assert any(item["path"] == "optics.si_psf_radius_um" for item in lineage)
+    assert any(item["path"] == "ip.sensor_conversion_method" for item in lineage)
     assert result["camera"].fields["sensor"].fields["sensor_compute_method"] == {
         "name": "binning",
         "method": "kodak2008",
@@ -625,6 +633,37 @@ def test_camerae2e_scenario_applies_extended_configure_axes() -> None:
     }
     assert result["camera"].fields["sensor"].fields["vignetting"] == 2
     assert result["camera"].fields["sensor"].fields["etendue"] is not None
+
+
+def test_camerae2e_optimize_parameters_can_sweep_ccm_method() -> None:
+    result = camerae2e_optimize_parameters(
+        {
+            "name": "unit_ccm_method_parameter_optimization",
+            "scene": {"type": "uniform ee", "args": [8]},
+            "sensor": {"noise_flag": 0},
+        },
+        {"ip.sensor_conversion_method": ["mcc_optimized", "esser_optimized"]},
+        {"metric": "metrics.color.rgb_mean", "direction": "maximize"},
+        max_cases=2,
+        seed=217,
+        top_k=2,
+    )
+
+    assert result["parameter_space_validation"]["axes"]["ip.sensor_conversion_method"][
+        "status"
+    ] == "registered"
+    assert {case["parameters"]["ip.sensor_conversion_method"] for case in result["cases"]} == {
+        "mcc_optimized",
+        "esser_optimized",
+    }
+    assert all(
+        any(
+            item["path"] == "ip.sensor_conversion_method"
+            and item["status"] in {"applied", "applied_with_warning"}
+            for item in case["report"]["parameter_lineage"]
+        )
+        for case in result["cases"]
+    )
 
 
 def test_camerae2e_scenario_applies_quad_bayer_ocl_group_proxy() -> None:

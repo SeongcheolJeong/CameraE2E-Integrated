@@ -22,7 +22,11 @@ dependencies = [
   "tifffile",
   "h5py",
   "pooch",
+  "pydantic>=2.7",
 ]
+
+[project.scripts]
+camerae2e = "camerae2e_v2.cli:main"
 
 [project.optional-dependencies]
 dev = [
@@ -34,6 +38,10 @@ dev = [
 yolo = [
   "lap",
   "ultralytics",
+]
+workbench = [
+  "fastapi",
+  "uvicorn[standard]",
 ]
 torch-vision = [
   "torch",

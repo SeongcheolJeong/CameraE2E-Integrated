@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -33,8 +34,10 @@ def build_manifest(repo_root: Path) -> dict[str, Any]:
     checks: list[dict[str, Any]] = []
     components = {
         "camerae2e_code": repo_root / "src/pyisetcam",
+        "camerae2e_v2_code": repo_root / "src/camerae2e_v2",
         "camerae2e_tests": repo_root / "tests",
         "camerae2e_tools": repo_root / "tools",
+        "camerae2e_workbench": repo_root / "camerae2e-workbench",
         "fdtd_tcad_workspace": repo_root / "simulations/fdtd_tcad",
         "rayoptics_workspace": repo_root / "simulations/rayoptics",
         "camera_db_manifest": repo_root / "camerae2e_db/manifest.json",
@@ -60,7 +63,7 @@ def build_manifest(repo_root: Path) -> dict[str, Any]:
     summary = _summary(repo_root, checks)
     return {
         "schema_version": "camerae2e_integrated_repository_manifest_v1",
-        "repository_root": str(repo_root),
+        "repository_root": ".",
         "ok": all(check["ok"] for check in checks),
         "summary": summary,
         "components": {name: _path_info(repo_root, path) for name, path in components.items()},
@@ -123,9 +126,12 @@ def _runtime_path_checks(repo_root: Path) -> list[dict[str, Any]]:
         repo_root / "src/pyisetcam/fdtd_sensor.py",
         repo_root / "src/pyisetcam/image_sensor_db.py",
         repo_root / "src/pyisetcam/tcad_sensor.py",
+        repo_root / "src/camerae2e_v2/service.py",
         repo_root / "tools/package_camerae2e_db_repository.py",
+        repo_root / "camerae2e-workbench/backend/app/service.py",
+        repo_root / "camerae2e-workbench/package.json",
     ]
-    needles = ["/Users/seongcheoljeong/FDTD", "/Users/seongcheoljeong/RayOptics"]
+    needles = ["/Users/"]
     hits: list[dict[str, Any]] = []
     for path in runtime_files:
         if not path.exists():
@@ -151,7 +157,10 @@ def _repo_local_default_checks(repo_root: Path) -> list[dict[str, Any]]:
         "fdtd_sensor_default_lut_path": repo_root
         / "camerae2e_db/fdtd_tcad/runs/convergence_cra3_rgb_r84_gridsnap_quant/camera_lut.json",
         "tcad_generation_map_path": repo_root
-        / "camerae2e_db/fdtd_tcad/runs/fdtd_to_tcad_generation_2d_cra_smoke/tcad_generation_map_2d.npz",
+        / (
+            "camerae2e_db/fdtd_tcad/runs/fdtd_to_tcad_generation_2d_cra_smoke/"
+            "tcad_generation_map_2d.npz"
+        ),
         "tcad_center_collection_summary": repo_root
         / "camerae2e_db/fdtd_tcad/runs/devsim_split_pd_2d_fdtd_map_proxy_center_smoke/summary.json",
         "rayoptics_lens_package": repo_root
@@ -210,22 +219,43 @@ def _path_info(repo_root: Path, path: Path) -> dict[str, Any]:
         "path": _rel(repo_root, path),
         "exists": path.exists(),
         "kind": "directory" if path.is_dir() else "file" if path.is_file() else "missing",
-        "bytes": _path_size(path) if path.exists() else 0,
+        "bytes": _path_size(repo_root, path) if path.exists() else 0,
     }
 
 
-def _path_size(path: Path) -> int:
+def _path_size(repo_root: Path, path: Path) -> int:
     if path.is_file():
         return path.stat().st_size
-    return sum(item.stat().st_size for item in path.rglob("*") if item.is_file())
+    return sum(
+        item.stat().st_size
+        for item in _tracked_candidate_files(repo_root)
+        if _is_relative_to(item, path)
+    )
 
 
 def _tracked_candidate_files(repo_root: Path) -> list[Path]:
+    try:
+        result = subprocess.run(
+            ["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
+            cwd=repo_root,
+            check=True,
+            capture_output=True,
+        )
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        result = None
+    if result is not None:
+        return [
+            path
+            for item in result.stdout.split(b"\0")
+            if item
+            and (path := repo_root / item.decode("utf-8", errors="surrogateescape")).is_file()
+        ]
     ignored_parts = {".git", "__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache"}
     return [
         path
         for path in repo_root.rglob("*")
-        if path.is_file() and not any(part in ignored_parts for part in path.relative_to(repo_root).parts)
+        if path.is_file()
+        and not any(part in ignored_parts for part in path.relative_to(repo_root).parts)
     ]
 
 

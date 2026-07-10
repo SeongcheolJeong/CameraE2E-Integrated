@@ -8,6 +8,12 @@
     },
     {
       "kind": "required_path",
+      "name": "camerae2e_v2_code",
+      "ok": true,
+      "path": "src/camerae2e_v2"
+    },
+    {
+      "kind": "required_path",
       "name": "camerae2e_tests",
       "ok": true,
       "path": "tests"
@@ -17,6 +23,12 @@
       "name": "camerae2e_tools",
       "ok": true,
       "path": "tools"
+    },
+    {
+      "kind": "required_path",
+      "name": "camerae2e_workbench",
+      "ok": true,
+      "path": "camerae2e-workbench"
     },
     {
       "kind": "required_path",
@@ -164,22 +176,34 @@
       "path": "camerae2e_db/manifest.json"
     },
     "camerae2e_code": {
-      "bytes": 41516978,
+      "bytes": 41519521,
       "exists": true,
       "kind": "directory",
       "path": "src/pyisetcam"
     },
     "camerae2e_tests": {
-      "bytes": 33038815,
+      "bytes": 33067862,
       "exists": true,
       "kind": "directory",
       "path": "tests"
     },
     "camerae2e_tools": {
-      "bytes": 1131436,
+      "bytes": 1132368,
       "exists": true,
       "kind": "directory",
       "path": "tools"
+    },
+    "camerae2e_v2_code": {
+      "bytes": 247270,
+      "exists": true,
+      "kind": "directory",
+      "path": "src/camerae2e_v2"
+    },
+    "camerae2e_workbench": {
+      "bytes": 242524,
+      "exists": true,
+      "kind": "directory",
+      "path": "camerae2e-workbench"
     },
     "fdtd_tcad_workspace": {
       "bytes": 5450986,
@@ -207,14 +231,14 @@
     }
   },
   "ok": true,
-  "repository_root": "/Users/seongcheoljeong/Documents/CameraE2E-Integrated",
+  "repository_root": ".",
   "schema_version": "camerae2e_integrated_repository_manifest_v1",
   "summary": {
-    "bytes": 226075130,
-    "check_count": 18,
+    "bytes": 228218527,
+    "check_count": 20,
     "failed_checks": [],
-    "file_count": 3545,
-    "size_mb": 215.602
+    "file_count": 3582,
+    "size_mb": 217.646
   },
   "truth_boundary": {
     "claim": "research-grade self-contained checkout",

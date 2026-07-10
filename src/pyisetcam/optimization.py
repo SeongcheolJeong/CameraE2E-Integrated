@@ -304,6 +304,18 @@ _PARAMETER_AXIS_CATALOG: dict[str, dict[str, Any]] = {
         "values": [0.8, 1.0, 1.2],
         "description": "Global stage latency scale for system-control sweeps.",
     },
+    "ip.sensor_conversion_method": {
+        "area": "isp_color",
+        "unit": "enum",
+        "readiness_tier": "validated",
+        "values": ["mcc_optimized", "esser_optimized"],
+        "description": (
+            "Color correction matrix estimation method for sensor-to-XYZ conversion. "
+            "MCC uses Macbeth reflectances; Esser uses the wider Esser surface set. "
+            "Free 3x3 CCM search is intentionally kept out of the default preset to "
+            "avoid detector-score gaming without color-calibration gates."
+        ),
+    },
 }
 
 _PARAMETER_SPACE_PRESETS: dict[str, tuple[str, ...]] = {
@@ -341,7 +353,7 @@ _PARAMETER_SPACE_PRESETS: dict[str, tuple[str, ...]] = {
         "fdtd.cra_z_deg",
         "tcad.collection_mode",
     ),
-    "isp": ("ip.demosaic_method",),
+    "isp": ("ip.demosaic_method", "ip.sensor_conversion_method"),
     "hw_isp_control": (
         "hw_isp.ae_apply_delay_frames",
         "hw_isp.awb_apply_delay_frames",
@@ -360,6 +372,7 @@ _PARAMETER_SPACE_PRESETS: dict[str, tuple[str, ...]] = {
         "sensor.ocl_group_equalization",
         "sensor.integration_time",
         "sensor.analog_gain",
+        "ip.sensor_conversion_method",
     ),
 }
 
@@ -898,12 +911,15 @@ def camerae2e_optimization_config_catalog() -> dict[str, Any]:
                     "pixel.size",
                     "sensor.bits",
                     "ip.demosaic_method",
+                    "ip.sensor_conversion_method",
                 ],
                 "truth_boundary": (
                     "The optimizer can assign these paths, but actual effect depends "
                     "on camera_set support and should be verified with parameter_lineage. "
                     "optics.si_psf_radius_um is a CameraE2E high-level synthetic PSF proxy, "
-                    "not a product lens PSF calibration."
+                    "not a product lens PSF calibration. Registered CCM methods estimate "
+                    "sensor-to-XYZ matrices from reflectance sets; free 3x3 matrix search "
+                    "requires separate color-chart/DeltaE gates."
                 ),
             },
         ],
@@ -2872,6 +2888,15 @@ def _parameter_value_findings(
                     {"bilinear", "nearestneighbor", "nearest neighbor", "laplacian"},
                 )
             )
+        elif key == "ip.sensor_conversion_method":
+            issues.extend(
+                _validate_enum_value(
+                    path,
+                    index,
+                    value,
+                    _IP_SENSOR_CONVERSION_METHODS,
+                )
+            )
         elif key in finite_scalar_axes:
             issues.extend(
                 _validate_numeric_value(
@@ -2906,6 +2931,17 @@ _OCL_VIGNETTING_MODES = {
     "centered",
     "optimal",
     "optimized",
+}
+
+_IP_SENSOR_CONVERSION_METHODS = {
+    "mcc",
+    "mcc optimized",
+    "mcc_optimized",
+    "mccoptimized",
+    "esser",
+    "esser optimized",
+    "esser_optimized",
+    "esseroptimized",
 }
 
 _CFA_PRESETS = {

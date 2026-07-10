@@ -1,12 +1,25 @@
 from __future__ import annotations
 
-from fastapi import FastAPI, HTTPException
+import sys
+from pathlib import Path
+
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .service import WorkbenchService
+REPO_ROOT = Path(__file__).resolve().parents[3]
+SRC_ROOT = REPO_ROOT / "src"
+if str(SRC_ROOT) not in sys.path:
+    sys.path.insert(0, str(SRC_ROOT))
 
+from camerae2e_v2 import CameraE2EService  # noqa: E402
 
-app = FastAPI(title="CameraE2E Workbench API", version="0.1.0")
+from .v2 import create_v2_router  # noqa: E402
+
+app = FastAPI(
+    title="CameraE2E v2 Workbench API",
+    version="2.0.0",
+    description="Local camera design decision and evidence platform.",
+)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -22,52 +35,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-service = WorkbenchService()
+v2_service = CameraE2EService()
+app.include_router(create_v2_router(v2_service))
 
 
-@app.get("/api/health")
-def health() -> dict[str, str]:
-    return {"status": "ok", "service": "camerae2e-workbench"}
-
-
-@app.get("/api/presets")
-def presets() -> dict:
-    return service.presets()
-
-
-@app.get("/api/assets/status")
-def assets_status() -> dict:
-    return service.assets_status()
-
-
-@app.post("/api/simulate")
-def simulate(payload: dict) -> dict:
-    try:
-        return service.simulate(payload)
-    except (KeyError, TypeError, ValueError, FileNotFoundError) as exc:
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
-
-
-@app.post("/api/optimize")
-def optimize(payload: dict) -> dict:
-    try:
-        return service.optimize(payload)
-    except (KeyError, TypeError, ValueError, FileNotFoundError) as exc:
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
-
-
-@app.post("/api/dataset/export")
-def dataset_export(payload: dict) -> dict:
-    try:
-        return service.dataset_export(payload)
-    except (KeyError, TypeError, ValueError, FileNotFoundError) as exc:
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
-
-
-@app.post("/api/report")
-def report(payload: dict | None = None) -> dict:
-    try:
-        return service.report(payload or {})
-    except (KeyError, TypeError, ValueError, FileNotFoundError) as exc:
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
-
+@app.on_event("shutdown")
+def shutdown_v2_service() -> None:
+    v2_service.shutdown(wait=False)
