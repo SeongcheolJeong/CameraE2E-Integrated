@@ -26,6 +26,7 @@ import {
   X
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import ComponentExplorer from "./ComponentExplorer";
 import {
   artifactUrl,
   bootstrapProject,
@@ -46,7 +47,8 @@ import type {
   JobRecord,
   ProjectPayload,
   StudyRecord,
-  StudySpec
+  StudySpec,
+  ModuleApplicationResponse
 } from "./types";
 
 const workflow = [
@@ -77,6 +79,7 @@ function App() {
   const [executeSolvers, setExecuteSolvers] = useState(false);
   const [datasetCases, setDatasetCases] = useState(200);
   const [previewTab, setPreviewTab] = useState<"source" | "ideal" | "output" | "overlay">("source");
+  const [componentExplorerOpen, setComponentExplorerOpen] = useState(false);
   const [calibration, setCalibration] = useState({
     kind: "qe",
     measured_path: "",
@@ -177,6 +180,7 @@ function App() {
   const validationJob = latest("validate_candidate");
   const datasetJob = latest("dataset_export");
   const reportJob = latest("report");
+  const moduleComparisonJob = latest("compare_modules");
   const evaluation = evaluationJob?.result ?? null;
   const sensitivity = sensitivityJob?.result ?? null;
   const optimizationResult = optimizationJob?.result ?? null;
@@ -249,6 +253,37 @@ function App() {
     setBusy(null);
     return updated;
   };
+
+  const openComponentExplorer = async () => {
+    try {
+      await persist();
+      setComponentExplorerOpen(true);
+    } catch (exc) {
+      setError(exc instanceof Error ? exc.message : String(exc));
+    }
+  };
+
+  const acceptComponentModule = useCallback((payload: ModuleApplicationResponse) => {
+    setStudy(payload.study);
+    setDraft(payload.study.spec);
+    setProject((current) => current ? {
+      ...current,
+      studies: current.studies.map((item) => item.id === payload.study.id ? payload.study : item),
+      camera_asset_summary: { count: current.camera_asset_summary.count + 1 },
+      artifact_summary: { ...current.artifact_summary, count: current.artifact_summary.count + 1 }
+    } : current);
+    setDirty(false);
+    setComponentExplorerOpen(false);
+    setActiveSection("design-space");
+  }, []);
+
+  const acceptComponentJob = useCallback((job: JobRecord) => {
+    setJobs((items) => [job, ...items]);
+    setActiveJobId(job.id);
+    setBusy("Compare Modules");
+  }, []);
+
+  const acceptComponentError = useCallback((message: string) => setError(message), []);
 
   const switchStudy = async (studyId: string) => {
     if (!project || studyId === study?.id || dirty || activeJobId) return;
@@ -467,6 +502,13 @@ function App() {
 
         <section id="design-space" className="workspace-section">
           <SectionHeading icon={SlidersHorizontal} title="Design Space" meta={`${draft.design_variables.filter((item) => item.enabled).length} active variables`} />
+          <div className="component-module-bar">
+            <div className="component-module-title"><Boxes size={17} /><span><small>Camera module</small><strong>{draft.baseline.name}</strong></span></div>
+            <div className="component-module-part"><span>Lens</span><strong>{draft.baseline.lens.model_id ?? "Custom analytic"}</strong></div>
+            <div className="component-module-part"><span>Sensor</span><strong>{draft.baseline.sensor.model_id ?? "Custom analytic"}</strong></div>
+            <div className="component-module-part"><span>Geometry</span><strong>{draft.baseline.sensor.native_rows && draft.baseline.sensor.native_cols ? `${draft.baseline.sensor.native_cols} x ${draft.baseline.sensor.native_rows}` : `${draft.baseline.sensor.cols} x ${draft.baseline.sensor.rows}`}</strong></div>
+            <button className="secondary-button" disabled={Boolean(activeJobId)} onClick={() => void openComponentExplorer()}><ScanSearch size={16} /> Find & Compare</button>
+          </div>
           <div className="config-grid">
             <NumberControl label="Pixel size" value={draft.baseline.sensor.pixel_size_um} unit="um" onChange={(value) => mutate((current) => ({ ...current, baseline: { ...current.baseline, sensor: { ...current.baseline.sensor, pixel_size_um: value } } }))} />
             <NumberControl label="F-number" value={draft.baseline.lens.f_number} unit="f/#" onChange={(value) => mutate((current) => ({ ...current, baseline: { ...current.baseline, lens: { ...current.baseline.lens, f_number: value } } }))} />
@@ -769,6 +811,19 @@ function App() {
           {!artifacts.length && <span className="artifact-empty">Run a study operation to create immutable evidence.</span>}
         </div>
       </footer>
+      {componentExplorerOpen && (
+        <ComponentExplorer
+          project={project}
+          study={study}
+          draft={draft}
+          comparisonJob={moduleComparisonJob}
+          activeJob={Boolean(activeJobId)}
+          onClose={() => setComponentExplorerOpen(false)}
+          onApplied={acceptComponentModule}
+          onJobSubmitted={acceptComponentJob}
+          onError={acceptComponentError}
+        />
+      )}
     </div>
   );
 }
@@ -846,7 +901,7 @@ function ParetoPlot({ cases }: { cases: Array<Record<string, any>> }) {
 }
 
 function operationLabel(kind: string): string {
-  return ({ evaluate: "Evaluate Baseline", benchmark_preflight: "Run Benchmark Preflight", benchmark_run: "Run Benchmark", train_detector: "Train KITTI YOLO", requirements_evaluate: "Evaluate Requirements", sensitivity: "Explore Design Space", optimize: "Optimize", validate_candidate: "Validate Candidate", dataset_export: "Export Dataset", calibrate: "Fit Calibration", report: "Build Report" } as Record<string, string>)[kind] ?? kind;
+  return ({ evaluate: "Evaluate Baseline", compare_modules: "Compare Modules", benchmark_preflight: "Run Benchmark Preflight", benchmark_run: "Run Benchmark", train_detector: "Train KITTI YOLO", requirements_evaluate: "Evaluate Requirements", sensitivity: "Explore Design Space", optimize: "Optimize", validate_candidate: "Validate Candidate", dataset_export: "Export Dataset", calibrate: "Fit Calibration", report: "Build Report" } as Record<string, string>)[kind] ?? kind;
 }
 
 function formatNumber(value: unknown): string {

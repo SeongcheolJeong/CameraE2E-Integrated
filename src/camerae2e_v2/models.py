@@ -125,7 +125,13 @@ class SensorConfig(StrictModel):
     model_id: str | None = None
     rows: int = Field(default=375, gt=0)
     cols: int = Field(default=1242, gt=0)
+    native_rows: int | None = Field(default=None, gt=0)
+    native_cols: int | None = Field(default=None, gt=0)
+    geometry_source: str = "configured_readout"
     pixel_size_um: float = Field(default=3.75, gt=0.0)
+    pixel_fill_factor: float = Field(default=0.75, gt=0.0, le=1.0)
+    simulation_pixel_size_um: float | None = Field(default=None, gt=0.0)
+    simulation_fill_factor: float | None = Field(default=None, gt=0.0, le=1.0)
     cfa_preset: str = "bayer_rgb"
     qe_profile: str = "isetcam_default_rgb"
     exposure_ms: float = Field(default=4.0, gt=0.0)
@@ -488,6 +494,29 @@ class CameraAssetRecord(StrictModel):
         if not value:
             raise ValueError("camera asset requires at least one artifact hash")
         return value
+
+
+class ComponentSelection(StrictModel):
+    lens_id: str = Field(min_length=1)
+    sensor_id: str = Field(min_length=1)
+    name: str | None = None
+    use_geometric_psf: bool = True
+
+
+class ModuleEvaluationRequest(StrictModel):
+    requirements: RequirementSet = Field(default_factory=RequirementSet)
+    candidates: list[ComponentSelection] = Field(min_length=1, max_length=4)
+
+
+class ModuleBaselineRequest(StrictModel):
+    selection: ComponentSelection
+    allow_incompatible: bool = False
+
+
+class ModuleCompareRequest(StrictModel):
+    candidates: list[ComponentSelection] = Field(min_length=2, max_length=4)
+    scene_id: str | None = None
+    allow_incompatible: bool = False
 
 
 class JobRecord(StrictModel):

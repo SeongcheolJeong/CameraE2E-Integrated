@@ -9,6 +9,10 @@ The platform is intended for camera-system trade studies, reproducible configura
 optimization, and virtual RAW dataset generation. It is **not** a product sign-off
 tool unless measured calibration evidence is attached for the relevant stage.
 
+The Workbench also includes a Lens/Sensor Component Explorer. It searches the bundled
+databases, checks module compatibility against the active mission requirements, applies
+a selected module as a versioned baseline, and reruns two to four modules on one scene.
+
 ## What You Can Run
 
 | Available inputs | Supported workflow | Important boundary |
@@ -90,6 +94,7 @@ ADAS benchmark.
 - [Troubleshooting](docs/troubleshooting.md)
 - [Research and Fidelity Boundaries](docs/research-boundaries.md)
 - [CameraE2E v2 Architecture](docs/camerae2e-v2-architecture.md)
+- [Lens/Sensor Component Explorer](docs/component-explorer.md)
 - [Integrated Repository Layout](INTEGRATED_REPOSITORY.md)
 - [Contributing](CONTRIBUTING.md)
 - [pyisetcam Development Status Archive](docs/pyisetcam-development-status.md)

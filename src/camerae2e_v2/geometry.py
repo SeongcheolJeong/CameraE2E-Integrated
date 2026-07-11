@@ -141,8 +141,15 @@ def global_ssim(left: np.ndarray, right: np.ndarray) -> float:
 
 
 def geometry_contract_metrics(module: CameraModule, transform: GeometryTransform) -> dict[str, Any]:
-    sensor_width_mm = transform.active_sensor_size_rc[1] * module.sensor.pixel_size_um * 1e-3
-    sensor_height_mm = transform.active_sensor_size_rc[0] * module.sensor.pixel_size_um * 1e-3
+    native_rows = module.sensor.native_rows or transform.active_sensor_size_rc[0]
+    native_cols = module.sensor.native_cols or transform.active_sensor_size_rc[1]
+    sensor_width_mm = native_cols * module.sensor.pixel_size_um * 1e-3
+    sensor_height_mm = native_rows * module.sensor.pixel_size_um * 1e-3
+    simulation_pitch_um = (
+        module.sensor.simulation_pixel_size_um or module.sensor.pixel_size_um
+    )
+    simulation_width_mm = transform.active_sensor_size_rc[1] * simulation_pitch_um * 1e-3
+    simulation_height_mm = transform.active_sensor_size_rc[0] * simulation_pitch_um * 1e-3
     focal_mm = module.lens.focal_length_mm
     if focal_mm is None:
         focal_mm = sensor_width_mm / (2.0 * math.tan(math.radians(module.lens.hfov_deg) / 2.0))
@@ -151,6 +158,15 @@ def geometry_contract_metrics(module: CameraModule, transform: GeometryTransform
         "sensor_width_mm": sensor_width_mm,
         "sensor_height_mm": sensor_height_mm,
         "sensor_diagonal_mm": math.hypot(sensor_width_mm, sensor_height_mm),
+        "simulation_sensor_width_mm": simulation_width_mm,
+        "simulation_sensor_height_mm": simulation_height_mm,
+        "simulation_extent_error_fraction": max(
+            abs(simulation_width_mm - sensor_width_mm) / max(sensor_width_mm, 1e-12),
+            abs(simulation_height_mm - sensor_height_mm) / max(sensor_height_mm, 1e-12),
+        ),
+        "native_sensor_size_rc": [native_rows, native_cols],
+        "simulation_readout_size_rc": list(transform.active_sensor_size_rc),
+        "sensor_geometry_source": module.sensor.geometry_source,
         "focal_length_mm": focal_mm,
         "configured_hfov_deg": module.lens.hfov_deg,
         "derived_hfov_deg": derived_hfov,
@@ -158,4 +174,6 @@ def geometry_contract_metrics(module: CameraModule, transform: GeometryTransform
         "output_shape_matches_contract": (
             tuple(transform.output_size_rc) == tuple(transform.readout_size_rc)
         ),
+        "simulation_is_downsampled": (native_rows, native_cols)
+        != tuple(transform.active_sensor_size_rc),
     }

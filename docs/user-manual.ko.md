@@ -72,6 +72,48 @@ exposure, OCL/CRA, lens PSF, ISP, fidelity가 baseline의 핵심입니다.
 | CCM | 색 변환; 자유 최적화에는 color evidence가 필요 |
 | Fidelity | analytic, LUT, solver, calibrated 근거 수준 |
 
+### Lens/Sensor Component Explorer
+
+`Design Space`의 `Camera Module` 영역에서 `Find & Compare`를 누릅니다.
+
+1. Lens는 회사, 특허, focal length, F-number, FOV, geometric PSF 유무로 검색합니다.
+2. Sensor는 제조사, pixel pitch, resolution, CFA, DTI, simulation readiness로
+   검색합니다. 기본값은 `Simulation-ready only`입니다.
+3. Lens와 sensor를 하나씩 선택하면 현재 study 요구사항에 대한 compatibility를
+   즉시 계산합니다.
+4. 2~4개 조합을 compare tray에 넣고 hard gate와 Pareto 표시를 확인합니다.
+5. `Compare on Scene`을 실행하면 모든 조합을 같은 scene과 seed로 다시 계산합니다.
+6. 호환 조합을 baseline으로 적용하면 module descriptor artifact가 생기고 study
+   revision이 증가합니다.
+
+Gate에는 frame sensor/CFA 모델 지원, image circle, RayOptics field domain, HFOV,
+거리별 물체 pixel 수, diffraction sampling, pixel bandwidth, rolling-shutter 가정이
+포함됩니다. `not_evaluable`은 pass가 아닙니다. Pareto 표시는 현재 analytic support
+metric에서 지배되지 않는 후보라는 뜻이며 자동 winner 선언이 아닙니다.
+
+Native sensor 해상도는 geometry와 hardware gate에 사용합니다. 로컬 실행 시간과
+메모리를 제한하기 위해 실제 image simulation은 CFA 정렬된 최대 640 x 360 readout을
+사용하고 이 차이를 metadata에 기록합니다. 원본 DB는 read-only이고, project에는
+선택한 source ID, module descriptor, compatibility, provenance와 결과 artifact만
+저장됩니다.
+Simulation sampling pitch를 키워 전체 sensor 물리 폭을 유지하고 fill factor를 줄여
+native photodiode 면적을 유지합니다. 따라서 이 모델은 binning이 아니라 sparse
+sampling proxy입니다.
+
+현재의 중요한 경계:
+
+- Event/NIR/SWIR sensor는 검색과 검토는 가능하지만 전용 acquisition physics가 없어
+  frame-RAW simulation에서는 차단됩니다.
+- CFA가 없으면 임의 Bayer로 치환하지 않습니다. Bayer/RGGB Bayer/Quad Bayer/
+  Tetracell Bayer로 확인된 record만 직접 configure할 수 있습니다.
+- DB 이름으로 센서별 measured QE, noise, full-well을 추정하지 않습니다. 기존
+  baseline QE profile을 유지하고 그 사실을 metadata에 기록합니다.
+- RayOptics PSF는 geometric ray histogram이며 diffraction 또는 measured MTF가
+  아닙니다.
+- MP 값에서 유도한 geometry는 `resolution_mp_16_9_proxy`로 표시합니다.
+- Sparse simulation은 FOV와 sample당 수광 면적은 유지하지만 native spatial
+  resolution과 native CFA phase 관계까지 보존하지는 않습니다.
+
 ### Run Simulation
 
 현재 설정의 카메라 한 개를 평가합니다. 각 stage 결과, metric, requirement gate,
@@ -108,9 +150,9 @@ manifest에는 config, scene, seed, source hash, commit, fidelity와 validation�
 
 ### Report
 
-요구사항, baseline, search space, gate, 후보 순위, 불확실성, fidelity 한계,
-artifact와 dataset을 정리합니다. warning과 `not_evaluable`도 결과의 일부로
-해석해야 합니다.
+요구사항, baseline, module 비교, search space, gate, 후보 순위, 불확실성,
+fidelity 한계, artifact와 dataset을 정리합니다. warning과 `not_evaluable`도
+결과의 일부로 해석해야 합니다.
 
 ## 5. KITTI와 YOLO 연결
 

@@ -82,6 +82,47 @@ Important controls:
 | CCM | Color transform; free fitting requires calibration evidence |
 | Fidelity | Analytic search, LUT-backed ranking, solver evidence, or calibration |
 
+### Lens/Sensor Component Explorer
+
+Open `Design Space`, find the `Camera Module` bar, and select `Find & Compare`.
+
+1. Search lenses by company, patent, focal length, F-number, FOV, or geometric-PSF
+   availability.
+2. Search sensors by manufacturer, pixel pitch, resolution, CFA, DTI, and simulation
+   readiness. `Simulation-ready only` is enabled by default.
+3. Select one lens and one sensor. The Workbench immediately evaluates the pair against
+   the active study requirements.
+4. Add two to four pairs to the comparison tray. Review hard gates and the Pareto flag.
+5. Use `Compare on Scene` to rerun every pair with the same scene and seed.
+6. Use a compatible pair as the study baseline. This creates a module descriptor
+   artifact and increments the study revision.
+
+Compatibility checks the frame-sensor model, CFA model, image circle, RayOptics field
+domain, HFOV, object pixels at range, diffraction sampling, pixel bandwidth, and rolling
+shutter assumption. `not_evaluable` is not a pass. The Pareto flag identifies candidates
+that are not dominated on the current analytic support metrics; it does not declare a
+winner.
+
+Native sensor rows and columns drive geometry and hardware gates. To keep local studies
+tractable, image execution uses a recorded CFA-aligned readout capped at 640 by 360.
+The proxy expands simulation sampling pitch to preserve the full sensor extent and reduces
+fill factor to preserve native photodiode area; it represents sparse sampling, not binning.
+The source database remains read-only. A selected module stores only its descriptor,
+source IDs, compatibility result, provenance, and output artifacts in the project.
+
+Current boundaries:
+
+- Event, NIR, and SWIR sensors are visible for inspection but blocked from the frame-RAW
+  model until dedicated acquisition physics exists.
+- A missing CFA is never replaced with Bayer. Only known Bayer, RGGB Bayer, Quad Bayer,
+  and Tetracell Bayer records are directly configurable.
+- Sensor-specific measured QE/noise/full-well values are not inferred from a database
+  name. The existing baseline QE profile remains active and is recorded as such.
+- RayOptics PSFs are geometric ray histograms, not diffraction or measured MTF.
+- Geometry inferred from megapixel count is labeled `resolution_mp_16_9_proxy`.
+- Sparse simulation preserves FOV and per-sample photon area but does not preserve native
+  spatial resolution or native CFA phase relationships.
+
 ### Baseline Evaluation
 
 `Run Simulation` evaluates one configured camera. It produces stage outputs, scalar
@@ -126,9 +167,10 @@ as the camera output. CameraE2E does not invent labels for unknown objects.
 
 ### Decision Report
 
-The report summarizes requirements, baseline, search space, gates, ranked candidates,
-uncertainty, fidelity boundaries, selected artifacts, and dataset outputs. Treat warning
-and `not_evaluable` fields as part of the result, not presentation noise.
+The report summarizes requirements, baseline, module comparisons, search space, gates,
+ranked candidates, uncertainty, fidelity boundaries, selected artifacts, and dataset
+outputs. Treat warning and `not_evaluable` fields as part of the result, not presentation
+noise.
 
 ## 5. KITTI and YOLO Setup
 
