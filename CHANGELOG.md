@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.2.0-research
+
+- Added the Lens/Sensor Component Explorer with normalized search, detail inspection,
+  simulation-readiness filters, and explicit source/proxy boundaries.
+- Added requirement-driven module compatibility gates, Pareto screening, baseline
+  application, and two-to-four candidate same-scene comparison.
+- Connected bundled RayOptics geometric PSFs to real CameraE2E execution without
+  presenting them as diffraction or measured MTF evidence.
+- Separated native sensor geometry from bounded local execution and added a full-extent
+  sparse-sampling proxy that preserves FOV and native photodiode area.
+- Added component APIs, decision-report integration, desktop/mobile Workbench UX,
+  regression tests, and English/Korean manuals.
+
+This release is research-grade. Event/NIR/SWIR acquisition, sensor-specific measured
+QE/noise, wave-optics sign-off, and product calibration remain outside its validated scope.
+
 ## 0.1.0-research
 
 - Integrated CameraE2E, Camera DB, FDTD/TCAD assets, RayOptics assets, and Workbench.
