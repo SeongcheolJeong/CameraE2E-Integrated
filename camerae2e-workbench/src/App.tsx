@@ -35,6 +35,8 @@ import {
   fetchJob,
   fetchJobs,
   fetchProject,
+  estimateDatasetExport,
+  inspectDatasetSource,
   scenePreviewUrl,
   submitOperation,
   updateStudy
@@ -43,6 +45,8 @@ import type {
   ArtifactRecord,
   AssetStatus,
   BenchmarkStatus,
+  DatasetEstimate,
+  DatasetInventory,
   DesignVariable,
   JobRecord,
   ProjectPayload,
@@ -63,6 +67,12 @@ const workflow = [
 
 const terminalStatuses = new Set(["succeeded", "failed", "cancelled", "interrupted"]);
 
+const exposureRecipes: Record<string, number[]> = {
+  Nominal: [0],
+  "Bracket -1/0/+1": [-1, 0, 1],
+  "Low light -2/-1/0": [-2, -1, 0]
+};
+
 function App() {
   const [project, setProject] = useState<ProjectPayload | null>(null);
   const [study, setStudy] = useState<StudyRecord | null>(null);
@@ -78,6 +88,17 @@ function App() {
   const [selectedCandidate, setSelectedCandidate] = useState<number>(0);
   const [executeSolvers, setExecuteSolvers] = useState(false);
   const [datasetCases, setDatasetCases] = useState(200);
+  const [datasetSourceAdapter, setDatasetSourceAdapter] = useState("kitti");
+  const [datasetSourceRoot, setDatasetSourceRoot] = useState("");
+  const [datasetSplit, setDatasetSplit] = useState("train");
+  const [datasetSelection, setDatasetSelection] = useState("baseline");
+  const [datasetResolution, setDatasetResolution] = useState("source_bounded");
+  const [datasetExposureRecipe, setDatasetExposureRecipe] = useState("Nominal");
+  const [datasetNoiseRepeats, setDatasetNoiseRepeats] = useState(1);
+  const [datasetRawUint16, setDatasetRawUint16] = useState(false);
+  const [datasetInventory, setDatasetInventory] = useState<DatasetInventory | null>(null);
+  const [datasetEstimate, setDatasetEstimate] = useState<DatasetEstimate | null>(null);
+  const [datasetInspecting, setDatasetInspecting] = useState(false);
   const [previewTab, setPreviewTab] = useState<"source" | "ideal" | "output" | "overlay">("source");
   const [componentExplorerOpen, setComponentExplorerOpen] = useState(false);
   const [calibration, setCalibration] = useState({
@@ -108,6 +129,7 @@ function App() {
         setProject(payload);
         setStudy(firstStudy);
         setDraft(firstStudy.spec);
+        setDatasetSourceRoot(firstStudy.spec.benchmark.source_root ?? "");
         const [assetPayload, benchmarkPayload] = await Promise.all([
           fetchAssetStatus(payload.info.id),
           fetchBenchmarkStatus(payload.info.id, firstStudy.id),
@@ -116,6 +138,9 @@ function App() {
         if (mounted) {
           setAssets(assetPayload);
           setBenchmarkStatus(benchmarkPayload);
+          setDatasetSourceRoot(
+            firstStudy.spec.benchmark.source_root ?? benchmarkPayload.inventory.root ?? ""
+          );
         }
       })
       .catch((exc: Error) => setError(exc.message))
@@ -295,17 +320,63 @@ function App() {
     setBenchmarkStatus(null);
     setStudy(next);
     setDraft(next.spec);
+    setDatasetSourceRoot(next.spec.benchmark.source_root ?? "");
+    setDatasetInventory(null);
+    setDatasetEstimate(null);
     setSelectedCandidate(0);
     setPreviewTab("source");
     try {
       const benchmark = await fetchBenchmarkStatus(project.info.id, next.id);
       await refreshJobs(project.info.id, next.id);
       setBenchmarkStatus(benchmark);
+      setDatasetSourceRoot(next.spec.benchmark.source_root ?? benchmark.inventory.root ?? "");
       window.localStorage.setItem(`camerae2e:last-study:${project.info.id}`, next.id);
     } catch (exc) {
       setError(exc instanceof Error ? exc.message : String(exc));
     } finally {
       setBusy(null);
+    }
+  };
+
+  const datasetRequest = () => ({
+    selection: datasetSelection,
+    case_count: datasetSelection === "top" ? 3 : datasetSelection === "pareto" ? 8 : 1,
+    scene_count: datasetCases,
+    source_adapter: datasetSourceAdapter,
+    source_root: datasetSourceRoot || null,
+    source_splits: [datasetSplit],
+    resolution_policy: datasetResolution,
+    exposure_variants_ev: exposureRecipes[datasetExposureRecipe],
+    noise_repeats: datasetNoiseRepeats,
+    include_raw_uint16: datasetRawUint16,
+    resume: true
+  });
+
+  const inspectDataset = async () => {
+    if (!project || !study || !draft) return;
+    setDatasetInspecting(true);
+    setError(null);
+    try {
+      const request = datasetRequest();
+      const inventory = datasetSourceAdapter === "kitti"
+        ? await inspectDatasetSource(project.info.id, study.id, {
+          source_adapter: "kitti",
+          source_root: datasetSourceRoot || null,
+          source_splits: [datasetSplit]
+        })
+        : {
+          schema_version: "camerae2e_dataset_inventory_v1",
+          adapter: "study" as const,
+          available_scene_count: draft.scenes.length
+        };
+      setDatasetInventory(inventory);
+      setDatasetEstimate(await estimateDatasetExport(project.info.id, study.id, request));
+    } catch (exc) {
+      setDatasetInventory(null);
+      setDatasetEstimate(null);
+      setError(exc instanceof Error ? exc.message : String(exc));
+    } finally {
+      setDatasetInspecting(false);
     }
   };
 
@@ -701,11 +772,56 @@ function App() {
 
         <section id="dataset" className="workspace-section compact-section">
           <SectionHeading icon={Database} title="RAW Dataset Factory" meta={datasetJob ? `${datasetJob.result?.case_count ?? 0} cases` : "no export"} />
-          <div className="horizontal-form">
-            <NumberControl label="Scenes" value={datasetCases} unit="frames" onChange={(value) => setDatasetCases(Math.max(1, Math.round(value)))} />
-            <div className="format-tokens"><span>RAW NPZ</span><span>RGB PNG</span><span>Labels JSON</span><span>Metadata</span></div>
-            <button className="primary-button" disabled={Boolean(activeJobId) || !optimization?.best_case} onClick={() => void run("dataset_export", { selection: "best", case_count: 1, scene_count: datasetCases })}><Archive size={17} /> {optimizationDecision?.status === "indistinguishable" ? "Export Top-ranked" : "Export Best Candidate"}</button>
+          <div className="dataset-factory-grid">
+            <div className="dataset-source-panel">
+              <strong>Source</strong>
+              <div className="dataset-control-grid">
+                <SelectControl label="Adapter" value={datasetSourceAdapter} options={["kitti", "study"]} onChange={(value) => { setDatasetSourceAdapter(value); setDatasetInventory(null); setDatasetEstimate(null); }} />
+                <SelectControl label="Split" value={datasetSplit} options={["train", "validation", "test"]} onChange={(value) => { setDatasetSplit(value); setDatasetInventory(null); setDatasetEstimate(null); }} />
+                {datasetSourceAdapter === "kitti" && <TextControl label="Dataset root" value={datasetSourceRoot} onChange={(value) => { setDatasetSourceRoot(value); setDatasetInventory(null); setDatasetEstimate(null); }} />}
+                <button className="secondary-button dataset-inspect-button" disabled={datasetInspecting || Boolean(activeJobId) || (datasetSelection !== "baseline" && !optimization?.best_case) || (datasetSourceAdapter === "kitti" && !datasetSourceRoot)} onClick={() => void inspectDataset()}>
+                  {datasetInspecting ? <LoaderCircle className="spin" size={16} /> : <ScanSearch size={16} />} Inspect & Estimate
+                </button>
+              </div>
+              {datasetInventory && (
+                <div className="dataset-source-summary">
+                  <span><strong>{datasetInventory.available_scene_count}</strong> scenes</span>
+                  <span><strong>{Math.round((datasetInventory.label_coverage ?? 0) * 100)}%</strong> labels</span>
+                  <span><strong>{Math.round((datasetInventory.calibration_coverage ?? 0) * 100)}%</strong> calibration</span>
+                </div>
+              )}
+            </div>
+
+            <div className="dataset-recipe-panel">
+              <strong>Camera recipe</strong>
+              <div className="dataset-control-grid">
+                <SelectControl label="Camera" value={datasetSelection} options={["baseline", "best", "top", "pareto"]} onChange={(value) => { setDatasetSelection(value); setDatasetEstimate(null); }} />
+                <SelectControl label="Resolution" value={datasetResolution} options={["source_bounded", "target_readout_proxy"]} onChange={(value) => { setDatasetResolution(value); setDatasetEstimate(null); }} />
+                <NumberControl label="Scenes" value={datasetCases} unit="frames" onChange={(value) => { setDatasetCases(Math.max(1, Math.round(value))); setDatasetEstimate(null); }} />
+                <SelectControl label="Exposure" value={datasetExposureRecipe} options={Object.keys(exposureRecipes)} onChange={(value) => { setDatasetExposureRecipe(value); setDatasetEstimate(null); }} />
+                <NumberControl label="Noise repeats" value={datasetNoiseRepeats} unit="seeds" onChange={(value) => { setDatasetNoiseRepeats(Math.max(1, Math.round(value))); setDatasetEstimate(null); }} />
+                <label className="switch-control dataset-switch">
+                  <input type="checkbox" checked={datasetRawUint16} onChange={(event) => setDatasetRawUint16(event.target.checked)} />
+                  <span>16-bit packed view</span>
+                </label>
+              </div>
+            </div>
           </div>
+
+          <div className="dataset-export-row">
+            <div>
+              <div className="format-tokens"><span>RAW NPZ</span><span>RGB PNG</span><span>Labels JSON</span><span>Metadata JSONL</span>{datasetRawUint16 && <span>RAW uint16</span>}</div>
+              <small>{datasetEstimate ? `${datasetEstimate.sample_count} samples · ${datasetEstimate.estimated_gib.toFixed(2)} GiB estimated` : "Inspect the source to calculate samples and storage"}</small>
+            </div>
+            <button
+              className="primary-button"
+              disabled={Boolean(activeJobId) || (datasetSelection !== "baseline" && !optimization?.best_case) || (datasetSourceAdapter === "kitti" && !datasetSourceRoot)}
+              onClick={() => void run("dataset_export", datasetRequest())}
+            >
+              <Archive size={17} /> Export Camera-aware RAW
+            </button>
+          </div>
+          {datasetResolution === "target_readout_proxy" && <div className="inline-warning"><TriangleAlert size={15} /> Target readout can exceed source information. Export metadata will mark upsampled_scene_proxy.</div>}
           {datasetJob?.result?.dataset_root && <code className="output-path">{String(datasetJob.result.dataset_root)}</code>}
           {datasetJob?.result?.validation && (
             <div className={`dataset-validation ${datasetJob.result.validation.ok ? "passed" : "failed"}`}>

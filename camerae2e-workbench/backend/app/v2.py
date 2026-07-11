@@ -8,6 +8,8 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from camerae2e_v2 import (
     CameraE2EService,
+    DatasetEstimateRequest,
+    DatasetInventoryRequest,
     ModuleBaselineRequest,
     ModuleCompareRequest,
     ModuleEvaluationRequest,
@@ -370,6 +372,28 @@ def create_v2_router(service: CameraE2EService) -> APIRouter:
         project_id: str, study_id: str, body: OperationBody, response: Response
     ) -> dict[str, Any]:
         return submit_operation(project_id, study_id, "dataset_export", body, response)
+
+    @router.post("/projects/{project_id}/studies/{study_id}/datasets/inventory")
+    def dataset_inventory(
+        project_id: str,
+        study_id: str,
+        body: DatasetInventoryRequest,
+    ) -> dict[str, Any]:
+        try:
+            return service.dataset_inventory(project_id, study_id, body)
+        except (KeyError, OSError, ValueError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @router.post("/projects/{project_id}/studies/{study_id}/datasets/estimate")
+    def dataset_estimate(
+        project_id: str,
+        study_id: str,
+        body: DatasetEstimateRequest,
+    ) -> dict[str, Any]:
+        try:
+            return service.dataset_estimate(project_id, study_id, body)
+        except (KeyError, OSError, ValueError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
 
     @router.post("/projects/{project_id}/studies/{study_id}/calibrations")
     def calibrate(

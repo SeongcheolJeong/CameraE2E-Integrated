@@ -19,11 +19,13 @@ import numpy as np
 from .benchmark import (
     benchmark_inventory,
     benchmark_scenes,
+    resolve_benchmark_root,
 )
 from .benchmark import benchmark_manifest as build_benchmark_manifest
 from .calibration import calibration_pack_status, fit_calibration
 from .catalog import seed_builtin_camera_assets
 from .components import ComponentCatalogService
+from .dataset_sources import kitti_dataset_inventory, kitti_dataset_scenes
 from .engine import CameraEngine
 from .evaluation import StudyEvaluator, load_adas_label_payload
 from .geometry import transform_label_payload
@@ -31,7 +33,9 @@ from .models import (
     AssetKind,
     CalibrationRequest,
     CameraAssetRecord,
+    DatasetEstimateRequest,
     DatasetExportRequest,
+    DatasetInventoryRequest,
     FidelityLevel,
     GeometryTransform,
     JobRecord,
@@ -43,6 +47,7 @@ from .models import (
     ReportRequest,
     SceneCase,
     StudyCreate,
+    StudyRecord,
     utc_now,
 )
 from .project import Project, ProjectManager
@@ -197,6 +202,64 @@ class CameraE2EService:
                 f"Benchmark manifest requested {count} scenes but only {len(scenes)} are available"
             )
         return build_benchmark_manifest(study, scenes)
+
+    def dataset_inventory(
+        self,
+        project_id: str,
+        study_id: str,
+        request: DatasetInventoryRequest,
+    ) -> dict[str, Any]:
+        project = self.projects.open(project_id)
+        study = project.store.get_study(study_id)
+        root = self._dataset_source_root(study, request.source_root)
+        return kitti_dataset_inventory(root, splits=request.source_splits)
+
+    def dataset_estimate(
+        self,
+        project_id: str,
+        study_id: str,
+        request: DatasetEstimateRequest,
+    ) -> dict[str, Any]:
+        project = self.projects.open(project_id)
+        study = project.store.get_study(study_id)
+        if request.source_adapter == "kitti":
+            root = self._dataset_source_root(study, request.source_root)
+            inventory = kitti_dataset_inventory(root, splits=request.source_splits)
+            available = int(inventory["available_scene_count"])
+        else:
+            inventory = {
+                "schema_version": "camerae2e_dataset_inventory_v1",
+                "adapter": "study",
+                "available_scene_count": len(study.spec.scenes),
+            }
+            available = len(study.spec.scenes)
+        scene_count = min(int(request.scene_count or available), available)
+        candidates = self._dataset_candidates(project, study_id, request)
+        sample_count = (
+            scene_count
+            * len(candidates)
+            * len(request.exposure_variants_ev)
+            * request.noise_repeats
+        )
+        rows = study.spec.baseline.sensor.rows
+        cols = study.spec.baseline.sensor.cols
+        bytes_per_sample = rows * cols * (4 + 3) + 4096
+        return {
+            "schema_version": "camerae2e_dataset_estimate_v1",
+            "inventory": inventory,
+            "scene_count": scene_count,
+            "camera_count": len(candidates),
+            "exposure_variant_count": len(request.exposure_variants_ev),
+            "noise_repeats": request.noise_repeats,
+            "sample_count": sample_count,
+            "estimated_bytes": sample_count * bytes_per_sample,
+            "estimated_gib": sample_count * bytes_per_sample / (1024**3),
+            "resolution_policy": request.resolution_policy,
+            "truth_boundary": (
+                "Storage is estimated from configured simulation readout and may differ after "
+                "compression. It is not an execution-time estimate."
+            ),
+        }
 
     def submit_job(
         self,
@@ -926,138 +989,304 @@ class CameraE2EService:
         )
         if optimization_hash:
             input_hashes.append(optimization_hash)
-        scene_count = int(
-            request.scene_count
-            or (
-                study.spec.benchmark.final_scene_count
-                if study.spec.target_profile == "adas_yolo_perception"
-                else len(study.spec.scenes)
-            )
-        )
-        scenes = (
-            benchmark_scenes(study, scene_count)
+        default_scene_count = (
+            study.spec.benchmark.final_scene_count
             if study.spec.target_profile == "adas_yolo_perception"
-            else list(study.spec.scenes[:scene_count])
+            else len(study.spec.scenes)
         )
+        scene_count = int(request.scene_count or default_scene_count)
+        if request.source_adapter == "kitti":
+            source_root = self._dataset_source_root(study, request.source_root)
+            scenes = kitti_dataset_scenes(
+                source_root,
+                splits=request.source_splits,
+                count=scene_count,
+            )
+            source_inventory = kitti_dataset_inventory(
+                source_root,
+                splits=request.source_splits,
+            )
+        else:
+            source_root = None
+            scenes = (
+                benchmark_scenes(study, scene_count)
+                if study.spec.target_profile == "adas_yolo_perception"
+                else list(study.spec.scenes[:scene_count])
+            )
+            source_inventory = {
+                "schema_version": "camerae2e_dataset_inventory_v1",
+                "adapter": "study",
+                "available_scene_count": len(study.spec.scenes),
+            }
         if len(scenes) < scene_count:
             raise ValueError(
                 f"Dataset export requested {scene_count} scenes but only "
                 f"{len(scenes)} are available"
             )
-        output_dir = project.root / "exports" / f"dataset_{job.id}"
-        for directory in ("raw", "rgb", "labels", "raw_tiff", "stages"):
+        export_recipe = {
+            "study_id": study.id,
+            "study_revision": study.revision,
+            "seed": study.spec.seed,
+            "request": request.model_dump(mode="json"),
+            "candidates": [dict(item.get("parameters", item)) for item in candidates],
+            "scenes": [
+                {
+                    "id": scene.id,
+                    "source_sha256": (
+                        self._file_sha256(Path(scene.image_path).expanduser())
+                        if scene.image_path
+                        else canonical_hash(scene.model_dump(mode="json"))
+                    ),
+                    "label_sha256": (
+                        self._file_sha256(Path(scene.label_path).expanduser())
+                        if scene.label_path
+                        else None
+                    ),
+                }
+                for scene in scenes
+            ],
+        }
+        export_recipe_hash = canonical_hash(export_recipe)
+        directory_name = (
+            f"dataset_{export_recipe_hash[:20]}" if request.resume else f"dataset_{job.id}"
+        )
+        output_dir = project.root / "exports" / directory_name
+        for directory in ("raw", "raw_uint16", "rgb", "labels", "raw_tiff", "stages"):
             (output_dir / directory).mkdir(parents=True, exist_ok=True)
-        metadata_rows: list[dict[str, Any]] = []
+        checkpoint_path = output_dir / "checkpoint.jsonl"
+        metadata_rows = (
+            self._load_dataset_checkpoint(checkpoint_path, output_dir) if request.resume else []
+        )
+        resumed_sample_count = len(metadata_rows)
+        completed_samples = {str(row["sample_id"]) for row in metadata_rows}
         split_counts = {"train": 0, "validation": 0, "test": 0}
+        for row in metadata_rows:
+            split_name = str(row.get("split", "train"))
+            split_counts[split_name] = split_counts.get(split_name, 0) + 1
         for candidate_index, candidate in enumerate(candidates):
             parameters = dict(candidate.get("parameters", candidate))
             case_id = str(candidate.get("case_id", f"candidate_{candidate_index:03d}"))
+            camera_profile = self.engine.apply_module_overrides(
+                study.spec.baseline,
+                parameters,
+            ).model_dump(mode="json")
+            camera_profile_hash = canonical_hash(camera_profile)
             for scene_index, scene_case in enumerate(scenes):
-                sample_id = f"{case_id}_v{candidate_index:03d}_{scene_case.id}"
-                seed = study.spec.seed + candidate_index * 100000 + scene_index
-                result = self.engine.evaluate(
-                    study.spec.baseline,
-                    scene_case,
-                    fidelity=study.spec.fidelity_policy.search_level,
-                    policy=study.spec.fidelity_policy,
-                    seed=seed,
-                    parameter_overrides=parameters,
-                    include_arrays=True,
-                )
-                raw = self._result_stage_array(result, "sensor_raw", "sensor_digital")
-                rgb = self._result_stage_array(result, "ip_srgb", "ip_result")
-                if raw is None or rgb is None:
-                    raise ValueError(f"Simulation did not produce RAW/RGB for {sample_id}")
-                raw_export = np.asarray(raw, dtype=np.float32)
-                raw_path = output_dir / "raw" / f"{sample_id}.npz"
-                np.savez_compressed(raw_path, raw=raw_export)
-                rgb_path = output_dir / "rgb" / f"{sample_id}.png"
-                rgb_bytes = self._png_bytes(rgb)
-                if rgb_bytes is None:
-                    raise ValueError(f"Could not encode RGB preview for {sample_id}")
-                rgb_path.write_bytes(rgb_bytes)
-                label_payload: dict[str, Any] = {
-                    "schema_version": "camerae2e_dataset_labels_v2",
-                    "objects": [],
-                    "source": None,
-                }
-                if scene_case.label_path:
-                    source_labels = load_adas_label_payload(
-                        scene_case.label_path,
-                        image_size=self._scene_image_size(scene_case),
-                    )
-                    transform_payload = (result.get("geometry") or {}).get("transform")
-                    label_payload = (
-                        transform_label_payload(
-                            source_labels,
-                            GeometryTransform.model_validate(transform_payload),
+                for exposure_index, exposure_ev in enumerate(request.exposure_variants_ev):
+                    for noise_repeat in range(request.noise_repeats):
+                        sample_parameters = dict(parameters)
+                        base_exposure_s = float(
+                            sample_parameters.get(
+                                "sensor.integration_time",
+                                study.spec.baseline.sensor.exposure_ms * 1e-3,
+                            )
                         )
-                        if transform_payload
-                        else source_labels
-                    )
-                label_path = output_dir / "labels" / f"{sample_id}.json"
-                label_path.write_text(
-                    json.dumps(label_payload, indent=2, sort_keys=True), encoding="utf-8"
-                )
-                if request.include_tiff:
-                    tiff_path = output_dir / "raw_tiff" / f"{sample_id}.tiff"
-                    normalized = np.asarray(raw_export, dtype=float)
-                    peak = max(float(np.max(normalized)), 1e-12)
-                    iio.imwrite(
-                        tiff_path,
-                        np.clip(normalized / peak * 65535.0, 0, 65535).astype(np.uint16),
-                    )
-                if request.include_stage_outputs:
-                    for stage_name, stage in result.get("stages", {}).items():
-                        if "array" not in stage:
+                        sample_parameters["sensor.integration_time"] = base_exposure_s * (
+                            2.0 ** float(exposure_ev)
+                        )
+                        if request.resolution_policy == "source_bounded":
+                            source_rows, source_cols = self._scene_image_size(scene_case)
+                            target_rows = min(study.spec.baseline.sensor.rows, source_rows)
+                            target_cols = min(study.spec.baseline.sensor.cols, source_cols)
+                            cfa_alignment = max(
+                                2, int(study.spec.baseline.sensor.binning_factor) * 2
+                            )
+                            sample_parameters["sensor.rows"] = max(
+                                cfa_alignment,
+                                target_rows - (target_rows % cfa_alignment),
+                            )
+                            sample_parameters["sensor.cols"] = max(
+                                cfa_alignment,
+                                target_cols - (target_cols % cfa_alignment),
+                            )
+                        contract = {
+                            "candidate_id": case_id,
+                            "candidate_index": candidate_index,
+                            "scene_id": scene_case.id,
+                            "source_hash": (
+                                self._file_sha256(Path(scene_case.image_path).expanduser())
+                                if scene_case.image_path
+                                else canonical_hash(scene_case.model_dump(mode="json"))
+                            ),
+                            "parameters": sample_parameters,
+                            "exposure_ev": exposure_ev,
+                            "noise_repeat": noise_repeat,
+                            "resolution_policy": request.resolution_policy,
+                            "fidelity": (
+                                request.fidelity_level or study.spec.fidelity_policy.search_level
+                            ).value,
+                        }
+                        sample_id = f"sample_{canonical_hash(contract)[:20]}"
+                        if sample_id in completed_samples:
                             continue
-                        np.savez_compressed(
-                            output_dir / "stages" / f"{sample_id}_{stage_name}.npz",
-                            array=np.asarray(stage["array"], dtype=np.float32),
+                        seed = (
+                            study.spec.seed
+                            + candidate_index * 1_000_000
+                            + scene_index * 1000
+                            + exposure_index * 100
+                            + noise_repeat
                         )
-                split = self._dataset_split(scene_case)
-                split_counts[split] += 1
-                metadata_rows.append(
-                    {
-                        "sample_id": sample_id,
-                        "candidate_id": case_id,
-                        "scene_id": scene_case.id,
-                        "group_id": scene_case.metadata.get("group_id", scene_case.id),
-                        "split": split,
-                        "seed": seed,
-                        "source_kind": scene_case.source_kind,
-                        "source_ref": {
-                            "dataset": scene_case.metadata.get("dataset"),
-                            "frame_id": scene_case.metadata.get("frame_id", scene_case.id),
-                        },
-                        "source_hash": (
-                            self._file_sha256(Path(scene_case.image_path).expanduser())
-                            if scene_case.image_path
-                            else None
-                        ),
-                        "label_source_hash": (
-                            self._file_sha256(Path(scene_case.label_path).expanduser())
-                            if scene_case.label_path
-                            else None
-                        ),
-                        "raw": str(raw_path.relative_to(output_dir)),
-                        "rgb": str(rgb_path.relative_to(output_dir)),
-                        "labels": str(label_path.relative_to(output_dir)),
-                        "raw_shape": list(raw_export.shape),
-                        "raw_dtype": str(raw_export.dtype),
-                        "raw_sha256": sha256_file(raw_path),
-                        "rgb_sha256": sha256_file(rgb_path),
-                        "labels_sha256": sha256_file(label_path),
-                        "cfa_preset": result.get("module", {}).get("sensor", {}).get("cfa_preset"),
-                        "bit_depth": result.get("module", {}).get("sensor", {}).get("bit_depth"),
-                        "camera_config": result.get("module"),
-                        "geometry": result.get("geometry"),
-                        "fidelity": result.get("fidelity"),
-                        "metrics": result.get("metrics"),
-                        "truth_boundary": result.get("truth_boundary"),
-                    }
-                )
+                        result = self.engine.evaluate(
+                            study.spec.baseline,
+                            scene_case,
+                            fidelity=request.fidelity_level
+                            or study.spec.fidelity_policy.search_level,
+                            policy=study.spec.fidelity_policy,
+                            seed=seed,
+                            parameter_overrides=sample_parameters,
+                            include_arrays=True,
+                        )
+                        raw = self._result_stage_array(result, "sensor_raw", "sensor_digital")
+                        sensor_digital = self._result_stage_array(result, "sensor_digital")
+                        rgb = self._result_stage_array(result, "ip_srgb", "ip_result")
+                        if raw is None or rgb is None:
+                            raise ValueError(f"Simulation did not produce RAW/RGB for {sample_id}")
+                        raw_export = np.asarray(raw, dtype=np.float32)
+                        digital_export = np.asarray(
+                            raw if sensor_digital is None else sensor_digital,
+                            dtype=np.float32,
+                        )
+                        module_payload = dict(result.get("module", {}))
+                        sensor_payload = dict(module_payload.get("sensor", {}))
+                        bit_depth = int(sensor_payload.get("bit_depth", 12))
+                        white_level = (1 << bit_depth) - 1
+                        raw_path = output_dir / "raw" / f"{sample_id}.npz"
+                        np.savez_compressed(
+                            raw_path,
+                            raw=raw_export,
+                            sensor_digital=digital_export,
+                            black_level=np.asarray([0], dtype=np.uint32),
+                            white_level=np.asarray([white_level], dtype=np.uint32),
+                            bit_depth=np.asarray([bit_depth], dtype=np.uint8),
+                            cfa_pattern=np.asarray(
+                                [str(sensor_payload.get("cfa_preset", "unknown"))]
+                            ),
+                        )
+                        raw_uint16_path = None
+                        if request.include_raw_uint16:
+                            raw_uint16_path = output_dir / "raw_uint16" / f"{sample_id}.npy"
+                            normalized = np.clip(digital_export, 0.0, 1.0)
+                            np.save(
+                                raw_uint16_path,
+                                np.round(normalized * white_level).astype(np.uint16),
+                                allow_pickle=False,
+                            )
+                        rgb_path = output_dir / "rgb" / f"{sample_id}.png"
+                        rgb_bytes = self._png_bytes(rgb)
+                        if rgb_bytes is None:
+                            raise ValueError(f"Could not encode RGB preview for {sample_id}")
+                        rgb_path.write_bytes(rgb_bytes)
+                        label_payload: dict[str, Any] = {
+                            "schema_version": "camerae2e_dataset_labels_v3",
+                            "objects": [],
+                            "source": None,
+                        }
+                        if scene_case.label_path:
+                            source_labels = load_adas_label_payload(
+                                scene_case.label_path,
+                                image_size=self._scene_image_size(scene_case),
+                            )
+                            transform_payload = (result.get("geometry") or {}).get("transform")
+                            label_payload = (
+                                transform_label_payload(
+                                    source_labels,
+                                    GeometryTransform.model_validate(transform_payload),
+                                )
+                                if transform_payload
+                                else source_labels
+                            )
+                            label_payload["schema_version"] = "camerae2e_dataset_labels_v3"
+                        label_path = output_dir / "labels" / f"{sample_id}.json"
+                        label_path.write_text(
+                            json.dumps(label_payload, indent=2, sort_keys=True), encoding="utf-8"
+                        )
+                        if request.include_tiff:
+                            tiff_path = output_dir / "raw_tiff" / f"{sample_id}.tiff"
+                            iio.imwrite(
+                                tiff_path,
+                                np.round(np.clip(digital_export, 0.0, 1.0) * 65535.0).astype(
+                                    np.uint16
+                                ),
+                            )
+                        if request.include_stage_outputs:
+                            for stage_name, stage in result.get("stages", {}).items():
+                                if "array" not in stage:
+                                    continue
+                                np.savez_compressed(
+                                    output_dir / "stages" / f"{sample_id}_{stage_name}.npz",
+                                    array=np.asarray(stage["array"], dtype=np.float32),
+                                )
+                        split = self._dataset_split(scene_case)
+                        split_counts[split] = split_counts.get(split, 0) + 1
+                        source_rows, source_cols = self._scene_image_size(scene_case)
+                        requested_rows = int(sensor_payload.get("rows", raw_export.shape[0]))
+                        requested_cols = int(sensor_payload.get("cols", raw_export.shape[1]))
+                        row = {
+                            "sample_id": sample_id,
+                            "candidate_id": case_id,
+                            "scene_id": scene_case.id,
+                            "group_id": scene_case.metadata.get("group_id", scene_case.id),
+                            "split": split,
+                            "seed": seed,
+                            "exposure_ev": float(exposure_ev),
+                            "noise_repeat": noise_repeat,
+                            "source_kind": scene_case.source_kind,
+                            "source_ref": {
+                                "dataset": scene_case.metadata.get("dataset"),
+                                "frame_id": scene_case.metadata.get("frame_id", scene_case.id),
+                            },
+                            "source_hash": (
+                                self._file_sha256(Path(scene_case.image_path).expanduser())
+                                if scene_case.image_path
+                                else None
+                            ),
+                            "label_source_hash": (
+                                self._file_sha256(Path(scene_case.label_path).expanduser())
+                                if scene_case.label_path
+                                else None
+                            ),
+                            "raw": str(raw_path.relative_to(output_dir)),
+                            "raw_uint16": (
+                                None
+                                if raw_uint16_path is None
+                                else str(raw_uint16_path.relative_to(output_dir))
+                            ),
+                            "rgb": str(rgb_path.relative_to(output_dir)),
+                            "labels": str(label_path.relative_to(output_dir)),
+                            "raw_shape": list(raw_export.shape),
+                            "raw_dtype": str(raw_export.dtype),
+                            "raw_sha256": sha256_file(raw_path),
+                            "rgb_sha256": sha256_file(rgb_path),
+                            "labels_sha256": sha256_file(label_path),
+                            "label_object_count": len(label_payload.get("objects", [])),
+                            "cfa_preset": sensor_payload.get("cfa_preset"),
+                            "bit_depth": bit_depth,
+                            "black_level": 0,
+                            "white_level": white_level,
+                            "units": "simulator_sensor_response",
+                            "camera_config": module_payload,
+                            "camera_profile": camera_profile,
+                            "camera_profile_hash": camera_profile_hash,
+                            "sample_contract_hash": canonical_hash(contract),
+                            "resolution_policy": request.resolution_policy,
+                            "source_effective_resolution_rc": [source_rows, source_cols],
+                            "target_readout_rc": [requested_rows, requested_cols],
+                            "upsampled_scene_proxy": bool(
+                                request.resolution_policy == "target_readout_proxy"
+                                and (requested_rows > source_rows or requested_cols > source_cols)
+                            ),
+                            "source_intrinsics": scene_case.metadata.get("source_intrinsics"),
+                            "geometry": result.get("geometry"),
+                            "fidelity": result.get("fidelity"),
+                            "metrics": result.get("metrics"),
+                            "truth_boundary": result.get("truth_boundary"),
+                        }
+                        metadata_rows.append(row)
+                        completed_samples.add(sample_id)
+                        with checkpoint_path.open("a", encoding="utf-8") as checkpoint:
+                            checkpoint.write(json.dumps(row, sort_keys=True, default=str) + "\n")
         metadata_path = output_dir / "metadata.jsonl"
+        metadata_rows.sort(key=lambda item: str(item["sample_id"]))
         metadata_path.write_text(
             "".join(json.dumps(row, sort_keys=True, default=str) + "\n" for row in metadata_rows),
             encoding="utf-8",
@@ -1071,8 +1300,16 @@ class CameraE2EService:
             }
             for index, item in enumerate(candidates)
         ]
+        formats = ["raw_npz", "rgb_png", "labels_json", "metadata_jsonl"]
+        if request.include_raw_uint16:
+            formats.append("raw_uint16_npy")
+        if request.include_tiff:
+            formats.append("raw_tiff")
+        if request.include_stage_outputs:
+            formats.append("stage_npz")
+        effective_fidelity = request.fidelity_level or study.spec.fidelity_policy.search_level
         manifest = {
-            "schema_version": "camerae2e_raw_dataset_v2",
+            "schema_version": "camerae2e_raw_dataset_v3",
             "study_id": study.id,
             "selection": request.selection,
             "candidate_count": len(candidates),
@@ -1080,21 +1317,46 @@ class CameraE2EService:
             "case_count": len(metadata_rows),
             "seed": study.spec.seed,
             "benchmark_manifest": selected_manifest,
+            "source_adapter": request.source_adapter,
+            "source_root": None if source_root is None else str(source_root),
+            "source_splits": request.source_splits,
+            "source_inventory": source_inventory,
             "source_optimization_artifact": optimization_hash,
             "candidate_contract": candidate_contract,
+            "camera_profile_summaries": self._dataset_profile_summaries(metadata_rows),
             "runtime": runtime_provenance(),
             "fidelity_policy": study.spec.fidelity_policy.model_dump(mode="json"),
-            "formats": ["raw_npz", "rgb_png", "labels_json", "metadata_jsonl"],
+            "effective_fidelity": effective_fidelity.value,
+            "formats": formats,
             "split_counts": split_counts,
             "source_kinds": sorted({scene.source_kind for scene in scenes}),
             "label_policy": "caller_or_dataset_provided_only_no_automatic_inference",
             "dng_included": False,
             "raw_contract": {
                 "container": "npz",
-                "array_key": "raw",
+                "array_keys": [
+                    "raw",
+                    "sensor_digital",
+                    "black_level",
+                    "white_level",
+                    "bit_depth",
+                    "cfa_pattern",
+                ],
                 "dtype": "float32",
                 "units": "simulator_sensor_response",
                 "cfa_and_bit_depth_recorded_per_sample": True,
+            },
+            "recipe": {
+                "hash": export_recipe_hash,
+                "resolution_policy": request.resolution_policy,
+                "exposure_variants_ev": request.exposure_variants_ev,
+                "noise_repeats": request.noise_repeats,
+                "resume": request.resume,
+                "display_scene_assumption": {
+                    "color_space": "sRGB",
+                    "white_point": "D65",
+                    "mean_luminance_cd_m2": 80.0,
+                },
             },
             "integrity": {
                 "metadata_jsonl_sha256": sha256_file(metadata_path),
@@ -1102,7 +1364,9 @@ class CameraE2EService:
             },
             "truth_boundary": (
                 "RAW values are simulated from the recorded camera configuration. Source KITTI "
-                "RGB frames are display-derived scene proxies and are not original KITTI RAW."
+                "RGB frames are display-derived scene proxies and are not original KITTI RAW. "
+                "target_readout_proxy may resize beyond source information but never adds "
+                "measured spatial detail."
             ),
         }
         manifest["manifest_hash"] = canonical_hash(manifest)
@@ -1117,7 +1381,7 @@ class CameraE2EService:
                 path,
                 artifact_type=self._dataset_artifact_type(path),
                 media_type=self._media_type(path),
-                fidelity_level=study.spec.fidelity_policy.search_level,
+                fidelity_level=effective_fidelity,
                 readiness_tier=ReadinessTier.VALIDATED,
                 source="camerae2e_v2.dataset_export",
                 dependencies=input_hashes,
@@ -1129,12 +1393,17 @@ class CameraE2EService:
             )
             artifacts.append(artifact.model_dump(mode="json"))
         return {
-            "schema_version": "camerae2e_dataset_export_v2",
+            "schema_version": "camerae2e_dataset_export_v3",
             "dataset_root": str(output_dir),
             "selection": request.selection,
             "case_count": manifest.get("case_count", 0),
             "candidate_count": len(candidates),
             "scene_count": len(scenes),
+            "source_adapter": request.source_adapter,
+            "resolution_policy": request.resolution_policy,
+            "resumed_sample_count": resumed_sample_count,
+            "export_recipe_hash": export_recipe_hash,
+            "camera_profile_summaries": manifest["camera_profile_summaries"],
             "manifest": manifest,
             "validation": validation,
             "artifacts": artifacts,
@@ -1399,7 +1668,15 @@ class CameraE2EService:
         project: Project, study_id: str, request: DatasetExportRequest
     ) -> list[dict[str, Any]]:
         if request.selection == "baseline":
-            return [{} for _ in range(request.case_count)]
+            study = project.store.get_study(study_id)
+            allowed = {"baseline", study.spec.baseline.id}
+            unknown = set(request.camera_ids) - allowed
+            if unknown:
+                raise ValueError(f"Unknown baseline camera_ids: {sorted(unknown)}")
+            return [
+                {"case_id": study.spec.baseline.id, "parameters": {}}
+                for _ in range(request.case_count)
+            ]
         optimization = None
         for job in project.store.list_jobs(study_id=study_id, limit=500):
             if job.kind == "optimize" and job.status == JobStatus.SUCCEEDED:
@@ -1414,6 +1691,12 @@ class CameraE2EService:
         else:
             source = optimization.get("top_cases", [])
         candidates = [dict(item) for item in source if item]
+        if request.camera_ids:
+            requested = set(request.camera_ids)
+            candidates = [item for item in candidates if str(item.get("case_id")) in requested]
+            resolved = {str(item.get("case_id")) for item in candidates}
+            if missing := requested - resolved:
+                raise ValueError(f"Unknown optimization camera_ids: {sorted(missing)}")
         if not candidates:
             raise ValueError(f"Optimization has no candidates for selection={request.selection}")
         return (candidates * request.case_count)[: request.case_count]
@@ -1437,6 +1720,11 @@ class CameraE2EService:
 
     @staticmethod
     def _dataset_split(scene: SceneCase) -> str:
+        declared = str(scene.metadata.get("split", "")).strip().lower()
+        if declared in {"validation", "val"}:
+            return "validation"
+        if declared in {"train", "test"}:
+            return declared
         group_id = str(scene.metadata.get("group_id", scene.id))
         bucket = int(hashlib.sha256(group_id.encode("utf-8")).hexdigest()[:8], 16) % 100
         if bucket < 80:
@@ -1444,6 +1732,74 @@ class CameraE2EService:
         if bucket < 90:
             return "validation"
         return "test"
+
+    @staticmethod
+    def _dataset_source_root(study: StudyRecord, requested: str | None) -> Path:
+        root: Path | None
+        if requested:
+            root = Path(requested).expanduser().resolve()
+        else:
+            root = resolve_benchmark_root(study)
+        if root is None or not root.is_dir():
+            raise ValueError(
+                "KITTI source root is unavailable; set source_root or benchmark.source_root"
+            )
+        return root
+
+    @staticmethod
+    def _load_dataset_checkpoint(path: Path, root: Path) -> list[dict[str, Any]]:
+        if not path.is_file():
+            return []
+        rows: list[dict[str, Any]] = []
+        for line in path.read_text(encoding="utf-8").splitlines():
+            if not line.strip():
+                continue
+            try:
+                row = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            required = [root / str(row.get(key, "")) for key in ("raw", "rgb", "labels")]
+            if all(item.is_file() for item in required):
+                rows.append(row)
+        return rows
+
+    @staticmethod
+    def _dataset_profile_summaries(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        groups: dict[str, list[dict[str, Any]]] = {}
+        for row in rows:
+            key = str(row.get("camera_profile_hash", "unknown"))
+            groups.setdefault(key, []).append(row)
+        summaries = []
+        for profile_hash, samples in sorted(groups.items()):
+            def metric(
+                group: str,
+                name: str,
+                sample_rows: list[dict[str, Any]] = samples,
+            ) -> float | None:
+                values = [
+                    item.get("metrics", {}).get(group, {}).get(name)
+                    for item in sample_rows
+                ]
+                numeric = [float(value) for value in values if isinstance(value, (int, float))]
+                return float(np.mean(numeric)) if numeric else None
+
+            summaries.append(
+                {
+                    "camera_profile_hash": profile_hash,
+                    "camera_name": samples[0].get("camera_config", {}).get("name"),
+                    "sample_count": len(samples),
+                    "mean_rgb_high_clip_fraction": metric(
+                        "artifact", "rgb_high_clip_fraction"
+                    ),
+                    "mean_raw_std": metric("artifact", "raw_std"),
+                    "mean_rgb_signal": metric("color", "rgb_mean"),
+                    "label_object_count": sum(
+                        int(item.get("label_object_count", 0)) for item in samples
+                    ),
+                    "fidelity": samples[0].get("fidelity"),
+                }
+            )
+        return summaries
 
     @staticmethod
     def _file_sha256(path: Path) -> str:

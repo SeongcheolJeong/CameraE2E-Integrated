@@ -26,6 +26,9 @@ from .geometry import (
     geometry_contract_metrics,
     global_ssim,
     ideal_recapture,
+    pinhole_geometry,
+    pinhole_recapture,
+    scene_image_size,
 )
 from .models import (
     CameraModule,
@@ -183,7 +186,7 @@ class CameraEngine:
             effective_module, decision, parameter_overrides=parameter_overrides
         )
         scenario.setdefault("sensor", {})["noise_seed"] = int(seed)
-        scene_object = self.resolve_scene(scene)
+        scene_object = self.resolve_scene(scene, effective_module)
         result = camerae2e_run_scenario(
             scenario,
             scene=scene_object,
@@ -212,11 +215,17 @@ class CameraEngine:
             )
             geometry = {
                 "transform": transform.model_dump(mode="json"),
+                "pinhole": pinhole_geometry(
+                    effective_module,
+                    scene,
+                    scene_image_size(scene),
+                ),
                 "metrics": geometry_contract_metrics(effective_module, transform),
             }
             if scene.scene_type == "rgb_file" and scene.image_path:
                 source = self._read_rgb(Path(scene.image_path).expanduser().resolve())
-                ideal = ideal_recapture(source, transform.output_size_rc)
+                target_geometry_source = pinhole_recapture(source, effective_module, scene)
+                ideal = ideal_recapture(target_geometry_source, transform.output_size_rc)
                 color_diagnostics = self._color_diagnostics(source, ideal, output)
                 if include_arrays:
                     stages["ideal_recapture"] = {
@@ -410,12 +419,14 @@ class CameraEngine:
             self._assign_parameter(scenario, path, value)
         return scenario
 
-    def resolve_scene(self, scene: SceneCase) -> Any:
+    def resolve_scene(self, scene: SceneCase, module: CameraModule | None = None) -> Any:
         if scene.scene_type == "rgb_file":
             path = Path(str(scene.image_path)).expanduser().resolve()
             if not path.is_file():
                 raise FileNotFoundError(path)
             image = np.asarray(iio.imread(path))
+            if module is not None:
+                image = pinhole_recapture(image, module, scene)
             return scene_from_file(image, "rgb", mean_luminance=scene.mean_luminance_cd_m2)
         if scene.scene_type == "multispectral_file":
             path = Path(str(scene.image_path)).expanduser().resolve()
@@ -448,7 +459,7 @@ class CameraEngine:
         for name in names:
             stage = stages.get(name, {})
             if isinstance(stage, dict) and "array" in stage:
-                array = np.asarray(stage["array"], dtype=float)
+                array: np.ndarray = np.asarray(stage["array"], dtype=float)
                 if array.size:
                     return array
         return None

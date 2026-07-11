@@ -217,6 +217,15 @@ labels/*.json
 optional raw_tiff/*.tiff and stages/*.npz
 ```
 
+The camera-aware v3 export adds a KITTI source adapter, source split preservation,
+optional P2 calibration, camera/exposure/noise recipes, and resumable sample contracts.
+When P2 is available, the RGB proxy and labels share one source-to-target pinhole
+transform. `source_bounded` is the default resolution policy; `target_readout_proxy`
+records `upsampled_scene_proxy` whenever the target exceeds source information.
+
+Each RAW NPZ records the floating RAW response, sensor digital response, CFA, bit depth,
+black level, and white level. These research arrays are not standards-compliant DNGs.
+
 RAW NPZ arrays are normalized to float32 before compression so a 200-scene
 export does not retain unnecessary float64 storage.
 
