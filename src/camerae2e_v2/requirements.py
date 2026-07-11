@@ -25,10 +25,12 @@ def evaluate_requirement_gates(
     active_rows, active_cols = _size(
         transform.get("active_sensor_size_rc"), (module.sensor.rows, module.sensor.cols)
     )
+    native_rows = module.sensor.native_rows or active_rows
+    native_cols = module.sensor.native_cols or active_cols
     pixel_pitch_mm = module.sensor.pixel_size_um * 1e-3
     effective_pitch_mm = pixel_pitch_mm * module.sensor.binning_factor
-    sensor_width_mm = float(geometry.get("sensor_width_mm", active_cols * pixel_pitch_mm))
-    sensor_height_mm = float(geometry.get("sensor_height_mm", active_rows * pixel_pitch_mm))
+    sensor_width_mm = float(geometry.get("sensor_width_mm", native_cols * pixel_pitch_mm))
+    sensor_height_mm = float(geometry.get("sensor_height_mm", native_rows * pixel_pitch_mm))
     focal_mm = geometry.get("focal_length_mm")
     if focal_mm is None:
         focal_mm = sensor_width_mm / (2.0 * math.tan(math.radians(module.lens.hfov_deg) / 2.0))
@@ -46,8 +48,8 @@ def evaluate_requirement_gates(
         module.sensor.pixel_size_um * module.sensor.binning_factor, 1e-12
     )
     fps = module.sensor.frame_rate_fps
-    pixel_rate_mpix_s = output_rows * output_cols * fps / 1e6
-    rolling_shutter_ms = active_rows * module.sensor.row_time_us / 1000.0
+    pixel_rate_mpix_s = native_rows * native_cols * fps / 1e6
+    rolling_shutter_ms = native_rows * module.sensor.row_time_us / 1000.0
     isp_latency_ms = module.hw_isp_frames * 1000.0 / fps if module.hw_isp_enabled else 0.0
     total_latency_ms = rolling_shutter_ms + isp_latency_ms
     artifact_metrics = result.get("metrics", {}).get("artifact", {})
@@ -188,6 +190,7 @@ def evaluate_requirement_gates(
         derived={
             "output_size_rc": [output_rows, output_cols],
             "active_sensor_size_rc": [active_rows, active_cols],
+            "native_sensor_size_rc": [native_rows, native_cols],
             "sensor_diagonal_mm": sensor_diagonal,
             "focal_length_mm": focal_mm,
             "object_pixels_at_range": object_pixels,

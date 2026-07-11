@@ -15,6 +15,7 @@ from .db_catalog import camerae2e_db_lineage, camerae2e_db_summary, camerae2e_db
 from .fdtd_sensor import sensor_attach_fdtd_lut
 from .hwisp import HWIspConfig, hw_isp_config, hw_isp_simulate_sequence
 from .ip import ip_get
+from .lens_patents import lens_patent_raytrace_optics
 from .optics import si_synthetic
 from .scene import scene_create, scene_get, scene_set
 from .sensor import mlens_create, mlens_set, sensor_get, sensor_set, sensor_vignetting
@@ -200,6 +201,31 @@ def _apply_physics_and_sensor_overrides(
 ) -> tuple[Camera, list[dict[str, Any]]]:
     updated = camera.clone()
     lineage: list[dict[str, Any]] = []
+    rayoptics = (
+        dict(config.get("rayoptics", {})) if isinstance(config.get("rayoptics"), Mapping) else {}
+    )
+    if rayoptics.get("simulation_id"):
+        simulation_id = str(rayoptics["simulation_id"])
+        target_size = rayoptics.get("target_psf_size", 32)
+        optics = lens_patent_raytrace_optics(
+            simulation_id,
+            target_psf_size=None if target_size is None else int(target_size),
+        )
+        updated = camera_set(updated, "optics", optics)
+        lineage.append(
+            _parameter_lineage_entry(
+                "rayoptics.simulation_id",
+                "geometric raytrace optics",
+                simulation_id,
+                None,
+                {
+                    "attached": True,
+                    "target_psf_size": target_size,
+                    "truth_boundary": "geometric_ray_histogram_not_wave_optics_or_measured_mtf",
+                },
+                status="attached",
+            )
+        )
     parameter_overrides = {}
     for bucket_name in ("parameters", "camera_parameters"):
         bucket = config.get(bucket_name)

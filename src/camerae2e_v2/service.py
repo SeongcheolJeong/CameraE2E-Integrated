@@ -23,16 +23,22 @@ from .benchmark import (
 from .benchmark import benchmark_manifest as build_benchmark_manifest
 from .calibration import calibration_pack_status, fit_calibration
 from .catalog import seed_builtin_camera_assets
+from .components import ComponentCatalogService
 from .engine import CameraEngine
 from .evaluation import StudyEvaluator, load_adas_label_payload
 from .geometry import transform_label_payload
 from .models import (
+    AssetKind,
     CalibrationRequest,
+    CameraAssetRecord,
     DatasetExportRequest,
     FidelityLevel,
     GeometryTransform,
     JobRecord,
     JobStatus,
+    ModuleBaselineRequest,
+    ModuleCompareRequest,
+    ModuleEvaluationRequest,
     ReadinessTier,
     ReportRequest,
     SceneCase,
@@ -56,6 +62,7 @@ class CameraE2EService:
         self.projects = ProjectManager(projects_root)
         self.engine = CameraEngine()
         self.evaluator = StudyEvaluator(self.engine)
+        self.components = ComponentCatalogService()
         self._executor = ThreadPoolExecutor(
             max_workers=max(1, int(max_workers)), thread_name_prefix="camerae2e-v2"
         )
@@ -331,6 +338,84 @@ class CameraE2EService:
             item.model_dump(mode="json") for item in project.store.list_camera_assets(kind=kind)
         ]
 
+    def search_lenses(self, **filters: Any) -> dict[str, Any]:
+        return self.components.search_lenses(**filters)
+
+    def lens_detail(self, simulation_id: str) -> dict[str, Any]:
+        return self.components.lens_detail(simulation_id)
+
+    def search_sensors(self, **filters: Any) -> dict[str, Any]:
+        return self.components.search_sensors(**filters)
+
+    def sensor_detail(self, sensor_id: str) -> dict[str, Any]:
+        return self.components.sensor_detail(sensor_id)
+
+    def evaluate_component_modules(self, request: ModuleEvaluationRequest) -> dict[str, Any]:
+        return self.components.evaluate_modules(request.requirements, request.candidates)
+
+    def apply_component_module(
+        self,
+        project_id: str,
+        study_id: str,
+        request: ModuleBaselineRequest,
+    ) -> dict[str, Any]:
+        project = self.projects.open(project_id)
+        study = project.store.get_study(study_id)
+        module, evaluation = self.components.build_module(
+            request.selection, study.spec.baseline, study.spec.requirements
+        )
+        if evaluation["status"] == "incompatible" and not request.allow_incompatible:
+            raise ValueError(
+                "Component module is incompatible: " + ", ".join(evaluation["failed_gate_ids"])
+            )
+        descriptor = {
+            "schema_version": "camerae2e_component_module_descriptor_v1",
+            "selection": request.selection.model_dump(mode="json"),
+            "module": module.model_dump(mode="json"),
+            "compatibility": evaluation,
+            "truth_boundary": evaluation["truth_boundary"],
+        }
+        artifact = project.artifacts.put_json(
+            descriptor,
+            artifact_type="camera_module_descriptor",
+            fidelity_level=(
+                FidelityLevel.LUT
+                if module.metadata.get("use_geometric_psf")
+                else FidelityLevel.ANALYTIC
+            ),
+            readiness_tier=ReadinessTier.PROXY,
+            source="camerae2e_v2.component_catalog",
+            validation={
+                "compatibility_status": evaluation["status"],
+                "failed_gate_ids": evaluation["failed_gate_ids"],
+            },
+        )
+        asset = CameraAssetRecord(
+            kind=AssetKind.CAMERA_PRESET,
+            name=module.name,
+            artifact_hashes=[artifact.hash],
+            fidelity_level=(
+                FidelityLevel.LUT
+                if module.metadata.get("use_geometric_psf")
+                else FidelityLevel.ANALYTIC
+            ),
+            readiness_tier=ReadinessTier.PROXY,
+            parameters=module.model_dump(mode="json"),
+            valid_domain={"requirements": study.spec.requirements.model_dump(mode="json")},
+            source="camerae2e_v2.component_catalog",
+            validation={"compatibility": evaluation},
+        )
+        project.store.put_camera_asset(asset)
+        updated = project.update_study(study.id, study.spec.model_copy(update={"baseline": module}))
+        return {
+            "schema_version": "camerae2e_component_module_application_v1",
+            "study": updated.model_dump(mode="json"),
+            "module": module.model_dump(mode="json"),
+            "compatibility": evaluation,
+            "asset": asset.model_dump(mode="json"),
+            "artifact": artifact.model_dump(mode="json"),
+        }
+
     def _execute_job(self, project_root: Path, job_id: str) -> None:
         project = Project.open(project_root)
         job = project.store.get_job(job_id)
@@ -378,10 +463,92 @@ class CameraE2EService:
             "dataset_export": self._run_dataset_export,
             "calibrate": self._run_calibration,
             "report": self._run_report,
+            "compare_modules": self._run_compare_modules,
         }
         if job.kind not in handlers:
             raise ValueError(f"Unsupported CameraE2E v2 job kind: {job.kind}")
         return handlers[job.kind](project, job)
+
+    def _run_compare_modules(self, project: Project, job: JobRecord) -> dict[str, Any]:
+        study = self._study(project, job)
+        request = ModuleCompareRequest.model_validate(job.request)
+        scene_index = 0
+        if request.scene_id is not None:
+            scene_index = next(
+                (
+                    index
+                    for index, scene in enumerate(study.spec.scenes)
+                    if scene.id == request.scene_id
+                ),
+                -1,
+            )
+            if scene_index < 0:
+                raise KeyError(f"Unknown scene: {request.scene_id}")
+        compatibility = self.components.evaluate_modules(
+            study.spec.requirements,
+            request.candidates,
+            baseline=study.spec.baseline,
+        )
+        if not request.allow_incompatible:
+            blocked = [
+                item for item in compatibility["candidates"] if item["status"] == "incompatible"
+            ]
+            if blocked:
+                reasons = sorted(
+                    {gate_id for item in blocked for gate_id in item["failed_gate_ids"]}
+                )
+                raise ValueError("Incompatible module comparison: " + ", ".join(reasons))
+        input_hashes = self._register_study_inputs(project, job, study)
+        evaluations = []
+        for index, selection in enumerate(request.candidates):
+            module, module_evaluation = self.components.build_module(
+                selection, study.spec.baseline, study.spec.requirements
+            )
+            comparison_spec = study.spec.model_copy(update={"baseline": module})
+            comparison_study = study.model_copy(update={"spec": comparison_spec})
+            result = self.evaluator.evaluate_baseline(
+                comparison_study,
+                scene_index=scene_index,
+                include_arrays=True,
+            )
+            persisted = self._persist_evaluation(
+                project,
+                job,
+                result,
+                input_hashes=input_hashes,
+            )
+            evaluations.append(
+                {
+                    "selection": selection.model_dump(mode="json"),
+                    "compatibility": module_evaluation,
+                    "evaluation": persisted,
+                }
+            )
+            current = project.store.get_job(job.id)
+            current.progress = 0.05 + 0.85 * (index + 1) / len(request.candidates)
+            project.store.put_job(current)
+        summary = {
+            "schema_version": "camerae2e_component_module_comparison_v1",
+            "study_id": study.id,
+            "scene_id": study.spec.scenes[scene_index].id,
+            "compatibility": compatibility,
+            "evaluations": evaluations,
+            "truth_boundary": (
+                "All modules were rerun on the same scene and seed. Native sensor geometry "
+                "drives engineering gates while image arrays use the recorded downsampled "
+                "research readout. No automatic winner is asserted."
+            ),
+        }
+        artifact = project.artifacts.put_json(
+            summary,
+            artifact_type="camera_module_comparison",
+            fidelity_level=study.spec.fidelity_policy.search_level,
+            readiness_tier=ReadinessTier.PROXY,
+            source="camerae2e_v2.component_catalog.compare",
+            dependencies=input_hashes,
+        )
+        project.store.link_job_artifact(job.id, artifact.hash, "module_comparison")
+        return {**summary, "artifact": artifact.model_dump(mode="json")}
 
     def _run_train_detector(self, project: Project, job: JobRecord) -> dict[str, Any]:
         study = self._study(project, job)
@@ -430,9 +597,7 @@ class CameraE2EService:
             encoding="utf-8",
         )
         base_model = str(
-            job.request.get("base_model")
-            or study.spec.perception_model_path
-            or "yolo11n.pt"
+            job.request.get("base_model") or study.spec.perception_model_path or "yolo11n.pt"
         )
         model = YOLO(base_model)
 
@@ -757,9 +922,7 @@ class CameraE2EService:
         optimization_hash = (
             None
             if request.selection == "baseline"
-            else self._latest_artifact_hash_by_role(
-                project, study.id, "optimize", "optimization"
-            )
+            else self._latest_artifact_hash_by_role(project, study.id, "optimize", "optimization")
         )
         if optimization_hash:
             input_hashes.append(optimization_hash)
@@ -885,12 +1048,8 @@ class CameraE2EService:
                         "raw_sha256": sha256_file(raw_path),
                         "rgb_sha256": sha256_file(rgb_path),
                         "labels_sha256": sha256_file(label_path),
-                        "cfa_preset": result.get("module", {}).get("sensor", {}).get(
-                            "cfa_preset"
-                        ),
-                        "bit_depth": result.get("module", {}).get("sensor", {}).get(
-                            "bit_depth"
-                        ),
+                        "cfa_preset": result.get("module", {}).get("sensor", {}).get("cfa_preset"),
+                        "bit_depth": result.get("module", {}).get("sensor", {}).get("bit_depth"),
                         "camera_config": result.get("module"),
                         "geometry": result.get("geometry"),
                         "fidelity": result.get("fidelity"),
@@ -1011,6 +1170,7 @@ class CameraE2EService:
             "study": study.model_dump(mode="json"),
             "requirements": study.spec.requirements.model_dump(mode="json"),
             "baseline": latest.get("evaluate"),
+            "module_comparison": latest.get("compare_modules"),
             "benchmark_preflight": latest.get("benchmark_preflight"),
             "benchmark": latest.get("benchmark_run"),
             "requirement_evaluation": latest.get("requirements_evaluate"),
@@ -1418,9 +1578,7 @@ class CameraE2EService:
                 }
             )
         metadata_path = root / "metadata.jsonl"
-        expected_metadata_hash = (manifest.get("integrity") or {}).get(
-            "metadata_jsonl_sha256"
-        )
+        expected_metadata_hash = (manifest.get("integrity") or {}).get("metadata_jsonl_sha256")
         if (
             metadata_path.is_file()
             and expected_metadata_hash
@@ -1600,6 +1758,12 @@ class CameraE2EService:
 
     @staticmethod
     def _render_report_html(payload: dict[str, Any]) -> str:
+        def number(value: Any, digits: int = 4) -> str:
+            try:
+                return f"{float(value):.{digits}f}"
+            except (TypeError, ValueError):
+                return "--"
+
         optimization = payload.get("optimization") or {}
         candidates = optimization.get("top_cases", [])
         rows = "".join(
@@ -1616,17 +1780,41 @@ class CameraE2EService:
             "</tr>"
             for item in candidates
         )
+        module_comparison = payload.get("module_comparison") or {}
+
+        def module_row(index: int, item: dict[str, Any]) -> str:
+            selection = item.get("selection") or {}
+            compatibility = item.get("compatibility") or {}
+            evaluation = item.get("evaluation") or {}
+            score = evaluation.get("evaluation") or {}
+            artifact_metrics = (evaluation.get("metrics") or {}).get("artifact") or {}
+            fidelity = (evaluation.get("fidelity") or {}).get("effective", "--")
+            hfov = (compatibility.get("derived") or {}).get("hfov_deg")
+            return (
+                "<tr>"
+                f"<td>{index + 1}</td>"
+                f"<td>{html.escape(str(selection.get('lens_id', '--')))}</td>"
+                f"<td>{html.escape(str(selection.get('sensor_id', '--')))}</td>"
+                f"<td>{html.escape(str(compatibility.get('status', '--')))}</td>"
+                f"<td>{number(hfov, 2)}</td>"
+                f"<td>{number(score.get('target_score'))}</td>"
+                f"<td>{number(artifact_metrics.get('rgb_high_clip_fraction'))}</td>"
+                f"<td>{html.escape(str(fidelity))}</td>"
+                "</tr>"
+            )
+
+        module_rows = "".join(
+            module_row(index, item)
+            for index, item in enumerate(module_comparison.get("evaluations", []))
+        )
+        module_boundary = html.escape(str(module_comparison.get("truth_boundary", "Not run")))
         requirement_json = html.escape(json.dumps(payload.get("requirements", {}), indent=2))
         requirement_result = html.escape(
             json.dumps(payload.get("requirement_evaluation", {}), indent=2)
         )
-        preflight_json = html.escape(
-            json.dumps(payload.get("benchmark_preflight", {}), indent=2)
-        )
+        preflight_json = html.escape(json.dumps(payload.get("benchmark_preflight", {}), indent=2))
         dataset_json = html.escape(json.dumps(payload.get("dataset", {}), indent=2))
-        validation_json = html.escape(
-            json.dumps(payload.get("candidate_validation", {}), indent=2)
-        )
+        validation_json = html.escape(json.dumps(payload.get("candidate_validation", {}), indent=2))
         boundary = html.escape(str(payload.get("claim_boundary", "")))
         decision_json = html.escape(
             json.dumps((payload.get("optimization") or {}).get("decision", {}), indent=2)
@@ -1651,11 +1839,15 @@ class CameraE2EService:
             f"<title>{title}</title>{style}</head><body>"
             f'<h1>{title}</h1><p class="boundary">{boundary}</p>'
             f'<div class="grid"><section><h2>Decision status</h2><pre>{decision_json}</pre>'
-            f'</section><section><h2>Calibration pack</h2><pre>{calibration_json}</pre>'
+            f"</section><section><h2>Calibration pack</h2><pre>{calibration_json}</pre>"
             "</section></div>"
             f'<div class="grid"><section><h2>Requirements</h2><pre>{requirement_json}</pre>'
             f"</section><section><h2>Requirement gates</h2><pre>{requirement_result}</pre>"
             f"</section></div><h2>ADAS benchmark preflight</h2><pre>{preflight_json}</pre>"
+            f'<h2>Camera module comparison</h2><p class="boundary">{module_boundary}</p>'
+            "<table><thead><tr><th>Module</th><th>Lens</th><th>Sensor</th>"
+            "<th>Compatibility</th><th>HFOV</th><th>Target</th><th>Clip</th>"
+            f"<th>Fidelity</th></tr></thead><tbody>{module_rows}</tbody></table>"
             "<h2>Top candidates</h2><table><thead><tr>"
             "<th>Case</th><th>Score</th><th>Confidence interval</th><th>mAP</th>"
             "<th>Recall</th><th>Scenes</th>"

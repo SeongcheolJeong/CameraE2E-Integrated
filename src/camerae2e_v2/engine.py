@@ -239,7 +239,7 @@ class CameraEngine:
             "geometry": geometry,
             "color_diagnostics": color_diagnostics,
             "stages": stages,
-            "truth_boundary": self._truth_boundary(scene, decision),
+            "truth_boundary": self._truth_boundary(scene, decision, effective_module),
         }
 
     @staticmethod
@@ -272,10 +272,36 @@ class CameraEngine:
                 bucket[field] = float(value) * scale
             else:
                 bucket[field] = value
+        sensor = module.sensor.model_copy(update=sensor_updates)
+        lens = module.lens.model_copy(update=lens_updates)
+        native_cols = sensor.native_cols
+        native_rows = sensor.native_rows
+        if native_cols is not None and native_rows is not None:
+            simulation_pitch_um = sensor.pixel_size_um * native_cols / sensor.cols
+            simulation_fill_factor = sensor.pixel_fill_factor * (
+                sensor.pixel_size_um / simulation_pitch_um
+            ) ** 2
+            sensor = sensor.model_copy(
+                update={
+                    "simulation_pixel_size_um": simulation_pitch_um,
+                    "simulation_fill_factor": simulation_fill_factor,
+                }
+            )
+            if lens.focal_length_mm is not None and module.metadata.get(
+                "component_selection"
+            ):
+                sensor_width_mm = native_cols * sensor.pixel_size_um * 1e-3
+                lens = lens.model_copy(
+                    update={
+                        "hfov_deg": math.degrees(
+                            2.0 * math.atan2(sensor_width_mm / 2.0, lens.focal_length_mm)
+                        )
+                    }
+                )
         return module.model_copy(
             update={
-                "lens": module.lens.model_copy(update=lens_updates),
-                "sensor": module.sensor.model_copy(update=sensor_updates),
+                "lens": lens,
+                "sensor": sensor,
                 "isp": module.isp.model_copy(update=isp_updates),
             }
         )
@@ -296,12 +322,18 @@ class CameraEngine:
                 )
         sensor = module.sensor
         lens = module.lens
+        simulation_pitch_um = sensor.simulation_pixel_size_um or sensor.pixel_size_um
+        simulation_fill_factor = (
+            sensor.simulation_fill_factor
+            if sensor.simulation_fill_factor is not None
+            else sensor.pixel_fill_factor
+        )
         focal_m = (
             float(lens.focal_length_mm) * 1e-3
             if lens.focal_length_mm is not None
             else self._focal_length_from_hfov(
                 hfov_deg=lens.hfov_deg,
-                pixel_pitch_m=sensor.pixel_size_um * 1e-6,
+                pixel_pitch_m=simulation_pitch_um * 1e-6,
                 cols=sensor.cols,
             )
         )
@@ -311,7 +343,8 @@ class CameraEngine:
             "cols": sensor.cols,
             "integration_time": sensor.exposure_ms * 1e-3,
             "analog_gain": sensor.analog_gain,
-            "pixel_size": sensor.pixel_size_um * 1e-6,
+            "pixel_size": simulation_pitch_um * 1e-6,
+            "pixel_fill_factor": simulation_fill_factor,
             "cfa_preset": sensor.cfa_preset,
             "ocl_group_shape": sensor.ocl_group_shape,
             "ocl_group_equalization": sensor.ocl_equalization,
@@ -334,7 +367,6 @@ class CameraEngine:
             "parameters": {
                 "optics.fnumber": lens.f_number,
                 "optics.focal_length": focal_m,
-                "optics.si_psf_radius_um": lens.psf_radius_um,
                 "ip.demosaic_method": module.isp.demosaic_method,
                 "ip.sensor_conversion_method": module.isp.ccm_method,
             },
@@ -348,8 +380,20 @@ class CameraEngine:
                 "hfov_deg": lens.hfov_deg,
                 "fidelity": decision.to_dict(),
                 "qe_profile": sensor.qe_profile,
+                "native_pixel_size_um": sensor.pixel_size_um,
+                "simulation_pixel_size_um": simulation_pitch_um,
+                "simulation_fill_factor": simulation_fill_factor,
             },
         }
+        if module.metadata.get("use_geometric_psf") and module.metadata.get(
+            "rayoptics_simulation_id"
+        ):
+            scenario["rayoptics"] = {
+                "simulation_id": str(module.metadata["rayoptics_simulation_id"]),
+                "target_psf_size": int(module.metadata.get("rayoptics_target_psf_size", 32)),
+            }
+        else:
+            scenario["parameters"]["optics.si_psf_radius_um"] = lens.psf_radius_um
         if module.isp.ccm_matrix is not None:
             scenario["parameters"]["ip.sensor_conversion_matrix"] = np.asarray(
                 module.isp.ccm_matrix, dtype=float
@@ -513,7 +557,9 @@ class CameraEngine:
             scenario.setdefault("parameters", {})[path] = value
 
     @staticmethod
-    def _truth_boundary(scene: SceneCase, decision: FidelityDecision) -> str:
+    def _truth_boundary(
+        scene: SceneCase, decision: FidelityDecision, module: CameraModule
+    ) -> str:
         scene_note = {
             "physical": "The scene carries physical/spectral provenance.",
             "measured_proxy": "The scene is a measured proxy with caller calibration metadata.",
@@ -523,4 +569,10 @@ class CameraEngine:
             ),
             "synthetic": "The scene is synthetic and suitable for controlled research comparisons.",
         }[scene.source_kind]
-        return f"{decision.truth_boundary} {scene_note}"
+        optics_note = (
+            " RayOptics geometric ray-histogram PSF is active; diffraction and measured MTF "
+            "are not implied."
+            if module.metadata.get("use_geometric_psf")
+            else ""
+        )
+        return f"{decision.truth_boundary}{optics_note} {scene_note}"

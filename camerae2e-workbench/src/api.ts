@@ -3,7 +3,14 @@ import type {
   BenchmarkStatus,
   JobRecord,
   JobSubmitResponse,
+  ComponentSearchResponse,
+  ComponentSelection,
+  LensComponent,
+  ModuleApplicationResponse,
+  ModuleCompatibilityResponse,
   ProjectPayload,
+  RequirementSet,
+  SensorComponent,
   StudyRecord,
   StudySpec
 } from "./types";
@@ -90,4 +97,66 @@ export function artifactUrl(projectId: string, hash: string): string {
 
 export function scenePreviewUrl(projectId: string, studyId: string, sceneId: string): string {
   return `/api/v2/projects/${projectId}/studies/${studyId}/scenes/${sceneId}/preview`;
+}
+
+function queryString(values: Record<string, string | number | boolean | null | undefined>): string {
+  const params = new URLSearchParams();
+  Object.entries(values).forEach(([key, value]) => {
+    if (value !== null && value !== undefined && value !== "") params.set(key, String(value));
+  });
+  const encoded = params.toString();
+  return encoded ? `?${encoded}` : "";
+}
+
+export function searchLensComponents(
+  filters: Record<string, string | number | boolean | null | undefined>
+): Promise<ComponentSearchResponse<LensComponent>> {
+  return request<ComponentSearchResponse<LensComponent>>(`/api/v2/catalog/lenses${queryString(filters)}`);
+}
+
+export function fetchLensComponent(lensId: string): Promise<Record<string, any>> {
+  return request<Record<string, any>>(`/api/v2/catalog/lenses/${encodeURIComponent(lensId)}`);
+}
+
+export function searchSensorComponents(
+  filters: Record<string, string | number | boolean | null | undefined>
+): Promise<ComponentSearchResponse<SensorComponent>> {
+  return request<ComponentSearchResponse<SensorComponent>>(`/api/v2/catalog/sensors${queryString(filters)}`);
+}
+
+export function fetchSensorComponent(sensorId: string): Promise<Record<string, any>> {
+  return request<Record<string, any>>(`/api/v2/catalog/sensors/${encodeURIComponent(sensorId)}`);
+}
+
+export function evaluateComponentModules(
+  requirements: RequirementSet,
+  candidates: ComponentSelection[]
+): Promise<ModuleCompatibilityResponse> {
+  return request<ModuleCompatibilityResponse>("/api/v2/catalog/modules/evaluate", {
+    method: "POST",
+    body: JSON.stringify({ requirements, candidates })
+  });
+}
+
+export function applyComponentModule(
+  projectId: string,
+  studyId: string,
+  selection: ComponentSelection
+): Promise<ModuleApplicationResponse> {
+  return request<ModuleApplicationResponse>(`/api/v2/projects/${projectId}/studies/${studyId}/module`, {
+    method: "POST",
+    body: JSON.stringify({ selection, allow_incompatible: false })
+  });
+}
+
+export function compareComponentModules(
+  projectId: string,
+  studyId: string,
+  candidates: ComponentSelection[],
+  sceneId?: string
+): Promise<JobSubmitResponse> {
+  return request<JobSubmitResponse>(`/api/v2/projects/${projectId}/studies/${studyId}/modules/compare`, {
+    method: "POST",
+    body: JSON.stringify({ candidates, scene_id: sceneId ?? null, allow_incompatible: false })
+  });
 }

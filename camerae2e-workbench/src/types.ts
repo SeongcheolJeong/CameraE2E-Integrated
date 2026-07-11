@@ -38,8 +38,14 @@ export type CameraModule = {
     model_id: string | null;
     rows: number;
     cols: number;
-    pixel_size_um: number;
-    cfa_preset: string;
+    native_rows: number | null;
+    native_cols: number | null;
+  geometry_source: string;
+  pixel_size_um: number;
+  pixel_fill_factor: number;
+  simulation_pixel_size_um: number | null;
+  simulation_fill_factor: number | null;
+  cfa_preset: string;
     qe_profile: string;
     exposure_ms: number;
     analog_gain: number;
@@ -223,6 +229,122 @@ export type JobRecord = {
 };
 
 export type JobSubmitResponse = { job: JobRecord; poll_url: string };
+
+export type ComponentSelection = {
+  lens_id: string;
+  sensor_id: string;
+  name?: string | null;
+  use_geometric_psf: boolean;
+};
+
+export type LensComponent = {
+  id: string;
+  lens_id: string;
+  company: string;
+  publication_number: string;
+  configuration: string;
+  readiness: string;
+  simulation_status: string;
+  simulation_model: string;
+  focal_length_mm: number | null;
+  f_number: number | null;
+  image_height_mm: number | null;
+  field_of_view_deg: number | null;
+  airy_disk_diameter_um_550: number | null;
+  diffraction_cutoff_lpmm_550: number | null;
+  surface_count: number | null;
+  asphere_count: number | null;
+  psf_available: boolean;
+  module_configurable: boolean;
+  configuration_blockers: string[];
+  readiness_tier: string;
+  value_kind: string;
+  evidence_completeness: number;
+};
+
+export type SensorComponent = {
+  id: string;
+  code: string;
+  manufacturer: string;
+  device_name: string;
+  title: string;
+  analysis_year: number | null;
+  pixel_pitch_um: number | null;
+  resolution_mp: number | null;
+  native_size_rc: [number, number] | null;
+  geometry_source: string;
+  sensor_modality: string | null;
+  frame_model_supported: boolean;
+  cfa_model_supported: boolean;
+  module_configurable: boolean;
+  configuration_blockers: string[];
+  cfa_pattern: string | null;
+  shutter: string | null;
+  illumination: string | null;
+  optical_format: string | null;
+  microlens_type: string | null;
+  pixel_architecture: string | null;
+  has_dti: boolean | null;
+  has_pdaf: boolean | null;
+  has_hdr: boolean | null;
+  has_lofic: boolean | null;
+  is_stacked: boolean | null;
+  is_nir: boolean | null;
+  stack_config_available: boolean;
+  tcad_profile_available: boolean;
+  readiness_tier: string;
+  value_kind: string;
+  evidence_completeness: number;
+};
+
+export type ComponentSearchResponse<T> = {
+  schema_version: string;
+  total: number;
+  page: number;
+  page_size: number;
+  items: T[];
+  facets: Record<string, any>;
+};
+
+export type ModuleCompatibilityCandidate = {
+  id: string;
+  selection: ComponentSelection;
+  status: "compatible" | "conditional" | "incompatible";
+  pareto: boolean;
+  lens: LensComponent;
+  sensor: SensorComponent;
+  gates: Array<{
+    id: string;
+    value: unknown;
+    limit: string;
+    unit: string;
+    pass: boolean | null;
+    status: "pass" | "fail" | "not_evaluable";
+    note: string;
+  }>;
+  failed_gate_ids: string[];
+  not_evaluable_ids: string[];
+  derived: Record<string, number | string | boolean | null>;
+  truth_boundary: string;
+};
+
+export type ModuleCompatibilityResponse = {
+  schema_version: string;
+  requirements: RequirementSet;
+  candidate_count: number;
+  status_counts: Record<string, number>;
+  candidates: ModuleCompatibilityCandidate[];
+  truth_boundary: string;
+};
+
+export type ModuleApplicationResponse = {
+  schema_version: string;
+  study: StudyRecord;
+  module: CameraModule;
+  compatibility: ModuleCompatibilityCandidate;
+  asset: Record<string, any>;
+  artifact: ArtifactRecord;
+};
 
 export type AssetStatus = {
   schema_version: string;

@@ -6,7 +6,13 @@ from fastapi import APIRouter, HTTPException, Response, status
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, ConfigDict, Field
 
-from camerae2e_v2 import CameraE2EService, StudyCreate
+from camerae2e_v2 import (
+    CameraE2EService,
+    ModuleBaselineRequest,
+    ModuleCompareRequest,
+    ModuleEvaluationRequest,
+    StudyCreate,
+)
 
 
 class APIModel(BaseModel):
@@ -70,6 +76,130 @@ def create_v2_router(service: CameraE2EService) -> APIRouter:
             return service.list_camera_assets(project_id, kind=kind)
         except (KeyError, OSError, ValueError) as exc:
             raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    @router.get("/catalog/lenses")
+    def search_lenses(
+        query: str = "",
+        company: str | None = None,
+        focal_min: float | None = None,
+        focal_max: float | None = None,
+        f_number_max: float | None = None,
+        fov_min: float | None = None,
+        fov_max: float | None = None,
+        readiness: str | None = None,
+        require_psf: bool | None = None,
+        simulation_ready: bool | None = None,
+        sort: str = "company",
+        order: str = "asc",
+        page: int = 1,
+        page_size: int = 50,
+    ) -> dict[str, Any]:
+        return service.search_lenses(
+            query=query,
+            company=company,
+            focal_min=focal_min,
+            focal_max=focal_max,
+            f_number_max=f_number_max,
+            fov_min=fov_min,
+            fov_max=fov_max,
+            readiness=readiness,
+            require_psf=require_psf,
+            simulation_ready=simulation_ready,
+            sort=sort,
+            order=order,
+            page=page,
+            page_size=page_size,
+        )
+
+    @router.get("/catalog/lenses/{simulation_id}")
+    def lens_detail(simulation_id: str) -> dict[str, Any]:
+        try:
+            return service.lens_detail(simulation_id)
+        except (KeyError, OSError, ValueError) as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    @router.get("/catalog/sensors")
+    def search_sensors(
+        query: str = "",
+        manufacturer: str | None = None,
+        pixel_min: float | None = None,
+        pixel_max: float | None = None,
+        resolution_min: float | None = None,
+        cfa: str | None = None,
+        shutter: str | None = None,
+        has_dti: bool | None = None,
+        has_pdaf: bool | None = None,
+        has_hdr: bool | None = None,
+        has_lofic: bool | None = None,
+        is_stacked: bool | None = None,
+        simulation_ready: bool | None = None,
+        sort: str = "manufacturer",
+        order: str = "asc",
+        page: int = 1,
+        page_size: int = 50,
+    ) -> dict[str, Any]:
+        return service.search_sensors(
+            query=query,
+            manufacturer=manufacturer,
+            pixel_min=pixel_min,
+            pixel_max=pixel_max,
+            resolution_min=resolution_min,
+            cfa=cfa,
+            shutter=shutter,
+            has_dti=has_dti,
+            has_pdaf=has_pdaf,
+            has_hdr=has_hdr,
+            has_lofic=has_lofic,
+            is_stacked=is_stacked,
+            simulation_ready=simulation_ready,
+            sort=sort,
+            order=order,
+            page=page,
+            page_size=page_size,
+        )
+
+    @router.get("/catalog/sensors/{sensor_id}")
+    def sensor_detail(sensor_id: str) -> dict[str, Any]:
+        try:
+            return service.sensor_detail(sensor_id)
+        except (KeyError, OSError, ValueError) as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    @router.post("/catalog/modules/evaluate")
+    def evaluate_modules(body: ModuleEvaluationRequest) -> dict[str, Any]:
+        try:
+            return service.evaluate_component_modules(body)
+        except (KeyError, OSError, ValueError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @router.post("/projects/{project_id}/studies/{study_id}/module")
+    def apply_module(project_id: str, study_id: str, body: ModuleBaselineRequest) -> dict[str, Any]:
+        try:
+            return service.apply_component_module(project_id, study_id, body)
+        except (KeyError, OSError, ValueError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    @router.post(
+        "/projects/{project_id}/studies/{study_id}/modules/compare",
+        status_code=status.HTTP_202_ACCEPTED,
+    )
+    def compare_modules(
+        project_id: str,
+        study_id: str,
+        body: ModuleCompareRequest,
+        response: Response,
+    ) -> dict[str, Any]:
+        try:
+            job = service.submit_job(
+                project_id, study_id, "compare_modules", body.model_dump(mode="json")
+            )
+            response.headers["Location"] = f"/api/v2/projects/{project_id}/jobs/{job.id}"
+            return {
+                "job": job.model_dump(mode="json"),
+                "poll_url": response.headers["Location"],
+            }
+        except (KeyError, OSError, ValueError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
 
     @router.post("/projects/{project_id}/studies", status_code=status.HTTP_201_CREATED)
     def create_study(project_id: str, spec: StudyCreate) -> dict[str, Any]:
