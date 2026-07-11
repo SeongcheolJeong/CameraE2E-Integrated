@@ -8,7 +8,7 @@ from typing import Any
 
 import imageio.v3 as iio
 import numpy as np
-from scipy.ndimage import zoom  # type: ignore[import-untyped]
+from scipy.ndimage import map_coordinates, zoom  # type: ignore[import-untyped]
 
 from .models import CameraModule, GeometryTransform, SceneCase
 
@@ -58,6 +58,9 @@ def derive_geometry_transform(
             f"Requested sensor size {requested} was aligned to CFA block "
             f"{cfa_block_shape(module.sensor.cfa_preset)} as {(active_rows, active_cols)}."
         )
+    pinhole = pinhole_geometry(module, scene, (source_rows, source_cols))
+    resize_x = output_cols / max(source_cols, 1)
+    resize_y = output_rows / max(source_rows, 1)
     return GeometryTransform(
         source_size_rc=(source_rows, source_cols),
         requested_sensor_size_rc=requested,
@@ -66,10 +69,98 @@ def derive_geometry_transform(
         output_size_rc=(output_rows, output_cols),
         cfa_block_rc=cfa_block_shape(module.sensor.cfa_preset),
         binning_factor=module.sensor.binning_factor,
-        scale_xy=(output_cols / max(source_cols, 1), output_rows / max(source_rows, 1)),
+        scale_xy=(pinhole["scale_xy"][0] * resize_x, pinhole["scale_xy"][1] * resize_y),
+        offset_xy=(pinhole["offset_xy"][0] * resize_x, pinhole["offset_xy"][1] * resize_y),
         hfov_deg=module.lens.hfov_deg,
         alignment_warning=warning,
     )
+
+
+def pinhole_geometry(
+    module: CameraModule,
+    scene: SceneCase,
+    image_size_rc: tuple[int, int],
+) -> dict[str, Any]:
+    """Return source-to-target pinhole geometry in source-image pixel coordinates."""
+
+    rows, cols = image_size_rc
+    source = scene.metadata.get("source_intrinsics")
+    if not isinstance(source, dict) or not all(
+        source.get(key) is not None for key in ("fx_px", "fy_px", "cx_px", "cy_px")
+    ):
+        return {
+            "mode": "none",
+            "scale_xy": (1.0, 1.0),
+            "offset_xy": (0.0, 0.0),
+            "source_intrinsics": None,
+            "target_intrinsics": None,
+            "truth_boundary": "Source intrinsics unavailable; no pinhole FOV warp applied.",
+        }
+    source_fx = float(source["fx_px"])
+    source_fy = float(source["fy_px"])
+    source_cx = float(source["cx_px"])
+    source_cy = float(source["cy_px"])
+    target_fx = float((cols / 2.0) / math.tan(math.radians(module.lens.hfov_deg) / 2.0))
+    target_fy = target_fx
+    target_principal = module.metadata.get(
+        "target_principal_point_px", ((cols - 1.0) / 2.0, (rows - 1.0) / 2.0)
+    )
+    target_cx, target_cy = [float(item) for item in target_principal]
+    scale_x = target_fx / max(source_fx, 1e-12)
+    scale_y = target_fy / max(source_fy, 1e-12)
+    return {
+        "mode": "pinhole_intrinsics",
+        "scale_xy": (scale_x, scale_y),
+        "offset_xy": (target_cx - scale_x * source_cx, target_cy - scale_y * source_cy),
+        "source_intrinsics": {
+            "fx_px": source_fx,
+            "fy_px": source_fy,
+            "cx_px": source_cx,
+            "cy_px": source_cy,
+        },
+        "target_intrinsics": {
+            "fx_px": target_fx,
+            "fy_px": target_fy,
+            "cx_px": target_cx,
+            "cy_px": target_cy,
+            "hfov_deg": module.lens.hfov_deg,
+        },
+        "truth_boundary": (
+            "2D pinhole FOV/principal-point warp only; no depth, parallax, "
+            "disocclusion, or viewpoint synthesis."
+        ),
+    }
+
+
+def pinhole_recapture(image: np.ndarray, module: CameraModule, scene: SceneCase) -> np.ndarray:
+    """Warp a dataset RGB frame from source intrinsics into target pinhole geometry."""
+
+    source = np.asarray(image)
+    if source.ndim == 2:
+        source = np.repeat(source[..., None], 3, axis=2)
+    rows, cols = source.shape[:2]
+    geometry = pinhole_geometry(module, scene, (rows, cols))
+    if geometry["mode"] == "none":
+        return source
+    scale_x, scale_y = geometry["scale_xy"]
+    offset_x, offset_y = geometry["offset_xy"]
+    yy, xx = np.indices((rows, cols), dtype=float)
+    source_x = (xx - offset_x) / max(scale_x, 1e-12)
+    source_y = (yy - offset_y) / max(scale_y, 1e-12)
+    values = source.astype(float, copy=False)
+    warped = np.empty_like(values, dtype=float)
+    for channel in range(values.shape[2]):
+        warped[..., channel] = map_coordinates(
+            values[..., channel],
+            [source_y, source_x],
+            order=1,
+            mode="nearest",
+            prefilter=False,
+        )
+    if np.issubdtype(source.dtype, np.integer):
+        info = np.iinfo(source.dtype)
+        return np.clip(np.round(warped), info.min, info.max).astype(source.dtype)
+    return warped.astype(source.dtype, copy=False)
 
 
 def transform_label_payload(
@@ -108,7 +199,7 @@ def ideal_recapture(image: np.ndarray, output_size_rc: tuple[int, int]) -> np.nd
     factors = (rows / max(source.shape[0], 1), cols / max(source.shape[1], 1), 1.0)
     resized = zoom(source, factors, order=1, prefilter=False)
     if resized.shape[0] != rows or resized.shape[1] != cols:
-        fixed = np.zeros((rows, cols, 3), dtype=float)
+        fixed: np.ndarray = np.zeros((rows, cols, 3), dtype=float)
         copy_rows = min(rows, resized.shape[0])
         copy_cols = min(cols, resized.shape[1])
         fixed[:copy_rows, :copy_cols] = resized[:copy_rows, :copy_cols, :3]

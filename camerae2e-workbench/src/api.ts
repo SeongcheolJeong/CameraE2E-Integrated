@@ -5,6 +5,8 @@ import type {
   JobSubmitResponse,
   ComponentSearchResponse,
   ComponentSelection,
+  DatasetEstimate,
+  DatasetInventory,
   LensComponent,
   ModuleApplicationResponse,
   ModuleCompatibilityResponse,
@@ -45,6 +47,28 @@ export function fetchBenchmarkStatus(
 ): Promise<BenchmarkStatus> {
   return request<BenchmarkStatus>(
     `/api/v2/projects/${projectId}/studies/${studyId}/benchmark/status`
+  );
+}
+
+export function inspectDatasetSource(
+  projectId: string,
+  studyId: string,
+  requestBody: Record<string, unknown>
+): Promise<DatasetInventory> {
+  return request<DatasetInventory>(
+    `/api/v2/projects/${projectId}/studies/${studyId}/datasets/inventory`,
+    { method: "POST", body: JSON.stringify(requestBody) }
+  );
+}
+
+export function estimateDatasetExport(
+  projectId: string,
+  studyId: string,
+  requestBody: Record<string, unknown>
+): Promise<DatasetEstimate> {
+  return request<DatasetEstimate>(
+    `/api/v2/projects/${projectId}/studies/${studyId}/datasets/estimate`,
+    { method: "POST", body: JSON.stringify(requestBody) }
   );
 }
 

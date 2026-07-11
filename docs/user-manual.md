@@ -159,11 +159,23 @@ rgb/*.png
 labels/*.json
 optional raw_tiff/*.tiff
 optional stages/*.npz
+optional raw_uint16/*.npy
 ```
 
 The manifest records configuration, scene selection, seed, source hashes, code revision,
 fidelity, and validation status. Labels are transformed with the same geometry mapping
 as the camera output. CameraE2E does not invent labels for unknown objects.
+
+In the Workbench, select the dataset adapter, root, and split, then run
+`Inspect & Estimate`. Choose the baseline or an optimized camera, keep the default
+`source_bounded` resolution unless a target-shaped proxy is explicitly needed, and set
+the exposure bracket and noise repeats before export. `target_readout_proxy` records
+`upsampled_scene_proxy=true` when the target exceeds source information.
+
+When KITTI `P2` calibration is available, the RGB proxy and bounding boxes share the
+same source-to-target pinhole transform. Without depth, CameraE2E does not synthesize
+parallax, disocclusion, or viewpoint changes. RAW NPZ files contain `raw`,
+`sensor_digital`, CFA, bit depth, black level, and white level; they are not DNG files.
 
 ### Decision Report
 

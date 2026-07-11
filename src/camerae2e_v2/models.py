@@ -11,6 +11,7 @@ from uuid import uuid4
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 SceneType = Literal["macbeth", "slanted_bar", "uniform", "rgb_file", "multispectral_file"]
+DatasetSplit = Literal["train", "validation", "val", "test"]
 SearchMethod = Literal[
     "grid",
     "random",
@@ -27,6 +28,10 @@ def utc_now() -> datetime:
 
 def new_id(prefix: str) -> str:
     return f"{prefix}_{uuid4().hex[:16]}"
+
+
+def default_dataset_splits() -> list[DatasetSplit]:
+    return ["train"]
 
 
 class StrictModel(BaseModel):
@@ -544,9 +549,54 @@ class DatasetExportRequest(StrictModel):
     selection: Literal["baseline", "best", "top", "pareto"] = "best"
     case_count: int = Field(default=2, ge=1, le=1000)
     scene_count: int | None = Field(default=None, ge=1, le=10000)
+    source_adapter: Literal["study", "kitti"] = "study"
+    source_root: str | None = None
+    source_splits: list[DatasetSplit] = Field(default_factory=default_dataset_splits)
+    camera_ids: list[str] = Field(default_factory=list)
+    resolution_policy: Literal["source_bounded", "target_readout_proxy"] = "source_bounded"
+    exposure_variants_ev: list[float] = Field(default_factory=lambda: [0.0])
+    noise_repeats: int = Field(default=1, ge=1, le=100)
+    fidelity_level: FidelityLevel | None = None
+    resume: bool = True
+    include_raw_uint16: bool = False
     include_tiff: bool = False
     include_stage_outputs: bool = False
     include_uncertainty: bool = False
+
+    @field_validator("source_splits")
+    @classmethod
+    def validate_source_splits(cls, value: list[DatasetSplit]) -> list[DatasetSplit]:
+        if not value:
+            raise ValueError("source_splits must contain at least one split")
+        return list(dict.fromkeys(value))
+
+    @field_validator("exposure_variants_ev")
+    @classmethod
+    def validate_exposure_variants(cls, value: list[float]) -> list[float]:
+        if not value:
+            raise ValueError("exposure_variants_ev must contain at least one value")
+        if len(value) > 25:
+            raise ValueError("exposure_variants_ev supports at most 25 values")
+        if any(item < -8.0 or item > 8.0 for item in value):
+            raise ValueError("exposure variation must be between -8 EV and +8 EV")
+        return list(dict.fromkeys(float(item) for item in value))
+
+
+class DatasetInventoryRequest(StrictModel):
+    source_adapter: Literal["kitti"] = "kitti"
+    source_root: str | None = None
+    source_splits: list[DatasetSplit] = Field(default_factory=default_dataset_splits)
+
+    @field_validator("source_splits")
+    @classmethod
+    def validate_source_splits(cls, value: list[DatasetSplit]) -> list[DatasetSplit]:
+        if not value:
+            raise ValueError("source_splits must contain at least one split")
+        return list(dict.fromkeys(value))
+
+
+class DatasetEstimateRequest(DatasetExportRequest):
+    pass
 
 
 class ReportRequest(StrictModel):

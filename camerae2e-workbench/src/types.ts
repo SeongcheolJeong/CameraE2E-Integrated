@@ -397,3 +397,33 @@ export type BenchmarkStatus = {
   latest_requirements: Record<string, any> | null;
   latest_optimization: Record<string, any> | null;
 };
+
+export type DatasetInventory = {
+  schema_version: string;
+  adapter: "kitti" | "study";
+  root?: string;
+  requested_splits?: string[];
+  available_scene_count: number;
+  split_counts?: Record<string, number>;
+  label_count?: number;
+  label_coverage?: number;
+  calibration_count?: number;
+  calibration_coverage?: number;
+  class_counts?: Record<string, number>;
+  inventory_fingerprint?: string;
+  truth_boundary?: string;
+};
+
+export type DatasetEstimate = {
+  schema_version: string;
+  inventory: DatasetInventory;
+  scene_count: number;
+  camera_count: number;
+  exposure_variant_count: number;
+  noise_repeats: number;
+  sample_count: number;
+  estimated_bytes: number;
+  estimated_gib: number;
+  resolution_policy: "source_bounded" | "target_readout_proxy";
+  truth_boundary: string;
+};

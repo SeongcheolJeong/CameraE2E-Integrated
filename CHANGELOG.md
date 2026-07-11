@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+- Added a camera-aware KITTI RAW factory with split/calibration inventory, storage
+  estimation, source-bounded and target-readout policies, exposure/noise recipes, and
+  resumable content-addressed samples.
+- Added KITTI P2-to-target pinhole image and label transforms plus RAW NPZ metadata for
+  sensor digital values, CFA, bit depth, black level, and white level.
+- Added v3 dataset manifests, inventory/estimate APIs, integrity validation, and a
+  production Workbench workflow for inspecting and exporting camera-specific RAW data.
+
 ## 0.2.0-research
 
 - Added the Lens/Sensor Component Explorer with normalized search, detail inspection,

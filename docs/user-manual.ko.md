@@ -142,11 +142,32 @@ rgb/*.png
 labels/*.json
 optional raw_tiff/*.tiff
 optional stages/*.npz
+optional raw_uint16/*.npy
 ```
 
 manifest에는 config, scene, seed, source hash, commit, fidelity와 validation이
 기록됩니다. label은 camera output과 같은 geometry transform을 적용하며, 알 수
 없는 물체의 label을 자동 생성하지 않습니다.
+
+Workbench의 Dataset Factory에서는 다음 순서로 생성합니다.
+
+1. `Adapter`, dataset root와 split을 선택하고 `Inspect & Estimate`를 실행합니다.
+2. baseline, best, top 또는 Pareto camera profile을 선택합니다.
+3. 기본 `source_bounded`는 입력 RGB가 가진 공간 정보 범위 안에서 RAW를 만듭니다.
+4. `target_readout_proxy`는 목표 readout 크기를 사용할 수 있지만 원본보다 큰 경우
+   `upsampled_scene_proxy=true`가 기록되며 새로운 공간 정보가 생긴 것으로 해석하지
+   않습니다.
+5. exposure bracket과 noise 반복 수를 정한 뒤 export합니다. 같은 source frame의
+   모든 camera/exposure/noise variant는 같은 split을 유지합니다.
+
+KITTI calibration의 `P2`가 있으면 source intrinsics에서 target HFOV와 principal
+point로 2D pinhole warp를 적용하고 bbox도 같은 변환을 사용합니다. depth가 없으므로
+parallax, disocclusion, 시점 이동은 생성하지 않습니다. `P2`가 없으면 중심 정렬
+geometry proxy를 사용하고 manifest에 calibration 누락이 남습니다.
+
+RAW NPZ에는 `raw`, `sensor_digital`, `black_level`, `white_level`, `bit_depth`,
+`cfa_pattern`이 포함됩니다. 이 파일은 표준 DNG가 아니며 단위는
+`simulator_sensor_response`입니다.
 
 ### Report
 
@@ -170,6 +191,8 @@ kitti-yolo/
   images/val/
   labels/train/
   labels/val/
+  calib/train/       # optional KITTI P2 files
+  calib/val/         # optional
 ```
 
 이미지와 label의 stem이 일치해야 하며 모델, label, class mapping이 같은 task를
