@@ -1,0 +1,43 @@
+name: Bug report
+description: Report a reproducible CameraE2E problem
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What happened and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Provide minimal steps, project/study context, and configuration.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Git commit, OS, Python/Node versions, and workbench.sh check result.
+    validations:
+      required: true
+  - type: dropdown
+    id: evidence
+    attributes:
+      label: External evidence involved
+      options:
+        - Repository-only analytic/LUT assets
+        - KITTI or another dataset
+        - YOLO or another model
+        - FDTD/TCAD/RayOptics custom assets
+        - Measured calibration
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Remove secrets and do not upload restricted datasets or weights.

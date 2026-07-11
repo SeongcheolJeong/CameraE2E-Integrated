@@ -319,14 +319,18 @@ def fdtd_sensor_lut_response(
         return 1.0
 
     if normalize_to_center:
-        direct = _normalized_response_value(row)
-        if direct is not None:
-            return max(float(direct), 0.0)
         center = _select_summary_row(lut, wavelength_nm=wavelength_nm, case="center")
         center_response = _response_value(center) if center is not None else None
         response = _response_value(row)
         if response is not None and center_response and center_response > 0.0:
             return max(float(response) / float(center_response), 0.0)
+        # Some legacy exports only include a normalized column. Prefer an
+        # explicit same-wavelength center ratio whenever absolute responses are
+        # present: normalized_total_response_to_first is often normalized to
+        # the first sweep row, which may be a different wavelength.
+        direct = _normalized_response_value(row)
+        if direct is not None:
+            return max(float(direct), 0.0)
 
     response = _response_value(row)
     return 1.0 if response is None else max(float(response), 0.0)

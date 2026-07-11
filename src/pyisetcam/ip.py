@@ -317,6 +317,10 @@ def _ip_transform(ip: ImageProcessor, index: int) -> np.ndarray:
     return np.asarray(transform, dtype=float)
 
 
+def _ip_conversion_method_key(value: Any) -> str:
+    return str(param_format(value)).replace("_", "").replace("-", "")
+
+
 def ip_create(
     ip_name: str = "default",
     sensor: Sensor | None = None,
@@ -1993,7 +1997,9 @@ def _sensor_to_internal(
     *,
     asset_store: AssetStore,
 ) -> tuple[np.ndarray, np.ndarray]:
-    conversion_method = param_format(ip.fields.get("conversion_method_sensor", "mcc optimized"))
+    conversion_method = _ip_conversion_method_key(
+        ip.fields.get("conversion_method_sensor", "mcc optimized")
+    )
     filter_spectra = np.asarray(sensor.fields["filter_spectra"], dtype=float)
     wave = np.asarray(sensor.fields["wave"], dtype=float)
 
@@ -2135,7 +2141,9 @@ def _display_render(
     internal_cs = str(ip.fields.get("internal_cs", "xyz"))
     display = ip.fields["display"]
     display_spd = np.asarray(display.fields["spd"], dtype=float)
-    conversion_method = param_format(ip.fields.get("conversion_method_sensor", "mcc optimized"))
+    conversion_method = _ip_conversion_method_key(
+        ip.fields.get("conversion_method_sensor", "mcc optimized")
+    )
 
     if param_format(internal_cs) == "xyz":
         transform = internal_to_display_matrix(

@@ -18702,7 +18702,11 @@ def test_wvf_pupil_function_compatibility_wrappers_match_explicit_compute() -> N
 
 def test_wvf_root_path_and_summary_helpers_match_headless_contract() -> None:
     root = Path(wvfRootPath())
-    expected = Path("/Users/seongcheoljeong/Documents/CameraE2E/.cache/upstream/isetcam/412b9f9bdb3262f2552b96f0e769b5ad6cdff821/opticalimage/wavefront")
+    expected = (
+        Path(__file__).resolve().parents[2]
+        / ".cache/upstream/isetcam/412b9f9bdb3262f2552b96f0e769b5ad6cdff821"
+        / "opticalimage/wavefront"
+    )
     assert root == expected
     assert root.name == "wavefront"
 

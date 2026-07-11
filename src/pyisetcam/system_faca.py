@@ -16,7 +16,7 @@ from .fdtd_sensor import sensor_attach_fdtd_lut
 from .hwisp import HWIspConfig, hw_isp_config, hw_isp_simulate_sequence
 from .ip import ip_get
 from .optics import si_synthetic
-from .scene import scene_create, scene_get
+from .scene import scene_create, scene_get, scene_set
 from .sensor import mlens_create, mlens_set, sensor_get, sensor_set, sensor_vignetting
 from .tcad_sensor import sensor_attach_tcad_lut
 from .types import Camera, Scene
@@ -37,6 +37,12 @@ def camerae2e_run_scenario(
     config = dict(scenario or {})
     scenario_name = str(config.get("name", "camerae2e_faca_scenario"))
     resolved_scene = _resolve_scene(scene if scene is not None else config.get("scene"), store)
+    geometry_payload = (
+        dict(config.get("geometry", {})) if isinstance(config.get("geometry"), Mapping) else {}
+    )
+    scene_hfov_deg = geometry_payload.get("scene_hfov_deg")
+    if scene_hfov_deg is not None:
+        resolved_scene = scene_set(resolved_scene, "hfov", float(scene_hfov_deg))
     resolved_camera = _resolve_camera(camera if camera is not None else config.get("camera"), store)
     resolved_camera, parameter_lineage = _apply_physics_and_sensor_overrides(
         resolved_camera, config, store
@@ -57,7 +63,12 @@ def camerae2e_run_scenario(
         )
         computed_camera = hw_sequence.frames[-1].camera
     else:
-        computed_camera = camera_compute(resolved_camera.clone(), resolved_scene, asset_store=store)
+        computed_camera = camera_compute(
+            resolved_camera.clone(),
+            resolved_scene,
+            sensor_resize=bool(geometry_payload.get("sensor_resize", True)),
+            asset_store=store,
+        )
 
     stages = _collect_stages(resolved_scene, computed_camera, include_arrays=include_arrays)
     metrics = _faca_metrics(stages, hw_sequence.aggregate if hw_sequence is not None else None)
@@ -484,8 +495,16 @@ def _camera_parameter_name(key: Any) -> str:
 
 def _sensor_override_parameter_name(key: Any) -> str | None:
     normalized = str(key).replace("_", " ").lower()
+    if normalized in {"rows", "row", "active rows", "sensor rows"}:
+        return "rows"
+    if normalized in {"cols", "col", "columns", "active cols", "sensor cols"}:
+        return "cols"
+    if normalized in {"size", "sensor size", "active size"}:
+        return "size"
     if normalized in {"noise flag", "noise"}:
         return "noise flag"
+    if normalized in {"noise seed", "random seed", "sensor seed"}:
+        return "noise seed"
     if normalized in {"integration time", "integration"}:
         return "integration time"
     if normalized in {"exposure duration", "exposure time", "exposure time s"}:
@@ -508,6 +527,10 @@ def _sensor_override_parameter_name(key: Any) -> str | None:
         return "filter names"
     if normalized in {"filter spectra", "color filters", "filter transmissivities"}:
         return "filter spectra"
+    if normalized in {"pixel spectral qe", "pixel qe", "pd spectral qe", "pd qe"}:
+        return "pixel spectral qe"
+    if normalized in {"ir filter", "infrared filter", "other filter"}:
+        return "ir filter"
     if normalized in {"pixel read noise v", "read noise", "read noise v"}:
         return "pixel read noise"
     if normalized in {"pixel dark voltage", "dark voltage", "dark voltage v per sec"}:

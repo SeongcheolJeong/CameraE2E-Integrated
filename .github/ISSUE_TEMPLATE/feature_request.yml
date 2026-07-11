@@ -1,0 +1,36 @@
+name: Feature request
+description: Propose a camera research workflow or platform improvement
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Research use case
+      description: What decision or workflow should this enable?
+    validations:
+      required: true
+  - type: textarea
+    id: interface
+    attributes:
+      label: Expected behavior
+      description: Describe inputs, outputs, and the intended Workbench or API flow.
+    validations:
+      required: true
+  - type: dropdown
+    id: fidelity
+    attributes:
+      label: Required fidelity
+      options:
+        - L0 analytic
+        - L1 LUT
+        - L2 solver
+        - L3 measured calibration
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Required data or evidence
+      description: List datasets, models, solver outputs, measurements, or licenses.
