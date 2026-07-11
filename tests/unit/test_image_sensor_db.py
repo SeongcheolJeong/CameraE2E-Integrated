@@ -51,6 +51,14 @@ def test_image_sensor_db_parameters_return_existing_paths() -> None:
     assert Path(params["accuracy_gate_path"]).exists()
 
 
+def test_image_sensor_db_paths_are_resolved_under_repository_root() -> None:
+    first = image_sensor_db_records(limit=1)[0]
+    db_root = Path(first["db_root"]).resolve()
+
+    assert Path(first["stack_config_path"]).resolve().is_relative_to(db_root)
+    assert Path(first["tcad_profile_path"]).resolve().is_relative_to(db_root)
+
+
 def test_image_sensor_db_config_returns_json_safe_hybrid_scenario() -> None:
     first = image_sensor_db_records(limit=1)[0]
     config = image_sensor_db_config(first["sensor_id"])

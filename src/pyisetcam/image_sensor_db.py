@@ -501,11 +501,26 @@ def _normalize_record(raw: dict[str, Any], root: Path) -> dict[str, Any]:
         "has_lofic": specs.get("has_lofic"),
         "resolution_mp": specs.get("resolution_mp"),
         "optical_format": specs.get("optical_format"),
-        "stack_config_path": str(Path(stack_path).expanduser()) if stack_path else None,
-        "tcad_profile_path": str(Path(tcad_path).expanduser()) if tcad_path else None,
+        "stack_config_path": _resolve_catalog_path(stack_path, root),
+        "tcad_profile_path": _resolve_catalog_path(tcad_path, root),
         "raw": raw,
         "db_root": str(root),
     }
+
+
+def _resolve_catalog_path(value: Any, root: Path) -> str | None:
+    """Resolve generated catalog paths without depending on the producer machine."""
+
+    if not value:
+        return None
+    path = Path(str(value)).expanduser()
+    if path.is_absolute():
+        parts = path.parts
+        if "sensor_db" in parts:
+            path = Path(*parts[parts.index("sensor_db") + 1 :])
+        elif path.exists():
+            return str(path)
+    return str((root / path).resolve())
 
 
 def _sensor_id(raw: dict[str, Any], stack_path: str | None) -> str:

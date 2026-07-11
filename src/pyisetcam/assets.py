@@ -235,6 +235,14 @@ class AssetStore:
             if resolved.exists():
                 return resolved
 
+        # Upstream ISETCam contains legacy assets whose filename casing differs
+        # from call-site names (for example XYZQuanta vs xyzQuanta). Resolve the
+        # final filename case-insensitively so behavior is portable to Linux.
+        candidate_names = {candidate.name.casefold() for candidate in candidates}
+        for match in snapshot_root.rglob("*"):
+            if match.is_file() and match.name.casefold() in candidate_names:
+                return match
+
         raise MissingAssetError(f"Spectral asset not found: {spectra_name}")
 
     def load_spectra(

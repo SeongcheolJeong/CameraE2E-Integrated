@@ -58,6 +58,7 @@ def build_manifest(repo_root: Path) -> dict[str, Any]:
     checks.extend(_file_size_checks(repo_root))
     checks.extend(_nested_git_checks(repo_root))
     checks.extend(_runtime_path_checks(repo_root))
+    checks.extend(_catalog_portability_checks(repo_root))
     checks.extend(_repo_local_default_checks(repo_root))
 
     summary = _summary(repo_root, checks)
@@ -150,6 +151,24 @@ def _runtime_path_checks(repo_root: Path) -> list[dict[str, Any]]:
     ]
 
 
+def _catalog_portability_checks(repo_root: Path) -> list[dict[str, Any]]:
+    catalogs = [
+        repo_root / "camerae2e_db/fdtd_tcad/sensor_db/sensor_catalog.json",
+        repo_root / "camerae2e_db/fdtd_tcad/image_sensor_db/sensor_catalog.json",
+    ]
+    hits = [
+        _rel(repo_root, path)
+        for path in catalogs
+        if path.exists() and "/Users/" in path.read_text(encoding="utf-8")
+    ]
+    return [
+        {
+            "name": "camera_catalogs_are_portable",
+            "kind": "catalog_path",
+            "ok": not hits,
+            "absolute_path_catalogs": hits,
+        }
+    ]
 def _repo_local_default_checks(repo_root: Path) -> list[dict[str, Any]]:
     checks: list[dict[str, Any]] = []
     default_paths = {
