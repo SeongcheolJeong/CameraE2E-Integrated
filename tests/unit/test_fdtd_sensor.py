@@ -218,6 +218,38 @@ def test_fdtd_sensor_lut_load_validate_and_response(tmp_path: Path) -> None:
     assert fdtd_sensor_lut_response(lut, case="edge20", wavelength_nm=550) == pytest.approx(0.5)
 
 
+def test_fdtd_response_normalizes_to_center_at_same_wavelength(tmp_path: Path) -> None:
+    summary_csv = tmp_path / "camera_lut_summary.csv"
+    summary_csv.write_text(
+        "\n".join(
+            [
+                "mode,wavelength_nm,case,total_response,normalized_total_response_to_first",
+                "split-pd-1x1,450,center,0.10,1.0",
+                "split-pd-1x1,550,center,0.50,5.0",
+                "split-pd-1x1,550,edge20,0.25,2.5",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    path = tmp_path / "camera_lut.json"
+    path.write_text(
+        json.dumps(
+            {
+                "schema": "camera_supercell_optical_lut_v2",
+                "mode": "split-pd-1x1",
+                "wavelengths_nm": [450.0, 550.0],
+                "summary_csv": str(summary_csv),
+            }
+        ),
+        encoding="utf-8",
+    )
+    lut = fdtd_sensor_lut_load(path)
+
+    assert fdtd_sensor_lut_response(lut, case="center", wavelength_nm=550) == pytest.approx(1.0)
+    assert fdtd_sensor_lut_response(lut, case="edge20", wavelength_nm=550) == pytest.approx(0.5)
+
+
 def test_fdtd_sensor_lut_load_resolves_fdtd_root_relative_sidecars(tmp_path: Path) -> None:
     lut = fdtd_sensor_lut_load(_write_root_relative_lut(tmp_path))
 

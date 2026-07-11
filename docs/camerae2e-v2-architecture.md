@@ -175,6 +175,13 @@ Only candidates evaluated at the final successive-halving scene budget are
 eligible for `best_case` and the Pareto front. Early-stage scores remain visible
 for audit, but are not compared as if they had the same evidence budget.
 
+The exact benchmark selection is content-addressed by
+`camerae2e_benchmark_manifest_v1`. It records image/label hashes, detector hash,
+metric version, class mapping, thresholds, perturbations, fidelity policy, seed,
+and code revision. Finalists are compared by paired scene bootstrap and a
+minimum practical score delta. `decision_status=indistinguishable` prevents a
+small or uncertain score difference from being presented as a resolved winner.
+
 Robustness is computed from real camera reruns for exposure -1/+1 EV, PSF
 defocus, OCL/CRA mismatch, and low illumination. It is not the previous nominal
 `min(mAP, recall)` placeholder.
@@ -219,6 +226,12 @@ group so variants of the same source frame cannot leak across train,
 validation, and test. DNG remains excluded until compliant tag writing is
 implemented.
 
+Export validation reads every RAW NPZ and RGB/label artifact. It verifies RAW
+dtype, shape and finite values, RGB alignment, bounding-box bounds, source-hash
+and group split isolation, per-file checksums, metadata checksum, and the
+content-addressed manifest. A failed validation remains attached to the artifact
+and is shown as failed in the Workbench.
+
 ## Solver Jobs
 
 RayOptics, FDTD, and TCAD implement a common lifecycle:
@@ -236,11 +249,18 @@ stage, and manifest validation.
 ## Calibration
 
 The v2 calibration job ingests paired measured and simulated JSON, CSV, NPY, or
-NPZ values. It fits an affine response and records RMSE, MAE, R-squared, a 95%
-residual interval, and the valid input domain.
+NPZ values. It fits an affine response and records RMSE, normalized RMSE, MAE,
+R-squared, a 95% residual interval, and the valid input domain. Sample-count,
+normalized-RMSE, and R-squared gates determine whether that scoped artifact is
+`calibrated` or remains `calibration_required`.
 
 Calibration promotion is scoped. A calibrated QE fit does not promote lens PSF,
 TCAD collection, ISP latency, or the complete camera module.
+
+`camerae2e_calibration_pack_v1` aggregates required evidence by sensor, optics,
+ISP, and HW ISP stage. Even a complete pack is not by itself product sign-off;
+requirements, manufacturing variation, and hardware validation remain separate
+evidence.
 
 ## Interfaces
 
@@ -265,12 +285,17 @@ ADAS-specific resources are:
 
 ```text
 GET  .../benchmark/status
+GET  .../benchmark/manifest
 POST .../benchmark/preflight
 POST .../benchmark/run
 POST .../benchmark/train-detector
 POST .../requirements/evaluate
 POST .../candidates/{case_id}/promote
 ```
+
+`benchmark/run` accepts `compare_fidelity=true` to attach a same-scene L0/L1
+rankability comparison. `GET .../calibrations/status` returns the current scoped
+calibration pack.
 
 An executed FDTD validation can automatically attach a consumable camera LUT
 and rerun the promoted candidate on 200 scenes. RayOptics manifests remain

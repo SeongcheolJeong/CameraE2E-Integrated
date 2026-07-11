@@ -43,3 +43,9 @@ the Workbench does not substitute a fake score or a generic COCO score.
 The top-bar study selector keeps baseline and focused trade studies separate.
 Successive-halving results mark final-budget candidates as `finalist`; screened
 early-stage scores remain visible but cannot become the best candidate.
+
+Finalists also carry scene-bootstrap confidence intervals and an explicit
+`winner` or `indistinguishable` decision. The Dataset section reports full RAW,
+RGB, label, checksum, and split-integrity validation, while Calibration shows
+stage-scoped sensor, optics, ISP, and HW ISP evidence. L1 FDTD results remain
+proxy evidence unless measured calibration is attached.

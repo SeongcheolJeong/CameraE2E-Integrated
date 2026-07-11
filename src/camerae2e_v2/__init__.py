@@ -1,5 +1,6 @@
 """CameraE2E v2 research project and decision platform."""
 
+from .calibration import calibration_pack_status
 from .catalog import seed_builtin_camera_assets
 from .engine import CameraEngine, FidelityRouter
 from .evaluation import StudyEvaluator
@@ -45,6 +46,7 @@ __all__ = [
     "AssetKind",
     "BenchmarkPreflightResult",
     "BenchmarkSuite",
+    "calibration_pack_status",
     "CalibrationRequest",
     "CameraEngine",
     "CameraAssetRecord",

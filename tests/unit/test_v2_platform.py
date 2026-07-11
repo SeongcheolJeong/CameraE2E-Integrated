@@ -8,7 +8,8 @@ import numpy as np
 import pytest
 from pydantic import ValidationError
 
-from camerae2e_v2.calibration import fit_calibration
+from camerae2e_v2.benchmark import benchmark_manifest, benchmark_scenes
+from camerae2e_v2.calibration import calibration_pack_status, fit_calibration
 from camerae2e_v2.color import fit_constrained_ccm
 from camerae2e_v2.engine import CameraEngine
 from camerae2e_v2.evaluation import StudyEvaluator, load_adas_label_payload
@@ -228,7 +229,39 @@ def test_v2_calibration_fit_is_scoped_and_lineaged(tmp_path: Path) -> None:
     assert result["model"]["offset"] == pytest.approx(0.03)
     assert result["residual"]["rmse"] < 1e-12
     assert len(result["artifact"]["dependencies"]) == 2
+    assert result["validation"]["validated"]
+    assert result["artifact"]["readiness_tier"] == "calibrated"
     assert "does not promote" in result["promotion_scope"]
+
+
+def test_v2_calibration_pack_rejects_generic_or_low_quality_fit(tmp_path: Path) -> None:
+    project = Project.create(tmp_path / "project", name="Calibration gates")
+    simulated_path = tmp_path / "simulated.npy"
+    measured_path = tmp_path / "measured.npy"
+    np.save(simulated_path, np.linspace(0.0, 1.0, 12))
+    np.save(measured_path, np.asarray([0.2, 0.9, 0.1, 0.8, 0.3, 0.7] * 2))
+
+    result = fit_calibration(
+        project,
+        CalibrationRequest(
+            kind="generic",
+            measured_path=str(measured_path),
+            simulated_path=str(simulated_path),
+        ),
+    )
+    pack = calibration_pack_status(project)
+
+    assert not result["validation"]["validated"]
+    assert result["artifact"]["readiness_tier"] == "calibration_required"
+    assert not pack["complete"]
+    assert set(pack["missing_kinds"]) == {
+        "angular_response",
+        "color",
+        "latency",
+        "mtf",
+        "ptc",
+        "qe",
+    }
 
 
 def test_v2_migrates_v1_settings_without_inventing_perception_score(tmp_path: Path) -> None:
@@ -491,7 +524,7 @@ class _HalvingEvaluator(StudyEvaluator):
         case_index: int,
         **_kwargs: object,
     ) -> dict[str, object]:
-        scores = {0: {1: 0.9, 2: 0.6, 3: 0.5}, 1: {1: 0.8}}
+        scores = {-1: {3: 0.4}, 0: {1: 0.9, 2: 0.6, 3: 0.5}, 1: {1: 0.8}}
         score = scores[case_index][len(scenes)]
         return {
             "case_id": f"case_{case_index:04d}",
@@ -551,6 +584,68 @@ def test_v2_successive_halving_selects_best_only_from_finalists(tmp_path: Path) 
     assert result["top_cases"][0]["finalist"] is True
     assert result["top_cases"][1]["finalist"] is False
     assert result["pareto_front"][0]["case_id"] == "case_0000"
+    assert result["decision_status"] == "winner_single_feasible"
+    assert result["winner_case"]["case_id"] == "case_0000"
+    assert result["benchmark_manifest"]["metric_version"] == "adas_yolo_perception_v1"
+
+
+def test_v2_benchmark_manifest_is_path_independent_and_content_addressed(
+    tmp_path: Path,
+) -> None:
+    _project, study, _model_path = _perception_study(tmp_path)
+    scenes = benchmark_scenes(study, 1)
+
+    first = benchmark_manifest(study, scenes)
+    repeated = benchmark_manifest(study, scenes)
+    Path(str(scenes[0].label_path)).write_text(
+        "0 0.5 0.5 0.3 0.4\n", encoding="utf-8"
+    )
+    changed = benchmark_manifest(study, scenes)
+
+    assert first["manifest_hash"] == repeated["manifest_hash"]
+    assert first["manifest_hash"] != changed["manifest_hash"]
+    assert str(tmp_path) not in json.dumps(first)
+    assert first["detector"]["sha256"]
+    assert first["runtime"]["code_state"] in {"clean", "dirty", "configured", "unknown"}
+
+
+def test_v2_optimization_decision_requires_confidence_and_practical_delta() -> None:
+    def candidate(case_id: str, values: list[float]) -> dict[str, object]:
+        return {
+            "case_id": case_id,
+            "scene_metrics": [
+                {"scene_id": f"scene_{index}", "target_score": value}
+                for index, value in enumerate(values)
+            ],
+        }
+
+    top = candidate("top", [0.82, 0.77, 0.85, 0.80])
+    close = candidate("close", [0.818, 0.768, 0.848, 0.798])
+    lower = candidate("lower", [0.80, 0.75, 0.83, 0.78])
+
+    indistinguishable = StudyEvaluator._optimization_decision(
+        [top, close], seed=7, samples=500, confidence=0.95, minimum_delta=0.005
+    )
+    winner = StudyEvaluator._optimization_decision(
+        [top, lower], seed=7, samples=500, confidence=0.95, minimum_delta=0.005
+    )
+
+    assert indistinguishable["status"] == "indistinguishable"
+    assert indistinguishable["winner_case_id"] is None
+    assert winner["status"] == "winner"
+    assert winner["winner_case_id"] == "top"
+
+    shifted = {
+        "target_score": 0.5,
+        "scene_metrics": [
+            {"scene_id": "a", "target_score": 0.1},
+            {"scene_id": "b", "target_score": 0.2},
+        ],
+    }
+    uncertainty = StudyEvaluator._score_uncertainty(
+        shifted, seed=3, samples=200, confidence=0.95
+    )
+    assert uncertainty["mean"] == pytest.approx(0.5)
 
 
 def test_v2_constrained_ccm_uses_holdout_and_preserves_neutral() -> None:

@@ -16,8 +16,12 @@ from typing import Any
 import imageio.v3 as iio
 import numpy as np
 
-from .benchmark import benchmark_inventory, benchmark_scenes
-from .calibration import fit_calibration
+from .benchmark import (
+    benchmark_inventory,
+    benchmark_scenes,
+)
+from .benchmark import benchmark_manifest as build_benchmark_manifest
+from .calibration import calibration_pack_status, fit_calibration
 from .catalog import seed_builtin_camera_assets
 from .engine import CameraEngine
 from .evaluation import StudyEvaluator, load_adas_label_payload
@@ -36,6 +40,7 @@ from .models import (
     utc_now,
 )
 from .project import Project, ProjectManager
+from .provenance import canonical_hash, runtime_provenance, sha256_file
 from .solvers import candidate_escalation_plan, solver_adapter
 
 
@@ -169,6 +174,23 @@ class CameraE2EService:
             "latest_optimization": latest.get("optimize"),
         }
 
+    def benchmark_manifest(
+        self,
+        project_id: str,
+        study_id: str,
+        *,
+        scene_count: int | None = None,
+    ) -> dict[str, Any]:
+        project = self.projects.open(project_id)
+        study = project.store.get_study(study_id)
+        count = int(scene_count or study.spec.benchmark.quick_scene_count)
+        scenes = benchmark_scenes(study, count)
+        if len(scenes) < count:
+            raise ValueError(
+                f"Benchmark manifest requested {count} scenes but only {len(scenes)} are available"
+            )
+        return build_benchmark_manifest(study, scenes)
+
     def submit_job(
         self,
         project_id: str,
@@ -274,6 +296,7 @@ class CameraE2EService:
         if project_id:
             project = self.projects.open(project_id)
             payload["project_artifacts"] = project.artifacts.validate()
+            payload["calibration_pack"] = calibration_pack_status(project)
         payload["solver_adapters"] = {
             family: {
                 "available": True,
@@ -513,6 +536,11 @@ class CameraE2EService:
             parameters=dict(job.request.get("parameters", {})),
             include_robustness=bool(job.request.get("include_robustness", True)),
         )
+        if job.request.get("compare_fidelity", False):
+            result["cross_fidelity"] = self.evaluator.compare_fidelities(
+                study,
+                scene_count=job.request.get("fidelity_scene_count"),
+            )
         artifact = project.artifacts.put_json(
             result,
             artifact_type="benchmark_report",
@@ -726,6 +754,15 @@ class CameraE2EService:
         input_hashes = self._register_study_inputs(project, job, study)
         request = DatasetExportRequest.model_validate(job.request)
         candidates = self._dataset_candidates(project, study.id, request)
+        optimization_hash = (
+            None
+            if request.selection == "baseline"
+            else self._latest_artifact_hash_by_role(
+                project, study.id, "optimize", "optimization"
+            )
+        )
+        if optimization_hash:
+            input_hashes.append(optimization_hash)
         scene_count = int(
             request.scene_count
             or (
@@ -753,7 +790,7 @@ class CameraE2EService:
             parameters = dict(candidate.get("parameters", candidate))
             case_id = str(candidate.get("case_id", f"candidate_{candidate_index:03d}"))
             for scene_index, scene_case in enumerate(scenes):
-                sample_id = f"{case_id}_{scene_case.id}"
+                sample_id = f"{case_id}_v{candidate_index:03d}_{scene_case.id}"
                 seed = study.spec.seed + candidate_index * 100000 + scene_index
                 result = self.engine.evaluate(
                     study.spec.baseline,
@@ -826,7 +863,10 @@ class CameraE2EService:
                         "split": split,
                         "seed": seed,
                         "source_kind": scene_case.source_kind,
-                        "source_image": scene_case.image_path,
+                        "source_ref": {
+                            "dataset": scene_case.metadata.get("dataset"),
+                            "frame_id": scene_case.metadata.get("frame_id", scene_case.id),
+                        },
                         "source_hash": (
                             self._file_sha256(Path(scene_case.image_path).expanduser())
                             if scene_case.image_path
@@ -842,6 +882,15 @@ class CameraE2EService:
                         "labels": str(label_path.relative_to(output_dir)),
                         "raw_shape": list(raw_export.shape),
                         "raw_dtype": str(raw_export.dtype),
+                        "raw_sha256": sha256_file(raw_path),
+                        "rgb_sha256": sha256_file(rgb_path),
+                        "labels_sha256": sha256_file(label_path),
+                        "cfa_preset": result.get("module", {}).get("sensor", {}).get(
+                            "cfa_preset"
+                        ),
+                        "bit_depth": result.get("module", {}).get("sensor", {}).get(
+                            "bit_depth"
+                        ),
                         "camera_config": result.get("module"),
                         "geometry": result.get("geometry"),
                         "fidelity": result.get("fidelity"),
@@ -854,6 +903,15 @@ class CameraE2EService:
             "".join(json.dumps(row, sort_keys=True, default=str) + "\n" for row in metadata_rows),
             encoding="utf-8",
         )
+        selected_manifest = build_benchmark_manifest(study, scenes)
+        candidate_contract = [
+            {
+                "case_id": str(item.get("case_id", f"candidate_{index:03d}")),
+                "parameters": dict(item.get("parameters", item)),
+                "configuration_hash": canonical_hash(dict(item.get("parameters", item))),
+            }
+            for index, item in enumerate(candidates)
+        ]
         manifest = {
             "schema_version": "camerae2e_raw_dataset_v2",
             "study_id": study.id,
@@ -862,16 +920,33 @@ class CameraE2EService:
             "scene_count": len(scenes),
             "case_count": len(metadata_rows),
             "seed": study.spec.seed,
+            "benchmark_manifest": selected_manifest,
+            "source_optimization_artifact": optimization_hash,
+            "candidate_contract": candidate_contract,
+            "runtime": runtime_provenance(),
+            "fidelity_policy": study.spec.fidelity_policy.model_dump(mode="json"),
             "formats": ["raw_npz", "rgb_png", "labels_json", "metadata_jsonl"],
             "split_counts": split_counts,
             "source_kinds": sorted({scene.source_kind for scene in scenes}),
             "label_policy": "caller_or_dataset_provided_only_no_automatic_inference",
             "dng_included": False,
+            "raw_contract": {
+                "container": "npz",
+                "array_key": "raw",
+                "dtype": "float32",
+                "units": "simulator_sensor_response",
+                "cfa_and_bit_depth_recorded_per_sample": True,
+            },
+            "integrity": {
+                "metadata_jsonl_sha256": sha256_file(metadata_path),
+                "sample_checksums_recorded": True,
+            },
             "truth_boundary": (
                 "RAW values are simulated from the recorded camera configuration. Source KITTI "
                 "RGB frames are display-derived scene proxies and are not original KITTI RAW."
             ),
         }
+        manifest["manifest_hash"] = canonical_hash(manifest)
         manifest_path = output_dir / "manifest.json"
         manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True), encoding="utf-8")
         validation = self._validate_dataset_export(output_dir, manifest, metadata_rows)
@@ -927,6 +1002,8 @@ class CameraE2EService:
         latest: dict[str, Any] = {}
         for item in jobs:
             latest.setdefault(item.kind, item.result)
+        calibration_pack = calibration_pack_status(project)
+        use_limit = self._report_use_limit(study, calibration_pack)
         payload = {
             "schema_version": "camerae2e_decision_report_v2",
             "title": request.title or f"{study.spec.name} Decision Report",
@@ -944,6 +1021,8 @@ class CameraE2EService:
             "candidate_validation": latest.get("validate_candidate"),
             "dataset": latest.get("dataset_export"),
             "calibration": latest.get("calibrate"),
+            "calibration_pack": calibration_pack,
+            "use_limit": use_limit,
             "fidelity_policy": study.spec.fidelity_policy.model_dump(mode="json"),
             "artifact_validation": project.artifacts.validate(),
             "reproduce": {
@@ -952,8 +1031,8 @@ class CameraE2EService:
                 "command": f"camerae2e run {project.root} {study.id} report",
             },
             "claim_boundary": (
-                "This research decision report does not assert product sign-off. L3 claims "
-                "require measured calibration evidence for every contributing stage."
+                f"Use limit: {use_limit}. This decision report does not assert product sign-off. "
+                "L3 claims require measured calibration evidence for every contributing stage."
             ),
         }
         report_dependencies = sorted(
@@ -1208,11 +1287,7 @@ class CameraE2EService:
 
     @staticmethod
     def _file_sha256(path: Path) -> str:
-        digest = hashlib.sha256()
-        with path.open("rb") as stream:
-            for chunk in iter(lambda: stream.read(1024 * 1024), b""):
-                digest.update(chunk)
-        return digest.hexdigest()
+        return sha256_file(path)
 
     @staticmethod
     def _validate_dataset_export(
@@ -1223,6 +1298,7 @@ class CameraE2EService:
         issues: list[dict[str, Any]] = []
         sample_ids: set[str] = set()
         group_splits: dict[str, str] = {}
+        source_splits: dict[str, str] = {}
         for row in rows:
             sample_id = str(row["sample_id"])
             if sample_id in sample_ids:
@@ -1232,6 +1308,85 @@ class CameraE2EService:
                 if not (root / str(row[key])).is_file():
                     issues.append(
                         {"kind": "missing_sample_file", "sample_id": sample_id, "role": key}
+                    )
+            raw_path = root / str(row["raw"])
+            rgb_path = root / str(row["rgb"])
+            label_path = root / str(row["labels"])
+            if raw_path.is_file():
+                try:
+                    with np.load(raw_path, allow_pickle=False) as archive:
+                        if "raw" not in archive:
+                            raise KeyError("raw")
+                        raw = np.asarray(archive["raw"])
+                    if raw.dtype != np.float32:
+                        issues.append(
+                            {
+                                "kind": "raw_dtype_mismatch",
+                                "sample_id": sample_id,
+                                "expected": "float32",
+                                "actual": str(raw.dtype),
+                            }
+                        )
+                    if list(raw.shape) != list(row.get("raw_shape", [])):
+                        issues.append(
+                            {
+                                "kind": "raw_shape_mismatch",
+                                "sample_id": sample_id,
+                                "expected": row.get("raw_shape"),
+                                "actual": list(raw.shape),
+                            }
+                        )
+                    if not np.all(np.isfinite(raw)):
+                        issues.append({"kind": "raw_nonfinite", "sample_id": sample_id})
+                except (OSError, ValueError, KeyError) as exc:
+                    issues.append(
+                        {
+                            "kind": "raw_read_error",
+                            "sample_id": sample_id,
+                            "detail": str(exc),
+                        }
+                    )
+            if rgb_path.is_file():
+                try:
+                    rgb = np.asarray(iio.imread(rgb_path))
+                    if list(rgb.shape[:2]) != list(row.get("raw_shape", []))[:2]:
+                        issues.append(
+                            {
+                                "kind": "rgb_raw_alignment",
+                                "sample_id": sample_id,
+                                "rgb_shape": list(rgb.shape),
+                                "raw_shape": row.get("raw_shape"),
+                            }
+                        )
+                except (OSError, ValueError) as exc:
+                    issues.append(
+                        {"kind": "rgb_read_error", "sample_id": sample_id, "detail": str(exc)}
+                    )
+            if label_path.is_file():
+                try:
+                    labels = json.loads(label_path.read_text(encoding="utf-8"))
+                    CameraE2EService._validate_export_labels(
+                        labels,
+                        tuple(int(value) for value in row.get("raw_shape", [])[:2]),
+                        sample_id,
+                        issues,
+                    )
+                except (OSError, ValueError, json.JSONDecodeError) as exc:
+                    issues.append(
+                        {
+                            "kind": "label_read_error",
+                            "sample_id": sample_id,
+                            "detail": str(exc),
+                        }
+                    )
+            for role, path, expected in (
+                ("raw", raw_path, row.get("raw_sha256")),
+                ("rgb", rgb_path, row.get("rgb_sha256")),
+                ("labels", label_path, row.get("labels_sha256")),
+            ):
+                if path.is_file() and expected and sha256_file(path) != expected:
+                    issues.append(
+                        {"kind": "checksum_mismatch", "sample_id": sample_id, "role": role}
                     )
             group = str(row["group_id"])
             previous = group_splits.setdefault(group, str(row["split"]))
@@ -1243,6 +1398,17 @@ class CameraE2EService:
                         "splits": [previous, row["split"]],
                     }
                 )
+            source_hash = row.get("source_hash")
+            if source_hash:
+                source_previous = source_splits.setdefault(str(source_hash), str(row["split"]))
+                if source_previous != row["split"]:
+                    issues.append(
+                        {
+                            "kind": "source_hash_split_leakage",
+                            "source_hash": source_hash,
+                            "splits": [source_previous, row["split"]],
+                        }
+                    )
         if len(rows) != int(manifest.get("case_count", -1)):
             issues.append(
                 {
@@ -1251,13 +1417,73 @@ class CameraE2EService:
                     "actual": len(rows),
                 }
             )
+        metadata_path = root / "metadata.jsonl"
+        expected_metadata_hash = (manifest.get("integrity") or {}).get(
+            "metadata_jsonl_sha256"
+        )
+        if (
+            metadata_path.is_file()
+            and expected_metadata_hash
+            and sha256_file(metadata_path) != expected_metadata_hash
+        ):
+            issues.append({"kind": "metadata_checksum_mismatch"})
+        recorded_manifest_hash = manifest.get("manifest_hash")
+        manifest_without_hash = {
+            key: value for key, value in manifest.items() if key != "manifest_hash"
+        }
+        if recorded_manifest_hash != canonical_hash(manifest_without_hash):
+            issues.append({"kind": "manifest_hash_mismatch"})
         return {
             "ok": not issues,
             "sample_count": len(rows),
             "group_count": len(group_splits),
+            "source_count": len(source_splits),
             "issue_count": len(issues),
             "issues": issues,
         }
+
+    @staticmethod
+    def _validate_export_labels(
+        payload: dict[str, Any],
+        image_size_rc: tuple[int, ...],
+        sample_id: str,
+        issues: list[dict[str, Any]],
+    ) -> None:
+        if not isinstance(payload, dict):
+            issues.append({"kind": "label_payload_invalid", "sample_id": sample_id})
+            return
+        if len(image_size_rc) != 2:
+            issues.append({"kind": "label_image_shape_missing", "sample_id": sample_id})
+            return
+        rows, cols = image_size_rc
+        recorded_size = payload.get("image_size_rc")
+        if recorded_size is not None and list(recorded_size) != [rows, cols]:
+            issues.append(
+                {
+                    "kind": "label_image_size_mismatch",
+                    "sample_id": sample_id,
+                    "expected": [rows, cols],
+                    "actual": recorded_size,
+                }
+            )
+        for index, item in enumerate(payload.get("objects", [])):
+            bbox = item.get("bbox_xyxy")
+            if not isinstance(bbox, list) or len(bbox) != 4:
+                issues.append(
+                    {"kind": "label_bbox_invalid", "sample_id": sample_id, "index": index}
+                )
+                continue
+            x1, y1, x2, y2 = [float(value) for value in bbox]
+            if not (0.0 <= x1 < x2 <= cols and 0.0 <= y1 < y2 <= rows):
+                issues.append(
+                    {
+                        "kind": "label_bbox_out_of_bounds",
+                        "sample_id": sample_id,
+                        "index": index,
+                        "bbox_xyxy": bbox,
+                        "image_size_rc": [rows, cols],
+                    }
+                )
 
     @staticmethod
     def _discover_kitti_scene() -> SceneCase | None:
@@ -1362,6 +1588,17 @@ class CameraE2EService:
         return payload
 
     @staticmethod
+    def _report_use_limit(study: Any, calibration_pack: dict[str, Any]) -> str:
+        if (
+            study.spec.fidelity_policy.search_level == FidelityLevel.CALIBRATED
+            and calibration_pack.get("complete")
+        ):
+            return "validated"
+        if study.spec.fidelity_policy.search_level != FidelityLevel.ANALYTIC:
+            return "calibration_required"
+        return "research_only"
+
+    @staticmethod
     def _render_report_html(payload: dict[str, Any]) -> str:
         optimization = payload.get("optimization") or {}
         candidates = optimization.get("top_cases", [])
@@ -1369,6 +1606,7 @@ class CameraE2EService:
             "<tr>"
             f"<td>{item.get('case_index')}</td>"
             f"<td>{float(item.get('target_score', 0.0)):.5f}</td>"
+            f"<td>{html.escape(CameraE2EService._format_score_interval(item))}</td>"
             f"<td>{float((item.get('perception_metrics') or {}).get('map50_95', 0.0)):.4f}</td>"
             f"<td>{float((item.get('perception_metrics') or {}).get('recall50', 0.0)):.4f}</td>"
             f"<td>{int(item.get('scene_count', 0))}</td>"
@@ -1390,6 +1628,10 @@ class CameraE2EService:
             json.dumps(payload.get("candidate_validation", {}), indent=2)
         )
         boundary = html.escape(str(payload.get("claim_boundary", "")))
+        decision_json = html.escape(
+            json.dumps((payload.get("optimization") or {}).get("decision", {}), indent=2)
+        )
+        calibration_json = html.escape(json.dumps(payload.get("calibration_pack", {}), indent=2))
         title = html.escape(str(payload["title"]))
         reproduce = html.escape(json.dumps(payload.get("reproduce", {}), indent=2))
         style = (
@@ -1408,17 +1650,30 @@ class CameraE2EService:
             '<!doctype html><html><head><meta charset="utf-8">'
             f"<title>{title}</title>{style}</head><body>"
             f'<h1>{title}</h1><p class="boundary">{boundary}</p>'
+            f'<div class="grid"><section><h2>Decision status</h2><pre>{decision_json}</pre>'
+            f'</section><section><h2>Calibration pack</h2><pre>{calibration_json}</pre>'
+            "</section></div>"
             f'<div class="grid"><section><h2>Requirements</h2><pre>{requirement_json}</pre>'
             f"</section><section><h2>Requirement gates</h2><pre>{requirement_result}</pre>"
             f"</section></div><h2>ADAS benchmark preflight</h2><pre>{preflight_json}</pre>"
             "<h2>Top candidates</h2><table><thead><tr>"
-            "<th>Case</th><th>Score</th><th>mAP</th><th>Recall</th><th>Scenes</th>"
+            "<th>Case</th><th>Score</th><th>Confidence interval</th><th>mAP</th>"
+            "<th>Recall</th><th>Scenes</th>"
             "<th>Parameters</th><th>Feasible</th><th>Evidence</th>"
             f"</tr></thead><tbody>{rows}</tbody></table>"
             f'<div class="grid"><section><h2>Candidate evidence</h2><pre>{validation_json}</pre>'
             f"</section><section><h2>RAW dataset</h2><pre>{dataset_json}</pre></section></div>"
             f"<h2>Reproduce</h2><pre>{reproduce}</pre></body></html>"
         )
+
+    @staticmethod
+    def _format_score_interval(item: dict[str, Any]) -> str:
+        uncertainty = item.get("uncertainty") or {}
+        low = uncertainty.get("ci_low")
+        high = uncertainty.get("ci_high")
+        if low is None or high is None:
+            return "unavailable"
+        return f"[{float(low):.5f}, {float(high):.5f}]"
 
     def _forget_future(self, job_id: str) -> None:
         with self._future_lock:

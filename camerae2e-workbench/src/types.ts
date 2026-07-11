@@ -112,6 +112,7 @@ export type Constraint = {
 
 export type BenchmarkSuite = {
   name: string;
+  metric_version: string;
   source_root: string | null;
   quick_scene_count: number;
   final_scene_count: number;
@@ -132,6 +133,9 @@ export type BenchmarkSuite = {
   fidelity_recall_retention_min: number;
   fidelity_color_imbalance_max: number;
   fidelity_ssim_min: number;
+  uncertainty_bootstrap_samples: number;
+  confidence_level: number;
+  minimum_meaningful_score_delta: number;
 };
 
 export type StudySpec = {
@@ -246,6 +250,18 @@ export type AssetStatus = {
     model_path: string | null;
     model_ready: boolean;
     label_ready: boolean;
+  };
+  calibration_pack?: {
+    schema_version: string;
+    complete: boolean;
+    readiness_tier: string;
+    missing_kinds: string[];
+    product_signoff_ready: boolean;
+    stages: Record<string, {
+      complete: boolean;
+      readiness_tier: string;
+      required_kinds: string[];
+    }>;
   };
 };
 

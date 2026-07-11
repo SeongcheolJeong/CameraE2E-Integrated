@@ -239,6 +239,7 @@ def default_robustness_cases() -> list[RobustnessCase]:
 
 class BenchmarkSuite(StrictModel):
     name: str = "KITTI ADAS benchmark"
+    metric_version: str = "adas_yolo_perception_v1"
     source_root: str | None = None
     quick_scene_count: int = Field(default=50, ge=1, le=2000)
     final_scene_count: int = Field(default=200, ge=1, le=10000)
@@ -255,6 +256,9 @@ class BenchmarkSuite(StrictModel):
     fidelity_recall_retention_min: float = Field(default=0.20, ge=0.0, le=1.0)
     fidelity_color_imbalance_max: float = Field(default=0.25, ge=0.0)
     fidelity_ssim_min: float = Field(default=0.45, ge=0.0, le=1.0)
+    uncertainty_bootstrap_samples: int = Field(default=1000, ge=100, le=10000)
+    confidence_level: float = Field(default=0.95, gt=0.5, lt=1.0)
+    minimum_meaningful_score_delta: float = Field(default=0.005, ge=0.0, le=1.0)
 
     @model_validator(mode="after")
     def validate_counts(self) -> BenchmarkSuite:
@@ -277,6 +281,7 @@ class BenchmarkPreflightResult(StrictModel):
     ideal_recapture: dict[str, Any] = Field(default_factory=dict)
     camera_output: dict[str, Any] = Field(default_factory=dict)
     training: dict[str, Any] = Field(default_factory=dict)
+    benchmark_manifest: dict[str, Any] = Field(default_factory=dict)
 
 
 class RequirementGateResult(StrictModel):
@@ -528,6 +533,9 @@ class CalibrationRequest(StrictModel):
     simulated_key: str | None = None
     valid_min: float | None = None
     valid_max: float | None = None
+    min_sample_count: int = Field(default=6, ge=3)
+    min_r2: float = Field(default=0.95, ge=-1.0, le=1.0)
+    max_normalized_rmse: float = Field(default=0.05, gt=0.0)
     notes: str = ""
 
 

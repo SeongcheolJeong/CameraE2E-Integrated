@@ -78,7 +78,7 @@ function App() {
   const [datasetCases, setDatasetCases] = useState(200);
   const [previewTab, setPreviewTab] = useState<"source" | "ideal" | "output" | "overlay">("source");
   const [calibration, setCalibration] = useState({
-    kind: "generic",
+    kind: "qe",
     measured_path: "",
     simulated_path: ""
   });
@@ -146,6 +146,7 @@ function App() {
             }
           }
           setBenchmarkStatus(await fetchBenchmarkStatus(project.info.id, study.id));
+          setAssets(await fetchAssetStatus(project.info.id));
           return;
         }
         window.setTimeout(poll, 700);
@@ -187,6 +188,7 @@ function App() {
       : optimizationResult
   );
   const candidates = (optimization?.top_cases ?? []) as Array<Record<string, any>>;
+  const optimizationDecision = (optimization?.decision ?? null) as Record<string, any> | null;
   const selected = candidates[Math.min(selectedCandidate, Math.max(candidates.length - 1, 0))] ?? null;
 
   const artifacts = useMemo(() => {
@@ -219,6 +221,11 @@ function App() {
   );
   const optimizationReady = Boolean(
     draft?.target_profile !== "adas_yolo_perception" || preflight?.ready
+  );
+  const fdtdLutStale = Boolean(
+    assets?.validation?.warnings?.some((item) =>
+      item.kind === "stale_dependency" && item.entry === "fdtd_sensor_lut_active"
+    )
   );
 
   const mutate = (callback: (current: StudySpec) => StudySpec) => {
@@ -520,7 +527,7 @@ function App() {
             </div>
             <div className="benchmark-actions">
               <button className="secondary-button" disabled={Boolean(activeJobId) || !perceptionAssetsReady || draft.target_profile !== "adas_yolo_perception"} onClick={() => void run("benchmark_preflight", { scene_count: draft.benchmark.quick_scene_count })}><ShieldCheck size={17} /> Run Preflight</button>
-              <button className="secondary-button" disabled={Boolean(activeJobId) || !optimizationReady} onClick={() => void run("benchmark_run", { scene_count: draft.benchmark.quick_scene_count, include_robustness: true })}><ScanSearch size={17} /> Run Benchmark</button>
+              <button className="secondary-button" disabled={Boolean(activeJobId) || !optimizationReady} onClick={() => void run("benchmark_run", { scene_count: draft.benchmark.quick_scene_count, include_robustness: true, compare_fidelity: true, fidelity_scene_count: draft.benchmark.fidelity_scene_count })}><ScanSearch size={17} /> Run Benchmark</button>
               <button className="secondary-button" title="Evaluate engineering requirement gates" disabled={Boolean(activeJobId)} onClick={() => void run("requirements_evaluate")}><Gauge size={17} /> Requirements</button>
             </div>
           </div>
@@ -576,6 +583,16 @@ function App() {
 
         <section id="candidates" className="workspace-section">
           <SectionHeading icon={BarChart3} title="Candidates" meta={optimization ? `${optimization.final_feasible_count ?? optimization.feasible_count}/${optimization.finalist_count ?? optimization.case_count} finalists feasible · ${optimization.case_count} screened` : "not optimized"} />
+          {optimizationDecision && (
+            <div className={`decision-banner ${optimizationDecision.status === "indistinguishable" ? "uncertain" : optimizationDecision.status?.startsWith("winner") ? "decided" : "blocked"}`}>
+              {optimizationDecision.status?.startsWith("winner") ? <Check size={17} /> : <CircleAlert size={17} />}
+              <div>
+                <strong>{String(optimizationDecision.status).replaceAll("_", " ")}</strong>
+                <span>{String(optimizationDecision.reason ?? "")}</span>
+              </div>
+              {optimizationDecision.comparison && <code>{formatInterval(optimizationDecision.comparison)}</code>}
+            </div>
+          )}
           <div className="analysis-grid">
             <div className="analysis-pane">
               <h3>Sensitivity</h3>
@@ -604,7 +621,7 @@ function App() {
                 {candidates.map((candidate, index) => (
                   <tr key={candidate.case_index} className={`${selectedCandidate === index ? "selected " : ""}${candidate.finalist ? "finalist" : "screened"}`} onClick={() => setSelectedCandidate(index)}>
                     <td>{index + 1}</td>
-                    <td>{formatNumber(candidate.target_score)}</td>
+                    <td><strong>{formatNumber(candidate.target_score)}</strong><small className="score-interval">{formatInterval(candidate.uncertainty)}</small></td>
                     <td>{formatNumber(candidate.perception_metrics?.map50_95)}</td>
                     <td>{formatNumber(candidate.perception_metrics?.recall50)}</td>
                     <td>{formatNumber(candidate.perception_metrics?.small_object_recall50)}</td>
@@ -645,18 +662,34 @@ function App() {
           <div className="horizontal-form">
             <NumberControl label="Scenes" value={datasetCases} unit="frames" onChange={(value) => setDatasetCases(Math.max(1, Math.round(value)))} />
             <div className="format-tokens"><span>RAW NPZ</span><span>RGB PNG</span><span>Labels JSON</span><span>Metadata</span></div>
-            <button className="primary-button" disabled={Boolean(activeJobId) || !optimization?.best_case} onClick={() => void run("dataset_export", { selection: "best", case_count: 1, scene_count: datasetCases })}><Archive size={17} /> Export Best Candidate</button>
+            <button className="primary-button" disabled={Boolean(activeJobId) || !optimization?.best_case} onClick={() => void run("dataset_export", { selection: "best", case_count: 1, scene_count: datasetCases })}><Archive size={17} /> {optimizationDecision?.status === "indistinguishable" ? "Export Top-ranked" : "Export Best Candidate"}</button>
           </div>
           {datasetJob?.result?.dataset_root && <code className="output-path">{String(datasetJob.result.dataset_root)}</code>}
+          {datasetJob?.result?.validation && (
+            <div className={`dataset-validation ${datasetJob.result.validation.ok ? "passed" : "failed"}`}>
+              {datasetJob.result.validation.ok ? <Check size={15} /> : <TriangleAlert size={15} />}
+              <strong>{datasetJob.result.validation.ok ? "Dataset integrity passed" : "Dataset integrity failed"}</strong>
+              <span>{datasetJob.result.validation.sample_count} samples · {datasetJob.result.validation.issue_count} issues</span>
+            </div>
+          )}
         </section>
 
         <section id="calibration" className="workspace-section compact-section">
           <SectionHeading icon={FlaskConical} title="Calibration" meta="measured vs simulated" />
           <div className="calibration-form">
-            <SelectControl label="Evidence" value={calibration.kind} options={["generic", "qe", "angular_response", "ptc", "mtf", "color", "latency"]} onChange={(value) => setCalibration((current) => ({ ...current, kind: value }))} />
+            <SelectControl label="Evidence" value={calibration.kind} options={["qe", "angular_response", "ptc", "mtf", "color", "latency", "generic"]} onChange={(value) => setCalibration((current) => ({ ...current, kind: value }))} />
             <TextControl label="Measured file" value={calibration.measured_path} onChange={(value) => setCalibration((current) => ({ ...current, measured_path: value }))} />
             <TextControl label="Simulated file" value={calibration.simulated_path} onChange={(value) => setCalibration((current) => ({ ...current, simulated_path: value }))} />
             <button className="secondary-button" disabled={!calibration.measured_path || !calibration.simulated_path || Boolean(activeJobId)} onClick={() => void run("calibrate", calibration)}><FlaskConical size={17} /> Fit Evidence</button>
+          </div>
+          <div className="calibration-pack">
+            {Object.entries(assets?.calibration_pack?.stages ?? {}).map(([name, stage]) => (
+              <span className={stage.complete ? "complete" : "missing"} key={name}>
+                {stage.complete ? <Check size={13} /> : <CircleAlert size={13} />}
+                <strong>{name.replaceAll("_", " ")}</strong>
+                <small>{stage.complete ? "calibrated" : stage.required_kinds.join(" / ")}</small>
+              </span>
+            ))}
           </div>
         </section>
 
@@ -680,7 +713,7 @@ function App() {
         <div className="fidelity-ladder">
           {[
             ["L0", "Analytic", "validated"],
-            ["L1", "LUT-backed", assets?.validation?.stale_dependency_count ? "stale" : "available"],
+            ["L1", "LUT-backed", fdtdLutStale ? "stale" : "available"],
             ["L2", "Solver", validationJob ? "evidence" : "not run"],
             ["L3", "Calibrated", latest("calibrate") ? "scoped" : "missing"]
           ].map(([level, label, state]) => (
@@ -708,6 +741,7 @@ function App() {
             <>
               <strong>Case {selected.case_index}</strong>
               <span>Score {formatNumber(selected.target_score)}</span>
+              <span>CI {formatInterval(selected.uncertainty)}</span>
               <FidelityBadge level={String(selected.evidence_state ?? selected.fidelity?.effective ?? draft.fidelity_policy.search_level)} />
               <div className="score-breakdown">
                 {Object.entries(selected.score_components ?? {}).map(([name, component]) => (
@@ -820,6 +854,13 @@ function formatNumber(value: unknown): string {
   if (!Number.isFinite(number)) return "--";
   if (Math.abs(number) >= 1000 || (Math.abs(number) > 0 && Math.abs(number) < 0.001)) return number.toExponential(3);
   return number.toFixed(5).replace(/0+$/, "").replace(/\.$/, "");
+}
+
+function formatInterval(value: Record<string, any> | null | undefined): string {
+  const low = Number(value?.ci_low);
+  const high = Number(value?.ci_high);
+  if (!Number.isFinite(low) || !Number.isFinite(high)) return "CI unavailable";
+  return `[${formatNumber(low)}, ${formatNumber(high)}]`;
 }
 
 function formatMicrons(value: unknown): string {

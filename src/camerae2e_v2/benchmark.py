@@ -6,13 +6,24 @@ from collections import defaultdict
 from collections.abc import Iterable
 from functools import lru_cache
 from pathlib import Path
+from typing import Any
 
 from .models import BenchmarkSuite, SceneCase, StudyRecord
+from .provenance import canonical_hash, runtime_provenance, sha256_file
 
 ADAS_KITTI_CLASS_IDS = frozenset({0, 1, 2, 3, 4, 5, 6})
 ADAS_KITTI_CLASS_NAMES = frozenset(
     {"Car", "Van", "Truck", "Pedestrian", "Person_sitting", "Cyclist", "Tram"}
 )
+ADAS_CLASS_MAP = {
+    "Car": "vehicle",
+    "Van": "vehicle",
+    "Truck": "vehicle",
+    "Tram": "vehicle",
+    "Pedestrian": "pedestrian",
+    "Person_sitting": "pedestrian",
+    "Cyclist": "cyclist",
+}
 
 
 def resolve_benchmark_root(study: StudyRecord) -> Path | None:
@@ -82,10 +93,85 @@ def benchmark_inventory(study: StudyRecord) -> dict[str, object]:
         "available_scene_count": len(records),
         "quick_scene_count": study.spec.benchmark.quick_scene_count,
         "final_scene_count": study.spec.benchmark.final_scene_count,
+        "metric_version": study.spec.benchmark.metric_version,
         "enough_for_quick": len(records) >= study.spec.benchmark.quick_scene_count,
         "enough_for_final": len(records) >= study.spec.benchmark.final_scene_count,
         "strata": dict(sorted(strata.items())),
     }
+
+
+def benchmark_manifest(
+    study: StudyRecord,
+    scenes: Iterable[SceneCase],
+) -> dict[str, Any]:
+    """Build a path-independent manifest for one exact benchmark selection."""
+
+    selected = list(scenes)
+    scene_records = []
+    for scene in selected:
+        image = Path(scene.image_path).expanduser() if scene.image_path else None
+        label = Path(scene.label_path).expanduser() if scene.label_path else None
+        scene_records.append(
+            {
+                "scene_id": scene.id,
+                "frame_id": str(scene.metadata.get("frame_id", scene.id)),
+                "group_id": str(scene.metadata.get("group_id", scene.id)),
+                "split": str(scene.metadata.get("split", "unspecified")),
+                "stratum": str(scene.metadata.get("stratum", "unspecified")),
+                "source_kind": scene.source_kind,
+                "image_sha256": sha256_file(image) if image and image.is_file() else None,
+                "label_sha256": sha256_file(label) if label and label.is_file() else None,
+            }
+        )
+    model = (
+        Path(study.spec.perception_model_path).expanduser()
+        if study.spec.perception_model_path
+        else None
+    )
+    suite = study.spec.benchmark
+    payload: dict[str, Any] = {
+        "schema_version": "camerae2e_benchmark_manifest_v1",
+        "metric_version": suite.metric_version,
+        "suite_name": suite.name,
+        "study_id": study.id,
+        "seed": study.spec.seed,
+        "target_profile": study.spec.target_profile,
+        "selection": {
+            "stratification": suite.stratification,
+            "scene_count": len(scene_records),
+            "scenes": scene_records,
+        },
+        "detector": {
+            "configured": bool(model and model.is_file()),
+            "sha256": sha256_file(model) if model and model.is_file() else None,
+            "size_bytes": model.stat().st_size if model and model.is_file() else None,
+        },
+        "class_contract": {
+            "kitti_to_adas_group": ADAS_CLASS_MAP,
+            "ignored_classes": ["DontCare", "Misc"],
+        },
+        "thresholds": {
+            "detector_map50_min": suite.detector_map50_min,
+            "detector_map50_95_min": suite.detector_map50_95_min,
+            "detector_recall_min": suite.detector_recall_min,
+            "ideal_recall_retention_min": suite.ideal_recall_retention_min,
+            "ideal_ssim_min": suite.ideal_ssim_min,
+            "fidelity_recall_retention_min": suite.fidelity_recall_retention_min,
+            "fidelity_color_imbalance_max": suite.fidelity_color_imbalance_max,
+            "fidelity_ssim_min": suite.fidelity_ssim_min,
+        },
+        "robustness_cases": [
+            item.model_dump(mode="json") for item in suite.robustness_cases
+        ],
+        "fidelity": study.spec.fidelity_policy.model_dump(mode="json"),
+        "runtime": runtime_provenance(),
+        "truth_boundary": (
+            "The manifest fixes inputs and scoring semantics; it does not convert KITTI RGB "
+            "into original scene spectra or measured camera RAW."
+        ),
+    }
+    payload["manifest_hash"] = canonical_hash(payload)
+    return payload
 
 
 @lru_cache(maxsize=8)

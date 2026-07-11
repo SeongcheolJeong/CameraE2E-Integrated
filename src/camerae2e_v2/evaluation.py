@@ -19,7 +19,12 @@ from pyisetcam import (
     task_perception_config,
 )
 
-from .benchmark import ADAS_KITTI_CLASS_IDS, benchmark_inventory, benchmark_scenes
+from .benchmark import (
+    ADAS_KITTI_CLASS_IDS,
+    benchmark_inventory,
+    benchmark_manifest,
+    benchmark_scenes,
+)
 from .engine import CameraEngine
 from .geometry import (
     aligned_sensor_size,
@@ -57,6 +62,12 @@ def numeric_path(payload: dict[str, Any], path: str) -> float:
     if not math.isfinite(value):
         raise ValueError(f"Metric is not finite: {path}")
     return value
+
+
+def _optional_delta(left: Any, right: Any) -> float | None:
+    if left is None or right is None:
+        return None
+    return float(left) - float(right)
 
 
 def score_objectives(
@@ -157,6 +168,7 @@ class StudyEvaluator:
         requested_count = int(scene_count or spec.benchmark.quick_scene_count)
         inventory = benchmark_inventory(study)
         scenes = benchmark_scenes(study, requested_count)
+        manifest = benchmark_manifest(study, scenes)
         checks: list[dict[str, Any]] = []
 
         def check(check_id: str, passed: bool, value: Any, limit: Any, message: str) -> None:
@@ -207,6 +219,7 @@ class StudyEvaluator:
                 model_path=model_path,
                 checks=checks,
                 training=self._training_recommendation(study),
+                benchmark_manifest=manifest,
             )
             return {**result.model_dump(mode="json"), "inventory": inventory}
 
@@ -221,6 +234,7 @@ class StudyEvaluator:
                 model_path=model_path,
                 checks=checks,
                 training=self._training_recommendation(study),
+                benchmark_manifest=manifest,
             )
             return {**result.model_dump(mode="json"), "inventory": inventory}
 
@@ -463,6 +477,7 @@ class StudyEvaluator:
             ideal_recapture=ideal_summary,
             camera_output=camera_output,
             training=self._training_recommendation(study) if detector_failed else {},
+            benchmark_manifest=manifest,
         )
         return {**result.model_dump(mode="json"), "inventory": inventory}
 
@@ -492,10 +507,78 @@ class StudyEvaluator:
             "schema_version": "camerae2e_benchmark_run_v2",
             "study_id": study.id,
             "scene_count": count,
+            "benchmark_manifest": benchmark_manifest(study, scenes),
             "candidate": case,
             "truth_boundary": (
                 "Metrics aggregate only the recorded benchmark scenes and fidelity. "
                 "KITTI RGB inputs remain display-derived scene proxies."
+            ),
+        }
+
+    def compare_fidelities(
+        self,
+        study: StudyRecord,
+        *,
+        scene_count: int | None = None,
+    ) -> dict[str, Any]:
+        """Run the same rankability contract at L0 and L1 without claim promotion."""
+
+        count = int(scene_count or study.spec.benchmark.fidelity_scene_count)
+        results: dict[str, Any] = {}
+        for level in (FidelityLevel.ANALYTIC, FidelityLevel.LUT):
+            policy = study.spec.fidelity_policy.model_copy(update={"search_level": level})
+            candidate = study.model_copy(
+                update={
+                    "spec": study.spec.model_copy(update={"fidelity_policy": policy})
+                }
+            )
+            try:
+                result = self.preflight(candidate, scene_count=count)
+                camera = result.get("camera_output", {})
+                results[level.value] = {
+                    "ready": bool(result.get("ready")),
+                    "status": result.get("status"),
+                    "failed_gate_ids": [
+                        item["id"]
+                        for item in result.get("checks", [])
+                        if not item.get("pass")
+                    ],
+                    "camera_output": camera,
+                    "manifest_hash": (result.get("benchmark_manifest") or {}).get(
+                        "manifest_hash"
+                    ),
+                }
+            except Exception as exc:
+                results[level.value] = {
+                    "ready": False,
+                    "status": "execution_failed",
+                    "failed_gate_ids": ["fidelity_execution"],
+                    "error": f"{type(exc).__name__}: {exc}",
+                }
+        l0 = results[FidelityLevel.ANALYTIC.value]
+        l1 = results[FidelityLevel.LUT.value]
+        l0_camera = l0.get("camera_output", {})
+        l1_camera = l1.get("camera_output", {})
+        return {
+            "schema_version": "camerae2e_cross_fidelity_v1",
+            "scene_count": count,
+            "levels": results,
+            "both_rankable": bool(l0.get("ready") and l1.get("ready")),
+            "deltas": {
+                "recall_retention": _optional_delta(
+                    l1_camera.get("recall_retention"), l0_camera.get("recall_retention")
+                ),
+                "relative_channel_gain_imbalance": _optional_delta(
+                    l1_camera.get("relative_channel_gain_imbalance"),
+                    l0_camera.get("relative_channel_gain_imbalance"),
+                ),
+                "ideal_output_ssim": _optional_delta(
+                    l1_camera.get("ideal_output_ssim"), l0_camera.get("ideal_output_ssim")
+                ),
+            },
+            "truth_boundary": (
+                "Cross-fidelity agreement is a rankability diagnostic. L1 remains proxy evidence "
+                "until measured calibration is attached."
             ),
         }
 
@@ -624,10 +707,16 @@ class StudyEvaluator:
                 }
             )
         finalist_indices = set(active)
-        cases = [
-            {**latest_cases[index], "finalist": index in finalist_indices}
-            for index in sorted(latest_cases)
-        ]
+        cases = []
+        for index in sorted(latest_cases):
+            candidate = {**latest_cases[index], "finalist": index in finalist_indices}
+            candidate["uncertainty"] = self._score_uncertainty(
+                candidate,
+                seed=spec.seed + index,
+                samples=spec.benchmark.uncertainty_bootstrap_samples,
+                confidence=spec.benchmark.confidence_level,
+            )
+            cases.append(candidate)
         finalists = [item for item in cases if item["finalist"]]
         non_finalists = sorted(
             (item for item in cases if not item["finalist"]),
@@ -654,6 +743,41 @@ class StudyEvaluator:
                     "objective_degenerate: all candidates produced zero detector signal; "
                     "no best camera candidate was created"
                 )
+        final_scene_count = scene_counts[-1]
+        final_scenes = (
+            benchmark_scenes(study, final_scene_count)
+            if spec.target_profile == "adas_yolo_perception"
+            else list(spec.scenes)
+        )
+        baseline = self._evaluate_candidate_scenes(
+            study,
+            {},
+            final_scenes,
+            case_index=-1,
+            cache=cache,
+            include_robustness=spec.target_profile == "adas_yolo_perception",
+        )
+        baseline["uncertainty"] = self._score_uncertainty(
+            baseline,
+            seed=spec.seed - 1,
+            samples=spec.benchmark.uncertainty_bootstrap_samples,
+            confidence=spec.benchmark.confidence_level,
+        )
+        for candidate in ranked_finalists:
+            candidate["baseline_comparison"] = self._paired_score_comparison(
+                candidate,
+                baseline,
+                seed=spec.seed + int(candidate["case_index"]),
+                samples=spec.benchmark.uncertainty_bootstrap_samples,
+                confidence=spec.benchmark.confidence_level,
+            )
+        decision = self._optimization_decision(
+            feasible_finalists,
+            seed=spec.seed,
+            samples=spec.benchmark.uncertainty_bootstrap_samples,
+            confidence=spec.benchmark.confidence_level,
+            minimum_delta=spec.benchmark.minimum_meaningful_score_delta,
+        )
         pareto = self._pareto(feasible_finalists, spec.objectives)
         return {
             "schema_version": "camerae2e_optimization_v2",
@@ -666,6 +790,7 @@ class StudyEvaluator:
                 key: value for key, value in candidate_plan.items() if key != "candidates"
             },
             "preflight": preflight,
+            "benchmark_manifest": benchmark_manifest(study, final_scenes),
             "successive_halving": stages,
             "case_count": len(cases),
             "feasible_count": len(feasible),
@@ -680,12 +805,177 @@ class StudyEvaluator:
                     else None
                 )
             ),
+            "baseline": baseline,
+            "decision_status": decision["status"],
+            "decision": decision,
+            "winner_case": (
+                feasible_finalists[0]
+                if feasible_finalists
+                and decision["status"] in {"winner", "winner_single_feasible"}
+                else None
+            ),
             "top_cases": ranked[:8],
             "pareto_front": pareto,
             "cases": cases,
             "truth_boundary": (
                 "Ranking is valid only for the recorded scenes, objectives, model, and fidelity. "
-                "Proxy parameters do not become calibrated evidence through optimization."
+                "Confidence intervals quantify benchmark-scene sampling uncertainty, not hardware "
+                "manufacturing variation. Proxy parameters do not become calibrated evidence "
+                "through optimization."
+            ),
+        }
+
+    @staticmethod
+    def _score_uncertainty(
+        candidate: dict[str, Any],
+        *,
+        seed: int,
+        samples: int,
+        confidence: float,
+    ) -> dict[str, Any]:
+        values = list(StudyEvaluator._aligned_scene_scores(candidate).values())
+        return StudyEvaluator._bootstrap_interval(
+            values,
+            seed=seed,
+            samples=samples,
+            confidence=confidence,
+            method="scene_bootstrap",
+        )
+
+    @staticmethod
+    def _paired_score_comparison(
+        left: dict[str, Any],
+        right: dict[str, Any],
+        *,
+        seed: int,
+        samples: int,
+        confidence: float,
+    ) -> dict[str, Any]:
+        left_by_scene = StudyEvaluator._aligned_scene_scores(left)
+        right_by_scene = StudyEvaluator._aligned_scene_scores(right)
+        differences = [
+            value - right_by_scene[scene_id]
+            for scene_id, value in left_by_scene.items()
+            if scene_id in right_by_scene
+        ]
+        result = StudyEvaluator._bootstrap_interval(
+            differences,
+            seed=seed,
+            samples=samples,
+            confidence=confidence,
+            method="paired_scene_bootstrap",
+        )
+        result["left_case_id"] = left.get("case_id")
+        result["right_case_id"] = right.get("case_id")
+        return result
+
+    @staticmethod
+    def _aligned_scene_scores(candidate: dict[str, Any]) -> dict[str, float]:
+        values = {
+            str(item.get("scene_id")): float(item.get("target_score", 0.0))
+            for item in candidate.get("scene_metrics", [])
+        }
+        target = candidate.get("target_score")
+        if not values or not isinstance(target, (int, float)):
+            return values
+        offset = float(target) - float(np.mean(list(values.values())))
+        return {scene_id: value + offset for scene_id, value in values.items()}
+
+    @staticmethod
+    def _bootstrap_interval(
+        values: list[float],
+        *,
+        seed: int,
+        samples: int,
+        confidence: float,
+        method: str,
+    ) -> dict[str, Any]:
+        array = np.asarray(values, dtype=float)
+        array = array[np.isfinite(array)]
+        if array.size == 0:
+            return {
+                "available": False,
+                "method": method,
+                "sample_count": 0,
+                "mean": None,
+                "ci_low": None,
+                "ci_high": None,
+            }
+        mean = float(np.mean(array))
+        if array.size == 1:
+            low = high = mean
+        else:
+            rng = np.random.default_rng(int(seed))
+            indices = rng.integers(0, array.size, size=(int(samples), array.size))
+            means = np.mean(array[indices], axis=1)
+            alpha = (1.0 - float(confidence)) / 2.0
+            quantiles = np.asarray(
+                np.quantile(means, [alpha, 1.0 - alpha]), dtype=float
+            ).reshape(-1)
+            low = float(quantiles[0])
+            high = float(quantiles[1])
+        return {
+            "available": True,
+            "method": method,
+            "sample_count": int(array.size),
+            "bootstrap_samples": int(samples),
+            "confidence_level": float(confidence),
+            "mean": mean,
+            "standard_error": (
+                float(np.std(array, ddof=1) / np.sqrt(array.size)) if array.size > 1 else 0.0
+            ),
+            "ci_low": low,
+            "ci_high": high,
+            "truth_boundary": (
+                "Scene-sampling uncertainty; not sensor lot or hardware repeatability."
+            ),
+        }
+
+    @staticmethod
+    def _optimization_decision(
+        feasible_finalists: list[dict[str, Any]],
+        *,
+        seed: int,
+        samples: int,
+        confidence: float,
+        minimum_delta: float,
+    ) -> dict[str, Any]:
+        if not feasible_finalists:
+            return {
+                "status": "no_feasible_candidate",
+                "winner_case_id": None,
+                "reason": "No finalist passed all hard and engineering gates.",
+            }
+        top = feasible_finalists[0]
+        if len(feasible_finalists) == 1:
+            return {
+                "status": "winner_single_feasible",
+                "winner_case_id": top["case_id"],
+                "top_ranked_case_id": top["case_id"],
+                "reason": "Only one finalist passed all gates.",
+            }
+        runner = feasible_finalists[1]
+        comparison = StudyEvaluator._paired_score_comparison(
+            top,
+            runner,
+            seed=seed,
+            samples=samples,
+            confidence=confidence,
+        )
+        delta = float(comparison.get("mean") or 0.0)
+        ci_low = float(comparison.get("ci_low") or 0.0)
+        distinguishable = delta >= minimum_delta and ci_low > 0.0
+        return {
+            "status": "winner" if distinguishable else "indistinguishable",
+            "winner_case_id": top["case_id"] if distinguishable else None,
+            "top_ranked_case_id": top["case_id"],
+            "runner_up_case_id": runner["case_id"],
+            "minimum_meaningful_delta": minimum_delta,
+            "comparison": comparison,
+            "reason": (
+                "Top finalist exceeds the paired confidence and practical-delta gates."
+                if distinguishable
+                else "Top finalists are not separable at the configured confidence and delta."
             ),
         }
 
@@ -757,7 +1047,11 @@ class StudyEvaluator:
         low_clip = float(np.mean(image <= 0.0))
         high_clip = float(np.mean(image >= 1.0))
         raw = self._stage_image(result, "sensor_raw")
-        raw_snr = 0.0 if raw is None else float(np.mean(raw) / max(np.std(raw), 1e-12))
+        raw_snr = (
+            0.0
+            if raw is None
+            else float(np.mean(raw)) / max(float(np.std(raw)), 1e-12)
+        )
         support = float(
             np.clip(
                 0.5 * min(raw_snr / 20.0, 1.0) + 0.5 * (1.0 - high_clip),

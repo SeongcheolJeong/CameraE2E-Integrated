@@ -161,6 +161,21 @@ def create_v2_router(service: CameraE2EService) -> APIRouter:
         except (KeyError, OSError, ValueError) as exc:
             raise HTTPException(status_code=404, detail=str(exc)) from exc
 
+    @router.get("/projects/{project_id}/studies/{study_id}/benchmark/manifest")
+    def benchmark_manifest(
+        project_id: str,
+        study_id: str,
+        scene_count: int | None = None,
+    ) -> dict[str, Any]:
+        try:
+            return service.benchmark_manifest(
+                project_id,
+                study_id,
+                scene_count=scene_count,
+            )
+        except (KeyError, OSError, ValueError) as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+
     @router.post("/projects/{project_id}/studies/{study_id}/benchmark/preflight")
     def benchmark_preflight(
         project_id: str, study_id: str, body: OperationBody, response: Response
@@ -231,6 +246,13 @@ def create_v2_router(service: CameraE2EService) -> APIRouter:
         project_id: str, study_id: str, body: OperationBody, response: Response
     ) -> dict[str, Any]:
         return submit_operation(project_id, study_id, "calibrate", body, response)
+
+    @router.get("/projects/{project_id}/calibrations/status")
+    def calibration_status(project_id: str) -> dict[str, Any]:
+        try:
+            return service.asset_status(project_id)["calibration_pack"]
+        except (KeyError, OSError, ValueError) as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
 
     @router.post("/projects/{project_id}/studies/{study_id}/reports")
     def report(
