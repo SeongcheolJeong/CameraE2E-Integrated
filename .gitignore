@@ -1,4 +1,5 @@
 __pycache__/
+.venv/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
@@ -8,6 +9,7 @@ dist/
 *.egg-info/
 .DS_Store
 .cache/upstream/
+.camerae2e/
 reports/parity/*.json
 outputs/adas-kitti-yolo-raw-demo/
 outputs/adas-kitti-camera-variants-demo/
